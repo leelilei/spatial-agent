@@ -1,6 +1,6 @@
 # SpatialAgent Docs Index
 
-本目录用于归档 `spatial-agent` 根目录下原本散落的研究文档，按用途分类保存，避免研究计划、指导手册、survey、评审稿和愿景草案混在项目根目录。
+本目录现在是仓库唯一的文档目录，和 `spatial-agent/` 代码子项目处于同一级。
 
 ## 目录结构
 
@@ -9,17 +9,36 @@
   - Survey 研究计划
 - `guides/`
   - 项目搭建指南
-  - 论文指导手册
-- `surveys/`
-  - Survey 正文与相关综述文档
+  - 研究与写作指导材料
 - `references/`
-  - 参考文献清单与论文资料汇总
+  - 参考文献清单与论文资料来源
+- `reviews/`
+  - 各版 research plan 的评审与 review 文档
+- `surveys/`
+  - Survey 正文与相关综述材料
 - `vision/`
   - 愿景草案与早期方向探索
-- `reviews/`
-  - 各版 research plan 的评审 / review 文档
+- `decisions/`
+  - 研究过程中的关键决策记录
+- `meeting_notes/`
+  - 会议纪要与讨论记录
+
+## 根目录文档
+
+以下文档也直接放在本目录下，作为当前研究实现与实验材料：
+
+- `experiment_design.md`
+- `preflight_experiments.md`
+- `preflight_gpt54_core20_report.md`
+- `related_work.md`
+- `research_plan.md`
+- `reviewer_challenge_report1.md`
+- `reviewer_challenge_report2.md`
+- `reviewer_challenge_report3.md`
+- `reviewer_challenge_report4.md`
+- `spatial_theory.md`
 
 ## 说明
 
-- `spatial-agent/spatial-agent/docs/` 仍保留为代码子项目自身的实现与实验文档。
-- 本目录是仓库根层面的研究文档归档区，主要面向研究计划、写作、调研与评审材料。
+- `spatial-agent/docs/` 已合并到本目录，不再单独保留第二个 `docs`。
+- 代码子项目中的相对引用应统一指向仓库根目录下的 `docs/`。

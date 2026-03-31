@@ -218,7 +218,7 @@ Survey 为你的 SpatialAgent 实证论文（v7）铺路：
 | Survey 初稿 | `../surveys/survey_spatial_agent.md` | ~60% | 核心骨架，需重组结构 |
 | 参考文献库 | `../references/paperrefence.md` | 60+ 篇 | 参考文献骨架 |
 | Reading notes | `spatial-agent/references/reading_notes/` (12篇) | 完整 | Section 2,3,5 素材 |
-| Space Syntax 理论 | `spatial-agent/docs/spatial_theory.md` | 完整 | Section 2 素材 |
+| Space Syntax 理论 | `../spatial_theory.md` | 完整 | Section 2 素材 |
 | v7 研究计划 | `spatial_agent_research_plan_v7.md` | 完整 | Section 5,6 素材（H1-H3, BSR/TAR, 条件矩阵） |
 
 ---
