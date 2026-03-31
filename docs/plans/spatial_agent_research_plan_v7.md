@@ -6,7 +6,7 @@
 > 日期: 2026-03-16  
 > 作者: Li  
 > 目标会议: AAMAS-27 (首选) / AAAI-27 (备选)  
-> 本版本目标: 基于 `v6 review1` 与 `v6 review2` 做最后一轮投稿前收口，补齐 `TAR_run` 的统计 protocol、修正 `Exp1C` 因子解释、重构 matched initial conditions 的表述，并解决 `C6 vs C1` 的 Movement 不对等问题
+> 本版本目标: 基于 `v6 review_1` 与 `v6 review_2` 做最后一轮投稿前收口，补齐 `TAR_run` 的统计 protocol、修正 `Exp1C` 因子解释、重构 matched initial conditions 的表述，并解决 `C6 vs C1` 的 Movement 不对等问题
 
 ---
 

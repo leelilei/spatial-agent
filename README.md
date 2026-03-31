@@ -1,67 +1,88 @@
 # SpatialAgent Repository Guide
 
-这个仓库分成三块，看目录时先按这个顺序理解：
+这个仓库现在按“文档 / 工具 / 代码子项目”三层来组织：
 
 - `docs/`
   - 仓库级研究文档、计划、评审、综述、理论笔记。
-  - 如果你想看“为什么做、研究怎么设计、文档放哪”，先看这里。
 - `scripts/`
-  - 仓库级辅助脚本。
-  - 主要用于下载论文、整理参考文献、生成参考资料，不属于 `spatial-agent-core/` 子项目本体代码。
+  - 仓库级辅助脚本，主要处理论文下载、文献整理、参考资料生成。
 - `spatial-agent-core/`
-  - 真正的代码子项目。
-  - 这里包含实验代码、配置、数据、结果、测试和子项目自己的 README。
+  - 真正可运行的代码子项目，包含实验、配置、数据、结果和测试。
 
-## 顶层目录说明
+## 顶层目录树
 
-### `docs/`
+```text
+.
+├── docs/
+├── scripts/
+├── spatial-agent-core/
+├── README.md
+├── .gitignore
+└── openai.png
+```
 
-研究与写作材料统一放这里，目前是仓库唯一文档目录。
+## `docs/` 是什么
 
-- `plans/`: 各版本研究计划与 survey 计划
-- `guides/`: 项目搭建、研究推进、写作指导
-- `references/`: 论文清单与参考资料来源
-- `reviews/`: 对研究计划的评审与 review
-- `surveys/`: survey 正文和综述材料
-- `vision/`: 早期构想、蓝天方向
-- `decisions/`: 关键决策记录
-- `meeting_notes/`: 会议纪要
-- 根目录下若干 `.md`: 当前实验设计、预实验报告、理论笔记、challenge 报告等专题文档
+`docs/` 是仓库唯一文档目录，已经按主题归档。
 
-先读建议：
+```text
+docs/
+├── README.md
+├── background/      # 理论背景与 related work
+├── decisions/       # 关键决策记录
+├── experiments/     # 实验设计与 preflight 文档
+├── guides/          # 项目搭建与研究推进指南
+├── meeting_notes/   # 会议纪要
+├── plans/           # 各版研究计划与当前主计划
+├── references/      # 文献清单与参考资料来源
+├── reviews/         # challenge 报告与各版 review
+├── surveys/         # survey 正文与综述材料
+└── vision/          # 方向构想与蓝天草案
+```
+
+推荐阅读顺序：
 
 1. `docs/README.md`
-2. `docs/plans/research_plan.md`
-3. `docs/experiments/preflight_experiments.md`
+2. `docs/plans/README.md`
+3. `docs/plans/spatial_agent_research_plan_current.md`
+4. `docs/experiments/preflight_experiments.md`
 
-### `scripts/`
+## `scripts/` 是什么
 
-这些是仓库级工具脚本，不是模型/实验主代码。
+这些脚本是仓库级工具，不是主项目代码。
 
-- `scripts/download_papers.py`: 按整理好的论文清单批量下载 PDF
-- `scripts/generate_references.py`: 从文献清单生成参考资料和状态文件
-- `scripts/download_arxiv_retry.py`: 对部分 arXiv 论文做补下载重试
+- `scripts/download_papers.py`
+  - 按文献清单批量下载 PDF。
+- `scripts/generate_references.py`
+  - 生成文献列表、BibTeX 和下载状态。
+- `scripts/download_arxiv_retry.py`
+  - 对部分 arXiv 论文做补下载重试。
 
-### `spatial-agent-core/`
+## `spatial-agent-core/` 是什么
 
 这是实际运行实验的 Python 子项目。
 
-- `src/`: 核心实现代码
-- `experiments/`: 预实验和主实验入口
-- `configs/`: 配置文件
-- `data/`: 输入数据、任务数据或中间原始素材
-- `results/`: 实验输出结果
-- `references/`: 子项目内部使用的参考文献产物，如 PDF、bib、paper list
-- `paper/`: 论文写作相关材料
-- `scripts/`: 子项目内部脚本
-- `tests/`: 测试
-- `README.md`: 子项目运行说明
+```text
+spatial-agent-core/
+├── README.md
+├── configs/         # 配置文件
+├── data/            # 输入数据与原始素材
+├── experiments/     # 实验入口
+├── paper/           # 论文写作材料
+├── references/      # 子项目内部参考文献产物
+├── results/         # 实验输出
+├── scripts/         # 子项目内部脚本
+├── src/             # 核心实现代码
+├── tests/           # 测试
+├── requirements.txt
+└── setup.py
+```
 
 ## 怎么找东西
 
-- 想看研究计划和评审：去 `docs/`
+- 想看研究计划、背景、评审：去 `docs/`
 - 想跑代码和实验：去 `spatial-agent-core/`
-- 想处理文献与资料整理：去 `scripts/`
+- 想整理文献和辅助资料：去 `scripts/`
 
 ## 当前结构原则
 

@@ -1,22 +1,22 @@
 # SpatialAgent Docs Index
 
-本目录是仓库唯一的文档目录，和 `spatial-agent-core/` 代码子项目处于同一级。
+本目录是仓库唯一文档目录，和 `spatial-agent-core/` 代码子项目处于同一级。
 
-## 目录结构
+## 文档分区
 
 - `plans/`
-  - 各版本研究计划
   - 当前总研究计划
+  - 各版本迭代研究计划
   - survey 研究计划
 - `experiments/`
   - 实验设计文档
-  - preflight 预实验说明与结果报告
+  - preflight 预实验说明与报告
 - `background/`
   - Space Syntax 理论笔记
   - related work 梳理
 - `reviews/`
   - reviewer challenge 报告
-  - 各版 research plan 的 review
+  - 各版 research plan review
 - `guides/`
   - 项目搭建指南
   - 研究推进与写作指导
@@ -31,15 +31,15 @@
 - `meeting_notes/`
   - 会议纪要
 
-## 推荐阅读顺序
+## 快速入口
 
-1. `plans/research_plan.md`
-2. `experiments/preflight_experiments.md`
-3. `background/spatial_theory.md`
-4. `reviews/reviewer_challenge_report4.md`
+1. `plans/README.md`
+2. `reviews/README.md`
+3. `plans/spatial_agent_research_plan_current.md`
+4. `experiments/preflight_experiments.md`
 
 ## 说明
 
-- `docs/` 根目录现在只保留索引文件 `README.md`，其余 `.md` 已按主题归档。
+- `docs/` 根目录现在只保留索引文件 `README.md`。
+- 其余 `.md` 已按主题归档到对应子目录。
 - `spatial-agent-core/docs/` 已合并到本目录，不再单独保留第二个 `docs`。
-- 代码子项目中的相对引用应统一指向仓库根目录下的 `docs/`。
