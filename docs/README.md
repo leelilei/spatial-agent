@@ -1,44 +1,45 @@
 # SpatialAgent Docs Index
 
-本目录现在是仓库唯一的文档目录，和 `spatial-agent-core/` 代码子项目处于同一级。
+本目录是仓库唯一的文档目录，和 `spatial-agent-core/` 代码子项目处于同一级。
 
 ## 目录结构
 
 - `plans/`
-  - SpatialAgent 各版本研究计划
-  - Survey 研究计划
+  - 各版本研究计划
+  - 当前总研究计划
+  - survey 研究计划
+- `experiments/`
+  - 实验设计文档
+  - preflight 预实验说明与结果报告
+- `background/`
+  - Space Syntax 理论笔记
+  - related work 梳理
+- `reviews/`
+  - reviewer challenge 报告
+  - 各版 research plan 的 review
 - `guides/`
   - 项目搭建指南
-  - 研究与写作指导材料
+  - 研究推进与写作指导
 - `references/`
-  - 参考文献清单与论文资料来源
-- `reviews/`
-  - 各版 research plan 的评审与 review 文档
+  - 参考文献清单与资料来源
 - `surveys/`
-  - Survey 正文与相关综述材料
+  - survey 正文与综述材料
 - `vision/`
   - 愿景草案与早期方向探索
 - `decisions/`
-  - 研究过程中的关键决策记录
+  - 关键决策记录
 - `meeting_notes/`
-  - 会议纪要与讨论记录
+  - 会议纪要
 
-## 根目录文档
+## 推荐阅读顺序
 
-以下文档也直接放在本目录下，作为当前研究实现与实验材料：
-
-- `experiment_design.md`
-- `preflight_experiments.md`
-- `preflight_gpt54_core20_report.md`
-- `related_work.md`
-- `research_plan.md`
-- `reviewer_challenge_report1.md`
-- `reviewer_challenge_report2.md`
-- `reviewer_challenge_report3.md`
-- `reviewer_challenge_report4.md`
-- `spatial_theory.md`
+1. `plans/research_plan.md`
+2. `experiments/preflight_experiments.md`
+3. `background/spatial_theory.md`
+4. `reviews/reviewer_challenge_report4.md`
 
 ## 说明
 
+- `docs/` 根目录现在只保留索引文件 `README.md`，其余 `.md` 已按主题归档。
 - `spatial-agent-core/docs/` 已合并到本目录，不再单独保留第二个 `docs`。
 - 代码子项目中的相对引用应统一指向仓库根目录下的 `docs/`。

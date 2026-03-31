@@ -31,8 +31,8 @@
 先读建议：
 
 1. `docs/README.md`
-2. `docs/research_plan.md`
-3. `docs/preflight_experiments.md`
+2. `docs/plans/research_plan.md`
+3. `docs/experiments/preflight_experiments.md`
 
 ### `scripts/`
 
