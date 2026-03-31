@@ -45,7 +45,7 @@ python experiments/run_exp1.py
 - 论文 PDF：`../assets/papers/pdfs/`
 - 阅读笔记：`../assets/papers/reading_notes/`
 - 生成的 BibTeX / paper list：`../assets/papers/generated/`
-- 分析 notebooks：`../assets/analysis/notebooks/`
+- 分析 notebooks：`./notebooks/`
 
 ## 引用
 ```bibtex

@@ -5,4 +5,4 @@
 - `preflight/`: preflight task outputs and reports
 - `figures/`, `tables/`, `logs/`: experiment output artifacts
 
-Long-lived analysis notebooks have been moved to `../../assets/analysis/notebooks/`.
+Long-lived analysis notebooks now live in `../notebooks/`.

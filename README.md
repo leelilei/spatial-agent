@@ -47,8 +47,6 @@
 
 ```text
 assets/
-├── analysis/
-│   └── notebooks/
 └── papers/
     ├── generated/
     ├── pdfs/
@@ -58,7 +56,6 @@ assets/
 - `assets/papers/pdfs/`: 论文 PDF
 - `assets/papers/reading_notes/`: 阅读笔记
 - `assets/papers/generated/`: 自动生成的 paper list、BibTeX、下载状态
-- `assets/analysis/notebooks/`: 分析 notebook
 
 ### `scripts/`
 
@@ -78,6 +75,7 @@ spatial-agent-core/
 ├── configs/
 ├── data/
 ├── experiments/
+├── notebooks/
 ├── paper/
 ├── results/
 ├── scripts/
@@ -87,7 +85,7 @@ spatial-agent-core/
 └── setup.py
 ```
 
-它只保留代码、配置、数据和运行输出；研究资产已经迁到顶层 `assets/`。
+它保留代码、配置、数据、分析 notebook 和运行输出；研究文献资产已经迁到顶层 `assets/`。
 
 ## Structure Rules
 
