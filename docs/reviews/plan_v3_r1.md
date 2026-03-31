@@ -1,6 +1,6 @@
 # SpatialAgent Research Plan v3 审稿式评审总结
 
-> 评审对象：`../plans/spatial_agent_research_plan_v3.md`
+> 评审对象：`../plans/plan_v3.md`
 > 评审视角：AAMAS / AAAI 匿名审稿人
 > 评审立场：严格但建设性，关注可发表性、识别质量与执行可信度
 

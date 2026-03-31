@@ -1,6 +1,6 @@
 # SpatialAgent Research Plan v2 审稿式评审总结
 
-> 评审对象：`../plans/spatial_agent_research_plan_v2.md`
+> 评审对象：`../plans/plan_v2.md`
 > 评审视角：顶会匿名审稿人 / 方法论文评审
 > 评审立场：严格但建设性，关注可发表性而非仅创意吸引力
 

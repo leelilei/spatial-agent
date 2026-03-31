@@ -1,6 +1,6 @@
 # v7 预实验双模式闭环
 
-对应 `plans/spatial_agent_research_plan_v7.md` 的 6.0 与 8.3.1，当前预实验支持：
+对应 `plans/plan_v7.md` 的 6.0 与 8.3.1，当前预实验支持：
 
 - **离线模式**：生成任务、导入外部/人工响应、自动评分、输出 decision report
 - **在线模式**：按统一 task schema 直接调用主模型或鲁棒性模型，并写入标准原始响应目录

@@ -1,6 +1,6 @@
 # SpatialAgent Research Plan v6 审稿式评审总结
 
-> 评审对象：`../plans/spatial_agent_research_plan_v6.md`
+> 评审对象：`../plans/plan_v6.md`
 > 评审身份：AAMAS / AAAI 匿名审稿人
 > 评审标准：顶会投稿级方法论文蓝图
 

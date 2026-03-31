@@ -8,7 +8,7 @@
 
 ## 一、总体印象
 
-评审对象：`../plans/spatial_agent_research_plan_v6.md`
+评审对象：`../plans/plan_v6.md`
 
 v6 是一份方法学上相当成熟的研究计划。Matched-seed 设计、C6-C2 升格为主比较、TAR 双轨实现、以及 run-level / event-level 的严格分层，都显示出作者对前几轮审稿意见的深度吸收。论文主线（核心4条件 + 模块分解 + Exp1C探索性归因）也比 v5 更加清晰。
 

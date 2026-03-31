@@ -35,7 +35,7 @@
 
 1. `plans/README.md`
 2. `reviews/README.md`
-3. `plans/spatial_agent_research_plan_v7.md`
+3. `plans/plan_v7.md`
 4. `experiments/preflight_experiments.md`
 
 ## 说明
