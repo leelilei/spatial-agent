@@ -36,7 +36,7 @@ python experiments/run_exp1.py
 ```
 
 ## 项目结构
-详见 `../docs/guides/project_setup_guide.md`
+详见 `../docs/guides/project_setup_guide_v2.md`
 
 ## 资产位置
 

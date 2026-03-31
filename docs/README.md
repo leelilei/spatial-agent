@@ -18,9 +18,10 @@
 ## Quick Start
 
 1. `plans/README.md`
-2. `reviews/README.md`
-3. `plans/plan_v7.md`
-4. `experiments/preflight_experiments.md`
+2. `plans/plan_v7.md`
+3. `guides/project_setup_guide_v2.md`
+4. `guides/research_mentorship_guide_v2.md`
+5. `experiments/preflight_experiments.md`
 
 ## Notes
 
