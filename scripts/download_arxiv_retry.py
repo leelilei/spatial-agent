@@ -2,7 +2,7 @@ import urllib.request, time, shutil
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-DEST_DIR = REPO_ROOT / "spatial-agent" / "references" / "pdfs"
+DEST_DIR = REPO_ROOT / "spatial-agent-core" / "references" / "pdfs"
 
 papers = {
     "04_NPC_Dialogue_Behavior/05_Character_LLM_Shao2023.pdf": "https://export.arxiv.org/pdf/2310.10158",

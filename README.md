@@ -7,8 +7,8 @@
   - 如果你想看“为什么做、研究怎么设计、文档放哪”，先看这里。
 - `scripts/`
   - 仓库级辅助脚本。
-  - 主要用于下载论文、整理参考文献、生成参考资料，不属于 `spatial-agent/` 子项目本体代码。
-- `spatial-agent/`
+  - 主要用于下载论文、整理参考文献、生成参考资料，不属于 `spatial-agent-core/` 子项目本体代码。
+- `spatial-agent-core/`
   - 真正的代码子项目。
   - 这里包含实验代码、配置、数据、结果、测试和子项目自己的 README。
 
@@ -42,7 +42,7 @@
 - `scripts/generate_references.py`: 从文献清单生成参考资料和状态文件
 - `scripts/download_arxiv_retry.py`: 对部分 arXiv 论文做补下载重试
 
-### `spatial-agent/`
+### `spatial-agent-core/`
 
 这是实际运行实验的 Python 子项目。
 
@@ -60,11 +60,11 @@
 ## 怎么找东西
 
 - 想看研究计划和评审：去 `docs/`
-- 想跑代码和实验：去 `spatial-agent/`
+- 想跑代码和实验：去 `spatial-agent-core/`
 - 想处理文献与资料整理：去 `scripts/`
 
 ## 当前结构原则
 
 - 仓库级文档只放在根目录 `docs/`
 - 仓库级辅助脚本只放在根目录 `scripts/`
-- 可运行项目代码只放在 `spatial-agent/`
+- 可运行项目代码只放在 `spatial-agent-core/`

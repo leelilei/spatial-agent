@@ -3,7 +3,7 @@ import re
 from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
-PROJECT_DIR = ROOT_DIR / "spatial-agent"
+PROJECT_DIR = ROOT_DIR / "spatial-agent-core"
 SOURCE_MD = ROOT_DIR / "docs" / "references" / "paperrefence.md"
 PDFS_DIR = PROJECT_DIR / "references" / "pdfs"
 MD_OUTPUT = PROJECT_DIR / "references" / "paper_list.md"

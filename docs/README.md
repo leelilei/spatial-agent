@@ -1,6 +1,6 @@
 # SpatialAgent Docs Index
 
-本目录现在是仓库唯一的文档目录，和 `spatial-agent/` 代码子项目处于同一级。
+本目录现在是仓库唯一的文档目录，和 `spatial-agent-core/` 代码子项目处于同一级。
 
 ## 目录结构
 
@@ -40,5 +40,5 @@
 
 ## 说明
 
-- `spatial-agent/docs/` 已合并到本目录，不再单独保留第二个 `docs`。
+- `spatial-agent-core/docs/` 已合并到本目录，不再单独保留第二个 `docs`。
 - 代码子项目中的相对引用应统一指向仓库根目录下的 `docs/`。

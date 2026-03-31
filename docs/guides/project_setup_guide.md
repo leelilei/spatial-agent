@@ -8,7 +8,7 @@
 ## 一、项目根目录结构
 
 ```
-spatial-agent/
+spatial-agent-core/
 ├── README.md                          # 项目总览（含一句话描述、快速开始、引用格式）
 ├── LICENSE                            # MIT License
 ├── .gitignore                         # Python/Node/LaTeX 通用忽略规则
@@ -517,7 +517,7 @@ Thumbs.db
 
 ```
 请按照 docs/guides/project_setup_guide.md 中的目录结构，
-创建 spatial-agent/ 项目的完整文件夹和初始文件。
+创建 spatial-agent-core/ 项目的完整文件夹和初始文件。
 
 具体要求：
 1. 创建所有文件夹和 .gitkeep 文件

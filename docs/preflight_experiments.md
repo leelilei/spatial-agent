@@ -19,7 +19,7 @@
 
 ## 运行
 
-在 `spatial-agent` 目录下：
+在 `spatial-agent-core` 目录下：
 
 ```bash
 python experiments/run_preflight.py --stage all

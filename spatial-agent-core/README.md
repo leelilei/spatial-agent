@@ -18,7 +18,7 @@
 ```bash
 # 克隆仓库
 git clone <repo-url>
-cd spatial-agent
+cd spatial-agent-core
 
 # 创建虚拟环境
 python -m venv .venv
