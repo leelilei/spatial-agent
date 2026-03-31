@@ -38,6 +38,15 @@ python experiments/run_exp1.py
 ## 项目结构
 详见 `../docs/guides/project_setup_guide.md`
 
+## 资产位置
+
+本子项目只保留代码、配置、数据和运行结果。
+
+- 论文 PDF：`../assets/papers/pdfs/`
+- 阅读笔记：`../assets/papers/reading_notes/`
+- 生成的 BibTeX / paper list：`../assets/papers/generated/`
+- 分析 notebooks：`../assets/analysis/notebooks/`
+
 ## 引用
 ```bibtex
 @article{spatialagent2026,

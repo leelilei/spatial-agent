@@ -25,16 +25,19 @@ spatial-agent-core/
 │   └── decisions/                     # 关键设计决策记录（ADR风格）
 │       └── 001_model_selection.md
 │
-├── references/                        # 参考论文管理
-│   ├── papers.bib                     # BibTeX 文件（所有参考文献统一管理）
+├── ../assets/papers/                  # 仓库级研究资产
+│   ├── generated/
+│   │   ├── papers.bib                 # BibTeX 文件（统一管理）
+│   │   ├── paper_list.md              # 必读论文清单
+│   │   └── download_status.md         # 下载状态报告
 │   ├── reading_notes/                 # 论文阅读笔记（每篇一个md）
 │   │   ├── park2023_generative_agents.md
 │   │   ├── hillier1984_social_logic_of_space.md
 │   │   ├── turner2001_visibility_graph.md
 │   │   ├── affordable_generative_agents_2024.md
 │   │   ├── oh2025_spatially_aware_llm.md
-│   │   └── template.md               # 阅读笔记模板
-│   └── paper_list.md                  # 必读论文清单（含优先级和阅读状态）
+│   │   └── template.md                # 阅读笔记模板
+│   └── pdfs/                          # 论文 PDF
 │
 ├── src/                               # 核心源代码
 │   ├── __init__.py
@@ -127,17 +130,11 @@ spatial-agent-core/
 │   │   └── .gitkeep
 │   ├── logs/                          # 实验日志
 │   │   └── .gitkeep
-│   └── analysis_notebooks/            # 分析用 Jupyter notebooks
-│       ├── 01_spatial_metrics_overview.ipynb
-│       ├── 02_exp1_results.ipynb
-│       ├── 03_exp2_layout_comparison.ipynb
-│       ├── 04_exp3_ablation.ipynb
-│       ├── 05_social_network_analysis.ipynb
-│       └── 06_human_eval_analysis.ipynb
+│   └── README.md                      # 结果目录说明
 │
 ├── paper/                             # 论文写作
 │   ├── main.tex                       # 论文主文件（AAAI格式）
-│   ├── references.bib                 # 论文参考文献（从 references/papers.bib 同步）
+│   ├── references.bib                 # 论文参考文献（从 ../assets/papers/generated/papers.bib 同步）
 │   ├── sections/                      # 分章节管理
 │   │   ├── 01_introduction.tex
 │   │   ├── 02_related_work.tex
@@ -202,7 +199,7 @@ spatial-agent-core/
 （BibTeX 格式）
 ```
 
-### 2.2 references/paper_list.md 应包含
+### 2.2 ../assets/papers/generated/paper_list.md 应包含
 
 ```markdown
 # 必读论文清单
@@ -217,9 +214,9 @@ spatial-agent-core/
 ### 游戏 AI / LLM Agent
 | 优先级 | 论文 | 状态 | 笔记 |
 |--------|------|------|------|
-| P0 | Park et al. "Generative Agents" (UIST 2023) | ☐ 未读 | [笔记](reading_notes/park2023_generative_agents.md) |
-| P0 | "Affordable Generative Agents" (arXiv:2402.02053) | ☐ 未读 | [笔记](reading_notes/affordable_generative_agents_2024.md) |
-| P1 | Oh et al. "Spatially Aware LLM Agents" (IEEE TVCG 2025) | ☐ 未读 | [笔记](reading_notes/oh2025_spatially_aware_llm.md) |
+| P0 | Park et al. "Generative Agents" (UIST 2023) | ☐ 未读 | [笔记](../reading_notes/park2023_generative_agents.md) |
+| P0 | "Affordable Generative Agents" (arXiv:2402.02053) | ☐ 未读 | [笔记](../reading_notes/affordable_generative_agents_2024.md) |
+| P1 | Oh et al. "Spatially Aware LLM Agents" (IEEE TVCG 2025) | ☐ 未读 | [笔记](../reading_notes/oh2025_spatially_aware_llm.md) |
 | P1 | "LLM Game Agent Survey" (arXiv:2404.02039) | ☐ 未读 | |
 | P1 | Project Sid - Altera (2024) | ☐ 未读 | |
 | P2 | "MultiAgentBench" (arXiv:2503.01935) | ☐ 未读 | |
@@ -228,8 +225,8 @@ spatial-agent-core/
 ### 建筑学 / Space Syntax
 | 优先级 | 论文 | 状态 | 笔记 |
 |--------|------|------|------|
-| P0 | Hillier & Hanson "The Social Logic of Space" (1984) Ch.3-5 | ☐ 未读 | [笔记](reading_notes/hillier1984_social_logic_of_space.md) |
-| P0 | Turner et al. "From Isovists to Visibility Graphs" (2001) | ☐ 未读 | [笔记](reading_notes/turner2001_visibility_graph.md) |
+| P0 | Hillier & Hanson "The Social Logic of Space" (1984) Ch.3-5 | ☐ 未读 | [笔记](../reading_notes/hillier1984_social_logic_of_space.md) |
+| P0 | Turner et al. "From Isovists to Visibility Graphs" (2001) | ☐ 未读 | [笔记](../reading_notes/turner2001_visibility_graph.md) |
 | P1 | Penn & Turner "Space Syntax Based Agent Simulation" (2001) | ☐ 未读 | |
 | P1 | Hillier "Space is the Machine" (1996) Ch.1-3 | ☐ 未读 | |
 | P2 | Al-Sayed et al. "Space Syntax Methodology" (2014) | ☐ 未读 | |
@@ -242,7 +239,7 @@ spatial-agent-core/
 | P2 | "SARAH" - Spatially Aware Real-time Agentic Humans (2026) | ☐ 未读 | |
 ```
 
-### 2.3 references/reading_notes/template.md 应包含
+### 2.3 ../assets/papers/reading_notes/template.md 应包含
 
 ```markdown
 # [论文标题]
@@ -526,8 +523,8 @@ Thumbs.db
 4. 创建 requirements.txt（按文档中的内容）
 5. 创建 .gitignore（按文档中的内容）
 6. 创建 configs/default.yaml（按文档中的内容）
-7. 创建 references/paper_list.md（按文档中的内容）
-8. 创建 references/reading_notes/template.md（按文档中的内容）
+7. 创建 assets/papers/generated/paper_list.md（按文档中的内容）
+8. 创建 assets/papers/reading_notes/template.md（按文档中的内容）
 9. 创建 docs/ 下的所有 .md 文件（用文档中的模板填充框架内容）
 10. 创建 docs/decisions/001_model_selection.md
 11. 所有 Python 源文件创建时添加模块级 docstring 说明该文件的职责

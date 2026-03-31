@@ -13,7 +13,8 @@ from pathlib import Path
 
 # ── Output root ──────────────────────────────────────────────────────────────
 REPO_ROOT = Path(__file__).resolve().parent.parent
-BASE_DIR = REPO_ROOT / "papers"
+BASE_DIR = REPO_ROOT / "assets" / "papers" / "pdfs"
+REPORT_DIR = REPO_ROOT / "assets" / "papers" / "generated"
 
 # ── Paper catalogue ──────────────────────────────────────────────────────────
 # Each entry: (filename_stem, primary_url, fallback_url_or_None)
@@ -386,7 +387,8 @@ def main():
             print(f"      {url}")
 
     # Write a simple report
-    report_path = BASE_DIR / "download_report.md"
+    REPORT_DIR.mkdir(parents=True, exist_ok=True)
+    report_path = REPORT_DIR / "download_report.md"
     with open(report_path, "w") as f:
         f.write("# SpatialAgent Paper Download Report\n\n")
         f.write(f"**Downloaded:** {len(results['ok'])} papers  \n")

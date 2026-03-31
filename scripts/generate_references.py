@@ -5,14 +5,16 @@ from pathlib import Path
 ROOT_DIR = Path(__file__).resolve().parent.parent
 PROJECT_DIR = ROOT_DIR / "spatial-agent-core"
 SOURCE_MD = ROOT_DIR / "docs" / "references" / "paperrefence.md"
-PDFS_DIR = PROJECT_DIR / "references" / "pdfs"
-MD_OUTPUT = PROJECT_DIR / "references" / "paper_list.md"
-BIB_OUTPUT = PROJECT_DIR / "references" / "papers.bib"
-REPORT_OUTPUT = PROJECT_DIR / "references" / "download_status.md"
+ASSETS_DIR = ROOT_DIR / "assets" / "papers"
+PDFS_DIR = ASSETS_DIR / "pdfs"
+GENERATED_DIR = ASSETS_DIR / "generated"
+MD_OUTPUT = GENERATED_DIR / "paper_list.md"
+BIB_OUTPUT = GENERATED_DIR / "papers.bib"
+REPORT_OUTPUT = GENERATED_DIR / "download_status.md"
 
 # Create dirs if not exist
 PDFS_DIR.mkdir(parents=True, exist_ok=True)
-MD_OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+GENERATED_DIR.mkdir(parents=True, exist_ok=True)
 
 with SOURCE_MD.open("r", encoding="utf-8") as f:
     lines = f.readlines()
