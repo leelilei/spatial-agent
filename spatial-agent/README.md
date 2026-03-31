@@ -36,7 +36,7 @@ python experiments/run_exp1.py
 ```
 
 ## 项目结构
-详见 `project_setup_guide.md`
+详见 `../docs/guides/project_setup_guide.md`
 
 ## 引用
 ```bibtex

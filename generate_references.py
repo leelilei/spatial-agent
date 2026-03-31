@@ -1,16 +1,20 @@
-import re, os
+import os
+import re
 from pathlib import Path
 
-PDFS_DIR = Path("/Users/mac/Documents/6-Research/1-SpatialAgent/spatial-agent/references/pdfs")
-MD_OUTPUT = Path("/Users/mac/Documents/6-Research/1-SpatialAgent/spatial-agent/references/paper_list.md")
-BIB_OUTPUT = Path("/Users/mac/Documents/6-Research/1-SpatialAgent/spatial-agent/references/papers.bib")
-REPORT_OUTPUT = Path("/Users/mac/Documents/6-Research/1-SpatialAgent/spatial-agent/references/download_status.md")
+ROOT_DIR = Path(__file__).resolve().parent
+PROJECT_DIR = ROOT_DIR / "spatial-agent"
+SOURCE_MD = ROOT_DIR / "docs" / "references" / "paperrefence.md"
+PDFS_DIR = PROJECT_DIR / "references" / "pdfs"
+MD_OUTPUT = PROJECT_DIR / "references" / "paper_list.md"
+BIB_OUTPUT = PROJECT_DIR / "references" / "papers.bib"
+REPORT_OUTPUT = PROJECT_DIR / "references" / "download_status.md"
 
 # Create dirs if not exist
 PDFS_DIR.mkdir(parents=True, exist_ok=True)
 MD_OUTPUT.parent.mkdir(parents=True, exist_ok=True)
 
-with open("/Users/mac/Documents/6-Research/1-SpatialAgent/paperrefence.md", "r") as f:
+with SOURCE_MD.open("r", encoding="utf-8") as f:
     lines = f.readlines()
 
 current_cat = "Unknown Category"

@@ -1,7 +1,7 @@
 # SpatialAgent Research Plan V2 — 专业评审报告（第二轮）
 
 > **评审身份**：AAMAS / AAAI 程序委员会审稿人（研究方向：多Agent系统、社会模拟、空间推理）
-> **评审对象**：SpatialAgent 研究计划 v2.0（2026-03-15）
+> **评审对象**：`../plans/spatial_agent_research_plan_v2.md`（SpatialAgent 研究计划 v2.0，2026-03-15）
 > **评审日期**：2026-03-16
 > **总体评分**：**Weak Accept（倾向接收，但有实质性修订需求）**
 > **信心等级**：4/5（对该交叉领域有较好的判断力）

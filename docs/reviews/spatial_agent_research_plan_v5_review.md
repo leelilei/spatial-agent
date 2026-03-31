@@ -1,6 +1,6 @@
 # SpatialAgent Research Plan v5 审稿式评审总结
 
-> 评审对象：`spatial_agent_research_plan_v5.md`
+> 评审对象：`../plans/spatial_agent_research_plan_v5.md`
 > 评审身份：AAMAS / AAAI 匿名审稿人
 > 评审立场：严格但建设性，关注理论主张是否与实验识别严格对齐
 

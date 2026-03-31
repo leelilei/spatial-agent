@@ -1,6 +1,6 @@
 # Research Plan v3 独立评审报告
 
-> 评审对象：`spatial_agent_research_plan_v3.md`
+> 评审对象：`../plans/spatial_agent_research_plan_v3.md`
 > 评审身份：Reviewer 2 — 多Agent系统 + 计算社会科学背景
 > 评审标准：AAMAS-27 投稿级别
 > 评审日期：2026-03-16

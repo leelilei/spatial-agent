@@ -516,7 +516,7 @@ Thumbs.db
 将以下内容粘贴给 Claude Code 来创建项目：
 
 ```
-请按照 project_setup_guide.md 中的目录结构，
+请按照 docs/guides/project_setup_guide.md 中的目录结构，
 创建 spatial-agent/ 项目的完整文件夹和初始文件。
 
 具体要求：

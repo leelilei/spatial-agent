@@ -1,9 +1,9 @@
 # SpatialAgent 研究计划深度评审报告 v2
 
 > **评审身份**：跨学科资深评审（HCI + AI + 建筑学方法论）  
-> **评审对象**：[spatial_agent_research_plan_v1.md](file:///Users/mac/Documents/6-Research/1-SpatialAgent/spatial_agent_research_plan_v1.md)  
+> **评审对象**：`../../docs/plans/spatial_agent_research_plan_v1.md`  
 > **评审日期**：2026-03-15  
-> **评审定位**：本报告与已有的 [challenge 文档](file:///Users/mac/Documents/6-Research/1-SpatialAgent/spatial_agent_research_plan_challenge.md) 和 [reviewer_critique_v1](file:///Users/mac/Documents/6-Research/1-SpatialAgent/spatial-agent/docs/reviewer_critique_v1.md) 互补，聚焦**它们未充分覆盖的盲点**
+> **评审定位**：本报告与已有的 challenge / critique 材料互补，聚焦**它们未充分覆盖的盲点**
 
 ---
 

@@ -3,7 +3,7 @@
 > 写给：一位有建筑学硕士背景、AI产品经验，但没有独立发表过CS论文的研究者
 > 角色：你的论文指导教授
 > 目标：手把手带你完成第一篇CCF-A会议论文
-> 本手册与 `spatial_agent_research_plan_v7.md` 同步
+> 本手册与 `../plans/spatial_agent_research_plan_v7.md` 同步
 
 ---
 
@@ -55,7 +55,7 @@ CS论文有固定的结构和写法规范。在开始写之前，你需要理解
 
 ### 0.4 理解你的研究计划（v7）
 
-**花半天时间精读 `spatial_agent_research_plan_v7.md`。** 你需要理解以下核心概念：
+**花半天时间精读 `../plans/spatial_agent_research_plan_v7.md`。** 你需要理解以下核心概念：
 
 - **三阶段递进设计**：阶段1（表征验证）→ 阶段2（架构增量效应）→ 阶段3（探索性扩展）
 - **梯度化条件**：C0(Random) → C1(Topology-Only) → C2(Non-Spatial Affordance) → C4(Full SpatialAgent)，每一级只增加一个变量

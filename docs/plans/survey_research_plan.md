@@ -215,8 +215,8 @@ Survey 为你的 SpatialAgent 实证论文（v7）铺路：
 
 | 素材 | 文件 | 完成度 | 利用方式 |
 |------|------|:------:|---------|
-| Survey 初稿 | `survey_spatial_agent.md` | ~60% | 核心骨架，需重组结构 |
-| 参考文献库 | `paperrefence.md` | 60+ 篇 | 参考文献骨架 |
+| Survey 初稿 | `../surveys/survey_spatial_agent.md` | ~60% | 核心骨架，需重组结构 |
+| 参考文献库 | `../references/paperrefence.md` | 60+ 篇 | 参考文献骨架 |
 | Reading notes | `spatial-agent/references/reading_notes/` (12篇) | 完整 | Section 2,3,5 素材 |
 | Space Syntax 理论 | `spatial-agent/docs/spatial_theory.md` | 完整 | Section 2 素材 |
 | v7 研究计划 | `spatial_agent_research_plan_v7.md` | 完整 | Section 5,6 素材（H1-H3, BSR/TAR, 条件矩阵） |
@@ -227,7 +227,7 @@ Survey 为你的 SpatialAgent 实证论文（v7）铺路：
 
 | 阶段 | 工作内容 | 时间 |
 |------|---------|:----:|
-| **1. 结构重组** | 按新目录重组 `survey_spatial_agent.md`，补 Space Syntax 深度 | 1 周 |
+| **1. 结构重组** | 按新目录重组 `../surveys/survey_spatial_agent.md`，补 Space Syntax 深度 | 1 周 |
 | **2. 文献补缺** | 检查 2025-2026 新论文，补 Feng et al. 对比分析 | 1 周 |
 | **3. 写作+图表** | 对比表、L0-L5 分类图、因果链图 | 1 周 |
 | **4. 审阅修订** | 导师/合作者反馈 | 1 周 |
@@ -269,7 +269,7 @@ Survey 为你的 SpatialAgent 实证论文（v7）铺路：
 ## 十一、下一步行动清单
 
 - [ ] 确定投稿目标（短版 + 长版 or 只做一版？）
-- [ ] 基于 Section 4.2 目录重组 `survey_spatial_agent.md`
+- [ ] 基于 Section 4.2 目录重组 `../surveys/survey_spatial_agent.md`
 - [ ] 精读 Feng et al. 全文，撰写详细对比分析
 - [ ] 完成 L0-L5 分类学的系统化对比表（覆盖所有已知 LLM Agent 系统）
 - [ ] 绘制关键图表（因果链图、表征分类图、文献版图定位图）
