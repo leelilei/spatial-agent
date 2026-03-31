@@ -157,7 +157,7 @@ spatial-agent/
 │
 ├── scripts/                           # 工具脚本
 │   ├── setup_env.sh                   # 环境安装脚本
-│   ├── download_papers.py             # 批量下载参考论文PDF
+│   ├── scripts/download_papers.py     # 批量下载参考论文PDF
 │   ├── calculate_costs.py             # API 调用成本估算器
 │   ├── export_results.py              # 导出实验结果为论文表格格式
 │   └── validate_layout.py             # 验证空间构型的 Space Syntax 指标

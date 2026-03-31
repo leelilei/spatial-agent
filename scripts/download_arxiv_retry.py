@@ -1,7 +1,8 @@
 import urllib.request, time, shutil
 from pathlib import Path
 
-DEST_DIR = Path("/Users/mac/Documents/6-Research/1-SpatialAgent/spatial-agent/references/pdfs")
+REPO_ROOT = Path(__file__).resolve().parent.parent
+DEST_DIR = REPO_ROOT / "spatial-agent" / "references" / "pdfs"
 
 papers = {
     "04_NPC_Dialogue_Behavior/05_Character_LLM_Shao2023.pdf": "https://export.arxiv.org/pdf/2310.10158",
@@ -18,6 +19,7 @@ HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
 print("Retrying arXiv via export.arxiv.org...")
 for rel_path, url in papers.items():
     dest = DEST_DIR / rel_path
+    dest.parent.mkdir(parents=True, exist_ok=True)
     if dest.exists() and dest.stat().st_size > 100000:
         continue # Already downloaded properly
         

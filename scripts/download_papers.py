@@ -12,7 +12,8 @@ import re
 from pathlib import Path
 
 # ── Output root ──────────────────────────────────────────────────────────────
-BASE_DIR = Path(__file__).parent / "papers"
+REPO_ROOT = Path(__file__).resolve().parent.parent
+BASE_DIR = REPO_ROOT / "papers"
 
 # ── Paper catalogue ──────────────────────────────────────────────────────────
 # Each entry: (filename_stem, primary_url, fallback_url_or_None)
