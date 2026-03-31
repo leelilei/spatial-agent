@@ -16,7 +16,7 @@ spatial-agent-core/
 ├── setup.py                           # 可选，用于 pip install -e .
 │
 ├── docs/                              # 文档与计划
-│   ├── plans/spatial_agent_research_plan_current.md # 完整研究计划（RQ、假设、时间线）
+│   ├── plans/spatial_agent_research_plan_v7.md   # 当前主研究计划（RQ、假设、时间线）
 │   ├── experiments/experiment_design.md # 实验设计详细说明
 │   ├── background/spatial_theory.md   # Space Syntax 理论笔记（给不懂建筑学的读者）
 │   ├── background/related_work.md     # 相关工作梳理与定位

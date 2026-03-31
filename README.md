@@ -44,7 +44,7 @@ docs/
 
 1. `docs/README.md`
 2. `docs/plans/README.md`
-3. `docs/plans/spatial_agent_research_plan_current.md`
+3. `docs/plans/spatial_agent_research_plan_v7.md`
 4. `docs/experiments/preflight_experiments.md`
 
 ## `scripts/` 是什么
