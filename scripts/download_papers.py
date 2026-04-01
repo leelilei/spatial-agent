@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 SpatialAgent Paper Downloader
-Downloads the curated paper set described in docs/references/paperrefence.md.
+Downloads the curated paper set described in docs/project/reference_index.md.
 """
 
 import os

@@ -2,7 +2,7 @@
 
 > 适用对象：当前仓库的研究执行者  
 > 文档目标：帮助你在现有仓库中快速进入研究、理解目录分工、找到代码入口、知道资料和结果应该放在哪里  
-> 当前主计划：`../plans/plan_v7.md`  
+> 当前主计划：`../plans/plan_v8_2.md`  
 > 方法执行手册：`./research_mentorship_guide_v2.md`  
 > 说明：旧版 `project_setup_guide.md` 保留为历史脚手架文档；当前仓库请以本文件为准
 
@@ -12,7 +12,7 @@
 
 这三份文档不是一回事，阅读顺序也不一样。
 
-### `docs/plans/plan_v7.md`
+### `docs/plans/plan_v8_2.md`
 
 这是当前唯一有效的主研究计划。它负责回答：
 
@@ -21,7 +21,7 @@
 - `MIC`、`TAR_run`、`C6m / C6f / C4` 分别承担什么方法角色
 - 哪些实验是主验证，哪些只是扩展或机制分析
 
-如果你对项目的研究方向、实验结构、主张边界有疑问，先回到 `plan_v7.md`，不要先看代码。
+如果你对项目的研究方向、实验结构、主张边界有疑问，先回到 `plan_v8_2.md`，不要先看代码。
 
 ### `docs/guides/research_mentorship_guide_v2.md`
 
@@ -65,13 +65,12 @@
 
 当前重点子目录：
 
-- `docs/plans/`: 主计划与历史版本；当前以 `plan_v7.md` 为准
-- `docs/guides/`: 各类操作指引、执行手册、项目说明
-- `docs/experiments/`: preflight 和实验设计文档
+- `docs/plans/`: 主计划与历史版本；当前以 `plan_v8_2.md` 为准
 - `docs/reviews/`: 计划评审、challenge、版本 review
-- `docs/background/`: Space Syntax 理论与 related work
-- `docs/decisions/`: 关键设计决策
-- `docs/meeting_notes/`: 会议纪要
+- `docs/experiments/`: preflight 和实验设计文档
+- `docs/guides/`: 各类操作指引、执行手册、项目说明
+- `docs/background/`: Space Syntax 理论、related work 与 survey 背景材料
+- `docs/project/`: 项目级辅助文档，如决策、会议纪要、参考索引、vision 记录
 
 一句话理解：`docs/` 回答“为什么这样做、应该怎么做、当前做到哪里”。
 
@@ -198,12 +197,12 @@ spatial-agent-core/
 按顺序阅读：
 
 1. `docs/plans/README.md`
-2. `docs/plans/plan_v7.md`
+2. `docs/plans/plan_v8_2.md`
 3. `docs/guides/research_mentorship_guide_v2.md`
 
 读到这里，你至少要明确：
 
-- 当前主计划是 `v7`
+- 当前主计划是 `v8.2`
 - 主验证链条不是“随便跑几个实验”，而是围绕 `MIC`、`TAR_run`、`C6m / C6f / C4`
 - 阶段 1、阶段 2、阶段 3 的地位不一样
 
@@ -270,7 +269,7 @@ spatial-agent-core/
 - 指南
 - 背景理论
 - 实验说明
-- 会议纪要
+- 项目级辅助文档
 
 不要把这类说明文档继续塞进 `spatial-agent-core/`。
 
@@ -317,7 +316,7 @@ spatial-agent-core/
 
 下面这条链路是当前最推荐的“第一次上手流程”。
 
-1. 读 `plan_v7.md`，确认研究问题、主张边界和实验主链。
+1. 读 `plan_v8_2.md`，确认研究问题、主张边界和实验主链。
 2. 读 `research_mentorship_guide_v2.md`，确认阶段纪律和推进顺序。
 3. 读本文件，确认目录分工和真实路径。
 4. 看 `spatial-agent-core/results/preflight/`，确认已有 preflight 产物与当前状态。
@@ -333,7 +332,7 @@ spatial-agent-core/
 
 ## 7. Setup 完成检查清单
 
-- [ ] 我知道当前唯一主计划是 `docs/plans/plan_v7.md`
+- [ ] 我知道当前唯一主计划是 `docs/plans/plan_v8_2.md`
 - [ ] 我知道 `docs/guides/research_mentorship_guide_v2.md` 负责执行方法，不是目录说明
 - [ ] 我知道代码主工程在 `spatial-agent-core/`
 - [ ] 我知道论文 PDF、阅读笔记、BibTeX 在 `assets/papers/`

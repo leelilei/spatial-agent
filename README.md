@@ -3,7 +3,7 @@
 这个仓库按四类内容组织：
 
 - `docs/`: 仓库级研究文档与过程材料
-- `assets/`: 长期保存的研究资产，如论文 PDF、阅读笔记、分析 notebook
+- `assets/`: 长期保存的研究资产，如论文 PDF、阅读笔记
 - `scripts/`: 仓库级辅助脚本
 - `spatial-agent-core/`: 可运行的代码子项目
 
@@ -27,19 +27,19 @@
 只放说明性文档，不放大体积研究资产或运行产物。
 
 - `plans/`: 研究计划与版本迭代
-- `experiments/`: 实验设计与 preflight 文档
-- `background/`: 理论背景与 related work
 - `reviews/`: challenge 报告与版本 review
-- `guides/`: 项目搭建与研究推进指南
-- `references/`: 文献索引与参考说明
-- `surveys/`, `vision/`, `decisions/`, `meeting_notes/`: 其余研究文档
+- `experiments/`: 实验设计与 preflight 文档
+- `guides/`: 项目搭建与研究推进指引
+- `background/`: 理论背景、related work 和 survey 材料
+- `project/`: 项目级辅助文档，包括参考索引、vision、决策与会议纪要
 
 推荐阅读顺序：
 
 1. `docs/README.md`
 2. `docs/plans/README.md`
-3. `docs/plans/plan_v7.md`
-4. `docs/experiments/preflight_experiments.md`
+3. `docs/plans/plan_v8_2.md`
+4. `docs/guides/project_setup_guide_v2.md`
+5. `docs/experiments/preflight_experiments.md`
 
 ### `assets/`
 

@@ -2,6 +2,7 @@
 
 > 本文档用于指导 Claude Code 搭建完整的研究项目结构。
 > 请按照以下目录结构和文件说明，创建所有文件夹和初始文件。
+> 说明：本文档保留为历史脚手架参考；当前仓库的实际文档分组请以 `project_setup_guide_v2.md` 和 `docs/project/` 为准。
 
 ---
 
@@ -20,9 +21,8 @@ spatial-agent-core/
 │   ├── experiments/experiment_design.md # 实验设计详细说明
 │   ├── background/spatial_theory.md   # Space Syntax 理论笔记（给不懂建筑学的读者）
 │   ├── background/related_work.md     # 相关工作梳理与定位
-│   ├── meeting_notes/                 # 讨论/会议记录
-│   │   └── 2026-03-09_kickoff.md
-│   └── decisions/                     # 关键设计决策记录（ADR风格）
+│   └── project/                       # 项目级辅助文档（会议、决策、参考索引、vision）
+│       ├── 2026-03-09_kickoff.md
 │       └── 001_model_selection.md
 │
 ├── ../assets/papers/                  # 仓库级研究资产
@@ -368,7 +368,7 @@ output:
   log_level: "INFO"
 ```
 
-### 2.6 docs/decisions/001_model_selection.md 应包含
+### 2.6 docs/project/001_model_selection.md 应包含
 
 ```markdown
 # ADR-001: LLM 模型选择
@@ -526,7 +526,7 @@ Thumbs.db
 7. 创建 assets/papers/generated/paper_list.md（按文档中的内容）
 8. 创建 assets/papers/reading_notes/template.md（按文档中的内容）
 9. 创建 docs/ 下的所有 .md 文件（用文档中的模板填充框架内容）
-10. 创建 docs/decisions/001_model_selection.md
+10. 创建 docs/project/001_model_selection.md
 11. 所有 Python 源文件创建时添加模块级 docstring 说明该文件的职责
 12. 初始化 git 仓库并做第一次 commit
 

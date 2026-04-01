@@ -7,8 +7,24 @@
 - `challenge_v1.md` 到 `challenge_v4.md`: 独立 challenge 报告
 - `plan_v*_r*.md`: 对对应版本计划的第 N 轮 review
 
+当前已归档的计划评审包括：
+
+- `plan_v2_r1.md`, `plan_v2_r2.md`
+- `plan_v3_r1.md`, `plan_v3_r2.md`
+- `plan_v4_r1.md`
+- `plan_v5_r1.md`
+- `plan_v6_r1.md`, `plan_v6_r2.md`
+- `plan_v7_r1.md`, `plan_v7_r2.md`
+- `plan_v8_2_r1.md`, `plan_v8_2_r2.md`
+
 ## Suggested Order
 
 1. `challenge_v4.md`
-2. `plan_v6_r2.md`
-3. 如需追溯，再看更早版本
+2. `plan_v8_2_r1.md`
+3. `plan_v8_2_r2.md`
+4. 如需追溯，再看更早版本
+
+## Notes
+
+- `reviews/` 目录现已统一收敛到 `docs/reviews/`。
+- 根目录不再单独保留第二套 review 目录，避免重复与混淆。
