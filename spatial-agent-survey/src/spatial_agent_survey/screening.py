@@ -62,6 +62,23 @@ PHASE1_CORE_KNOWN_TITLES = [
     "user behavior simulation with large language model-based agents",
     "user behavior simulation with large language model based agents",
     "psychologically-valid generative agents",
+    "lyfe agents: generative agents for low-cost real-time social interactions",
+    "spontaneous emergence of agent individuality through social interactions in large language model-based communities",
+    "real world community oriented high-definition social simulation: combining reinforcement learning and large language models",
+    "when llms recognize your space: research on experiences with spatially aware llm agents",
+    "a context-aware onboarding agent for metaverse powered by large language models",
+    "an open-domain avatar chatbot by exploiting a large language model",
+    "a voice-controlled dialogue system for npc interaction using large language models",
+    "mixed-initiative dialogue management for human-virtual agents interaction in forum theatre inspired training",
+    "simworld: an open-ended realistic simulator for autonomous agents in physical and social worlds",
+    "large-language-model-driven agents for fire evacuation simulation in a cellular automata environment",
+    "when agents learn to think: large language model-enhanced agent-based modeling for crowd evacuation in disaster scenarios",
+    "citysim: modeling urban behaviors and city dynamics with large-scale llm-driven agent simulation",
+    "tongsim: a general platform for simulating intelligent machines",
+    "s^3: social-network simulation system with large language model-empowered agents",
+    "unveiling the collective behaviors of large language model-based autonomous agents in an online community: a social network analysis perspective",
+    "artificial intelligence chatbots mimic human collective behaviour",
+    "demac: enhancing multi-agent coordination with dynamic dag and manager-player feedback",
 ]
 
 PHASE1_CORE_PHRASES = [
@@ -78,6 +95,21 @@ PHASE1_CORE_PHRASES = [
     "user behavior simulation",
     "public health policy",
     "vaccine hesitancy",
+    "virtual environment",
+    "virtual world",
+    "built environment",
+    "metaverse",
+    "avatar chatbot",
+    "npc interaction",
+    "forum theatre",
+    "shopping mall fire scenario",
+    "crowd evacuation",
+    "urban behaviors",
+    "city dynamics",
+    "outdoor town simulation",
+    "physical and social worlds",
+    "collective behaviour",
+    "collective behaviors",
 ]
 
 PHASE1_LLM_TERMS = [
@@ -164,6 +196,54 @@ PHASE1_FOUNDATIONAL_SOCIAL_TERMS = [
     "office layout",
     "office layouts",
     "housing",
+]
+
+PHASE1_CORE_SPATIAL_ENVIRONMENT_TERMS = [
+    "built environment",
+    "virtual environment",
+    "virtual world",
+    "physical and social worlds",
+    "metaverse",
+    "virtual reality",
+    "vr",
+    "3d environment",
+    "3d virtual environment",
+    "town simulation",
+    "urban environment",
+    "city dynamics",
+    "community",
+    "2d grid",
+    "shopping mall",
+    "cellular automata environment",
+    "unreal engine",
+    "gis",
+    "bim",
+    "npc",
+    "avatar",
+    "overcooked",
+]
+
+PHASE1_CORE_SOCIAL_BEHAVIOR_TERMS = [
+    "social interaction",
+    "interact with each other",
+    "interaction behaviors",
+    "collaboration",
+    "cooperation",
+    "coordination",
+    "conversation",
+    "collective behavior",
+    "collective behaviours",
+    "community dynamics",
+    "social dynamics",
+    "emergent behaviors",
+    "emergent social behaviors",
+    "crowd evacuation",
+    "fire evacuation",
+    "homophily",
+    "human-virtual agents interaction",
+    "npc interaction",
+    "role-play",
+    "onboarding",
 ]
 
 
@@ -273,6 +353,22 @@ def assistant_phase1_prescreen_decision(row: Dict, seed_tier_map: Dict[str, str]
             "assistant_priority": "high",
             "assistant_rule": "llm_social_simulation",
             "assistant_rationale": "Looks like an LLM/generative-agent system paper about social simulation or behavior simulation.",
+        }
+
+    if (
+        _has_any(text, PHASE1_LLM_TERMS)
+        and _has_any(text, PHASE1_CORE_SPATIAL_ENVIRONMENT_TERMS)
+        and _has_any(text, PHASE1_CORE_SOCIAL_BEHAVIOR_TERMS)
+        and not _has_any(text, PHASE1_SURVEY_TERMS)
+    ):
+        return {
+            "assistant_status": FinalStatus.CORE.value,
+            "assistant_corpus_tier": FinalStatus.CORE.value,
+            "assistant_exclusion_reason": "",
+            "assistant_confidence": "medium",
+            "assistant_priority": "high",
+            "assistant_rule": "llm_spatial_social_system",
+            "assistant_rationale": "Looks like an LLM agent system with an explicit spatial environment and social interaction or collective behavior.",
         }
 
     if _has_any(text, PHASE1_ADJACENT_LLM_TERMS) and _has_any(text, PHASE1_ADJACENT_SPATIAL_TERMS) and not _has_any(text, PHASE1_ADJACENT_EXCLUDE_TERMS):

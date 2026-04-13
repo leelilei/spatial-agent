@@ -80,3 +80,26 @@ def test_assistant_phase1_prescreen_decision_core_seed_and_adjacent_rules():
         }
     )
     assert foundational["assistant_status"] == "foundational"
+
+
+def test_assistant_phase1_prescreen_broadened_spatial_social_core_rules():
+    known_title = assistant_phase1_prescreen_decision(
+        {
+            "title": "SimWorld: An Open-ended Realistic Simulator for Autonomous Agents in Physical and Social Worlds",
+            "abstract": "",
+        }
+    )
+    assert known_title["assistant_status"] == "core"
+    assert known_title["assistant_rule"] == "known_core_title"
+
+    spatial_social = assistant_phase1_prescreen_decision(
+        {
+            "title": "LLM agents for crowd evacuation in a virtual environment",
+            "abstract": (
+                "We study large language model agents in a virtual environment where agents "
+                "coordinate crowd evacuation through social interaction and cooperation."
+            ),
+        }
+    )
+    assert spatial_social["assistant_status"] == "core"
+    assert spatial_social["assistant_rule"] in {"llm_social_simulation", "llm_spatial_social_system"}
