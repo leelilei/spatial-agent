@@ -7,6 +7,7 @@
 - `papers/pdfs/`: 论文 PDF
 - `papers/reading_notes/`: 阅读笔记
 - `papers/generated/`: 自动生成的文献索引产物
+- `survey_paper/`: 为 survey / scoping review 写作准备的相近综述论文集合
 
 ## Notes
 

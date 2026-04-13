@@ -17,7 +17,8 @@
 2. `plans/plan_v8_2.md`
 3. `guides/project_setup_guide_v2.md`
 4. `guides/research_mentorship_guide_v2.md`
-5. `experiments/preflight_experiments.md`
+5. `guides/survey_research_guide.md`
+6. `experiments/preflight_experiments.md`
 
 ## Notes
 

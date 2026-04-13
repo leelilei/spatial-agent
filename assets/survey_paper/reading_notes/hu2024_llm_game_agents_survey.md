@@ -4,6 +4,7 @@
 - **作者**: Sihao Hu, Tiansheng Huang, Gaowen Liu, Ramana Rao Kompella, Fatih Ilhan, Selim Furkan Tekin, Yichang Xu, Zachary Yahn, Ling Liu
 - **发表**: arXiv preprint（2024年4月提交，2025年11月修订）
 - **链接**: https://arxiv.org/abs/2404.02039
+- **本地 PDF**: `assets/survey_paper/pdfs/03_Hu2024_LLM_Game_Agents_Survey.pdf`
 - **阅读日期**: 2026-03-15
 
 ## 一句话总结

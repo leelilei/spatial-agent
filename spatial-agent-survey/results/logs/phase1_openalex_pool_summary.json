@@ -1,0 +1,251 @@
+{
+  "batch_date": "2026-04-13",
+  "source": "openalex",
+  "families": {
+    "A": {
+      "name": "Space Syntax + AI",
+      "query": "\"space syntax\" AND (\"agent\" OR \"LLM\" OR \"language model\" OR \"simulation\")",
+      "variants": [
+        {
+          "query": "space syntax agent simulation",
+          "pages": [
+            {
+              "page": 1,
+              "returned": 25,
+              "meta_count": 15887
+            }
+          ]
+        },
+        {
+          "query": "space syntax agent based model",
+          "pages": [
+            {
+              "page": 1,
+              "returned": 25,
+              "meta_count": 48607
+            }
+          ]
+        },
+        {
+          "query": "space syntax simulation artificial intelligence",
+          "pages": [
+            {
+              "page": 1,
+              "returned": 25,
+              "meta_count": 14952
+            }
+          ]
+        },
+        {
+          "query": "space syntax large language model",
+          "pages": [
+            {
+              "page": 1,
+              "returned": 25,
+              "meta_count": 122047
+            }
+          ]
+        }
+      ],
+      "raw_results": 100,
+      "unique_results": 82
+    },
+    "B": {
+      "name": "Spatial Representation + Agent",
+      "query": "\"spatial representation\" AND \"multi-agent\" AND (\"social\" OR \"behavior\")",
+      "variants": [
+        {
+          "query": "spatial representation multi agent social behavior",
+          "pages": [
+            {
+              "page": 1,
+              "returned": 25,
+              "meta_count": 27349
+            }
+          ]
+        },
+        {
+          "query": "spatial representation language agents virtual world",
+          "pages": [
+            {
+              "page": 1,
+              "returned": 25,
+              "meta_count": 17360
+            }
+          ]
+        },
+        {
+          "query": "environment representation llm agent social simulation",
+          "pages": [
+            {
+              "page": 1,
+              "returned": 25,
+              "meta_count": 4593
+            }
+          ]
+        },
+        {
+          "query": "virtual world multi agent spatial behavior",
+          "pages": [
+            {
+              "page": 1,
+              "returned": 25,
+              "meta_count": 24480
+            }
+          ]
+        }
+      ],
+      "raw_results": 100,
+      "unique_results": 72
+    },
+    "C": {
+      "name": "LLM Spatial Reasoning",
+      "query": "\"spatial reasoning\" AND (\"large language model\" OR \"LLM\" OR \"GPT\")",
+      "variants": [
+        {
+          "query": "spatial reasoning large language model",
+          "pages": [
+            {
+              "page": 1,
+              "returned": 25,
+              "meta_count": 78367
+            }
+          ]
+        },
+        {
+          "query": "spatially aware llm agent",
+          "pages": [
+            {
+              "page": 1,
+              "returned": 25,
+              "meta_count": 7103
+            }
+          ]
+        },
+        {
+          "query": "vision language model spatial reasoning",
+          "pages": [
+            {
+              "page": 1,
+              "returned": 25,
+              "meta_count": 45971
+            }
+          ]
+        },
+        {
+          "query": "spatial benchmark gpt language model",
+          "pages": [
+            {
+              "page": 1,
+              "returned": 25,
+              "meta_count": 13893
+            }
+          ]
+        }
+      ],
+      "raw_results": 100,
+      "unique_results": 88
+    },
+    "D": {
+      "name": "LLM Social Simulation",
+      "query": "(\"generative agents\" OR \"LLM agent\" OR \"language agent\") AND (\"social simulation\" OR \"emergent behavior\" OR \"multi-agent\" OR \"sandbox\" OR \"virtual world\" OR \"NPC\" OR \"interactive simulacra\" OR \"social agent\")",
+      "variants": [
+        {
+          "query": "generative agents social simulation",
+          "pages": [
+            {
+              "page": 1,
+              "returned": 25,
+              "meta_count": 21407
+            }
+          ]
+        },
+        {
+          "query": "llm multi agent virtual world",
+          "pages": [
+            {
+              "page": 1,
+              "returned": 25,
+              "meta_count": 11485
+            }
+          ]
+        },
+        {
+          "query": "language agent sandbox social behavior",
+          "pages": [
+            {
+              "page": 1,
+              "returned": 25,
+              "meta_count": 2651
+            }
+          ]
+        },
+        {
+          "query": "npc llm social simulation",
+          "pages": [
+            {
+              "page": 1,
+              "returned": 25,
+              "meta_count": 286
+            }
+          ]
+        }
+      ],
+      "raw_results": 100,
+      "unique_results": 89
+    },
+    "E": {
+      "name": "Spatial Cognition + Computation",
+      "query": "\"spatial configuration\" AND (\"social behavior\" OR \"movement\" OR \"interaction\")",
+      "variants": [
+        {
+          "query": "spatial configuration social behavior",
+          "pages": [
+            {
+              "page": 1,
+              "returned": 25,
+              "meta_count": 137344
+            }
+          ]
+        },
+        {
+          "query": "space syntax movement interaction",
+          "pages": [
+            {
+              "page": 1,
+              "returned": 25,
+              "meta_count": 43378
+            }
+          ]
+        },
+        {
+          "query": "visibility graph social interaction",
+          "pages": [
+            {
+              "page": 1,
+              "returned": 25,
+              "meta_count": 40790
+            }
+          ]
+        },
+        {
+          "query": "spatial cognition language and space",
+          "pages": [
+            {
+              "page": 1,
+              "returned": 25,
+              "meta_count": 123993
+            }
+          ]
+        }
+      ],
+      "raw_results": 100,
+      "unique_results": 97
+    }
+  },
+  "overall": {
+    "family_count": 5,
+    "unique_candidate_count": 397,
+    "output_dir": "/Users/mac/Documents/6-Research/1-SpatialAgent/spatial-agent-survey/data/raw"
+  }
+}

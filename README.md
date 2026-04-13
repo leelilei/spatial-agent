@@ -6,6 +6,7 @@
 - `assets/`: 长期保存的研究资产，如论文 PDF、阅读笔记
 - `scripts/`: 仓库级辅助脚本
 - `spatial-agent-core/`: 可运行的代码子项目
+- `spatial-agent-survey/`: survey 执行与论文组装子项目
 
 ## Top-Level Layout
 
@@ -15,6 +16,7 @@
 ├── assets/
 ├── scripts/
 ├── spatial-agent-core/
+├── spatial-agent-survey/
 ├── README.md
 ├── .gitignore
 └── openai.png
@@ -87,9 +89,32 @@ spatial-agent-core/
 
 它保留代码、配置、数据、分析 notebook 和运行输出；研究文献资产已经迁到顶层 `assets/`。
 
+### `spatial-agent-survey/`
+
+这是 survey 研究的独立执行子项目。
+
+```text
+spatial-agent-survey/
+├── configs/
+├── data/
+├── paper/
+├── results/
+├── scripts/
+├── src/
+└── tests/
+```
+
+它负责：
+
+- 检索结果导入与去重
+- screening sheet 与 evidence table 生成
+- survey 质控与导出
+- 长版综述章节与 appendix 组装
+
 ## Structure Rules
 
 - 仓库级文档只放在 `docs/`
 - 长期保存的研究资产只放在 `assets/`
 - 仓库级工具脚本只放在 `scripts/`
 - 可运行项目代码只放在 `spatial-agent-core/`
+- survey 相关可运行代码、表格和论文组装只放在 `spatial-agent-survey/`

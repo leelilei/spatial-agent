@@ -6,6 +6,9 @@
 
 - `challenge_v1.md` 到 `challenge_v4.md`: 独立 challenge 报告
 - `plan_v*_r*.md`: 对对应版本计划的第 N 轮 review
+- `survey_plan_v2_r1.md`: 对 `survey_plan_v2.md` 的首轮专家评审
+- `survey_plan_v3_r1.md`: 对 `survey_plan_v3.md` 的首轮专家评审
+- `survey_plan_v4_r1.md`: 对 `survey_plan_v4.md` 的首轮专家评审
 
 当前已归档的计划评审包括：
 
@@ -16,6 +19,9 @@
 - `plan_v6_r1.md`, `plan_v6_r2.md`
 - `plan_v7_r1.md`, `plan_v7_r2.md`
 - `plan_v8_2_r1.md`, `plan_v8_2_r2.md`
+- `survey_plan_v2_r1.md`
+- `survey_plan_v3_r1.md`
+- `survey_plan_v4_r1.md`
 
 ## Suggested Order
 
