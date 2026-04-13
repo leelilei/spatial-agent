@@ -373,7 +373,16 @@ def sample_exclusion_recheck(rows: Sequence[Dict], sample_fraction: float = 0.15
     sample_size = max(1, round(len(excluded_rows) * sample_fraction))
     rng = random.Random(seed)
     sample = rng.sample(excluded_rows, min(sample_size, len(excluded_rows)))
-    return [dict(row, recheck_required="yes") for row in sample]
+    return [
+        dict(
+            row,
+            recheck_required="yes",
+            rechecked_status="",
+            rechecked_exclusion_reason="",
+            recheck_notes="",
+        )
+        for row in sample
+    ]
 
 
 def compute_flip_rate(original_rows: Sequence[Dict], rechecked_rows: Sequence[Dict]) -> float:
@@ -384,9 +393,11 @@ def compute_flip_rate(original_rows: Sequence[Dict], rechecked_rows: Sequence[Di
         paper_id = row["paper_id"]
         if paper_id not in original:
             continue
+        rechecked_status = str(row.get("rechecked_status") or "").strip()
+        if not rechecked_status:
+            continue
         compared += 1
         original_status = str(original[paper_id].get("final_status") or original[paper_id].get("corpus_tier") or "")
-        rechecked_status = str(row.get("rechecked_status") or row.get("final_status") or row.get("corpus_tier") or "")
         if original_status != rechecked_status:
             flips += 1
     if compared == 0:

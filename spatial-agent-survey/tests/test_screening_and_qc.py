@@ -34,10 +34,15 @@ def test_exclusion_recheck_and_gate_thresholds():
     ]
     sample = sample_exclusion_recheck(rows, sample_fraction=0.5, seed=1)
     assert sample
+    assert "rechecked_status" in sample[0]
+    assert sample[0]["rechecked_status"] == ""
 
     rechecked = [{"paper_id": "p1", "rechecked_status": "core"}]
     flip_rate = compute_flip_rate(rows, rechecked)
     assert flip_rate == 1.0
+
+    unrechecked = [{"paper_id": "p1", "rechecked_status": ""}]
+    assert compute_flip_rate(rows, unrechecked) == 0.0
 
     audit_rows = [
         {"original_label": "L2", "auditor_label": "L2"},

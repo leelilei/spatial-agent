@@ -65,6 +65,10 @@ CORE_KEEP = {
         "high",
         "摘要直接报告 The Sims 风格沙盒城镇中的日常与社会行为，是核心 anchor 系统。",
     ),
+    "OASIS: Open Agent Social Interaction Simulations with One Million Agents": (
+        "medium",
+        "扩展摘要已明确平台环境由 dynamic social network、post information、recommendation filter 和动作空间构成；这可视为可识别的数字/图结构环境，并报告信息传播、极化与从众等社会行为，保留为 core。",
+    ),
     "Project Sid: Many-agent simulations toward AI civilization": (
         "medium",
         "摘要虽抽取不完整，但明确提到 Minecraft environment 与 many-agent civilizational simulation，先保留 core。",
@@ -107,9 +111,17 @@ CORE_EXCLUDE_NO_SPACE = {
         "high",
         "摘要是通用 cognitive/stance framework，没有明确空间环境，按 E1 排除。",
     ),
+    "Multimodal Safety Evaluation in Generative Agent Social Simulations": (
+        "medium",
+        "摘要强调 multimodal/text-visual social situations 与 safety evaluation，但没有给出可识别空间环境或结构化空间输入；rich settings 不能直接视为空间环境，按 E1 排除。",
+    ),
     "Simulating Public Administration Crisis: A Novel Generative Agent-Based Simulation System to Lower Technology Barriers in Social Science Research": (
         "high",
         "摘要描述虚拟政府与公共事件仿真，但未给出明确空间环境，按 E1 排除。",
+    ),
+    "Unveiling the Truth and Facilitating Change: Towards Agent-based Large-scale Social Movement Simulation": (
+        "medium",
+        "当前材料只显示 Twitter-like 社交媒体响应仿真与 benchmark，没有足够证据证明存在可识别空间环境或 agent-facing 空间结构；按 E1 排除。",
     ),
     "User Behavior Simulation with Large Language Model based Agents": (
         "high",
@@ -121,26 +133,72 @@ CORE_EXCLUDE_NO_SPACE = {
     ),
 }
 
-CORE_HOLD_AMBIGUOUS_SPACE = {
-    "OASIS: Open Agent Social Interaction Simulations with One Million Agents": (
-        "medium",
-        "摘要强调社交媒体平台环境，但是否可算作本文需要的空间环境仍需全文裁定；先 hold。",
-    ),
-    "Unveiling the Truth and Facilitating Change: Towards Agent-based Large-scale Social Movement Simulation": (
-        "medium",
-        "摘要是 Twitter-like 社交媒体仿真，空间维度不明确；先 hold，等待全文确认。",
-    ),
-    "Multimodal Safety Evaluation in Generative Agent Social Simulations": (
-        "medium",
-        "摘要提到 rich multimodal settings，但未说明空间结构输入如何进入 agent，先 hold。",
-    ),
-}
+CORE_HOLD_AMBIGUOUS_SPACE = {}
 
 CORE_HOLD_MISSING_ABSTRACT = {
     "Agent-Based Modelling Meets Generative AI in Social Network Simulations": (
         "low",
         "当前缺英文摘要且无本地 PDF，暂不下结论；标题更像 social network simulation，后续优先补全文核实。",
     ),
+}
+
+RESOLVED_MISSING_ABSTRACT = {
+    "Agent-Based Modelling Meets Generative AI in Social Network Simulations": {
+        "decision": "exclude",
+        "recommended_tier": "excluded",
+        "exclusion_reason": "E1",
+        "confidence": "medium",
+        "note": "补到的摘要显示其核心是社交网络用户仿真、内容转发与推荐机制；仍未给出可识别空间环境或 agent-facing 空间结构，按 E1 排除。",
+    },
+    "Reasoning Paths with Reference Objects Elicit Quantitative Spatial Reasoning in Large Vision-Language Models": {
+        "decision": "keep",
+        "recommended_tier": "adjacent",
+        "exclusion_reason": "",
+        "confidence": "high",
+        "note": "ACL 摘要已明确它是 quantitative spatial reasoning benchmark，直接服务空间输入处理能力边界，保留为 adjacent。",
+    },
+    "Space is the Machine: A Configurational Theory of Architecture": {
+        "decision": "keep",
+        "recommended_tier": "foundational",
+        "exclusion_reason": "",
+        "confidence": "high",
+        "note": "虽缺标准摘要，但本地 PDF、project plan 与 reference index 都已把它作为 Space Syntax 扩展理论主锚点，保留为 foundational。",
+    },
+    "The Social Logic of Space": {
+        "decision": "keep",
+        "recommended_tier": "foundational",
+        "exclusion_reason": "",
+        "confidence": "high",
+        "note": "虽缺标准摘要，但本地阅读笔记和 survey plan 已确认其为 Space Syntax 经典理论锚点，保留为 foundational。",
+    },
+    "Building Problem Spaces for Deaf and Hard of Hearing Students’ Spatial Cognition in a Programming Language": {
+        "decision": "exclude",
+        "recommended_tier": "excluded",
+        "exclusion_reason": "E2",
+        "confidence": "medium",
+        "note": "现有元数据仅显示它是编程语言中的空间认知教育研究，不直接提供本综述所需的社会行为或 Space Syntax 桥接证据，按 E2 排除。",
+    },
+    "Social networks and spatial configuration—How office layouts drive social interaction": {
+        "decision": "keep",
+        "recommended_tier": "foundational",
+        "exclusion_reason": "",
+        "confidence": "high",
+        "note": "摘要明确分析 office layout 的 configurational measures 如何预测社会互动 ties，是直接相关的空间构型-社会互动桥接证据，保留为 foundational。",
+    },
+    "The Relationship between Spatial Configuration and Social Interaction in Tehran Residential Areas: Bridging the Space Syntax Theory and Behavior Settings Theory": {
+        "decision": "keep",
+        "recommended_tier": "foundational",
+        "exclusion_reason": "",
+        "confidence": "medium",
+        "note": "补到的摘要显示其比较 Tehran 住宅布局的 Space Syntax 模型与行为观察，直接讨论 spatial configuration 与 social interaction 的关系，保留为 foundational。",
+    },
+    "Using space syntax and agent-based approaches for modeling pedestrian volume at the urban scale": {
+        "decision": "keep",
+        "recommended_tier": "foundational",
+        "exclusion_reason": "",
+        "confidence": "high",
+        "note": "摘要明确提出在 space syntax 框架下的 agent-based pedestrian model，可作为空间构型与经典 ABM/movement bridge 保留为 foundational。",
+    },
 }
 
 ADJACENT_EXCLUDE_BACKGROUND = {
@@ -238,6 +296,15 @@ def review_row(row: dict[str, str]) -> dict[str, str]:
     result["r1_exclusion_reason"] = ""
     result["r1_confidence"] = ""
     result["r1_note"] = ""
+
+    if title in RESOLVED_MISSING_ABSTRACT:
+        override = RESOLVED_MISSING_ABSTRACT[title]
+        result["r1_decision"] = override["decision"]
+        result["r1_recommended_tier"] = override["recommended_tier"]
+        result["r1_exclusion_reason"] = override["exclusion_reason"]
+        result["r1_confidence"] = override["confidence"]
+        result["r1_note"] = override["note"]
+        return result
 
     if not abstract:
         result["r1_decision"] = "hold_missing_abstract"
