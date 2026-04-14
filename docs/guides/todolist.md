@@ -1,6 +1,6 @@
 # SpatialAgent Survey Todo List
 
-> 更新日期：2026-04-13  
+> 更新日期：2026-04-14  
 > 依据文档：`survey_research_guide.md`、`survey_plan_v4.md`、`coding_manual.md`、`claim_matrix.md`  
 > 用途：查看当前 survey 执行进度，明确下一步要做什么
 
@@ -16,14 +16,20 @@
 - [x] `spatial-agent-survey/` 子项目骨架已建立
 - [x] `guide`、`survey_paper` 工作区与 Phase 1 工作流边界已写清
 - [x] `Phase 1` 原始检索池已扩展到 `417` 篇候选
-- [x] 第一轮 assistant 预筛已完成，已收敛到 `117` 篇保留池
+- [x] 第一轮 assistant 预筛已完成，收敛到 `117` 篇保留池
 - [x] `Phase 1` abstract rereview round 1 已人工接受
-- [x] 首批高优先级全文 PDF 已落库到 `assets/survey_paper/pdfs/phase1_*`
+- [x] `hold_ambiguous_space` 的 `3` 个条目已裁定完成
+- [x] `hold_missing_abstract` 的 `8` 个条目已补摘要/补元数据并裁定完成
+- [x] 正式 `screening_sheet_phase1_2026-04-13.csv` 已写实化
+- [x] 首轮 `E1-E3` 排除原因已批量落表
+- [x] `Phase 1` exclusion recheck sample 已跑通，当前 QC 未阻塞后续阶段
+- [x] 首轮 targeted expansion search 已产出两轮候选清单
 
 ### 进行中
 
-- [ ] `Phase 1` unresolved 条目复核与 targeted expansion search
-- [ ] `Core` 系统的 `system / configuration` 级编码准备
+- [ ] 将 targeted expansion round 1 / round 2 正式 ingest 到 `papers_master`
+- [x] 已形成 draft `core-confirmation shortlist`
+- [ ] 准备 `system / configuration` 级编码入口
 
 ### 未开始
 
@@ -33,41 +39,68 @@
 
 ---
 
+## 一句话判断
+
+当前我们已经完成了：
+
+- `Phase 0` 的全部 gate
+- `Phase 1` 现有 `417` 篇候选池的正式筛选落表
+- unresolved 条目的清零
+
+当前还没有完成的是：
+
+- 把补强搜索得到的新 `Core` 候选正式并入主表
+- 把 `Core` 从“当前 12 篇正式落表”提升为“20+ 可编码 shortlist”
+- 从 paper-level screening 切到 system-level coding
+
+所以现在项目状态最准确的表述是：
+
+- `Phase 0 = 100%`
+- `Phase 1 base corpus formalization = 已完成`
+- `Phase 1 core expansion / confirmation = 进行中`
+- `Phase 1.5 coding preparation = 待启动`
+
+---
+
 ## 执行优先级
 
-> 原则：所有任务按“是否解除关键路径阻塞”排序，而不是按“看起来重要”排序。  
-> 当前关键路径是：`round 1 接受 -> unresolved resolve / targeted expansion -> Core corpus 稳定 -> system-level coding -> analysis/export -> manuscript`
+> 原则：优先处理会影响 `Core` 规模与后续编码质量的任务。  
+> 当前关键路径是：`formalized screening -> broadened core expansion -> core confirmation shortlist -> system-level coding -> analysis/export -> manuscript`
 
-### Priority 0：当前唯一主线
+### Priority 0：当前主线
 
-- [ ] 处理 `3` 个 `hold_ambiguous_space` 的全文复核
-- [ ] 处理 `8` 个 `hold_missing_abstract` 的补全文/补元数据
-- [ ] 决定 round 1 结果是否直接转成正式 `screening_sheet`
-- [ ] 发起一轮 targeted expansion search，补强 `Core`
+- [ ] 将 `phase1_targeted_core_seed_2026-04-14.jsonl` 导入主流程
+- [ ] 将 `phase1_targeted_core_seed_round2_2026-04-14.jsonl` 导入主流程
+- [ ] 重新跑 dedupe / prescreen，把新增候选并入正式 `papers_master`
+- [x] 建立 dated draft `core-confirmation shortlist`
+- [ ] 把 shortlist 标为三档：
+  - `high-confidence core`
+  - `borderline but keep`
+  - `likely demote later`
 
 说明：
-当前最大的风险不是“没做第一轮筛选”，而是 `Core` 可能收得过窄。要先判断这是字段真实稀缺，还是检索覆盖还不够。
+当前最大的风险已经不是“unresolved 没处理完”，而是 `Core` 仍可能偏小。下一步最重要的是把 broadened-core 候选正式纳入流程，而不是直接开始写正文。
 
 ### Priority 1：紧跟在 P0 后面
 
-- [ ] 根据 accepted round 1，把 `36 adjacent` 再压缩到真正服务“空间能力边界”的集合
-- [ ] 根据 accepted round 1，把 `45 foundational` 再压缩到最小桥接理论集
-- [ ] 生成 `exclusion_recheck_sample` 并进入二次复核
-- [ ] 确认高优先级 `Core` 论文 PDF 已齐全
-
-说明：
-这一层的目标不是扩库，而是把 `Phase 1` 从“assistant prescreen”变成“人工确认后的正式语料表”。
-
-### Priority 2：Phase 1.5 编码准备
-
-- [ ] 从已确认的 `Core` 论文中提取 `system family`
+- [ ] 确认 broadened-core 后的高优先级全文 PDF 是否齐全
+- [ ] 为 `Core` 建立首版 `system family` 清单
 - [ ] 按 `system / environment configuration` 拆分编码单位
 - [ ] 建立第一版 `systems_master`
 - [ ] 建立第一版 `core_evidence`
-- [ ] 为 `merge / split` 决策建立真实日志
 
 说明：
-只有在 `Core` 语料稳定之后，这一层的表才值得建立，否则会反复返工。
+这一层的目标是把项目从“paper screening”推进到“system-level evidence coding”。
+
+### Priority 2：质量与边界收紧
+
+- [ ] 继续压缩 `Adjacent`，只保留真正服务“空间能力边界”的条目
+- [ ] 继续压缩 `Foundational`，只保留最小理论桥接集
+- [ ] 检查 `E4 / E5` 是否确实为零，还是尚未细分
+- [ ] 为后续 `merge / split` 建立真实日志
+
+说明：
+这一步不是为了扩库，而是为了让后续 claim 不被过宽语料拖散。
 
 ### Priority 3：延后启动
 
@@ -75,7 +108,7 @@
 - [ ] `Phase 3` 正文写作与 claim check
 
 说明：
-这两层必须建立在已验证的 `Core` 和 `Adjacent` 编码结果之上，当前不属于主攻方向。
+这两层必须建立在已确认的 `Core` 编码结果之上，当前不属于主攻方向。
 
 ---
 
@@ -95,15 +128,12 @@
 - [x] Phase 0 seed corpus 脚本和模板产物
 - [x] `Phase 0 readiness checklist`
 - [x] pilot taxonomy validation 相关 appendix 草案
-
-### 仍需确认
-
-- [x] 3 个 pilot 系统的最终人工编码结果已形成最小落表
 - [x] `Adjudication memo` 已进入正式持续维护状态
 - [x] `taxonomy_change_log` 已开始按真实案例记录
 
-说明：
-上面三项原本是 `Phase 0` gate 中最后还停留在“待确认”的部分；截至 2026-04-13，现已补齐并确认 `Phase 0` 完成。当前真正的大规模执行瓶颈已经转移到 `Phase 1` 的人工预筛。
+### 当前判断
+
+- [x] `Phase 0` 已正式关闭，不再是项目瓶颈
 
 ---
 
@@ -125,17 +155,18 @@
 - [x] `assets/survey_paper/phase1/phase1_manual_tier_review_sheet_summary.md`
 - [x] `assets/survey_paper/phase1/phase1_abstract_rereview_round1_2026-04-13.csv`
 - [x] `assets/survey_paper/phase1/phase1_abstract_rereview_round1_summary.md`
-- [x] `assets/survey_paper/phase1/phase1_candidate_pool_summary.md`
-- [x] `assets/survey_paper/phase1/phase1_assistant_prescreen_summary.md`
-- [x] `spatial-agent-survey/data/raw/phase1_a_openalex_2026-04-13.jsonl`
-- [x] `spatial-agent-survey/data/raw/phase1_b_openalex_2026-04-13.jsonl`
-- [x] `spatial-agent-survey/data/raw/phase1_c_openalex_2026-04-13.jsonl`
-- [x] `spatial-agent-survey/data/raw/phase1_d_openalex_2026-04-13.jsonl`
-- [x] `spatial-agent-survey/data/raw/phase1_e_openalex_2026-04-13.jsonl`
-- [x] `spatial-agent-survey/data/raw/phase1_search_seed_2026-04-13.jsonl`
+- [x] `assets/survey_paper/phase1/phase1_ambiguous_space_resolution_2026-04-14.md`
+- [x] `assets/survey_paper/phase1/phase1_missing_abstract_resolution_2026-04-14.md`
+- [x] `assets/survey_paper/phase1/phase1_screening_formalization_summary_2026-04-14.md`
+- [x] `assets/survey_paper/phase1/phase1_master_screening_sync_summary_2026-04-14.md`
+- [x] `assets/survey_paper/phase1/phase1_targeted_expansion_search_2026-04-14.md`
+- [x] `assets/survey_paper/phase1/phase1_targeted_expansion_search_round2_2026-04-14.md`
 - [x] `spatial-agent-survey/data/processed/papers_master_phase1_2026-04-13.csv`
 - [x] `spatial-agent-survey/data/processed/screening_sheet_phase1_2026-04-13.csv`
-- [x] `spatial-agent-survey/results/logs/phase1_openalex_pool_summary.json`
+- [x] `spatial-agent-survey/data/raw/phase1_targeted_core_seed_2026-04-14.jsonl`
+- [x] `spatial-agent-survey/data/raw/phase1_targeted_core_seed_round2_2026-04-14.jsonl`
+- [x] `spatial-agent-survey/results/logs/prisma_summary_phase1_2026-04-13.json`
+- [x] `spatial-agent-survey/results/logs/qc_summary.json`
 
 ### 当前数字
 
@@ -143,25 +174,28 @@
 - [x] 加入 seed batch 后 raw ingestion：`449`
 - [x] 全局去重后 candidate pool：`417`
 - [x] assistant first-pass 保留池：`117`
-- [x] 保留池分布：`21 core / 43 adjacent / 53 foundational`
-- [x] accepted `abstract rereview round 1` 推荐分布：`11 core / 36 adjacent / 45 foundational / 25 excluded`
-- [x] unresolved：`3 hold_ambiguous_space + 8 hold_missing_abstract`
+- [x] 正式 `screening_sheet` 当前分布：`12 core / 42 adjacent / 47 foundational / 316 excluded`
+- [x] 当前排除原因统计：`E1 = 85 / E2 = 54 / E3 = 177 / E4 = 0 / E5 = 0`
+- [x] unresolved：`0`
+- [x] exclusion recheck sample：`47` 行，`raw_agreement = 1.0`
+- [x] `phase_gate_blocked = false`
 
 ### 下一步必须做的事
 
-- [ ] 先处理 `3` 个 `hold_ambiguous_space`：`OASIS / SoMoSiMu / Multimodal Safety Evaluation`
-- [ ] 再处理 `8` 个 `hold_missing_abstract`
-- [ ] 决定 `11 core` 是否直接作为首版 confirmed core 集
-- [ ] 发起 targeted expansion search，目标是补出更多“明确有空间环境 + 社会行为”的 `Core`
-- [ ] 对 accepted 排除项补正式 `E1-E5`
-- [ ] 产出 accepted round 1 对应的 `screening_sheet` 正式版
-- [ ] 生成 `exclusion_recheck_sample`，进入二次复核流程
+- [ ] ingest 两轮 targeted expansion seed
+- [ ] re-run dedupe / prescreen，并同步回 `papers_master`
+- [x] 生成 broadened-core 后的 dated `core-confirmation shortlist`
+- [ ] 判断正式 `Core` 是否能稳定到 `20+` 的工作集
+- [ ] 为 shortlisted `Core` 补全文 PDF
+- [ ] 对 broadened-core 候选进行首轮 full-text sanity check
 
 ### 这一阶段的完成标准
 
-- [ ] `papers_master` 正式稳定
-- [ ] `screening_sheet` 有完整排除原因
-- [ ] `Core / Adjacent / Foundational / Excluded` 全量定稿
+- [x] `papers_master` 对现有 `417` 篇底池已正式稳定
+- [x] `screening_sheet` 已有完整首轮排除原因
+- [x] 现有池中的 `Core / Adjacent / Foundational / Excluded` 已落表
+- [ ] broadened-core 候选已并入正式主表
+- [ ] `Core` shortlist 达到可编码规模
 - [ ] 可以从正式筛选结果进入 `system-level coding`
 
 ---
@@ -181,7 +215,7 @@
 
 ### 下一步
 
-- [ ] 从已确认的 `Core` 论文中提取 system family
+- [ ] 从 confirmed `Core` 中提取 `system family`
 - [ ] 按 `system / environment configuration` 拆分编码单位
 - [ ] 建立第一版 `systems_master`
 - [ ] 建立第一版 `core_evidence`
@@ -219,61 +253,8 @@
 
 - [ ] 未开始
 
-### 写作前条件
+### 进入条件
 
-- [ ] `claim_matrix` 逐条可对照执行
-- [ ] evidence map 可稳定导出
-- [ ] appendix 表可稳定导出
-- [ ] `L4 gap` 与 representation gap 统计已经稳定
-
-### 写作顺序提醒
-
-- [ ] 先写 `§3 Evidence Map`
-- [ ] 再写 `§5 Space in Social Simulation`
-- [ ] 再写 `§4 Feasibility`
-- [ ] 最后补 `§1 Introduction` 和 `§8 Conclusion`
-
----
-
-## 本周优先级
-
-### 1. 先做
-
-- [ ] 全文解决 `3 hold_ambiguous_space`
-- [ ] 补齐 `8 hold_missing_abstract`
-- [ ] 给 accepted 排除项补 `E1-E5`
-
-### 2. 接着做
-
-- [ ] 产出 accepted round 1 的 `screening_sheet` 正式版
-- [ ] 压缩 `36 adjacent`
-- [ ] 压缩 `45 foundational`
-
-### 3. 然后再做
-
-- [ ] 发起一轮 targeted expansion search 补强 `Core`
-- [ ] 生成 `exclusion_recheck_sample`
-- [ ] 确认高优先级 `Core` 论文 PDF 是否齐全
-- [ ] 为首批 `Core` 系统建立 `system family` 列表
-
-### 4. 暂不提前启动
-
-- [ ] 大规模 `systems_master / core_evidence` 编码
-- [ ] `Phase 2` 图表和 appendix 导出
-- [ ] `Phase 3` 正文写作
-
----
-
-## 风险与提醒
-
-- [ ] 不要把 assistant first-pass 当成最终筛选结果
-- [ ] 不要让 `Foundational` 文献无限膨胀
-- [ ] 不要把 spatial reasoning benchmark 直接当作 social effect evidence
-- [ ] 不要在 `Core` 论文未定稿前开始写 narrative 主文
-- [ ] 不要跳过 `E1-E5` 排除原因记录
-
----
-
-## 如果今天只做一件事
-
-- [ ] 打开 `assets/survey_paper/phase1/phase1_abstract_rereview_round1_2026-04-13.csv`，先解决 `3 hold_ambiguous_space`
+- [ ] long review 章节骨架已挂载真实图表
+- [ ] `claim_matrix` 可逐条对照证据表
+- [ ] appendix 产物可回溯每条关键论断
