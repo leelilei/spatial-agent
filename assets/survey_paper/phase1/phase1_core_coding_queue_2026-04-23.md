@@ -2,19 +2,23 @@
 
 Date: 2026-04-23
 
-Purpose: move the project from "expand the core search surface" to "code the current Core 15 with explicit handling of missing full text and representation ambiguity."
+Purpose: move the project from "expand the core search surface" to "code the current Core 15 with explicit handling of missing full text and the remaining split-required cases."
 
 ## Queue split
 
-The current `Core 15` now falls into three operational queues:
+After the representation adjudication memo on `2026-04-23`, the current `Core 15` falls into three operational queues:
 
-- `7` rows are ready for first-pass coding
-- `5` rows need representation adjudication or configuration splitting
+- `10` rows are ready for first-pass coding
+- `2` rows require configuration or interface splitting before final coding
 - `3` rows are blocked by missing local full text
 
 The paired seed table is:
 
 - `assets/survey_paper/phase1/phase1_core_evidence_table_seed_2026-04-23.csv`
+
+The representation memo is:
+
+- `assets/survey_paper/phase1/phase1_representation_adjudication_memo_2026-04-23.md`
 
 ## 1. Ready for first-pass coding
 
@@ -23,10 +27,13 @@ These rows already have enough local evidence to code conservatively at the curr
 - `HC02` Generative Agents
 - `HC04` Affordable Generative Agents
 - `HC05` Artificial Leviathan
+- `HC06` Project Sid
 - `HC07` OASIS
 - `HC08` Lyfe Agents
 - `HC09` Spontaneous Emergence
+- `HC10` Real world community oriented high-definition social simulation
 - `HC15` CitySim
+- `BK01` AgentSociety
 
 Working rule:
 
@@ -34,26 +41,20 @@ Working rule:
 - code conservatively
 - only escalate to adjudication if the first-pass extraction exposes genuine row-splitting pressure
 
-## 2. Representation adjudication queue
+## 2. Split-required queue
 
-These rows are stable `Core` papers, but they should not be treated as final one-row codings yet.
+These rows are stable `Core` papers, but they should not be treated as final one-row codings yet because the paper-level row still collapses materially different interfaces.
 
 - `HC03` Concordia
   Reason: framework family spans multiple environment and interface configurations
-- `HC06` Project Sid
-  Reason: Minecraft backend is clearly rich, but the exact agent-facing representation still needs extraction
-- `HC10` Real world community oriented high-definition social simulation
-  Reason: GIS, BIM, and Unreal environment details may justify a higher representation level than the current conservative seed
 - `HC12` SimWorld
   Reason: multiple observation modalities and embodiments mean a flat one-row coding would hide real variation
-- `BK01` AgentSociety
-  Reason: environment-side spatial structure is visible, but the agent-accessible representation is still unresolved
 
 Working rule:
 
 - do not reopen search because of these papers
-- resolve them by method extraction, not by more screening
 - split into multiple system or configuration rows only when the interface difference is real and behavior-relevant
+- treat the split question as resolved conceptually, but not yet materialized into row-level coding
 
 ## 3. Acquisition-blocked queue
 
@@ -78,21 +79,20 @@ The project is no longer blocked on broad `Core` expansion.
 
 The immediate path is:
 
-1. code the `7` ready rows
-2. resolve the `5` representation rows through method extraction
+1. code the `10` ready rows
+2. split `HC03` and `HC12` into coding-ready configuration rows
 3. continue PDF acquisition for the `3` blocked rows
 4. only then judge whether any true conceptual cell is still empty
 
 ## 5. Seed-table convention
 
-The seed CSV intentionally keeps a small number of provisional values such as:
+The seed CSV intentionally keeps a small number of split-aware or provisional values such as:
 
 - `pending_extract`
 - `pending_split`
-- `L3_pending_extract`
-- `L5_pending_split`
-- `unknown_pending_extract`
+- `mixed_L3_to_L5_split_required`
+- `L5_present_but_split_required`
 
-These are not final coding labels.
+These are not ordinary final coding labels.
 
-They exist to prevent premature certainty while still letting the project move into systematic extraction now.
+They exist to prevent premature certainty while still letting the project move into systematic coding now.
