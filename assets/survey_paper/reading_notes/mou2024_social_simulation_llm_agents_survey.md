@@ -4,7 +4,7 @@
 - **作者**: Xinyi Mou, Xuanwen Ding, Qi He, Liang Wang, Jingcong Liang, Xinnong Zhang, Libo Sun, Jiayu Lin, Jie Zhou, Xuanjing Huang, Zhongyu Wei
 - **发表**: arXiv preprint（2024年12月）
 - **链接**: https://arxiv.org/abs/2412.03563
-- **本地 PDF**: `assets/survey_paper/pdfs/05_Mou2024_Social_Simulation_LLM_Agents_Survey.pdf`
+- **本地 PDF**: `assets/survey_paper/pdfs/review_library/05_Mou2024_Social_Simulation_LLM_Agents_Survey.pdf`
 - **阅读日期**: 2026-04-13
 
 ## 一句话总结

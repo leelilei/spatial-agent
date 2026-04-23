@@ -4,7 +4,7 @@
 - **作者**: Chen Gao, Xiaochong Lan, Nian Li, Yuan Yuan, Jingtao Ding, Zhilun Zhou, Fengli Xu, Yong Li
 - **发表**: Humanities and Social Sciences Communications（2024）
 - **链接**: https://www.nature.com/articles/s41599-024-03611-3
-- **本地 PDF**: `assets/survey_paper/pdfs/04_Gao2024_LLM_ABM_Simulation_Survey.pdf`
+- **本地 PDF**: `assets/survey_paper/pdfs/review_library/04_Gao2024_LLM_ABM_Simulation_Survey.pdf`
 - **阅读日期**: 2026-04-13
 
 ## 一句话总结

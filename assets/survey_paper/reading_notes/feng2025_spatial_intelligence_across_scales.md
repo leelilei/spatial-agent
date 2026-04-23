@@ -4,7 +4,7 @@
 - **作者**: Jie Feng, Jinwei Zeng, Qingyue Long, Hongyi Chen, Jie Zhao, Yanxin Xi, Zhilun Zhou, Yuan Yuan, Shengyuan Wang, Qingbin Zeng, Songwei Li, Yunke Zhang, Yuming Lin, Tong Li, Jingtao Ding, Chen Gao, Fengli Xu, Yong Li
 - **发表**: arXiv preprint（2025年4月）
 - **链接**: https://arxiv.org/abs/2504.09848
-- **本地 PDF**: `assets/survey_paper/pdfs/01_Feng2025_Spatial_Intelligence_Across_Scales.pdf`
+- **本地 PDF**: `assets/survey_paper/pdfs/review_library/01_Feng2025_Spatial_Intelligence_Across_Scales.pdf`
 - **阅读日期**: 2026-04-13
 
 ## 一句话总结
