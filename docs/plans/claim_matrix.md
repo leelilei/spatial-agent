@@ -76,6 +76,21 @@
 
 ## 5. Corpus-Specific Rules
 
+### 2026-04-27 Anchor/Bridge Addendum
+
+When the widened boundary is active, treat the main coded corpus as two layers:
+
+- `anchor_core`: strict nucleus
+- `bridge_core`: widened bridge layer inside the main coded corpus
+
+Claim discipline under the widened boundary:
+
+- `anchor_core` can support the strongest descriptive mapping and the cleanest limited `observed_effect` claims.
+- `bridge_core` can support descriptive mapping and limited bridge-level effect discussion, but should not be treated as equal in evidential weight to the anchor nucleus.
+- If a sentence relies mainly on `bridge_core`, prefer wording like `bridge cases suggest`, `widened-core cases indicate`, or `socially situated spatial systems show`.
+- Do not let `bridge_core` alone support strong field-level mechanism claims.
+- If `L4` appears only after the widened rule, state that clearly and do not back-project the widened definition onto earlier strict-gap claims without qualification.
+
 ### 5.1 Core Corpus
 
 Core corpus 支撑：

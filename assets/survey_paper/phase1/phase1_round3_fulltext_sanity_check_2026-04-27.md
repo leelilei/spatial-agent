@@ -176,6 +176,6 @@ Adjacent/boundary:
 
 Recommended next action:
 
-1. Add preliminary coding rows for `R3-01`, `R3-02`, and `R3-04` only after a final table-edit decision.
-2. Keep `R3-03` as a reserve row or Adjacent note unless the manuscript needs a second urban mobility example.
-3. Stop broad supplementation if `R3-02` is accepted as population-level Core; otherwise continue only the narrow second wave (`R3-06`, `R3-07`, `R3-09`) plus the existing `HC13` and `HC14` acquisition blockers.
+1. `R3-01`, `R3-02`, and `R3-04` have now been admitted into the stable first-pass coding table.
+2. Keep `R3-03` as reserve only.
+3. Keep `CoELA` as Adjacent, and do not continue second-wave screening unless a new manuscript need appears.

@@ -2,7 +2,7 @@
 
 Date: 2026-04-27
 
-Purpose: identify a small number of plausible Core supplementation candidates without reopening broad search. This memo is a scan and triage artifact only; existing screening and coding tables were not edited.
+Purpose: identify a small number of plausible Core supplementation candidates without reopening broad search. This memo began as a scan and triage artifact; later addenda record the candidates that were actually integrated into the stable coding table.
 
 ## Scope Read Before Search
 
@@ -23,10 +23,10 @@ Current operative Core boundary:
 
 Current evidence gap from the first-pass coding file:
 
-- `14` coded Core rows from `12` paper-level Core items.
-- Most rows are conservative `L3`; only `HC06` and `HC12A` are currently coded `L5`.
+- `19` coded Core rows from `17` paper-level Core items.
+- Most rows are conservative `L3`; `HC06`, `HC12A`, and `R3-01` are currently coded `L5`.
 - `L4` remains absent.
-- `HC13` and `HC14` remain unresolved full-text blockers, but they should not block evidence-map synthesis.
+- the former `L5 + observed_effect` gap is now closed.
 - `HC01` is a strong `3D_engine / L5` built-environment interface case, but is Adjacent because the current experiments are single-agent navigation rather than multi-agent social behavior.
 
 ## Search Strategy
@@ -92,31 +92,24 @@ Source priority was primary paper pages, publisher pages, arXiv/OpenReview/ACL p
 | R3-13 | CivRealm: A Learning and Reasoning Odyssey in Civilization for Decision-Making Agents | 2024 | ICLR OpenReview / arXiv | https://openreview.net/forum?id=UBVNwD3hPN | Civilization-like map/game environment with changing players, imperfect information, diplomacy and negotiation, and language-agent interfaces. | Primary purpose is benchmark/decision-making; unclear whether experiments are LLM multi-agent social simulation or mostly environment setup. | Borderline/Adjacent. Lower priority than Minecraft/urban/crisis candidates. |
 | R3-14 | Embodied LLM Agents Learn to Cooperate in Organized Teams | 2026 | IEEE TCSS / Princeton page | https://doi.org/10.1109/TCSS.2025.3637527 | Multi-agent cooperation with embodied LLM agents, leadership/organization prompts, spontaneous cooperative behavior, and human-agent collaboration. Social behavior is stronger than many task benchmarks. | Need full-text access and environment details; current accessible abstract does not establish agent-accessible spatial representation. | Watchlist. Screen if PDF becomes available. |
 
-## Continuity Checks: Existing Evacuation Blockers
+## Continuity Checks: Former Evacuation Blockers
 
-These are not new Round 3 candidates because they are already in the acquisition queue, but they remain high-value if full texts become available:
+These are no longer active Round 3 acquisition tasks:
 
-- `HC13` Large-language-model-driven agents for fire evacuation simulation in a cellular automata environment. ScienceDirect snippets confirm LLM-driven multi-agent fire evacuation, spatial semantics plus cellular automata, shopping mall scenario, and LiDAR/3D reconstruction evidence. Continue PDF acquisition.
-- `HC14` When agents learn to think: Large language model-enhanced agent-based modeling for crowd evacuation in disaster scenarios. ResearchGate/ScienceDirect metadata indicate pedestrian and vehicle evacuation, environmental observations, decision histories, interpersonal communication, and real-world disaster case study. Continue PDF acquisition.
+- `HC13` is now fully extracted locally and stably coded as `2D_grid / L3 / observed_effect`.
+- `HC14` is now fully extracted locally and stably coded as `graph_based / L3 / observed_effect`.
+
+Operational meaning:
+
+- evacuation-space evidence no longer drives Round 3
+- the live Round 3 question is now much narrower: whether the final manuscript still needs a stable `L5 + observed_effect` Core row or a slightly less skewed observed-effect balance
 
 ## Recommended Next Actions
 
-1. Do not restart broad search. Use this memo as a targeted pickup list.
-2. Download and full-text screen the top five in this order:
-   - `R3-01` MineLand
-   - `R3-02` GATSim
-   - `R3-03` Cognitive Agents in Urban Mobility
-   - `R3-04` LLM-driven epidemic-economic dynamics
-   - `R3-05` CoELA
-3. For each top-five candidate, create a short full-text sanity note before any table edits:
-   - multi-agent confirmed?
-   - agent-accessible spatial representation level?
-   - social/group behavior confirmed?
-   - evidence status: observed effect vs designed affordance only?
-   - duplicate/system-family relation to existing Core?
-4. If at least `3` of the top five survive as stable Core, stop supplementation and return to evidence-map synthesis.
-5. If fewer than `3` survive, screen `R3-06`, `R3-07`, and `R3-09` as second wave. Do not screen the lower-priority benchmark rows unless a specific taxonomy gap remains.
-6. Keep `HC13` and `HC14` acquisition running in parallel; they are more valuable than most lower-priority game benchmarks if full text can be obtained.
+1. Do not restart broad search.
+2. `R3-01`, `R3-02`, and `R3-04` have now been admitted into the stable first-pass coding table.
+3. Keep `R3-03` as reserve and `R3-05` as Adjacent unless the review scope is deliberately widened.
+4. Do not open the second wave (`R3-06`, `R3-07`, `R3-09`) unless a new manuscript need appears after synthesis.
 
 ## Stop Rule
 
@@ -127,3 +120,17 @@ Round 3 should stop when any one condition is met:
 - Two consecutive high-priority candidates demote for the same reason, indicating a boundary pattern rather than a missing-paper problem.
 
 Do not expand into generic LLM agent, generic embodied AI, generic game AI, or pure social-network simulation after this point. The purpose is not to inflate Core count; it is to fill visible gaps in `L5`, urban/built/crowd environments, and observed spatial-behavior coupling.
+
+## Integration addendum
+
+Integrated on `2026-04-27`:
+
+- `R3-01` MineLand -> stable Core first-pass coding row
+- `R3-02` GATSim -> stable Core first-pass coding row
+- `R3-04` LLM-driven epidemic-economic dynamics -> stable Core first-pass coding row
+
+Operational consequence:
+
+- the former `L5 + observed_effect` gap is now closed
+- the observed-effect side is now close to balanced against designed-affordance rows
+- targeted Round 3 should now be treated as closed unless a new manuscript need appears

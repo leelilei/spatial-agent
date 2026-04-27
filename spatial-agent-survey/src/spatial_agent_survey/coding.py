@@ -41,6 +41,7 @@ def build_system_templates(core_rows: Iterable[Dict]) -> List[Dict]:
             continue
         templates.append(
             {
+                "core_layer": "",
                 "system_name": row.get("title", ""),
                 "environment_configuration": "",
                 "system_family": row.get("title", ""),
@@ -128,6 +129,8 @@ def system_records_to_rows(records: Iterable[SystemEvidenceRecord]) -> List[Dict
         row["paper_refs"] = "; ".join(row["paper_refs"])
         row["behavior_type"] = "; ".join(row["behavior_type"])
         row["space_syntax_construct"] = "; ".join(row["space_syntax_construct"])
+        if row.get("core_layer") is not None:
+            row["core_layer"] = row["core_layer"].value
         row["agent_count"] = row["agent_count"].value
         row["environment_side_representation"] = row["environment_side_representation"].value
         row["agent_accessible_representation"] = row["agent_accessible_representation"].value

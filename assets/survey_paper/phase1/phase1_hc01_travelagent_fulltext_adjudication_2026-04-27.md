@@ -100,5 +100,5 @@ TravelAgent: Generative agents in the built environment,built-environment pedest
 ## Follow-Up
 
 - HC01 acquisition blocker is closed.
-- HC13 and HC14 remain the only unresolved full-text blockers in the current Core acquisition queue.
+- HC13 and HC14 were subsequently resolved by local full-text extraction and conservative first-pass coding on 2026-04-27.
 - If the paper later has a journal version with materially different multi-agent experiments, reopen adjudication against that version.

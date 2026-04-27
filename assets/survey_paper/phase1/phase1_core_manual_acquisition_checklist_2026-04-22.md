@@ -2,7 +2,16 @@
 
 Date: 2026-04-22
 
-Purpose: keep a short checklist for the remaining Core papers that still need valid local PDFs.
+Purpose: keep a short historical checklist for the Core papers that previously needed valid local PDFs.
+
+## 2026-04-27 closure addendum
+
+This checklist is now closed for the previously missing Core PDFs.
+
+- `HC13` archive is now present at `assets/survey_paper/pdfs/phase1_core/14_HC13_Fire_Evacuation_CA.pdf`
+- `HC14` archive is now present at `assets/survey_paper/pdfs/phase1_core/15_HC14_Crowd_Evacuation_Disaster.pdf`
+- local `pdf2text` extraction and full-text adjudication are complete for both rows
+- neither paper should be treated as a live acquisition blocker or Round 3 dependency
 
 ## Rules
 
@@ -25,31 +34,33 @@ Purpose: keep a short checklist for the remaining Core papers that still need va
 
 - Target filename: `assets/survey_paper/pdfs/phase1_core/14_HC13_Fire_Evacuation_CA.pdf`
 - Current placeholder file: `assets/survey_paper/pdfs/phase1_placeholders/HC13_Fire_Evacuation_CA.placeholder.html`
+- Current live status: archived and full-text reviewed on `2026-04-27`
 - Suggested routes:
   - ScienceDirect: `https://www.sciencedirect.com/science/article/pii/S0925753525001602`
   - DOI: `https://doi.org/10.1016/j.ssci.2025.106935`
   - ResearchGate: `https://www.researchgate.net/publication/397145175_Large-language-model-driven_agents_for_fire_evacuation_simulation_in_a_cellular_automata_environment`
 - Action:
-  1. Try `View PDF` in a normal browser.
-  2. If unavailable, try ResearchGate full-text request.
-  3. If still unavailable, use institution access or author copy.
+  1. No further acquisition action required.
+  2. Keep the placeholder only as a blocked-download trace.
+  3. Use the archived PDF plus `pdf2text` outputs for any future coding check.
 
 ## HC14
 
 - Target filename: `assets/survey_paper/pdfs/phase1_core/15_HC14_Crowd_Evacuation_Disaster.pdf`
 - Current placeholder file: `assets/survey_paper/pdfs/phase1_placeholders/HC14_Crowd_Evacuation_Disaster.placeholder.html`
+- Current live status: archived and full-text reviewed on `2026-04-27`
 - Suggested routes:
   - ScienceDirect: `https://www.sciencedirect.com/science/article/pii/S0951832025012554`
   - DOI: `https://doi.org/10.1016/j.ress.2025.112056`
   - ResearchGate: `https://www.researchgate.net/publication/398196301_When_Agents_Learn_to_Think_Large_Language_Model-Enhanced_Agent-Based_Modeling_for_Crowd_Evacuation_in_Disaster_Scenarios`
 - Action:
-  1. Try `View PDF` in a normal browser.
-  2. If unavailable, try ResearchGate full-text request.
-  3. If still unavailable, use institution access or author copy.
+  1. No further acquisition action required.
+  2. Keep the placeholder only as a blocked-download trace.
+  3. Use the archived PDF plus `pdf2text` outputs for any future coding check.
 
-## After each successful acquisition
+## Historical post-acquisition note
 
-Update:
+These updates have already been completed for `HC13` and `HC14`:
 
 - `assets/survey_paper/phase1/phase1_fulltext_sanity_check_batch1_2026-04-22.csv`
 

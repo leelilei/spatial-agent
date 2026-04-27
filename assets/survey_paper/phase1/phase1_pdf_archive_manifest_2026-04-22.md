@@ -12,6 +12,8 @@ Purpose: record the final archive locations for the PDFs gathered during the 202
 - `HC10 -> assets/survey_paper/pdfs/phase1_core/11_HC10_Real_World_Community_Oriented.pdf`
 - `HC12 -> assets/survey_paper/pdfs/phase1_core/12_HC12_SimWorld.pdf`
 - `HC15 -> assets/survey_paper/pdfs/phase1_core/13_HC15_CitySim.pdf`
+- `HC13 -> assets/survey_paper/pdfs/phase1_core/14_HC13_Fire_Evacuation_CA.pdf` (added 2026-04-27 from user-supplied ScienceDirect PDF)
+- `HC14 -> assets/survey_paper/pdfs/phase1_core/15_HC14_Crowd_Evacuation_Disaster.pdf` (added 2026-04-27 from user-supplied ScienceDirect PDF)
 
 ## Adjacent archive
 
@@ -24,8 +26,8 @@ Purpose: record the final archive locations for the PDFs gathered during the 202
 
 These files are not valid PDFs. Their first bytes are HTML, so they were moved out of the paper archive and renamed accordingly.
 
-- `HC13 -> assets/survey_paper/pdfs/phase1_placeholders/HC13_Fire_Evacuation_CA.placeholder.html`
-- `HC14 -> assets/survey_paper/pdfs/phase1_placeholders/HC14_Crowd_Evacuation_Disaster.placeholder.html`
+- `HC13 blocked PDF trace -> assets/survey_paper/pdfs/phase1_placeholders/HC13_Fire_Evacuation_CA.placeholder.html`
+- `HC14 blocked PDF trace -> assets/survey_paper/pdfs/phase1_placeholders/HC14_Crowd_Evacuation_Disaster.placeholder.html`
 - `BK08 -> assets/survey_paper/pdfs/phase1_placeholders/BK08_Online_Community_Collective_Behaviors.placeholder.html`
 - `BK08 alt -> assets/survey_paper/pdfs/phase1_placeholders/BK08_Online_Community_Collective_Behaviors.alt.placeholder.html`
 

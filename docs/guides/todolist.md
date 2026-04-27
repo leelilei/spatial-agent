@@ -6,6 +6,29 @@
 
 ---
 
+## 2026-04-27 当前覆盖说明
+
+今天的 widened-Core 执行结果覆盖本 todo 中较早的 `Core 15`、`14 rows`、`L4 = 0` 等旧快照，但不删除这些历史记录。
+
+当前应以以下 Phase 1 产物为准：
+
+- `assets/survey_paper/phase1/phase1_widened_core_execution_memo_2026-04-27.md`
+- `assets/survey_paper/phase1/phase1_widened_core_evidence_map_2026-04-27.csv`
+- `assets/survey_paper/phase1/phase1_widened_core_evidence_map_2026-04-27.md`
+- `assets/survey_paper/phase1/phase1_plan_guide_alignment_after_widening_2026-04-27.md`
+
+当前工作口径：
+
+- strict baseline: `17` paper-level `anchor_core` items, `19` rows
+- widened evidence map: `29` paper-level items, `31` rows
+- row layers: `anchor_core = 19`, `bridge_core = 12`
+- representation distribution: `L1 = 1 / L2 = 5 / L3 = 18 / L4 = 1 / L5 = 6`
+- claim discipline: `L4` only appears in widened digital-network `bridge_core`, not in strict `anchor_core`
+
+下一步不进入正文写作；先做 plan/guide/exemplar alignment 与 scoping-review 范文结构提取。
+
+---
+
 ## 当前进度总览
 
 ### 已完成
@@ -29,7 +52,7 @@
 
 ### 进行中
 
-- [ ] 补齐剩余 `2` 篇 acquisition-blocked Core 全文：`HC13`、`HC14`
+- [x] 补齐剩余 `2` 篇 acquisition-blocked Core 全文：`HC13`、`HC14`
 - [x] `HC01` TravelAgent PDF 已归档并完成 full-text adjudication；当前作为 Adjacent/boundary evidence，不进入稳定 Core social-behavior claims
 - [x] 基于 `14` 条已编码 Core rows 生成 evidence-map views
 - [x] 把 first-pass coding 结果同步到正式 appendix/evidence table 产物
@@ -41,7 +64,7 @@
 
 - [ ] 不启动新的 broad core expansion
 - [ ] 不把 online community / generic simulator / single-agent interaction 重新扩成 Core 主线
-- [ ] 不在 `HC13 / HC14` 全文未验证前使用它们支撑强 representation claims；`HC01` 只作为边界/可行性证据使用
+- [ ] 不在 `HC13 / HC14` 完成保守 row-level 编码前使用它们支撑强 representation claims；`HC01` 只作为边界/可行性证据使用
 - [ ] 不直接进入正文定稿，先完成 evidence map 与 claim check
 
 ---
@@ -56,15 +79,15 @@
 - `Phase 1 corpus formalization = 完成`
 - `Phase 1 shortlist closure = 完成`
 - `Phase 1 Core first-pass coding = 可用部分完成`
-- `Phase 1 evidence acquisition = 2 篇仍阻塞`
+- `Phase 1 evidence acquisition = PDF blockers closed，保守编码待补`
 - `Phase 2 evidence map / appendix export = 初版完成`
 - `Phase 3 manuscript / claim check = 可在 evidence map 初版基础上启动`
 
 关键瓶颈不再是“缺 Core 候选”，而是：
 
 - `HC01` 已有本地 PDF，但全文显示当前实现更适合作为单智能体空间导航边界案例
-- `HC13` 当前只有 placeholder HTML
-- `HC14` 当前只有 placeholder HTML
+- `HC13` 已有本地 PDF；目录确认 multi-agent / cell-semantic hybrid / 3D scenario / evacuation metrics
+- `HC14` 已有本地 PDF；目录确认 prompt generation / batched inference / evacuation environment / emergent behaviors / validation
 - 现有 `14` 条编码已转成 evidence map、gap summary 和 appendix assets
 - `round 3` 已完成 targeted scan 与 top candidate full-text sanity check；`R3-01 / R3-02 / R3-04` 可进入下一步 preliminary coding-row 编辑，`R3-03` 保留为 borderline/reserve
 
@@ -78,9 +101,9 @@
 - [x] 正式 screening 分布：`12 core / 42 adjacent / 47 foundational / 316 excluded`
 - [x] shortlist closure 后工作集：`15 Core / 9 Adjacent / 2 Excluded`
 - [x] 当前可编码完成：`14` 个 Core system/configuration rows
-- [x] 当前 acquisition-blocked：`2` 篇 Core papers
+- [x] 当前 acquisition-blocked：`0` 篇 Core papers
 - [x] 当前 unresolved：`0`
-- [x] 当前建议：不要继续 broad search；准备 `R3-01 / R3-02 / R3-04` preliminary coding rows，并继续补 `HC13 / HC14`
+- [x] 当前建议：不要继续 broad search；准备 `R3-01 / R3-02 / R3-04` preliminary coding rows，并把 `HC13 / HC14` 推进到保守 first-pass coding
 
 ---
 
@@ -102,13 +125,13 @@
 
 - [x] 获取并归档 `HC01` TravelAgent PDF
 - [x] 对 `HC01` 做 full-text sanity check 与边界裁决：转为 Adjacent/boundary evidence
-- [ ] 补HC13全文 | P0 获取HC13有效全文
-- [ ] 补HC14全文 | P0 获取HC14有效全文
+- [x] 补HC13全文 | P0 获取HC13有效全文
+- [x] 补HC14全文 | P0 获取HC14有效全文
 - [x] 更新 `phase1_pdf_archive_manifest_2026-04-22.md`，记录 `HC01` 与 `round 3` acquisition/check 状态
-- [ ] 定HC13/14去留 | P0 入表或降级裁决
+- [x] 定HC13/14去留 | P0 入表或降级裁决
 
 说明：
-`HC13 / HC14` 是当前最明确的人工/检索瓶颈。未补齐前，它们只能作为 provisional Core，不能支撑强论断。`HC01` 已解决获取问题，但全文裁决为边界证据。
+`HC13 / HC14` 的全文获取瓶颈已经关闭。当前剩余工作不再是检索，而是把保守的全文裁决写入 stable coding rows；在这一步完成前，仍不应拿它们支撑强 representation claims。`HC01` 已解决获取问题，但全文裁决为边界证据。
 
 ### Priority 1：Evidence Map Synthesis
 
@@ -224,16 +247,16 @@ Adjacent 不应拖慢 Core evidence map。只做足以支撑边界论证的编�
 ### 当前阻塞项
 
 - [x] `HC01` TravelAgent：PDF 已归档；全文裁决为 Adjacent/boundary evidence
-- [ ] `HC13` Fire evacuation cellular automata：当前本地文件只是 placeholder HTML
-- [ ] `HC14` Crowd evacuation disaster scenarios：当前本地文件只是 placeholder HTML
+- [x] `HC13` Fire evacuation cellular automata：PDF 已归档；full-text outline adjudication 已完成
+- [x] `HC14` Crowd evacuation disaster scenarios：PDF 已归档；full-text outline adjudication 已完成
 
 ### Phase 1 完成标准
 
 - [x] 候选池与筛选表稳定
 - [x] Core shortlist 稳定为 `15`
 - [x] 可用 Core 已完成 first-pass coding
-- [ ] `HC13 / HC14` 全文获取与 sanity check 完成
-- [ ] 阻塞项处理结果写回 PDF manifest、coding queue、closure summary
+- [x] `HC13 / HC14` 全文获取与 sanity check 完成
+- [x] 阻塞项处理结果写回 PDF manifest、coding queue、closure summary
 
 ---
 
@@ -280,7 +303,7 @@ Adjacent 不应拖慢 Core evidence map。只做足以支撑边界论证的编�
 - [x] appendix evidence table 初版完成
 - [ ] `claim_matrix` 已根据真实 evidence 更新
 - [x] `HC01` 已有明确处理决策：Adjacent/boundary evidence
-- [ ] `HC13 / HC14` 至少已有明确处理决策
+- [x] `HC13 / HC14` 至少已有明确处理决策
 
 ### 待办
 
@@ -299,10 +322,10 @@ Adjacent 不应拖慢 Core evidence map。只做足以支撑边界论证的编�
 
 请优先补以下任一类材料：
 
-- [ ] `HC13` Fire evacuation cellular automata 的有效 PDF 或可访问全文链接
-- [ ] `HC14` Crowd evacuation disaster scenarios 的有效 PDF 或可访问全文链接
+- [x] `HC13` Fire evacuation cellular automata 的有效 PDF 或可访问全文链接
+- [x] `HC14` Crowd evacuation disaster scenarios 的有效 PDF 或可访问全文链接
 
-如果短期拿不到全文，当前执行策略是：
+在 stable coding rows 补齐前，当前执行策略是：
 
 - [x] 先用 `14` 条已编码 rows 生成 evidence map 初版
 - [x] 把 `HC13 / HC14` 标为 provisional Core，不进入强论断；`HC01` 按 Adjacent/boundary evidence 处理

@@ -5,6 +5,7 @@ __all__ = [
     "coding",
     "export",
     "ingest",
+    "pdf",
     "schemas",
     "screening",
 ]

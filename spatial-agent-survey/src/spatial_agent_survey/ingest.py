@@ -220,6 +220,8 @@ def papers_to_rows(papers: Iterable[PaperRecord]) -> List[Dict]:
             row["final_status"] = row["final_status"].value
         if row.get("corpus_tier") is not None:
             row["corpus_tier"] = row["corpus_tier"].value
+        if row.get("core_layer") is not None:
+            row["core_layer"] = row["core_layer"].value
         if row.get("exclusion_reason") is not None:
             row["exclusion_reason"] = row["exclusion_reason"].value
         rows.append(row)

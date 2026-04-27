@@ -6,8 +6,8 @@ Purpose: provide one place to see the current closed-form status of the shortlis
 
 ## Current outcome
 
-- Final `Core` shortlist count: `15`
-- Final `Adjacent` shortlist count: `9`
+- Final `Core` shortlist count: `14`
+- Final `Adjacent` shortlist count: `10`
 - Final `Excluded` shortlist count: `2`
 
 ## 2026-04-27 addendum
@@ -26,13 +26,39 @@ Decision:
 
 - treat `HC01` as Adjacent/boundary evidence unless the review scope is intentionally broadened
 - do not use it as stable Core evidence for multi-agent social-behavior claims
-- remaining unresolved Core full-text blockers are now `HC13` and `HC14`
+- `HC13` and `HC14` were subsequently resolved through local full-text extraction and stable first-pass coding
+
+## 2026-04-27 Round 3 addendum
+
+The counts above remain the closure state for the original shortlist only.
+
+After targeted Round 3 integration, the operative stable Core table now contains:
+
+- `19` system/configuration rows
+- `17` paper-level Core items
+- newly admitted items: `R3-01`, `R3-02`, `R3-04`
+
+## 2026-04-27 widened-core addendum
+
+The `17` paper-level figure should now be treated as the strict `anchor_core` baseline rather than the final desired corpus size.
+
+Under the widened boundary documented in `phase1_core_boundary_relaxation_memo_2026-04-27.md`, the project is reopening a `bridge_core` reclassification pass over already known local cases.
+
+Live bridge-core queue:
+
+- `assets/survey_paper/phase1/phase1_bridge_core_reclassification_2026-04-27.csv`
+- `assets/survey_paper/phase1/phase1_bridge_core_reclassification_2026-04-27.md`
+
+Expected effect:
+
+- immediate bridge promotions can move the paper-level Core count from `17` to about `23`
+- immediate plus quick-recheck bridge promotions can move it from `17` to about `28`
+- only after that local widening pass should new search be used to top the corpus up toward `30`
 
 ## Core set
 
 Previously retained high-confidence anchors:
 
-- `HC01` TravelAgent
 - `HC02` Generative Agents
 - `HC03` Concordia
 - `HC04` Affordable Generative Agents
@@ -53,6 +79,7 @@ Newly stabilized through the 2026-04-22 review pass:
 
 ## Adjacent set
 
+- `HC01`
 - `HC11`
 - `BK02`
 - `BK03`
@@ -72,8 +99,6 @@ Newly stabilized through the 2026-04-22 review pass:
 
 ## Still incomplete at the evidence-acquisition level
 
-- `HC13`: current local file is an anti-bot placeholder rather than a valid PDF
-- `HC14`: current local file is an anti-bot placeholder rather than a valid PDF
 - `BK08`: official endpoint still returned anti-bot HTML, but this no longer blocks screening because the paper has been finalized as `Adjacent`
 
 ## Policy note
@@ -82,7 +107,7 @@ Structured digital social platforms and online communities are now treated as re
 
 ## Files to use from here
 
+- `phase1_core_first_pass_coding_2026-04-23.csv`
+- `phase1_core_evidence_map_matrix_2026-04-27.md`
 - `phase1_batch1_final_adjudication_2026-04-22.csv`
 - `phase1_batch2_final_adjudication_2026-04-22.csv`
-- `phase1_boundary_note_digital_platforms_2026-04-22.md`
-- `phase1_tail_disposition_ld_2026-04-22.csv`

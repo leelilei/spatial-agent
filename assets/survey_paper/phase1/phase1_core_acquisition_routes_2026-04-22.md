@@ -1,4 +1,19 @@
 # Phase 1 Core Acquisition Routes
+## 2026-04-27 closure addendum
+
+This route sheet is now historical rather than active for `HC13` and `HC14`.
+
+- `HC13` was archived as `assets/survey_paper/pdfs/phase1_core/14_HC13_Fire_Evacuation_CA.pdf`
+- `HC14` was archived as `assets/survey_paper/pdfs/phase1_core/15_HC14_Crowd_Evacuation_Disaster.pdf`
+- local `pdf2text` extraction and full-text adjudication are complete for both rows
+- neither paper should be treated as a live acquisition blocker or Round 3 dependency
+
+Use these files for the live workflow instead:
+
+- `assets/survey_paper/phase1/phase1_hc13_hc14_fulltext_adjudication_2026-04-27.md`
+- `assets/survey_paper/phase1/phase1_core_first_pass_coding_2026-04-23.csv`
+- `assets/survey_paper/phase1/phase1_core_evidence_map_matrix_2026-04-27.md`
+
 
 日期：2026-04-22  
 用途：为当前 `Core` 工作集建立一份合法、可执行的落库路线表，区分“可以自动下载”“需要浏览器人工下载”“需要机构访问/作者提供”的不同情况。
@@ -49,8 +64,10 @@
 
 ### HC13. Large-language-model-driven agents for fire evacuation simulation in a cellular automata environment
 
-- 当前状态：`未自动落库`
-- 访问性质：`Elsevier article page visible, PDF not yet obtained`
+- Resolution on `2026-04-27`: local PDF archived and full-text adjudication completed; no further acquisition action needed.
+
+- 当前状态：`已于 2026-04-27 归档并完成全文抽取`
+- 访问性质：`historical pre-resolution state only; local PDF archived on 2026-04-27`
 - 已确认入口：
   - ScienceDirect：https://www.sciencedirect.com/science/article/pii/S0925753525001602
   - DOI：https://doi.org/10.1016/j.ssci.2025.106935
@@ -65,8 +82,10 @@
 
 ### HC14. When agents learn to think: Large language model-enhanced agent-based modeling for crowd evacuation in disaster scenarios
 
-- 当前状态：`未自动落库`
-- 访问性质：`Elsevier article page visible, PDF not yet obtained`
+- Resolution on `2026-04-27`: local PDF archived and full-text adjudication completed; no further acquisition action needed.
+
+- 当前状态：`已于 2026-04-27 归档并完成全文抽取`
+- 访问性质：`historical pre-resolution state only; local PDF archived on 2026-04-27`
 - 已确认入口：
   - ScienceDirect：https://www.sciencedirect.com/science/article/pii/S0951832025012554
   - DOI：https://doi.org/10.1016/j.ress.2025.112056

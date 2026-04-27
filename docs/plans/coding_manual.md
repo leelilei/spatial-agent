@@ -34,6 +34,34 @@
 
 ## 2. Corpus Tiering
 
+### 2026-04-27 Boundary Widening Addendum
+
+This addendum supersedes the older narrow reading in `2.1-2.3` when the project is operating under the widened boundary documented in `phase1_core_boundary_relaxation_memo_2026-04-27.md`.
+
+Updated operational rule:
+
+- Keep `corpus_tier = core` as the main coded corpus, but distinguish two working layers:
+  - `anchor_core`: the stricter nucleus where multi-agent or population-level social simulation is central.
+  - `bridge_core`: spatially and socially meaningful bridge cases that are slightly weaker on full population-level social simulation, but still belong inside the main evidence map under the widened scope.
+- Keep `Adjacent` for capability/boundary work that still does not belong inside the main coded corpus.
+- Keep `Foundational` for theory, physical-space evidence, and classic bridge literature.
+
+Updated admission logic:
+
+1. The paper must still involve LLM/VLM/generative agents.
+2. The environment must still be spatially recognizable.
+3. The study object may now be any one of the following:
+   - multi-agent social simulation
+   - socially situated avatar-agent or human-agent interaction
+   - virtual-community or online-community collective behavior
+   - embodied cooperation or conflict in an explicit spatial world
+
+Operational consequence:
+
+- social VR, metaverse, avatar, online-community, and embodied bridge systems are no longer automatically forced into `Adjacent`
+- they may now enter the main coded corpus as `bridge_core`
+- single-agent navigation remains `Adjacent` by default unless the paper clearly studies socially situated interaction in a populated spatial scene
+
 ### 2.1 Tier Definitions
 
 | Tier | 定义 | 主用途 |
@@ -128,6 +156,23 @@
 | `graph_based` | 环境主要以图结构组织 |
 
 ### 4.3 Agent-Accessible Representation: L0-L5
+
+### 2026-04-27 L4 Addendum
+
+For current coding, interpret `L4` more broadly than the earlier metric-name-only reading.
+
+Use:
+
+- `L3` for local relational structure such as adjacency, nearby agents, co-presence, local contact distance, and local route options.
+- `L4` for global abstract structure that summarizes the broader environment beyond only local next-step relations. This includes classic configurational indicators like `integration/depth/control/choice`, but is not limited to those names.
+- `L5` for direct geometry, coordinates, visual field, embodiment, or physical constraints.
+
+Examples that can now count as `L4` if they are agent-facing:
+
+- whole-layout topology summaries
+- graph-centrality or accessibility summaries
+- global connectivity or route-structure summaries
+- other agent-facing abstract structural descriptors of the environment
 
 `L0-L5` 只看 Agent 实际收到什么，不看环境后端本来有多复杂。
 

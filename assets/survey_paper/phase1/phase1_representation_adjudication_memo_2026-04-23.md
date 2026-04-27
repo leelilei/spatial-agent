@@ -144,4 +144,31 @@ This means the `Core 15` now operationally looks like:
 
 - `10` rows ready for first-pass coding
 - `2` rows split-required
-- `3` rows acquisition-blocked
+- `3` rows acquisition-blocked at memo time
+
+## 2026-04-27 addendum
+
+Later full-text work changed that operational state:
+
+- `HC01` was archived and adjudicated as Adjacent/boundary evidence rather than stable Core social-behavior evidence
+- `HC13` and `HC14` were archived as valid PDFs and adjudicated conservatively as stable Core items
+
+So the live state after the 2026-04-27 updates is:
+
+- `16` Core system/configuration rows are now materialized in the first-pass table
+- `HC13` and `HC14` are no longer waiting for row materialization
+- no remaining Core PDF-acquisition blocker
+
+## 2026-04-27 Round 3 integration addendum
+
+Targeted Round 3 work subsequently added three more stable Core rows:
+
+- `R3-01` MineLand
+- `R3-02` GATSim
+- `R3-04` LLM-driven epidemic-economic dynamics
+
+So the live state after Round 3 integration is:
+
+- `19` Core system/configuration rows are now materialized in the first-pass table
+- the former `L5 + observed_effect` gap is now closed
+- no further broad or narrow expansion is currently required before synthesis

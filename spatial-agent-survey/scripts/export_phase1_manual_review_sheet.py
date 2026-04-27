@@ -12,8 +12,6 @@ import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
-from PyPDF2 import PdfReader
-
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 REPO_ROOT = PROJECT_ROOT.parent
 SRC_ROOT = PROJECT_ROOT / "src"
@@ -21,6 +19,7 @@ if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
 from spatial_agent_survey.ingest import write_csv
+from spatial_agent_survey.pdf import extract_pdf_abstract as extract_pdf_abstract_from_file
 from spatial_agent_survey.screening import normalize_title_key
 
 TIER_RANK = {"core": 0, "adjacent": 1, "foundational": 2}
@@ -155,75 +154,13 @@ def load_zh_summary_map(path: Path) -> dict[str, str]:
     return {}
 
 
-def _extract_pdf_text(pdf_path: Path, max_pages: int = 2) -> str:
-    try:
-        reader = PdfReader(str(pdf_path))
-    except Exception:
-        return ""
-
-    pages: list[str] = []
-    for page in reader.pages[:max_pages]:
-        try:
-            pages.append(page.extract_text() or "")
-        except Exception:
-            continue
-    return "\n\n".join(part for part in pages if part).strip()
-
-
-def _slice_after_abstract_label(text: str) -> str:
-    match = re.search(r"(?is)\babstract\b\s*[:\n ]*", text)
-    if not match:
-        return ""
-    return text[match.end():].strip()
-
-
-def _slice_until_section_boundary(text: str) -> str:
-    boundary_patterns = [
-        r"(?is)\n\s*keywords?\b",
-        r"(?is)\n\s*index terms\b",
-        r"(?is)\n\s*ccs concepts\b",
-        r"(?is)\n\s*acm reference format\b",
-        r"(?is)\n\s*1\s*\.?\s*introduction\b",
-        r"(?is)\n\s*1\.1\b",
-        r"(?is)\n\s*figure\s*1\b",
-    ]
-    end = len(text)
-    for pattern in boundary_patterns:
-        match = re.search(pattern, text)
-        if match:
-            end = min(end, match.start())
-    return text[:end].strip()
-
-
-def _fallback_preamble_abstract(text: str) -> str:
-    first_page = text.split("\n\n", 1)[0] if "\n\n" in text else text
-    intro_match = re.search(r"(?is)\n\s*1\s*\.?\s*introduction\b", first_page)
-    figure_match = re.search(r"(?is)\n\s*figure\s*1\b", first_page)
-    cutoffs = [m.start() for m in [intro_match, figure_match] if m]
-    preamble = first_page[: min(cutoffs)] if cutoffs else first_page
-    lines = [line.strip() for line in preamble.splitlines() if line.strip()]
-    candidate_lines = [line for line in lines if len(line) >= 120]
-    if not candidate_lines:
-        candidate_lines = [line for line in lines if len(line) >= 80]
-    return "\n".join(candidate_lines).strip()
-
-
 def extract_pdf_abstract(pdf_path: str) -> str:
     if not pdf_path:
         return ""
     path = Path(pdf_path)
     if not path.exists():
         return ""
-
-    raw_text = _extract_pdf_text(path)
-    if not raw_text:
-        return ""
-
-    normalized = normalize_abstract_text(raw_text)
-    after_abstract = _slice_after_abstract_label(normalized)
-    abstract = _slice_until_section_boundary(after_abstract) if after_abstract else ""
-    if not abstract:
-        abstract = _slice_until_section_boundary(_fallback_preamble_abstract(normalized))
+    abstract = extract_pdf_abstract_from_file(path, max_pages=2)
     return flatten_abstract_text(abstract)
 
 

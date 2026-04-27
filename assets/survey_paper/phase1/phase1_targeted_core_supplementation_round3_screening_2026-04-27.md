@@ -10,13 +10,13 @@ Input memo:
 
 Current gap motivating the screen:
 
-- Current stable Core export has `14` system/configuration rows.
-- Representation distribution is `L1=1 / L3=11 / L5=2 / L4=0`.
-- Evidence-status distribution is `observed_effect=4 / designed_affordance_only=10`.
+- Current stable Core export has `19` system/configuration rows from `17` paper-level Core items.
+- Representation distribution is `L1=1 / L3=15 / L5=3 / L4=0`.
+- Evidence-status distribution is `observed_effect=9 / designed_affordance_only=10`.
 - Therefore the most useful supplements are not generic LLM-agent papers, but papers that add one of:
-  - `L5` or direct embodied/geometric perception in multi-agent settings
-  - urban/built/crowd spatial environments
-  - observed spatial-behavior or spatial-social coupling
+  - true configurational `L4` evidence
+  - additional `L5` breadth beyond the now-closed single-row observed-effect case
+  - optional extra urban/population observed-effect evidence only if later synthesis exposes a manuscript-specific need
 
 ## Screening Rule Used Here
 
@@ -228,10 +228,10 @@ Do not start a broad search.
 
 Next operational step:
 
-1. Acquire local PDFs for `R3-01`, `R3-02`, `R3-04`, and optionally `R3-03`.
-2. Create full-text sanity rows for those four candidates.
-3. If at least three survive, stop Round 3 supplementation.
-4. Keep `CoELA` as Adjacent unless the review scope is deliberately expanded to embodied cooperation benchmarks.
+1. Do not reopen broad search.
+2. `R3-01`, `R3-02`, and `R3-04` have now been admitted into the stable first-pass coding table.
+3. Keep `R3-03` as reserve and `CoELA` as Adjacent unless the review scope is deliberately expanded to embodied cooperation benchmarks.
+4. Treat targeted Round 3 as closed unless a new manuscript need appears after synthesis.
 
 Expected effect if the three strongest candidates survive:
 
@@ -250,4 +250,4 @@ Added 2026-04-27:
 - `R3-03` Cognitive Agents in Urban Mobility: MDPI direct PDF request returned access-denied HTML; Jina/Markdown full text archived and sanity checked. Decision remains borderline.
 - `R3-04` LLM-driven epidemic-economic dynamics: MDPI direct PDF request returned access-denied HTML; Jina/Markdown full text archived and sanity checked. Decision remains Core candidate.
 
-Net update: `R3-01`, `R3-02`, and `R3-04` are ready for preliminary coding-table rows if we decide to extend the Core table. `R3-03` should remain reserve/Adjacent unless the manuscript needs a second urban mobility population case.
+Net update: `R3-01`, `R3-02`, and `R3-04` have now been added to the stable first-pass coding table. `R3-03` should remain reserve/Adjacent unless the manuscript needs a second urban mobility population case, and no further action should be driven by `HC13` or `HC14` because those blockers are already closed.

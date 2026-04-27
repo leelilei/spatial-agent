@@ -2,150 +2,121 @@
 
 Date: 2026-04-22
 
-Purpose: determine whether the current `Core 15` requires another broad search round, or whether the better next step is to code the current set and only reopen search if a real structural gap appears.
+Purpose: determine, after `HC13`/`HC14` closure and targeted Round 3 integration, whether any real structural gap still remains in the stable Core table.
 
 ## Bottom line
 
-Do **not** start another broad expansion round now.
+Do **not** reopen broad Core expansion.
 
-The current `Core 15` is already large enough to support the next stage of analysis. The main bottlenecks are now:
+The current stable Core base is now sufficient for evidence-map synthesis:
 
-- evidence completeness for a small number of papers
-- representation-level coding for several system papers
-- checking whether the current set leaves any truly empty conceptual cells after coding
+- the stable first-pass table contains `19` system/configuration rows from `17` paper-level Core items
+- `HC13` and `HC14` are no longer acquisition blockers
+- `HC01` is resolved as Adjacent/boundary evidence rather than stable Core social-behavior evidence
+- `R3-01`, `R3-02`, and `R3-04` are now materialized in the stable table
+- the remaining thin cells are now residual structural gaps, not search gaps
 
-## 2026-04-27 addendum
+## Matrix snapshot
 
-`HC01` TravelAgent has been acquired and full-text reviewed. It should no longer be counted as a missing-PDF blocker.
+Source files:
 
-The full text supports a strong built-environment spatial-interface reading (`3D_engine / L5`), but the current experiments are single-agent navigation and wayfinding. Multi-agent interaction, group dynamics, and crowd behavior are discussed as future work rather than reported evidence.
+- `assets/survey_paper/phase1/phase1_core_first_pass_coding_2026-04-23.csv`
+- `assets/survey_paper/phase1/phase1_core_evidence_map_matrix_2026-04-27.csv`
+- `assets/survey_paper/phase1/phase1_core_evidence_map_matrix_2026-04-27.md`
+- `assets/survey_paper/phase1/phase1_targeted_l4_search_memo_2026-04-27.md`
 
-Operational consequence:
+Key stable distributions:
 
-- move `HC01` to Adjacent/boundary evidence for the current review scope
-- keep the Core first-pass evidence map based on the existing `14` coded rows
-- continue acquisition only for `HC13` and `HC14`
+- representation: `L1=1 / L3=15 / L4=0 / L5=3`
+- evidence status: `observed_effect=9 / designed_affordance_only=10`
+- environment-side representation: `text-only=3 / 2D_grid=5 / graph_based=5 / 3D_engine=6`
 
-## What the current Core set already covers
+Most important cross-cells:
 
-### 1. Environment-family coverage is already reasonably broad
+- `L3 + observed_effect = 8`
+- `L5 + designed_affordance_only = 2`
+- `L5 + observed_effect = 1`
+- `3D_engine + observed_effect = 2`, and one of those rows is now `L5`
 
-The current set is not concentrated in only one narrow genre.
+## What is now covered
 
-- Built environment, urban replica, or city-scale cases:
-  `HC10`, `HC13`, `HC14`, `HC15`, `BK01`
-- Sandbox, game-world, or virtual social-world cases:
-  `HC02`, `HC04`, `HC05`, `HC06`, `HC08`, `HC09`
-- Environment-architecture anchors:
-  `HC03`, `HC07`, `HC12`
+The current stable Core set already covers:
 
-This means the present Core already spans:
+- grid or cellular social simulation: `HC02`, `HC04`, `HC09`, `HC13`, `R3-04`
+- graph or road-network environments: `HC07`, `HC14`, `HC15`, `R3-02`, `BK01`
+- 3D-engine backends: `HC06`, `HC08`, `HC10`, `HC12A`, `HC12B`, `R3-01`
+- evacuation and disaster-space evidence: `HC13`, `HC14`
+- urban or city-scale observed-effect cases: `HC10`, `HC14`, `HC15`, `R3-02`
+- embodied `L5 + observed_effect` evidence: `R3-01`
+- proximity-mediated epidemic-economic macro dynamics: `R3-04`
 
-- built/urban physical-space questions
-- sandbox and virtual-world social simulation
-- reusable environment frameworks and simulator architectures
+So the earlier reason for caution around `HC13` and `HC14` is gone. The evidence map is no longer blocked on evacuation-space acquisition.
 
-That is enough variation to move into systematic coding.
+## What remains structurally thin
 
-### 2. Representation-level coverage is imperfect, but not empty
+### A. No stable `L4` row
 
-The current set leans heavily toward `L3`-like representations.
+This remains a true empty cell.
 
-- Clear or likely `L3` cases dominate:
-  `HC02`, `HC04`, `HC05`, `HC07`, `HC08`, `HC09`, `HC10`, `HC13`, `HC14`, `HC15`
-- Clear or likely `L5` cases exist, but are fewer:
-  `HC06`, `HC12`
-- Multi-configuration or unresolved cases:
-  `HC03`, `BK01`
+A targeted `L4`-only follow-up search is now documented in `phase1_targeted_l4_search_memo_2026-04-27.md`.
 
-This is a real pattern, but it is **not yet** proof that search must continue. It only means the first coding pass should verify whether the paper-level dominance of `L3` leaves too few robust `L5` or hybrid cases for your argument.
+That pass did **not** identify any stable `Core` candidate under the current strict rule that the agent must directly receive global configurational indicators such as `integration`, `depth`, `control`, or `choice`.
 
-### 3. Behavioral-scale coverage is also workable
+The nearest urban-planning and participatory-planning cases still stop at maps, road graphs, direction-distance cues, local accessibility information, or planner-side evaluation metrics rather than agent-facing configurational state.
 
-- Emergent social structure is well represented:
-  `HC02`, `HC05`, `HC06`, `HC07`, `HC09`, `HC10`, `HC15`, `BK01`
-- Interaction-focused cases are fewer but present:
-  `HC08`
-- Mixed or framework cases also exist:
-  `HC03`, `HC04`, `HC12`, `HC13`, `HC14`
+At this point the absence is more plausibly a literature pattern than a retrieval failure.
 
-So the current problem is not that the Core is behaviorally empty. The issue is more likely one of balance and coding precision.
+### B. `L5` evidence is still thin even though the empty cell is closed
 
-## The actual gaps right now
+The previous `L5 + observed_effect` gap is now closed by `R3-01`, but the `L5` slice is still small overall.
 
-### A. Evidence-completeness gap
+Current `L5` coverage exists only in:
 
-This is the most immediate gap, and it is smaller than a new search round.
-
-- `HC13` only has a placeholder HTML file
-- `HC14` only has a placeholder HTML file
-
-So the real evidence state is closer to:
-
-- `12` Core papers with valid local PDFs
-- `2` Core papers that still need acquisition or verification
-- `HC01` acquired and moved to Adjacent/boundary evidence after full-text review
-
-This argues for finishing acquisition before reopening search.
-
-### B. Representation-coding gap
-
-Several Core papers are already strong enough to keep, but still need precise coding of the environment representation:
-
-- `HC03` Concordia
 - `HC06` Project Sid
+- `HC12A` SimWorld visual-GPS interface
+- `R3-01` MineLand
+
+Only one of these three rows is `observed_effect`.
+
+### C. `3D_engine` evidence is improved but still somewhat skewed
+
+There are now `6` stable `3D_engine` rows, and `2` report observed effects:
+
 - `HC10`
-- `HC12` SimWorld
-- `BK01` AgentSociety
+- `R3-01`
 
-This is a coding problem, not a retrieval problem.
+This is much better than the earlier state, but the family still leans toward `designed_affordance_only`.
 
-### C. Possible built-environment configurational gap
+## What is no longer a live gap
 
-If there is one place where a later targeted expansion could still be justified, it is here:
+These no longer justify new broad search:
 
-- explicitly built-environment or layout-sensitive cases
-- where spatial configuration is not just background context
-- and where the representation layer is methodologically central
+- "need valid PDFs for HC13 and HC14"
+- "need at least one evacuation-space Core paper"
+- "need any graph-based observed-effect evidence"
+- "need any city or crowd observed-effect evidence"
+- "need one stable `L5 + observed_effect` Core row"
+- "need a targeted `L4`-only follow-up search"
 
-Right now the best candidates in that direction are:
-
-- `HC01` TravelAgent
-- `HC10`
-- `HC15`
-- provisionally `HC13` and `HC14`
-- partly `BK01`
-
-`HC01` remains useful here as boundary evidence, but not as stable Core social-behavior evidence. If later coding shows that the remaining Core built-environment cases still operate at a coarse environment level rather than a true configuration-sensitive level, then **this** would be the right place for a future targeted expansion.
-
-## What not to do
-
-Do not reopen broad search for:
-
-- general LLM multi-agent surveys
-- online community papers
-- digital social-platform behavior papers
-- generic simulator platforms
-- single-agent interaction or onboarding systems
-
-Those lines have already been screened and mostly resolved.
-
-## Recommended next step
-
-The right next move is:
-
-1. code the current stable Core rows
-2. verify the two incomplete papers (`HC13`, `HC14`)
-3. then check whether any conceptual cell is truly empty
-
-Only after that should you consider a new search round.
+Those issues are now closed inside the stable table.
 
 ## Decision
 
-Current recommendation: **hold Core expansion for now**.
+Current recommendation: **hold broad Core expansion closed**.
 
-Reopen targeted search only if one of the following happens:
+Current recommendation: **treat targeted Round 3 as closed**.
 
-- one or more incomplete Core papers drop out after full-text verification
-- the first coding pass reveals a real empty cell
-- the argument needs more explicitly configurational built-environment cases than the current set can support
+Keep:
+
+1. `R3-03` reserve only
+2. `R3-05` Adjacent / boundary only
+
+## Operational consequence
+
+The next practical task is not more search.
+
+It is:
+
+1. use the stable evidence-map and claim-check outputs from the current `19` rows as the manuscript baseline
+2. write the manuscript-facing interpretation that `L4` remains absent even after a targeted follow-up search, while `L5 + observed_effect` is now present but sparse
+3. reopen search only if the project later widens scope toward Adjacent bridge systems or decides to count planner-side configurational analytics that are not yet agent-accessible under the current manual

@@ -19,6 +19,11 @@ class FinalStatus(StrEnum):
     EXCLUDED = "excluded"
 
 
+class CoreLayer(StrEnum):
+    ANCHOR = "anchor_core"
+    BRIDGE = "bridge_core"
+
+
 class ExclusionReason(StrEnum):
     E1 = "E1"
     E2 = "E2"
@@ -91,6 +96,7 @@ class PaperRecord(BaseModel):
     source_families: List[str] = Field(default_factory=list)
     final_status: Optional[FinalStatus] = None
     corpus_tier: Optional[FinalStatus] = None
+    core_layer: Optional[CoreLayer] = None
     exclusion_reason: Optional[ExclusionReason] = None
     notes: str = ""
 
@@ -106,6 +112,7 @@ class PaperRecord(BaseModel):
 class SystemEvidenceRecord(BaseModel):
     """System/configuration-level record used for the evidence map."""
 
+    core_layer: Optional[CoreLayer] = None
     system_name: str
     environment_configuration: str = ""
     system_family: str
@@ -176,6 +183,10 @@ def paper_from_row(row: Dict) -> PaperRecord:
         payload["corpus_tier"] = FinalStatus(str(payload["corpus_tier"]).strip())
     else:
         payload["corpus_tier"] = None
+    if payload.get("core_layer"):
+        payload["core_layer"] = CoreLayer(str(payload["core_layer"]).strip())
+    else:
+        payload["core_layer"] = None
     if payload.get("exclusion_reason"):
         payload["exclusion_reason"] = ExclusionReason(str(payload["exclusion_reason"]).strip())
     else:
@@ -190,6 +201,10 @@ def system_from_row(row: Dict) -> SystemEvidenceRecord:
     payload["space_syntax_construct"] = split_semicolon_list(payload.get("space_syntax_construct"))
     if payload.get("year") in ("", None):
         payload["year"] = None
+    if payload.get("core_layer"):
+        payload["core_layer"] = CoreLayer(str(payload["core_layer"]).strip())
+    else:
+        payload["core_layer"] = None
     payload["agent_count"] = AgentCount(str(payload["agent_count"]).strip())
     payload["environment_side_representation"] = EnvironmentSideRepresentation(
         str(payload["environment_side_representation"]).strip()
