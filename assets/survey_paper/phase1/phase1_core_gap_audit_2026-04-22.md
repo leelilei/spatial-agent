@@ -14,6 +14,18 @@ The current `Core 15` is already large enough to support the next stage of analy
 - representation-level coding for several system papers
 - checking whether the current set leaves any truly empty conceptual cells after coding
 
+## 2026-04-27 addendum
+
+`HC01` TravelAgent has been acquired and full-text reviewed. It should no longer be counted as a missing-PDF blocker.
+
+The full text supports a strong built-environment spatial-interface reading (`3D_engine / L5`), but the current experiments are single-agent navigation and wayfinding. Multi-agent interaction, group dynamics, and crowd behavior are discussed as future work rather than reported evidence.
+
+Operational consequence:
+
+- move `HC01` to Adjacent/boundary evidence for the current review scope
+- keep the Core first-pass evidence map based on the existing `14` coded rows
+- continue acquisition only for `HC13` and `HC14`
+
 ## What the current Core set already covers
 
 ### 1. Environment-family coverage is already reasonably broad
@@ -21,7 +33,7 @@ The current `Core 15` is already large enough to support the next stage of analy
 The current set is not concentrated in only one narrow genre.
 
 - Built environment, urban replica, or city-scale cases:
-  `HC01`, `HC10`, `HC13`, `HC14`, `HC15`, `BK01`
+  `HC10`, `HC13`, `HC14`, `HC15`, `BK01`
 - Sandbox, game-world, or virtual social-world cases:
   `HC02`, `HC04`, `HC05`, `HC06`, `HC08`, `HC09`
 - Environment-architecture anchors:
@@ -42,7 +54,7 @@ The current set leans heavily toward `L3`-like representations.
 - Clear or likely `L3` cases dominate:
   `HC02`, `HC04`, `HC05`, `HC07`, `HC08`, `HC09`, `HC10`, `HC13`, `HC14`, `HC15`
 - Clear or likely `L5` cases exist, but are fewer:
-  `HC01`, `HC06`, `HC12`
+  `HC06`, `HC12`
 - Multi-configuration or unresolved cases:
   `HC03`, `BK01`
 
@@ -53,7 +65,7 @@ This is a real pattern, but it is **not yet** proof that search must continue. I
 - Emergent social structure is well represented:
   `HC02`, `HC05`, `HC06`, `HC07`, `HC09`, `HC10`, `HC15`, `BK01`
 - Interaction-focused cases are fewer but present:
-  `HC01`, `HC08`
+  `HC08`
 - Mixed or framework cases also exist:
   `HC03`, `HC04`, `HC12`, `HC13`, `HC14`
 
@@ -65,14 +77,14 @@ So the current problem is not that the Core is behaviorally empty. The issue is 
 
 This is the most immediate gap, and it is smaller than a new search round.
 
-- `HC01` is still in Core but has no local PDF yet
 - `HC13` only has a placeholder HTML file
 - `HC14` only has a placeholder HTML file
 
 So the real evidence state is closer to:
 
 - `12` Core papers with valid local PDFs
-- `3` Core papers that still need acquisition or verification
+- `2` Core papers that still need acquisition or verification
+- `HC01` acquired and moved to Adjacent/boundary evidence after full-text review
 
 This argues for finishing acquisition before reopening search.
 
@@ -104,7 +116,7 @@ Right now the best candidates in that direction are:
 - provisionally `HC13` and `HC14`
 - partly `BK01`
 
-That may be enough. But if later coding shows that most of these still operate at a coarse environment level rather than a true configuration-sensitive level, then **this** would be the right place for a future targeted expansion.
+`HC01` remains useful here as boundary evidence, but not as stable Core social-behavior evidence. If later coding shows that the remaining Core built-environment cases still operate at a coarse environment level rather than a true configuration-sensitive level, then **this** would be the right place for a future targeted expansion.
 
 ## What not to do
 
@@ -122,8 +134,8 @@ Those lines have already been screened and mostly resolved.
 
 The right next move is:
 
-1. code the current `Core 15`
-2. verify the three incomplete papers (`HC01`, `HC13`, `HC14`)
+1. code the current stable Core rows
+2. verify the two incomplete papers (`HC13`, `HC14`)
 3. then check whether any conceptual cell is truly empty
 
 Only after that should you consider a new search round.

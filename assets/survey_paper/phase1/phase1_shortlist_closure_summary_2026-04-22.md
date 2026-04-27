@@ -10,6 +10,24 @@ Purpose: provide one place to see the current closed-form status of the shortlis
 - Final `Adjacent` shortlist count: `9`
 - Final `Excluded` shortlist count: `2`
 
+## 2026-04-27 addendum
+
+`HC01` TravelAgent is no longer an acquisition blocker. A user-supplied arXiv preprint PDF was archived at:
+
+- `assets/survey_paper/pdfs/phase1_core/00_HC01_TravelAgent_Noyman2025.pdf`
+
+Full-text review changes its operational use:
+
+- representation evidence is strong: `3D_engine / L5`
+- current behavior evidence is single-agent navigation and wayfinding
+- multi-agent interaction and social dynamics are future work, not current evidence
+
+Decision:
+
+- treat `HC01` as Adjacent/boundary evidence unless the review scope is intentionally broadened
+- do not use it as stable Core evidence for multi-agent social-behavior claims
+- remaining unresolved Core full-text blockers are now `HC13` and `HC14`
+
 ## Core set
 
 Previously retained high-confidence anchors:

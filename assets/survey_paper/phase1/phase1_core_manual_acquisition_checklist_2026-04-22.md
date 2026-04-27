@@ -19,6 +19,7 @@ Purpose: keep a short checklist for the remaining Core papers that still need va
 - Valid `batch1` PDFs have already been archived into `phase1_core/`
 - Fake PDF downloads were moved into `phase1_placeholders/`
 - New manually acquired valid PDFs should go directly into `phase1_core/`, not back into `phase1_core_batch1/`
+- `HC01` was archived on 2026-04-27 as `assets/survey_paper/pdfs/phase1_core/00_HC01_TravelAgent_Noyman2025.pdf`; full-text review recommends treating it as Adjacent/boundary evidence rather than stable Core social-behavior evidence.
 
 ## HC13
 

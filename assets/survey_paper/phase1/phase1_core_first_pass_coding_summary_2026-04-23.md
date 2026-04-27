@@ -42,11 +42,12 @@ Operational implication:
 
 ## Remaining blocked work
 
-Only the acquisition-blocked rows remain outside first-pass coding:
+Only two acquisition-blocked rows remain outside first-pass coding:
 
-- `HC01` TravelAgent
 - `HC13` Fire evacuation cellular automata
 - `HC14` Crowd evacuation disaster scenarios
+
+`HC01` TravelAgent was archived and full-text reviewed on `2026-04-27`. The paper is a strong `3D_engine / L5` spatial-interface case, but the current experiments are single-agent navigation and wayfinding rather than multi-agent social simulation. It should therefore be treated as Adjacent/boundary evidence unless the review scope is intentionally broadened.
 
 ## Practical consequence
 
@@ -58,5 +59,10 @@ The project has now completed the two immediate tasks that were previously pendi
 The next operational task is no longer representation adjudication.
 It is either:
 
-- continued acquisition for the remaining `3` blocked core papers
+- continued acquisition for the remaining `2` blocked core papers
 - or evidence-map synthesis based on the `14` coded rows already available
+
+After the HC01 review, the acquisition path is narrower:
+
+- continue acquisition for `HC13` and `HC14`
+- keep the Core first-pass table at `14` rows until those papers are resolved

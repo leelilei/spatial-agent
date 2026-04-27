@@ -6,10 +6,11 @@ Purpose: record the transition from planning to completed first-pass coding for 
 
 ## Current state
 
-After the representation adjudication memo and first-pass coding work on `2026-04-23`, the current `Core` state is:
+After the representation adjudication memo and first-pass coding work on `2026-04-23`, plus HC01 full-text adjudication on `2026-04-27`, the current `Core` state is:
 
 - `14` coded system/configuration rows are now available
-- `3` core papers remain blocked by missing local full text
+- `2` core papers remain blocked by missing local full text
+- `HC01` is no longer acquisition-blocked, but full-text review recommends treating it as Adjacent/boundary evidence rather than stable Core social-behavior evidence
 
 The seed table remains:
 
@@ -54,12 +55,30 @@ Operational result:
 - the ready queue is completed
 - the split-required queue is completed
 
-## 2. Acquisition-blocked queue
+## 2. Resolved acquisition item
+
+### HC01 TravelAgent
+
+Status:
+
+- PDF archived at `assets/survey_paper/pdfs/phase1_core/00_HC01_TravelAgent_Noyman2025.pdf`
+- full-text adjudication recorded in `phase1_hc01_travelagent_fulltext_adjudication_2026-04-27.md`
+
+Decision:
+
+- do not add HC01 to the Core first-pass coding table as stable social-behavior evidence
+- use it as Adjacent/boundary evidence for built-environment spatial interfaces
+
+Reason:
+
+- the paper supports `3D_engine / L5` spatial-interface coding
+- the current experiments are single-agent navigation and wayfinding
+- multi-agent interaction and social dynamics are future work, not current evidence
+
+## 3. Acquisition-blocked queue
 
 These rows should remain in `Core`, but they are not ready for stable coding yet because the local evidence base is incomplete.
 
-- `HC01` TravelAgent
-  Reason: still counted in `Core 15`, but there is no local PDF archived yet
 - `HC13` Fire evacuation cellular automata
   Reason: local file is only a placeholder HTML page
 - `HC14` Crowd evacuation disaster scenarios
@@ -71,7 +90,7 @@ Working rule:
 - mark them as provisional
 - do not use them for strong representation claims until full text is local and verified
 
-## 3. Practical implication
+## 4. Practical implication
 
 The project is no longer blocked on either:
 
@@ -81,11 +100,11 @@ The project is no longer blocked on either:
 
 The immediate path is now:
 
-1. continue PDF acquisition for the `3` blocked rows
+1. continue PDF acquisition for the `2` blocked rows
 2. build the evidence-map views from the `14` coded rows
 3. only then judge whether any conceptual cell is truly empty
 
-## 4. Seed-table convention
+## 5. Seed-table convention
 
 The seed CSV still retains split-aware or provisional values such as:
 
