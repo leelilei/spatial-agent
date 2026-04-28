@@ -2,6 +2,17 @@
 
 这 13 篇不是 Phase 1 的原始筛选语料，而是背景综述库与 scoping review 写法参考。
 
+详细写作使用方式见：
+
+- [Survey Exemplar Usage Guide](../../../../docs/guides/survey_exemplar_usage_guide.md)
+- [Survey Reference Gap Memo](../../../../docs/guides/survey_reference_gap_memo_2026-04-28.md)
+
+当前结论：
+
+- 这 13 篇已经足够支撑 topic/background survey positioning 与 scoping review 写法参考。
+- 暂不继续找更多 generic LLM-agent / embodied-agent / social-simulation survey。
+- 需要补充的是 scoping review 方法/报告规范，以及 1-2 篇计算/AI/HCI 风格成文模板，而不是再扩充背景综述库。
+
 ## Survey / Review Background
 
 | Priority | File | Paper | Type | Why it matters | Source |
@@ -24,6 +35,48 @@
 | Writing reference | [11_Silacci2026_LLM_Agents_Scoping_Review.pdf](./11_Silacci2026_LLM_Agents_Scoping_Review.pdf) | Silacci et al. (2026), *Large Language Model-Based Agents for Physical Activity and Cognitive Training: Scoping Review* | 主题是 LLM agents，且明确使用 scoping review 体裁，适合参考问题设定、纳入排除与结果分组写法。 | [JMIR AI](https://ai.jmir.org/2026/1/e80123) |
 | Writing reference | [12_Leiser2025_LLM_Architectures_Scoping_Review.pdf](./12_Leiser2025_LLM_Architectures_Scoping_Review.pdf) | Leiser et al. (2025), *Large Language Model Architectures in Health Care: Scoping Review of Research Perspectives* | 适合参考如何在新兴、异质性很强的 LLM 领域做 corpus 分层和 research perspective synthesis。 | [JMIR](https://www.jmir.org/2025/1/e70315) |
 | Writing reference | [13_TudorCar2020_Conversational_Agents_Scoping_Review.pdf](./13_TudorCar2020_Conversational_Agents_Scoping_Review.pdf) | Tudor Car et al. (2020), *Conversational Agents in Health Care: Scoping Review and Conceptual Analysis* | 是比较成熟的 scoping review 例子，适合参考 PRISMA-ScR 呈现、概念分析和结果组织。 | [JMIR](https://www.jmir.org/2020/8/e17158) |
+
+## Method / Reporting Standards and Computing Exemplars To Add
+
+这些文献是方法、报告规范与写作模板参考，不进入 Phase 1 article screening；当前已按 `14-19` 归档，后续写方法章节和 bibliography 时补齐引用。
+
+| Priority | Reference | Use | Status |
+|---|---|---|---|
+| P0 | [14_Tricco2018_PRISMA_ScR.pdf](./14_Tricco2018_PRISMA_ScR.pdf) | PRISMA-ScR 报告规范、flowchart 和 checklist 对齐 | local PDF |
+| P0 | [15_Peters2024_JBI_Scoping_Reviews.pdf](./15_Peters2024_JBI_Scoping_Reviews.pdf) | PCC framing、charting、evidence mapping 方法依据 | local PDF |
+| P0 | [16_Arksey2005_Scoping_Studies_Framework.pdf](./16_Arksey2005_Scoping_Studies_Framework.pdf) | 新兴领域 mapping 型综述的方法基础 | local PDF |
+| P0 | [17_Levac2010_Scoping_Studies_Advancing_Methodology.pdf](./17_Levac2010_Scoping_Studies_Advancing_Methodology.pdf) | 迭代式 scoping review、numerical summary 与 thematic synthesis | local PDF |
+| P1 | [18_Bevilacqua2025_Human_Centered_AI_Scoping_Review.html](./18_Bevilacqua2025_Human_Centered_AI_Scoping_Review.html) | AI/HCI 风格 scoping review；参考 PRISMA-ScR、OSF protocol、IEEE Xplore search 和 design-method charting | local PMC HTML; JMIR PDF direct link returned 403 |
+| P1 | [19_Feliciani2019_Simulation_Models_Peer_Review_Scoping_Review.pdf](./19_Feliciani2019_Simulation_Models_Peer_Review_Scoping_Review.pdf) | 计算社会科学/仿真模型 scoping review；参考异质 simulation / ABM 文献如何转 taxonomy | local PDF |
+
+Reserve only:
+
+- Peters et al. (2015), *Guidance for conducting systematic scoping reviews*, DOI `10.1097/XEB.0000000000000050`
+- Wohlgemut et al. (2024), *A scoping review, novel taxonomy and catalogue of implementation frameworks for clinical decision support systems*, DOI `10.1186/s12911-024-02739-1`
+- Sousa et al. (2026), *The landscape of artificial intelligence tools and platforms for evidence synthesis: a scoping review*, DOI `10.1186/s13643-025-02842-y`
+
+## How To Use These Exemplars
+
+最低限度图表集：
+
+- `Table 1`: multi-survey positioning matrix，参考 `01-10` 的 survey scope 与本 README 的定位表。
+- `Figure 1`: corpus/evidence-role diagram，区分 `anchor_core`、`bridge_core`、`Adjacent`、`Foundational`。
+- `Figure 2`: PRISMA-ScR flowchart，参考 `11`、`12` 与 PRISMA-ScR。
+- `Figure 3`: `L0-L5` taxonomy diagram，参考 `01` 的跨尺度图式和 `07` 的 taxonomy overview。
+- `Table 3`: core evidence map，参考 `11`、`12` 的结果表组织方式。
+- `Table 4`: environment-side vs agent-accessible examples，用于解释为什么 3D backend 不自动等于 `L5`。
+- `Table 6`: Space Syntax proposition transfer table，明确 physical-space 命题只是可迁移假设。
+- `Table 7`: evaluation dimension table，定义行为、表示层级、baseline 和证据强度。
+
+章节参考口径：
+
+- `§1 Introduction`: 用 `01-05` 证明邻近 survey 已经很多，缺口是 agent-accessible spatial representation 与 social behavior 的连接。
+- `§2 Space Syntax Primer`: 以 Space Syntax foundational sources 为主，`01` 只作 AI bridge。
+- `§3 Evidence Map`: 参考 `11-13` 的 scoping review reporting，展示 corpus、PRISMA、L0-L5、evidence map 和 counts。
+- `§4 Feasibility`: 用 `01`、`08`、`09`、`10` 支撑“模型可消费更丰富空间输入”的可行性，不支撑 social-effect 强 claim。
+- `§5 Space in LLM Social Simulation`: 用 `03-06` 总结当前 social simulation 中的空间使用方式。
+- `§6 Evaluation`: 用 `06`、`07`、`11`、`12` 组织 evaluation dimensions 和 evidence-strength 约束。
+- `§7 Research Agenda`: 只把前文缺口转成议程，不引入新的 unsupported literature thread。
 
 ## Suggested Reading Order
 

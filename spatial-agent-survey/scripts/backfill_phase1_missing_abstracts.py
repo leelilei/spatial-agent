@@ -36,6 +36,174 @@ PROXY_SUMMARIES = {
         "layouts in buildings and cities and connects these configurational properties to "
         "social effects such as movement economies, co-presence, and the organization of built form."
     ),
+    "Using space syntax and agent-based approaches for modeling pedestrian volume at the urban scale": (
+        "This study examines urban pedestrian volume by combining space-syntax measures with "
+        "agent-based modeling at city scale. It evaluates how configurational street-network "
+        "structure helps explain pedestrian movement and compares the resulting predictions with "
+        "observed pedestrian counts to assess the value of the hybrid modeling approach."
+    ),
+    "Social networks and spatial configuration—How office layouts drive social interaction": (
+        "This article connects office layout analysis with social-network evidence to examine "
+        "how spatial configuration shapes workplace interaction. Using space-syntax indicators "
+        "together with observed or reported social ties, it analyzes whether proximity, "
+        "visibility, and layout structure are associated with communication patterns in office environments."
+    ),
+    "The Relationship between Spatial Configuration and Social Interaction in Tehran Residential Areas: Bridging the Space Syntax Theory and Behavior Settings Theory": (
+        "This study investigates the relationship between spatial configuration and social "
+        "interaction in Tehran residential environments by bridging space-syntax theory with "
+        "behavior-settings theory. It analyzes how configurational properties of residential "
+        "space are associated with patterns of co-presence, encounter, and everyday social interaction."
+    ),
+    "Bots of a Feather: Mixing Biases in LLMs’ Opinion Dynamics": (
+        "The rapid integration of Large Language Models (LLMs) into everyday applications raises "
+        "critical questions about their group interactions, consensus formation, and potential to mimic "
+        "human-like behavior. Although initial research has explored the evolution of opinions in LLM-driven "
+        "agents, little is known about how heterogeneous political biases interact inside these systems. "
+        "This chapter studies opinion dynamics in populations of LLM agents with mixed bias profiles and "
+        "examines how network structure and interaction rules affect polarization, convergence, and collective outcomes."
+    ),
+    "Multi-agent embodied AI: advances and future directions": (
+        "Embodied artificial intelligence (embodied AI) plays a pivotal role in the application "
+        "of advanced technologies in the intelligent era, where AI systems are integrated with "
+        "physical bodies that enable them to perceive, reason, and interact with their environments. "
+        "As techniques such as deep learning, reinforcement learning, and large language models mature, "
+        "embodied AI has expanded across robotics, healthcare, transportation, and manufacturing, yet "
+        "most work still focuses on single-agent systems in relatively closed environments. This review "
+        "surveys multi-agent embodied AI, summarizes current progress, and identifies key challenges and "
+        "future directions for operating in dynamic, open, real-world settings."
+    ),
+    "Dynamic evolutionary pathway analysis of urban rail transit flood risks and intelligent decision support based on knowledge graphs": (
+        "This article analyzes flood-risk evolution in urban rail transit systems and develops "
+        "an intelligent decision-support framework based on knowledge graphs. It traces how risk "
+        "factors propagate across infrastructure, operations, and emergency response, and uses "
+        "structured hazard knowledge to support dynamic assessment and mitigation of rail-transit flood scenarios."
+    ),
+    "AI for Dynamic Passenger Information in Public Transport": (
+        "This master's thesis examines how artificial intelligence can support dynamic passenger "
+        "information in public transport. It reviews the problem space from the perspective of "
+        "real-time traveler communication and explores how AI-based methods may improve the generation, "
+        "adaptation, and delivery of passenger information under changing transport conditions."
+    ),
+    "Is language necessary for human spatial reorientation? Reconsidering evidence from dual task paradigms": (
+        "This work reconsiders whether language is necessary for human spatial reorientation by "
+        "revisiting evidence from dual-task paradigms. It examines how verbal interference and spatial "
+        "updating relate to navigation, orientation, and the cognitive basis of spatial behavior."
+    ),
+    "Role of update dynamics in the collective cooperation on the spatial snowdrift games: Beyond unconditional imitation and replicator dynamics": (
+        "This article studies cooperation dynamics in spatial snowdrift games under alternative update "
+        "rules beyond unconditional imitation and replicator dynamics. It focuses on how local interaction "
+        "structure and update mechanisms influence collective cooperation outcomes."
+    ),
+    "Space syntax analysis of Central Inuit snow houses": (
+        "This study applies space-syntax analysis to Central Inuit snow houses in order to describe their "
+        "spatial configuration and interpret how layout may relate to domestic use, movement, and social life. "
+        "It uses configurational analysis to connect built form with cultural and interactional patterns."
+    ),
+    "Dimensions of ecosystem complexity: Heterogeneity, connectivity, and history": (
+        "This work discusses ecosystem complexity through the dimensions of heterogeneity, connectivity, "
+        "and history. It frames how spatial variation, link structure, and temporal development interact "
+        "when describing ecological systems and their dynamics."
+    ),
+    "The influence of social interactions on the behavioral patterns of the people in urban spaces (case study: The pedestrian zone of Rasht Municipality Square, Iran)": (
+        "This case study examines how social interactions shape behavioral patterns in urban public space, "
+        "using the pedestrian zone of Rasht Municipality Square as its empirical setting. It links observed "
+        "use of space to social encounter, activity patterns, and the design of pedestrian environments."
+    ),
+    "A data-driven path planning model for crowd capacity analysis": (
+        "This study presents a data-driven path-planning model for crowd capacity analysis. It focuses on "
+        "how route choice, movement constraints, and crowd-flow estimation can be used to evaluate space "
+        "capacity and support planning or safety assessment."
+    ),
+    "The narrative constitution of identity: A relational and network approach": (
+        "This work approaches identity formation through narrative, relational, and network perspectives. "
+        "It analyzes how identity is constituted through connections, social relations, and patterned interaction "
+        "rather than through isolated individual attributes alone."
+    ),
+    "Findings of the Association for Computational Linguistics: EMNLP 2023": (
+        "This record refers to the Findings of EMNLP 2023 proceedings rather than to a single article-level study. "
+        "As a proxy summary, it is treated as a venue or collection entry for natural language processing research rather than a substantive primary paper."
+    ),
+    "Turning the tables: language and spatial reasoning": (
+        "This article examines the relationship between language and spatial reasoning. It considers how "
+        "linguistic framing, description, or task wording may influence the way people encode and solve spatial problems."
+    ),
+    "Can cognitive inferences be made from aggregate traffic flow data?": (
+        "This work asks whether aggregate traffic-flow data can support cognitive inferences about how people "
+        "perceive, navigate, or respond to urban spatial structure. It links observed movement patterns to questions "
+        "about underlying spatial cognition and decision behavior."
+    ),
+    "A realistic outdoor urban pedestrian mobility model": (
+        "This study develops a realistic model of outdoor urban pedestrian mobility. It focuses on how pedestrians "
+        "move through urban environments under spatial, behavioral, and environmental constraints relevant to simulation and planning."
+    ),
+    "The syntax of human actions and interactions": (
+        "This work examines whether human actions and interactions can be described in a syntax-like structured form. "
+        "It focuses on the organization, sequencing, and relational patterning of behavior in social settings."
+    ),
+    "Improving the design of urban underground space in metro stations using the space syntax methodology": (
+        "This study uses space-syntax methodology to improve the design of underground urban space in metro stations. "
+        "It connects configurational analysis with circulation, accessibility, and the quality of passenger movement in station environments."
+    ),
+    "Neighborhoods and adolescent health-risk behavior: An ecological network approach": (
+        "This article studies adolescent health-risk behavior using an ecological network approach to neighborhoods. "
+        "It considers how local social and spatial contexts are associated with behavioral risk patterns."
+    ),
+    "Identifying urban spatial structure and urban vibrancy in highly dense cities using georeferenced social media data": (
+        "This work uses georeferenced social media data to identify urban spatial structure and urban vibrancy in highly dense cities. "
+        "It links spatial patterns in digital traces to questions of activity concentration, connectivity, and urban dynamics."
+    ),
+    "Language within your reach: Near–far perceptual space and spatial demonstratives": (
+        "This study examines the relationship between near-far perceptual space and spatial demonstratives in language. "
+        "It analyzes how distance, perception, and linguistic reference interact in the expression of spatial relations."
+    ),
+    "Spatial indicators for the assessment of ecosystem services: Providing, benefiting and connecting areas and landscape metrics": (
+        "This article proposes spatial indicators for assessing ecosystem services by distinguishing providing, benefiting, "
+        "and connecting areas and by using landscape metrics. It focuses on spatial structure as a basis for evaluating service distribution and connectivity."
+    ),
+    "Urban planning in the age of large language models: Assessing OpenAI o1's performance and capabilities across 556 tasks": (
+        "This work evaluates a large language model for urban-planning tasks at broad scale. It examines model capabilities "
+        "across a large task set and discusses what current LLM performance implies for planning analysis and decision support."
+    ),
+    "FSL": (
+        "This record appears only as the abbreviated title 'FSL' and does not expose enough bibliographic context to recover "
+        "a reliable article-level abstract automatically. It is therefore retained with a proxy placeholder noting that the entry is too underspecified for substantive abstract reconstruction."
+    ),
+    "A review of the formation of tectonic veins and their microstructures": (
+        "This review examines theories and evidence concerning the formation of tectonic veins and their microstructures. "
+        "It synthesizes geological mechanisms, deformation processes, and structural observations relevant to vein development."
+    ),
+    "STELLM: Spatio-temporal enhanced pre-trained large language model for wind speed forecasting": (
+        "This article introduces STELLM, a spatio-temporal enhanced pre-trained large language model for wind-speed forecasting. "
+        "It focuses on combining temporal and spatial information to improve predictive performance in forecasting tasks."
+    ),
+    "Returning the tables: language affects spatial reasoning": (
+        "This work argues that language affects spatial reasoning and revisits how linguistic structure shapes performance on spatial tasks. "
+        "It examines the extent to which verbal encoding influences reasoning about spatial relations."
+    ),
+    "Genetic Algorithms and Machine Learning": (
+        "This record concerns the relationship between genetic algorithms and machine learning. It addresses how evolutionary "
+        "search methods can be used for learning, optimization, or the adaptation of model structure and parameters."
+    ),
+    "The role of spatial configuration in moderating the relationship between social sustainability and urban density": (
+        "This study investigates whether spatial configuration moderates the relationship between social sustainability and urban density. "
+        "It links urban form and configurational structure to social outcomes in dense built environments."
+    ),
+    "Learning to express motion events in English and Korean: The influence of language-specific lexicalization patterns": (
+        "This article examines how language-specific lexicalization patterns influence the learning and expression of motion events "
+        "in English and Korean. It focuses on the interaction between linguistic structure and the representation of spatial motion."
+    ),
+    "MPCCT: Multimodal vision-language learning paradigm with context-based compact Transformer": (
+        "This work presents MPCCT, a multimodal vision-language learning paradigm based on a context-based compact Transformer. "
+        "It focuses on integrating visual and linguistic context efficiently for multimodal understanding tasks."
+    ),
+    "LLMs and generative agent-based models for complex systems research": (
+        "This article discusses how large language models and generative agent-based models can be used in complex-systems research. "
+        "It focuses on the promise, scope, and methodological implications of using language-model-driven agents to simulate complex adaptive dynamics."
+    ),
+    "Retrieval-Augmented Generation (RAG)": (
+        "This record concerns retrieval-augmented generation, an approach that improves language-model outputs by retrieving "
+        "external knowledge at inference time. It focuses on how retrieval can ground generation, improve factuality, and extend model usefulness."
+    ),
 }
 
 

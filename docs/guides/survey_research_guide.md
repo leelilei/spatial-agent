@@ -70,6 +70,28 @@
 
 它不是仓库级文档目录，也不是实验论文代码目录。
 
+### `docs/guides/survey_exemplar_usage_guide.md`
+
+这是从“检索/编码”转向“论文起草”时的范文使用指南。它回答：
+
+- 现有 `review_library` 中 13 篇综述各自应该参考什么
+- 是否还需要继续找更多综述参考
+- 哪些方法/报告规范文献需要补进 bibliography
+- 正文大概采用什么章节结构
+- 每一章应该参考哪些范文
+- 至少需要哪些图、表，以及每张图表可以参考哪篇文章的呈现方式
+
+当前决策是：不再启动新的 broad background-survey search；只补充 scoping review 方法/报告规范文献，并用现有 13 篇范文支撑结构、图表和写法。
+
+### `docs/guides/survey_reference_gap_memo_2026-04-28.md`
+
+这是 reference gap 的裁决 memo。它把现有 13 篇分成“已足够”“应提炼结构模板”“建议补充”，并把新增清单控制为 6 篇：
+
+- 4 篇 scoping review 方法/报告规范文献
+- 2 篇计算/AI/HCI 风格 scoping review 成文模板
+
+它的作用是防止把“补方法与模板文献”误解成继续扩主题背景综述。
+
 ---
 
 ## 2. 当前 survey 资产到底放在哪里

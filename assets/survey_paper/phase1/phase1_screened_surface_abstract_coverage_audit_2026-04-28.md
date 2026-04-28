@@ -107,10 +107,10 @@ Updated abstract-level disposition source:
 | `queued_for_recheck` | 7 |
 | `abstract_keep` | 15 |
 | `abstract_keep_adjacent` | 16 |
-| `abstract_background_or_adjacent` | 53 |
-| `abstract_exclude` | 50 |
+| `abstract_background_or_adjacent` | 54 |
+| `abstract_exclude` | 51 |
 | `abstract_missing_keep_metadata` | 4 |
-| `abstract_missing_exclude` | 8 |
+| `abstract_missing_exclude` | 6 |
 | `duplicate_existing_pool` | 17 |
 | `duplicate_prior_targeted` | 3 |
 | `duplicate_or_covered` | 1 |

@@ -1,12 +1,12 @@
 # SpatialAgent Survey Todo List
 
-> 更新日期：2026-04-27
+> 更新日期：2026-04-28
 > 当前主线：优先推进 `survey`，暂不启动新的 broad core expansion
 > 依据文档：`survey_research_guide.md`、`survey_plan_v4.md`、`coding_manual.md`、`claim_matrix.md`、`phase1_shortlist_closure_summary_2026-04-22.md`、`phase1_core_gap_audit_2026-04-22.md`、`phase1_core_coding_queue_2026-04-23.md`、`phase1_core_first_pass_coding_summary_2026-04-23.md`
 
 ---
 
-## 2026-04-27 当前覆盖说明
+## 2026-04-28 当前覆盖说明
 
 今天的 widened-Core 执行结果覆盖本 todo 中较早的 `Core 15`、`14 rows`、`L4 = 0` 等旧快照，但不删除这些历史记录。
 
@@ -15,17 +15,26 @@
 - `assets/survey_paper/phase1/phase1_widened_core_execution_memo_2026-04-27.md`
 - `assets/survey_paper/phase1/phase1_widened_core_evidence_map_2026-04-27.csv`
 - `assets/survey_paper/phase1/phase1_widened_core_evidence_map_2026-04-27.md`
+- `assets/survey_paper/phase1/phase1_targeted_widened_p1_optimistic_recheck_2026-04-28.md`
 - `assets/survey_paper/phase1/phase1_plan_guide_alignment_after_widening_2026-04-27.md`
 
 当前工作口径：
 
 - strict baseline: `17` paper-level `anchor_core` items, `19` rows
-- widened evidence map: `29` paper-level items, `31` rows
-- row layers: `anchor_core = 19`, `bridge_core = 12`
-- representation distribution: `L1 = 1 / L2 = 5 / L3 = 18 / L4 = 1 / L5 = 6`
+- widened evidence map: `33` paper-level items, `35` rows
+- row layers: `anchor_core = 19`, `bridge_core = 16`
+- representation distribution: `L1 = 1 / L2 = 8 / L3 = 18 / L4 = 1 / L5 = 7`
 - claim discipline: `L4` only appears in widened digital-network `bridge_core`, not in strict `anchor_core`
 
-下一步不进入正文写作；先做 plan/guide/exemplar alignment 与 scoping-review 范文结构提取。
+写作参考口径：
+
+- 使用 `docs/guides/survey_exemplar_usage_guide.md` 作为 drafting 前的结构、图表和范文使用指南。
+- 使用 `docs/guides/survey_reference_gap_memo_2026-04-28.md` 锁定最小新增参考清单。
+- `assets/survey_paper/pdfs/review_library/` 中 13 篇综述足够支撑 topic/background positioning 与 scoping review 写法参考。
+- 不启动新的 broad background-survey search；只补 `4` 篇 scoping review 方法/报告规范引用和 `2` 篇计算/AI/HCI 风格范文。
+- 先按 guide 固定 `§3 Evidence Map`、PRISMA、L0-L5 taxonomy 和核心图表，再进入正文段落扩写。
+
+下一步不进入正文定稿；先清理旧 guide/todo 引用，把 `TW-02` 仅保留为 scope-boundary 对照，不纳入 stable widened-Core，并按 exemplar guide 准备 drafting scaffold。
 
 ---
 
@@ -173,6 +182,7 @@ Adjacent 不应拖慢 Core evidence map。只做足以支撑边界论证的编�
 ### Priority 3：Claim Check 与正文准备
 
 - [ ] 更新Claim矩阵 | P3 更新claim与强度标记
+- [ ] 套范文指南 | P3 按guide定章节图表
 - [ ] 更新正文03-06 | P3 更新03到06节正文
 
 说明：

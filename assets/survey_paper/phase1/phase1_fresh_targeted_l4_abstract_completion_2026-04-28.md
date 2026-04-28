@@ -45,10 +45,10 @@ Final disposition counts:
 | `queued_for_recheck` | 7 |
 | `abstract_keep` | 15 |
 | `abstract_keep_adjacent` | 16 |
-| `abstract_background_or_adjacent` | 53 |
-| `abstract_exclude` | 50 |
+| `abstract_background_or_adjacent` | 54 |
+| `abstract_exclude` | 51 |
 | `abstract_missing_keep_metadata` | 4 |
-| `abstract_missing_exclude` | 8 |
+| `abstract_missing_exclude` | 6 |
 | `duplicate_existing_pool` | 17 |
 | `duplicate_prior_targeted` | 3 |
 | `duplicate_or_covered` | 1 |
@@ -64,9 +64,9 @@ Tier-like grouping:
 | `bridge_core_reserve` | 1 |
 | `adjacent` | 1 |
 | `adjacent_or_bridge_candidate` | 16 |
-| `adjacent_or_foundational` | 57 |
+| `adjacent_or_foundational` | 58 |
 | `duplicate` | 21 |
-| `excluded` | 58 |
+| `excluded` | 57 |
 | **Total** | **179** |
 
 ## Active Queues After Abstract Completion
@@ -129,4 +129,3 @@ Next step:
 
 1. Update the widened evidence map using already adjudicated rows.
 2. Then decide whether P1 queue review is necessary for further L4 strengthening.
-
