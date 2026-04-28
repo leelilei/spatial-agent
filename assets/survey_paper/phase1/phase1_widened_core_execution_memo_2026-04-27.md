@@ -184,6 +184,7 @@ Later targeted widened updates:
 
 - `phase1_targeted_widened_p0_fulltext_recheck_2026-04-27.md` adds `TW-09`, `TW-11`, and `TW-13` after duplicate control, moving widened Core to `34` rows and `32` paper-level items.
 - `phase1_targeted_widened_p1_optimistic_recheck_2026-04-28.md` admits `TW-12`, keeps `TW-10` adjacent, and excludes `TW-02` on scope-boundary grounds.
-- Current stable widened-Core status is therefore `35` rows and `33` paper-level items.
-- Current representation distribution is `L1 = 1 / L2 = 8 / L3 = 18 / L4 = 1 / L5 = 7`.
+- A later alignment pass returns `HC01` to Adjacent/boundary status based on its full-text single-agent navigation profile.
+- Current stable widened-Core status is therefore `34` rows and `32` paper-level items.
+- Current representation distribution is `L1 = 1 / L2 = 8 / L3 = 18 / L4 = 1 / L5 = 6`.
 - Current interpretation: the widened bridge strategy clearly repairs `L2` and modestly improves `L5`, but `L4` remains a single admitted digital-network bridge case.

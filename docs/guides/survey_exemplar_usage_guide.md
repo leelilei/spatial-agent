@@ -154,8 +154,8 @@ Required local evidence:
 Keep these counts visible:
 
 - strict `anchor_core`: `19` rows, `17` papers;
-- stable widened Core: `35` rows, `33` papers;
-- representation distribution: `L1 = 1 / L2 = 8 / L3 = 18 / L4 = 1 / L5 = 7`.
+- stable widened Core: `34` rows, `32` papers;
+- representation distribution: `L1 = 1 / L2 = 8 / L3 = 18 / L4 = 1 / L5 = 6`.
 
 ### Section 4: Feasibility
 

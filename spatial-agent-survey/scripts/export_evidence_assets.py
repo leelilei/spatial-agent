@@ -37,8 +37,8 @@ def build_parser() -> ArgumentParser:
         / "assets"
         / "survey_paper"
         / "phase1"
-        / "phase1_core_first_pass_coding_2026-04-23.csv",
-        help="Stable Core first-pass coding CSV to export from.",
+        / "phase1_widened_core_evidence_map_2026-04-27.csv",
+        help="Stable widened-Core coding CSV to export from.",
     )
     return parser
 
