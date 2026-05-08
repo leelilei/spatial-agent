@@ -23,13 +23,13 @@
 
 ## 1. Current Operating Baseline
 
-本轮写作与 claim check 必须以 `2026-04-28` 的 widened-Core 口径为准：
+本轮写作与 claim check 必须以 `2026-05-02` 的 widened-Core 口径为准：
 
 - strict baseline：`17` paper-level `anchor_core` items，`19` rows
-- stable widened Core：`32` paper-level items，`34` rows
-- row layers：`anchor_core = 19`，`bridge_core = 15`
-- representation distribution：`L1 = 1 / L2 = 8 / L3 = 18 / L4 = 1 / L5 = 6`
-- evidence status：`observed_effect = 19`，`designed_affordance_only = 15`
+- stable widened Core：`33` paper-level items，`35` rows
+- row layers：`anchor_core = 19`，`bridge_core = 16`
+- representation distribution：`L1 = 1 / L2 = 8 / L3 = 19 / L4 = 1 / L5 = 6`
+- evidence status：`observed_effect = 20`，`designed_affordance_only = 15`
 - `L4` 只出现在 widened digital-network `bridge_core`，不出现在 strict `anchor_core`
 - `TW-02` 只保留为 scope-boundary 对照，不纳入 stable widened-Core
 - `HC01` 只作为 Adjacent / boundary / feasibility evidence

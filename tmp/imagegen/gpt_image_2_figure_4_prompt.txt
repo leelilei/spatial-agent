@@ -1,0 +1,18 @@
+Redraw the provided reference as a polished academic distribution chart.
+
+Show representation distribution by core layer, split into `anchor_core` and `bridge_core`. Use a stacked or grouped bar chart that makes the `L4` gap visually obvious.
+
+Use sparse exact text only:
+- Title: `Figure 4. Representation Distribution by Core Layer`
+- Legend: `anchor_core`, `bridge_core`
+- X-axis levels: `L1`, `L2`, `L3`, `L4`, `L5`
+- Counts:
+- `L1: 1 anchor / 0 bridge`
+- `L2: 0 anchor / 8 bridge`
+- `L3: 15 anchor / 3 bridge`
+- `L4: 0 anchor / 1 bridge`
+- `L5: 3 anchor / 3 bridge`
+- Callout: `L4 absent from anchor_core`
+- Callout: `bridge recovery is not anchor evidence`
+
+Use a publication-safe chart style with muted green for anchor and light green for bridge, off-white background, crisp axes, and large readable labels. Do not add extra data series or percentages. No watermark or logo.

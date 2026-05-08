@@ -3,7 +3,7 @@
 
 Default behavior is intentionally conservative:
 - reads docs/guides/todolist.md
-- syncs unchecked tasks under the "执行优先级" section only
+- syncs unchecked tasks under the current execution-priority section only
 - creates or updates reminders in a single Reminders list
 - stores reminder ids in .cache/ so Reminders notes stay readable
 """
@@ -97,10 +97,7 @@ def parse_task_parts(raw_title: str) -> tuple[str, str]:
 
 def build_detail(priority_label: str, detail: str) -> str:
     detail = re.sub(rf"^{re.escape(priority_label)}\s*", "", detail, flags=re.IGNORECASE)
-    pieces = [priority_label]
-    if detail:
-        pieces.append(detail)
-    return trim_text(" ".join(pieces).strip(), 20)
+    return detail.strip()
 
 
 def priority_from_headings(headings: tuple[str, ...]) -> tuple[str, int]:
@@ -127,14 +124,20 @@ def should_include_task(headings: tuple[str, ...], scope: str) -> bool:
     if "暂不做" in joined:
         return False
 
+    in_execution_priorities = (
+        "执行优先级" in headings
+        or "接下来一周的主线任务" in headings
+        or any(heading.lower().startswith("priority ") for heading in headings)
+    )
+
     if scope == "all":
         return True
 
     if scope == "active":
-        return "执行优先级" in headings
+        return in_execution_priorities
 
     if scope == "priority-and-human":
-        return "执行优先级" in headings or "需要人工优先提供的材料" in headings
+        return in_execution_priorities or "需要人工优先提供的材料" in headings
 
     raise ValueError(f"Unsupported scope: {scope}")
 
@@ -175,7 +178,7 @@ def parse_todos(todo_path: Path, scope: str) -> list[TodoItem]:
         raw_title = task_match.group(3).strip()
         priority_label, priority_value = priority_from_headings(headings)
         short_title, detail_text = parse_task_parts(raw_title)
-        title = trim_text(short_title, 10)
+        title = f"[{priority_label}] {clean_markdown_text(short_title)}"
         detail = build_detail(priority_label, detail_text)
         source_id = make_source_id(todo_path, headings, raw_title)
 
@@ -193,6 +196,33 @@ def parse_todos(todo_path: Path, scope: str) -> list[TodoItem]:
         )
 
     return items
+
+
+def parse_update_date(todo_path: Path) -> date | None:
+    for line in todo_path.read_text(encoding="utf-8").splitlines():
+        if "更新日期" not in line:
+            continue
+        match = re.search(r"(\d{4}-\d{2}-\d{2})", line)
+        if not match:
+            continue
+        return date.fromisoformat(match.group(1))
+    return None
+
+
+def default_due_date(update_date: date | None, priority_label: str) -> DueDate | None:
+    today = date.today()
+    base_date = max(update_date or today, today)
+    if priority_label == "P0":
+        offset = 1
+    elif priority_label == "P1":
+        offset = 2
+    elif priority_label == "P2":
+        offset = 3
+    elif priority_label == "P3":
+        offset = 4
+    else:
+        offset = 5
+    return DueDate(label=priority_label, value=base_date.fromordinal(base_date.toordinal() + offset))
 
 
 SYNC_APPLESCRIPT = r"""
@@ -352,8 +382,10 @@ def prune_duplicate_state_entries(
             del list_state[source_id]
 
 
-def clean_reminder_body(item: TodoItem, due_date: DueDate | None) -> str:
-    return item.detail
+def clean_reminder_body(item: TodoItem, due_date: DueDate | None, marker: str) -> str:
+    if item.detail:
+        return item.detail
+    return ""
 
 
 def sync_item(
@@ -363,7 +395,7 @@ def sync_item(
     saved_reminder_id: str,
 ) -> tuple[str, str]:
     marker = f"{SOURCE_MARKER_PREFIX} {item.source_id}"
-    body = clean_reminder_body(item, due_date)
+    body = clean_reminder_body(item, due_date, marker)
     due_text = due_date.applescript_text if due_date is not None else ""
     flagged_text = "true" if should_flag_item(item) else "false"
 
@@ -425,7 +457,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--scope",
         choices=("active", "priority-and-human", "all"),
         default="active",
-        help="Which unchecked tasks to sync. Default: only tasks under 执行优先级.",
+        help="Which unchecked tasks to sync. Default: only current execution-priority tasks.",
     )
     parser.add_argument(
         "--due-map",
@@ -450,16 +482,19 @@ def main(argv: list[str] | None = None) -> int:
         return 2
 
     items = parse_todos(todo_path, args.scope)
+    update_date = parse_update_date(todo_path)
     due_map = parse_due_map(args.due_map)
     if args.dry_run:
         print(f"List: {args.list}")
         print(f"Todo: {todo_path.relative_to(REPO_ROOT)}")
         print(f"Scope: {args.scope}")
+        if update_date is not None:
+            print(f"Update date: {update_date.isoformat()}")
         if due_map:
             print("Due map: " + ", ".join(f"{key}={value.value.isoformat()}" for key, value in due_map.items()))
         print(f"Items: {len(items)}")
         for item in items:
-            due_date = due_map.get(item.priority_label)
+            due_date = due_map.get(item.priority_label) or default_due_date(update_date, item.priority_label)
             due_suffix = f", due {due_date.value.isoformat()}" if due_date is not None else ""
             print(
                 f"- {item.title} | {item.detail} "
@@ -475,10 +510,11 @@ def main(argv: list[str] | None = None) -> int:
     active_source_ids = {item.source_id for item in items}
     active_source_to_reminder: dict[str, str] = {}
     for item in items:
+        due_date = due_map.get(item.priority_label) or default_due_date(update_date, item.priority_label)
         action, reminder_id = sync_item(
             args.list,
             item,
-            due_map.get(item.priority_label),
+            due_date,
             list_state.get(item.source_id, ""),
         )
         list_state[item.source_id] = reminder_id

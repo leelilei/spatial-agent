@@ -1,68 +1,53 @@
 # Evaluation Dimensions
 
-Draft status: scaffold aligned to the widened-Core baseline dated 2026-04-28.
+Draft status: paragraph-level draft aligned to the 2026-05-01 closure baseline and claim matrix.
 
-This section asks what would count as credible evidence for spatially mediated social behavior in future LLM-agent research. It should not read like a general evaluation survey. Its job is narrower: to translate the gaps diagnosed in Sections 3 to 5 into concrete evaluation requirements that could separate simple spatial affordance from meaningful spatial-behavior coupling.
+This section asks what would count as credible evidence for spatially mediated social behavior in future LLM-agent research. It is not a general evaluation survey. Its narrower role is to translate the gaps diagnosed in Sections 3 to 5 into concrete evidence requirements: what representation must be exposed to agents, what behavior must be measured, what comparison must be made, and what claim the result could safely support.
 
-[Table 7 about here: evaluation dimension table]
+[Table 7 about here: evaluation dimension table; draft asset: `paper/tables/table_7_evaluation_dimensions.md`]
 
 ## 6.1 What Would Spatial Behavioral Validity Mean?
 
-The first task of this section is conceptual. "Spatial behavioral validity" should not mean only that an agent can move, navigate, or mention places correctly. For this survey, it should mean that variation in agent-facing spatial representation can be linked to variation in behavior at the level of movement, interaction, or emergent social structure under controlled conditions. That definition makes the target harder, but it also prevents the section from collapsing into generic navigation or usability evaluation.
+For this survey, spatial behavioral validity cannot mean only that a system has a map, a virtual world, navigation, or place-aware dialogue. Those are spatial affordances. They show that space is present in the system design, but they do not by themselves show that agent behavior is sensitive to spatial structure. A system may let agents move through places while behavior remains driven mainly by prompts, goals, roles, scripts, or social context.
 
-This subsection should distinguish at least three levels of success. The weakest level is spatial affordance: a system contains spatial scenes, places, routes, or embodied interaction. The middle level is spatial sensitivity: behavior changes when relevant spatial context changes. The strongest level is spatial mediation: the study shows that a specific kind of agent-facing spatial structure contributes to a behavioral outcome in a way that survives comparison against matched controls. Most current systems in the corpus reach the first level. Some rows plausibly reach the second. Very few, if any, cleanly establish the third.
+The next level is spatial sensitivity. A system shows spatial sensitivity when behavior changes in response to variation in agent-facing spatial input. This might involve route choice, dwell time, co-presence, encounter frequency, dialogue allocation, avoidance, disclosure, group formation, or role differentiation changing when the spatial interface changes. Sensitivity is stronger than affordance because it links spatial input to behavioral output, but it still may not identify the mechanism.
 
-Safe synthesis sentence:
+The strongest target is spatial mediation. A study supports a spatial mediation claim when it shows that a specific type of agent-facing spatial structure contributes to a behavioral outcome under matched controls. For this survey, the important word is specific. A mediation claim should identify whether the relevant structure is semantic scene information, local adjacency, global abstract configuration, geometry-bearing perception, or some controlled combination. It should also separate that structure from confounds such as richer prompts, more context, different goals, different tasks, or altered social affordances.
 
-- the next evaluation target is not spatial presence alone, but behavior that is demonstrably sensitive to agent-facing spatial structure.
+Most current systems in the evidence map can be discussed safely at the affordance level. Some `observed_effect` rows may support limited spatial-sensitivity claims in particular settings. Very few, if any, cleanly establish spatial mediation under matched controls, especially for `L4` configurational input. In the current closure baseline, `L4` is absent from the strict `anchor_core` and appears only once as a widened digital-network bridge case. That row is useful for defining a possible evaluation target, but it should not be treated as validation of physical-layout Space Syntax mediation. This is not a failure of the field so much as a sign of the next evaluation problem: future work needs to move from spatial presence toward controlled spatial-behavior coupling.
 
 ## 6.2 Candidate Evaluation Dimensions
 
-Table 7 should be the center of the section, not an afterthought. Each evaluation dimension should specify four things:
+Table 7 organizes candidate evaluation dimensions around behaviors that matter for spatially mediated social simulation. Each row specifies the behavior being measured, the minimum spatial representation needed, the required comparison, candidate measures, and the strongest claim that a successful result could support. This structure matters because different behavioral questions require different representation levels. The table is therefore prospective: it describes what future studies would need to show, not what the current evidence map already demonstrates.
 
-- the behavior being measured;
-- the minimum spatial representation needed for the test to be meaningful;
-- the control or comparison required;
-- the strongest evidence status the result could support.
+Movement and route choice can often begin at `L3`, because local movement options may already shape where agents go next. However, a configurational route claim requires `L4` or controlled `L5`: agents must receive global route structure, path alternatives, accessibility cues, or embodied geometry in a design that isolates those inputs. Candidate measures include route distribution, path length, location entropy, dwell time, and destination frequency. Passing such a test may support spatial sensitivity; it supports a configuration claim only if global or geometry-bearing structure is isolated.
 
-The section should group candidate dimensions in a way that matches the survey's actual gap structure. A workable grouping is:
+Co-presence and encounter structure are central to the social-simulation problem. At the local level, `L3` can support tests of nearby-agent exposure, adjacency, and contact opportunities. For layout-wide encounter hypotheses, `L4` is needed because the claim concerns how broader structure shapes who meets whom, where, and how often. Candidate measures include encounter rate, repeated co-presence, contact matrices conditioned on location, and distribution of social contact across places or network positions.
 
-1. movement and route choice;
-2. co-presence and encounter structure;
-3. interaction allocation across places or network positions;
-4. group formation, segregation, or role differentiation;
-5. macro-level social structure under altered spatial layouts.
+Interaction allocation asks whether spatial structure affects who talks, cooperates, conflicts, or exchanges information with whom. Some versions of this question can be tested with `L3` local relation input. Stronger claims about network-position or configurational allocation require `L4`, because the relevant treatment is no longer simply who is nearby but how agents understand position in a broader structure. The necessary comparison is local-only input versus global-structure input while holding prompts, roles, tasks, and social affordances constant.
 
-The prose should make clear that not every dimension requires `L4`. Some questions can be meaningfully tested at `L2`, `L3`, or `L5`. But any claim about configurational mediation should require a representation that actually exposes global or layout-wide structure to the agent. This is where the section should explicitly connect back to the evidence-map result that `L4` remains nearly absent and that geometry-bearing `L5` cases are still limited and heterogeneous.
+Privacy, avoidance, and selective disclosure illustrate why semantic and structural cues must be separated. An agent may choose a "private room" because a prompt labels it private; that is a semantic affordance and may be meaningful at `L2`. A different claim is that agents shift sensitive dialogue toward deeper or less accessible areas because they use structural depth or segregation cues. That latter claim requires `L4` or a controlled comparison between semantic labels and structural position.
 
-Drafting note:
+Group formation, segregation, role differentiation, and macro-level social structure are the highest-risk evaluation targets. They are attractive because they connect most directly to emergent social behavior, but they are also easy to overread. A macro pattern observed after a simulation is not enough. Future studies would need matched runs with different spatial interfaces or layouts, stable agent populations, controlled tasks, and repeated seeds. Candidate measures include modularity, group persistence, role concentration, cross-group interaction, and spatial distribution of roles.
 
-- Keep each dimension operational.
-- Avoid abstract "evaluation principles" that cannot be turned into a concrete table row.
-- Use the claim matrix to label what kind of conclusion each evaluation could and could not support.
+Embodied coordination and spatial cooperation form a related but distinct dimension. These questions often require `L5`, because collision avoidance, escorting, joint navigation, and physically grounded cooperation depend on geometry-bearing input or embodied perception. A successful comparison can support an embodied-input effect claim, but it should not automatically be treated as configurational mediation. This distinction matters for the current bridge `L5` rows: platform support, embodied cooperation benchmarks, and VR guidance systems all show relevant interface possibilities, but they do not collapse into one generic social-mediation result. Geometry and configuration are related, but not interchangeable.
 
 ## 6.3 Controls, Baselines, and Confound Separation
 
-The main methodological challenge is confound separation. If a study changes both spatial representation and unrelated agent information at the same time, then any observed behavioral change is uninterpretable. This subsection should therefore explain that future evaluation needs matched controls: same task, same agent family, same social setting, but different spatial interface conditions.
+The main methodological challenge is confound separation. If a study changes spatial representation and unrelated context at the same time, then the behavioral difference cannot be attributed to the spatial interface. A stronger evaluation design should hold the agents, goals, task, social setting, communication budget, and prompt semantics as stable as possible while varying only the spatial information available to the agent.
 
-The control logic should be phrased in progressively stronger forms:
+One useful control ladder follows the representation taxonomy. A `L1/L2` versus `L3` comparison asks whether local relational structure matters beyond place naming or semantic scene description. A `L3` versus `L4` comparison asks whether global abstract structure matters beyond local adjacency, co-presence, or local movement options. A `L3` or `L4` versus `L5` comparison asks whether embodied or geometry-bearing input changes behavior beyond symbolic structure alone. None of these comparisons is universally required; the right baseline depends on the claim being made. But the comparison must match the representation claim.
 
-- `L1/L2` versus `L3`: does local relational structure matter beyond place naming or scene semantics?
-- `L3` versus `L4`: does global abstract structure matter beyond local co-presence and adjacency?
-- `L3` or `L4` versus `L5`: does embodied or geometry-bearing input change behavior beyond symbolic structure alone?
+The section also cautions against overreading common proxies. Navigation completion alone does not establish spatial mediation. User satisfaction alone does not establish spatial mediation. A visually rich environment does not establish spatial mediation. Emergent macro patterns without representation controls do not establish spatial mediation. Source-note-only bridge evidence, including the unresolved `BK02` row, also cannot carry strong evaluation claims until full text is acquired or the row is downgraded. These metrics and materials can be valuable components of an evaluation package, but they need to be tied to a controlled spatial interface comparison before stronger claims become available.
 
-The section should also caution against overreading common but insufficient proxies. Navigation completion by itself is not enough. User satisfaction by itself is not enough. Emergent macro patterns without representation controls are not enough. These can all be useful components of an evaluation package, but none of them alone establishes spatial mediation in the sense required by this survey.
-
-Safe synthesis sentences for this subsection:
-
-- credible evaluation requires matched controls over the agent-facing spatial interface;
-- navigation, immersion, or usability metrics alone do not establish spatial mediation;
-- stronger causal language requires stronger control over representational confounds.
+This control logic also protects against prompt confounds. If a global-structure condition simply gives agents longer prompts, more semantic hints, or more task guidance, then improved behavior may reflect extra context rather than spatial structure. Similarly, if a geometry-bearing condition changes both perception and action affordances, the study should avoid claiming configurational mediation unless it isolates which part of the interface produced the effect.
 
 ## 6.4 Evidence Ladder for Future Studies
 
-This subsection should end the section by turning the evaluation discussion back into claim discipline. Different evaluation outcomes should map onto different allowable claims. A successful test may support that a system is spatially sensitive without yet supporting that it exhibits stable configuration-mediated social emergence. A carefully controlled comparison may support a limited observed-effect claim without settling mechanism. Only repeated, well-controlled findings across systems and environments would begin to justify stronger language.
+The evaluation problem can be summarized as an evidence ladder. The lowest rung is spatial affordance: the system contains places, routes, scenes, spatially situated interaction, or embodied action. This is valuable, but it supports design description rather than effect claims. The next rung is spatial sensitivity: behavior changes when agent-facing spatial context changes. This supports limited observed-effect claims when the outcome is reported clearly and the comparison is interpretable.
 
-This is the point where the section should connect most explicitly to `docs/plans/claim_matrix.md`. The contribution of Table 7 is not just to propose good experiments. It is to define what kinds of future evidence would allow the field to move from `designed_affordance_only` and feasibility arguments toward stronger observed-effect and, much later, mechanism claims.
+The third rung is spatial mediation: a specific spatial representation contributes to a behavioral outcome in a way that survives matched controls. This is the level needed for stronger claims about spatially mediated social behavior. Even here, mechanism language should remain cautious unless the study separates plausible confounds and reports enough evidence to distinguish representation effects from prompt, task, role, or population effects.
 
-The final sentence of the section should motivate Section 7: once evaluation dimensions are made explicit, the research agenda can be organized around the missing representation layers, missing controls, and missing cross-scale tests that the current corpus leaves unresolved.
+The highest rung is replicated mechanism. This would require repeated, well-controlled findings across layouts, tasks, populations, models, seeds, and preferably independent systems. The current literature is not there yet. The point of the ladder is not to dismiss current work, but to make claim strength explicit. A study can be useful at the affordance or sensitivity level without being treated as proof of configuration-mediated social emergence.
+
+Table 7 therefore contributes more than a list of possible metrics. It defines how future work could move from `designed_affordance_only` toward stronger `observed_effect` claims, and eventually toward more robust mechanism claims. It also sets up the research agenda in Section 7: the agenda should prioritize missing representation layers, matched controls, behavior measures tied to social outcomes, and replication across conditions.

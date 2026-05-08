@@ -82,13 +82,18 @@ def main() -> int:
             print(f"[skip] {pdf_path} -> output already exists")
             continue
 
-        result = extract_pdf(pdf_path, max_pages=args.max_pages)
-        markdown_out, meta_out = write_fulltext_outputs(result, output_dir=output_dir, emit_meta=args.emit_meta)
-        print(
-            f"[{result.status}] {pdf_path} -> {markdown_out}"
-            + (f" | {meta_out}" if meta_out is not None else "")
-            + f" | chars={result.text_char_count}"
-        )
+        try:
+            result = extract_pdf(pdf_path, max_pages=args.max_pages)
+            markdown_out, meta_out = write_fulltext_outputs(result, output_dir=output_dir, emit_meta=args.emit_meta)
+            print(
+                f"[{result.status}] {pdf_path} -> {markdown_out}"
+                + (f" | {meta_out}" if meta_out is not None else "")
+                + f" | chars={result.text_char_count}"
+            )
+        except Exception as exc:  # noqa: BLE001 - keep batch extraction moving across malformed PDFs.
+            failures += 1
+            print(f"[failed] {pdf_path} -> {exc.__class__.__name__}: {exc}", file=sys.stderr)
+            continue
         if result.status == "failed":
             failures += 1
 

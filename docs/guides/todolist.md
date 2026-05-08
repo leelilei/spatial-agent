@@ -1,6 +1,6 @@
 # SpatialAgent Survey Todo List
 
-> 更新日期：2026-04-28
+> 更新日期：2026-04-29
 > 当前主线：优先推进 `survey` 写作准备，不启动新的 broad search 或 broad core expansion
 > 依据文档：`survey_research_guide.md`、`survey_plan_v4.md`、`coding_manual.md`、`claim_matrix.md`、`survey_exemplar_usage_guide.md`、`survey_reference_gap_memo_2026-04-28.md`
 
@@ -8,14 +8,14 @@
 
 ## 当前判断
 
-当前 survey 已经完成 corpus formalization、shortlist closure 和 widened-Core evidence-map 初版整理。
+当前 survey 已经完成 corpus formalization、shortlist closure、widened-Core evidence-map 稳定化，以及主 section scaffold 的第一轮落地。
 
 接下来真正的主线不是继续找更多 survey，也不是直接写完整正文，而是：
 
-1. 固定 `§3 Evidence Map` 的写作骨架与核心图表
-2. 按 widened-Core 结果更新 `claim_matrix`
-3. 按 exemplar guide 准备 `§3-§6` drafting scaffold
-4. 清理旧 guide / todo / 章节草稿中的过时口径
+1. 固定 `§3 Evidence Map` 的计数、表图和段落口径
+2. 用已更新的 `claim_matrix` 反向检查 section scaffold
+3. 将 `§3-§6` scaffold 推进到 paragraph-level drafting
+4. 清理旧 guide / todo / 章节草稿中的过时数字与旧 baseline
 
 ---
 
@@ -42,6 +42,11 @@
 - `assets/survey_paper/phase1/phase1_tw02_scope_decision_2026-04-28.md`
 - `docs/guides/survey_exemplar_usage_guide.md`
 - `docs/guides/survey_reference_gap_memo_2026-04-28.md`
+- `docs/plans/claim_matrix.md`
+- `spatial-agent-survey/results/tables/evidence_map.csv`
+- `spatial-agent-survey/results/tables/evidence_map.md`
+- `spatial-agent-survey/results/tables/representation_gap_examples.csv`
+- `spatial-agent-survey/results/logs/l4_gap_summary.json`
 
 ---
 
@@ -57,14 +62,18 @@
 - [x] `HC01`、`HC13`、`HC14` acquisition blockers 已关闭
 - [x] reference-gap decision 已明确：topic/background survey 已足够，不再扩背景综述
 - [x] exemplar usage guide 已明确：先固定 `§3` 与核心图表，再进入正文扩写
+- [x] `claim_matrix` 已按 widened-Core baseline 更新
+- [x] `03 / 04 / 05 / 06` 主 section scaffold 已创建，并进入 widened-Core 口径对齐阶段
+- [x] stable widened-Core 本地归档已补齐，当前 working set 不再有 remote-only 缺口
 
 ### 进行中
 
-- [ ] 将 widened-Core 口径写回 `claim_matrix`
 - [ ] 将 `§3 Evidence Map` 的结构、表图、计数口径固定为可起草状态
-- [ ] 将 `§5 / §4 / §2 / §6` 准备成可扩写 scaffold
-- [ ] 清理旧 guide、todo、章节草稿中的旧数字与旧优先级
+- [ ] 将 `§3 / §5 / §4 / §6` scaffold 推进到 paragraph-level drafting
+- [ ] 为 `§2` 补齐与后文严格对齐的短版 functional scaffold
+- [ ] 清理旧 guide、todo、章节草稿中的旧数字、旧 baseline 与过时优先级
 - [ ] 将 `HC13 / HC14 / R3` 的保守裁决写入稳定 coding rows
+- [ ] 将 PRISMA / appendix / exported tables 与 `34 rows / 32 papers` 稳定 baseline 完全同步
 
 ### 暂不做
 
@@ -72,7 +81,7 @@
 - [ ] 不启动新的 broad core expansion
 - [ ] 不把 online community / generic simulator / single-agent interaction 扩回 Core 主线
 - [ ] 不把物理空间或 Adjacent 文献写成 LLM multi-agent social behavior 的直接证据
-- [ ] 不在 `claim_matrix` 更新前进入正文定稿
+- [ ] 不在 `§3` 核心图表口径固定前进入正文定稿
 
 ---
 
@@ -80,9 +89,10 @@
 
 ### Priority 0：更新执行基线
 
-- [ ] 改 `claim_matrix` | P0 按 widened-Core 重写强弱 claim 约束
-- [ ] 清旧口径 | P0 清理 guide/todo/草稿中的旧数字与旧表述
-- [ ] 定边界材料 | P0 固定 `TW-02`、`HC01`、`HC13`、`HC14` 的写作位置
+- [ ] 查 section 口径 | P0 用最新 `claim_matrix` 逐段检查 `03-06` scaffold
+- [ ] 清旧口径 | P0 清理 guide/todo/草稿中的旧数字、旧 baseline 与旧优先级
+- [ ] 定边界材料 | P0 固定 `TW-02`、`HC01`、`HC13`、`HC14`、`R3` 的写作位置
+- [ ] 同步导出资产 | P0 核对 appendix / evidence tables / PRISMA 摘要是否全部落在 `34 rows / 32 papers`
 
 说明：
 先把“现在到底能说什么、不能说什么”写清楚，再开始扩正文。
@@ -95,16 +105,17 @@
 - [ ] 定 `Figure 2` | P1 准备 PRISMA-ScR flowchart 输入口径
 - [ ] 定 `Figure 3` | P1 固定 L0-L5 taxonomy 图的文字口径
 - [ ] 写 `§3` 注释 | P1 写清 `anchor_core / bridge_core / Adjacent / Foundational` 角色
+- [ ] 改旧数字 | P1 清掉 `03_evidence_map.md` 中残留的旧 `35 rows / 33 papers` 口径
 
 说明：
 `§3` 是后续全文的证据中心。没有这个骨架，其他章节容易漂。
 
 ### Priority 2：准备正文 scaffold
 
-- [ ] 搭 `§5` 框架 | P2 列出 current systems use of space 的 5-6 个主点
-- [ ] 搭 `§4` 框架 | P2 固定 feasibility 只谈 richer spatial input，不谈 social effect proof
-- [ ] 搭 `§2` 框架 | P2 保持 Space Syntax primer 短而功能化
-- [ ] 搭 `§6` 框架 | P2 以 `Table 7` 为中心组织 evaluation dimensions
+- [ ] 扩 `§5` 段落 | P2 把 current systems use of space 的主点扩成可落笔段落
+- [ ] 扩 `§4` 段落 | P2 固定 feasibility 只谈 richer spatial input，不谈 social effect proof
+- [ ] 搭 `§2` 短版框架 | P2 保持 Space Syntax primer 短而功能化，并与 `§3-§6` 对齐
+- [ ] 扩 `§6` 段落 | P2 以 `Table 7` 为中心组织 evaluation dimensions
 
 说明：
 正文扩写顺序按 exemplar guide：`§3 -> §5 -> §4 -> §2 -> §6 -> §7 -> §1 -> §8`。
@@ -134,7 +145,7 @@
 7. `§1 Introduction`
 8. `§8 Conclusion`
 
-在 `§3` 骨架和 `claim_matrix` 更新前，其他章节只允许做 scaffold，不进入定稿。
+在 `§3` 核心图表口径固定前，其他章节只允许做 paragraph-level scaffold，不进入定稿。
 
 ---
 
@@ -175,11 +186,11 @@
 
 只有以下条件同时成立，才算真正进入正文写作阶段：
 
-- [ ] `claim_matrix` 已按 widened-Core 更新
+- [x] `claim_matrix` 已按 widened-Core 更新
 - [ ] `03_evidence_map.md` 骨架已固定
 - [ ] `Table 3`、`Table 4`、`Figure 2`、`Figure 3` 口径已固定
 - [ ] 旧 guide / todo / 草稿中的旧数字已清理
 - [ ] `HC13 / HC14 / R3` 的保守裁决已写入稳定编码或明确保留为边界材料
-- [ ] `§5 / §4 / §2 / §6` 已具备可扩写 scaffold
+- [ ] `§5 / §4 / §2 / §6` 已具备可扩写 paragraph-level scaffold
 
 如果以上任一项未完成，当前工作都应视为 drafting preparation，而不是正文定稿。

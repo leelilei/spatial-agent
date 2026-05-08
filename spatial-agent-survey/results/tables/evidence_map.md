@@ -9,7 +9,7 @@
 | L3 | emergent_social_structure | observed_effect | 8 |
 | L3 | interaction | designed_affordance_only | 2 |
 | L3 | mixed | designed_affordance_only | 2 |
-| L3 | mixed | observed_effect | 3 |
+| L3 | mixed | observed_effect | 4 |
 | L4 | emergent_social_structure | observed_effect | 1 |
 | L5 | emergent_social_structure | designed_affordance_only | 1 |
 | L5 | interaction | observed_effect | 2 |

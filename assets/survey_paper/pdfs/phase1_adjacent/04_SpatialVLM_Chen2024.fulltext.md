@@ -1,0 +1,1393 @@
+Title: Introduction
+
+Source PDF: /Users/mac/Documents/6-Research/1-SpatialAgent/assets/survey_paper/pdfs/phase1_adjacent/04_SpatialVLM_Chen2024.pdf
+
+Extraction:
+- backend: pdfplumber
+- extracted_at_utc: 2026-05-01T02:55:07+00:00
+- page_count: 29
+- status: ok
+- text_char_count: 82596
+
+Metadata:
+- author: unknown
+- doi: unknown
+- keywords: unknown
+- subject: unknown
+
+Outline:
+- Introduction (page 1)
+- Related Work (page 3)
+- SpatialVLM (page 3)
+  - Spatial Grounding from 2D Images (page 4)
+  - Large-Scale Spatial Reasoning VQA Dataset (page 5)
+  - Learning Spatial Reasoning (page 6)
+- Experiments (page 7)
+  - Spatial VQA performance (page 8)
+  - Effect of Spatial VQA Data to General VQA (page 9)
+  - Effect of Visual Transformer (ViT) Encoder in Spatial Reasoning (page 9)
+  - Effect of Noisy Quantitative Spatial Answers (page 10)
+  - Spatial Reasoning Unlocks Novel Applications (page 11)
+- Conclusion (page 11)
+- Appendix (page 18)
+  - Additional Experiments and Details (page 18)
+  - Implementation Details (page 20)
+  - Question and Answer Template (page 23)
+
+Markdown Content:
+
+2024-1-23
+SpatialVLM: Endowing Vision-Language
+Models with Spatial Reasoning Capabilities
+BoyuanChen∗,†,1 ,ZhuoXu∗,1
+,SeanKirmani
+1
+,DannyDriess
+1
+,PeteFlorence
+1
+1 1 2 1
+BrianIchter ,DorsaSadigh ,LeonidasGuibas ,FeiXia
+1GoogleDeepMind,2GoogleResearch
+Correspondto:boyuanc@mit.edu, zhuoxu@google.com, xiafei@google.com
+Website:https://spatial-vlm.github.io/
+GPT-4V*
+User As an AI, I'm unable to physically interact with environments, but I can provide some
+You are a cleaning robot that is 1 insights based on the image provided. … From the image, we can make some visual
+meter wide, now you are estimations. Judging from the image, it appears that the sofa and the table are quite
+standing in a living room and see close to each other, and there may not be enough space to accommodate a 1-meter
+the image, you want to move wide robot….
+from here to the door that leads
+to the backyard, do you think I Spatial-VLM
+can go through the path between [VLM Reasoning] How wide is the path between the sofa and the table and chairs?
+the sofa and the table and [VLM Answer] 1.56m [Answer] Yes, the robot can go through the path between the
+chairs. sofa and the table and chairs since it is wider than the robot's width.
+GPT-4V
+User After estimating the distances by measuring the Euclidean distances between the
+Which can is the closest to the yellow finger and each of the cans, it is clear that the silver can is the closest to the
+yellow finger that is on the right yellow finger with an approximate distance of 110 units. In comparison, the blue can
+most side of the picture, the is about 262 units away, and the orange can is approximately 233 units away from the
+blue, orange or the silver one? yellow finger.
+Spatial-VLM
+[VLM Reasoning] How far is the yellow finger from the blue can? [VLM Answer]
+0.5m [VLM Reasoning] How far is the yellow finger from the orange can? [VLM
+Anser] 0.59m [VLM Reasoning] How far is the yellow finger from the silver can?
+[VLM Answer] 0.21m [Answer] The silver can is the closest to the yellow finger that
+is on the right most side of the picture.
+Figure1 | WepresentSpatialVLM,adatasynthesisandpre-trainingmechanismtoenhanceVLMs’
+spatialreasoningcapabilities.WedemonstratethatVLMstrainedonoursyntheticdataexhibitstrong
+spatial reasoning capabilities, and can generate metric distance estimation from 2D input images,
+addressingblindspotsofcurrentstate-of-the-artVLMslikeGPT-4V.(∗GPT-4VaccessedNov.2023).
+UnderstandingandreasoningaboutspatialrelationshipsisafundamentalcapabilityforVisualQuestion
+Answering(VQA)androbotics. WhileVisionLanguageModels(VLM)havedemonstratedremarkable
+performance in certain VQA benchmarks, they still lack capabilities in 3D spatial reasoning, such as
+recognizingquantitativerelationshipsofphysicalobjectslikedistancesorsizedifference.Wehypothesize
+thatVLMs’limitedspatialreasoningcapabilityisduetothelackof3Dspatialknowledgeintrainingdata
+andaimtosolvethisproblembytrainingVLMswithInternet-scalespatialreasoningdata.Tothisend,we
+presentasystemtofacilitatethisapproach.Wefirstdevelopanautomatic3DspatialVQAdatageneration
+frameworkthatscalesupto2billionVQAexampleson10millionreal-worldimages.Wetheninvestigate
+variousfactorsintrainingrecipeincludingdataquality,trainingpipelineandVLMarchitecture. Our
+workfeaturesthefirstInternet-scale3Dspatialreasoningdatasetinmetricspace.BytrainingaVLMon
+suchdata,wesignificantlyenhanceitsabilityonbothqualitativeandquantitativespatialVQA.Finally,we
+demonstratethatthisVLMunlocksnoveldownstreamapplicationsinchain-of-thoughtspatialreasoning
+androboticsduetoitsquantitativeestimationcapability.
+© 2024GoogleDeepMind.Allrightsreserved
+∗Equalcontributionandalphabeticallylisted.†WorkdonewhilebeingastudentresearcheratGoogleDeepMind.
+4202
+naJ
+22
+]VC.sc[
+1v86121.1042:viXra
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+1. Introduction
+Visionlanguagemodels(VLMs)havemadesignificantprogressinrecentyearsacrossavarietyoftasks
+includingimagecaptioning,visualquestionanswering(VQA),embodiedplanning,actionrecognition,
+andmore[2,18,25,33].WhileVLMsarepowerfulgeneral-purposemodelsforawiderangeoftasks,
+moststate-of-the-artVLMsstillstrugglewithspatialreasoning,i.e.tasksthatrequireunderstandingthe
+positionofobjectsin3Dspace,orspatialrelationshipsbetweenthem.Spatialreasoningcapabilitiesare
+usefulintheirownright,butalsofordownstreamapplicationssuchasinroboticsorAR.Forexample,
+aspatialreasoning-imbuedVLMcanbeusedasabettergeneral-purposerewardannotator[54]and
+successdetector[19].
+TheexplorationoffoundationmodelslikeVLMsisofteninspiredbyhumancapabilities.Humans,
+throughembodiedexperiencesandevolutionarydevelopment,possessinnatespatialreasoningskills.
+Weeffortlesslydeterminespatialrelationships,suchasthepositioningofobjectsrelativetoeachother
+orestimatingdistancesandsizes,withoutcomplexchain-of-thoughtsormentalcomputations.This
+naturalproficiencyindirectspatialreasoningtaskscontrastswiththecurrentlimitationsofVLMsand
+thuspreventsthemfromaccomplishingreal-worldtasksthatrequiresmultiplestepsofspatialreasoning.
+Thisgapleadsustoacompellingresearchquestion:canweimbueVLMswithspatialreasoningabilities
+akintothoseofhumans?
+Therefore,wehypothesizethatthelimitedthespatialreasoningabilitiesofcurrentVLMsisnot
+duetoafundamentallimitationoftheirarchitecture,butratherisalimitationincommondatasets
+availableatscaleonwhichsuchmodelsaretrained.Forexample,manyVLMs[12,18,44]aretrained
+oninternet-scaledatasetscharacterizedbyimage-captionpairs[13],whichcontainlimitedspatial
+information.Thisispartiallyduetothedifficultiesofobtainingspatial-information-richembodieddata
+orhigh-qualityhumanannotationsfor3D-awarequeries.
+Automaticdatagenerationandaugmentationtechniquesareoneapproachtodealwiththedata
+limitationproblem[38,53,56,66].However,mostpreviousdatagenerationeffortsfocusonrendering
+photorealisticimageswithgroundtruthsemanticannotationbutoverlooktherichnessofobjectsand
+3Drelationships.Incontrast,wefocusonextractingspatialinformationdirectlyfromrealworlddata
+inordertocapturethediversityandcomplexityofthetrue3Dworld.
+Ourkeyinsightisthatrecentadvancementinoff-the-shelfvisionmodelscanautomaticallygenerate
+rich3Dspatialannotationsfrom2Dimages.Tothisend,weproposeasystemcalledSpatialVLMthat
+enablesdatagenerationandtrainingofVLMstoenhancetheirspatialreasoningcapabilities.Concretely,
+bycombining1)open-vocabularydetection,2)metricdepthestimation,3)semanticsegmentation
+and4)object-centriccaptioningmodels,wecandenselyannotatesrealworlddataatscale.SpatialVLM
+convertsthedatageneratedbyvisionmodelsintoaformatcanbeusedtotrainVLMsonamixture
+ofcaptioning,VQAandspatialreasoningdata.
+Throughexperiments,wefindourtrainedVLMexhibitmanydesirablecapabilities.First,itsability
+toanswerqualitativespatialquestionsisgreatlyenhanced.Secondly,itcanperformquantitativeesti-
+mationreliablydespitenoisytrainingdata.Suchcapabilitynotonlygivesitcommonsenseknowledge
+aboutobjectsizesbutalsomakesitusefulasaopen-vocabularyrewardannotatorforrearrangement
+tasks.Thirdly,wefindthisspatialVisionLanguageModel,benefitingfromitsnaturallanguageinterface,
+canperformspatialchain-of-thoughttosolvecomplexspatialreasoningtaskswhencombinedwith
+apowerfulLargeLanguageModel.
+Ourmaincontributionsare:
+• WeendowVLMsquantitativespatialreasoningcapability,whichisafundamentalcapabilityof
+humans.
+2
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+• Wedesignaframeworktoautomaticallylabel3DspatialreasoningVQAdatabasedonrealworld
+imagesattheInternetscale.
+• Westudyvarioustrainingrecipes:dataquality,trainingpipeline,freeze/unfreezevisualencoder,
+etc,andinvestigatehowtheyaffectthelearningquality.
+• WedemonstratenewcapabilitiesofSpatialVLMincomplexreasoningandroboticsunlockedby
+theintroducedtaskandmethod.
+2. Related Work
+LearningSpatialReasoning. Spatialdistanceestimationhasbeentraditionallyaddressedasapart
+ofbroadertasks,suchasSLAM[8,21]ordepthestimation[24].Whenapplyingthesespatialconcepts
+toreasoning,priorworksoftenfocusonexplicitspatialscenememories[27,28]orspatialscenegraphs
+[31,32,62,63]. Scenegraphsallowinterpretable,structured,statisticalrelationlearningbasedon
+thespatialstructurestheyencode. ToanswerspatialproblemsinVQAformats,theymusthandleit
+explicitlyasapathfindingproblemonsaidscenegraph.VLMs,ontheotherhand,arepretrainedon
+largeamountsoflooselystructuredinformationfromvision-languagedatasets.Unlikescenegraphs,
+thespatialunderstandingisencodedimplicitly. Wecaninfusethedepthand3Dstructureintothe
+weightswithanauxiliarytask[36,47],capturingtherelationalinformation.Inourwork,weaddress
+thespatialrelationshipproblemdirectlyintheVLM,withoutanexplicitunderlyingscenegraph.In
+additiontounderstandingrelativerelationshipsinqualitativeterms,wealsoexploreestimatingexplicit
+metricdistancerelationshipsbetweenobjectsinascene.
+GroundingVision-LanguageModels. Largelanguagemodels(LLMs)aretrainedoninternet-scale
+data,makingthemeffectivecommonsensereasoners.However,LLMs(andbyextensionVLMs)may
+lackthenecessarygroundingtoperformwellatsocialreasoning[42],physicalreasoning[26],physics
+reasoning[46],embodiedtasks[1,34,58],andspatialreasoningtasks[44,55]. Thoughlanguage
+modelwithinteractiveworldexperienceshowgroundingimprovements[67,70],theintroductionof
+largevisionmodels,suchasFlamingo[2],PaLI[12],orPaLM-E[18],hasenabledaleapinperformance.
+Thesevisually-groundedmodelshavebeenusedforseveraldownstreamtasks,suchasinroboticsuccess
+detection[18,20,57,68],actionprediction[7,59],andrewardprediction[16,23,48,50]. Inthis
+workweapproachtheproblemofspatialreasoningthroughfinetuningaVLMonageneratedVQA
+dataset.BydirectlyfinetuningaVLMonthistask,weinheritthegeneralityandreasoningcapabilities
+oftheunderlyingVLMaswellasshowhowthisapproachiscapableoftaskslikerewardgeneration.
+SpatialInformationinVision-LanguageDatasets. Manypriorworkshavefocusedonbenchmarking
+VLMs [61, 69], considering tasks like VQA (e.g. VQAv2 [29], OK-VQA [49], COCO [43], or Visual
+Genome[39]).Othershavefocusedonfine-grainedsceneunderstanding,suchassemanticsegmen-
+tation[5,37],objectdetection[11],orobjectidentification[15,60].Othershavefocusedspecifically
+onspatialreasoningasatask,answeringquestionsaboutobjectspatialrelations(e.g.,above,below,
+left,right)inreal[44,55]orsimulated[35]scenes. Realdatainthisdomaincanbelimitedbythe
+amountgeneratedbyhumanlabelers,whilesyntheticdatahasinherentlyboundedexpressivity.Inthis
+workweconsiderhowtoautomaticallygeneraterealdata,andfocusontheproblemofnotjustspatial
+relations,butmetricspatialdistances,whichcanbedirectlyappliedtomanydownstreamtasks.
+3
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+(d) AmbiguityResolution
+Region
+Captioning cake shaped like a house
+Clustering cake on a plate
+girl wearing a purple shirt
+blue stuffed animal
+Metric Depth
+Estimation
+Q: How far is [A] from [B]?
+(e) Q&A Synthesis
+A: It’s [Distance].
+Semantic Filtering
+Coordinate
+Canonicalization
+Human Alignment
+Segmentation
+Distance / Predicate
+Extraction
+-0.5
+0
+0.5
+(a) Semantic Filtering (b) 2D Context Extraction (c) 2D Context to 3D Context
+Figure2|Anoverviewofourdatasynthesispipeline.(a)WeuseCLIPtofilternoisyinternetimages
+andonlykeepscene-levelphotos. (b)Weapplypre-trainedexpertmodelsoninternet-scaleimages
+sothatwegetobject-centricsegmentation,depthandcaption.(c)Weliftthe2Dimageinto3Dpoint
+clouds,whichcanbeparsedbyshapeanalysisrulestoextractusefulpropertieslike3Dboundingbox.
+(d)WeavoidaskingambiguousquestionsbyclusteringobjectcaptionsusingCLIPsimilarityscore(e)
+Wesynthesizemillionsofspatialquestionandanswersfromobjectcaptionsandextractedproperties.
+3. SpatialVLM
+ToequipVLMswithbothqualitativelyandquantitativelyspatialreasoningcapabilities,wepropose
+togeneratealarge-scalespatialVQAdataset,whichisusedtotrainVLMs. Concretely,wedesigna
+comprehensivedatagenerationframeworkwhichfirstleveragesoff-the-shelfcomputervisionmodels
+including open-vocabulary detection, metric depth estimation, semantic segmentation and object-
+centriccaptioningmodelstoextractobject-centriccontexts,andthenadoptstemplate-basedapproach
+togeneratemassivespatialVQAdataofreasonablequality.WetrainourSpatialVLMusingthegenerated
+datasettolearndirectspatialreasoningcapabilities,whichwecanthencombinewiththehigh-level
+commonsensereasoningembeddedinLLMstounlockchain-of-thoughtsspatialreasoning.
+3.1. SpatialGroundingfrom2DImages
+Wehypothesizethatthereasonforthelackofspatialreasoningcapabilitiesoftoday’sVLMsisnottheir
+architecture,butthelackofspatialreasoningtrainingdata.Followingthisinsight,wedesignapipeline
+thatgeneratesVQAdatacontainingspatialreasoningquestions. Thepipelineissummarizedinin
+Figure2anddescribedindetailasfollows.
+SemanticFiltering Whileinternet-scaleimage-captioningdatasetshavebeenwidelyusedinVLM
+training[12],manyimagesinthesedatasetsarenotsuitableforsynthesizingspatialreasoningQA,
+duetothefactthattheyeitherconsistofasingleobjectordon’thaveascenebackground(e.g.product
+picturesonshoppingwebsitesorscreenshotsofcomputerscreen).Therefore,asthefirststepinour
+datasynthesispipeline, weadoptaCLIP-basedopen-vocabularyclassificationmodeltoclassifyall
+imagesandruleoutthosethatarenotsuitable.
+4
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+Object-centricContextsExtractionfrom2DImages Inordertoextractobject-centricspatialcon-
+textsfrom2Dimages,weleverageaseriesofoff-the-shelfexpertmodels,includingregionproposal,
+regioncaptioning[4],andsemanticsegmentation[41]modulestoextractobject-centricinformation.
+Withthisstep,weobtainobject-centricentitiesconsistingofpixelclustersaswellasopen-vocabulary
+captiondescriptions.
+Lifting2DContextsto3DContexts TraditionalspatialVQAdatasetsgeneratedusingobjectdetec-
+tionandboundingboxpositioning[40]arelimitedtothe2Dimageplane(lackofdepthoraltitude
+contexts)andpixel-levelreasoning(lackofmetric-scalesizeanddistancecontexts).Weperformdepth
+estimation[6]toliftmonocular2Dpixelstometric-scale3Dpointclouds. Wefurthercanonicalize
+thecameracoordinatesystemofthepointcloudintoageodeticcoordinatesystem,whichisdoneby
+horizontalsurface(e.g. “floor”,“tabletop”)segmentation[9]andframetransfer. Tothebestofour
+knowledge,wearethefirsttoliftinternet-scaleimagestoobject-centric3Dpointcloudsanduseitto
+synthesizeVQAdataembeddedwith3Dspatialreasoningsupervision.
+Ambiguity Resolution Sometimes there are multiple objects of similar categories in one image,
+leadingtoambiguitiesoftheircaptionlabels. Forexample,onesamecaptionlabel“cake”canrefer
+tomultipledifferentcakesinasameimage.Therefore,beforewecanaskquestionsabouttheseobjects,
+weneedtomakesurethereferenceexpressionsarenotambiguous.Wemadetwokeydesignchoices
+thathavebeenvalidatedempiricallytobeeffectiveintacklingthischallenge:
+• Wedeliberatelychoosetoavoidcommonobjectdetectors,whichtendtoproducefixedandcoarse
+categoriessuchas“cake”,andadoptFlexCap[4],auser-configurableobject-centriccaptioning
+approach. In practice, for each object we can sample a random caption of a variable length
+between1−6words.Asaresult,ourobjectannotationsarefine-grained,suchas“cakeshaped
+likeahouse”and“cupcakeinplasticcontainer”
+• Wedesignasemantic-orientedpost-processingalgorithmthatfurtherremoveambiguitiesby
+augmentingorrejectingobjectcaptions.DetailsofthisalgorithmareshowninAppendixA.2.
+3.2. Large-ScaleSpatialReasoningVQADataset
+AsmotivatedinSection3,wefocusourstudyoninfusing“straightforward”spatialreasoningcapabilities
+intoVLMsbypretrainingwithsyntheticdata.Therefore,wesynthesizespatial-reasoningQApairsthat
+involvenomorethantwoobjects(denoted“A”and“B”)intheimageandconsiderthetwofollowing
+categoriesofquestions.
+Qualitativequestions: thosethataskforjudgementofsomespatialrelations.Examplesare“Given
+twoobjectsAandB,whichismoretowardstheleft?”,“IsobjectAmoreelevatedthanobjectB?”and
+“AmongAandB,whichisbiggerinwidth?”.
+Quantitativequestions: thosethataskformorefine-grainedanswersthatincludenumbersand
+units.Examplesinclude“howmuchtotheleftisobjectAcomparedtoobjectB?”,“Howfarisobject
+AfromtheB?”, “FindouthowfarAispositionedbehindBrelativetothecamera.”. Similartothe
+aforementionedexamples,suchquestionscanbesynthesizedusingamainquestiontemplate,andone
+canfilltheobjectnameentriesusingtheobjectcaptionsafterdisambiguation.Thispropertyallows
+ustodotemplate-basedgeneration,anapproachcommonlyadoptedbyinstructiontuningworks[64].
+5
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+Qualitative Q & A Quantitative Q & A
+Find out if the girl
+Measure the distance
+wearing a purple shirt is It's the woman
+from the cake shaped like
+situated behind or in wearing white shirt. Around half a meter
+a house to the girl
+front of the girl wearing a
+wearing a purple shirt?
+blue sweatshirt.
+Can you provide the
+distance measurement
+Does the stool lie in front Yes, the stool is in front
+between the microwave They are 1 meter apart. Qualitative answer Quantitative question Quantitative answer
+of the microwave oven? of the microwave oven.
+oven and the kitchen
+counter?
+It's the woman wearing The girl wearing a purple
+How wide is the girl
+white shirt. shirt is 50 centimeters
+wearing a purple shirt?
+Is the plate positioned wide
+on the left or right side of The plate is to the
+How wide is the plate? 20 centimeters
+the green and yellow right.
+napkin? How far is the black
+No, the black wicker chair wicker chair with red
+Horizontally, they are 2 m
+with red cushion is below cushion from the wicker
+apart.
+Figure 3 | Example data entries from the synthetic dataset. Given the output of vision expert the white ceiling fan. chair with pillow
+horizontally?
+models,wefollowasetofquestiongenerationtemplatetogeneratebothquantitativeandqualitative
+question-answerpairstohighlightthediversityofthedataset.Thespatialconceptsarehighlightedin
+Can you provide the
+blue.Suchvisualquestion-answerpairscanbeeasilymixedtogetherwithothercaptioningorquestion distance measurement
+Yes, the stool is in front
+between the microwave They are 1 meter apart.
+answeringdatasetsandusethesametrainingobjectives. of the microwave oven.
+oven and the kitchen
+counter?
+Theanswerstothequestionsareobtainedthroughappropriatefunctionsthatwedevelop,whichtake
+asinputthesegmentedpointcloudsand3Dboundingboxesoftherelevantobjects.
+Wedesignate38differenttypesofqualitativeandquantitativespatialreasoningquestions,each
+featuringaround20questiontemplatesand10answertemplates(weshowexamplesinAppendix.A.3).
+Wealsoaddbiasthesamplingtoencourageconciseanswers.Finallyweintroduceahuman-aligned
+roundingmechanisminAppendixA.2tomakenumberroundingsinahuman-likeway. Usingsuch
+anapproach,weareabletogenerateamplequestionansweringdatapairsforthemonocularcamera
+imagesinwebliandvqadatasets. Fig3showsseveralexamplesyntheticquestionansweringpairs
+weobtained.Intotal,wecreateamassivedatasetwith10millionimagesand2billiondirectspatial
+reasoningQApairs,featuring50%qualitativequestionsand50%quantitativequestions.Thanksto
+thediversityofobjectcaptionsanddistanceunits,oursyntheticdatasetfeaturessignificantdiversity
+intermsofobjectdescription,questiontypeandphrasing.
+3.3. LearningSpatialReasoning
+DirectSpatialReasoning isdefinedasfollowing,aVision-LanguageModeltakesasinputanimage
+I andaqueryQ ofaspatialtask,andoutputananswerA,intheformatofatextstring,withoutusing
+externaltoolsorinteractingwithotherlargemodels. Weadoptthesamearchitectureandtraining
+procedureofPaLM-E[18]exceptreplacingPaLM[14]backbonewithPaLM2-S[3],asmallervariant.
+WethentrainourmodelusingamixtureoftheoriginalPaLM-Edatasetandourdataset,with5%of
+tokensdedicatedtospatialreasoningtasks.SimilartoPaLM-E,ourmethodhastheabilitytoperform
+VQAaswellasbasicembodiedplanningwhencombined.Thekeydifferenceisthatitcananswerspatial
+reasoningquestionsaboutbothbinarypredicatesandquantitativeestimations.
+Chain-of-ThoughtSpatialReasoning Manyreal-worldtasksrequiremultiplestepsofspatialrea-
+soning. Forexample,todetermineifobjectAcanfitintoobjectB,onewouldneedtoreasonabout
+6
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+User:
+Does the blue coke can, the orange can, and the silver seven up can on the table roughly form an isosceles triangle?
+Roughly means the difference between the longest and shortest triangle edges is smaller than 0.1 m.
+LLM: What is the distance between the blue coke can and the orange can?
+VLM:0.4m
+LLM: What is the distance between the orange can and the silver seven up can?
+VLM:0.48m
+LLM: What is the distance between the blue coke can and the silver seven up can?
+VLM:0.41m
+LLM: Since the difference between the longest and shortest triangle edges (0.48m -
+0.4m = 0.08m) is smaller than 0.1 m, the blue coke can, the orange can, and the
+silver seven up can roughly form an isosceles triangle.
+Figure4|Chain-of-thoughtspatialreasoning.WeillustratethatwecanperformChain-of-Thought
+SpatialreasoningwithSpatialVLM.Inthisexample,withthehelpofanLLMorchestratingSpatialVLM,
+thesystemisabletoanswerquestionslike“Doesthebluecokecan,theredcokecan,andthegreen
+spongeonthetableroughlyformanequilateraltriangle".
+sizesandconstraints. Sometimesonewouldneedtoreasonovergroundedspatialconcept(e.g. the
+counterintheimageis1meterhigh)andcommonsenseknowledge(sothatatoddlercannotreachit).
+SpatialVLMprovidesanaturallanguageinterfacetoquerywithgroundedconcepts,whencombined
+withapowerfulLLM,wecanperformcomplexspatialreasoning.
+Wecallthismethod“Chain-of-Thought Spatial Reasoning". Whileoursynthesizeddataonly
+contains direct spatial reasoning questions, it’s easy for a VLM to compose them together to solve
+complexquestionsthatrequiremulti-hopchain-of-thoughtreasoning.SimilartothemethodinSocratic
+Models[71]andLLMascoordinator[10],weutilizeanLLM(text-davinci-003)tocoordinateand
+communicatewithourSpatialVLMtosolvecomplexproblemswithChain-of-Thoughtprompting[65]
+asshowninFig.4.TheLLMcanbreakdowncomplexquestionsintosimplequestions,querytheVLM,
+andputthereasoningtogethertoderivetheresult.
+4. Experiments
+Weconductexperimentstoanswerthefollowingquestions:
+Q1DoesourspatialVQAdatagenerationandtrainingpipelineimproveVLM’sgeneralspatialreasoning
+capabilities?Andhowwelldoesitperform?
+Q2HowdoesthenoisysyntheticspatialVQAdataanddifferenttrainingstrategiesaffectthelearning
+performance?
+Q3DoestheVLMequippedwith“direct”spatialreasoningcapabilitiesunlocknewcapabilitiessuch
+aschain-of-thoughtreasoningandembodiedplanning?
+WetrainourmodelusingamixtureofPaLM-EtrainingsetandourspatialVQAdataset.Toverify
+whetherVLM’slimitationinspatialreasoningisadataproblem,wechoosethefollowingstate-of-the-art
+VLMsasbaselines,alltrainedonmixturesinwhichsemantic-captioningtasksoccupyaheavyweight,
+andwithoutourspatialVQAdataset.
+GPT-4V
+1GPT-4VisaversionofGPT-4[51]thatsupportsmultimodalinput,itachievesstate-of-the-art
+performanceinmanyvision-languagetasks.
+1AccessedNov2023viaOpenAIAPI.
+7
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+Method GPT-4V LLaVA-1.5 InstructBLIP PaLI PaLM-E PaLM2-E Ours
+Accuracy 68.0% 71.3% 60.4% 60.7% 50.2% 50.4% 75.2%
+Table1|AccuracyofdifferentVLMsonbinarypredicatepredictiontasks.Ourproposedmethod
+outperformbaselinesonbinarypredicatepredictiontasksbyalargemarginowingtotheaddition
+ofsyntheticdata.
+PaLI[12]. Anencoder-decoderVLMtrainedonmulti-lingualcorpora,itshowsstate-of-the-artper-
+formance on captioning and visual-question answering tasks. We used PaLI-X 55B variant in our
+experiments.
+PaLM-E[18].AVLMtrainedoninternet-scalevision,language,andvision-languagedata,aswellas
+roboticsdata. Itshowsstate-of-the-artperformanceinOKVQAbenchmark,aswellasbeingcapable
+ofrobotplanningtasks.WeusedPaLM-E12Bacrossourexperiments.
+PaLM2-EThevanillaPaLM2-EisanupdatedversionofPaLM-E[18]withexactsametrainingprocedure
+butamorerecentLLMbackbone.Duetothesharednetworkarchitectureandtrainingprocedurewith
+SpatialVLM,vanillaPaLM2-Enaturallyservesasthebaselinetostudytheeffectofgenerateddata.In
+therestofthepaper,unlessspecificallynoted,PaLM2-EcorrespondstoPaLM2-Sintermsofparameter
+countfollowingthenamingconventioninPaLM2technicalreport[3].
+Finally,weconsideropensourcemodelslikeLLaVA-1.5[45]andInstructBLIP[17].
+4.1. SpatialVQAperformance
+Tostress-testtheVLM’sspatialreasoningcapabilities,aspatialreasoningVQAbenchmarkwithguar-
+anteedperformancegroundingisrequired.However,thereisnotsuchaproperbenchmarkavailable
+intheliterature.Therefore,wecreatedabenchmarkbyhavinghumanannotatorslabeladiverseset
+of“direct”qualitativeandquantitativeVQAsonasubsetofWebLIimages[12],whichareunseento
+allVLMsduringthetrainingphase.Thebenchmarkquestionsandanswersarediverseandfreeform,
+followingthesyntheticdatagenerationpatterndescribedinSection3.2(detailsinAppendix.A.1).We
+annotated331qualitativespatialreasoningVQApairsand215quantitativespatialreasoningVQApairs.
+QualitativeSpatialVQA Forsuchquestions,boththehumanannotatedanswersandVLMoutputs
+arefreeformnaturallanguage. Therefore,toevaluatetheperformanceoftheVLMs,weusehuman
+raterstodetermineifanansweriscorrect,andshowthesuccessratesoftheVLMsinTable.1. Itis
+shownthatSpatialVLMisabletoachievesignificantlyhigheraccuracycomparedtoallbaselinesthat
+arenottrainedusingthesyntheticspatialVQAdata,surpassingothervision-languagemodelsincluding
+GPT-4V.Amongthebaselines,thesecondbestmodelisLLaVA-1.5,whichmightbecausedbytheir
+useofboundingboxesandcorrespondingcaptionsinvisualinstructiontuning.Anecdotally,wefound
+LLaVA-1.5performswellin2Dspatialrelationshipinference,butinferiortoourmodelsin3Dspatial
+reasoning.Thisexperimentsuggeststhatlargeandhigh-qualityspatialreasoningdataiskeytospatial
+reasoningcapabilities,whicharenotpresentinpretrainingdatasetsofstate-of-the-artVLMs.
+QuantitativeSpatialVQA Forthesequestions,bothhumanannotatoranswersandtheVLMoutputs
+arenaturallanguagedescriptionsofdistance,height,elevation,etc,usingtheirpreferredunits.We
+designtwometricsforevaluatingtheperformanceoftheVLM.First,weusethesuccessrateoftheVLMto
+produceanumbertoreflectiftheVLMisabletounderstandthequantitativespatialreasoningquestion.
+Second,sincetheanswercanrangewidelyfromcentimeterstokilometers,weusepercentagesofthe
+8
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+GPT-4V LLaVA-1.5 InstructBLIP PaLI PaLM-E PaLM2-E Ours
+Outputnumbers% 1.0% 20.9% 26.0% 52.0% 83.2% 88.8% 99.0%
+Inrange[50,200]% 0.0% 13.0% 7.9% 5.3% 23.7% 33.9% 37.2%
+Table 2 | Accuracy of different VLMs on quantitative questions about spatial relationship. As
+canbeseenfromthistable, first, ourmethodoutputsvalidformatmoreoften(99.0%ofthetime)
+thanbaselinemethods. Second,ourmethodoutputsquantitativedistanceestimationthatiscloser
+togroundtruthannotatedbyhumanmoreoftenthanbaselinemethods.
+0.6
+0.4
+0.2
+0.0
+0 1 2 3 4 5 6 7
+Image Index
+)m(
+seulaV
+Distance from grasp
+Predicted Gripper-Coke
+Distance (Mean ± Std)
+Figure5 | Givenasequenceofimageswheretherobotgripperisapproachingthecokecan,weask
+SpatialVLM“Whatisthedistancebetweentheyellowgripperandthecokecan". Weareabletoget
+accurateandmonotonicallydecreasingdistanceestimations.
+VLManswersthatfallintohalftotwiceofthegroundtruthvaluetorepresenthowaccuratetheVLM’s
+estimatesare.TheresultsareshowninTable.2,anditisshownthatourmodelperformsbetteronboth
+metricsthanbaselineswithlargemargins.WeobservedthatbaselineVLMsarereluctanttogiveanswers
+consistingofnumbers.Forexample,replying“No."toquestionslike“Canyoutellmethedistancebetween
+...".Thisislikelyduethethedistributionofthetrainingdata.Additionally,wefindthatstate-of-the-art
+VLMGPT-4VoftenrefrainfromgeneratinganswersaboutdistanceinSIunitswithadisclaimertext“I’m
+sorry,butIcannotprovideanexactdistanceastheimagedoesnotofferprecisereferencesformeasurement..".
+OurapproachSpatialVLMachievessignificantlyhighersuccessratethanallbaselines,achievingin-
+rangeresultsonalmosthalfofthequestions. Thisperformanceisremarkablegiventhatthehuman
+annotationsarenoisy,andagreementamongannotatorsarenotoftenguaranteed(Appendix.A.1).To
+betterunderstandourmodel’sperformanceandlimitations,wevisualizedtherelativeerroragainstthe
+groundtruthvalueinFig.11intheAppendix.WefoundthatSpatialVLMdoeswellonmediumrange
+sceneslikethosewithobjects1−10metersfromthecamera.Thiscoincideswiththerangewhereour
+monoculardepthestimator[6]reliablyoutputsmetricaccuratedepthestimations,whichindicatesthat
+ourmethodinheritsthebiasesandlimitationsfromexpertvisionmodelsinthedatasynthesispipeline.
+4.2. EffectofSpatialVQADatatoGeneralVQA
+Thesecondquestionwewanttoansweris:sinceweco-trainwithaconsiderableamountofspatialVQA
+data,whethertheperformanceofVLMinothertaskswilldegradeasaresult.Wecomparedourmodel
+withthevanillaPaLM2-EtrainedwithoutthespatialVQAdatasetongeneralVQAbenchmarks,and
+assummarizedinTable.3,ourmodelachievescomparableperformanceasPaLM2-EontheOKVQA
+benchmark,inwhichlimitedspatialreasoningquestionsareincluded,andperformsslightlybetter
+onVQA-v2test-devbenchmark,whichincludesspatialreasoningquestions.Thisseemtosuggestthat
+VLMsaregenerallyunderfittinginthedistributionoftasksclosetospatialreasoning,andcanbenefit
+fromspatialVQAsupervisionswithouthurtingtheirgeneralVQAcapabilities.
+9
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+GeneralVQAbenchmarks OKVQA VQAv2
+PaLM2-Ew/oco-training 61.4% 76.6%
+Ours 61.0(-0.4)% 79.0(+2.4)%
+Table3|VQAperformance.Co-trainingonSpatialVLMtrainingmixandfinetuningonVQAdatasets
+(VQAv2)improvesVQAperformance.APaLM2-EmodeltrainedwithSpatialVLMdataimprovesVQA
+v2performanceby2.4%comparedtoamodelwiththesamenumberofparameters,butwithoutthe
+data.However,wedon’tfindOKVQAtasktobenefitfromSpatialVLMtraining.
+4.3. EffectofVisualTransformer(ViT)EncoderinSpatialReasoning
+DoesafrozenViT(trainedoncontrastiveobjective)encodeenoughinformationtoperformspatial
+reasoning? Tostudythis,westartatthe110ktrainingstepandbranchintotwotrainingruns,one
+withtheViTfrozen,theotherwithViTunfrozen. Wetrainbothmodelsfor70ksteps,andevaluate
+percentagesofanswersfrombothmodelsthatfallintovariousrangesofthegroundtruthvalueinTable4.
+[50,200]% [66.7,150]% [90,110]%
+FrozenViT 34.9% 9.3% 5.6%
+UnfrozenViT 37.2(+2.3)% 10.7(+1.4)% 8.4(+2.8)%
+Table4 | ComparisononfinetuningwithfrozenorunfrozenViT.Wefinditisbeneficialtounfreeze
+thepretrainedViTfordistanceestimationtasks.
+Itisshownthatforlargerscaleandlessfine-graineddistanceestimation,suchasmakingarough
+estimationwithinthehalf-to-twicerangeofthegroundtruth,trainingwithoutfreezingViTperforms
+slightlyworsebutcomparablewithunfrozenViT.However,formorefine-graineddistanceestimationlike
+estimatingaccuratequantitativevalues,themodelwithunfrozenViTperformedconsiderablybetter.We
+hypothesizethatthepretrainedViT(withcontrastiveorclassificationloss)islossyinitsfine-grainedspa-
+tialinformation.Ourmodelachieves8.4%accuracyforpredictingavalue0.9×to1.1×rangeofhuman
+annotation.Thisisremarkablesincehumansannotationsarenoisy.Infact,humansometimestendto
+givenoisyestimations,astheyprefertoroundanestimationof0.8meterto1meter.Itremainschalleng-
+ingtoevaluatequantitativespatialreasoningcapabilitiesofvision-languagemodelsinbroaddomains.
+4.4. EffectofNoisyQuantitativeSpatialAnswers
+Since the quantitative answers of the spatial VQA dataset are noisy, we study if VLMs can learn
+generalizablequantitativeestimationsfromalargeamountofnoisytrainingdata.Todoso,wefirst
+comeupwithadomainwhereweareabletogeneratehighqualityquantitativeanswers.Asdiscussedin
+Section4.1themonoculardepthestimationisoneofthestepsinthedatagenerationpipelinethatinduce
+themostnoises.Therefore,weleverageourroboticmanipulationdataset,whichprovidesnear-ground-
+truthdepthinformationcapturedusingadepthcamera.Asaresult,thegeneratedquantitativeanswers
+aremoreaccurate.WetrainVLMusingthisdataset,andfindthemodelabletoperformfine-grained
+distanceestimationinthemanipulationdomain(Fig.5),whichfurtherdemonstratesthedataaccuracy.
+TostudyhownoisydataaffectsVLMtraining,weaddGaussiannoisesuponthequantitativeanswers
+oftheaccuratemanipulationspatialVQAdataset,andobtainaseriesofnoisydatasetsofdifferentnoise
+level.WetrainVLMsusingthenoisydatasetsandevaluatethemusingahumanannotatedquantitative
+spatialVQAbenchmarkformanipulation.Table.5compareshowdifferentGaussiannoisestandard
+deviationsaffecttheoverallVLMperformanceonquantitativespatialVQA.Sincetheobjectsinthe
+manipulationVQAdatasetsarewithin1meterrange,weaddedthemeansquarederror(MSE)asa
+10
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+Gaussianstd 0 0.1 0.2 0.3
+MSE(m) 0.046 0.053 0.039 0.048
+[50,200]% 59.0% 55.8% 61.1% 61.1%
+Table 5 | Comparison on different data noise levels, controlled using standard deviation (STD) of
+Gaussiannoise.Wefindthatourmodelcanlearndespitemoderateamountofrandomnoise.
+pick orange tea bottle put apple into the bowl pick up the apple
+Figure6 | SpatialVLMasrewardgeneratorforroboticstasks. SpatialVLMprovidesa“natural-language
+queriable"distanceestimationtool,andcanbeusedforroboticstasks.Forexample,forthetask“pickorange
+teabottle",thereward/costfunctioncanbetheafunctionoftheresponseof“Whatisthedistancebetweenthe
+yellowgripperfingersandtheorangeteabottle".Andforthetask“puttheappleintothebowl",thereward/cost
+functioncanbeafunctionoftheresponseof“whatisthedistancebetweentheappleandbowl". Wesample
+differentgripperpositionsandshowthecostfunctionintheabovescatterplots.
+metrictoevaluatetheVLMperformance,aswellasthehalf-to-twicepercentagewhichisdefinedin
+Section4.1.ItisshownthatVLMstrainedondatasetsofdifferentnoiselevelsachievesimilarspatial
+reasoningaccuracy.Wespeculatethisisduetothenoisynatureofthetrainingdataandthemanually
+annotatedevaluationbenchmark,andthatVLMcanlearnaspatialreasoningcommon-sensedespite
+noisydata.Weobservedthisinterestingphenomenoninroboticsexperimentsaswell.InFig.6,the
+distanceestimationisexhibitabiastowardsthemeansincethemodelisheavilyregularized.
+4.5. SpatialReasoningUnlocksNovelApplications
+VLMasaDenseRewardAnnotator OneimportantapplicationofVLMisrobotics.Recently,works
+haveshownthatVLMsandLLMscanserveasuniversalopen-vocabularyrewardannotatorsandsuccess
+detector[20]forroboticstasks,whichcanbeusedtoderiveusefulcontrolpolicies.However,thereward
+annotationabilityofVLMsareoftenlimitedbylackofspatialawareness.SinceSpatialVLMisabletoquan-
+titativelyestimatedistancesorsizesfromimage,it’suniquelysuitedasadenserewardannotator.Wecon-
+ductarealrobotexperimentwherewespecifyataskinnaturelanguageandaskSpatialVLMtoannotate
+arewardforeachframeinatrajectory.InFigure6,eachdotillustratesanobjectlocationandtheircolor
+indicatestheannotatedreward.Astherobotmakesprogresstowardsthespecifiedgoal,wecanseethe
+rewardincreasemonotonically,indicatingtheabilityofSpatialVLMtoserveasadenserewardannotator.
+Chain-of-ThoughtSpatialReasoning Inthissection,weinvestigatewhetherSpatialVLMcanbe
+usedtodotasksrequiringmulti-stepreasoning,givenitsenhancedabilitytoanswerelementalspatial
+questions.WedemonstrateafewexamplesinFigure 1andFigure 4.Alargelanguagemodel,inthis
+caseGPT-4,whenequippedwithSpatialVLMasaspatialreasoningsubmodule,canperformcomplex
+spatialreasoningtasks,suchasansweringif3objectsintheenvironmentcanforma“isoscelestriangle".
+11
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+5. Conclusion
+Inconclusion,ourresearchaddressesthechallengeofinfusingspatialreasoningtoVLMs,andapproach
+it by constructing a framework for automatic generation of 3D spatial reasoning VQA data based
+on Internet-scale real-world images. We ablate different design choices in the recipes for training
+VLMs,suchastrainingwithlargeamountofnoisydataandunfreezingViT.Whileourdirectspatial
+queries are built on a finite set of templates, we show SpatialVLM can be extended to tackle more
+complicatedchain-of-thoughtreasoningthatrequiresspatialreasoningcomponents. SpatialVLMis
+alsodemonstratedtobeusefulforroboticstasks,whereweshowthata3Dspatial-awareVLMcouldbe
+usedasarewardannotatorforroboticstasks.Additionalstudyofmorenuancedgeometricprimitives
+canalsohelpfullygroundspatialreasoningin3Dgeometry.
+References
+[1] Michael Ahn, Anthony Brohan, Noah Brown, Yevgen Chebotar, Omar Cortes, Byron David,
+ChelseaFinn,ChuyuanFu,KeerthanaGopalakrishnan,KarolHausman,etal. Doasican,not
+asisay:Groundinglanguageinroboticaffordances. arXivpreprintarXiv:2204.01691,2022.
+[2] Jean-BaptisteAlayrac,JeffDonahue,PaulineLuc,AntoineMiech,IainBarr,YanaHasson,Karel
+Lenc,ArthurMensch,KatieMillican,MalcolmReynolds,RomanRing,ElizaRutherford,Serkan
+Cabi,TengdaHan,ZhitaoGong,SinaSamangooei,MarianneMonteiro,JacobMenick,Sebastian
+Borgeaud,AndrewBrock,AidaNematzadeh,SahandSharifzadeh,MikolajBinkowski,Ricardo
+Barreira,OriolVinyals,AndrewZisserman,andKarenSimonyan. Flamingo:avisuallanguage
+modelforfew-shotlearning,2022.
+[3] RohanAnil,AndrewMDai,OrhanFirat,MelvinJohnson,DmitryLepikhin,AlexandrePassos,
+Siamak Shakeri, Emanuel Taropa, Paige Bailey, Zhifeng Chen, et al. Palm 2 technical report.
+arXivpreprintarXiv:2305.10403,2023.
+[4] Anonymous. Flexcap: Generating rich, localized, and flexible captions in images. In
+Submitted to The Twelfth International Conference on Learning Representations, 2023. URL
+https://openreview.net/forum?id=7Phicg0WAg. underreview.
+[5] IvanaBalažević,DavidSteiner,NikhilParthasarathy,ReljaArandjelović,andOlivierJHénaff.
+Towardsin-contextsceneunderstanding. arXivpreprintarXiv:2306.01667,2023.
+[6] ShariqFarooqBhat,ReinerBirkl,DianaWofk,PeterWonka,andMatthiasMüller. Zoedepth:
+Zero-shottransferbycombiningrelativeandmetricdepth.arXivpreprintarXiv:2302.12288,2023.
+[7] AnthonyBrohan,NoahBrown,JusticeCarbajal,YevgenChebotar,XiChen,KrzysztofChoroman-
+ski,TianliDing,DannyDriess,AvinavaDubey,ChelseaFinn,etal. Rt-2:Vision-language-action
+modelstransferwebknowledgetoroboticcontrol. arXivpreprintarXiv:2307.15818,2023.
+[8] Cesar Cadena, Luca Carlone, Henry Carrillo, Yasir Latif, Davide Scaramuzza, José Neira, Ian
+Reid,andJohnJLeonard. Past,present,andfutureofsimultaneouslocalizationandmapping:
+Towardtherobust-perceptionage. IEEETransactionsonrobotics,32(6):1309–1332,2016.
+[9] Liang-Chieh Chen, George Papandreou, Iasonas Kokkinos, Kevin Murphy, and Alan L Yuille.
+Deeplab: Semantic image segmentation with deep convolutional nets, atrous convolution,
+andfullyconnectedcrfs. IEEEtransactionsonpatternanalysisandmachineintelligence,40(4):
+834–848,2017.
+12
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+[10] LiangyuChen,BoLi,ShengShen,JingkangYang,ChunyuanLi,KurtKeutzer,TrevorDarrell,
+andZiweiLiu. Languagemodelsarevisualreasoningcoordinators. InICLR2023Workshopon
+MathematicalandEmpiricalUnderstandingofFoundationModels,2023.
+[11] TingChen,SaurabhSaxena,LalaLi,DavidJFleet,andGeoffreyHinton. Pix2seq:Alanguage
+modelingframeworkforobjectdetection. arXivpreprintarXiv:2109.10852,2021.
+[12] XiChen,XiaoWang,SoravitChangpinyo,AJPiergiovanni,PiotrPadlewski,DanielSalz,Sebastian
+Goodman,AdamGrycner,BasilMustafa,LucasBeyer,etal. Pali: Ajointly-scaledmultilingual
+language-imagemodel. arXivpreprintarXiv:2209.06794,2022.
+[13] XinleiChen,HaoFang,Tsung-YiLin,RamakrishnaVedantam,SaurabhGupta,PiotrDollár,and
+CLawrenceZitnick. Microsoftcococaptions:Datacollectionandevaluationserver. arXivpreprint
+arXiv:1504.00325,2015.
+[14] AakankshaChowdhery,SharanNarang,JacobDevlin,MaartenBosma,GauravMishra,Adam
+Roberts,PaulBarham,HyungWonChung,CharlesSutton,SebastianGehrmann,etal. Palm:
+Scalinglanguagemodelingwithpathways. arXivpreprintarXiv:2204.02311,2022.
+[15] VanyaCohen,BenjaminBurchfiel,ThaoNguyen,NakulGopalan,StefanieTellex,andGeorge
+Konidaris. Grounding language attributes to objects using bayesian eigenobjects. In 2019
+IEEE/RSJInternationalConferenceonIntelligentRobotsandSystems(IROS),pages1187–1194.
+IEEE,2019.
+[16] Yuchen Cui, Scott Niekum, Abhinav Gupta, Vikash Kumar, and Aravind Rajeswaran. Can
+foundationmodelsperformzero-shottaskspecificationforrobotmanipulation? InLearning
+forDynamicsandControlConference,pages893–905.PMLR,2022.
+[17] WenliangDai,JunnanLi,DongxuLi,AnthonyMengHuatTiong,JunqiZhao,WeishengWang,
+BoyangLi,PascaleFung,andStevenHoi. Instructblip:Towardsgeneral-purposevision-language
+modelswithinstructiontuning,2023.
+[18] DannyDriess,FeiXia,MehdiS.M.Sajjadi,CoreyLynch,AakankshaChowdhery,BrianIchter,
+AyzaanWahid,JonathanTompson,QuanVuong,TianheYu,WenlongHuang,YevgenChebotar,
+PierreSermanet,DanielDuckworth,SergeyLevine,VincentVanhoucke,KarolHausman,Marc
+Toussaint,KlausGreff,AndyZeng,IgorMordatch,andPeteFlorence. Palm-e:Anembodiedmulti-
+modallanguagemodel. InProceedingsoftheInternationalConferenceonMachineLearning,2023.
+[19] Yuqing Du, Ksenia Konyushkova, Misha Denil, Akhil Raju, Jessica Landon, Felix Hill, Nando
+de Freitas, and Serkan Cabi. Vision-language models as success detectors. arXiv preprint
+arXiv:2303.07280,2023.
+[20] Yuqing Du, Ksenia Konyushkova, Misha Denil, Akhil Raju, Jessica Landon, Felix Hill, Nando
+deFreitas,andSerkanCabi. Vision-languagemodelsassuccessdetectors,2023.
+[21] Hugh Durrant-Whyte and Tim Bailey. Simultaneous localization and mapping: part i. IEEE
+robotics&automationmagazine,13(2):99–110,2006.
+[22] MartinEster,Hans-PeterKriegel,JörgSander,XiaoweiXu,etal. Adensity-basedalgorithmfor
+discoveringclustersinlargespatialdatabaseswithnoise.Inkdd,volume96,pages226–231,1996.
+[23] LinxiFan,GuanzhiWang,YunfanJiang,AjayMandlekar,YuncongYang,HaoyiZhu,Andrew
+Tang, De-An Huang, Yuke Zhu, and Anima Anandkumar. Minedojo: Building open-ended
+embodied agents with internet-scale knowledge. Advances in Neural Information Processing
+Systems,35:18343–18362,2022.
+13
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+[24] HuanFu, MingmingGong, ChaohuiWang, KayhanBatmanghelich, andDachengTao. Deep
+ordinalregressionnetworkformonoculardepthestimation. InProceedingsoftheIEEEconference
+oncomputervisionandpatternrecognition,pages2002–2011,2018.
+[25] ZheGan,LinjieLi,ChunyuanLi,LijuanWang,ZichengLiu,JianfengGao,etal. Vision-language
+pre-training:Basics,recentadvances,andfuturetrends. FoundationsandTrends®inComputer
+GraphicsandVision,14(3–4):163–352,2022.
+[26] JensenGao,BidiptaSarkar,FeiXia,TedXiao,JiajunWu,BrianIchter,AnirudhaMajumdar,and
+DorsaSadigh. Physicallygroundedvision-languagemodelsforroboticmanipulation,2023.
+[27] TheophileGervet,SoumithChintala,DhruvBatra,JitendraMalik,andDevendraSinghChaplot.
+Navigatingtoobjectsintherealworld. ScienceRobotics,8(79):eadf6991,2023.
+[28] DanielGordon,AniruddhaKembhavi,MohammadRastegari,JosephRedmon,DieterFox,and
+AliFarhadi. Iqa: Visualquestionansweringininteractiveenvironments. InProceedingsofthe
+IEEEconferenceoncomputervisionandpatternrecognition,pages4089–4098,2018.
+[29] YashGoyal, TejasKhot, DouglasSummers-Stay, DhruvBatra, andDeviParikh. Makingthev
+invqamatter:Elevatingtheroleofimageunderstandinginvisualquestionanswering,2017.
+[30] KaimingHe,GeorgiaGkioxari,PiotrDollár,andRossGirshick. Maskr-cnn. InProceedingsof
+theIEEEinternationalconferenceoncomputervision,pages2961–2969,2017.
+[31] SachithraHemachandra,MatthewRWalter,StefanieTellex,andSethTeller. Learningspatial-
+semanticrepresentationsfromnaturallanguagedescriptionsandsceneclassifications. In2014
+IEEEInternationalConferenceonRoboticsandAutomation(ICRA),pages2623–2630.IEEE,2014.
+[32] MarcelHildebrandt,HangLi,RajatKoner,VolkerTresp,andStephanGünnemann. Scenegraph
+reasoningforvisualquestionanswering,2020.
+[33] Xiaowei Hu, Zhe Gan, Jianfeng Wang, Zhengyuan Yang, Zicheng Liu, Yumao Lu, and Lijuan
+Wang. Scaling up vision-language pre-training for image captioning. In Proceedings of the
+IEEE/CVFConferenceonComputerVisionandPatternRecognition,pages17980–17989,2022.
+[34] Wenlong Huang, Pieter Abbeel, Deepak Pathak, and Igor Mordatch. Language models as
+zero-shot planners: Extracting actionable knowledge for embodied agents. In International
+ConferenceonMachineLearning,pages9118–9147.PMLR,2022.
+[35] JustinJohnson,BharathHariharan,LaurensvanderMaaten,LiFei-Fei,C.LawrenceZitnick,
+andRossGirshick. Clevr:Adiagnosticdatasetforcompositionallanguageandelementaryvisual
+reasoning,2016.
+[36] Mohi Khansari, Daniel Ho, Yuqing Du, Armando Fuentes, Matthew Bennice, Nicolas Sievers,
+SeanKirmani,YunfeiBai,andEricJang. Practicalimitationlearningintherealworldviatask
+consistencyloss,2022.
+[37] AlexanderKirillov,EricMintun,NikhilaRavi,HanziMao,ChloeRolland,LauraGustafson,Tete
+Xiao,SpencerWhitehead,AlexanderCBerg,Wan-YenLo,etal. Segmentanything. arXivpreprint
+arXiv:2304.02643,2023.
+[38] EricKolve,RoozbehMottaghi,WinsonHan,EliVanderBilt,LucaWeihs,AlvaroHerrasti,Matt
+Deitke,KianaEhsani,DanielGordon,YukeZhu,etal. Ai2-thor:Aninteractive3denvironment
+forvisualai. arXivpreprintarXiv:1712.05474,2017.
+14
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+[39] RanjayKrishna,YukeZhu,OliverGroth,JustinJohnson,KenjiHata,JoshuaKravitz,Stephanie
+Chen,YannisKalantidis,Li-JiaLi,DavidA.Shamma,MichaelS.Bernstein,andFei-FeiLi. Visual
+genome:Connectinglanguageandvisionusingcrowdsourceddenseimageannotations,2016.
+[40] RanjayKrishna,YukeZhu,OliverGroth,JustinJohnson,KenjiHata,JoshuaKravitz,Stephanie
+Chen,YannisKalantidis,Li-JiaLi,DavidAShamma,etal. Visualgenome:Connectinglanguage
+andvisionusingcrowdsourceddenseimageannotations. Internationaljournalofcomputervision,
+123:32–73,2017.
+[41] Weicheng Kuo, Anelia Angelova, Jitendra Malik, and Tsung-Yi Lin. Shapemask: Learning to
+segment novel objects by refining shape priors. In Proceedings of the IEEE/CVF international
+conferenceoncomputervision,pages9207–9216,2019.
+[42] Minae Kwon, Hengyuan Hu, Vivek Myers, Siddharth Karamcheti, Anca Dragan, and Dorsa
+Sadigh. Towardgroundedsocialreasoning,2023.
+[43] Tsung-YiLin,MichaelMaire,SergeBelongie,LubomirBourdev,RossGirshick,JamesHays,Pietro
+Perona,DevaRamanan,C.LawrenceZitnick,andPiotrDollár. Microsoftcoco:Commonobjects
+incontext,2015.
+[44] Fangyu Liu, Guy Emerson, and Nigel Collier. Visual spatial reasoning. Transactions of
+the Association for Computational Linguistics, 11:635–651, 2023. ISSN 2307-387X. doi:
+10.1162/tacl_a_00566. URLhttp://dx.doi.org/10.1162/tacl_a_00566.
+[45] HaotianLiu,ChunyuanLi,QingyangWu,andYongJaeLee. Visualinstructiontuning. arXiv
+preprintarXiv:2304.08485,2023.
+[46] RuiboLiu,JasonWei,ShixiangShaneGu,Te-YenWu,SoroushVosoughi,ClaireCui,DennyZhou,
+andAndrewMDai. Mind’seye:Groundedlanguagemodelreasoningthroughsimulation. arXiv
+preprintarXiv:2210.05359,2022.
+[47] ShikunLiu,LinxiFan,EdwardJohns,ZhidingYu,ChaoweiXiao,andAnimaAnandkumar.Prismer:
+Avision-languagemodelwithanensembleofexperts. arXivpreprintarXiv:2303.02506,2023.
+[48] Parsa Mahmoudieh, Deepak Pathak, and Trevor Darrell. Zero-shot reward specification
+via grounded natural language. In International Conference on Machine Learning, pages
+14743–14752.PMLR,2022.
+[49] KennethMarino,MohammadRastegari,AliFarhadi,andRoozbehMottaghi. Ok-vqa:Avisual
+questionansweringbenchmarkrequiringexternalknowledge,2019.
+[50] SurajNair,EricMitchell,KevinChen,SilvioSavarese,ChelseaFinn,etal. Learninglanguage-
+conditionedrobotbehaviorfromofflinedataandcrowd-sourcedannotation. InConferenceon
+RobotLearning,pages1303–1315.PMLR,2022.
+[51] OpenAI. Gpt-4technicalreport,2023.
+[52] AlecRadford,JongWookKim,ChrisHallacy,AdityaRamesh,GabrielGoh,SandhiniAgarwal,
+GirishSastry,AmandaAskell,PamelaMishkin,JackClark,etal. Learningtransferablevisual
+models from natural language supervision. In International conference on machine learning,
+pages8748–8763.PMLR,2021.
+[53] StephanRRichter,VibhavVineet,StefanRoth,andVladlenKoltun.Playingfordata:Groundtruth
+fromcomputergames. InComputerVision–ECCV2016:14thEuropeanConference,Amsterdam,
+TheNetherlands,October11-14,2016,Proceedings,PartII14,pages102–118.Springer,2016.
+15
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+[54] JuanRocamonde,VictorianoMontesinos,ElvisNava,EthanPerez,andDavidLindner. Vision-
+language models are zero-shot reward models for reinforcement learning. arXiv preprint
+arXiv:2310.12921,2023.
+[55] Julia Rozanova, Deborah Ferreira, Krishna Dubba, Weiwei Cheng, Dell Zhang, and Andre
+Freitas. Groundingnaturallanguageinstructions: Canlargelanguagemodelscapturespatial
+information?,2021.
+[56] ManolisSavva,AbhishekKadian,OleksandrMaksymets,YiliZhao,ErikWijmans,BhavanaJain,
+JulianStraub,JiaLiu,VladlenKoltun,JitendraMalik,etal. Habitat:Aplatformforembodied
+airesearch. InProceedingsoftheIEEE/CVFinternationalconferenceoncomputervision,pages
+9339–9347,2019.
+[57] PierreSermanet, TianliDing, JeffreyZhao, FeiXia, DebidattaDwibedi, KeerthanaGopalakr-
+ishnan,ChristineChan,GabrielDulac-Arnold,SharathMaddineni,NikhilJJoshi,etal. Robovqa:
+Multimodallong-horizonreasoningforrobotics. arXivpreprintarXiv:2311.00899,2023.
+[58] MohitShridhar,JesseThomason,DanielGordon,YonatanBisk,WinsonHan,RoozbehMottaghi,
+LukeZettlemoyer,andDieterFox. Alfred:Abenchmarkforinterpretinggroundedinstructions
+for everyday tasks. In Proceedings of the IEEE/CVF conference on computer vision and pattern
+recognition,pages10740–10749,2020.
+[59] MohitShridhar,LucasManuelli,andDieterFox. Cliport:Whatandwherepathwaysforrobotic
+manipulation. InConferenceonRobotLearning,pages894–906.PMLR,2022.
+[60] JesseThomason,MohitShridhar,YonatanBisk,ChrisPaxton,andLukeZettlemoyer. Language
+groundingwith3dobjects. InConferenceonRobotLearning,pages1691–1701.PMLR,2022.
+[61] Tristan Thrush, Ryan Jiang, Max Bartolo, Amanpreet Singh, Adina Williams, Douwe Kiela,
+and Candace Ross. Winoground: Probing vision and language models for visio-linguistic
+compositionality. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern
+Recognition,pages5238–5248,2022.
+[62] Johanna Wald, Helisa Dhamo, Nassir Navab, and Federico Tombari. Learning 3d semantic
+scenegraphsfrom3dindoorreconstructions. 2020IEEE/CVFConferenceonComputerVision
+and Pattern Recognition (CVPR), Jun 2020. doi: 10.1109/cvpr42600.2020.00402. URL
+http://dx.doi.org/10.1109/cvpr42600.2020.00402.
+[63] MatthewRWalter,SachithraMadhawHemachandra,BiancaSHomberg,StefanieTellex,and
+SethTeller. Learningsemanticmapsfromnaturallanguagedescriptions. Robotics:Scienceand
+Systems,2013.
+[64] JasonWei,MaartenBosma,VincentYZhao,KelvinGuu,AdamsWeiYu,BrianLester,NanDu,
+AndrewMDai,andQuocVLe. Finetunedlanguagemodelsarezero-shotlearners. arXivpreprint
+arXiv:2109.01652,2021.
+[65] JasonWei,XuezhiWang,DaleSchuurmans,MaartenBosma,FeiXia,EdChi,QuocVLe,Denny
+Zhou,etal. Chain-of-thoughtpromptingelicitsreasoninginlargelanguagemodels. Advances
+inNeuralInformationProcessingSystems,35:24824–24837,2022.
+[66] FeiXia,AmirRZamir,ZhiyangHe,AlexanderSax,JitendraMalik,andSilvioSavarese. Gibson
+env: Real-world perception for embodied agents. In Proceedings of the IEEE conference on
+computervisionandpatternrecognition,pages9068–9079,2018.
+16
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+[67] Jiannan Xiang, Tianhua Tao, Yi Gu, Tianmin Shu, Zirui Wang, Zichao Yang, and Zhiting Hu.
+Languagemodelsmeetworldmodels:Embodiedexperiencesenhancelanguagemodels. arXiv
+preprintarXiv:2305.10626,2023.
+[68] TedXiao,HarrisChan,PierreSermanet,AyzaanWahid,AnthonyBrohan,KarolHausman,Sergey
+Levine, and Jonathan Tompson. Robotic skill acquisition via instruction augmentation with
+vision-languagemodels. arXivpreprintarXiv:2211.11736,2022.
+[69] PengXu,WenqiShao,KaipengZhang,PengGao,ShuoLiu,MengLei,FanqingMeng,Siyuan
+Huang,YuQiao,andPingLuo. Lvlm-ehub: Acomprehensiveevaluationbenchmarkforlarge
+vision-languagemodels. arXivpreprintarXiv:2306.09265,2023.
+[70] Rowan Zellers, Ari Holtzman, Matthew Peters, Roozbeh Mottaghi, Aniruddha Kembhavi, Ali
+Farhadi, and Yejin Choi. Piglet: Language grounding through neuro-symbolic interaction in
+a3dworld. arXivpreprintarXiv:2106.00188,2021.
+[71] AndyZeng,MariaAttarian,BrianIchter,KrzysztofChoromanski,AdrianWong,StefanWelker,Fed-
+ericoTombari,AveekPurohit,MichaelRyoo,VikasSindhwani,etal. Socraticmodels:Composing
+zero-shotmultimodalreasoningwithlanguage. arXivpreprintarXiv:2204.00598,2022.
+17
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+A. Appendix
+A.1. AdditionalExperimentsandDetails
+SpatialVQAHumanAnnotatedBenchmark Wemanuallylabelled546qualitativeandquantitative
+questionpairsforWebLiandroboticmanipulationVQA.Inthehumanannotationpipeline,weuse
+thespatialVQAdatagenerationpipelinedescribedinSection3toprovideasamplequestionforeach
+image,thehumanannotatorwouldlookattheimageandthesamplequestion,decideifheorshe
+wouldliketousethequestionortypeamoreproperquestion,ortoskiptheannotationfortheimage.
+Thenbasedonthesamplequestionorthehumaninputquestion,thehumanannotatorwouldtype
+theanswerheorshethinksasproperintheformofnaturallanguage.Fig.7,Fig.8,andFig.9shows
+examplesofthehumanannotatedspatialVQApairs.
+Q: Is the fireplace screen with red doors Q: Compared to the little boy in a red Q: Are the windows positioned to the left of Q: Is the palm tree in distance taller than
+smaller than the dog standing on the floor shirt, which side is the man wearing a the black television? the parked white car?
+in width? blue shirt on? A: yes A: yes
+A: no A: left
+Figure7|Examplequestion-answerpairsoftheSpatialVQAqualitativebenchmark
+Q: Could you provide the distance between Q: Determine the distance of the fence Q: What is the distance between the sand and the
+Q: How far is the striped tie towards the
+the sign and the motorcyclist? from the giraffes in a zoo relative to the people that are standing on the beach?
+left from the black cell phone?
+A: about 0.5 meter camera. A: 0, as the people are directly standing on the
+A: about 0.2 meter
+A: about 5 meters sand
+Figure8|Examplequestion-answerpairsoftheSpatialVQAquantitativebenchmark
+Q: How far is the yellow robot gripper finger Q: What is the elevation of the bag of Q: How much distance is the red apple Q: Could you provide the distance between
+from the white bottle that is laying on the chips on table with respect to the table from the can on the table? the yellow finger and the black snacks bag?
+left side of the table? top surface? A: It's approximately 20 centimeters. A: 5 inches
+A: 10 cm. A: The height of the bag of chips on table
+from the ground is 6 cm.
+Figure9|Examplequestion-answerpairsoftheroboticmanipulationVQAquantitativebenchmark
+Chain-of-thoughts Hereweprovidemoredetailstoourimplementationofchain-of-thoughtspatial
+reasoning.Aswementionedinmainpaper,wepromptaLLMtoperformchain-of-thoughtreasoning
+18
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+si fo no ot ni hcihw etihw edis thgir namow tfel denoitisop kcalb uoy erom gniraew enimreted seod dniheb eulb tnorf nam s'taht resolc der elbat nworb neerg tcejbo nedoow nac sdrawot eil dnah-tfel gnidnats erapmoc dnah-thgir em trihs gnittis ta rehtruf llaw od riahc wonk evoba morf egami wolley rellams roolf eert llet nosrep lrig smret woleb ?rehto knip gnignah noitisop egde emoc eno gniliec era rehgih hcneb dluoc thgil ssel sserd ,tcejbo rediw ?trihs ?elbat srewolf ?htdiw snoitisop dnuorg tnalp yfitnedi gur dnuorgkcab reggib dnif retaw detautis elpoep
+1.75
+1.50
+1.25
+1.00
+0.75
+0.50
+0.25
+0.00
+ycneuqerF
+1e8 Top Word Frequencies in Questions
+Figure10|Topwordfrequency.Topwordsappearedinthetrainingdataset,theredcolorindicate
+thewordisinvolvedindiscussingaspatialconcept.Itshowsthatourtrainingdataisrichanddiverse
+inspatialquestions.
+Figure11|ErrorvsSceneDepthablation. TheerrorsthatSpatialVLMmakeeventuallyattributes
+tothenoiseinthedata,weplotthedistanceestimationrelativeerror(cappedat1.0)w.r.t. ground
+truthdistance,andfoundthattherearegenerallylargererrorsforbiggerdistance. Wehypothesize
+thismightbeduetodatasetbiasofZoeDepth[6].
+withabilitytoqueryourSpatialVLMforvisualinformation.SincetheLLMisn’tawareofvisualinfor-
+mationitself,wepromptittomakedecisionasifit’splayingagame,byaskingitsfriendwhocansee
+animagethatitcannotseeitself.Weprovidethefullpromptbelow:
+Listing1|SpatialVLMCoTPrompts
+You are participating in a visual question answering game with your
+friend. In this game, you are presented with a question which requires visual information from an
+image to answer. You can see the question but not the image, while your friend can see the image but
+not the original question. Luckily, you are allowed to decompose the question and ask your friend
+about the image. Your friend gives you answers which can be used to answer the original question.
+Here is a sample conversation:
+[Question] How can I clean up the table? Give detailed instruction about how should I move my hand.
+[You] What objects are there in the image?
+[Friend] There is an empty coke can, a trash bin and a coffee machine.
+[You] Is the trash bin to the left or to the right of the coke can?
+[Friend] It’s to the left.
+[You] Is the trash bin or the coke can further from you?
+[Friend] They are similar in depth.
+19
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+[You] How much to the left is the trash bin compared to the coke can?
+[Friend] Around 20 centimeters.
+[Answer] One
+should grab the coke can, move it 20 centimeters left and release it so it falls in the trash bin.
+Here is another example:
+[Question] Tell me if the distance
+between the blue bottle and the yellow book is longer than that between the plant and the coke can?
+[You] What is the distance between the blue bottle and the yellow book?
+[Tool] 0.3m
+[You] What is the distance between the plant and the coke can?
+[Friend] 0.7m
+[Robot] Since the distance between the blue bottle and the
+yellow book is 0.3m and distance between the plant while the coke can is 0.7m, the distance between
+the blue bottle and the yellow book is not longer than that between the plant and the coke can.
+[Answer] No.
+Here is another example:
+[Question] Which object can
+be reached by kids more easily, the white and yellow rabbit toy can or the dark green can of beer?
+[You] What is the elevation of the white and yellow rabbit toy can?
+[Friend] 0.9 m.
+[You] What is the elevation of the dark green can of beer?
+[Friend] 0.2 m.
+[Answer] Since the kids are generally shorter, it is easier for them to
+reach something that are lower in altitude, so it would be easier for them to reach the can of beer.
+Now, given
+a new question, try to answer the questions by asking your friend for related visual information.
+[Question]
+Bydoingso,wefindLLMandSpatialVLMcaneffectivelyworktogethertoderivethecorrect.
+A.2. ImplementationDetails
+SemanticFiltering Inthedatafilteringphase,wehave2importantobjectives:First,weshallfilter
+outimagesthathumanscanhardlyaskanyspatialquestions,suchasphotoofasingleobjectbefore
+awhitebackground.Second,sinceourprocessrequiresliftinga2Dimageto3Dpointcloud,wedesire
+thefieldofviewtobeclosetoavalueourmonoculardepthestimationmodelisoptimizedfor.
+Toachievethefirstobjective,weuseapretrainedCLIPmodeltolabelthecandidateimages,and
+filteroutthosethatrepresentaproductoranartwork.PositiveCLIPlabelsinclude“aniphonephoto
+ofanindoorscene",and“aniphonephotoofanoutdoorscene",whilenegativelabelsare“acloseup
+shotofasingleobject",“aproductdisplayedinfrontofawhitebackground",“anartwork",“apainting",
+“ascreenshotofgraphicsuserinterface",“apieceoftext",“asketch".
+Wechoose“aniphonephoto”asaprefixforpositivecasestosatisfythesecondobjective.Weobserve
+thatthisprefixeffectivelyfiltersoutdatathathasawiderfieldofview,aswellascertainimageswith
+uncommonperspectiveratio.
+Suchdesignchoicesindatafilteringensuretheimagesleftarewithintheeffectivedistributionof
+ourexpertmodelsandqageneration.
+2DContextsExtraction Aswementionedinmethodsection,weuseavarietyofoff-the-shelfmodels
+toextractrelaventinformationtosynthesizeourquestionanswerdata. Hereweprovideadditional
+detailstocontextextraction.Afterdatafiltering,werunaregionproposalnetwork(RPN)followedbya
+non-maxsuppression(NMS)[30].Foreachobjectboundingbox,werunaclassagnosticsegmentation
+model [41] to segment out the object. For each bounding box, we use FlexCap [4] to sample an
+object-centriccaptionwithrandomlengthbetween1−6words.Inparticular,wedeliberatelychoose
+20
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+toavoidtraditionalobjectdetectors,astheyarefixedtoverycoarsecategoriessuchas“cake”,while
+ourapproachcanannotateobjectswithfine-graineddescriptionslike“cakeshapedlikeahouse”and
+“cupcakeinplasticcontainer”fortheimageinFigure2.
+2DContextto3DContextLifting Wethenrunthestate-of-the-artmetricdepthdetector,ZoeDepth[6]
+ontheimage. ZoeDepthoutputsmetricdepth(inreal-world“meters”). Combinedwithanfovesti-
+mation,weareabletotolift2Dimagesinto3Dpointcloudsasillustratedwithreal-worldscaleas
+illustratedinFigure2.
+Inthispointcloudprocessingstep,outliers,orpointsthatsignificantlydeviatefromthemaingroup,
+areremovedtoenhancedataaccuracy.AclusteringalgorithmDBSCAN[22]groupsthepointsbased
+onproximity,focusingondenselypopulatedregionsandeliminatingsparse,lesssignificantpoints.
+Thisresultsinacleaner,morestructuredpointcloud,idealforsubsequentshapeandgeometryanalysis
+wheredimensionsoftheshapesaremeasured.Sincewealreadyobtainedthesemanticsegmentation
+forthepointcloud, wemayusethisinformationtoprocessoutliersatadaptivescales. Forsmaller
+objects,weuseasmallerthreshold,proportionaltothealongeachaxis.Weobservethatsuchchoice
+effectivelyremovespointcloudoutlierswhilealsokeepingimportantpointsforsmallerobjects.We
+providealgorithmdetailsbelowinAlgorithm2.
+Listing2|OutlierremovalwithDBScan
+Input:
+points_obj: Pointcloud of object of interest
+pcd: Full Pointcloud
+scale = norm(points_obj.std(axis=0)) * 3.0 + 1e-6
+pcd = pcd.remove_stat_outlier(neighbors=50, std=1.2)
+pcd = pcd.down_sample(voxel_size=max(0.01, scale / 20))
+labels = array(pcd.cluster_dbscan(
+eps=scale / 3.6, min_points=len(pcd) // 10))
+Embedding Cluster and Modify Objects without Ambiguity
+girl wearing a blue sweatshirt =1 no changes girl wearing a blue sweatshirt
+keyboard of the laptop =1 no changes keyboard of the laptop
+girl wearing a purple shirt =1 no changes girl wearing a purple shirt
+clear plastic container clear plastic container to the left
+=2 append spatial attribute
+clear plastic container clear plastic container to the right
+cake shaped like a house cake shaped like a house
+cake in container >2 delete due to ambiguity cake in container
+cake on the plate cake on the plate
+Figure12|Thisisafigureillustratingambiguityremoval.
+CoordinateCanonicalization Nowwehavea3Dpointcloudundermetricscale.However,thepoint
+cloudisstillincameraframe,whichlimitstheinformationwecanextract.Forexample,anobjectcloser
+totheuppersideoftheimageisn’tnecessarilyfurtherfromtheground,becausethecameramightbe
+pointingatthegroundinsteadofthefront.Inordertosolvethisproblem,wecanonicalizethecoordinate
+systemofthepointcloudbydetectinghorizontalsurfaces.Weusealightweightsegmentationmodel[9]
+tosegmentoutpixelscorrespondtocategorieslike“floor”,“tabletop”,beforeusingRANSACtofitthe
+biggestplaneamongthese3Dpoints.
+Whenwedetectasurfacedefinedbyenoughpoints,wecanonicalizethecoordinateofthepoint
+cloudbycreatinganeworiginbyprojectingcameraorigintothedetectedplane.Weusethenormal
+axisofthedetectedplaneasz-axisandprojecttheoriginalz-axisofcameraonthetheplaneasthe
+21
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+newx-axis.Bydoingso,whenwecandetecthorizontalsurfaceslikeground,weeffectivelytransform
+thepointcloudintoworldcoordinateinsteadofcameracoordinate.Amoredetailedalgorithmcanbe
+foundinouralgorithmbox3.Ontheotherhand,whennotenoughpointscorrespondingtohorizontal
+surfacesaredetected,weflagcanonicalizationasfailedandavoidsynthesizingquestionsthatdepends
+oncanonicalization,suchasquestionsaboutelevation.
+Listing3|CanonicalizationAlgorithm
+Input:
+depth: predicted depth for each point
+ground_mask: detected ground or not for each point
+points_cam = unproject_to_pointcloud(depth, fov)
+points = points_cam
+ground_mask = ground_mask.flatten()
+canonicalized = False
+if ground_mask.mean() > canonicalize_threshold:
+canonicalized = True
+ground_pcd = subset(points_cam, ground_mask)
+plane, _ = ground_pcd.segment_plane(
+distance_threshold=0.05, ransac_n=3, num_iterations=1000)
+if array([0, -1, 0]) @ plane[:3] < 0:
+plane = -plane
+a, b, c, d = plane
+normal = array([a, b, c])
+ez = array([0, 0, 1])
+new_y = ez - normal @ ez * normal
+new_y = new_y / norm(new_y)
+rot = array([cross_prod(new_y, normal), new_y, normal])
+rot = array([[0, -1, 0], [1, 0, 0], [0, 0, 1]]) @ rot
+trans = array([0, 0, d])
+points_world = points_cam @ rot.T + trans[None]
+points = points_world
+return points, canonicalized
+AmbiguityRemoval AsshowninFigure 12,wefirstembedallcaptionswithCLIPencoder[52].
+Thisallowsustocalculateacosinedistancebetweeneachcaptionpair.Thisformsasimilaritymatrix
+betweenallobjects.Ifwethresholdthesimilarityscore,wecanidentifywhetheranobjectcaptionistoo
+closetoothers.Inmanycases,wehavegroupsofexactlytwosimilarcaptions,sowecaneasilyaugment
+eachcaptionbyappendingandifferentiatingclausesuchas“that’smoretothetopoftheimage”.Other
+casesinvolvemorethantwosimilarcaptions,whichwechoosetoremovealltogethertoavoidambiguity.
+WealsoremovecommonbackgroundobjectsbasedonCLIPsimilaritytocategorieslike“sun”or“sky”.
+HumanAlignment Humansrarelysayadistancemeasurewithmanydecimalplaceslike0.95meters.
+Rather,theyroundsuchdistanceintosomethingtheyprefer,suchas1meterorhalfameter.Wewould
+likeourmodeltoalignwithsuchhumanpreferencesaswell.Infact,sincedepthestimationandfov
+estimationcontainirreducibleerrors,themodelshouldbeallowedtophraseitsanswerswithuncertainty
+byroundingjustlikehumans,unlesswhenpromptedtobeaccurate.Tothisend,wepostprocessany
+quantitativedistanceunittoalignwithhumanpreferences. AsillustratedinFigure13,wecodeda
+decisiontreetomakesuchalignment.Forexample,whentheestimateddistanceis0.86meters,with
+75%probabilitywejustrounditto1meters,whileweanswer3feet,90cmwithsomelowerprobabilities.
+Foradistancelike23meters,werounditto20meterswithhighprobabilityaswell.Wealsosample
+imperialunitsinsteadofmetricunitsbya20%chance,withsimilarhuman-likeroundingrules.
+Whilethismayalignthemodelbetterwithhumans,atsamplingtime,onemaywanttogetmore
+accuratedistanceestimation.Todoso,onesimplyneedtosamplemultipledistanceestimationsand
+22
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+taketheaverage. Weusedthisinourroboticexperimentstogetmorefine-grainedvalues. Another
+wayistopromptVLMitselftokeepacertainamountofdigits. Thiscanbeaddedtodatasynthesis
+butweleavethistofuturework.
+Human Alignment
+0.86
+1m
+0.8m
+Human-like Human-like 90 cm
+Units Rounding Human-like
+-0.5 3 feet Distribution
+0
+0.5
+Figure13 |Inhumanalignment,wedefineasetofrulesthatroundswithaprobabilitythatmimics
+thedecisionrulesofhumans.
+VLMTraining Wetrainedourmulti-modallargelanguagemodelwithabatchsizeof512andanADAM
+optimizerwithlearningrateof2e-4.WetrainedthePaLM2-E-SmodelusingamixtureoftheoriginalVQA
+datasetsinPaLM-EandourgeneratedspatialVQAdataset,withasamplingratioof174:2.5.Weinitially
+trainthemodelwithafrozenvisionencoderfor110ksteps,whichdoesn’tuseallthedataweexhausted.
+Therefore the data we generated is more than enough. We then, like described in the experiment
+section,finetunewiththevisionencodereitherfrozenorunfrozenfor70kstepstillconvergence.
+A.3. QuestionandAnswerTemplate
+Aswementionedinourmethodsection, wesynthesisquestionandansweringpairsviatemplates.
+Givenadescriptionofapairofobjects,suchas“theyellowbanana”and“thecakeintheshapeofa
+house”,ourdatasynthesispipelinecaneffectivelyextractananswerbasedonquestiontypes.
+HereweprovideadistributionofthequestionandanswertypesinFigure14andFigure15,followed
+byadescriptionabouteachcategory.
+1. left predicate A question asking whether object A is to the left of object B from the viewer’s
+perspective. Thesolutionisabinarypredicatetrueorfalseexpressedinnaturallanguage,or
+aphraseexpressinguncertainty.
+2. rightpredicateAquestionaskingwhetherobjectAistotherightofobjectBfromtheviewer’s
+perspective. Thesolutionisabinarypredicatetrueorfalseexpressedinnaturallanguage,or
+aphraseexpressinguncertainty.
+3. above predicate A question asking whether object A is above object B. Requires coordinate
+canonicalization.Thesolutionisabinarypredicatetrueorfalseexpressedinnaturallanguage,
+oraphraseexpressinguncertainty.
+4. below predicate A question asking whether object A is below object B. Requires coordinate
+canonicalization.Thesolutionisabinarypredicatetrueorfalseexpressedinnaturallanguage,
+oraphraseexpressinguncertainty.
+5. behindpredicateAquestionaskingwhetherobjectAbehindobjectBfromtheviewer’sperspec-
+tive.Thesolutionisabinarypredicatetrueorfalseexpressedinnaturallanguage,oraphrase
+expressinguncertainty.
+6. frontpredicateAquestionaskingwhetherobjectAisinfrontofobjectB.Thesolutionisabinary
+predicatetrueorfalseexpressedinnaturallanguage,oraphraseexpressinguncertainty.
+23
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+7. tallpredicateAquestionaskingwhetherobjectAistallerthanobjectB.Requirescoordinate
+canonicalization.Thesolutionisabinarypredicatetrueorfalseexpressedinnaturallanguage,
+oraphraseexpressinguncertainty.
+8. shortpredicateAquestionaskingwhetherobjectAisshorterthanobjectB.Requirescoordinate
+canonicalization.Thesolutionisabinarypredicatetrueorfalseexpressedinnaturallanguage,
+oraphraseexpressinguncertainty.
+9. widepredicateAquestionaskingwhetherobjectAiswiderthanobjectB.Thesolutionisabinary
+predicatetrueorfalseexpressedinnaturallanguage,oraphraseexpressinguncertainty.
+10. thinpredicateAquestionaskingwhetherobjectAisthinerthanobjectB.Thesolutionisabinary
+predicatetrueorfalseexpressedinnaturallanguage,oraphraseexpressinguncertainty.
+11. bigpredicateAquestionaskingwhetherobjectAisbiggerthanobjectB.Requirescoordinate
+canonicalization.Thesolutionisabinarypredicatetrueorfalseexpressedinnaturallanguage,
+oraphraseexpressinguncertainty.
+12. smallpredicateAquestionaskingwhetherobjectAissmallerthanobjectB.Requirescoordinate
+canonicalization.Thesolutionisabinarypredicatetrueorfalseexpressedinnaturallanguage,
+oraphraseexpressinguncertainty.
+13. leftchoiceAquestionaskingwhichofobjectAandobjectBismoretotheleftfromtheviewer’s
+perspective.Thesolutionisanobjectnameexpressedinnaturallanguage,oraphraseexpressing
+uncertainty.
+14. rightchoiceAquestionaskingwhichofobjectAandobjectBismoretotherightfromtheviewer’s
+perspective.Thesolutionisanobjectnameexpressedinnaturallanguage,oraphraseexpressing
+uncertainty.
+15. abovechoiceAquestionaskingwhichofobjectAandobjectBismoreabove.Requirescoordinate
+canonicalization. The solution is an object name expressed in natural language, or a phrase
+expressinguncertainty.
+16. belowchoiceAquestionaskingwhichofobjectAandobjectBismorebelow.Requirescoordinate
+canonicalization. The solution is an object name expressed in natural language, or a phrase
+expressinguncertainty.
+etaciderp_tfel etaciderp_thgir ecnatsid etaciderp_tnorf yfissalc_thgir_tfel etaciderp_dniheb etaciderp_ediw etaciderp_niht eciohc_thgir eciohc_dniheb eciohc_tnorf yfissalc_niht_ediw yfissalc_tnorf_dniheb eciohc_tfel etaciderp_gib etaciderp_llams eciohc_gib eciohc_ediw ffid_tfel ffid_thgir eciohc_llams yfissalc_llams_gib ffid_tnorf ffid_dniheb eciohc_niht eciohc_llat pag yfissalc_trohs_llat etaciderp_evoba etaciderp_woleb eciohc_trohs ffid_woleb etaciderp_llat etaciderp_trohs ffid_evoba tsid_latnoziroh tsid_lacitrev yfissalc_woleb_evoba htdiw thgieh eciohc_evoba eciohc_woleb noitavele
+0.08
+0.07
+0.06
+0.05
+0.04
+0.03
+0.02
+0.01
+0.00
+Question Type
+egatnecreP
+QA distribution when canonicalized = False
+Figure14|Distributionofgeneratedquestion-answercategorieswhencanonicalizationfails.
+17. behindchoiceAquestionaskingwhichofobjectAandobjectBismorebehind. Thesolution
+isanobjectnameexpressedinnaturallanguage,oraphraseexpressinguncertainty.
+18. front choice A question asking which of object A and object B is more to the front from the
+viewer’sperspective.Thesolutionisanobjectnameexpressedinnaturallanguage,oraphrase
+expressinguncertainty.
+19. tallchoiceAquestionaskingwhichofobjectAandobjectBistaller.Requirescanonicalization.
+Thesolutionisanobjectnameexpressedinnaturallanguage,oraphraseexpressinguncertainty.
+24
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+etaciderp_tfel etaciderp_thgir etaciderp_evoba etaciderp_woleb ecnatsid etaciderp_dniheb etaciderp_tnorf yfissalc_thgir_tfel yfissalc_woleb_evoba yfissalc_trohs_llat eciohc_woleb eciohc_evoba eciohc_thgir eciohc_tfel yfissalc_tnorf_dniheb etaciderp_niht yfissalc_niht_ediw eciohc_dniheb etaciderp_ediw etaciderp_trohs etaciderp_llat tsid_lacitrev tsid_latnoziroh eciohc_tnorf etaciderp_gib etaciderp_llams ffid_thgir eciohc_llat eciohc_trohs eciohc_ediw ffid_tfel eciohc_gib eciohc_llams yfissalc_llams_gib pag thgieh htdiw noitavele ffid_evoba ffid_woleb ffid_dniheb ffid_tnorf eciohc_niht
+0.05
+0.04
+0.03
+0.02
+0.01
+0.00
+Question Type
+egatnecreP
+QA distribution when canonicalized = True
+Figure15|Distributionofgeneratedquestion-answercategorieswhencanonicalizationissuccessful.
+20. shortchoiceAquestionaskingwhichofobjectAandobjectBisshorter.Requirescanonicalization.
+Thesolutionisanobjectnameexpressedinnaturallanguage,oraphraseexpressinguncertainty.
+21. widechoiceAquestionaskingwhichofobjectAandobjectBiswider.Thesolutionisanobject
+nameexpressedinnaturallanguage,oraphraseexpressinguncertainty.
+22. thinchoiceAquestionaskingwhichofobjectAandobjectBisthinner.Thesolutionisanobject
+nameexpressedinnaturallanguage,oraphraseexpressinguncertainty.
+23. bigchoiceAquestionaskingwhichofobjectAandobjectBisbigger.Thesolutionisanobject
+nameexpressedinnaturallanguage,oraphraseexpressinguncertainty.
+24. smallchoiceAquestionaskingwhichofobjectAandobjectBissmaller.Thesolutionisanobject
+nameexpressedinnaturallanguage,oraphraseexpressinguncertainty.
+25. left-rightclassifyAquestionaskingabouttheleft-rightcomparativerelationshipbetweentwo
+objects.Thesolutionisleft-rightexpressedinnaturallanguage,oraphraseexpressinguncertainty.
+26. above-below classify Aquestionaskingabouttheabove-belowcomparativerelationshipbe-
+tweentwoobjects.Requirescanonicalization.Thesolutionisabove-belowexpressedinnatural
+language,oraphraseexpressinguncertainty.
+27. behind-frontclassifyAquestionaskingaboutthebehind-frontcomparativerelationshipbetween
+twoobjects.Thesolutionisbehind-frontexpressedinnaturallanguage,oraphraseexpressing
+uncertainty.
+28. tall-shortclassifyAquestionaskingaboutthetall-shortcomparativerelationshipbetweentwo
+objects.Requirescanonicalization.Thesolutionistall-shortexpressedinnaturallanguage,or
+aphraseexpressinguncertainty.
+29. wide-thin classify A question asking about the wide-thin comparative relationship between
+twoobjects. Thesolutioniswide-thinexpressedinnaturallanguage,oraphraseexpressing
+uncertainty.
+30. big-smallclassifyAquestionaskingaboutthebig-smallcomparativerelationshipbetweentwo
+objects.Requirescanonicalization.Thesolutionisbig-smallexpressedinnaturallanguage,or
+aphraseexpressinguncertainty.
+31. distanceestimationAquestionaskingaboutthedistancebetweenthecenteroftwoobjects.The
+solutionisadistanceexpressedinnaturallanguage,withahuman-likedistributionforrounding.
+32. gapestimationAquestionaskingaboutthegapbetweentwoobjects.Thesolutionisadistance
+expressedinnaturallanguage,withahuman-likedistributionforrounding.
+33. heightestimationAquestionaskingabouttheheightofanobject. Thesolutionisadistance
+expressedinnaturallanguage,withahuman-likedistributionforrounding. Requirescanoni-
+calization.
+34. width estimationAquestionaskingaboutthewidthofanobject. Thesolutionisadistance
+25
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+expressedinnaturallanguage,withahuman-likedistributionforrounding.
+35. elevation estimation A question asking about the elevation of an object. The solution is a
+distanceexpressedinnaturallanguage,withahuman-likedistributionforrounding.Requires
+canonicalization.
+36. verticaldistanceestimationAquestionaskingabouttheverticaldistancebetweenthecenter
+of two objects. The solution is a distance expressed in natural language, with a human-like
+distributionforrounding.Requirescanonicalization.
+37. horizontaldistanceestimationAquestionaskingaboutthehorizontaldistancebetweenthe
+centeroftwoobjects.Thesolutionisadistanceexpressedinnaturallanguage,withahuman-like
+distributionforrounding.Requirescanonicalization.
+38. abovedifferenceestimationAquestionaskingaboutthethedistancebetweenthebottomofmore
+elevatedobjectandthebottomofthelesselevatedobject.Thesolutionisadistanceexpressed
+innaturallanguage,withahuman-likedistributionforrounding.Requirescanonicalization.
+39. belowdifferenceestimationAquestionaskingaboutthedistancebetweenthebottomofless
+elevatedobjectandthebottomofthemoreelevatedobject.Thesolutionisadistanceexpressed
+innaturallanguage,withahuman-likedistributionforrounding.Requirescanonicalization.
+40. behinddifferenceestimationAquestionaskingabouthowmuchanobjectisinbehindanother
+adistancealonethecameraray.Thesolutionisadistanceexpressedinnaturallanguage,with
+ahuman-likedistributionforrounding.
+41. frontdifferenceestimationAquestionaskingabouthowmuchanobjectisininfrontofanother
+adistancealonethecameraray.Thesolutionisadistanceexpressedinnaturallanguage,with
+ahuman-likedistributionforrounding.
+42. leftdifferenceestimationAquestionaskingabouthowmuchanobjectistotheleftofanother,
+fromtheviewer’sperspective.Thesolutionisadistanceexpressedinnaturallanguage,witha
+human-likedistributionforrounding.
+43. rightdifferenceestimationAquestionaskingabouthowmuchanobjectistotherightofanother,
+fromtheviewer’sperspective.Thesolutionisadistanceexpressedinnaturallanguage,witha
+human-likedistributionforrounding.
+WeprovideasmallsetofquestionandanswerpairsforgeneratingQAdata.Forthefulllistplease
+refertoourwebsite.
+Listing4|SpatialVLMQuestionandAnswerTemplate
+OBJ_A = "[A]"
+OBJ_B = "[B]"
+DIST = "[X]"
+distance_questions = [
+"What is the distance between [A] and [B]?",
+"How far apart are [A] and [B]?",
+"How distant is [A] from [B]?",
+"How far is [A] from [B]?",
+"How close is [A] from [B]?",
+"Could you measure the distance between [A] and [B]?",
+"Can you tell me the distance of [A] from [B]?",
+"How far away is [A] from [B]?",
+"Can you provide the distance measurement between [A] and [B]?",
+"Can you give me an estimation of the distance between [A] and [B]?",
+"Could you provide the distance between [A] and [B]?",
+"How much distance is there between [A] and [B]?",
+"Tell me the distance between [A] and [B].",
+"Give me the distance from [A] to [B].",
+"Measure the distance from [A] to [B].",
+"Measure the distance between [A] and [B].",
+]
+26
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+distance_answers = [
+"[X]",
+"[A] and [B] are [X] apart.",
+"[A] is [X] away from [B].",
+"A distance of [X] exists between [A] and [B].",
+"[A] is [X] from [B].",
+"[A] and [B] are [X] apart from each other.",
+"They are [X] apart.",
+"The distance of [A] from [B] is [X].",
+]
+vertical_distance_questions = [
+"What is the vertical distance between [A] and [B]?",
+"How far apart are [A] and [B] vertically?",
+"How distant is [A] from [B] vertically?",
+"How far is [A] from [B] vertically?",
+"Could you measure the vertical distance between [A] and [B]?",
+"Can you tell me the vertical distance between [A] and [B]?",
+"How far away is [A] from [B] vertically?",
+(
+"Can you provide the measurement of the vertical distance between [A]"
+" and [B]?"
+),
+"Estimate the vertical distance between [A] and [B].",
+"Could you provide the vertical distance between [A] and [B]?",
+"How much distance is there between [A] and [B] vertically?",
+"Tell me the distance between [A] and [B] vertically.",
+"Give me the vertical distance from [A] to [B].",
+"Measure the vertical distance from [A] to [B].",
+"Measure the distance between [A] and [B] vertically.",
+]
+vertical_distance_answers = [
+"[X]",
+"[A] and [B] are [X] apart vertically.",
+"[A] is [X] away from [B] vertically.",
+"A vertical distance of [X] exists between [A] and [B].",
+"[A] is [X] from [B] vertically.",
+"[A] and [B] are [X] apart vertically from each other.",
+"Vertically, They are [X] apart.",
+"The vertical distance of [A] from [B] is [X].",
+"They are [X] apart.",
+"It’s approximately [X]."
+]
+horizontal_distance_questions = [
+"What is the horizontal distance between [A] and [B]?",
+"How far apart are [A] and [B] horizontally?",
+"How distant is [A] from [B] horizontally?",
+"How far is [A] from [B] horizontally?",
+"Could you measure the horizontal distance between [A] and [B]?",
+"Can you tell me the horizontal distance of [A] from [B]?",
+"How far away is [A] from [B] horizontally?",
+(
+"Can you provide the measurement of the horizontal distance between [A]"
+" and [B]?"
+),
+(
+"Can you give me an estimation of the horizontal distance between [A]"
+" and [B]?"
+),
+"Could you provide the horizontal distance between [A] and [B]?",
+"How much distance is there between [A] and [B] horizontally?",
+"Tell me the distance between [A] and [B] horizontally.",
+"Give me the horizontal distance from [A] to [B].",
+27
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+"Vertial gap between [A] and [B].",
+"Measure the horizontal distance from [A] to [B].",
+"Measure the distance between [A] and [B] horizontally.",
+]
+horizontal_distance_answers = [
+"[X]",
+"[A] and [B] are [X] apart horizontally.",
+"[A] is [X] away from [B] horizontally.",
+"A horizontal distance of [X] exists between [A] and [B].",
+"[A] is [X] from [B] horizontally.",
+"[A] and [B] are [X] apart horizontally from each other.",
+"Horizontally, They are [X] apart.",
+"The horizontal distance of [A] from [B] is [X].",
+"They are [X] apart.",
+"It’s approximately [X]."
+]
+width_questions = [
+"Measure the width of [A].",
+"Determine the horizontal dimensions of [A].",
+"Find out how wide [A] is.",
+"What is the width of [A]?",
+"How wide is [A]?",
+"What are the dimensions of [A] in terms of width?",
+"Could you tell me the horizontal size of [A]?",
+"What is the approximate width of [A]?",
+"How wide is [A]?",
+"How much space does [A] occupy horizontally?",
+"How big is [A]?",
+"How big is [A] in terms of width?",
+"What’s the radius of [A]?"
+]
+width_answers = [
+"[X]",
+"The width of [A] is [X].",
+"[A] is [X] wide.",
+"[A] is [X] in width.",
+"It’s [X]."
+]
+behind_predicate_questions = [
+"Is [A] behind [B]?",
+"Is the position of [A] more distant than that of [B]?",
+"Does [A] lie behind [B]?",
+"Is [A] positioned behind [B]?",
+"Is [A] further to camera compared to [B]?",
+"Does [A] come behind [B]?",
+"Is [A] positioned at the back of [B]?",
+"Is [A] further to the viewer compared to [B]?",
+]
+behind_true = [
+"Yes.",
+"Yes, it is.",
+"Yes, it’s behind [B].",
+"That’s True.",
+"Yes, [A] is further from the viewer.",
+"Yes, [A] is behind [B]."
+]
+behind_false = [
+"No.",
+"No, it is not.",
+"No, it’s in front of [B].",
+"That’s False.",
+28
+
+SpatialVLM:EndowingVision-LanguageModelswithSpatialReasoningCapabilities
+"No, [A] is closer to the viewer.",
+"No, [B] is in front of [A]."
+]
+front_predicate_questions = [
+"Is [A] in front of [B]?",
+"Is the position of [A] less distant than that of [B]?",
+"Does [A] lie in front of [B]?",
+"Is [A] positioned in front of [B]?",
+"Is [A] closer to camera compared to [B]?",
+"Does [A] come in front of [B]?",
+"Is [A] positioned before [B]?",
+"Is [A] closer to the viewer compared to [B]?",
+]
+front_true = [
+"Yes.",
+"Yes, it is.",
+"Yes, it’s in front of [B].",
+"That’s True.",
+"Yes, [A] is closer to the viewer.",
+"Yes, [A] is in front of [B]."
+]
+front_false = [
+"No.",
+"No, it is not.",
+"No, it’s behind [B].",
+"That’s False.",
+"No, [A] is further to the viewer.",
+"No, [B] is behind [A]."
+]
+29

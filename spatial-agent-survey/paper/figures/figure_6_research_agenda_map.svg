@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="1060" viewBox="0 0 1700 1060" role="img" aria-labelledby="title desc">
+  <title id="title">Figure 6. Research agenda as an evidence ladder</title>
+  <desc id="desc">A roadmap from the current evidence-map diagnosis to representation contracts, mechanism tests, emergence measures, generalization, applications, and stronger evidence claims.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#35524a"/>
+    </marker>
+    <style>
+      .bg { fill: #fbfaf4; }
+      .title { font: 700 34px Helvetica, Arial, sans-serif; fill: #1f2d2a; }
+      .subtitle { font: 700 21px Helvetica, Arial, sans-serif; fill: #1f2d2a; }
+      .label { font: 700 17px Helvetica, Arial, sans-serif; fill: #263633; }
+      .text { font: 16px Helvetica, Arial, sans-serif; fill: #263633; }
+      .small { font: 14px Helvetica, Arial, sans-serif; fill: #4b5d58; }
+      .diag { fill: #fff1d6; stroke: #c47a20; stroke-width: 2.2; }
+      .stage { fill: #ffffff; stroke: #8fb2a7; stroke-width: 2; }
+      .ladder { fill: #dfeee2; stroke: #2f6b3f; stroke-width: 2; }
+      .guard { fill: #f7e0dc; stroke: #b65c52; stroke-width: 2; }
+      .arrow { stroke: #35524a; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1700" height="1060"/>
+  <text class="title" x="70" y="64">Figure 6. Research Agenda as an Evidence Ladder</text>
+  <text class="text" x="70" y="100">The agenda is a route from current spatial affordances toward controlled evidence of sensitivity, mediation, and replicated mechanism.</text>
+
+  <rect class="diag" x="70" y="150" width="420" height="255" rx="26"/>
+  <text class="subtitle" x="110" y="195">Current diagnosis</text>
+  <text class="text" x="110" y="232">L3 concentrated: 18 / 34 rows</text>
+  <text class="text" x="110" y="264">L4 sparse: 1 / 34, bridge-only</text>
+  <text class="text" x="110" y="296">15 designed affordance only</text>
+  <text class="text" x="110" y="328">19 observed effect</text>
+  <text class="text" x="110" y="360">backend richness != agent input</text>
+
+  <rect class="stage" x="560" y="140" width="260" height="150" rx="24"/>
+  <text class="subtitle" x="595" y="185">1. Representation</text>
+  <text class="small" x="595" y="220">Specify what agents receive.</text>
+  <text class="small" x="595" y="247">Distinguish L2, L3, L4, L5.</text>
+
+  <rect class="stage" x="885" y="140" width="260" height="150" rx="24"/>
+  <text class="subtitle" x="920" y="185">2. Mechanism</text>
+  <text class="small" x="920" y="220">Use matched controls.</text>
+  <text class="small" x="920" y="247">Compare L3 vs L4, L3/L4 vs L5.</text>
+
+  <rect class="stage" x="1210" y="140" width="260" height="150" rx="24"/>
+  <text class="subtitle" x="1245" y="185">3. Emergence</text>
+  <text class="small" x="1245" y="220">Measure movement, encounter,</text>
+  <text class="small" x="1245" y="247">groups, roles, and diffusion.</text>
+
+  <rect class="stage" x="720" y="390" width="260" height="150" rx="24"/>
+  <text class="subtitle" x="755" y="435">4. Generalization</text>
+  <text class="small" x="755" y="470">Replicate across layouts, tasks,</text>
+  <text class="small" x="755" y="497">models, populations, and seeds.</text>
+
+  <rect class="stage" x="1045" y="390" width="260" height="150" rx="24"/>
+  <text class="subtitle" x="1080" y="435">5. Applications</text>
+  <text class="small" x="1080" y="470">Bind claims to representation level,</text>
+  <text class="small" x="1080" y="497">behavioral scale, and evidence status.</text>
+
+  <path class="arrow" d="M490,275 C520,225 530,215 555,215"/>
+  <path class="arrow" d="M820,215 L880,215"/>
+  <path class="arrow" d="M1145,215 L1205,215"/>
+  <path class="arrow" d="M1335,292 C1300,360 1225,395 1170,395"/>
+  <path class="arrow" d="M1045,465 L985,465"/>
+
+  <text class="subtitle" x="95" y="615">Evidence ladder overlay</text>
+  <rect class="ladder" x="120" y="665" width="310" height="64" rx="18"/>
+  <text class="label" x="170" y="705">spatial affordance</text>
+  <path class="arrow" d="M430,697 L515,697"/>
+  <rect class="ladder" x="520" y="665" width="310" height="64" rx="18"/>
+  <text class="label" x="570" y="705">spatial sensitivity</text>
+  <path class="arrow" d="M830,697 L915,697"/>
+  <rect class="ladder" x="920" y="665" width="310" height="64" rx="18"/>
+  <text class="label" x="978" y="705">spatial mediation</text>
+  <path class="arrow" d="M1230,697 L1315,697"/>
+  <rect class="ladder" x="1320" y="665" width="310" height="64" rx="18"/>
+  <text class="label" x="1372" y="705">replicated mechanism</text>
+
+  <text class="small" x="170" y="765">system has places, routes, scenes, or embodied action</text>
+  <text class="small" x="570" y="765">behavior changes when spatial input changes</text>
+  <text class="small" x="973" y="765">specific representation survives matched controls</text>
+  <text class="small" x="1360" y="765">relationship persists across conditions</text>
+
+  <rect class="guard" x="220" y="860" width="1260" height="115" rx="26"/>
+  <text class="subtitle" x="260" y="905">Global guardrail</text>
+  <text class="text" x="260" y="940">Future-work claims require exposed spatial structure + observed behavioral evidence + interpretable controls.</text>
+  <text class="small" x="260" y="968">The agenda is not evidence that richer representation already improves LLM-agent social simulation.</text>
+</svg>

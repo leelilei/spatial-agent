@@ -5,6 +5,19 @@
 
 本 memo 的作用不是穷尽所有模糊案例，而是把 `Phase 0` pilot 中最容易导致执行漂移的边界先写死，作为进入 `Phase 1` 之前的最小裁决集。
 
+Status note dated 2026-04-28:
+
+This memo preserves historical Phase 0 pilot rulings. It is not the final stable coding table. Later full-text checks, widened-Core review, and row-level adjudication supersede individual pilot row outcomes where they conflict with `appendix_evidence_table.csv`.
+
+Current stable-coding overrides relevant to the main manuscript:
+
+- `HC02 / Generative Agents` is coded as `anchor_core / L3 / designed_affordance_only`.
+- `HC06 / Project Sid` is coded as `anchor_core / L5 / designed_affordance_only`.
+- `HC01` remains Adjacent / boundary / feasibility evidence and does not enter the stable widened-Core evidence map.
+- `TW-02` remains a scope-boundary comparison and does not enter the stable widened-Core evidence map.
+
+The durable rules retained from this memo are the general boundaries: code the agent-facing representation, keep backend richness separate from agent input, and do not upgrade design affordance into observed effect without direct reported evidence.
+
 ---
 
 ## Case 1: Generative Agents

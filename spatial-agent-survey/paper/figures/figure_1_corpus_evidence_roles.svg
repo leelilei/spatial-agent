@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Figure 1. WHERE gap and evidence-role architecture</title>
+  <desc id="desc">A three-lane convergence diagram showing the missing intersection between spatial-configuration theory, LLM spatial capability, and LLM multi-agent social simulation, with evidence-role constraints.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#35524a"/>
+    </marker>
+    <style>
+      .bg { fill: #fbfaf4; }
+      .title { font: 700 34px Helvetica, Arial, sans-serif; fill: #1f2d2a; }
+      .subtitle { font: 700 22px Helvetica, Arial, sans-serif; fill: #1f2d2a; }
+      .text { font: 18px Helvetica, Arial, sans-serif; fill: #243532; }
+      .small { font: 15px Helvetica, Arial, sans-serif; fill: #3d4d49; }
+      .tiny { font: 13px Helvetica, Arial, sans-serif; fill: #56645f; }
+      .laneFound { fill: #ebe4d2; stroke: #9b8658; stroke-width: 2; }
+      .laneAdj { fill: #dfeaf3; stroke: #5d7c99; stroke-width: 2; }
+      .laneCore { fill: #dfeee2; stroke: #2f6b3f; stroke-width: 2; }
+      .gap { fill: #fff1d6; stroke: #c47a20; stroke-width: 3; }
+      .anchor { fill: #2f6b3f; }
+      .bridge { fill: #d9e8dc; stroke: #2f6b3f; stroke-width: 2; }
+      .boundary { fill: #f7e0dc; stroke: #b65c52; stroke-width: 2; }
+      .card { fill: #ffffff; stroke: #cad5ce; stroke-width: 1.6; }
+      .arrow { stroke: #35524a; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .dash { stroke: #8b9792; stroke-width: 2; stroke-dasharray: 8 7; fill: none; marker-end: url(#arrow); }
+      .white { fill: #ffffff; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1600" height="1000"/>
+  <text class="title" x="70" y="64">Figure 1. WHERE Gap and Evidence-Role Architecture</text>
+  <text class="text" x="70" y="100">The survey maps a missing intersection; it does not treat every cited source as equal evidence.</text>
+
+  <rect class="laneFound" x="80" y="170" width="390" height="285" rx="26"/>
+  <text class="subtitle" x="120" y="220">Foundational</text>
+  <text class="text" x="120" y="258">Space Syntax, physical-space evidence,</text>
+  <text class="text" x="120" y="286">and prior spatial simulation.</text>
+  <text class="small" x="120" y="335">Contributes:</text>
+  <text class="text" x="120" y="365">configuration -> movement / encounter</text>
+  <text class="small" x="120" y="412">Boundary: transferable theory,</text>
+  <text class="small" x="120" y="435">not direct LLM-agent evidence.</text>
+
+  <rect class="laneAdj" x="605" y="170" width="390" height="285" rx="26"/>
+  <text class="subtitle" x="645" y="220">Adjacent</text>
+  <text class="text" x="645" y="258">LLM spatial reasoning and spatially</text>
+  <text class="text" x="645" y="286">aware agent work.</text>
+  <text class="small" x="645" y="335">Contributes:</text>
+  <text class="text" x="645" y="365">input-side feasibility and boundary logic</text>
+  <text class="small" x="645" y="412">Boundary: capability evidence,</text>
+  <text class="small" x="645" y="435">not social-effect evidence.</text>
+
+  <rect class="laneCore" x="1130" y="170" width="390" height="285" rx="26"/>
+  <text class="subtitle" x="1170" y="220">Core</text>
+  <text class="text" x="1170" y="258">LLM multi-agent systems with identifiable</text>
+  <text class="text" x="1170" y="286">space and social behavior.</text>
+  <text class="small" x="1170" y="335">Contributes:</text>
+  <text class="text" x="1170" y="365">evidence map of current practice</text>
+  <text class="small" x="1170" y="412">Boundary: mostly local / semantic interfaces;</text>
+  <text class="small" x="1170" y="435">limited configurational tests.</text>
+
+  <path class="arrow" d="M275,455 C360,545 545,585 715,615"/>
+  <path class="arrow" d="M800,455 C800,520 800,565 800,610"/>
+  <path class="arrow" d="M1325,455 C1240,545 1055,585 885,615"/>
+
+  <rect class="gap" x="505" y="610" width="590" height="150" rx="30"/>
+  <text class="subtitle" x="590" y="660">WHERE gap</text>
+  <text class="text" x="590" y="697">agent-facing spatial configuration</text>
+  <text class="text" x="590" y="727">+ observed social behavior</text>
+
+  <rect class="card" x="80" y="805" width="440" height="130" rx="20"/>
+  <text class="subtitle" x="120" y="850">Claim Architecture</text>
+  <text class="small" x="120" y="885">Primary: descriptive evidence map</text>
+  <text class="small" x="120" y="910">Secondary: Space Syntax bridge</text>
+  <text class="small" x="120" y="935">Tertiary: research agenda and evaluation ladder</text>
+
+  <rect class="card" x="580" y="805" width="440" height="130" rx="20"/>
+  <text class="subtitle" x="620" y="850">Core Evidence Map</text>
+  <rect class="anchor" x="620" y="875" width="24" height="18" rx="3"/>
+  <text class="small" x="655" y="890">anchor_core: 17 sources / 19 rows</text>
+  <rect class="bridge" x="620" y="908" width="24" height="18" rx="3"/>
+  <text class="small" x="655" y="923">bridge_core: 15 sources / 15 rows</text>
+  <text class="tiny" x="655" y="948">stable widened Core: 32 sources / 34 rows</text>
+
+  <rect class="boundary" x="1080" y="805" width="440" height="130" rx="20"/>
+  <text class="subtitle" x="1120" y="850">Guardrails</text>
+  <text class="small" x="1120" y="885">Role first, layer second, evidence status third.</text>
+  <text class="small" x="1120" y="910">HC01 and TW-02 stay boundary material.</text>
+  <text class="small" x="1120" y="935">BK02 is source-note-only bridge evidence.</text>
+</svg>

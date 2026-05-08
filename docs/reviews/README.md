@@ -19,6 +19,7 @@
 - `plan_v6_r1.md`, `plan_v6_r2.md`
 - `plan_v7_r1.md`, `plan_v7_r2.md`
 - `plan_v8_2_r1.md`, `plan_v8_2_r2.md`
+- `plan_v10_r1.md`, `plan_v10_r2.md`
 - `survey_plan_v2_r1.md`
 - `survey_plan_v3_r1.md`
 - `survey_plan_v4_r1.md`
@@ -26,9 +27,10 @@
 ## Suggested Order
 
 1. `challenge_v4.md`
-2. `plan_v8_2_r1.md`
-3. `plan_v8_2_r2.md`
-4. 如需追溯，再看更早版本
+2. `plan_v10_r2.md`
+3. `plan_v10_r1.md`
+4. `plan_v8_2_r2.md`
+5. 如需追溯，再看更早版本
 
 ## Notes
 

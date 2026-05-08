@@ -1,0 +1,2399 @@
+Title: Introduction
+
+Source PDF: /Users/mac/Documents/6-Research/1-SpatialAgent/assets/survey_paper/pdfs/phase1_core/07_AgentSociety_Piao2025.pdf
+
+Extraction:
+- backend: pdfplumber
+- extracted_at_utc: 2026-05-01T02:56:31+00:00
+- page_count: 45
+- status: ok
+- text_char_count: 151809
+
+Metadata:
+- author: unknown
+- doi: unknown
+- keywords: unknown
+- subject: unknown
+
+Outline:
+- Introduction (page 2)
+- AgentSociety: Design and Overview (page 3)
+- LLM-driven Social Generative Agents (page 5)
+  - Overview (page 5)
+  - Emotion, Needs, and Cognition (page 8)
+  - Mobility Behaviors (page 9)
+  - Social Behaviors (page 10)
+  - Economic Behaviors (page 11)
+  - Workflow of LLM-driven Social Generative Agents (page 12)
+- Real-world Societal Environment (page 14)
+  - Overall (page 14)
+  - Urban Space (page 15)
+  - Social Space (page 15)
+  - Economic Space (page 16)
+- Large-scale Social Simulation Engine (page 17)
+  - Overview (page 17)
+  - System Architecture (page 18)
+  - Group-based Distributed Execution (page 19)
+  - MQTT-powered Agent Messaging System (page 20)
+  - Utilities (page 21)
+  - Toolbox for Social Experiments (page 22)
+- Performance Evaluation (page 23)
+  - Societal Environment Performance (page 24)
+  - Agent Messaging System Performance (page 24)
+  - Social Simulator Performance (page 25)
+- Exemplary Social Experiments (page 27)
+  - One Day Life (page 27)
+  - Polarization (page 28)
+  - Spread of Inflammatory Messages (page 30)
+  - Universal Basic Income (page 32)
+  - External Shocks of Hurricane (page 33)
+- Related Works (page 35)
+  - LLM-driven Agents (page 35)
+  - Social Simulation (page 35)
+- Discussion (page 36)
+  - Three Levels of Social Simulator (page 36)
+  - Social Simulator: New Paradigm of Computational Social Science (page 37)
+  - From Policy Making, Risk Control, to Future Human-AI Society (page 37)
+    - Policy making and social management for a smarter society (page 38)
+    - Risk control and mitigation for a safer society (page 38)
+    - Social simulator for the future human-AI society (page 38)
+- Conclusion (page 39)
+
+Markdown Content:
+
+AgentSociety: Large-Scale Simulation of
+LLM-Driven Generative Agents Advances
+Understanding of Human Behaviors and Society
+JinghuaPiao1† YuweiYan1† JunZhang1† NianLi1 JunboYan1
+XiaochongLan1 ZhihongLu1 ZhihengZheng1 JingYiWang1 DiZhou2
+ChenGao3 FengliXu1 FangZhang4∗ KeRong2∗ JunSu4∗ YongLi1∗
+Abstract
+Understandinghumanbehaviorandsocietyisacentralfocusinsocialsciences,
+withtheriseofgenerativesocialsciencemarkingasignificantparadigmaticshift.
+Byleveragingbottom-upsimulations,itreplacescostlyandlogisticallychallenging
+traditional experiments with scalable, replicable, and systematic computational
+approachesforstudyingcomplexsocialdynamics. Recentadvancesinlargelan-
+guagemodels(LLMs)havefurthertransformedthisresearchparadigm,enabling
+thecreationofhuman-likegenerativesocialagentsandrealisticsimulacraofso-
+ciety. Inthispaper,weproposeAgentSociety,alarge-scalesocialsimulatorthat
+integrates LLM-driven agents, a realistic societal environment, and a powerful
+large-scalesimulationengine. Basedontheproposedsimulator,wegeneratesocial
+livesforover10kagents,simulatingtheir5millioninteractionsbothamongagents
+andbetweenagentsandtheirenvironment. Furthermore,weexplorethepotential
+ofAgentSocietyasatestbedforcomputationalsocialexperiments,focusingon
+four key social issues: polarization, the spread of inflammatory messages, the
+effectsofuniversalbasicincomepolicies,andtheimpactofexternalshockssuchas
+hurricanes. ThesefourissuesserveasvaluablecasesforassessingAgentSociety’s
+supportfortypicalresearchmethods–suchassurveys,interviews,andinterven-
+tions–aswellasforinvestigatingthepatterns,causes,andunderlyingmechanisms
+ofsocialissues. ThealignmentbetweenAgentSociety’soutcomesandreal-world
+experimentalresultsnotonlydemonstratesitsabilitytocapturehumanbehaviors
+andtheirunderlyingmechanisms,butalsounderscoresitspotentialasanimportant
+platformforsocialscientistsandpolicymakers.
+1DepartmentofElectronicEngineering,BeijingNationalResearchCenterforInformationScienceandTechnol-
+ogy(BNRist),TsinghuaUniversity
+2InstituteofEconomics,SchoolofSocialSciences,TsinghuaUniversity
+3BNRist,TsinghuaUniversity
+4SchoolofPublicPolicyandManagement,TsinghuaUniversity
+†Theseauthorscontributedequallytothiswork.
+∗Correspondingauthors.E-mail:liyong07@tsinghua.edu.cn.
+5202
+beF
+21
+]IS.sc[
+1v19680.2052:viXra
+
+1 Introduction
+Overthepastdecades,researchersacrossvariousfields–spanningsocialscience,physicalscience,
+andcomputationalscience–havemadesignificanteffortstounderstandthefunctioninganddevelop-
+mentofsocietyalongtwodimensions: explanationandprediction[46,61,62]. Explanationseeksto
+identifythecausalmechanismsandunderlyingfactorsthatdriveobservedsocialpatterns,aiming
+toofferadeeperunderstandingofwhycertainoutcomesoccurinsociety[46,44]. Gainingsuch
+anunderstandingoftenrequiresconductingsocialexperiments,whichcanbecostlytoimplement
+andposesubstantialpracticalandethicalchallenges. Ontheotherhand,predictionfocusesonusing
+datatoforecastfutureeventsoremergentbehaviors,oftenwithoutdelvingintothecausalfactors,
+but instead concentrating on the accuracy of anticipating future trends [22, 46]. The framework
+thatcombinesexplanationandpredictionmethods,formsthefoundationofcomputationalsocial
+science[46]. However,asthephysicistRichardFeynmanfamouslystated,“WhatIcannotcreate,I
+donotunderstand”,suggestingthattrueunderstandinggoesbeyondmerelyobserving,explaining,
+orpredictinghumanbehavior[31,30]; instead, itrequirestheabilitytogeneratethesystemswe
+study[31,30]. Inthisvein,anewparadigmof“generativesocialscience”israpidlyemerging,which
+emphasizesthebottom-upsimulationofsocialsystemstogainin-depthinsightsintotheirunderlying
+mechanismsandpredictfutureoutcomes[31,30]. Awell-establishedmethodinthisparadigmis
+agent-basedmodeling,whichaimstomodelcomplexsocialdynamicsbysimulatingtheactionsand
+interactionsofagents[30,67,103]. Thismethod,compensatingforthelimitationsofsocialexperi-
+ments,iswidelyappliedinstudiesacrosssocialscience[41,18,39],politicalscience[27,60,64],
+economics[10,34],andotherinterdisciplinaryfields[8,38,79,80],advancingtheirunderstanding
+ofhumanbehaviorsandsocietythroughvarioussimulations. However,thebroaderimpactofthese
+studieshasbeenhinderedbythesamelong-standingissue: towhatextentcanthesesimulations
+authenticallyreplicatethecomplexitiesofrealhumansociety?
+Indeed,theauthenticityofthesesimulationsdependsontowhatextentthemostbasiccomponents
+–i.e.,theagents–behavelikehumans. However,mostexistingagents,drivenbyrules[29],equa-
+tions[45],orevenmachinelearningmodels[115],arelimitedintheirabilitytogeneratehuman-like
+behaviors. Forexample,whensimulatingopiniondynamics,people’sopinionsareoftenrepresented
+asscalarsorvectors,andtheirinteractionsasequations[15]. Whilethismodelingapproachoffers
+valuableinsights,itisstillfarfromreality,aspeopletypicallycommunicateusingnaturallanguage,
+ratherthannumeric values. Fortunately, recent advancesinlargelanguagemodels(LLMs)have
+shownpromiseincreatinghuman-likeagents[38,99,106]. Numerousstudieshavepointedoutthat
+afterbeingempoweredbyLLMs,theseagentsagentshavegeneratedhuman-like“minds”[92,63,55].
+They not only possess basic cognition abilities, such as learning [106, 99], reasoning [102], and
+decision-making[64,38],butalsodemonstratethecapabilitytounderstandandpredictthethoughts
+and intentions of others [55, 92]. Furthermore, beyond exploring these agents’ minds, some re-
+searchershaveinvestigatedtheirpotentialtomimichumanbehaviors[64,80,89,108,33,48,39,77].
+Theirinvestigationshaverevealedthat,throughelaboratedesignsincorporatingdomainknowledge,
+these LLM-driven agents can generate social behaviors, such as mobility [89, 108, 33], employ-
+ment[64,48],consumption[64,48],andsocialinteractions[39,77]. Whilegreateffortshavebeen
+madetoexaminespecificfacetsoftheseagents,simulatingacomprehensivesocialbeingremains
+largelyunderexplored.
+AsthefamoussociologistGeorgeHerbertMeadstated,“Theselfissomethingwhichhasadevelop-
+ment;itisnotinitiallythere,atbirth,butarisesintheprocessofsocialexperienceandactivity.”[70]
+Therefore,themereincorporationofmindsandbehaviorsintothesegenerativeagentsisinsufficient
+to create a social being; instead, social experience and activity, emerging from interactions with
+other agents and the environment, are crucial. Several recent studies have provided substantial
+empiricalevidencesupportingthispoint. Somehavediscoveredthatthecollaborationofmultiple
+agentscangeneratebelievablesocialorganizingbehaviors[77]andsolvecomplextasks[63,24].
+Moreover,asthenumberofagentsfurtherscalesup,large-scaleinteractionsamongthemcanleadto
+theemergenceofsocialnormsandcollectives[58,80]. Meanwhile,theenvironmentnotonlyserves
+asthegroundforinteractionsamongagents,butalsoprovidescriticalfeedbackthatguidestheirbe-
+haviors[6,64,98,117]. Forexample,thewidely-adoptedgamingenvironment“Minecraft”provides
+feedback,suchascraftingmaterials,tools,orresources,enablingagentstoadapttheirbehaviors,
+solvetasks,andgaincivilizationalprogression[98,117,6]. Overall,ashighlightedbythesestudies,
+ascalableframeworksupportinglarge-scaleinteractionsandarealisticenvironmentisfoundational
+2
+
+tosimulatingacomprehensivesocialbeingandsociety. However,thecurrentinvestigationofboth
+remainslimited.
+Toaddresstheabovegaps,weproposeAgentSociety,alarge-scalesocialgenerativesimulatorthat
+incorporatesLLM-drivensocialgenerativeagents,arealisticsocietalenvironment,andlarge-scale
+interactionsbothamongagentsandbetweenagentsandtheenvironment. Specifically,following
+social theories from a broad range of fields, including psychology [68, 5], economics [25] and
+behavioralsciencel[118],wefirstdesignaframeworkforLLM-drivensocialagents.Theseagentsare
+endowedwithhuman-like“minds”,whichincludeemotions,needs,motivations,andcognitionofthe
+externalworld. Theirbehaviorssuchasmobility,employment,consumption,andsocialinteractions
+aredynamicallydrivenbytheseinternalmentalstates. Beyondindividualagents,weconstructa
+realisticsocietalenvironmentthatseamlesslyintegratesurban,social,andeconomicspaces,providing
+arichfoundationforagentinteractionsandself-evolution. Atitscore, societyemergesfromthe
+bottom-up interactions among individuals, where agent-level interactions collectively give rise
+to complex social structures and phenomena. Recognizing that social systems exhibit emergent
+behaviorsshapedbyscale,wedevelopalarge-scalesocialsimulationengineequippedwithdistributed
+computingandanMQTT-poweredhigh-performancemessagingsystem. Thisenablessimulations
+with up to 10k agents, each engaging in an average of 500 interactions per day, capturing the
+intricatedynamicsoflarge-scalesocialsystems. Basedontheproposedlarge-scalesocialsimulator,
+we successfully reproduce behaviors, outcomes, and patterns observed in four real-world social
+experiments, including polarization, inflammatory message spread, the effects of universal basic
+incomepolicies,andtheimpactofexternalshockslikehurricanes. Theseexperimentsnotonlycover
+socialresearchmethods,suchassurveys,interviews,andinterventions,butalsodemonstratethe
+simulator’sabilitytoreplicatesocialdynamics,unlockingnewpossibilitiesforsocialscientistsand
+policymakers. Overall,AgentSocietymarksaparadigmshiftinAIforsocialscience,enablinglarge-
+scale,high-fidelitysimulationsthatovercometraditionalexperimentallimitationsincosts,scalability,
+andfeasibility. ByleveragingLLM-drivensocialgenerativeagents, itfacilitatesdeeperanalysis,
+prediction,andinterventionincomplexsocialsystems,layingthefoundationforcomputationalsocial
+science2.0.
+2 AgentSociety: DesignandOverview
+Society is a complex system, characterized by large-scale interactions among individuals with
+diverse social behaviors, whose nonlinear dynamics often give rise to emergent phenomena and
+unpredictable collective behaviors in a certain environment [87, 57, 30]. For example, in social
+networks,interactionsbetweenindividualscanresultintheemergenceofpolarization[15].Moreover,
+financial market crashes, a classic phenomenon in economic systems, stem from the collective
+behavior of market participants and the herding tendencies of individuals [91]. These emergent
+phenomena,despiteoriginatingfromindividuals’behaviors,cannotbefullyexplainedorpredicted
+solelybasedonindividualcomponents[87,57,30]. Therefore,thisrequiresustoadoptabottom-up
+perspective[30,31,29]: weshouldbeginbysimulatinganindividualsocialagent,andthengenerate
+anartificialsocietybyincorporatingarealisticenvironmentandfacilitatinglarge-scaleinteractions
+amongagentsaswellasbetweenagentsandtheirenvironment.
+Therefore,wedevelopanevaluationframeworktoexaminethecapabilitiesofvariousLLM-driven
+socialsimulatorsalongthesethreekeydimensions(Figure1).Wefirstfocusonthemostbasicelement
+ofthesimulator,i.e.,LLM-drivensocialgenerativeagents. Asdiscussedabove,thedesignofthese
+agentscanbedividedintothreelevels: minds,socialbehaviors,andtheircouplingmethods(M-B
+coupling).Atthemindlevel,researchersinitiallyinputaprofiledescriptionintoLLMs,enablingthem
+torole-playandrespondlikearealpersonwithasimilarprofile[24]. However,suchsimplerole-play
+cannotguaranteethequalityofbehaviorgeneration. Consequently,anincreasingnumberofstudies,
+inspiredbythepioneeringworkofParketal.[77],incorporateagenticmoduledesignsuchasprofile,
+memory,reflection,andaction,intotheirLLM-drivenagents[39,64]. Inthisway,theseagentscan
+exhibit more human-like behaviors and generate responses that are coherent, context-aware, and
+alignedwiththeirdesignatedprofiles. Recently,someresearchershaverealizedthatagentsdesigned
+purelybasedonthecommonsenseknowledgeofLLMslackthesocialintelligenceneededtomimic
+arealsocialbeing. Toimprovethis,theyhavedrawnonsometheoriesfrompsychologytocreate
+agentswithsociallyintelligentdesigns[101,6]. However,theydonotorganicallyintegratetheories
+3
+
+frommultiplesocialsciencedisciplines,whichiscentraltoourdesignofLLM-drivengenerative
+socialagents.
+Atthebehaviorallevel, simulatedbehaviorscanbebroadlycategorizedintotwotypes. Thefirst
+type includes complex behaviors, which involve multiple intricate steps and cannot be executed
+solelybytheagentitself. Thesebehaviorsrequireinteractionwithotheragentsortheenvironment,
+such as socializing, engaging in economic activities, or navigating movement. The second type
+comprisessimplerbehaviors,suchassleeping,whicharerelativelystraightforwardanddonotdemand
+externalinteractions. Tosystematicallyevaluatethesecomplexbehaviors,suchasmovement,social
+interaction,andeconomicactivities,wehavedevelopedspecificevaluationcriteria. Formobility
+behaviors,weexaminewhetherthesimulatorsimplymodelstheswitchingofanagent’sposition
+(i.e.,relocation)[101]orincorporatestheentireprocessofmobilitytrajectory[89,77]. Forsocial
+behaviors, weassesswhethertheagentsmerelyengageinbasicinteractions[75]ordemonstrate
+organized social relationships, reflecting more human-like group dynamics [109, 77, 6, 72]. For
+economicbehaviors,weevaluatewhethertheagentsrecognizeonlytheconceptof“resources”(e.g.,
+money in the real world or diamonds in Minecraft) [24] or perform advanced activities, such as
+value-basedresourceexchangesgroundedinlogicalreasoningandstrategicdecision-making[6,64].
+Inthecaseofsimplerbehaviors,wefocusonthelevelofconstraintsinthesimulatedactivities. These
+rangefromhighlyrestrictedtasks,suchaschoosingafavoritemovie[110],tomoreautonomousand
+creativeundertakings,likeorganizingapartywithoutexternalprompts[77,101].
+Afterintroducingthemindsandbehaviorsofagents,wefurtherfocusonunderstandinghowbehaviors
+aregeneratedfromtheirminds,whichwerefertoasmind-behaviorcoupling. Someresearchershave
+adoptedimplicitmodelingapproaches,relyingontheplanning,memory,andreasoningcapabilities
+ofLLMstogenerateplausiblebehaviors[39,64,94]. Incontrast,othershaveleveragedestablished
+theories,(e.g. Maslow’sHierarchyofNeeds[68]andTheoryofPlannedBehavior[5])toexplicitly
+modelhowbehaviorsaredrivenbyminds[101]. Thisexplicitmodelingaimstocreatebehaviorsthat
+arenotonlyplausiblebutalsomorecloselyalignedwithhuman-likepatterns[101].
+Asdiscussedabove,arealisticsocietalenvironmentservesasthefoundationforsimulatingauthentic
+humanbehaviorsandsociety. Currentsocialsimulatorsemployarangeofstrategiesforenvironment
+design,eachwithitsownstrengthsandlimitations. Dataset-basedenvironments[24,94]relyon
+pre-existingdatabutlacktheabilitytoprovidedynamic,real-timefeedbacktoagents’behaviors. For
+example,Sociodojo[24]Forexample,Sociodojo[24]incorporatespre-existingreal-worldtimeseries
+datatoprovidetheseagentswithasenseoftheexternalworld. Text-basedenvironments[75,101],
+oftenbuiltbasedonLLMs,canoffersomeinteractivefeedback;however,theirrealismandobjectivity
+remainquestionable,limitingtheirreliabilityforsimulatingcomplexscenarios. Rule-basedvirtual
+environments,likeMinecraft,providericherandmoreobjectivefeedback,buttheystillfallshort
+ofcapturingtheintricatecomplexityofrealhumansocialsystems[64,6,109]. Toadvancetoward
+atrulyrealisticsocialsimulator,itisessentialtodesignanenvironmentthatfaithfullyreflectsthe
+multifacetednatureofhumansociety. Suchanenvironmentshouldintegratekeydimensionsofurban
+living,economicdynamics,andsocialrelationships,whilesupportingdiverseinteractionsamong
+agentsandprovidingfeedbackontheirbehaviors.
+After evaluating LLM-driven social generative agents and their environments, we further extend
+our focus to examine the capabilities of the social simulation engine, particularly in terms of its
+scalabilityanditspotentialtosupportsocialscienceresearch. Thescaleisakeyfactorindetermining
+itscapacitytosupportresearchoncomplexsocialsystems[87,57,30]. Weclassifythesupported
+scaleintofourlevels: <100,100-1k,1k-10k,and>10kagents. Largerscalesenablemoreintricate
+simulationsandprovideaplatformforstudyingemergentphenomenaingreaterdetail. Moreover,the
+engine’sabilitytofacilitatetraditionalsocialsciencemethodologies,suchasexperiments,surveys,
+andinterviews,isalsoimportant. Theextenttowhichthesystemsupportsthesemethodsdirectly
+influencesitsapplicabilityacrossdiverseresearchdomains. Byaccommodatingthesemethodologies,
+the engine can bridge the gap between simulation-based research and real-world social science,
+unlockingnewopportunitiesforunderstandingandaddressingsocietalchallenges. Overall,Table2
+showsthecomparisonofdifferentLLM-drivensocialsimulatorsacrossthethreekeydimensions.
+Existingplatforms,althoughcapableofsimulatingsocietiesandhumanbehaviorstosomedegree,
+facesubstantiallimitationsinvariousareas. Sincetheseplatformswerenotspecificallydesignedfor
+socialscienceresearch,theylacksupportforthesemethods. Asaresult,thisaspecthasnotbeen
+includedinthetable.
+4
+
+Social Simulation Engine
+Scale Toolbox for Social Science
+<100 100-1k 1k-10k >10k
+Social Experiments Survey Interview Data Analysis
+Societal Environment Behaviors
+Data/Text/ Realistic Social Employment
+Rules/Games Urban Social Economic Mobility Interactions & Consumption Others
+Mind-Behavior Coupling
+Influence or Drive
+Minds M-B Behaviors
+(M) Coupling (B)
+Minds
+Role-play Agentic Module Social Intelligence
+Figure1: EvaluationframeworkforLLM-drivensocialsimulators.
+In this paper, we propose AgentSociety, a comprehensive large-scale social simulator designed
+to integrate LLM-driven social generative agents, a realistic societal environment, and a robust
+simulationengine. Thissimulatornotonlysupportslarge-scaleagentsandtheirinteractions,but
+alsofacilitatesadvancedsocialscienceresearch. Figure2providesanoverviewofAgentSociety
+and outlines the structure of this paper. AgentSociety consists of three key components: LLM-
+drivensocialgenerativeagents,arealisticsocietalenvironment,andapowerfulsimulationengine
+thatsupportslarge-scaleinteractions. ExtensiveexperimentsdemonstrateAgentSociety’ssuperior
+performanceanditspotentialasavaluabletestbedforvarioussocialexperiments. Inparticular,we
+firstintroduceLLM-drivensocialgenerativeagentsinSection3,whichdiscussesthedesignsfor
+agents’ minds, complex social behaviors, and their coupling in detail. We then demonstrate our
+real-world societal environment in Section 4, which includes our modeling of urban, social, and
+economicspaces. Furthermore,weillustrateourlarge-scalesocialsimulationengineinSection5
+andevaluateitsperformanceinSection6. Finally,weshowatypicalonedaylifeofoursimulated
+agentsinSection7.1andlaunchseveralsocialexperimentsbasedonourproposedlarge-scalesocial
+simulatorinSections7.2-7.5. Theseexamples,coveringpolarization(Section7.2),thespreadof
+inflammatorymessages(Section7.3),universalbasicincome7.4,andexternalshocksofhurricanes
+(Section7.5),demonstratethevalidityandauthenticityofourproposedsimulator.
+3 LLM-drivenSocialGenerativeAgents
+3.1 Overview
+Asdiscussedabove,therapiddevelopmentofLLMsallowsustodesignhuman-likeagentswithnot
+onlybasicpsychologicalstates[1,92],butalsocomplexsocialbehaviorssuchasmobility[89,108,
+33],employment[64,48],consumption[64,48],andsocialinteractions[39,77]. Whiletheseefforts
+in specific areas have shown the human-level intelligence of LLMs, creating LLM-driven social
+generativeagentscapableofsimulatingacomprehensivesocialbeingremainsdifficult.Thisdifficulty
+primarily lies in two aspects. First, human behaviors are inherently motivated by psychological
+states[32,69,68,5]. However,thiscrucialconnectionislargelyabsentinavanillaLLMorexisting
+5
+
+Spread of Inflammatory Messages Universal Basic Income
+Section 7.3 Section 7.4
+External Shocks
+Polarization of Hurricane
+Section 7.2 Section 7.5
+Societal Environment Large-scale Interactions
+Section 4 Section 5
+Social Agents
+Section 3
+Key Example
+System Performance AgentSociety
+Section 6 Components Applications
+Figure2:OverviewoftheproposedsocialsimulatorAgentSociety.AgentSocietyconsistsofthreekey
+components: LLM-drivensocialgenerativeagents,arealisticsocietalenvironment,andapowerful
+simulationenginethatsupportslarge-scaleinteractions. Basedonthesecomponents,AgentSociety
+notonlydemonstratessuperiorcomputationalperformancebutalsoservesasavaluabletestbedfor
+varioussocialexperiments.
+agentsdesignedforspecificaspects. Second,differenttypesofbehaviorsarehighlyinterdependent.
+For example, the decision of when and how people commute to work is shaped by the interplay
+betweentheirmobilityandemploymentbehaviors. Similarly,socialinteractionsamongindividuals
+oftentakeplacewhenpeoplegoshopping. Theseexampleshighlightthecrucialinterdependence
+ofhumanbehaviors. Despiteitssignificance,currentLLMsandagentsfailtocapturethis,limiting
+theirabilitytoaccuratelysimulaterealistic,complexhumanbehaviors. Addressingthesetwoaspects
+requiresdeepinsightsintosocialsciencetheoriesofhumanbehavior,aswellasadvancementsin
+algorithmicdesigntointegratetheseinsightsintoLLM-drivensocialgenerativeagents.
+Therefore, we propose a design for LLM-driven social generative agents, deeply rooted theories
+from psychology (e.g. Maslow’s Hierarchy of Needs [68] and Theory of Planned Behavior [5]),
+economics(e.g.,DynamicStochasticGeneralEquilibrium[25]),andbehavioralscience(e.g.,Gravity
+Model[118]). Figure3providesanoverviewoftheproposedagents,whichcanberoughlydivided
+into fourparts. First, each agent retainstheir profile, typically regarded as relatively stable (e.g.,
+personality),andstatus,whichisdynamic(e.g.,emotion). Inparticular,theprofileincludesbasic
+demographicssuchasname,age,gender,andeducation,aswellaspersonality. Thestatuscomprises
+threekeyaspects: theagent’scurrentmentalstates,economicstatus,andsocialrelationships. Mental
+statesreflecttheagent’sinnerexperiences,whileeconomicstatusandsocialrelationshipscapture
+their power and connections in the external world. The integration of the profile and status into
+theseLLMagentsenablesthemtorole-playlikerealpeople,providingthefoundationforsimulating
+complexmentalprocessesandbehaviors.
+Second,eachagentisdesignedwiththreelevelsofmentalprocesses: emotions,needs,andcognition.
+Emotionsreflecttheagent’simmediateresponsetobothinternalandexternalstimuli,shapingits
+behaviorsandreactions. Needsserveastheunderlyingmotivationaldriversthatguideanagent’s
+actions,rangingfrombasicsurvivalrequirementstohigheraspirationssuchaspersonalgrowthand
+self-fulfillment. Cognitionreferstotheagent’sunderstandingoftheworld,e.g.,itsattitudestoward
+climatechangeandpoliticalissues. Byincorporatingthesethreelevelsofmentalprocesses(see
+6
+
+Table1: ComparisonofLLM-drivenagentsandsocialsimulators.
+Model Minds Mobility Economics Social Others M-B Scale Env.
+RP. AM. SI. Relo. Traj. Res. Exc. Int. Rel. Con. Free Infl. Dri. #
+D2A[101] ✓ ✓ ✓ ✓ ✓ ✓ <100 Text
+Ecoagent[64] ✓ ✓ ✓ ✓ ✓ 100-1k Rules
+OASIS[109] ✓ ✓ ✓ ✓ ✓ >10k Rules
+GA1000[78] ✓ ✓ ✓ 1k-10k ×
+MATRIX[75] ✓ ✓ ✓ <100 Text
+Sociodojo[24] ✓ ✓ <100 Data
+GA[77] ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ <100 Rules
+GenSim[94] ✓ ✓ ✓ >10k Data
+ProjectSid[6] ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ 1k-10k Rules
+AgentScope[40]✓ ✓ ✓ N/A N/A
+HiSim[72] ✓ ✓ ✓ ✓ 100-1k Rules
+S3 ✓ ✓ ✓ ✓ 1k-10k Rules
+Agent4Rec[110]✓ ✓ ✓ 1k-10k Rules
+RecAgent[100] ✓ ✓ ✓ ✓ ✓ 100-1k Rules
+Sotopia[116] ✓ ✓ <100 ×
+Casevo[52] ✓ ✓ ✓ ✓ 100-1k Rules
+Ours ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ >10k Society
+Profile & Status Mental Process Social Behaviors
+tnemnorivnE
+Role-play Inner
+Basic Demographics Emotions Mobility
+Needs
+Personality & Mental States Social Interactions
+Love & Belonging
+Safety
+Economic Status Employment & Consumption
+Physiological
+Social Relationship Cognition Other Behaviors
+... ... ...
+Memory: Flow of Objective Events & Flow of Subjective Experience
+Workflow of LLM-driven Social Generative Agents
+Figure3: OverviewofLLM-drivensocialgenerativeagents.
+the detailed design in Section 3.2), agents can autonomously perceive the external environment,
+ultimatelydevelopingtheircognitionofit.
+Third, social behaviors are the core of LLM-driven social generative agents, which serve as the
+bridgebetweentheirinternalmindandexternalenvironment. Giventheimportanceandcomplexity
+ofvarioushumanbehaviors,weexplicitlymodelthreetypesofsocialbehaviors: mobility,social
+interactions,aswellasemployment&consumption. InSections3.3-3.5,wedetailthespecialdesigns
+forthesethreebehaviors. OthersimplebehaviorssuchassleepingaredirectlyhandledbyLLMs.
+Itisworthnotingthatthesebehaviorsareconditionedbytheagents’profileandstatus,anddriven
+by their mental processes. Finally, we introduce the workflow of the overall LLM-driven social
+generativeagentsinSection3.6,illustratingtheintegrationoftheirprofiles,mentalprocesses,and
+socialbehaviors. Thisworkflowenablesthesimulationofcomprehensive,context-awareagentsby
+capturingbothinternalcognitivestatesandexternalinteractions,ensuringrealistic,dynamicsocial
+behaviorswithinthesimulation.
+7
+
+3.2 Emotion,Needs,andCognition
+Humansaredrivenbyanintricateinterplayoffeelings,motivations,andthoughtprocessesthatshape
+theirdecisionsandinteractions[90,7]. Groundedinpsychologicaltheories,ourstudyintegratesthree
+fundamentalconstructs,includingemotion,needs,andcognition,todesignagentsthatrealistically
+simulateadaptiveandhuman-likebehavior.Emotion,asthemostdynamiclayerofhumanpsychology,
+drives rapid responses to external situations and influences behavior [20, 16]. Needs, based on
+Maslow’s hierarchy of needs theory, serve as motivational drivers, spanning from basic survival
+requirementstohigheraspirationslikepersonalgrowth[3]. Modelingtheseneedsenablesagents
+toadoptrealisticmotivationsandprioritizeactionsinwaysrelatabletohumanbehavior. Cognition,
+informedbytheorieslikeTheoryofMindandCognitiveAppraisalTheory,involvesadvancedmental
+processesthatallowagentstoevaluatecomplexsituations,makethoughtfuldecisions,andadapt
+todiversesituations[13,88]. Drawingonthesepsychologicaltheories,agentsrecognizetheirown
+knowledgeandthementalstatesofotherswhileevaluatingcontextsensitively,enablingeffectiveand
+goal-orientedsocialinteractions[81]. Byintegratingthesecrucialelements,ourstudydesignsagents
+thatcanresponddynamicallytoreal-timechangeswhiletailoringtheiractionstoreflecthuman-like
+characteristicsandbehaviorswithincomplexsocialsimulations. Theoverallmodelingframeworkfor
+thepsychologicalandcognitiveaspectsoftheagentisillustratedinFigure4.
+Minds
+Memory
+Attitude Emotion Thought
+Needs Behavior
+Figure4: Modelingframeworkofemotion,needs,andcognition.
+Emotion is a dynamic and foundational element of human psychology, driving rapid responses
+to external events and influencing decision-making and behavior [90]. In our model, an agent’s
+emotionsareaffectedbyitsprofileandstatusandareupdatedbasedoninteractionswithotheragents
+andtheenvironment. WeadopttheemotionmeasurementframeworkfromShvoetal.[90],which
+involvestheagentselectingakeywordtobestdescribeitscurrentemotionalstate, formulatinga
+sentence-basedthoughtrelatedtothatemotion,andratingtheintensityofsixcoreemotions—sadness,
+joy,fear,disgust,anger,andsurprise—onascalefrom0to10. Thismethodenablesagentstotrack
+andupdatetheiremotionalstates,providingafoundationforcontextuallyappropriateandadaptive
+behavior. Theseemotionstheninfluencetheagent’sactions,motivations,andcognitiveprocesses,
+establishinganinterconnectedsystemthatguidesdecision-making. Aswewillexploreinthenext
+section,emotionalstatesdirectlyimpacttheagent’sneedsandcognitiveevaluations,linkingemotions
+tohigher-ordermotivationalandreasoningfunctions.
+Theconceptofneedsiswidelyacceptedinthefieldofpsychologyasthefundamentalmotivator
+behindanindividual’spursuitofspecificobjectivesandmaintenanceofsocialengagement.Emotions,
+ontheotherhand,areseenastheimmediateresponsesexperiencedbyanindividual. Theconceptof
+needs,however,isbelievedtoestablishtheunderlyingmotivationalmechanismsthatguidesustained
+behavior,therebyextendingandcontextualizingemotionalfluctuations. Theintegrationofneedsand
+emotionsintheagent’smodelenablesthemaintenanceofconsistentmotivationalpathwaysovertime,
+ensuringthattransientaffectivestatesaregroundedinenduringgoalsandpriorities. Inourapproach,
+weemployestablishedpsychologicalframeworks(e.g.,Maslow’shierarchyofneeds[3])tocategorize
+andstructurethesemotivationalforces. Weadoptahierarchicalrepresentationofneedstoorganize
+motivationaldrivesbytheirrelativeurgencyandimportance. Thisneedshierarchyiscontinuously
+updatedbasedonthreeinterrelatedfactors: theagent’sactivebehaviors,uncontrollableorpassive
+external events, and its current psychological states. The integration of these elements enables
+thesystemtodynamicallyadjustneedpriorities,ensuringthattheagentrespondsappropriatelyto
+bothinternalmotivationsandexternalpressures. Furthermore, needsdonotmerelyreflectstatic
+conditionsbutratherserveasadrivingforceforproactivebehavior.LeveragingtheTheoryofPlanned
+8
+
+Behavior[5],theagentformulatesactionplansspecificallyaimedatmeetingorenhancingpriority
+needs. Throughthisdesign,theneedsmoduleprovidesarobustfoundationforadaptive,socially
+informedbehavior. Inconclusion,themodeledneedsprovidethenecessarymotivationalbasisthat
+informs and intersects with the agent’s cognitive processes, leading directly into the subsequent
+discussiononcognition.
+Cognitionencompassesthehigher-levelprocessesinvolvedinreasoning, planning, anddecision-
+making[13]. Inourmodel,cognitionisintricatelyconnectedtotheagent’semotionalandattitudinal
+updates. Aftertheagentprocessesanaction,asentenceisusedtodescribeitsbehaviorinrelationto
+thecurrentcontext. Thesesentencesisthenusedtoupdateboththeagent’sattitudetowardsspecific
+topicsanditsemotionalstate. Attitude,inthiscontext,servesasamemorysystem,reflectinghow
+supportiveoropposedtheagentistoaparticulartopic,ratingfrom0-10. Bycontinuouslyupdating
+bothemotionandattitudethroughtheagent’sactionsandexperiences,cognitionensuresthatthe
+agentadaptstoitsenvironmentinawaythatisconsistentwithhuman-likereasoningandemotional
+depth. Thisprocess,inturn,influencestheagent’sneedsandmotivations,bridgingthegaptothe
+nextlevelofanalysis.
+Insummary,theintegrationofEmotion,Needs,andCognitionmodulesenablestheagenttoengage
+insociallyintelligentbehavior,witheachmodulecontributingtotheshapingofadaptiveactions.
+Forinstance,whentheagentdetectsanunmetneedforsocialinteractionanddeterminesasequence
+ofactions—suchasidentifyingpotentialcontactsandsendingmessages—tosatisfythisneed. The
+emotionalstateoftheagent,influencedbytheemotionmodule,affectsthetoneofcommunication,
+prompting the agent to initiate conversation with a cheerful or light-hearted tone. As the social
+interactionprogresses,theoutcomeofthebehavior—whethertheinteractionisperceivedassuccessful
+ornot—isreflectedintheemotionandcognitionmodules. This,inturn,resultsinanupdatetothe
+needsmodule,therebyestablishingacontinuousfeedbackloopthatadaptstheagent’sbehaviorin
+responsetobothitsenvironmentandinternalstate.
+3.3 MobilityBehaviors
+Mobilityservesasthefundamentalbasisforsocialagentstoengageininteractionsandfulfilltheir
+demands. Mobilityisnotarandombehaviorbutisneeds-drivenacrossmultiplelevels. Forinstance,
+whenanagentexperienceshunger(abasicsurvivalneed), itmustmovetoarestauranttoobtain
+food;toattendaworkmeeting(anadvancedprofessionalneed),commutingtoanofficebecomes
+necessary. These mobility behaviors directly serve specific goals, acting as physical carriers for
+socialinteractions,economicactivities,andothersocietalbehaviors. Inessence,thecorechallenge
+ofmobilitymodelingistobridgethespatiotemporalgapbetweenneedsandbehaviors. Without
+effectivemobility,agentscannotachieveroleimmersionorbehavioralclosureincomplexsocial
+environments.
+Asdepictedintheprevioussection,theNeedsofsocialagentsexhibitahierarchicalstructure: from
+foundationalneeds(e.g.,eating,resting)tosafeandsocialneeds(e.g.,work,socialgatherings). To
+satisfytheneeds,itrequiresimplementationthrougha"Need-Plan-BehavioralSequence"chain.
+Takingsocialneedsasanexample,anagentfirstformulatesaplanto"attendafriend’sgathering,"
+whichdecomposesintobehavioralsequencessuchas"schedulingtime(Fridayevening),selectinga
+location(café),moving."Here,locationselectionbecomesthedirectdriverofmobility—toreach
+thetargetlocation. Thisspatiotemporalcouplingestablishesmobilityasthecriticalexecutionstep
+fordemandrealization.
+Followingtheneeds-drivenprinciple,themobilitymoduleadoptsahierarchicaldecisionframework
+(showninFig. 5):
+1. Intention Extraction: Derive core mobility intentions from demand hierarchies. For
+example,when"socialdemand"isactivated,theagentmayextracta"movetosocialvenue"
+command.
+2. PlaceTypeSelection: MatchdemandswithPOI(PointofInterest)typesingeographic
+databases. Iftheintentionissocialinteraction,venueslikecafésorparksarefiltered.
+3. Radius Decision: Dynamically determine feasible ranges by integrating internal states
+(e.g.,age,stamina)andenvironmentalparameters(e.g.,weather,traffic). Heavyrainmay
+constraintheradiusofindoorvenueswithin1kmorevenstayathome.
+9
+
+4. PlaceSelection: ApplytheGravitymodelforspatialoptimization:
+S /Dβ
+P = j ij , (1)
+ij (cid:80) S /Dβ
+k ik
+whereS denotestheattractivenessoflocationj,D isthedistance,andβisthedistancede-
+j ij
+caycoefficient. ThismodelreducesLLMcomputationaloverheadwhileensuringselections
+alignwithhumanspatialpatterns(e.g.,proximityprinciple,agglomerationeffects).
+MobilityBehavior
+NeedandPlan
+Step1:IntentionExtraction
+Map
+Profile
+Step2:TypeSelection
+Weather
+Status
+Temperature
+Variables
+Step3:RadiusDecision
+Step4:PlaceSelection
+Agent GravityModel Environment
+Figure5: Modelingofmobilitybehavior.
+Mobilityservesasafoundationalbehavioralmodule,operatingasanintegrativeforcewithinthe
+socialagent’sactionnetwork. Thisenablesmultidimensionalcoordinationacrosssocial,economic,
+and environmental domains. The act of moving to a park, for instance, inherently carries the
+potentialforsocialsynergy. Spontaneousencounterswithacquaintancesmayemerge,catalyzing
+dialogues,collaborativeactivities,orevenserendipitoussocialevents. Theseinteractionsexemplify
+howmobilityservesasaconduitfororganicrelationship-building. Concurrently,economicsynergy
+manifeststhroughgoal-orienteddisplacements. Commutingtoworkplacesdirectlysustainslabor
+productivity,whilevisitingcommercialhubslikeshoppingmallscreateopportunitiesforconsumption,
+thereby linking physical movement to economic cycles. Beyond the human-centric interactions
+discussed above, mobility also embodies environmental adaptation. Agents dynamically adjust
+routesbasedonreal-timetrafficdataorweatherfluctuations,demonstratingresponsivenesstospatial-
+temporalconstraints. Collectively,thesesynergiespositionmobilityasthedynamicchassisofsocial
+adaptability.Itfulfillsimmediatedemandsandalsoprovidesthecontextualinfrastructureforcomplex,
+layeredinteractionsinurbanecosystems.
+3.4 SocialBehaviors
+Cognition Social Behavior Social Network
+Attitude Emotion Thought
+Find person to interact
+Send Message
+Economy
+Social Relation
+Economy News Action Respond Message Family
+Mobility Friends
+Arrange Meeting
+Colleagues
+Offline Event Action
+Figure6: Modelingofsocialbehavior.
+10
+
+Socialbehaviorsplayacriticalroleinouragentsimulationframework. Theyenabletheflowof
+informationandinfluencebetweenagents,andfurtherleadtotheemergenceofcollectivephenomena
+throughagentinteractions. Inrealsocieties,people’sbeliefs,opinions,andbehaviorsspreadand
+evolve primarily through social connections and communications. Therefore, modeling social
+behaviors allows us to simulate how information and influence flow between agents affects both
+individualandgroupdynamics. Oursocialmoduleconsistsoftwocomponents: socialrelationships
+definingtheconnectionsbetweenagents,andsocialinteractionbehaviorsenablingcommunication
+betweenconnectedagents.
+We include three types of social relationships in our framework: family bonds, friendships, and
+colleagues. Eachrelationshiphasastrengthvaluerangingfrom0to100representingsocialcloseness
+betweenagents.Agentscommunicatemorefrequentlywithhighstrengthconnectionsandadjusttheir
+communicationtonebasedonrelationshiptype. Forexample,agentsusemoreformallanguagewith
+colleaguesandcasuallanguagewithclosefriends. Wemaintaindetailedinteractionhistorybetween
+connectedagents,includingmessagecontentandtime,whichinfluenceshowtheycommunicatein
+futureinteractions.
+Ourframeworkprimarilyfocusesonmodelingonlinesocialbehaviorsononlinesocialnetworks.
+Motivatedbytheirsocialneeds,agentsselectinteractionpartnersbasedonrelationshiptypesand
+strength. Forinstance, whensendingcasualmessages, agentstypicallychoosetheirbestfriends,
+whicharefriendswiththehighestrelationshipstrength. Targetselectionalsoconsiderstherecipient’s
+profilecharacteristics.Whenanagentwantstodiscussspecifictopics,theyselectfriendswithrelevant
+expertiseorexperience. Forexample,anagentseekingadviceaboutsecurityissueswouldcontact
+friendswhoworkaspoliceofficers. Afterselectingatarget,agentsstartconversations. Thecontent
+ofthesemessagesisshapedbymultiplefactors: theagent’scurrentneedsandintentionsdetermine
+theconversationtopic,theirthoughtsandbeliefsinfluencethespecificcontent,andtheiremotional
+stateaffectsthemessagetoneandstyle. Whenreceivingmessages,agentsgenerateresponsesbased
+ontheirrelationshipstrengthwiththesender,theirchathistory,andtheircurrentemotionalstate. Our
+currentframeworkprimarilymodelsonlinesocialinteractionsthroughmessagingononlinesocial
+network,withplanstoincorporateofflineinteractions. Forexample,whenagentsdiscovershared
+interestsinparticulartopicsorneedtohavemoredetaileddiscussions,theycancoordinateoffline
+meetingsthroughonlinecommunication.
+Social behaviors are deeply interconnected with agents’s emotional states, cognition, economic
+behaviors,andmobilitybehaviors. Anagent’scurrentemotionsandbeliefsdirectlyinfluencehow
+theycomposemessages,whilereceivedmessagescansignificantlyaltertheiremotionalstateand
+viewpoints. Positiveinteractionscanimprovemoodandstrengthenrelationshipbonds,whilenegative
+interactionsmayleadtoemotionaldistressandweakenedconnections. Theexchangeofeconomic
+informationthroughsocialinteractionscantriggereconomicbehaviors. Forinstance,whenagents
+receivenewsaboutjobopportunitiesormarketconditionsfromtheirsocialconnections,theymay
+adjusttheiremploymentorconsumptiondecisionsaccordingly. Similarly,socialinteractionsoften
+leadtomobilitybehaviors,suchaswhenagentsreceiveeventinvitationsorarrangeofflinemeetings
+withtheirconnections.
+Throughthiscomprehensivesocialbehaviormodelling,weenableagentstoengageinmeaningful
+interactionsthatbothshapeandareshapedbytheirinternalstatesandexternalbehaviors. Oursocial
+modulecapturesbothrelationshipstructuresbetweenagentsandtheirinteractionbehaviors,allowing
+agentstointeractandinfluenceeachotherastheydoinrealsocieties,andprovidingafoundationfor
+studyinghowinformationandinfluencespreadinthesimulatedsociety.
+3.5 EconomicBehaviors
+Economicbehaviorindailylifeisanecessarycomponentforsustaininglife,withemploymentand
+consumptionbeingthecoreeconomicactivities. Thesetwobehaviorsoccupythemajorityoftime
+for social agents and further influence their psychological states, including cognition, emotional
+well-being,andoveralllifesatisfaction. Moreover,economicbehaviorisdeeplyintertwinedwith
+otheraspectsofanagent’sdailylife,suchasmobilityandsocialinteractions. Thesatisfactionof
+oneneed,whetheritiseconomicorsocial,oftentriggersacascadeofrelatedbehaviorsthatspan
+acrossdifferentdomainsoftheagent’slife. Forexample,anagent’sdecisiontoworklongerhoursto
+increasetheirincomemayresultinlesstimeavailableforsocialinteractions. Similarly,thedecision
+tospendmoreonconsumptioncouldleadtoadjustmentsinanagent’smobilitypatterns,suchas
+11
+
+traveltodifferentstoresorevenrelocationtoareaswithbetteraccesstodesiredgoodsorservices.
+ThemodelingofeconomicbehaviorisshowninFigure7.
+Social behavior Economic behavior Simulator
+Work propensity
+Government
+Economic
+Market Dynamics
+News
+Income
+Bank
+Savings
+Consumption
+Mobility behavior
+Firm Tax, Redistribution
+Store Firm
+Consumption propensity
+Home
+Figure7: Modelingofeconomicbehavior.
+Intermsofbehaviormodeling,wesimulatetheemploymentandconsumptionbehaviorofsocial
+agentsthroughthestrengthoftheirworkandconsumptionpropensity,andapplythesebehaviorsin
+amacroeconomicsimulationenvironment[64]. Workpropensitydeterminestheagent’sworking
+hoursandcorrespondingmonthlyincome,whileconsumptionpropensitydeterminestheirmonthly
+consumptionbudget. Additionally,agentsautonomouslydecidehowtoallocatethisbudget,including
+wheretospendthemoneyandwhattopurchase. Thesebehaviorsaredirectlyinfluencedbyvarious
+economicfactors,includinglastmonth’sconsumption,prices,taxes,andsoon. Thesefactorsare
+integrated into the agent decisions in a real-world context, where agents constantly adjust their
+behaviorinresponsetodynamiceconomicmarkets. Infuturework,wewillfurthersimulateagents’
+complexeconomicbehaviorsinthelaborandfinancialmarkets,includingjobchanges,debt,and
+investment,tomodelamorerealisticsocio-economicenvironment.
+Thisframeworkcanbeusedtosimulatelarge-scaleeconomicsystemsandtoexplorethepotential
+impacts of policy changes, economic shocks, and other factors on the overall behavior of social
+agents within the system. By examining these dynamics, we can gain a deeper understanding
+of the interactions between economic behaviors, psychological states, and social dynamics in a
+comprehensiveandintegratedmanner.
+3.6 WorkflowofLLM-drivenSocialGenerativeAgents
+Inthissection,weintroducetheworkflowofourLLM-drivensocialagent,highlightinghowthe
+agent’sinternalpsychologicalstates(EmotionandCognition)anditsbehaviorsinfluenceeachother
+andformacompleteloop. Thisloopcontinuouslyadaptstheagent’sactionsbasedonitsevolving
+cognitivestates,ensuringthatbehaviorisdynamicallyalignedwithbothinternalmotivationsand
+externalcontext. ThecoremechanismlinkingthesepsychologicalstatestobehaviorisMemory,
+whichconnectstheagent’scognitivestateswithitsactions. Thisenablestheagenttomakeadaptive
+decisionsthatreflectitspastexperiences,currentneeds,andcognitiveresponses.
+AtthecoreofoursolutionistheuseofMemorytolinktheagent’sinternalpsychologicalstates
+toitsbehavior. Memoryactsasabridgebetweentheagent’scurrentemotions,cognition,andits
+pastexperiences,ensuringthatitsactionsareinformedbybothhistoricalcontextandpresentneeds.
+Memoryisnotapassivesystembutactivelyshapestheagent’sdecisionsandbehavior, enabling
+continuousadaptationandcoherenceinitsresponsestochangingsituations. Specifically,Memoryis
+dividedintothreemaincomponents,eachwithaspecificroleintheagent’soveralloperation:
+• Profile: Storestheagent’sstaticattributes,suchasdemographicinformation(e.g.,gender,
+age),whichremainconstantandprovidecontextforinterpretingtheagent’sbehavior.
+• Status: Recordstheagent’sdynamicstateinformationinkey-valuepairs,includingdata
+likecurrentneeds,satisfactionlevels,andfinancialstatus,whichdirectlyinfluencedecision-
+making.
+• Stream Memory: This is the core part of the memory system and tracks events and
+perceptionsovertime. Itiscomposedoftwotypesofmemorystreams: EventFlowand
+12
+
+Minds
+Needs Attitude Emotion Thoughts
+Timeline
+C1 C2 C3
+E1 E2 E3 E4
+Memory
+NeedstoPlan Behavior
+Plans
+Mobility Social Economy Other
+Figure8: Workflowofsocialagentsbasedonstreammemory.
+PerceptionFlow. Eachstreamisorganizedchronologically,withmultipleMemoryNodes
+ineachstream. EachMemoryNodecontainsadescriptionwiththreecomponents: time,
+location,andeventdescription.
+TheEventFlowrecordseventsthatoccurovertime,suchasproactiveactionsbytheagent,passive
+externalevents,andenvironmentalchanges. Theseeventsarerecordedinsequence,maintaininga
+timelineofactionsandoccurrences.
+ThePerceptionFlowrecordstheagent’sthoughtsandattitudestowardstheeventsintheEventFlow.
+EachnodeinthePerceptionFlowislinkedtooneormorenodesintheEventFlow,reflectinghow
+theagentperceivesorreactstoaspecificevent. Thisintegrationallowsforanuancedrepresentation
+ofboththeagent’scognitiveappraisalsandemotionalresponses.
+Theagent’sbehaviorisdrivenbyitscurrentstate,whichinfluencesthedecision-makingprocessand
+theactionstaken. Thefollowingstepsoutlinetheagent’sworkflow:
+1. ActionDetermination: Theagentassessesitscurrentstate(fromtheStatusmemory)and
+decidesonacourseofactionbasedonitsemotionalandcognitiveevaluations. Forexample,
+iftheagentneedssocialinteractionandisinapositiveemotionalstate,itmaychooseto
+initiateasocialconversation.
+2. EventFeedback: Afterperformingtheaction,theagentreceivesfeedback. Forexample,
+iftheagentattemptstomovetoasocialgathering,itcheckswhetherthemovementwas
+successful(e.g., diditreachthecorrectlocation, consideringenvironmentalfactorslike
+weather).
+3. Memory Update: The event and its feedback are recorded in the Event Flow, and the
+associatedPerceptionFlowisupdatedwiththeagent’semotionalandcognitiveresponsesto
+theevent.
+4. Emotion and Cognition Analysis: The Emotion and Cognition modules analyze the
+outcomeoftheevent(e.g.,whetherthemovementwassuccessful)andupdatetheagent’s
+emotional state and attitude accordingly. This feedback may affect the agent’s future
+decisionsandactions.
+5. PassiveandEnvironmentalEvents: Inthecaseofpassiveeventsorenvironmentalstimuli,
+thesamememoryprocessinglogicisapplied. Theagentperceivestheevent,updatesthe
+EventFlow,andmodifiesitsPerceptionFlowaccordingly.
+TheMemorysystem,organizedalongatimeaxis,reflectsthenaturalflowofeventsinthephysical
+world. Thismemoryframeworkallowstheagenttointegrateitsongoingexperienceswithpastevents,
+creatingadynamic,evolvingrepresentationofitsenvironmentandinternalstates. Byleveraging
+13
+
+Stream Memory, the agent adapts its behavior over time in a way that mirrors human cognition,
+emotionalresponses,anddecision-making,providingacoherentandcontext-awarefoundationfor
+sociallyintelligentbehavior.
+4 Real-worldSocietalEnvironment
+4.1 Overall
+Urban Space Social Space Economic Space
+Filter/Ban Consumption…
+Message
+Supervisor
+Person Bank
+ro
+b Interest
+a
+L
+Societal Account
+Environment Drive Walk Book
+Wage Tax
+Offline Online
+Bus Taxi
+Firm Government
+Roadnet Social Network
+AOI
+GDP…
+POI
+NBS
+Social Employment &
+Mobility MoSboicliitayl Interactions
+Behaviors Consumption
+Figure9: Overviewofthesocietalenvironment.
+Accordingtotheintroductionabove,inthedesignandsimulationofsocialagents,mobilitybehaviors,
+socialbehaviors,andeconomicbehaviorslikeemploymentandconsumptionareessentialexternal
+capabilities. Intherealworld,themanifestationofthesebehaviorsisgroundedincorresponding
+objectiveentities,notmerelyinhumansubjectivecognition. Forexample,mobilitybehaviorsimplya
+continuouschangeinspatialandtemporallocation. Therefore,ifwerelysolelyontheknowledgeand
+capabilitiesofLLMstoconductsuchsimulationswithoutincorporatingmodelingoftheoperational
+laws and constraints of the real world, the simulation results are likely to be influenced by the
+"hallucinations"ofLLMs[49],resultinginoutcomesthatdivergefromactualrealities. Toaddress
+thisissue,weneedtoprovidearealisticandreliableenvironmentforsimulatingsocialagents. The
+environmentshouldincludethefollowingfeatures:
+• Appropriatemodelingofreal-worldoperationalprinciplestoreflectphysicalconstraintsand
+costs,andprovidefeedbackonbehaviors;
+• Environmentaldatasourcedfromtherealworldoralignedwithreal-worldprinciples;
+• Interfacestoenableinteractionwithagents.
+Suchanenvironmentwillserveasavirtualmappingoftheobjectiveaspectsoftheworldinsocial
+simulations,enablingthedesignofsocialagentstofocussolelyonsubjectivehumanbehaviorallogic.
+Byoffloadingtaskssuchasnumericalcomputations,whereLLMscannotguaranteeabsoluteaccuracy,
+thisapproachsimplifiesagentdesignandallowsresearcherstoconcentrateoncoreobjectives.
+In alignment with this objective, we encode expert knowledge to construct a real-world societal
+environment as depicted in Figure 9, designed to support the simulation of mobility behaviors,
+socialbehaviors,andeconomicbehaviors. Theentireenvironmentisdividedintothreespaces. The
+14
+
+urbanspaceconstructsacityroadnetworksupportingmobilitysimulationandincorporateselements
+suchasAreaofInterest(AOI)andPointofInterest(POI).Itimplementscommontransportation
+modesincludingdriving,walking,publictransit,andtaxiservices,providingagentswithrealistic
+positionalfeedbackaswellastemporalandmonetarycostsassociatedwithdifferenttravelchoices.
+Thesocialspacebuildsuponagents’socialnetworks,offeringsupportforofflineandonlinesocial
+interactions. Acriticalandauthenticdesignfeatureinthisspaceisthesupervisor,whichmonitors
+social media content, filters messages based on algorithmic rules, and enforces bans on specific
+users or connections when necessary. The economic space reconstructs fundamental elements
+ofmacroeconomics,modelingeconomicbehaviorsofindividuals,firms,governments,andbanks
+throughtheimplementationofaccountbooks.Thesebehaviorsencompassemployment,consumption,
+taxation,interestmechanisms,whileadedicatedstatisticalbureauisestablishedtomonitoreconomic
+indicatorslikeGDP.Thefollowingsubsectionswillelaborateonthecorrespondingenvironmental
+spacesfortheagentbehaviorsrespectively.
+4.2 UrbanSpace
+To address the needs of social agents for moving and interacting with different places, accurate
+modelingofurbanspaceisessential. Theurbanspacemustcaptureboththephysicalmovement
+patternofindividualsandtheirinteractionswithdiverseurbanlocations.
+InspiredbytrafficsimulationplatformssuchasSUMO[17]andCityFlow[112],alsoleveragingthe
+spatialabstractionschemasofOpenStreetMap,theurbanspaceisstructuredintotwointerdependent
+layers,thestaticinfrastructureattributesanddynamicmobilitybehaviors.
+Thestaticattributelayerincludesroadnetworks,definedbylanes,roadsandjunctionstoencode
+trafficaccessibility,aswellasfunctionalzones,whichareAreasofInterest(AOIs)andPointsof
+Interest(POIs). AOIsdelineateregionswithspecificpurposes,suchasresidentialneighborhoodsor
+commercialdistricts,whilePOIsrepresentgranularinteractiontargetslikeretailstores.
+The dynamic behavior layer extends this static foundation by simulating multi-modal mobility
+throughadiscretetime-steppingmechanism. Individualmovements,includingpositions,speeds,
+andaccelerationsareupdateddynamicallyaccordingtokinematicprinciplesandpredefinedrules.
+Operational logic begins with agents formulating movement intentions based on their internal
+needsandgoals,thentheseintentionsaretranslatedintospecificinstructionsguidingindividuals’
+movementswithinthespace,whichincludedriving,walking,takingthebus,ortakingataxi. Forall
+meansoftransportation,path-planningalgorithmsgenerateoptimalroutes. DrivingfollowstheIDM
+model[95]foraccelerationandtheMOBILmodel[54,35]forlane-changingdecisions. Pedestrians
+navigatesidewalksataconstantspeedandfollowthetrafficsignalsatjunctionstoavoidcollisions
+withvehicles. Busesoperateonfixedschedules,whilepassengersconducttheprocessesofboarding,
+alighting,andtransferring. Fortaxis,aglobaldispatchsystemsimulatessendingthenearestavailable
+taxitorespondtoriderequests,ensuringefficientserviceandminimalwaittimesforpassengers.
+Forthesimulationenvironmenttofunctionaccurately,weapplyrichdatasources.Roadnetworksand
+AOIsareextractedfromOpenStreetMap,undergoingtopologicalsimplificationtoproducestructured
+representations. POIdata,acquiredviaAPIfromSafeGraph.
+WeimplementPython-basedAPIstobridgethesimulationspaceandagents,providingbidirectional
+interactioncapabilities. Configurationinterfacesallowforinitializingagentpositions,assigntravel
+plans (e.g., destinations and transportation modes), and reset simulation states. Query interfaces
+enablereal-timemonitoringofagentkinematicsstatusandsimulationmetadatasuchassimulation
+timestamps.
+Byharmonizingstaticurbaninfrastructure,dynamicmobilitybehaviors,andmulti-sourcegeospatial
+data,oururbanspaceestablishesahigh-fidelitydecision-makingsandboxforagents.
+4.3 SocialSpace
+Socialbehaviorisaprerequisiteforconstructinganagentsociety. Theoccurrenceofsocialbehaviors
+requiresthesupportofanauthenticsocialenvironment.Thesocialenvironmentprovidesmanagement
+https://openstreetmap.org/
+https://openstreetmap.org/
+https://www.safegraph.com/
+15
+
+ofsocialrelationships,aswellasmodelingandsimulationofsocialbehaviors,whichwillenable
+mutual influence and collaboration among agents, generating richer and more authentic social
+phenomena.
+Therefore,theincorporationofthesocialspacewithinthesocietalenvironmentisparticularlycrucial.
+Theprimarycomponentofthesocialspaceisthesocialnetwork,whichisprovidedandloadedby
+users. Socialnetworksmodelrelationshipsbetweenindividuals,encompassingtheconnectionsand
+connectionstrengthsbetweeneachagentandothers. Thisnetworkwillbeusedbyagentstoevaluate
+potentialsocialinteractiontargets. Boththerelationshipsandconnectionstrengthswithinsocial
+networksaremutableduringsimulations. Basedonsocialnetworks,socialspacesencompassboth
+onlineandofflineinteractions. Althoughagentdesignprimarilyfocusesononlinesocialbehaviors,
+offlineinteractionsbasedonspatialproximityremainanindispensablecomponentinconstructing
+realisticenvironments. Foronlinesocialinteractions,torealisticallysimulatetheoperationallogicof
+socialmediaplatforms,wealsointroducetheconceptofthesupervisor. Thesupervisorwillidentify
+contentinonlinesocialmessages,filtermessagesaccordingtouser-specifiedalgorithmsorrules,and
+supporttheblockingofspecificusersorconnections,therebysimulatingtheinterventionprocessof
+socialmediaplatformsininformationpropagation.
+Inimplementation,thesocialnetworkisstoredasdataitemswithinagents. Bothofflineandonline
+socialinteractionsaresimplifiedintosendingmessagestospecifictargetsthroughtheagentmessage
+systemwhichwillbeintroducedinSection5.4. Thesupervisorisimplementedaspreprocessing
+middlewarebeforemessagetransmission,andacentralizedprogramisprovidedtohandlemessage
+processingcollectivelyforupdatingrulesandalgorithms.
+Insummary,thesocialspacenotonlysupportsthesimulationofrealisticsocialinteractionsbetween
+agentsbutalsoestablishesinterventioncapabilitiesoversocialpropagationwithinagentsocieties.
+This framework will serve as a crucial foundation for conducting research on real-world social
+propagationphenomenausingLLM-drivensocialagents.
+4.4 EconomicSpace
+Theeconomicspaceincludesthemodelingofseveralkeyelementsinthemacroeconomics[104,
+64]. Specifically,firmsconvertthelaborinputofsocialagentsintogoodsproductionandpaythe
+correspondingwagestotheagents. Furthermore,firmsadjustthewagesofagentsandgoodsprice
+flexiblybasedonthesupplyanddemandrelationshipsintheconsumptionmarket. Thegovernment
+leviesincometaxonagents’earningsaccordingtospecifiedtaxrates. Thebankspayinterestto
+agentsbasedontheirsavingseachyear,withtheinterestrateadaptivelyadjustedaccordingtothe
+TaylorRule[104]. TheNationalBureauofStatisticsregularlycompilesmacroeconomicindicators,
+suchasrealGDP,averageworkinghoursperperson,andpercapitaconsumptionlevels.
+Buildinguponthemodelingofthefourkeyeconomicentities—firms,agents,thegovernment,and
+banks—theeconomicsimulatorfurthercapturesthedynamicprocessesandinteractionsthatdrivethe
+functioningofarealisticeconomicsystem. Byintegratingincomegeneration,expenditure,savings,
+taxation,andpolicy-drivenadjustments,thesimulatorprovidesacomprehensiverepresentationof
+economiccycles.
+Agentsarethefundamentaleconomicparticipants,generatingincomethroughlaborinfirms. This
+incomeissubjecttotaxation,withaportiondeductedbasedonaprogressivetaxstructure,whilethe
+remainingdisposableincomeisallocatedbetweenconsumptionandsavings. Agentsusetheirdispos-
+ableincometopurchasegoodsandservices,therebyfuelingmarketdemand. Thefundsallocated
+tosavingsaredepositedintobanks,wheretheyaccrueinterest,influencingfutureconsumptionand
+investmentdecisions.
+Firmsactasproducersintheeconomy,utilizinglaborfromagentstogenerateproductionoutput.
+Theypaywagestoagents,creatingacyclicalflowofincomewithinthesystem. Firmsdynamically
+adjustgoodspricesandwagesinresponsetomarketsupplyanddemand,ensuringequilibriuminthe
+consumptionmarket. Theirrevenuecomesfromthesalesofgoods,whichisreinvestedintofurther
+productionorheldasretainedearningsforfutureexpansion. Thegovernmentcollectstaxrevenue
+fromagentsbasedontheirearningsandredistributesfinancialresourcestoregulateeconomicactivity.
+Itinfluencestheeconomythroughfiscalpolicy,adjustingtaxratestomanageincomedistribution
+andpublicsectorfinancing. Thesefundsmaybedirectedtowardpublicexpenditures,whicharenot
+explicitlymodeledinthissimulatorbutcouldrepresentinfrastructure,socialprograms,orgovernment
+16
+
+services. Banks function as financial intermediaries, receiving savings deposits from agents and
+providingthemwithinterestpayments. Theinterestrateisdynamicallyadjustedaccordingtothe
+TaylorRule,incorporatingmonetarypolicymechanismsintothesimulation. Thisimpactsagents’
+savingandspendingbehavior,ashigherinterestratesencouragesavingswhilelowerratesstimulate
+consumption. Banksalsoserveasliquidityproviders,ensuringtheefficientallocationoffinancial
+resourceswithintheeconomy.
+TheNationalBureauofStatistics(NBS)compilesandanalyzesmacroeconomicindicatorstomonitor
+economic performance. It collects data on real GDP, income distribution, total tax revenue, per
+capitaconsumption,andaverageinterestearnings. Theseaggregatedstatisticsofferinsightsinto
+systemictrendsandpolicyeffectiveness,enablingtheevaluationofeconomicstabilityandthelong-
+termimpactofmarketdynamics. Bystructuringthesimulationasaneconomicsettlementsystem,
+whereeachentityinteractsthroughwell-definedfinancialflows,thisframeworkachievesaholistic
+representationofeconomicoperations. Itservesasavaluabletoolforanalyzingtherelationships
+betweenmicro-leveldecision-makingandmacroeconomictrends,providinginsightsintomarket
+behaviors,policyinterventions,andtheoverallfunctioningofeconomicsystems.
+Whiletheeconomicsimulatorsuccessfullymodelskeyeconomicflows,itdoesnotexplicitlycapture
+criticalaspectssuchasthegoodsmarketandthelabormarket. Theseomissionslimittherealismof
+themodelandrepresentareasforfuturerefinement. Thegoodsmarketissimplifiedbyassuming
+firmsadjustpricesbasedonaggregatedemand,butitdoesnotaccountfordetailedsupplyanddemand
+dynamics, competition, or market shocks. Similarly, the labor market is abstracted, with agents
+receivingwageswithoutmodelingunemploymentorthenegotiationprocessesbetweenworkersand
+firms. Includingtheseelementscouldenhancethemodel’sabilitytosimulatereal-worldeconomic
+fluctuations. Despitetheselimitations,thesimulatorprovidesvaluableinsightsintotheinteractions
+betweenagents,firms,thegovernment,andbanks. Futureimprovementscouldfocusonintegrating
+moredetailedmodelsofthegoodsandlabormarkets,helpingtobetterreplicatecomplexeconomic
+systems and improving policy analysis. In conclusion, while the current model is a simplified
+representation,itoffersastrongfoundationforexploringeconomicinteractionsandcanbefurther
+enhancedbyincorporatingmissingmarketdynamicsformoreaccuratepredictions.
+5 Large-scaleSocialSimulationEngine
+5.1 Overview
+Althoughthelarge-scalesocialsimulatorintroducedinthispapermayappearasasimplecombination
+ofLLMmulti-agentsystems(socialagents)andtoolcall(environment),therealityofhumansociety
+characterized by independent thinking in decision-making and collaboration driven by language
+communication promotes us to fundamentally rethink the system architecture design and imple-
+mentationofthelarge-scalesocialsimulationengine. Existingmulti-agentexecutionframeworks
+suchasCAMEL[63]andAgentScope[40]typicallytakeinter-agentcollaborationasthefounda-
+tionalprincipleofsystemarchitecturedesign,constructingStandardOperatingProcedures(SOPs)
+throughmessage-passingprocessesamongagentstodeterminethesequenceofagentexecution. Such
+frameworksareparticularlywell-suitedformulti-agentexecutionscenarioswithwell-definedagent
+executionsequences,asexemplifiedbyprogrammingtasks[47,82]andconversationalgames[107],
+as they can significantly simplify complex agent interaction processes. However, in real-world
+contexts,individualbehavioraldecision-makingemergesfromtheautonomousintegrationofcurrent
+memory,cognitivestates,andenvironmentalconstraints,ratherthanbeingstrictlycontingentupon
+specificinputsfromotheragentsorenvironments. Therefore,apivotalchallengeinsystemarchitec-
+turedesignliesinfaithfullysimulatingthis"asynchronous"phenomenonwithinthelarge-scalesocial
+simulator,whilestrategicallyleveragingsuchintrinsicbehavioralpatternstooptimizesimulation
+executionefficiency.
+Asasolutiontotheaforementionedchallenge,wedrawinspirationfromtheoperationallogicof
+the real world by treating each agent as an independent simulation unit. There are no explicit
+dependenciesorexecutionordersbetweenagents. Instead,theyexchangeinformationandmutually
+influenceeachotherthroughamessagingsystem.Fortheparallelexecutionofindependentsimulation
+units, to fully leverage the multi-core computing capabilities of modern computer systems and
+distributed computing paradigms for horizontal scaling of simulation scale, we adopt the highly
+matureRayframework[71]toimplementdistributedcomputingandconcealI/Olatencythrough
+17
+
+Python’sasynciomechanism. Asthesimulationscaleincreases,weidentifythatTCPportresources
+becomeabottleneck,andexcessiverelianceoninter-processcommunicationtocoordinatetheentire
+systemleadstodecreasedexecutionefficiency. Therefore,weintroduceanintermediatestructure
+namedagentgrouptoenablemultipleagentstooperatewithinasingleprocess,therebybalancing
+communicationcostswithparallelaccelerationwhileallowingconnectionreusefornetworkcalls
+suchasLLMAPIcalls. Forthemessagingsystemsupportinginter-agentinformationexchange,it
+needstosupportmassiveconcurrentconnections,high-throughputandreliablemessagetransmission,
+thoughbeinglatency-insensitive. ThischaracteristiccloselyresemblestheInternetofThings(IoT)
+scenarioswhereapplicationsmusthandlemessagedeliveryacrossmillionsofdevices. Inspiredby
+thissimilarity,wehaveintroducedMQTT,thecommunicationprotocolthathasachievedtremendous
+successinIoTcommunications,toconstructouragentmessagingsystem. Followingbestpractices
+fromexistingagentexecutionframeworks,weprovidecomprehensiveutilitiesincludingmultiple
+LLM API adapters, a retry mechanism,a JSON parser, a metric recorder, and diverse logging
+capabilitiesincludingbothlocalfileoutputanddatabasestorage. Leveragingtheseloggedprocesses,
+wedevelopreal-timeinteractivevisualizationinterfaces. Furthermore,specificallydesignedforsocial
+experimentationrequirements,weimplementaspecializedtoolboxincludinginterviews,surveys,
+andinterventions.
+Inthefollowingcontent,wewillfirstintroducethewholesystemarchitectureinSection5.2. We
+thendiveintothekeydesignsincludinggroup-baseddistributedexecutioninSection5.3andMQTT-
+poweredagentmessagingsysteminSection5.4. Theutilitiesandtoolboxforsocialexperimentswill
+bediscussedinSection5.5andSection5.6respectively.
+5.2 SystemArchitecture
+Shared Services
+LLM API MQTT Server Database Metric Recorder
+Environment Simulator GUI Backend
+Subprocess
+Agent Simulation Env Client Database Client mlflow Client GUI Frontend
+@ray.remote
+LLM Client LLM Client Environment Simulator
+MQTT Client MQTT Client
+Agent Simulation
+Env Client Env Client
+Database Client Database Client
+mlflow Client mlflow Client
+…
+Agents Agents
+Agent Group Agent Group
+Ray Actor Ray Actor
+Process #1 Process #2 Process #3 Process #4
+Ray Cluster Ray Cluster
+Experiment 1 Experiment N
+Figure10: Systemarchitectureofthelarge-scalesocialsimulationengine.
+Toavoidunnecessaryredundantdevelopmentandleveragetheadvancementsfromtheopen-source
+community, the system architecture of the large-scale social simulation engine is primarily con-
+structedusingadvancedandmatureopen-sourcesoftwareorlibraries. AsshowninFigure10,the
+overallsystemarchitectureconsistsofsharedservicescommontoallsocialsimulationexperiments,
+simulationtaskscorrespondingtoeachexperiment,andanoptionalGUIcomponent.
+Thesharedservicesincludethefollowingcomponents:
+https://mqtt.org/
+18
+
+• LLMAPI:LLMsserveasthemostcriticalcomponentofthesimulator,actingasthe"soul"
+ofagents. Forthesimulationengine,LLMsprovideastandard"request-response"process
+throughAPIstohandletasksdescribedinagentprompts. TheLLMAPIcanutilizepublic
+serviceslikeOpenAIorDeepSeek,orbedeployedthroughlocalinferenceenginessuchas
+vllm[56]andollama.
+• MQTTServer: Thearchitectureemploysthehigh-performanceIoTprotocolMQTTfor
+inter-agentmessagetransmission,simulatingreal-worldhumanlanguageinteractionsand
+collaborationpatterns. TheMQTTserverenablesprotocol-compliantmessagedeliveryto
+clients. Weselectahigh-performanceMQTTservernamedemqxforthispurpose.
+• Database: The database in the architecture is solely used for storing simulation results
+for subsequent analysis or visualization. We choose PostgreSQL for its unique high-
+performance batch writing capability through the SQL command COPY FROM, ensuring
+efficientdatastorage.
+• MetricRecorder: Recordingspecificmetricsduringsimulationsenablesresearchersto
+compareexperimentalresultsacrossdifferentstudiesandderivevaluablescientificinsights.
+Tofacilitateresearchcollaboration,weoptformlflowwithcentralizedservercapabilities,
+ratherthanlocalstorage-basedmetricrecordingtoolsliketensorboard.
+The primary purpose of the large-scale social simulation engine is to execute social simulation
+experiments,whichconsistofasetofcomputationaltaskscomprisingenvironmentsimulationand
+agentexecution. Inimplementation,anexperimentcorrespondstoanAgent Simulationobject.
+Thisobjectwillcreateandmanageenvironmentsimulatorsthroughsubprocessmechanisms,while
+utilizingtheRayframeworktocreatemultipleagentgroupsthatexecuteagentsthroughmulti-process-
+baseddistributedcomputing. AccordingtoRayframeworkdesign,eachagentgroupfunctionsas
+a Ray actor operating within a single process. The Ray framework enables managed Ray actors
+toworkacrossdifferentmachines. ByaddingothermachinestotheheadnodeduringRaycluster
+initialization, distributed computing can be easily achieved to horizontally scale computational
+resources for social simulation tasks. Within each agent group, clients connecting to the shared
+servicesandtheenvironmentsimulatorareinitialized,enablingmultipleagentstoworkconcurrently
+usingtheseclientconnections. Differentexperimentswillshareallsharedserviceswhileutilizing
+distinctRayclustersandenvironmentsimulatorstopreventmutualinterference. TheGUIwitha
+backendandafrontendconnectstothedatabaseandMQTTservertoenablethevisualizationof
+simulationresults,andallowsuserstodirectlyinteractwithsimulatedagentsbyconductingdialogues
+orsendingquestionnaires.
+In conclusion, the system architecture integrates multiple cutting-edge open-source softwares to
+delivercomprehensivecapabilitiesforsocialsimulationandenablesresearcherstofocusexclusively
+onsocialagentdesign,includingdistributedcomputing,LLMs,messagetransmission,datastorage,
+andmetricmanagement.
+5.3 Group-basedDistributedExecution
+Basedontheabovedescriptionofthesystemarchitecture,weaggregatemultipleagentsintoagroup
+calledanagentgroup,anduseasingleprocesstoexecuteeachgroupofagentstoachievetheeffect
+ofdistributedcomputingacceleration. ThisdesignaddressesthecontradictionbetweenlimitedTCP
+portresourcesandthemassivenumberofagents. Specifically,ifeachindividualagentweretreated
+asaseparateprocessandindependentlyconnectedtosharedservicestosimulateautonomoushuman
+decision-makingintherealworld,thelargenumberofTCPconnectionswouldexhausttheTCP
+portresourcesoftheMQTTserver,thedatabase,andthemetricrecorder(withanupperlimitof
+65,535ports),leadingtofailuresduetoinsufficientTCPportresources. Therefore,howtoimplement
+connectionreusetoreduceTCPportresourceconsumptionwhileensuringindependentexecutionof
+multipleagentsconstitutesacriticalissuethatneedstobeaddressedinagentexecution.
+https://platform.openai.com/docs/overview
+https://platform.deepseek.com/
+https://ollama.com/
+https://www.emqx.com/en
+https://www.postgresql.org/
+https://mlflow.org/
+https://www.tensorflow.org/
+19
+
+CPU IO CPU IO CPU IO CPU IO CPU IO CPU
+Vanilla Python(Only 1 Process)
++ Ray
+Actor #1 CPU IO CPU IO CPU CPU CPU CPU CPU
+Actor #1 IO await IO await
+Actor #2 CPU IO CPU IO IO IO
+IO IO
+Actor #3 CPU IO CPU IO + asyncio
+CPU CPU CPU CPU CPU
+Actor #4 CPU IO CPU IO Actor #2 IO IO await IO IO await
+IO IO
+Distributed Execution by Ray
+(Multiple Processes) Ray with asyncio (Multiple Processes & Coroutines)
+Figure11: Asynchronousmulti-processparallelexecutionusingRayandasyncio.
+Toaddressthisissue,weevenlydistributeagentsintomultipleagentgroups,eachconfiguredwithan
+LLMAPIclient,anMQTTclient,anenvironmentclient,adatabaseclient,andametricsrecorder
+client. Allclientsareimplementedusingasynchronouscallsandsupportparallelexecution. Since
+LLM-drivensocialsimulationsareI/O-intensivetasks,primarilyconsumingtimeinLLMcallsand
+environmentinteractions. LeveragingtheasynchronousI/Ocapabilitiesprovidedbyasyncioand
+multi-processparallelexecutionpoweredbyRayshowninFigure11,theengineallowsmultiple
+agentstoconcurrentlysendLLMrequestswhilefullyutilizingCPUresourcesforcomputational
+tasksinagentdesignlikerunninggravitymodels,effectivelyavoidingtimewastecausedbywaiting
+forLLMresponses. Theasynchronousapproachwithconnectionreusedoesnotimposespecific
+constraintsonagentexecutionorder,ensuringindependenceamongagents. Byorganizingagents
+intogroups,thetotalnumberofTCPportsrequiredbythesystemcanbereducedtoamultipleof
+the number of agent groups (depending on optional services such as metrics recording), thereby
+preventingissuescausedbyTCPportexhaustion. However,immutablefixed-numbergroupingwould
+resultintheoverallsystemefficiencybeingconstrainedbytheslowestgroup. Therefore,adaptive
+loadbalancinganddynamicschedulingacrossgroupsrepresentanimportantdirectionforfuture
+research.
+Insummary,bycombininggroup-basedasynchronousandparallelexecutionwithdistributedimple-
+mentationtoenhancesimulationefficiency,wesuccessfullyaddressthecriticalissueofexecution
+failurescausedbyportexhaustion.
+5.4 MQTT-poweredAgentMessagingSystem
+exps/<exp_uuid>/agents/<agent1_uuid>/#
+Subscribe MQTT Client exps/<exp_uuid>/agents/<agent2_uuid>/#
+Agent Group #1 exps/<exp_uuid>/agents/<agent3_uuid>/#
+GUI Publish Publish … …
+Subscribe exps/<exp_uuid>/agents/<agent4_uuid>/#
+MQTT Client exps/<exp_uuid>/agents/<agent5_uuid>/#
+Publish
+MQTT Server Agent Group #N exps/<exp_uuid>/agents/<agent6_uuid>/#
+…
+Figure12: OverviewofMQTT-poweredagentmessagingsystem.
+Communicationbetweenagentsisanessentialcomponentinconstructingsocialsimulationsbased
+onLLM-poweredmulti-agentsystems. Thetransmissionoftextualmessagesamongagentssimulates
+real-world human communication and collaboration through language, which will facilitate the
+emergence of group behaviors and thereby further approximate the operational laws of the real
+world. Expandingonthis,developingamessagingsystemthatconnectsagentswillenableusersor
+externalprogramstodirectlyaccessandinterveneintheagents’behaviors. Thiswillsupportmore
+sophisticatedsocialexperimentsandinteractiveapplications.
+20
+
+Toachievetheaforementionedagentmessagingsystem,weneedamessagingsystemcapableof
+deliveringmessagestohundredsofthousandsofspecificagentsbyIDs. IntheIoTdomain,MQTTis
+aprotocoldesignedtoenablecommunicationbetweenmillionsofIoTdevicesandcontrolcenters,em-
+ployingapublish/subscribearchitecture.PublisherssendmessagestospecifiedIDs,whilesubscribers
+monitorspecificIDsordesignatedprefixestoreceivemessages. MQTTutilizesalightweightpacket
+structuretailoredforlow-bandwidthIoTenvironments,deliveringreliablemessagingwithminimal
+resourceconsumption. AlthoughoriginallydesignedforIoTdeviceconnectivity,thisprotocolaligns
+perfectlywiththecommunicationrequirementsofagentsinthelarge-scalesocialsimulator. We
+thereforeadoptthisprotocoltoimplementouragentmessagingsystemasshowninFigure12. During
+implementation,wedesignatethefollowingtopicsandtheircorrespondingmessagemeanings:
+• exps/<exp_uuid>/agents/<agent_uuid>/agent-chat: Used for sending messages
+fromoneagenttothetargetagentwithintheexperiment.
+• exps/<exp_uuid>/agents/<agent_uuid>/user-chat: Used for users to send chat
+messagestothetargetagentwithintheexperimentviatheGUI.
+• exps/<exp_uuid>/agents/<agent_uuid>/user-survey:Usedforuserstosendstruc-
+turedJSON-formattedsurveystothetargetagentwithintheexperimentviatheGUI.
+Under this topic configuration, each agent only needs to subscribe to messages prefixed with
+exps/<exp_uuid>/agents/<agent_uuid>/. This approach reduces development costs while
+maintainingcompatibilityforfutureextensionstothemessagingsystem’sfunctionality.
+Insummary,byintegratingtheadvancedIoTcommunicationprotocolMQTT,weachievelow-cost
+development to simultaneously connect hundreds of thousands of agents while ensuring reliable
+agent message transmission. This solution also enables user input through GUIs and supports
+futurefunctionalextensions,therebyfillingacrucialgapinthearchitectureofthelarge-scalesocial
+simulationengine.
+5.5 Utilities
+Inadditiontotheaforementionedkeytechnicaldesignsforsocialagents,wealsoprovidearichset
+ofutilitiestofacilitatethedevelopmentofsocialagents. Thedesignphilosophyofmostofthese
+utilitiesisprimarilyinspiredbyAgentScope[40].
+LLMAPIAdapter. WeimplementcallstoOpenAIAPI-compatibleLLMsthroughtheopenai
+python library, including OpenAI, DeepSeek, Qwen, etc. Additionally, we also support calls
+to ChatGLM. Through the LLM API adapter, we allow users to freely select their preferred or
+partneredLLMsforinferencebymodifyingconfigurations,whichenhancesthesystem’sflexibility
+andcompatibility.
+RetryMechanism.TopreventabnormalresultsreturnedbytheLLMAPIfromaffectingexperiments,
+thesystemincorporatesaretrymechanism. WheninvokingtheLLMAPI,iferroneousresponsesare
+detected,thesystemwillautomaticallyreinitiatethecall. Thedefaultnumberofretriesissetto3.
+JSONParser. SincepromptsoftenrequireLLMstoreturnresponsesinJSONformattofacilitate
+parsing into program-processable results, we develop a JSON parser. This parser automatically
+identifiesJSON codeblocksinresponses, removesMarkdowncodeblock delimiters(prefixand
+suffix),andconvertsthecontentintoPythonobjects.
+MetricRecorder. Toassistresearchersinrecordingvariousstatisticalmetricsduringexperiments,
+suchastotalGDPandagentstateaverages,weadaptthemlflowAPIandimplementaparallel-safe
+metricloggingutilityclassandfunctions.
+LoggingandSaving. Loggingandsavingsimulationprocessesandresultsserveasthefoundation
+drivingsubsequentdataanalysisandvisualization. Savingasmuchdataaspossiblewillfacilitate
+richerandmoreprofoundresearchinsights. Accordingly,wedesignbothlocalfilestorageusing
+theAVROformat andPostgreSQLdatabaseasonlinestorage. Bothstorageapproachesemploy
+https://pypi.org/project/openai/
+https://bailian.console.aliyun.com/
+https://bigmodel.cn/
+https://avro.apache.org/
+21
+
+similar schemas to archive social agent profiles, agent states during simulations, thoughts and
+dialogues,andsurveyoutcomes.Additionally,experimentalmetadataincludingIDs,names,durations,
+configurations,anderrormessagesissystematicallyrecorded.
+GUI.Tohelppeopledirectlyobservethebehaviorofsocialagentsinenvironmentsandallowusers
+toengageindirectconversationsorsurveyswiththeagents,wedevelopaGUIprogram. TheGUI
+programincludesfunctionalitiesforexperimentmanagement,surveyadministration,andreal-time
+monitoringorplaybackofexperiments. Duringreal-timemonitoring,userscaninteractwithagents
+throughinstantconversationsorsendsurveys,withthesecommunicationsbeingtransmittedviathe
+agentmessagingsystemwhileawaitingresponses. Additionally,duringbothreal-timemonitoring
+andplayback,userscanviewagent-relatedrecordsstoredinaPostgreSQLdatabase,includingtheir
+locations,profiles,statushistory,thoughtanddialoguehistory,andsurveyresponsehistories. We
+aimforthisGUItohelpusersbuildintuitionsaboutagentsocietiesandfacilitatedeeperanalysisand
+applications.
+5.6 ToolboxforSocialExperiments
+Intherealmofsocialsciences,variousresearchmethodsareemployedtostudyhumanbehavior,
+motivations,andresponsesindifferentcontexts. Inreal-worldsettings,itisoftendifficulttofind
+controlled environments for conducting social experiments that mirror the complexity of human
+interactions. This is where interventions come into play—creating specific social experimental
+conditionsthatallowresearcherstosimulateandmanipulatereal-lifescenarios. Besides,twowidely
+used methods are interviews and surveys, both of which allow researchers to collect data from
+individuals,exploretheiropinions,andunderstandtheunderlyingpsychologicalfactorsinfluencing
+theiractions. Thesemethodsarevitalforgeneratinginsightsintohowpeoplethink,feel,andactin
+specificsituations. Large-scaleagent-basedsimulationsprovideapowerfultoolforaddressingthese
+challenges,enablingthedesignofcontrolledexperimentswithahighdegreeofrealism. Thissection
+detailsthetoolsavailableforconductinginterventions,interviews,andsurveyswithagentsinasocial
+experiment. Thesetoolsofferflexibilityindatacollectionandmanipulation,supportingthedesign
+andexecutionofrobustsocialexperiments.
+Intervention. Interventionreferstothemanipulationofanagent’sbehaviororstatetoobservehow
+changesinfluenceitsactions,thoughts,andemotionalresponses. Interventionsarecrucialforsetting
+upexperimentalconditionsinsocialexperiments. Therearethreeprimarytypesofinterventionin
+oursystem:
+• AgentConfiguration: Thistypeofinterventioninvolvesdirectlymodifyingtheinternal
+settingsoftheagentbeforethesimulationstarts. Thesesettingsmayincludealteringan
+agent’spersonalitytraits,goals,orpreferences. Sincethisinterventionoccursbeforethe
+simulation,itensuresthattheagent’sbehavioralignswiththeexperimentalconditionsright
+fromthestart.
+• StateManipulation: Thisinterventionoccursduringthesimulationandallowsresearchers
+tomodifytheagent’scurrentstate.Byalteringanagent’sprofile,mood,orideas,researchers
+can influence its behavior. For instance, modifying the agent’s emotions can impact its
+decision-makingandsocialinteractions.
+• MessageNotification: Thismethodinvolvessendingatextmessagetotheagent,triggering
+aresponse. Forexample,amessagesuchas"Severeweatherchangesexpected,ahurricane
+iscoming"couldbeusedtoobservehowtheagentadjustsitsplansorbehaviorinresponse
+to external threats. This type of intervention can be introduced at any point during the
+simulation,offeringflexibilityincreatingdifferentexperimentalconditions.
+Theinterventionprocesscanbesummarizedas:
+AgentSettings
+Pre-SimulationConfiguration−−−−−−−→AgentBehaviorStart
+MemoryManipulation
+DuringSimulation−−−−−−−−−−−→BehaviorAdjustments
+MessageNotification
+DuringSimulation−−−−−−−−−−−→BehaviorModification
+Theseinterventiontechniquesallowfordynamicandflexiblemodificationsoftheagent’sbehavior,
+providingvaluableinsightsintotheimpactofspecificchangesonsocialinteractionsanddecision-
+making.
+22
+
+InterviewandSurvey. Aninterviewisaprocessofone-on-oneorgroup-basedquestioningand
+answering,typicallyusedtogatherdetailed,qualitativeinformationfromparticipants.Inourplatform,
+userscandirectlycommunicatewithagentsthrougheitherafront-endinterfaceorprogrammatically
+viacode. ThesystemusesMQTTtodistributetheuser’squestionstotherelevantagents. Theagent
+thenanswersthesequestionsbyprocessingbothitsinternalstateandthesurroundingenvironmental
+context. Importantly, this process is designed so that the agent can respond without interrupting
+itsongoingactions. Thisallowsforreal-timeinteractionwhilemaintainingtheflowoftheagent’s
+behavior. Theinteractionflowisdepictedas:
+MQTT Answer
+Question−−−→AgentProcessing−−−−→UserResponse
+Thisensuresthattheagentcanparticipateininterviewsseamlesslywhilecontinuingitsprimarytasks
+andgoals.
+Asurveyisastructuredformofdatacollection,whereaseriesofinterviewquestionsarecombined
+basedonaspecificsetofrules. Theserulesincluderesponseformats(e.g.,multiple-choice,ranking)
+andtheuniquedesignelementsdeterminedbythesurveycreator(e.g., questionorder). Surveys
+aretypicallyusedtogatherquantitativedataacrossalargersample,offeringabroaderperspective
+ontrendsorpatterns. Inoursystem,thestructuredsurveyisdistributedtoagentsviaMQTT,just
+likeinterviews. However,theprimarydifferenceisthattheagent’sresponsesfollowapredefined
+structure,ensuringconsistentdatacollectionacrossmultipleagents. Theagentprocessesthesurvey
+questionssequentially,answeringthemfromtoptobottomafteranalyzingtheformatandresponse
+rules. Thisstructureddataisthencompiledintoaformatthatiseasyfortheusertoanalyze. The
+surveyresponseprocessismodeledas:
+MQTT StructuredAnswer
+Survey−−−→AgentParsingandResponding−−−−−−−−−→DataProcessing
+Thisensuresthatdatacollectionisorganized, reliable, andeasytoprocessforsocialexperiment
+analysis.
+Theabilitytoconductinterventions,interviews,andsurveyswithinourplatformprovidesapowerful
+toolkitforresearchersconductingsocialexperiments. Thesetoolsofferastructuredapproachtodata
+collectionandbehavioralmodification,makingitpossibletosimulatereal-worldsocialconditionsin
+acontrolledenvironment. Theflexibilitytomanipulateanagent’ssettings,memory,andresponsesin
+real-timeensuresthatawidevarietyofsocialexperimentscenarioscanbetested,fromunderstanding
+individualbehaviorstostudyingcollectivedynamics. Thismakeslarge-scaleagentsimulationsan
+invaluableresourceforconductingcomplexsocialscienceresearch.
+6 PerformanceEvaluation
+Inthissection,wewillanalyzetheperformanceofourproposedlarge-scalesocialsimulatorthrough
+aseriesofcomprehensiveexperimentsinordertorevealitsstrengthsandlimitationsfromdifferent
+aspects. Theexperimentsfocusonthefollowingkeyresearchquestions:
+• RQ1: Whatistheperformanceoftheimplementationofthesocietalenvironment?
+• RQ2: WhatistheperformanceoftheMQTT-poweredagentmessagingsystemcomparedto
+alternativecommunicationapproaches?
+• RQ3: What is the performance of the large-scale social simulator built from the above
+componentswithLLM-drivenagents?
+AllexperimentswereconductedonHuaweiCloudc7.16xlarge.4cloudserverstoensurecomparability
+ofresults. Tomitigatepotentialinterferencefromrate-limitingeffectsinherentinLLMAPIcalls
+duringlarge-scalesocialsimulatorexecution,wechosentheDeepSeekAPIplatformthatofficially
+claimsnorequestlimit. RelatedexperimentswerespecificallyscheduledduringDeepSeek’soff-peak
+hours(05:00-07:00localtime)tomaximizetheLLMAPIthroughput. AccordingtoaDeepSeek
+websitestatement,themodelusedduringtheexperimentswasDeepSeek-V3[65].
+Inthefollowingcontent,wewillpresenttheexperimentalsettings,results,andfurtherdiscussionto
+addressRQ1inSection6.1. ThoseaboutRQ2willbediscussedinSection6.2. Finally,inSection6.3,
+wewillconductdetailedexperimentstoanswerRQ3.
+https://platform.deepseek.com/
+https://api-docs.deepseek.com/quick_start/rate_limit
+23
+
+6.1 SocietalEnvironmentPerformance
+Toevaluatetheinteractionperformancewithoursimulationenvironment,weconductedaseriesof
+experimentstoshowourenvironmentisabletohandlehighconcurrencytasksfrommassiveagents.
+ExperimentalSettings. WeutilizedtheSocialEnvironmentSimulatortool-chaintogeneratevarying
+numbersofindividuals: 1,000,10,000,100,000,and1,000,000,asthespecificloadforthesimulator
+itself. The departure times of these individuals were distributed according to a typical weekday
+pattern,andallsimulationsweresetstartingfromthemorningpeakhourof8:30.
+Thetestqueriesweredividedintosettingqueriesandfetchingdataqueriesataratioof1:999,meaning
+onesettingqueryafter999stepsoffetchingqueryforeachagent. Thisratiowaschosenbecauseit
+isclosetotheactualrequestdistributioninrealagentsimulationswithourframework. Welimited
+the maximum number of Social Environment Simulator processes from 2, 4, 8, 16, to 32. Each
+experimentalsetupwasrepeatedfivetimes,lastingfor10seconds,withqueriespersecondranging
+from102to105.
+Performance Metrics. We conducted two experiments to evaluate our environment simulation
+performance. First, we measured the simulation speed with the metric of calculating the time
+consumption per simulation step, with the simulation time set to 24 hours. Second, we assessed
+concurrencyperformancebymeasuringtheincreaseinqueriespersecond(qps)alongwiththechange
+intimeconsumptionpersimulationstep.
+EvaluationResults. TheresultofsimulationspeedisshowninTable2. Theresultsindicatethat
+evenasthenumberofindividualsandqueryratesincreasedsignificantly,performancedegradation
+wasminimal,suggestingthatourplatformcaneffectivelyandtimelyhandlemassiveinteractions
+betweenagentsandthesimulationplatform.
+Table2: Meantimeperstepwithdifferentnumbersofagents.
+#ofAgents MeanTimeperStep(s)±SD
+103 8.578×10−3±3.0×10−5
+104 9.129×10−3±1.5×10−5
+105 1.800×10−2±5.66×10−4
+106 0.1680±5.34×10−4
+Inconclusion,thesimulationenvironmentiscapableofsupportingextensiveinteractionswithout
+significantdegradation,makingitsolidforlarge-scalesocialsimulations.
+6.2 AgentMessagingSystemPerformance
+TovalidatethecomparativeadvantagesofMQTToverothermessagingsystems,weevaluatedvarious
+commonlyusedpublish/subscribesystemsormessagequeuesystems,includingRedis,RabbitMQ,
+andKafka.
+ExperimentalSettings. Tosimulatereal-worldusageascloselyaspossibleandcomprehensively
+evaluatethesystems’capabilitiesintermsofsupportedagentcountandmessagethroughput,we
+designedthefollowingexperimentalprocedure. Weassumedatotalof100,000agents,witheach
+messagecontaining100bytesofdata. Eachagentsendsmessagesto10randomlyselectedagents.
+GiventhemaximumavailableCPUcoresarelimitedto32,weselectedparallelprocesscountsfrom
+{2,4,8,16,32}andreportedtheconfigurationachievingpeakthroughput. Assimulatorstartuptime
+constitutesasmallproportionoftotalsimulationduration,initializationoverheadwasexcludedfrom
+measurements. Wespecificallyrecordedthetimeintervalbetweenmessagetransmissioninitiation
+andcompletereceptiontocalculatemessagethroughputacrossdifferentsystems.
+ComparedApproaches. Webrieflyintroducethecomparativemethodsasfollows:
+• RedisPub/Sub: Alightweightin-memorypublish/subscribesubsysteminRedisoptimized
+forreal-timemessagingwithminimallatency. Itusesabroadcastmodelwheremessages
+aretransientandnotpersisted,makingitsuitableforephemeraldataorscenariosrequiring
+https://redis.io/
+24
+
+high-speedcommunication. However,itslackofmessagedurabilityandlimitedscalability
+inhigh-volumeenvironmentsmayconstrainitsuseinmission-criticalapplications.
+• RabbitMQ:ArobustmessagebrokerimplementingtheAMQP(AdvancedMessageQueu-
+ingProtocol)standard. Itsupportscomplexroutinglogic,messagepersistence,andacknowl-
+edgmentmechanisms,ensuringreliabledelivery. Itsflexibleexchangetypes(e.g.,direct,
+topic,fanout)andqueuemanagementmakeitidealforenterpriseworkflows,thoughits
+overheadincreaseswithtransactionalguarantees.
+• Kafka: Adistributedstreamingplatformdesignedforhigh-throughput,fault-tolerant,and
+persistent log-based messaging. Kafka organizes data into partitioned topics, enabling
+horizontalscalabilityandparallelprocessing. Itsappend-onlylogstructureandconsumer
+offsettrackingmakeitwell-suitedforlarge-scaleeventstreaming,real-timeanalytics,and
+datapipelines,thoughitintroducescomplexityforlightweightusecases.
+It is worth noting that all services are running on the experimental machine, and the distributed
+versionisnotutilized.
+EvaluationMethodsandMetrics. Intheevaluationofamessagingsystem,themostcriticalmetric
+isthroughput,whichreferstothenumberofmessagesthatcanbetransmittedpersecond. Oncethe
+throughputmeetstherequirements,wewillfurtherconsiderwhetherthesoftwaresystemprovides
+user-friendlyauxiliarytoolstohelpmonitortheservice’soperationalstatusorfacilitatetestingand
+configuration, suchasdashboards. Forthroughputrequirements, assumingallagentsarealways
+attemptingtocommunicatewithotheragentsandtheLLMgeneratesamessageevery5seconds,the
+minimumthroughputthesystemneedstosupportwouldbe20,000msg/s.
+EvaluationResults. Weconductedfivetestsonvariousmessagingsystemsandcalculatedthemean
+andstandarddeviationofthroughput, aspresentedinTable3. Fromtheresults, weobservethat
+MQTT,RedisPub/Sub,andRabbitMQmeetthethroughputrequirementsundertheaforementioned
+extremeconditions. Amongthem,RabbitMQ’sperformancewasonlyslightlyabovethethroughput
+requirement,thusitwasthefirsttobeexcluded. TheresultsforKafkawerenotreportedbecauseit
+couldnotevencompletetheinitializationof100,000agentswithin5minutes;hence,nospecifictest
+resultswereavailable. AlthoughMQTT’sthroughputisapproximatelyhalfthatofRedisPub/Sub,
+its built-in GUI tools can effectively assist users in simple service monitoring, debugging, and
+testing, which constitutes the primary reason for our ultimate selection of MQTT as the default
+implementation for the agent messaging system. Regarding Redis Pub/Sub’s high-performance
+characteristics, we propose that the simulation engine should support flexible user specification
+of backend implementations for agent messaging systems in the future, thereby accommodating
+applicationscenarioswithstringentrequirementsforinter-agentcommunication.
+Table3: Comparisonofdifferentmessagingsystems.
+System BestParallelProcessNumber Throughput(msg/s) AuxiliaryTools
+MQTT(emqxv5.8.1) 32 44,702.1±111.3 Built-inGUI
+RedisPub/Sub(v6.2) 16 81,216.2±333.6 -
+RabbitMQ(v4.0.5) 16 23,667.3±1,777.7 Built-inGUI
+6.3 SocialSimulatorPerformance
+Toevaluatethescalabilityandefficiencyoftheproposedsocialsimulationframework,weconducted
+aseriesofexperimentsdesignedtoreplicatetheexecutionoflarge-scaleintelligentagentsunder
+realisticconditions.
+Experimental Settings. The experiments were conducted on a 64-core machine, with 32 cores
+allocatedtorunningtheenvironmentandtheremaining32coresdedicatedtoexecutingthesimulation
+engine.Testingwasperformedduringthesystem’slowutilizationperiod,whiletargetingsimulation
+timeintervalswhereagentactivitieswererelativelyhightoensurerepresentativemeasurements.
+Weevaluatedthesystemthroughputbysimulating{103,104}agents,Thenumberofprocesseswas
+variedas{8,16,32}.
+https://www.rabbitmq.com/
+https://kafka.apache.org/
+25
+
+PerformanceMetrics. Toevaluatethesystem’sperformance,thefollowingmetricswerecollected:
+• Totalexecutiontime: Thetotaltimerequiredforallagentstocompletefiveinteraction
+rounds.
+• Tokenusagestatistics: Thetotalnumberofinputandoutputtokensutilizedduringthe
+simulation.
+• LLMtimecostdistribution: ThedistributionofresponsetimesforcallstotheLLMAPI,
+providinginsightsintolatencyvariability.
+• Environmenttimecostdistribution: Thedistributionofresponsetimesforcallstothe
+environmentAPI,measuredtoevaluateinternalsystemperformance.
+Evaluation Results. The evaluation results are summarized in Table 4, which demonstrates the
+system’s scalability as the number of agents increases and highlights the performance impact of
+distributedcomputing. Specifically,thetableshowshowperformancemetricssuchasLLMcalltime
+andenvironmentresponsetimevarywithdifferentgroupconfigurations(8,16,and32).
+Figure13presentsfourdistributionplotsthatillustratekeymetricsinlarge-scaleLLMinteractions
+with10kagentsundervaryinggroupconfigurations. Thefirsttwoplots,Figure13aandFigure13b,
+showthedistributionsofinputandoutputtokens,respectively. Theseplotsrevealthattokenusage
+patternsremainremarkablystableacrossdifferentconfigurations,indicatingthatparallelizationdoes
+notsignificantlyaltertheoverallamountofdatabeingprocessed. Incontrast,Figure13cshowsthe
+distributionofLLMAPIcalltimes,revealingthatthetimerequiredforAPIcallsismoresensitiveto
+thelevelofparallelization. Finally,Figure13dpresentstheenvironmenttimecostdistribution,which
+illustrateshowtheenvironment’sresponsivenessfluctuateswiththenumberofgroups.
+Table4: Performancemetricsfordifferentconfigurations.
+Parameters AverageTimeCost
+#Agents #Groups LLMCalls ITs(/call) OTs(/call) All(s/round) LLM(s/call) Env(ms/call)
+103 8 4803.0 430.04 79.17 82.45 4.51 12.26
+103 16 3120.8 398.78 77.18 41.17 2.92 14.31
+103 32 4790.4 412.82 75.56 43.30 2.94 9.55
+104 8 54135.4 430.35 75.84 5681.18 52.54 33.55
+104 16 54002.2 430.24 75.80 1422.48 3.53 33.55
+104 32 54075.0 430.47 76.14 458.82 8.05 30.53
+TheAverageTimeCostanalysisprovidesdeeperinsightsintothesystem’sperformance,assum-
+marized in Table 4. The total time per round (All) decreases as the number of groups increases,
+demonstratingthepositiveimpactofparallelizationonprocessingefficiency. Thistrendreflectsthe
+effectivenessofthedistributedparallelframework, whichoptimallyutilizesmulti-corecomputa-
+tionalpower,minimizingtheCPUbottleneckandenablingthesystemtohandlelargeragentscales
+efficiently. However,theLLMtimeremainstheprimarybottleneckinthesystem,evenunderfully
+parallelconditions. Despitethereductioninexecutiontimewithmoregroups,LLMAPIcallsstill
+representasignificantportionofthetotalexecutiontime. ThisisduetothenatureoftheexternalAPI
+calls,whereserver-sideloadintroducesvariabilityandcausesunpredictableperformancefluctuations.
+Asshownintheevaluationresults,theenvironmenttime(Env)remainsminimal,inthemillisecond
+range,whichindicatesthatthesystemiscapableofsupportinglarge-scalesimulationswithminimal
+impactfromtheenvironmentprocessing.
+Theexperimentalfindingsalsohighlightthattheexecutionefficiencyoflarge-scaleagentsispri-
+marilyconstrainedbytheLLMAPIcalls. Underfullyparallelconditions,thisconstraintbecomes
+morepronounced, makingLLMperformanceacriticalfactorinscalingagent-basedsimulations.
+Toachievemorestableoperationforlarger-scalesimulations(e.g.,>104 agents),researchersmay
+considerdeployingaprivateLLMinferenceservice. Whilethisapproachcouldoffermorereliable
+performance,itcomeswithsubstantialinitialcosts,includingGPUdeploymentandmodelconfigura-
+tionselection. ThetokendistributiondatainthisstudycouldserveasareferenceforestimatingGPU
+resourcesandmodelconfigurationsrequiredforsuchadeployment.
+In conclusion, the experiments demonstrate the simulation engine’s ability to efficiently handle
+large-scaleagentexecution. However,thefindingsalsoemphasizetheneedforcarefulconsideration
+26
+
+(a)InputTokenDistribution (b)OutputTokenDistribution
+(c)LLMTimeCostDistribution (d)EnvironmentTimeCostDistribution
+Figure13: Distributionanalysisfor10kagents.
+ofLLMAPIperformanceandthetrade-offsinvolvedinprivatedeploymentoptions. Toimprove
+stability and scalability, further research should focus on optimizing the LLM infrastructure or
+exploringalternativesolutionsforlarge-scaleintelligentagentsimulations.
+7 ExemplarySocialExperiments
+7.1 OneDayLife
+Thissectionpresentsaself-directeddayinthelifeofasociallyintelligentagent,illustratinghow
+itnavigatesdailytaskswhilebalancinginternalneeds, emotionalstates, andcognitiveprocesses.
+Throughasimulated24-hourscenario, weexaminehowtheagent’sdynamicprioritiesinfluence
+itsdecisionsacrossthreedomains: mobility(e.g.,routeplanningwithenergyconstraints),social
+interaction(e.g.,adaptingcommunicationstyletocontext),andeconomicbehavior(e.g.,resource
+allocation under uncertainty). This micro-level analysis serves to validate the coherence of its
+behavioralpatternsandtheiralignmentwithhuman-liketemporalrhythms. Theonedaylifejourney
+foraspecificpersonisshownasTab.6.
+Byexaminingthisone-daylifescenario,wecanseehowtheagent’sneedsdrivetheformationofaplan
+andleadtospecificactions(mobility,social,economy,other),allofwhicharecontinuouslyshaped
+bytheagent’scognition. Throughthistable,theagentdemonstratesbehaviorsthatreflectrealistic
+decision-makingprocessesacrossvariousdomains—managingitshunger,socialconnections,work
+responsibilities,andleisure. Suchaframeworkhelpsresearchersevaluatetheconsistencyanddepth
+oftheagent’sbehavior,providingasolidbasisforexploringmorecomplexsocialinteractionsand
+collectivedynamicsinvirtualenvironments. Besides,Tab5summarizesthenumberofinteractions
+betweenthesocialagentandvariousenvironmentalspacesduringatypicalday.
+BasedontheSocialAgent’scapabilitytosimulateaone-daylife,wefurtherconductedsimulation
+experimentsinthedomainsofcognition,socialinteraction,economics,andmobility. Theseexperi-
+mentsweredesignedtovalidatetheSocialAgent’sproficiencyincapturingbehaviorsacrossvarious
+domains,asillustratedinFig.14.
+27
+
+Table5: Dailyenvironmentinteractionsperagent.
+Space InteractionType Counts
+Get 465.67
+UrbanSpace
+Set 4.27
+Get 9.26
+EconomySpace
+Set 3.30
+SocialSpace SendMessage 9.08
+Sum ALL 491.68
+BehaviorSpace
+DailyLifeofSocialAgent Experiments
+Profile PolarizationExperiment Opinion
+Cognition Current Distribution
+GunControlPolicy
+States New York 100Agents Social Network
+Behavior Spread of InflammatoryMessages Information
+Propagation
+Memory
+InflammatoryMessages
+Emotion Dynamics
+Social Network 100Agents
+Social
+Needs UBIExperiment
+Economic Metric
+Cash distribution
+Economy Texas 100Agents Social Metric
+ExternalShocksofHurricane
+ActivityLevel
+WeatherChange
+Mobility Columbia 1,000Agents ActivityLevel
+Figure14: Experimentconfigurationoverview.
+7.2 Polarization
+Polarizationisaphenomenonwhereopinionswithinapopulationbecomeincreasinglydivided,often
+formingdistinctclustersthataredifficulttoreconcile. Understandingpolarizationiscriticalbecause
+itinfluenceshowsocietiesdebate,makedecisions,andimplementsolutionstopressingchallenges.
+Bystudyingthefactorsthatdrivepolarization,researcherscanuncoverwhydivisionsdeepenover
+timeandhowtheycanbeaddressed. Thisresearchprovidesvaluableinsightsintofosteringmore
+(a)Large-scaleSimulation (b)Self-drivenDailyLife
+Figure15: Large-scalesocialsimulation.
+28
+
+Table6: OneDayLife
+Actions Mind
+(08:00–12:30)
+• Need: Safe
+• Commutetooffice(Mobility)
+• Emotion: Resentment
+• Respondtopriorityemails(Economy)
+• Cognition:"Sequentialtaskexecu-
+• Attend project planning meeting (Econ-
+tionensuresworkflowintegrity"
+omy)
+• Coordinatecross-departmenttasks(Econ-
+omy)
+(12:30–13:30)
+• Need: Hungry
+• Commuteviagrocerystore(Mobility)
+• Emotion: Disappointment
+• Compareproductprices(Economy)
+• Cognition: "Economicconstraints
+• Preparelunch(Other)
+necessitateadaptiveconsumption
+• Eat(Other)
+patterns"
+(13:30-14:00)
+• Need: Social
+• Browsesocialnetworkingsites(Social)
+• Emotion: Gratification
+• Findfriendtocontactwith(Social)
+• Cognition: "Social capital accu-
+• Sendmessagetofriend(Social)
+mulation facilitates opportunity
+discovery"
+(14:00-18:00)
+• Need: Safe
+• Developquarterlybudget(Economy)
+• Emotion: Relief
+• Mentorjuniorstaff(Other)
+• Cognition: "Multi-layered verifi-
+• Inspectbranchofficelocations(Mobility)
+cationpreventsoperationalrisks"
+• Submitauditreport(Economy)
+(18:00–20:00)
+• Need: Hungry
+• Gobackhome(Mobility)
+• Emotion: Gratification
+• Checkrefrigerator(Other)
+• Cognition: "Having finished the
+• Preparedinner(Other)
+day’swork,Iwaspleasedwithmy-
+• Eatdinner(Other)
+self"
+(20:00–22:00)
+• Need: Whatever
+• Browsewebpages(Other)
+• Emotion: Relief
+• Playvideogames(Other)
+• Cognition: "Entertainmentmakes
+mefeelrelaxed"
+(22:00–24:00)
+• Need: Tired
+• Completebedtimeroutine(Other)
+• Emotion: Satisfaction
+• Gotosleep(Other)
+• Cognition: "Resource allocation
+efficiencyimpactssystemicstabil-
+ity"
+29
+
+(a) (b) (c)
+Figure16: OpinionchangesonthepoliticalissueofGunControlacrossthreeexperimentalsetups.
+cohesivesocieties,promotingconstructivedialogue,andnavigatingcomplexissuesinawaythat
+incorporatesdiverseperspectives.
+Toinvestigatethedynamicsofpolarization,anexperimentalsettingisdesignedtosimulatediscussions
+amongagentsfocusedonaspecificpolicyissue: guncontrol. Inthecontrolgroup,agentsengage
+in discussions about the gun control issue, with opinions naturally divided between support and
+opposition. No external interventions are introduced in this setting, allowing opinions to evolve
+organicallythroughagents’autonomoussocialinteractions. Twotreatmentgroupsareintroduced
+tostudytheeffectsofpersuasivemessagesonopiniondynamics. Inonetreatmentgroup,agents
+areonlyexposedtopersuasivemessagesthatalignwiththeirexistingopinions,whichwereferto
+asthehomophilicinteractiongroup. Intheothertreatmentgroup,agentsonlyreceivepersuasive
+messageswithopposingopinions,whichistheheterogeneousinteractiongroup. Thisexperimental
+setupprovidesagroundtoanalyzehowdifferentopinionscontributetotheformationofpolarization.
+Figure16presentstheopinionchangesonthepoliticalissueofGunControlacrossthreeexperimental
+setups: (a)thecontrolgroup,(b)thehomophilicinteractiongroup,and(c)theheterogeneousinterac-
+tiongroup. Inthecontrolgroup,whereagentsengageindiscussionswithoutexternalinterventions,
+39%ofagentsadoptmorepolarizedopinions,while33%becomemoremoderateafterinteractions.
+Bycontrast,inthehomophilicinteractiongroup,aclearpolarizationpatternemerges,with52%of
+agentsbecomingmorepolarized. Thisresultsuggeststheeffectofechochambers,whereexcessive
+interactionswithlike-mindedpeerscanpotentiallyintensifyopinionpolarization. Intheheteroge-
+neousinteractiongroup,89%ofagentsadoptmoremoderateopinions,and11%arepersuadedto
+adoptopposingviewpoints. Thisindicatesthatexposuretoopposingcontentandopinionscouldbe
+aneffectivemitigationstrategyforcurbingpolarization.
+7.3 SpreadofInflammatoryMessages
+Informationpropagationinsocialnetworksisafundamentalresearchprobleminsocialcomputing.
+Socialnetworksenableuserstosharevarioustypesofcontentsuchasnews,personalstatusupdates
+andpublicdiscussions. Amongtheseinformationflows,inflammatorymessagescontainingextreme
+opinionsandinaccurateclaimspresentsignificantchallenges. Thesemessagescanquicklyspread
+acrosssocialnetworksandincreaseconflictsinonlinediscussions. Standardinformationdiffusion
+modelscannotfullyexplainhowinflammatorymessagespropagate[84,21],becauseusersharing
+behaviorsoftendeviatefromtypicalpatternswhenencounteringsuchcontent. Additionally,current
+contentmoderationsystemsonsocialplatformsfacedifficultiesinbalancingeffectivecontentfiltering
+withmaintainingregularusercommunications. Simulationexperimentsofferapracticalapproachto
+analyzethesepropagationdynamicsandtestdifferentinterventionmethods,providinginsightsthat
+complementreal-worldsocialnetworkstudies.
+Toinvestigatethespreadofinflammatorymessages,wedesignexperimentsbasedonareal-world
+event,thecaseofthechainedwomaninXuzhou[39]. Usingapopulationofhundredsofagents,our
+experimentsconsistoffourparts. Inthecontrolgroup,weplacenon-inflammatoryseedmessagesat
+selectednodesandobservedthenaturalprogressionofinformationspreadandemotionalevolution
+withinthegroup.Fortheexperimentalgroup,weintroduceemotionallycharged,selectivelyexpressed
+inflammatory messages at certain nodes to examine whether these would alter the trajectory of
+30
+
+informationspreadandemotionaldynamics. Tosimulatethesuppressionofinflammatorymessages,
+we implemented two intervention strategies: node intervention and edge intervention. In both
+approaches, the social platform monitors messages sent by agents, using large language models
+todetermineifcontentisinflammatory. Undernodeintervention, accountsthatrepeatedlyshare
+harmfulinflammatorycontentaboveacertainthresholdaresuspended. Withedgeintervention,when
+inflammatorycontentisdetectedtravelingbetweentwonodes,thesocialconnectionbetweenthemis
+permanentlyremoved. Wetrackhowtheseinterventionsaffectbothinformationpropagationpatterns
+andtheevolutionofgroupemotions. Finally,weconductinterviewswithagentstounderstandtheir
+motivationsforsharingmessages,helpingusuncovertheunderlyingpsychologicalandsocialfactors
+thatdriveinformation-sharingbehaviorwhenencounteringinflammatorycontent.
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+0 5 10 15 20 25 30
+Time Step
+daerpS
+noitamrofnI
+0.7
+Control Group
+Experimental Group 0.6
+Node Intervention
+Edge Intervention 0.5
+0.4
+0.3
+0.2
+0.1
+0.0
+0 5 10 15 20 25 30
+Time Step
+(a)InformationSpreadoverTime
+ytisnetnI
+lanoitomE
+Control Group
+Experimental Group
+Node Intervention
+Edge Intervention
+(b)EmotionalIntensityoverTime
+Figure17: Simulationresultsofthespreadofinflammatorymessages.
+Our experimental results are shown in Figure 17. The experimental results demonstrate distinct
+patternsininformationpropagationdynamicsandemotionalresponsesacrossdifferentintervention
+strategies. Ourfindingsvalidatethatinflammatorymessagesexhibituniquediffusioncharacteristics
+compared to regular content in social networks. The experimental group, where inflammatory
+messagesareintroduced,showssubstantiallyhigherinformationreachthanthecontrolgroupwith
+non-inflammatorycontent,confirmingthatinflammatorymessagespossessstrongerviralpotentialin
+socialnetworks. Thisobservationalignswithpreviousfindingsaboutthedeviationofinflammatory
+contentfromstandarddiffusionpatterns[84,21].
+Theinterventionstrategiesdemonstratevaryingdegreesofeffectivenessinmanaginginflammatory
+contentspread. Node-levelintervention,whichsuspendsaccountsthatfrequentlyshareinflammatory
+content, proves to be the more effective approach in containing information propagation. Edge-
+levelintervention, whileshowingmoderatecontainmenteffects, islessefficientthannode-based
+approaches. Thisdifferencesuggeststhattargetingindividualspreadingbehaviorsmightbemore
+effectivethanmodifyingnetworkstructureforcontentmoderation.
+Theemotionalintensitymeasurementsprovideadditionalinsightsintotheinterventiondynamics.
+Theexperimentalgroupexhibitsmarkedlyelevatedemotionalresponsescomparedtothecontrol
+group,indicatingthatinflammatorymessagessignificantlyamplifyemotionalengagementwithin
+thenetwork. Nodeinterventiondemonstratessuperioreffectivenessinmoderatingtheseemotional
+responses,achievingsubstantialreductioninoverallemotionalintensity. Edgeintervention,though
+less effective than node-based approaches, still shows notable moderation effects on emotional
+dynamics.
+Interviewanalysisrevealskeyfactorsthatdriveinflammatorymessagesharingbehavior,asshown
+in the word cloud in Figure 18. The responses mainly focus on emotional reactions and social
+responsibility. Analysisshowsthatstrongemotions,especiallysympathyandworry,oftentrigger
+sharingbehaviors. Manyagentsshareinformationbecausetheyfeeltheyhaveadutytoletothers
+knowaboutimportantsocialissues. Theinterviewsshowthatagentsthinkaboutthebroadersocial
+impactwhensharinginformation,seeingitasawaytojoinpublicdiscussions.Agentsalsoshowclear
+goalsintheirsharingbehavior,mainlywantingtoincreasepublicattentionandgetresponsesfrom
+institutions. Thesefindingssuggestthatinflammatorymessagespreadisdrivenbybothemotional
+31
+
+Figure18: Agentopinionsonthechainedwomanincident.
+factorsandsocialawareness. Understandingwhyagentssharesuchmessageshelpsusdevelopbetter
+contentmoderationstrategiesinsocialnetworks.
+These experimental results demonstrate three key findings in inflammatory content management.
+First,inflammatorymessagesshowstrongerviralpotentialandtriggerhigheremotionalresponses
+compared to regular content. Second, node-level intervention is more effective than edge-level
+intervention in both containing information spread and moderating emotional intensity. Third,
+through agent interviews, we find that emotional factors and social responsibility drive sharing
+behaviors. Thesefindingsprovideempiricalevidencefordesigningcontentmoderationsystems,
+suggestingthatuser-levelinterventionscombinedwithconsiderationofemotionalandsocialfactors
+mayleadtomoreeffectivecontrolofinflammatorycontentinsocialnetworks.
+7.4 UniversalBasicIncome
+UniversalBasicIncome(UBI)hasalwaysbeenahighlycontroversialmacroeconomicpolicy. The
+implementationcostofUBIisenormous,andtheoutcomesofUBIpoliciesaroundtheworldhave
+showninconsistenteffectsonboththeparticipantsandeconomicdevelopment. Therefore,accurately
+understandingtheimpactofUBIonthesocio-economicenvironmentanditsunderlyingreasonsis
+crucialindeterminingwhetherUBIpoliciesshouldbeimplementedintherealworldtoalleviate
+poverty. Basedonoursimulationplatform,weconductinterventionexperimentsonUBIandexplore
+itseffectsonbothagentsandthemacroeconomics.
+Weconducttwomacroeconomicsimulationsbasedonthedemographicdistributionofresidentsin
+citiesthathaveimplementedUBIpolicies(Texas,USA).OnesimulationiswithouttheUBIpolicy,
+whiletheotherincorporatesUBIintervention,whereeachagentisgivenamonthlyunconditional
+paymentof$1,000. Bycomparingtheeconomicandsocialmetricsgeneratedfrombothsimulations,
+weexploretheimpactoftheUBIpolicyandassesswhethertheseinfluencealignwiththeoutcomes
+observedinTexas’UBIsocialexperiment.
+ThebasicsimulationresultsareshownintheFigure19,includingthesimulatedcurvesofrealGDP
+andagentconsumptionlevels. Ascanbeseen,asthesimulationprogresses,thefluctuationsinthe
+curvesbecomesmaller,indicatingthattheeconomicsystemisstabilizing.
+WeintroducetheUBIpolicyatstep96ofthesimulationandcomparetheeconomicandsocialmetrics
+ofthetwosimulationresultsoverthenext24stepsinFigure20,namelyagentconsumptionlevels
+anddepressionlevels,withdepressionlevelsassessedthroughsurveysusingthewidelyrecognized
+CenterforEpidemiologicStudiesDepressionScale(CES-D)[83]. Thecomparisonshowsthatthe
+UBIpolicyincreasesconsumptionlevelsandreducesdepressionlevels,whichissimilartotheimpact
+observedinTexas’UBIpolicy[14],thusvalidatingtherealismofthesimulation.
+32
+
+1.4
+1.2
+1.0
+0.8
+0 25 50 75 100 125
+step
+PDG
+laeR
+1e6
+15000
+10000
+5000
+0
+0 25 50 75 100 125
+step
+(a)RealGDP
+noitpmusnoC
+(b)ConsumptionLevel
+Figure19: Simulationresultsoftheeconomicsystem.
+8000
+7500
+7000
+6500
+w/ UBI w/o UBI
+Experiment
+noitpmusnoC
+22
+21
+20
+19
+18
+17
+w/ UBI w/o UBI
+Experiment
+(a)ConsumptionLevel
+noisserpeD
+(b)DepressionLevel
+Figure20: Thecomparisonofeconomicandsocialmetrics.
+WealsointerviewagentsabouttheirviewsontheUBIpolicy,whicharesummarizedintheword
+cloudinFigure21. TheresultsshowthattheimpactoftheUBIpolicyismainlyrelatedtokeyterms
+such as interest rates, long-term benefits, savings, and necessities of life, reflecting the common
+perceptionsofUBIpolicyintherealworld.
+Figure21: AgentopinionsonUBIpolicy.
+7.5 ExternalShocksofHurricane
+Theimpactofexternaldisastersonhumanmobilityisacriticalareaofstudyduetotheirprofound
+effectsonsocietalstructuresandindividualbehaviors. Understandinghowsucheventsinfluence
+humanmovementpatternsisessentialforenhancingemergencyresponsestrategiesandmitigating
+potentialrisks. Hurricanes, asseverenaturaldisasters, posesignificantthreatstohumanlifeand
+property. The destruction of infrastructure, displacement of populations, and disruption of daily
+activitiesnecessitateacomprehensiveunderstandingofhumanmobilityduringsuchevents.
+33
+
+The experiment focuses on Hurricane Dorian, which impacted the southeastern United States in
+2019. ThecityofColumbia,SouthCarolina,servesastheprimarycasestudyduetoitssignificant
+populationdensityandtheavailabilityofdetailedmobilitydata. Theanalysisutilizestwoprimary
+datasources:
+• SafeGraphData: Providescomprehensiveinformationonpointsofinterest(POIs)and
+humanmobilitypatterns(from2019.8.28-2019.9.5).
+• CensusBlockGroup(CBG)Data: Offersdemographicprofilesofresidents,facilitating
+thesamplingofcityresidents’profiles(includinggender,age,race,income,homecbg,etc.).
+Thesedatasetsareintegratedtomodelandanalyzethemovementbehaviorsofsocialagentsduring
+thehurricaneevent.
+Specifically,theexperimentinvolves1,000socialagents,andincorporatesreal-timeweatherupdates
+to influence agent behaviors, thereby reflecting the dynamic nature of human responses to the
+hurricane. Weevaluatemobilitypatternsthroughtwometrics: 1)ActivityLevel(TravelingIndividuals),
+AreaPopulation
+visualizedthroughthreephase-specificmaps. TheresultsareshownasFig.22. 2)TotalDailyTrips
+(9-daynormalizedtime-series). TheresultisshownasFig.23.
+AccordingtoFig. 22,thehurricanesignificantlyimpactsthemobilitybehaviorofthesocialagent.
+Beforethehurricane,theaverageactivitylevel(definedastheratiooftravelerstothetotalpopulation)
+acrosstheCBGsremainedbetween70%and90%. However,whenthehurricanearrived,theactivity
+levelsharplydecreasedtoapproximately30%,indicatingasignificantreductioninmobilitybehavior.
+After the hurricane passed, the activity level gradually returned to normal levels. This analysis
+suggeststhatthesocialagentcouldadaptitsmobilitydemandeffectivelybasedonenvironmental
+information,mimickinghumanbehaviorinresponsetoextremeweatherevents.
+(a)Beforelandfall(8.28-8.30) (b)Landfall(8.31-9.2) (c)Afterlandfall(9.3-9.5)
+Figure22: Activitylevelspatialdistributions.
+Thelinegraphpresentedabove(Fig. 23)comparesthedailyoutflowpatternsoftherealdatawiththe
+simulatedvisitsoverthecourseoftheexperiment. Boththerealandsimulateddataexhibitsimilar
+trends,withanoticeabledeclineinvisitactivityaroundAugust30th,correspondingtotheonsetofthe
+hurricaneimpact,followedbyasignificantrecoveryinearlySeptember. Notably,whilethesimulated
+visitscloselyfollowthegeneraltrendoftherealdata,slightdeviationsareobserved,particularly
+duringthehurricane’speak. Thissuggeststhatthesocialagent’sbehavior,whilegenerallyaligned
+withactualhumanpatterns,mayexhibitsomediscrepanciesintermsofthemagnitudeandspeed
+ofresponse. However,theoverallsimilarityinthetemporalprogressionofvisitsindicatesthatthe
+simulationcaptureskeyaspectsofhumanmobilityundertheinfluenceofextremeweatherevents,
+validatingthesocialagent’seffectivenessinapproximatingreal-worldbehavior.
+Theresultseffectivelydemonstratethattheconstructedsocialagents,withintheframeworkofthe
+socialsimulator,canaccuratelyreplicatehumanmobilitybehaviorsandgroupcharacteristicsduring
+a hurricane event. This validation underscores the simulator’s potential as a tool for analyzing
+andunderstandinghumanresponsestoexternalshocks,therebycontributingtoimproveddisaster
+preparednessandresponsestrategies.
+https://www.safegraph.com/
+https://docs.safegraph.com/docs/open-census-data
+34
+
+Figure23: Normalizeddailytrips.
+8 RelatedWorks
+Theliteraturerelatedtotheworkmainlyconsistsoftwokindsofwork: largelanguagemodel-driven
+agentsandsocialsimulation.
+8.1 LLM-drivenAgents
+LargeLanguageModels(LLMs)exhibitastonishinglanguagecapabilities[99]. Sincethelanguage
+abilityisoneofthemostfundamentalabilitiesofhumanintelligence,LLMsdemonstrateexcellent
+performanceinnumeroustasks. Furthermore,researchersuseLLMsas“brains"toconstructLLM-
+drivenagents,endowingthemwithmemorymanagement,interactiveinterfaces,andexpandedaction
+space[56].
+TheresearchonLLM-drivenagentsmainlyconsistsoftwoparts[106]. OnetypeusesLLMagents
+asatoolforintelligentdecisionmaking[111,85,50]. Byleveragingtheirindividualcapabilities,
+theseagentssolvepracticalproblemsandserveashumanassistants. Thiskindofworkprimarily
+focusesonreasoningability,toolusing,learning,etc. Forexample,Boikoetal.[19]constructan
+agent with large language models to autonomously conduct chemical experiments, by providing
+computerstobrowseexperimentaltutorialsanddevicescontrollinginterfacefortheexperiments. The
+othertypeofLLM-drivenagentsstartswiththeconceptofagent-basedmodelingandagent-based
+simulation[64,39,38]. Giventhatlargelanguagemodelagentsexhibithuman-likebehaviors,they
+canbemadetoengageinrole-playingandimitatinghumanbehavior.
+Theprimaryresearchtriestoreproducethehumanresponsewithlargelanguagemodelagents[77,
+110,39]orexplainthegapbetterhumanandLLMagents[51]. Theseworksborrowthememoryand
+reasoningmechanismofhumankind[43,114]todesignvariousinternalmechanismsonthebasisof
+largelanguagemodelsasbrains. Someotherwork[76,66]furtherdesignfine-tuningoralignment
+strategiestoenhancetheagent’srole-playingabilities.
+Overall,largelanguagemodelagentisafieldthatisrapidlyadvancingwiththedevelopmentofLLM
+andourunderstandingofLLM,especiallyintheabilitytosimulaterealhumans. However,thereis
+noplatformtoreallyunleashagent’sabilitytosimulateintherealworld,whichweaimtoaddressin
+thispaper.
+8.2 SocialSimulation
+Socialsimulationstandsasacoretechnologyincomputationalsocialscience,generallycategorized
+into macrosimulation [96] and microsimulation [36]. The former typically models interactions
+between macro-level variables by defining complex equations, while the latter adopts a bottom-
+up approach to simulate emergent phenomena through granular agent behaviors. Among these,
+microsimulation,whichisoftentermedagent-basedsimulation,hasbecomethemorewidelyadopted
+method. Itoperatesbydefiningrulesormodelstogovernindividualagentbehaviors,withthegoalof
+replicatingandpredictingreal-worldsocietaldynamics.
+35
+
+Cellularautomata[105]representaseminalclassofagent-basedmodelingandsimulationinearly
+research. AnothernotableexampleisGameofLife[26],whichsimulatestheevolutionandinter-
+actions of lifeforms in a two-dimensional grid-based world. Subsequent advancements, such as
+Sugarscapemodel[29],expandedtheactionspaceofsimulatedagents,enablingtheexplorationof
+broaderphenomenathroughrule-governedagentbehaviors. Fortheapplicationsinsocialsciences,
+primary ABM research has focused on social interaction, economics, etc. For social interaction,
+thesekeystudiesinvestigatecollectivebehavior(e.g.,cooperation) [42]andsystemdynamics(e.g.,
+informationpropagationandcrowddynamics)[73],etc. Fortheeconomicdomain,representative
+work [37,23,12]targetsmacroeconomicsystems,marketdynamics,etc.
+Inrecentyears,withinthefieldofcomputationalsocialscience,researchershaveincreasinglyadopted
+deep neural network-based models to simulate individual agents [97, 53]. However, significant
+limitationspersist,primarilyduetotheinherentcomplexityofmodelinghumanbehavior. Overthe
+pasttwoyears,largelanguagemodels(LLMs)haveemergedprominently,demonstratinghuman-
+likecognitivecapabilities, includingcontextualunderstanding, logicalreasoning, andinteractive
+communication[74,59]. ThisbreakthroughhascatalyzedgrowinginterestinLLM-drivenagent-
+basedsimulations[38].
+ApioneeringexampleistheGenerativeAgent[77],whichconstructsasmall-scalesocietywithina2D
+gameengine. Here,LLM-poweredagentsautonomouslyplandailyactivities,exchangeinformation,
+andadapttoenvironmentalstimuli. Researchersobservedintriguingemergentphenomena,suchas
+self-organizedinformationdiffusionandcollaborativegroupbehaviors,revealingthepotentialof
+LLMstocapturenuancedsocialdynamics. Theauthorsfurthercombinethelargelanguagemodels
+withtherealdataof1,000humanparticipantstosimulatefeedback[78]. Acerbietal.[2]simulate
+theinformationpropagationandfindhuman-likebiasintheresultsoflargelanguagemodelagents.
+S3[39]furtherutilizesLLM-empoweredagentstosimulateindividual-levelandpopulation-level
+behaviorswithinthesocialnetwork. Intheeconomicdomain,LLMagent-basedsimulationshave
+alsoachievedsignificantprogress. Forinstance,EconAgent[64]hasdevelopedamacroeconomic
+marketsimulationframeworkpoweredbylargelanguageagent-basedmodels,withthesimulation
+outcomesaligningcloselywithestablishedstylizedfacts. Beyondsocialinteractionsandeconomic
+behaviors,researchersareexpandingagent-basedsimulationstoexploreabroaderspectrumoftopics
+insocialsciences. Forexample,Zhangetal.[113]builtaframeworkwithlargelanguagemodel
+agentstopredicttheresultsofthe2024USPresidentialElection.
+Existingstudiesremainnarrowlyfocusedonisolatedproblemsandrelyonsimplifiedenvironments,
+suchastext-based[4]orsimplisticgameenvironments[77], withlimitedattentiontoreal-world
+environment fidelity, revealing notable limitations. Besides, researchers have begun exploring
+methodstoscaleupLLM-drivenagentstosupportlargerpopulations[94,100,109]. Nevertheless,
+theseeffortscontinuetograpplewithcriticallimitations,includingcomputationalinefficienciesand
+inaccurateuserbehaviors. OurproposedAgentSociety,consistingofLLM-drivengenerativesocial
+agents,arealisticsocietalenvironment,andapowerfulengineforlarge-scalesimulations,overcomes
+theselimitationsandadvancesthefieldofsocialsimulation.
+9 Discussion
+9.1 ThreeLevelsofSocialSimulator
+Asanimportantinterdisciplinaryresearch,thedevelopmentofsocialsimulatorscanbecategorized
+intothreelevels. Researchatthefirstlevelmainlyfocusesonconstructingsocialtwinsystems,which
+createaone-to-onemappingofreal-worldindividuals. Suchsystemsarealwaysusedtotrackand
+detectreal-worldsocialbehaviors. Atthesecondlevel,ontopofthemirroringworld,itcanpredict
+futurechangesandsupportinterventionexperimentsinthissociety. Bycomparingtheimpactsof
+differentinterventionmeasuresonthesimulatedsociety,theperformanceofdifferentpoliciescan
+beevaluated. Thethirdlevelrepresentsafurtherbreakthroughinblurringtheboundariesbetween
+therealandvirtualworlds,leadingtoacoexistenthybridworldthatintegratesthesimulatorwith
+realsociety. Specifically,thesimulatedindividualscaninteractwithreal-worldindividuals,andtheir
+decisionswillinfluenceeachother. Furthermore,decisionsmadebasedonthesocialsimulatorcan
+actuallyimpactrealsociety.
+Thesocialgenerativesimulatordevelopedinthispaperisapioneeringattemptandexplorationof
+thethird,i.e.,thehighest-levelsocialsimulator,andprovideseffectivesolutions. Specifically,the
+36
+
+socialsimulatorbasedonlargelanguagemodel-drivenagentsdemonstratesitsadvantagesinthe
+followingaspects. First,throughthehigh-fidelitybehaviorimitationandgenerationcapabilitiesof
+largelanguagemodelagents, therole-playingsimulationoftherealindividualisachieved. That
+is,agentsbuiltonhuman-likememorymechanismscanaccuratelyreproduceuserstatesinvarious
+aspectssuchascognition,socialinteraction,economy,etc. Second,thisplatformenablesaccurate
+predictionofindividualfuturebehaviorsandgroupevolutiontrendsthroughpreciseshort-termor
+long-termsimulations. Theexperimentsalsovalidatetheeffectivenessofevolutionunderdifferent
+interventionconditions,demonstratingthevalueoftheplatformasanassistancetoolfordecision-
+making. Last,thisplatform’ssimulatedsocietycoexistswiththerealphysicalsociety. Bycoupling
+withareal-timeurbansimulator,itssimulationprocesscanbesynchronizedwithandinteractwith
+realsociety. Inshort,ourplatformcouldbeconsideredastherecentadvanceofsocialsimulatorson
+thehighestlevel.
+9.2 SocialSimulator: NewParadigmofComputationalSocialScience
+Computational social science is an interdisciplinary research area where various computational
+approaches are used for social sciences. Essentially, the core distinction between computational
+socialscienceandtraditionalsocialscienceliesintheintroductionofdiversecomputationalmethods.
+In other words, these studies attempt to address the challenges of social science research using
+computationalapproaches. Generally,relatedworkcanbeunderstoodfromthreeperspectives. First,
+asanexplanationtool,itinvolvespatternrecognitionandminingfromdata,suchasuncoveringmacro-
+levelpatternsandkeycharacteristicsintheevolutionofsocialnetworks. Thesecondcategoryisthe
+predictiveparadigm,whichinvolvesconstructingcomputationalmodelstoforecastfuturechangesin
+systemvariables,suchaspredictingthenumberofindividualswhowillforwardaspecificmessage
+inasocialnetwork. Recently,someresearchershaveattemptedtouseLLMsas“siliconsamples”
+forsocialexperiments[11,9,86,93,4,28]. Theirexperimentshavedemonstratedthecapability
+of LLMs to generate human-like experimental samples in studies from political science [9, 11],
+psychology[28,93],andbehavioralscience[11]. However,these“siliconsamples”areprimarily
+limited to basic role-playing configurations, overlooking the effects of psychological processes,
+complexsocialbehaviors,andsocietalenvironmentsonexperimentaloutcomes. Moreover,these
+limitations constrain the scope of the experiments, making some complex designs, such as the
+distributionofuniversalbasicincome,infeasible.
+Beyondthesetwocategories,thereisathirdsimulationparadigmofagent-basedmodeling,which
+simulateseachindividualinabottom-upmanner,byconstructingrule-basedormodel-basedagents.
+However,existingcomputationalsocialscienceresearchfacessubstantialdifficultiesinsimulation
+(primarily due to the lack of effective methods for achieving precise simulation), and thus, this
+paradigmhasnottrulysurpassedthefirsttwo. Somefamousexamplesofagent-basedmodelingin
+socialsciencesincludetheEpidemicSpreadModels,Schelling’sSegregationModel,theSugarscape
+model,etc. Whilethesemodelscan,tosomeextent,reproducethepatternsofchangeinmacro-level
+variables, they involve significant simplifications, and the realism of individual behaviors within
+themisverylimited. Forinstance,intheresearchofeconomics,althoughmethodswithagent-based
+modelingwereproposedearlyon,itiswidelyacknowledgedbyeconomiststhatABMmodelhasnot
+achievedtheprecisionofpredictivemodels. Furthermore,anotherchallengeincomputationalsocial
+scienceisthedifficultyinaccessing,interveningin,andcontrollingthesubjects(humanindividuals)
+ofresearch. Thecomputationalmodelsofcomputationalsociologyandfieldexperimentsareoften
+isolated;typically,thedataiscollectedfirst,followedbythedesignandapplicationofcomputational
+models. Thehumanparticipantsaredifficulttoselect,observeindepth,andinteractinthelongterm.
+Therefore, the large-scale social simulator proposed in this work represents a breakthrough as a
+fourthparadigmforcomputationalsocialscience: anagent-basedsimulationparadigmcenteredon
+highlyrealistichuman-likeagents. Thisparadigmsupportsanalysis,prediction,andhigh-precision
+bottom-up simulation, allowing for arbitrary selection, intervention, and control of experimental
+subjects. It facilitates various computational social science research endeavors, including theory
+validation,patterndiscovery,etc.
+9.3 FromPolicyMaking,RiskControl,toFutureHuman-AISociety
+Intheaboveexperiments,wehavevalidatedspecificapplicationexamplesofthelarge-scalesocial
+simulator. Fromabroaderperspective,wecontendthattheutilityofsuchasimulatorextendsfar
+37
+
+beyondtheseimplementations,encompassingurgentsocietalgovernancechallenges,widelydebated
+AIrisks,andmoreforward-lookingfuturisticsocietalapplications.
+9.3.1 Policymakingandsocialmanagementforasmartersociety
+Traditionaldecision-makingprocessesforsocietymanagementprimarilyrelyonminingandanalyz-
+inghistoricaldatatoconstructcomputationalmodelsforevaluatingpolicyeffectiveness. However,
+thisapproachfundamentallyfailstoaddresstherapidlyevolvingnatureofhumansocieties. The
+socialconditionsduringpolicydeploymentoftendivergesignificantlyfromthosewhenmodelswere
+originallyformulated,renderingpresumedoptimalstrategiesobsolete. Furthermore,socialgover-
+nancedecisionsrequirecomprehensiveintegrationofmultidimensionalfactors,andidentifyingtruly
+optimalstrategiesforhighlycomplexsocietiesconstitutesacomputationallyintractablechallenge.
+Thesimulationcapabilitiesofthelarge-scalesocialsimulatordevelopedinthisworkpositionitas
+avaluabletoolforsocialdecision-makersandurbanadministrators. Byconfiguringdiverseinitial
+states, social agents, and interaction mechanisms, it serves as a high-fidelity platform for policy
+outcomeevaluation. Leveragingthesimulator’saccelerationengineforcomputationalefficiency,
+multipleparallelexperimentscanbedeployedtocomparethelong-termconsequencesofalternative
+decisionstrategies,therebyenablingdata-drivenpolicyselection.
+Notably,thesimulatorenablesexpansiveexplorationofdecisionspaces. Specifically,socialman-
+agementinterventionscanincorporaterichcombinationsofmultidimensionalpolicyactions. This
+frameworknotonlyfacilitatestheselectionofsuperiorstrategiesthroughcounterfactualsimulation-
+basedparallelexperimentsbutalsoinspiresnovel,precise,andcompositepolicysolutionspreviously
+unconsideredinconventionalapproaches.
+9.3.2 Riskcontrolandmitigationforasafersociety
+Thelarge-scalesocialsimulatorscanalsobeusedinriskcontrolandmitigation,whichrepresentsa
+transformativeapproachtoaddressingemergingchallengesinmodern,hyper-connectedsocieties. To
+advancesocietalsafety,thelarge-scalesocialsimulatorexhibitssubstantialadvantagesacrossthree
+criticaldimensions:
+First,itenablesatransitionfromstaticanalysistodynamicsimulation.Traditionalriskmodels,reliant
+onhistoricaldata,failtocapturerapidlyevolvingsocialdynamicssuchasemergentpublicopinion
+crisesorAIalgorithmicfailures. Byconstructingacontinuouslyupdateddigitaltwinofsociety,the
+simulatordemonstratessustainedpredictivecapabilitiesfortrackingsecurityriskevolution.
+Second,itexpandsfromsingle-domaintocross-domainriskassessment. Conventionalapproaches
+predominantlyfocusonisolateddomains(e.g.,socialnetworksoreconomicsystems),neglecting
+interdomaincascadingeffects. Inreality,risksandsocietalcrisesoftenpropagatethroughcascade
+effectsandexhibitamplificationduetocross-domaincoupling. Thesimulatordevelopedinthiswork
+addressesthisgapbyenablingco-modelingofmicro-levelagentbehaviorsacrossmultipledomains,
+therebyequippingdecision-makerstoanticipateandmitigatebutterfly-effectcrises.
+Third, it addresses the oversight of low-probability, high-impact events in long-tail distributions.
+Extremescenarios(suchassystemicAIfailuresallaroundtheworld)arefrequentlydismissedas
+statisticallynegligibledespitetheircatastrophicsocietalconsequences. OursimulatoremploysMonte
+Carlomethodstogeneratevastensemblesofextremescenarios,systematicallyassessingsocietal
+systemresilienceandinformingrobustcontingencyplanning.
+Therefore,throughdynamic,cross-domain,andholisticsimulation,thelarge-scalesocialsimulator
+significantlyenhancesriskidentification,control,andmitigation—pavingthewayforasafer,more
+resilientsociety.
+9.3.3 Socialsimulatorforthefuturehuman-AIsociety
+Buildingupontheaforementionedpracticalapplications,weproposeabolderandmoreopen-ended
+discussiononthevalueoflarge-scalesocialsimulatorsfornext-stagehumansociety.
+First,thelarge-scalesocialsimulator—oritsfutureiterations—couldserveasfoundationalinfrastruc-
+turefortransitioningtowardadigitalhumansociety. Currently,thesesimulatorsintegratemultimodal
+data(behaviorallogs,socialnetworks)tocreateinitialdigitaltwinsofindividuals,enablingbasic
+38
+
+human-likecapabilities. Futureadvancementsthroughtheintegrationofadvancedinterfaces(e.g.,
+neurallinkages,emotion-capturingsensors)willunlockricher,moredynamicsimulationsthatmirror
+real-worldcomplexity.
+Second,thelarge-scalesocialsimulatorfunctionsasastrategicsandboxforexploringfuturesocietal
+architectures. The morphology and structure of future societies remain enigmatic yet critically
+important. Forinstance,Singapore’s“VirtualCityLab"employssimulationstopredicttheimpactof
+sea-levelriseonurbanfunctionalzonesby2050. Similarly,thesimulatorcouldmodelthecoupled
+effectsofenergy,transportation,andhousingsystemsinhyper-densecities,comparingtheresilience
+of“verticalmegacities"versus“distributedsatellitecity"paradigms.
+Third,inthenearfuture,thecoexistenceofhumansandAIwillbecommoninoursociety. Thelarge-
+scalesocialsimulatordevelopedinthisprojectcurrentlyfocusesondeployinglargelanguagemodel
+agentstosimulatehumanindividuals.However,futuresocietieswillhavemorecomplexissuesarising
+fromvaryingdegreesofAIintegration: unemploymentcurvesunderdifferentAIadoptionrates,
+superintelligentAIs’influenceonpublicdecision-making(e.g.,AIlegislators),societalresponsesto
+theexpansionofAIrightssuchaspropertyownership,etc.
+Inshort,forfuturesocieties,thelarge-scalesocialsimulatorcanserveasanindispensableinstrument
+forunderstandingsocietalstructuresandprovidingprofoundinsights.
+10 Conclusion
+Inthiswork, weintroduceAgentSociety, alarge-scalesocialgenerativesimulatorthatintegrates
+LLM-drivenagents,arealisticsocietalenvironment,andlarge-scaleinteractions,enablingauthentic
+simulations of human behavior and societal dynamics. By bridging the gap between traditional
+agent-basedmodelingandreal-worldcomplexity,itadvancesgenerativesocialscienceandprovides
+apowerfultoolforanalyzing,predicting,andinterveningincomplexsocialsystems. Thesuccessful
+replicationofreal-worldsocialexperimentsunderscoresAgentSociety’sauthenticityandpracticality,
+positioningitasbothanexperimentaltestbedforsocialscientistsandapracticalpolicyevaluation
+platform for policymakers. More broadly, AgentSociety marks a significant advancement in the
+evolutionofcomputationalsocialscience2.0,shiftingfromatoolforstaticanalysistoadynamic,
+interactiveplatformforexploringcomplexsocialsystems. Itsabilitytomodelandassesstheimpact
+ofmacro-levelpoliciessuchascarbontaxes,industrytransformation,andsocialwelfarereforms
+allowsittoprovidealow-cost,low-riskenvironmentfortestingandrefiningpolicyinterventions. In
+addition,AgentSocietyservesasapowerfultoolforpredictingandmitigatingsocialcrises,tracking
+the spread of extreme ideologies, and analyzing group polarization, while also testing potential
+interventionsforcrisismanagement. Lookingahead,AgentSocietyholdsthepromiseofbecominga
+centralplatformforexploringthefutureofhumansociety,whereAIandhumanscoexist. Itoffersa
+spacetotestinnovativegovernancemodels,investigatetheimpactofemergingtechnologies,and
+evenredefinelegalandethicalframeworksinanAI-drivenworld.
+References
+[1] SuhaibAbdurahman,MohammadAtari,FarzanKarimi-Malekabadi,MonaJXue,Jackson
+Trager,PeterSPark,PreniGolazizian,AliOmrani,andMortezaDehghani. Perilsandoppor-
+tunitiesinusinglargelanguagemodelsinpsychologicalresearch. PNASnexus,3(7):pgae245,
+2024.
+[2] AlbertoAcerbiandJosephMStubbersfield. Largelanguagemodelsshowhuman-likecontent
+biasesintransmissionchainexperiments. ProceedingsoftheNationalAcademyofSciences,
+120(44):e2313790120,2023.
+[3] Alma Acevedo. A personalistic appraisal of maslow’s needs theory of motivation: From
+“humanistic” psychology to integral humanism. Journal of business ethics, 148:741–763,
+2018.
+[4] Gati V Aher, Rosa I Arriaga, and Adam Tauman Kalai. Using large language models to
+simulatemultiplehumansandreplicatehumansubjectstudies. InInternationalConferenceon
+MachineLearning,pages337–371.PMLR,2023.
+[5] IcekAjzen. Thetheoryofplannedbehavior. OrganizationalBehaviorandHumanDecision
+Processes,1991.
+39
+
+[6] AlteraAL,AndrewAhn,NicBecker,StephanieCarroll,NicoChristie,ManuelCortes,Arda
+Demirci,MelissaDu,FrankieLi,ShuyingLuo,etal. Projectsid: Many-agentsimulations
+towardaicivilization. arXivpreprintarXiv:2411.00114,2024.
+[7] AbdulrahmanEssaAlLily,AbdelrahimFathyIsmail,FathiMAbunaser,FirassAl-Lami,and
+AliKhalifaAtwaAbdullatif. Chatgptandtheriseofsemi-humans. HumanitiesandSocial
+SciencesCommunications,10(1):1–12,2023.
+[8] LiAn,VolkerGrimm,AbigailSullivan,BLTurnerIi,NicolasMalleson,AlisonHeppenstall,
+ChristianVincenot,DerekRobinson,XinyueYe,JianguoLiu,etal. Challenges,tasks,and
+opportunitiesinmodelingagent-basedcomplexsystems. EcologicalModelling,457:109685,
+2021.
+[9] LisaPArgyle,EthanCBusby,NancyFulda,JoshuaRGubler,ChristopherRytting,andDavid
+Wingate. Outofone,many: Usinglanguagemodelstosimulatehumansamples. Political
+Analysis,31(3):337–351,2023.
+[10] W Brian Arthur. Out-of-equilibrium economics and agent-based modeling. Handbook of
+computationaleconomics,2:1551–1564,2006.
+[11] AshwiniAshokkumar,LukeHewitt,IsaiasGhezae,andRobbWiller. Predictingresultsof
+socialscienceexperimentsusinglargelanguagemodels. Work.Pap.,NewYorkUniv.,New
+York,NY,2024.
+[12] RobertLAxtellandJDoyneFarmer. Agent-basedmodelingineconomicsandfinance: Past,
+present,andfuture. JournalofEconomicLiterature,pages1–101,2022.
+[13] AlbertBandura. Humanagencyinsocialcognitivetheory. Americanpsychologist,44(9):1175,
+1989.
+[14] AlexanderWBartik,ElizabethRhodes,DavidEBroockman,PatrickKKrause,SarahMiller,
+andEvaVivalt. Theimpactofunconditionalcashtransfersonconsumptionandhousehold
+balancesheets: Experimentalevidencefromtwousstates. Technicalreport,NationalBureau
+ofEconomicResearch,2024.
+[15] FabianBaumann,PhilippLorenz-Spreen,IgorMSokolov,andMicheleStarnini. Emergence
+of polarized ideological opinions in multidimensional topic spaces. Physical Review X,
+11(1):011012,2021.
+[16] AlecTBeallandJessicaLTracy. Emotivationalpsychology: Howdistinctemotionsfacilitate
+fundamentalmotives. SocialandPersonalityPsychologyCompass,11(2):e12303,2017.
+[17] MichaelBehrisch,LauraBieker,JakobErdmann,andDanielKrajzewicz. Sumo–simulation
+of urban mobility: an overview. In Proceedings of SIMUL 2011, The Third International
+ConferenceonAdvancesinSystemSimulation.ThinkMind,2011.
+[18] BrianJLBerry,LDouglasKiel,andEuelElliott. Adaptiveagents,intelligence,andemergent
+humanorganization: Capturingcomplexitythroughagent-basedmodeling. Proceedingsofthe
+NationalAcademyofSciences,99(suppl_3):7187–7188,2002.
+[19] DaniilABoiko, RobertMacKnight, BenKline, andGabeGomes. Autonomouschemical
+researchwithlargelanguagemodels. Nature,624(7992):570–578,2023.
+[20] MathieuBourgais,PatrickTaillandier,LaurentVercouter,andCaroleAdam.Emotionmodeling
+insocialsimulation: asurvey. JournalofArtificialSocietiesandSocialSimulation,2018.
+[21] WilliamJBrady,JulianAWills,JohnTJost,JoshuaATucker,andJayJVanBavel. Emotion
+shapesthediffusionofmoralizedcontentinsocialnetworks. ProceedingsoftheNational
+AcademyofSciences,114(28):7313–7318,2017.
+[22] LeoBreiman. Statisticalmodeling: Thetwocultures(withcommentsandarejoinderbythe
+author). Statisticalscience,16(3):199–231,2001.
+[23] Shu-Heng Chen, Chia-Ling Chang, and Ye-Rong Du. Agent-based economic models and
+econometrics. TheKnowledgeEngineeringReview,27(2):187–219,2012.
+[24] JunyanChengandPeterChin. Sociodojo: Buildinglifelonganalyticalagentswithreal-world
+textandtimeseries. InTheTwelfthInternationalConferenceonLearningRepresentations,
+2024.
+40
+
+[25] LawrenceJChristiano,MartinEichenbaum,andCharlesLEvans. Nominalrigiditiesandthe
+dynamiceffectsofashocktomonetarypolicy. JournalofpoliticalEconomy,113(1):1–45,
+2005.
+[26] JohnConwayetal. Thegameoflife. ScientificAmerican,223(4):4,1970.
+[27] ScottDeMarchiandScottEPage. Agent-basedmodels. AnnualReviewofpoliticalscience,
+17(1):1–20,2014.
+[28] Dorottya Demszky, Diyi Yang, David S Yeager, Christopher J Bryan, Margarett Clapper,
+SusannahChandhok,JohannesCEichstaedt,CameronHecht,JeremyJamieson,Meghann
+Johnson, et al. Using large language models in psychology. Nature Reviews Psychology,
+2(11):688–701,2023.
+[29] JoshuaMEpstein. GrowingArtificialSocieties: SocialSciencefromtheBottomUp. The
+BrookingsInstitutionPress,1996.
+[30] JoshuaMEpstein. Agent-basedcomputationalmodelsandgenerativesocialscience. Com-
+plexity,4(5):41–60,1999.
+[31] JoshuaMEpstein. Generativesocialscience: Studiesinagent-basedcomputationalmodeling.
+PrincetonUniversityPress,2012.
+[32] Michael W Eysenck and Mark T Keane. Cognitive psychology: A student’s handbook.
+Psychologypress,2020.
+[33] JieFeng,YuweiDu,JieZhao,andYongLi. Agentmove: Predictinghumanmobilityanywhere
+usinglargelanguagemodelbasedagenticframework. arXivpreprintarXiv:2408.13986,2024.
+[34] LingFeng,BaowenLi,BorisPodobnik,TobiasPreis,andHEugeneStanley. Linkingagent-
+basedmodelsandstochasticmodelsoffinancialmarkets.ProceedingsoftheNationalAcademy
+ofSciences,109(22):8388–8393,2012.
+[35] Shuo Feng, Xintao Yan, Haowei Sun, Yiheng Feng, and Henry X Liu. Intelligent driving
+intelligencetestforautonomousvehicleswithnaturalisticandadversarialenvironment. Nature
+communications,12(1):748,2021.
+[36] FrancescoFigari,EmanuelaLezzi,etal. Empiricalevidenceusingmicrosimulationmodelsin
+thesocialsciences. NewHorizonsinModelingandSimulationforSocialEpidemiologyand
+PublicHealth,pages107–148,2021.
+[37] Mauro Gallegati and Alan Kirman. Reconstructing economics: Agent based models and
+complexity. ComplexityEconomics,1(1):5–31,2012.
+[38] ChenGao,XiaochongLan,NianLi,YuanYuan,JingtaoDing,ZhilunZhou,FengliXu,and
+YongLi. Largelanguagemodelsempoweredagent-basedmodelingandsimulation: Asurvey
+andperspectives. HumanitiesandSocialSciencesCommunications,11(1):1–24,2024.
+[39] ChenGao,XiaochongLan,ZhihongLu,JinzhuMao,JinghuaPiao,HuandongWang,Depeng
+Jin,andYongLi.S3:Social-networksimulationsystemwithlargelanguagemodel-empowered
+agents. arXivpreprintarXiv:2307.14984,2023.
+[40] Dawei Gao, Zitao Li, Xuchen Pan, Weirui Kuang, Zhijian Ma, Bingchen Qian, Fei Wei,
+Wenhao Zhang, Yuexiang Xie, Daoyuan Chen, et al. Agentscope: A flexible yet robust
+multi-agentplatform. arXivpreprintarXiv:2402.14034,2024.
+[41] NigelGilbertandPietroTerna. Howtobuildanduseagent-basedmodelsinsocialscience.
+Mind&Society,1:57–72,2000.
+[42] Robert L Goldstone and Marco A Janssen. Computational models of collective behavior.
+Trendsincognitivesciences,9(9):424–430,2005.
+[43] Jing Guo, Nan Li, Jianchuan Qi, Hang Yang, Ruiqiao Li, Yuzhen Feng, Si Zhang, and
+MingXu. Empoweringworkingmemoryforlargelanguagemodelagents. arXivpreprint
+arXiv:2312.17259,2023.
+[44] PeterHedströmandPetriYlikoski. Causalmechanismsinthesocialsciences. Annualreview
+ofsociology,36(1):49–67,2010.
+[45] DirkHelbingandPeterMolnar. Socialforcemodelforpedestriandynamics. Physicalreview
+E,51(5):4282,1995.
+41
+
+[46] JakeMHofman,DuncanJWatts,SusanAthey,FilizGarip,ThomasLGriffiths,JonKleinberg,
+HelenMargetts,SendhilMullainathan,MatthewJSalganik,SimineVazire,etal. Integrating
+explanationandpredictionincomputationalsocialscience. Nature,595(7866):181–188,2021.
+[47] SiruiHong,XiawuZheng,JonathanChen,YuhengCheng,JinlinWang,CeyaoZhang,Zili
+Wang,StevenKaShingYau,ZijuanLin,LiyangZhou,etal. Metagpt: Metaprogrammingfor
+multi-agentcollaborativeframework. arXivpreprintarXiv:2308.00352,2023.
+[48] JohnJHorton. Largelanguagemodelsassimulatedeconomicagents: Whatcanwelearnfrom
+homosilicus? Technicalreport,NationalBureauofEconomicResearch,2023.
+[49] LeiHuang,WeijiangYu,WeitaoMa,WeihongZhong,ZhangyinFeng,HaotianWang,Qiang-
+longChen,WeihuaPeng,XiaochengFeng,BingQin,etal. Asurveyonhallucinationinlarge
+languagemodels: Principles,taxonomy,challenges,andopenquestions. ACMTransactions
+onInformationSystems,2023.
+[50] QianHuang,JianVora,PercyLiang,andJureLeskovec. Benchmarkinglargelanguagemodels
+asairesearchagents. InNeurIPS2023FoundationModelsforDecisionMakingWorkshop,
+2023.
+[51] Yue Huang, Zhengqing Yuan, Yujun Zhou, Kehan Guo, Xiangqi Wang, Haomin Zhuang,
+WeixiangSun,LichaoSun,JindongWang,YanfangYe,etal. Socialsciencemeetsllms: How
+reliablearelargelanguagemodelsinsocialsimulations? arXivpreprintarXiv:2410.23426,
+2024.
+[52] ZexunJiang,YafangShi,MaoxuLi,HongjiangXiao,YunxiaoQin,QinglanWei,YeWang,
+andYuanZhang. Casevo: Acognitiveagentsandsocialevolutionsimulator. arXivpreprint
+arXiv:2412.19498,2024.
+[53] HamdiKavak,JoseJPadilla,ChristopherJLynch,andSaikouYDiallo. Bigdata,agents,and
+machinelearning: towardsadata-drivenagent-basedmodelingapproach. InProceedingsof
+theAnnualSimulationSymposium,pages1–12,2018.
+[54] Arne Kesting, Martin Treiber, and Dirk Helbing. General lane-changing model mobil for
+car-followingmodels. TransportationResearchRecord,1999(1):86–94,2007.
+[55] MichalKosinski. Evaluatinglargelanguagemodelsintheoryofmindtasks. Proceedingsof
+theNationalAcademyofSciences,121(45):e2405460121,2024.
+[56] Woosuk Kwon, Zhuohan Li, Siyuan Zhuang, Ying Sheng, Lianmin Zheng, Cody Hao Yu,
+Joseph Gonzalez, Hao Zhang, and Ion Stoica. Efficient memory management for large
+language model serving with pagedattention. In Proceedings of the 29th Symposium on
+OperatingSystemsPrinciples,pages611–626,2023.
+[57] JamesLadyman,JamesLambert,andKarolineWiesner. Whatisacomplexsystem? European
+JournalforPhilosophyofScience,3:33–67,2013.
+[58] Shiyang Lai, Yujin Potter, Junsol Kim, Richard Zhuang, Dawn Song, and James Evans.
+Evolvingaicollectivestoenhancehumandiversityandenableself-regulation. arXivpreprint
+arXiv:2402.12590,2024.
+[59] Andrew K Lampinen, Ishita Dasgupta, Stephanie CY Chan, Hannah R Sheahan, Antonia
+Creswell,DharshanKumaran,JamesLMcClelland,andFelixHill. Languagemodels,like
+humans,showcontenteffectsonreasoningtasks. PNASnexus,3(7):pgae233,2024.
+[60] MichaelLaverandErnestSergenti. Partycompetition: Anagent-basedmodel,volume20.
+PrincetonUniversityPress,2011.
+[61] DavidLazer,AlexPentland,LadaAdamic,SinanAral,Albert-LászlóBarabási,DevonBrewer,
+NicholasChristakis,NoshirContractor,JamesFowler,MyronGutmann,etal. Computational
+socialscience. Science,323(5915):721–723,2009.
+[62] DavidMJLazer,AlexPentland,DuncanJWatts,SinanAral,SusanAthey,NoshirContractor,
+DeenFreelon,SandraGonzalez-Bailon,GaryKing,HelenMargetts,etal. Computational
+socialscience: Obstaclesandopportunities. Science,369(6507):1060–1062,2020.
+[63] GuohaoLi,HasanHammoud,HaniItani,DmitriiKhizbullin,andBernardGhanem. Camel:
+Communicativeagentsfor"mind"explorationoflargelanguagemodelsociety. Advancesin
+NeuralInformationProcessingSystems,36:51991–52008,2023.
+42
+
+[64] Nian Li, Chen Gao, Mingyu Li, Yong Li, and Qingmin Liao. Econagent: large language
+model-empoweredagentsforsimulatingmacroeconomicactivities. InProceedingsofthe62nd
+AnnualMeetingoftheAssociationforComputationalLinguistics(Volume1: LongPapers),
+pages15523–15536,2024.
+[65] AixinLiu,BeiFeng,BingXue,BingxuanWang,BochaoWu,ChengdaLu,ChenggangZhao,
+Chengqi Deng, Chenyu Zhang, Chong Ruan, et al. Deepseek-v3 technical report. arXiv
+preprintarXiv:2412.19437,2024.
+[66] RuiboLiu,RuixinYang,ChenyanJia,GeZhang,DennyZhou,AndrewMDai,DiyiYang,and
+SoroushVosoughi. Trainingsociallyalignedlanguagemodelsonsimulatedsocialinteractions.
+arXivpreprintarXiv:2305.16960,2023.
+[67] CharlesMMacalandMichaelJNorth. Tutorialonagent-basedmodelingandsimulation. In
+ProceedingsoftheWinterSimulationConference,2005.,pages14–pp.IEEE,2005.
+[68] AHMaslow. Atheoryofhumanmotivation. PsychologicalReview,2:21–28,1943.
+[69] SaulMcLeod. Maslow’shierarchyofneeds. Simplypsychology,1(1-18),2007.
+[70] GeorgeHerbertMead. Mind, self, andsocietyfromthestandpointofasocialbehaviorist.
+Chicago,1934.
+[71] Philipp Moritz, Robert Nishihara, Stephanie Wang, Alexey Tumanov, Richard Liaw, Eric
+Liang,MelihElibol,ZonghengYang,WilliamPaul,MichaelIJordan,etal. Ray:Adistributed
+frameworkforemerging{AI}applications. In13thUSENIXsymposiumonoperatingsystems
+designandimplementation(OSDI18),pages561–577,2018.
+[72] XinyiMou,ZhongyuWei,andXuanjingHuang.Unveilingthetruthandfacilitatingchange:To-
+wardsagent-basedlarge-scalesocialmovementsimulation. arXivpreprintarXiv:2402.16333,
+2024.
+[73] AkiraNamatameandShu-HengChen. Agent-basedmodelingandnetworkdynamics. Oxford
+UniversityPress,2016.
+[74] Graziella Orrù, Andrea Piarulli, Ciro Conversano, and Angelo Gemignani. Human-like
+problem-solving abilities in large language models using chatgpt. Frontiers in artificial
+intelligence,6:1199350,2023.
+[75] Xianghe Pang, Shuo Tang, Rui Ye, Yuxin Xiong, Bolun Zhang, Yanfeng Wang, and Si-
+hengChen. Self-alignmentoflargelanguagemodelsviamonopolylogue-basedsocialscene
+simulation. InForty-firstInternationalConferenceonMachineLearning,2024.
+[76] XianghePang,ShuoTang,RuiYe,YuxinXiong,BolunZhang,YanfengWang,andSiheng
+Chen. Self-alignmentoflargelanguagemodelsviamulti-agentsocialsimulation. InICLR
+2024WorkshoponLargeLanguageModel(LLM)Agents,2024.
+[77] Joon Sung Park, Joseph O’Brien, Carrie Jun Cai, Meredith Ringel Morris, Percy Liang,
+andMichaelSBernstein. Generativeagents: Interactivesimulacraofhumanbehavior. In
+Proceedingsofthe36thannualacmsymposiumonuserinterfacesoftwareandtechnology,
+pages1–22,2023.
+[78] Joon Sung Park, Carolyn Q Zou, Aaron Shaw, Benjamin Mako Hill, Carrie Cai, Mered-
+ith Ringel Morris, Robb Willer, Percy Liang, and Michael S Bernstein. Generative agent
+simulationsof1,000people. arXivpreprintarXiv:2411.10109,2024.
+[79] JinghuaPiao,JiazhenLiu,FangZhang,JunSu,andYongLi. Human–aiadaptivedynamics
+drivestheemergenceofinformationcocoons. NatureMachineIntelligence,5(11):1214–1224,
+2023.
+[80] JinghuaPiao,ZhihongLu,ChenGao,FengliXu,FernandoPSantos,YongLi,andJames
+Evans. Emergenceofhuman-likepolarizationamonglargelanguagemodelagents. arXiv
+preprintarXiv:2501.05171,2025.
+[81] DavidVPynadath,MeiSi,andStacyCMarsella. Modelingtheoryofmindandcognitive
+appraisalwithdecision-theoreticagents. Socialemotionsinnatureandartifact: emotionsin
+humanandhuman-computerinteraction,pages70–87,2011.
+[82] ChenQian,WeiLiu,HongzhangLiu,NuoChen,YufanDang,JiahaoLi,ChengYang,Weize
+Chen,YushengSu,XinCong,etal.Chatdev:Communicativeagentsforsoftwaredevelopment.
+InProceedingsofthe62ndAnnualMeetingoftheAssociationforComputationalLinguistics
+(Volume1: LongPapers),pages15174–15186,2024.
+43
+
+[83] LenoreSawyerRadloff. Theuseofthecenterforepidemiologicstudiesdepressionscalein
+adolescentsandyoungadults. Journalofyouthandadolescence,20(2):149–166,1991.
+[84] Daniel M Romero, Brendan Meeder, and Jon Kleinberg. Differences in the mechanics of
+information diffusion across topics: idioms, political hashtags, and complex contagion on
+twitter.InProceedingsofthe20thinternationalconferenceonWorldwideweb,pages695–704,
+2011.
+[85] JingqingRuan, YihongChen, BinZhang, ZhiweiXu, TianpengBao, HangyuMao, Ziyue
+Li, Xingyu Zeng, Rui Zhao, et al. Tptu: Task planning and tool usage of large language
+model-basedaiagents. InNeurIPS2023FoundationModelsforDecisionMakingWorkshop,
+2023.
+[86] MarkoSarstedt,SusanneJAdler,LeaRau,andBerndSchmitt. Usinglargelanguagemodels
+togeneratesiliconsamplesinconsumerandmarketingresearch: Challenges,opportunities,
+andguidelines. Psychology&Marketing,41(6):1254–1270,2024.
+[87] RKSawyer. SocialEmergence: SocietiesasComplexSystems. CambridgeUniversityPress,
+2005.
+[88] TimSchürmannandPhilippBeckerle.Personalizinghuman-agentinteractionthroughcognitive
+models. FrontiersinPsychology,11:561510,2020.
+[89] ChenyangShao,FengliXu,BingbingFan,JingtaoDing,YuanYuan,MengWang,andYong
+Li. Beyondimitation: Generatinghumanmobilityfromcontext-awarereasoningwithlarge
+languagemodels. arXivpreprintarXiv:2402.09836,2024.
+[90] MaayanShvo,JakobBuhmann,andMubbasirKapadia. Aninterdependentmodelofpersonal-
+ity,motivation,emotion,andmoodforintelligentvirtualagents. InProceedingsofthe19th
+ACMinternationalconferenceonintelligentvirtualagents,pages65–72,2019.
+[91] Didier Sornette. Why stock markets crash: critical events in complex financial systems.
+Princetonuniversitypress,2009.
+[92] James WA Strachan, Dalila Albergo, Giulia Borghini, Oriana Pansardi, Eugenio Scaliti,
+SaurabhGupta,KratiSaxena,AlessandroRufo,StefanoPanzeri,GuidoManzi,etal. Testing
+theoryofmindinlargelanguagemodelsandhumans. NatureHumanBehaviour,pages1–11,
+2024.
+[93] SeungjongSun,EunguLee,DongyanNan,XiangyingZhao,WonbyungLee,BernardJJansen,
+andJangHyunKim. Randomsiliconsampling: Simulatinghumansub-populationopinion
+usingalargelanguagemodelbasedongroup-leveldemographicinformation. arXivpreprint
+arXiv:2402.18144,2024.
+[94] JiakaiTang,HeyangGao,XuchenPan,LeiWang,HaoranTan,DaweiGao,YushuoChen,
+XuChen,YankaiLin,YaliangLi,etal. Gensim: Ageneralsocialsimulationplatformwith
+largelanguagemodelbasedagents. arXivpreprintarXiv:2410.04360,2024.
+[95] MartinTreiber,AnsgarHennecke,andDirkHelbing. Congestedtrafficstatesinempirical
+observationsandmicroscopicsimulations. PhysicalreviewE,62(2):1805,2000.
+[96] Klaus G Troitzsch. Social science microsimulation. Springer Science & Business Media,
+1996.
+[97] SandervanderHoog. Deeplearningin(andof)agent-basedmodels: Aprospectus. arXiv
+preprintarXiv:1706.06302,2017.
+[98] GuanzhiWang,YuqiXie,YunfanJiang,AjayMandlekar,ChaoweiXiao,YukeZhu,Linxi
+Fan,andAnimaAnandkumar. Voyager: Anopen-endedembodiedagentwithlargelanguage
+models. arXivpreprintarXiv:2305.16291,2023.
+[99] LeiWang,ChenMa,XueyangFeng,ZeyuZhang,HaoYang,JingsenZhang,ZhiyuanChen,
+JiakaiTang,XuChen,YankaiLin,etal. Asurveyonlargelanguagemodelbasedautonomous
+agents. FrontiersofComputerScience,18(6):186345,2024.
+[100] LeiWang,JingsenZhang,HaoYang,Zhi-YuanChen,JiakaiTang,ZeyuZhang,XuChen,
+Yankai Lin, Hao Sun, Ruihua Song, et al. User behavior simulation with large language
+model-basedagentsforrecommendersystems. ACMTransactionsonInformationSystems,
+2024.
+44
+
+[101] Yiding Wang, Yuxuan Chen, Fangwei Zhong, Long Ma, and Yizhou Wang. Simulating
+human-likedailyactivitieswithdesire-drivenautonomy. arXivpreprintarXiv:2412.06435,
+2024.
+[102] JasonWei,XuezhiWang,DaleSchuurmans,MaartenBosma,FeiXia,EdChi,QuocVLe,
+DennyZhou,etal. Chain-of-thoughtpromptingelicitsreasoninginlargelanguagemodels.
+Advancesinneuralinformationprocessingsystems,35:24824–24837,2022.
+[103] U Wilensky. An Introduction to Agent-Based Modeling: Modeling Natural, Social, and
+EngineeredComplexSystemswithNetlogo. TheMITPress,2015.
+[104] SarahWolf,SteffenFürst,AntoineMandel,WiebkeLass,DanielLincke,FedericoPablo-Marti,
+andCarloJaeger. Amulti-agentmodelofseveraleconomicregions. Environmentalmodelling
+&software,44:25–43,2013.
+[105] StephenWolfram. Cellularautomata. LosAlamosScience,pages09–01,1983.
+[106] ZhihengXi,WenxiangChen,XinGuo,WeiHe,YiwenDing,BoyangHong,MingZhang,
+JunzheWang,SenjieJin,EnyuZhou,etal. Theriseandpotentialoflargelanguagemodel
+basedagents: Asurvey. arXivpreprintarXiv:2309.07864,2023.
+[107] YuzhuangXu,ShuoWang,PengLi,FuwenLuo,XiaolongWang,WeidongLiu,andYangLiu.
+Exploringlargelanguagemodelsforcommunicationgames: Anempiricalstudyonwerewolf.
+arXivpreprintarXiv:2309.04658,2023.
+[108] YuweiYan,QingbinZeng,ZhihengZheng,JingzheYuan,JieFeng,JunZhang,FengliXu,and
+YongLi. Opencity: Ascalableplatformtosimulateurbanactivitieswithmassivellmagents.
+arXivpreprintarXiv:2410.21286,2024.
+[109] ZiyiYang,ZaibinZhang,ZiruiZheng,YuxianJiang,ZiyueGan,ZhiyuWang,ZijianLing,
+JinsongChen,MartzMa,BowenDong,etal.Oasis:Openagentssocialinteractionsimulations
+ononemillionagents. arXivpreprintarXiv:2411.11581,2024.
+[110] An Zhang, Yuxin Chen, Leheng Sheng, Xiang Wang, and Tat-Seng Chua. On generative
+agentsinrecommendation. InProceedingsofthe47thinternationalACMSIGIRconference
+onresearchanddevelopmentinInformationRetrieval,pages1807–1817,2024.
+[111] ChaoyunZhang,ShilinHe,JiaxuQian,BowenLi,LiqunLi,SiQin,YuKang,MinghuaMa,
+QingweiLin,SaravanRajmohan,etal. Largelanguagemodel-brainedguiagents: Asurvey.
+arXivpreprintarXiv:2411.18279,2024.
+[112] Huichu Zhang, Siyuan Feng, Chang Liu, Yaoyao Ding, Yichen Zhu, Zihan Zhou, Weinan
+Zhang,YongYu,HaimingJin,andZhenhuiLi.Cityflow:Amulti-agentreinforcementlearning
+environmentforlargescalecitytrafficscenario. InTheworldwidewebconference,pages
+3620–3624,2019.
+[113] XinnongZhang,JiayuLin,LiboSun,WeihongQi,YihangYang,YueChen,HanjiaLyu,Xinyi
+Mou,SimingChen,JieboLuo,etal. Electionsim: Massivepopulationelectionsimulation
+poweredbylargelanguagemodeldrivenagents. arXivpreprintarXiv:2410.20746,2024.
+[114] ZeyuZhang,XiaoheBo,ChenMa,RuiLi,XuChen,QuanyuDai,JiemingZhu,Zhenhua
+Dong,andJi-RongWen. Asurveyonthememorymechanismoflargelanguagemodelbased
+agents. arXivpreprintarXiv:2404.13501,2024.
+[115] StephanZheng,AlexanderTrott,SunilSrinivasa,DavidCParkes,andRichardSocher. The
+aieconomist: Taxationpolicydesignviatwo-leveldeepmultiagentreinforcementlearning.
+Scienceadvances,8(18):eabk2607,2022.
+[116] XuhuiZhou, HaoZhu, Leena Mathur, RuohongZhang, HaofeiYu, ZhengyangQi, Louis-
+PhilippeMorency,YonatanBisk,DanielFried,GrahamNeubig,etal. Sotopia: Interactive
+evaluationforsocialintelligenceinlanguageagents. arXivpreprintarXiv:2310.11667,2023.
+[117] XizhouZhu,YuntaoChen,HaoTian,ChenxinTao,WeijieSu,ChenyuYang,GaoHuang,Bin
+Li,LeweiLu,XiaogangWang,etal. Ghostintheminecraft: Generallycapableagentsfor
+open-worldenvironmentsvialargelanguagemodelswithtext-basedknowledgeandmemory.
+arXivpreprintarXiv:2305.17144,2023.
+[118] George Kingsley Zipf. The p 1 p 2/d hypothesis: on the intercity movement of persons.
+Americansociologicalreview,11(6):677–686,1946.
+45

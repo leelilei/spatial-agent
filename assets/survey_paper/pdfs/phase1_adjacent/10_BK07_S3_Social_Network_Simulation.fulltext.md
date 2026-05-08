@@ -1,0 +1,960 @@
+Title: S$^3$: Social-network Simulation System with Large Language Model-Empowered Agents
+
+Source PDF: /Users/mac/Documents/6-Research/1-SpatialAgent/assets/survey_paper/pdfs/phase1_adjacent/10_BK07_S3_Social_Network_Simulation.pdf
+
+Extraction:
+- backend: pdfplumber
+- extracted_at_utc: 2026-05-01T02:55:16+00:00
+- page_count: 18
+- status: ok
+- text_char_count: 60720
+
+Metadata:
+- author: Chen Gao; Xiaochong Lan; Zhihong Lu; Jinzhu Mao; Jinghua Piao; Huandong Wang; Depeng Jin; Yong Li
+- doi: unknown
+- keywords: unknown
+- subject: unknown
+
+Outline:
+- none
+
+Markdown Content:
+
+5202
+nuJ
+3
+]IS.sc[
+3v48941.7032:viXra
+S3: Social-network Simulation System with
+Large Language Model-Empowered Agents
+ChenGao∗,XiaochongLan∗,ZhihongLu,JinzhuMao,
+JinghuaPiao,HuandongWang,DepengJin,YongLi
+DepartmentofElectronicEngineering,
+TsinghuaUniversity
+liyong07@tsinghua.edu.cn
+∗Theseauthorscontributedequallytothiswork.
+Abstract
+Simulation plays a crucial role in addressing various challenges within social
+science. Itoffersextensiveapplicationssuchasstateprediction,phenomenaex-
+planation,andpolicy-makingsupport,amongothers. Inthiswork,weharnessthe
+human-likecapabilitiesoflargelanguagemodels(LLMs)insensing,reasoning,
+and behaving, and utilize these qualities to construct the S3 system (short for
+SocialnetworkSimulationSystem). Adheringtothewidelyemployedagent-based
+simulationparadigm,weemployfine-tuningandpromptengineeringtechniquesto
+ensurethattheagent’sbehaviorcloselyemulatesthatofagenuinehumanwithin
+thesocialnetwork. Specifically,wesimulatethreepivotalaspects: emotion,at-
+titude,andinteractionbehaviors. Byendowingtheagentinthesystemwiththe
+abilitytoperceivetheinformationalenvironmentandemulatehumanactions,we
+observetheemergenceofpopulation-levelphenomena,includingthepropagation
+ofinformation,attitudes,andemotions. Weconductanevaluationencompassing
+twolevelsofsimulation,employingreal-worldsocialnetworkdata. Encouragingly,
+theresultsdemonstratepromisingaccuracy. Thisworkrepresentsaninitialstepin
+therealmofsocialnetworksimulationempoweredbyLLM-basedagents. Wean-
+ticipatethatourendeavorswillserveasasourceofinspirationforthedevelopment
+ofsimulationsystemswithin,butnotlimitedto,socialscience.
+1 Introduction
+The social network, comprising interconnected individuals in society, constitutes a cornerstone
+of the contemporary world. Diverging from mathematical analysis, computer simulation offers
+a fresh avenue to comprehend the formation and evolution of social networks. This serves as a
+fundamentaltoolforsocialscientists. Notably,in1996,therewasalreadyabooktitledSocialScience
+Microsimulation[40]providingvaluableinsightsaboutsimulationfromtheperspectiveofsocial
+science. Socialsimulationencompassesawiderangeofdomains,encompassingbothindividualand
+populationsocialactivities. Attheheartofsocialsimulationlietwoperspectives[16]:1)thedynamic
+feedbackorinteractionamongindividuals,and2)thestatesofthepopulation,eitherasacollective
+wholeorasdistinctgroups. Bysimulatingsocialactivities,researchersandpractitionerscanpredict
+the future evolution of individual and population states. In addition, they facilitate experimental
+environmentsthroughinterventions. Socialsimulationcanbeimplementedintwoforms: microlevel
+simulation[9,32]andmacrolevelsimulation[21,28,15,27]. Inmacrolevelsimulation,alsoknown
+as system-based simulation, researchers model the dynamics of the system using equations that
+elucidatethechangingstatusofthepopulation. Conversely,microlevelsimulation,oragent-based
+simulation,involvesresearchersemployingeitherhuman-craftedrulesorparameterizedmodelsto
+depictthebehaviorofindividuals(referredtoasagents)whointeractwithothers. Recently,withthe
+
+exponentialgrowthoftheInternet,onlinesocialnetworkshaveemergedastheprincipalplatform
+forsocietalactivities. Usersengageinvariousinteractivebehaviorssuchaschatting,posting,and
+sharingcontent. Consequently,thestudyofsocialnetworkshasbecomeacentralresearchfocus
+withintherealmofsocialscience,therebyemphasizingthecriticalityofsimulationinthisdomain.
+Large language models (LLMs) [6, 31, 10, 13, 39, 45] are the recent advancement in the field
+of deep learning, characterized by the utilization of an extensive array of neural layers. These
+modelsundergotrainingonvasttextualcorpora,acquiringaremarkablefundamentalcapacityto
+comprehend, generate, and manipulate human language. Given their impressive prowess in text
+comprehension,whichcloselyapproximateshuman-levelperformance,LLMshaveemergedasa
+particularly auspicious avenue of research for approaching general artificial intelligence. Conse-
+quently,researchers[1,20,17,32]leverageLLMsasagent-likeentitiesforsimulatinghuman-like
+behavior, capitalizing on three fundamental capabilities. First and foremost, LLMs possess the
+abilitytoperceiveandapprehendtheworld,albeitrestrictedtoenvironmentsthatcanbeadequately
+describedintextualform. Secondly,LLMsarecapableofdevisingandorganizingtaskschedulesby
+leveragingreasoningtechniquesthatincorporatebothtaskrequirementsandtheattendantrewards.
+Throughoutthisprocess, LLMseffectivelymaintainandupdateamemoryinventory, employing
+appropriatelyguidedpromptsrootedinhuman-likereasoningpatterns. Lastly,LLMsexhibitthe
+capacity to generate texts that bear a striking resemblance to human-produced language. These
+textualoutputscaninfluencetheenvironmentandinteractwithotheragents. Consequently,itholds
+significantpromisetoadoptanagent-basedsimulationparadigmthatharnessesLLMstosimulate
+each user within a social network, thereby capturing their respective behaviors and the intricate
+interplayamongusers.
+Inthisstudy,wepresenttheSocial-networkSimulationSystem(S3),whichemploysLLM-empowered
+agentstosimulateuserswithinasocialnetworkeffectively. Initially,weestablishanenvironment
+usingreal-worldsocialnetworkdata. Toensuretheauthenticityofthisenvironment,wepropose
+a user-demographic inference module that combines prompt engineering with prompt tuning, to
+inferuserdemographicssuchasage,gender,andoccupation. Withintheconstructedenvironment,
+usershavetheabilitytoobservecontentfromindividualstheyfollow,therebyinfluencingtheirown
+attitudes,emotions,andsubsequentbehaviors. Userscanforwardcontent,createnewcontent,or
+remaininactive. Hence,attheindividuallevel,weemploypromptengineeringandprompttuning
+methodologiestosimulateattitudes,emotions,andbehaviors. Notably,thissimulationconsidersboth
+demographicsandmemoryofhistorically-postedcontent. Atthepopulationlevel,theaccumulation
+ofindividualbehaviors,includingcontentgenerationandforwarding,alongsidetheevolvinginternal
+states of attitudes and emotions, leads to the emergence of collective behavior. This behavior
+encompassesthepropagationofinformation,attitudes,andemotions.
+ToassesstheefficacyoftheproposedS3system,wehavechosentwoexemplaryscenarios,namely,
+genderdiscriminationandnuclearenergy. Withrespecttogenderdiscrimination,ourobjective
+istosimulateuserresponsestoonlinecontentassociatedwiththisissue,whilecloselyobserving
+thedisseminationpatternsofrelatedinformationandevolvingpublicsentiment. Regardingnuclear
+energy,ouraimistosimulateuserreactionstoonlinecontentpertainingtopowerpolicies.Inaddition,
+weaimtosimulatethecontentiousandconflictinginteractionsbetweentwoopposingpopulation
+groups. Toevaluatetheprecisionofoursimulations,weemploymetricsthatmeasureaccuracyat
+boththeindividualandpopulationlevels. Thiswork’smaincontributionscanbesummarizedas
+follows.
+• Wetakethepioneeringstepofsimulatingsocialnetworkswithlargelanguagemodels(LLMs),
+which follows the agent-based simulation paradigm, and empowers the agents with the latest
+advances.
+• Wedevelopasimulationsystemthatsupportsbothindividual-levelandpopulation-levelsimulations,
+whichcanlearnfromthecollectedrealsocialnetworkdata,andsimulatefuturestates.
+• Wesystematicallyconducttheevaluation,andtheresultsshowthatthesimulationsystemwith
+LLM-empoweredagentscanachieveconsiderableaccuracyinmultiplemetrics. Consequently,
+oursystemintroducesanovelsimulationparadigminsocialscienceresearch,offeringextensive
+supportforscientificinvestigationsandreal-worldapplications.
+Toprovideacomprehensiveunderstandingofthecurrentresearchlandscape,webeginbyreviewing
+relevant works in Section 2. Subsequently, we proceed to introduce the simulation system in
+Section3,followedbyadetailedexpositionofthemethodologyandimplementationinSection4. In
+2
+
+Section5,weengageindiscussionsandanalyzeopenchallengesassociatedwithrelatedresearchand
+applications. Finally,weconcludeourworkinSection6.
+2 RelatedWorks
+Inthissection,wediscusstwoareasclosetothiswork,socialsimulationandlargelanguagemodel-
+basedsimulation.
+2.1 SocialSimulation
+Accordingto[5],"Simulationmeansdrivingamodelofasystemwithsuitableinputsandobserving
+the corresponding outputs". Social simulation aims to simulate various social activities, which
+encompass a wide range of applications [16]. One primary advantage of social simulation is its
+potentialtoaidsocialscientistsincomprehendingthecharacteristicsofthesocialworld[2]. Thisis
+primarilyattributedtothefactthattheinternalmechanismsdrivingsocialbehaviorsarenotdirectly
+observable. Byemployingasimulationmodelcapableofreasonablyreplicatingthedynamicnature
+ofhistoricalsocialbehaviors, itbecomesfeasibletoutilizethesimulationtoolforpredictingthe
+futureofthesocialsystem. Furthermore,socialsimulationcanserveasatrainingground,particularly
+for economists involved in social-economic simulations [38]. In this context, the economist can
+assumeadigitalpersona,namelyanartificialintelligenceprogramtaskedwithformulatingeconomic
+policies. Moreover,socialsimulationcanevenserveasasubstituteforhumanpresence,exemplified
+bytheemergenceofdigitalavatarsinthemetaverse[22]. Fromtheperspectiveofsocialscience
+research,socialsimulationplaysacrucialroleinfacilitatingthedevelopmentofnewsocialscience
+theories. Itachievesthisbyvalidatingtheoreticalassumptionsandenhancingtheorythroughthe
+applicationofmorepreciseformalizations.
+Inspiteofthepromisingapplications,conductingsocialsimulationiscomplex. Theearliestworks
+usediscreteevent-basedsimulation[21]orsystemdynamics[28,15,27]withaseriesofequations
+toapproximatemultiplevariablesovertimethatpartlydescribethesystem. Theseearlymethods
+primarily focused on accurately predicting the variables rather than elucidating the underlying
+mechanismsorcausalrelationships. Subsequently,drawinginspirationfromtherapiddevelopment
+and remarkable success of simulation in other scientific domains, the utilization of agent-based
+simulationemergedinthefieldofsocialsimulation. Anotableandrepresentativetechniqueamong
+these simulation methods is the employment of Cellular Automata [9]. Initially, this approach
+establishesasocialenvironmentcomposedofnumerousindividualsandsubsequentlyformulatesa
+setofrulesdictatinghowindividualsinteractwithoneanotherandupdatetheirstates. Agent-based
+simulation can be regarded as a micro-level simulation that approximates real-world systems by
+describingthebehaviorofexplicitlydefinedmicro-levelindividuals. Thus,itisalsoreferredtoas
+microsimulation.
+Inrecenttimes,owingtosignificantadvancementsinmachinelearningandartificialintelligence,
+agent-basedsimulationhaswitnessedanotabletransformation. Thistransformationischaracterized
+bytheutilizationofincreasinglyintricateandrobustagentspropelledbymachinelearningalgorithms.
+Theseagentspossesstheabilitytodynamicallyperceivetheirsurroundingsandexhibitactionsthat
+closelyresemblehumanbehavior. Therapidprogressinsimulatingindividualagentshasnotonly
+preservedtheeffectivenessofconventionalsimulationparadigmsbuthasalsoresultedinsignificant
+improvements. This is particularly important for large language models, which are on the path
+towardsachievingpartialgeneralartificialintelligence. Consequently,inthisstudy,weembracethe
+microsimulationparadigmandemploymeticulouslyguidedandfinelytunedlargelanguagemodels
+togovernthebehaviorofindividualswithinsocialnetworks.
+2.2 LargeLanguageModel-basedSimulation
+Recently, relying on the strong power in understanding and generating human language, large
+languagemodelssuchasGPTseries[6,31],PaLMseries[10,13],LLaMA[39],GLM[45],etc. are
+attractingwidespreadattention. LLMshaveexhibitedexceptionalcapabilitiesinzero-shotscenarios,
+enablingrapidadaptationtodiversetasksacrossacademicandindustrialdomains. Theexpansive
+languagemodelalignswellwiththeagent-basedsimulationparadigmmentionedearlier,wherein
+3
+
+Real Data Demographic Memory
+Environment
+Prompting Tuning
+Users
+Large Langue Model
+Messages Empowered Agent
+Network
+Internal State
+Emotion Attitude Others
+Environment
+Memory
+Update
+Condition Generation Module Update
+Social Event
+Interactive Behaviors
+Mechanism
+Like Forward Comment Generate
+Others
+Figure1: Theoverviewofthesocialnetworksimulationsystem.
+theprimaryobjectiveinvolvesconstructinganagentrepresentedbyaruleorprogramendowedwith
+sufficientcapacitytosimulatereal-worldindividuals.
+Aheretal.[1]conductedapreliminarytesttofindthatLLMspossessthecapabilitytoreproducesome
+classiceconomic,psycholinguistic,andsocialpsychologyexperiments. Hortonetal.[20]substitute
+humanparticipantswithLLMagents,whicharegivenendowments,information,preferences,etc.,
+withpromptsandthensimulatetheeconomicbehaviors. TheresultswithLLM-empoweredagents
+showqualitativelysimilarresultstotheoriginalpapers(withhumanexperiments)[34,7]. Another
+study [17]adoptsanLLM-basedcrowdsourcingapproachbygatheringfeedbackfromLLMavatars
+representingactualhumans,tosupporttheresearchofcomputationalsocialscience.
+Recently,Partetal.[32]constructavirtualtownwith25LLM-empoweredagentsbasedonavideo
+gameenvironment,inwhichtheagentcanplanandschedulewhattodoindailylife. Althoughthe
+simulationispurelybasedonagenerativeparadigmwithoutanyreal-dataevaluation,itprovides
+insightsthatLLMcanserveasapowerfultoolinagent-basedsimulation. Eachagentwasassigned
+itsownidentityanddistinctcharacteristicsthroughprompts,facilitatingcommunicationamongthem.
+Itisnoteworthythatthissimulationwasconductedexclusivelywithinagenerativeparadigm,without
+incorporatinganyreal-worlddataforevaluation. Nevertheless,thefindingsoffervaluableinsights
+intoLLM’spotentialasapotenttoolinagent-basedsimulations.
+3 S3: SocialNetworkSimulation
+3.1 SystemOverview
+Oursystemisconstructedwithinasocialnetworkframework,whereintheagent’scapabilitiesare
+augmentedthroughtheutilizationoflargelanguagemodels. Morespecifically,ourprimaryobjective
+istoensurethatthesimulationattainsasignificantdegreeofquantitativeaccuracy,cateringtoboth
+individual-levelandpopulation-levelsimulations. Regardingindividual-levelsimulation,ouraimis
+toreplicatebehaviors,attitudes,andemotionsbyleveragingusercharacteristics,theinformational
+contextwithinsocialnetworks,andtheintricatemechanismsgoverningusercognitiveperceptionand
+decision-making. Throughtheutilizationofagent-basedsimulation,wefurtherassessthepopulation-
+leveldynamicsbyscrutinizingtheperformanceofsimulatingthreepivotalsocialphenomena: the
+propagationprocessofinformation,attitude,andemotion.
+4
+
+Table1: Theutilizeddatasetsforsocialnetworksimulation.
+Scenario #Users #Relations #Posts
+GenderDiscrimination 8,563 25,656 103,905
+NuclearEnergy 17,945 77,435 229,450
+Table2: Performanceofoursystemonpredictiontasksforindividualsimulation.
+Scenario Task Acc AUC F1
+EmotionLevel 71.8% — —
+GenderDiscrimination
+EventPropogation 66.2% 0.662 0.667
+InitialAttitude 74.3% 0.727 0.834
+NuclearEnergy AttitudeChange 83.9% 0.865 0.857
+EventPropogation 69.5% 0.681 0.758
+3.2 SocialNetworkEnvironment
+Inthisstudy,ourfocusisdirectedtowardtwospecificfocalpoints,namelygenderdiscrimination
+andnuclearenergy. Theseparticularsubjectsarechosenowingtotheirhighlycontroversialnature,
+whichyieldedanextensivecorpusofdata. Morespecifically,ourinvestigationregardingnuclear
+energycentersonexaminingtheprevailingattitudesofthegeneralpublictowardthechoicebetween
+supporting nuclear energy sources or relying on fossil fuels. As for gender discrimination, our
+objectiveistodelveintotheemotionalexperiencesofindividualsandpopulations,particularlythose
+elicited by incidents of gender-based discrimination, such as feelings of anger. The availability
+ofsuchcopiousamountsofdatafacilitatestheextractionofasubstantialportionoftheauthentic
+network,therebyenablingustogainamacroscopicperspectivethatcloselyapproximatesreality. To
+conductthisanalysis,wecollecttherealdatawithusers,socialconnections,andtextualpostsin
+socialmedia,asdetailedinTable1. Thisdatasetprovidesuswiththenecessaryresourcestodelve
+deepintothedynamicsofthesecontentioussubjectsandgainvaluableinsightsintotheirimpacton
+socialnetworks.
+Userdemographicsplayapivotalroleinshapinguserbehavior,necessitatingthedevelopmentofa
+moreextensiveuserpersonatoenabletherealisticandplausiblesimulationoftheiractions. However,
+duetothelimitedavailabilityofuserinformationobtaineddirectlyfromsocialmedia,itbecomes
+imperativetoextractthemissinguserdemographicsfromtextualdata,suchasuserpostsandpersonal
+descriptions. Specifically,wecaptureuserdemographicfeaturesfromtextualinformationusingLLM,
+withaparticularemphasisonpredictingAge,Gender,andOccupation. Byintegratingdemographic
+attributesinferredfromsocialnetworkdata,weareabletopresentanenhancedandmoreauthentic
+representationofusers’actionsandinteractions.
+3.3 Individual-levelSimulation
+Utilizingtheinitializedsocialnetworkenvironment, thesystemcommencesthesimulationatan
+individual level. Precisely, the user acquires awareness of the information environment, thereby
+influencing their emotions and attitude. Subsequently, the user is granted the option to forward
+(repost)observedposts,generatenewcontent,orkeepinactive. Inessence,weconductindividual
+simulationsencompassingthreefacets: emotion,attitude,andinteractionbehavior.
+3.3.1 EmotionSimulation
+Intheprocessofdisseminatingreal-worldevents,whenauserwiththeirowncognition,attitudes,and
+personalityencountersanevent,theyareoftentriggeredemotionallyandexpresstheiremotionson
+socialplatforms. Emulatinguseremotionsiscrucialforsocialnetworksimulations,asitsignificantly
+influenceshowusersconveytheirintendedmessages. However,simulatingemotionsischallenging
+duetothemultitudeoffactorsandcomplexrelationshipsinvolvedinhumanemotions. Leveraging
+therichknowledgeofhumanbehaviorinherentinLLMs,weemployLLMtosimulateindividual
+emotions.
+5
+
+Table3: Performanceofoursystemonconditionaltextgenerationtasks.
+Scenario Perplexity CosineSimilarity
+GenderDiscrimination 19.289 0.723
+NuclearEnergy 16.145 0.741
+Specifically,wemodelthepotentialemotionsofuserstowardsaparticulareventasthreelevels: calm,
+moderate,andintense. Initially,whenusersareunawareoftheevent,theirdefaultemotionlevel
+issettocalm. However,astheybecomeawareoftheevent,theiremotionalstatebeginstoevolve.
+Inordertocapturethisdynamicnatureofemotions,weemployaMarkovprocess. Thisprocess
+considersseveralfactors,includingtheuser’scurrentemotionlevel,userprofiles,userhistory,and
+themessagesreceivedatthepresenttimestep. Byintegratingthesevariables,wecanpredictthe
+user’semotionlevelinthesubsequenttimestep.
+Ouremotionsimulationapproachhasyieldedpromisingresultsattheindividuallevel. Asshownin
+Table2,usingreal-worlddataforevaluation,ourmethoddemonstratesgoodperformanceinpredicting
+theemotionsofthenexttimestep. Weachieveanaccuracyof71.8%inthisthree-classificationtask,
+thankstotheexcellentmodelingandunderstandingofhumanemotionalexpressionbylargelanguage
+models.
+3.3.2 AttitudeSimulation
+Just as emulating user emotions proves pivotal for social network simulations, simulating user
+attitudes carries equal weight. The reproduction of attitudes in a virtual social environment is
+complexyetindispensable. Itisthecombinationoftheseattitudesthatguideusers’actions,opinions,
+anddecisionsaboutdifferenttopics. Thechallengeinthissimulationliesinthemultifacetedand
+subjectivenatureofattitudes,whichareinfluencedbyawiderangeofinternalandexternalfactors,
+fromindividualexperiencesandbeliefstosocietalinfluencesandperceivednorms.
+Foroursimulation,weassumethatusershaveinitialattitudestowardsspecificissues,whichchange
+basedonunfoldingevents. Thisdynamicadaptationofattitudesisreflectiveofreal-worldsocial
+interactions, wherepeoplemodifytheirviewsinresponsetochangingcircumstances, influential
+figures,orcompellingarguments.
+Inourmodel,muchakintotheemotionalstate,wetracktheusers’attitudesonabinaryspectrum,
+whichconsistsonlyofnegativeandpositivestancestowardsanevent. Ourfirststepistoestablishan
+initialstatefortheuser’sattitude. Thisisderivedfromtheuserprofilesanduserhistory,reflecting
+theirpredispositionsbasedonpastinteractionsandbehaviors. Oncetheinitialstateisestablished,
+thedynamicsofattitudechangesaremodeledasaMarkovprocess. Thesubsequentevolutionof
+theseattitudesincorporatesnotonlytheuser’scurrentattitudebutalsotheirprofile,history,andthe
+messagesreceivedatthecurrenttimestep. Thesefactorsarecollectivelyemployedtopredictthe
+user’sattitudeintheensuingtimestep. Boththeinitialattitudeandtheassessmentofattitudechange
+aredeterminedbasedontheLLM.
+As depicted in Table 2, our methods have demonstrated excellent performance. In the task of
+predictinginitialattitudes,ourapproachyieldsanaccuracyof74.3%,anAUCscoreof0.727,andan
+F1-Scoreof0.834. Inthesubsequenttaskofattitudechangeprediction,ourmethodperformseven
+better,achievinganimpressiveaccuracyof83.9%,anAUCscoreof0.865,andanF1-Scoreof0.857.
+These results can be largely attributed to the ability of LLMs to profoundly comprehend human
+behaviorandcognition. Suchunderstandingenablesasophisticatedinterpretationofuser-generated
+content,resultinginamoreaccuratepredictionofusers’attitudesandtheirevolutionovertime.
+3.3.3 Content-generationBehaviorSimulation
+Withintherealmofreal-worldsocialnetworks,usersshapetheircontentbasedontheirprevailing
+attitudesandemotionstowardsdistinctevents. Emulatingthiscontentcreationprocessisanessential,
+yetcomplex,aspectofsocialnetworksimulations. Eachpieceofgeneratedcontentactsasamirror
+totheuser’sinternalstateandexternalinfluences,manifestingtheirindividualperspectiveonthe
+eventathand. Thecruxofthechallengeistoencapsulatethewidearrayofexpressionsandstyles
+thatusersemploytoconveytheirsentiments,opinions,andreactions.
+6
+
+LeveragingthestrengthsofLLMscansignificantlyalleviatethischallenge. Thesemodels,withtheir
+abilitytogeneratetextthatcloselyresembleshuman-likelanguagepatterns,facilitatethesimulation
+ofuser-generatedcontentwithhighaccuracy. Byinputtingtheuser’sprofile,alongwiththeircurrent
+attitudeoremotionalstate,thesemodelsarecapableofgeneratingcontentthatfaithfullyreproduces
+whatausermightpostinresponsetoaparticularevent.
+Thisapproach,informedbythecapabilitiesoflargelanguagemodels,enablesustocraftasophisti-
+catedsimulationthatmirrorsthecontentgenerationprocessinreal-worldsocialnetworks. Itthereby
+providesanuancedunderstandingofhowusers’attitudesandemotionsarereflectedintheircontent,
+offeringinvaluableinsightsforthestudyofsocialdynamics.
+As can be seen in Table 3, our methods yield impressive results. In the Gender Discrimination
+scenario,weachievedaPerplexityscoreof19.289andanaveragecosinesimilarityof0.723when
+compared with the actual user-generated text. In the case of the Nuclear Energy scenario, these
+figureswereevenmoreimpressive,withaPerplexityscoreof16.145andanaveragecosinesimilarity
+of0.741.
+Theseresultsvalidatetheeffectivenessofourapproach,wheretheLLM’sprofoundcomprehension
+ofhumancognitionandbehaviorsignificantlycontributestoaccuratelysimulatinguser-generated
+contentinsocialnetworksimulations. Thus,ourmodelservesasapowerfultoolinunderstanding
+andpredictingsocialdynamicsinvariouscontexts.
+3.3.4 InteractiveBehaviorSimulation
+During the simulation, upon receiving a message from one of their followees, the user is faced
+withaconsequentialdecision: whethertoengageinforwarding,postingnewcontentordonothing.
+Effectivelymodelingthedecision-makingprocessisimportantinsimulatinginformationpropagation.
+Throughourdata-drivenapproach,weutilizeLargeLanguageModels(LLMs)tosimulateusers’
+interactionbehaviorbycapturingtheintricaterelationshipbetweenusersandcontexts. Theinputis
+theinformationenvironmentthattheusersenses,andtheLLM-empoweredagentmakethedecision
+bylearningfromtheobservedrealdata.
+Our model has demonstrated commendable efficacy in this regard. In the scenario of Gender
+Discrimination,ourmodelachievedanAccuracyof66.2%,AUCof0.662,andF1-Scoreof0.667.
+Progressing to the Nuclear Energy context, the model’s performance remained robust, with an
+Accuracyof69.5%,AUCof0.681,andF1-Scoreof0.758.
+ThesepromisingresultsnotonlyattesttotheLLM’scapabilityinaccuratelysimulatingindividual
+userbehaviorbutalsopavethewayforexploringitspotentialatalargerscale. Thisaccomplishment
+forms the basis for the population-level simulation, which we will delve into in the subsequent
+sections.
+3.4 Population-levelSimulation
+InS3,wecapturethreeformsofpropagation,includingthepropagationofinformation,emotion,and
+attitude. Hereinformationpropagationfocusesonthetransmissionofnewsthatdescribesevents
+insocialenvironments. Emotionpropagationemphasizesthesocialcontagionofpeople’sfeelings
+towardspecificeventsortopics.Attitudepropagationdescribesthatpeopleexchangetheirattitudesor
+viewpointsinthesocialnetwork. Subsequently,weshallexpounduponourcomprehensivecapacity
+tosimulatethesethreeaforementionedformsofpropagation.
+3.4.1 InformationPropagation
+Withthewidespreadadoptionofdigitalmedia,thepropagationofinformationexperiencesasignifi-
+cantacceleration[25,26]. Inthecontextofasimulationsystemdesignedtomimicsocialnetworks,
+oneofitsparamountfunctionalitiesliesinaccuratelymodelingtheprocessofinformationpropagation
+and delineating crucial phase transitions [42, 29]. For example, Notarmuzi et al. [29] conducted
+extensive empirical studies on a large scale, successfully distilling the concepts of universality,
+criticality,andcomplexityassociatedwithinformationpropagationinsocialmedia. Meanwhile,Xie
+etal.[42]expandeduponthewidelyacceptedpercolationtheoryandskillfullycapturedtheintricate
+phasetransitionsinherentinthespreadofinformationonsocialmediaplatforms.
+7
+
+    
+   
+   
+   
+   
+                  
+ ' D \
+ K F D H 5  W Q H Y (
+    
+   
+   
+   
+   
+                  
+ 6 L P X O D W L R Q  6 W H S
+(a) Truespread
+ K F D H 5  W Q H Y (
+   
+   
+   
+   
+   
+                    
+ ' D \
+(b) Simulatedspread
+ G H W L F L O (  Q R L W R P (
+   
+   
+   
+   
+   
+                    
+ 6 L P X O D W L R Q  6 W H S
+(c) Trueemotiontrend
+ G H W L F L O (  Q R L W R P (
+(d) Simulated emotion
+trend
+Figure2: Truespread,simulatedspread,trueemotiontrendandsimulatedemotiontrendofEight-
+childMotherEvent.
+   
+   
+   
+ 
+                 
+ ' D \
+ K F D H 5  W Q H Y (
+   
+   
+   
+ 
+              
+ 6 L P X O D W L R Q  6 W H S
+(a) Truespread
+ K F D H 5  W Q H Y (
+    
+    
+    
+    
+                 
+ ' D \
+(b) Simulatedspread
+ V H G X W L W W $  H Y L W L V R 3     
+    
+                
+ 6 L P X O D W L R Q  6 W H S
+(c) Truechangeofattitudes
+ V H G X W L W W $  H Y L W L V R 3
+(d) Simulatedchangeofat-
+titudes
+Figure3:Truespread,simulatedspread,trueandsimulatedchangesinproportionofpositiveattitudes
+towardsnuclearenergyduringtheJapanNuclearWasteWaterReleaseEvent.
+Divergingfrompreviousstudiesgroundedinphysicalmodels,ourapproachadoptsaLLMperspective
+tocapturethedynamicsoftheinformationpropagationprocess. Inordertoascertaintheefficacyof
+ourproposedS3model,wehaveselectedtwotypicalevents: (i)Eight-childMotherEventand(ii)
+JapanNuclearWastewaterReleaseEvent. TheformereventcametopublicattentioninlateJanuary
+2022,encompassingarangeofcontentiousissues,suchassexualassaultandfeminism. Thelatter
+evententailsJapan’sgovernment’sdecisiontoreleasenuclearwastewaterintotheocean,eliciting
+significantglobalscrutinyandinterest.
+Utilizingoursimulatorasafoundation,weemployaquantitativeapproachtoevaluatethetemporal
+disseminationoftheaforementionedoccurrence. Thisisachievedbycalculatingtheoverallnumber
+of people who have known the events at each time step (refer to Figure 2(b) and Figure 3(b)).
+Subsequently,throughacomparativeanalysiswiththeempiricaldata(asillustratedinFigure2(a)
+and Figure 3(a)), we discern that our simulator exhibits a commendable capacity for accurately
+forecasting the propagation patterns of both events. In particular, we notice that the rate of rise
+becomesgraduallymarginalovertime,whichcanalsobecapturedbyoursimulator.
+3.4.2 EmotionPropagation
+Anotherindispensableformofpropagationisthetransmissionofemotiononsocialmedia[41,36].
+Forexample,Wangetal.[41]adoptthenaturallanguageprocessingtechniques(BERT)andperform
+frequentglobalmeasurementsofemotionstatestogaugetheimpactsofpandemicandrelatedpolicies.
+InS3,weutilizethestate-of-the-artLLMtoextractemotionsfromreal-worlddataandsimulatethe
+emotionalpropagationamongLLM-basedagents.
+ToexaminewhethertheS3simulatorcanalsoreproducetheemotionpropagationprocess,wefurther
+simulateusers’emotionsexpressedintheEight-childMotherevent. Weextracttheemotionaldensity
+fromthetextualinteractionsamongagents. Comparingoursimulationresults(Figure2(d))andthe
+8
+
+Table4: Performancecomparisonforinformationpropagationsimulation.
+Method Dataset MSED Cor
+LT NuclearEnergy 0.081 0.965
+IC NuclearEnergy 0.075 0.971
+S3 NuclearEnergy 0.103 0.967
+LT GenderDiscrimination 0.065 0.982
+IC GenderDiscrimination 0.074 0.966
+S3 GenderDiscrimination 0.051 0.996
+empiricalobservations(Figure2(c)),wefindthatourmodelcanwellcapturethedynamicprocess
+ofemotionpropagation. Notably,weobservethattherearetwoemotionalpeaksintheevent. This
+suggeststhatifnewsoftheeventspreadsmoreslowlyacrossalargercommunity,asecondarypeakin
+emotionalintensitymayoccur. Basedontheinitializationobtainedfromreal-worlddata,ourmodel
+successfullyreproducesthesedistinctpeaks,therebydemonstratingtheeffectivenessofourproposed
+S3system.
+3.4.3 AttitudePropagation
+Oneoftoday’smostconcerningissuesisthepolarizationandconfrontationbetweenpopulations
+with diverging attitudes toward controversial topics or events. Great efforts have been made to
+quantifyreal-worldpolarization[25,14,19]andsimulatethepolarizationprocessusingco-evolution
+model[35,3,4,23]. InS3,weuseLLMtosimulatepropagationattitudesandpredictpolarization
+patternsinsocialnetworks.
+Here we focus on the Japan Nuclear Wastewater Release Event, in which people’s attitudes are
+polarizedtowardnuclearenergy. AsshowninFigure3,wecanobservethatwiththepropagation
+ofrelatedinformation,positiveattitudestowardnuclearenergydeclinerapidly,exhibitingasalient
+trough. In our S3 model, though modeling repeated interactions among agents, we reproduce
+the sudden decrease in positive attitudes and also capture their gradual increase. Overall, these
+observationssuggestthatourproposedmodelcannotonlysimulateattitudepropagationbutalso
+capturethecriticaldynamicalpatternswhensituatedinreal-worldscenarios.
+3.5 ComparativeEvaluation
+TocomprehensivelyevaluatetheeffectivenessofourS3system,weconductcomparativeexperiments
+againstseveralbaselinemethodsacrossthreekeypropagationtasks:informationpropagation,opinion
+propagation,andemotionpropagation.
+3.5.1 InformationPropagationComparison
+Wecompareourapproachwithtwowidely-usedbaselinemodels:theLinearThreshold(LT)model[8]
+andtheIndependentCascade(IC)model[18]. Weemploytwoevaluationmetrics: MeanSquared
+ErrorDifference(MSED)andCorrelationCoefficient(Cor). MSEDisdefinedas:
+T
+1 (cid:88)
+MSED= (Sactual−Spredicted)2 (1)
+T t t
+t=1
+whereSactual andSpredictedaretheactualandpredictedstatevaluesattimet,respectively.
+t t
+AsshowninTable4,ourmethodachievescompetitiveperformancecomparedtotraditionalmodels,
+withparticularlystrongresultsontheGenderDiscriminationdatasetwhereweachievethelowest
+MSEDandhighestcorrelation.
+3.5.2 OpinionandEmotionPropagationComparison
+For opinion and emotion propagation, we compare against five baseline methods: Voter [43],
+DeGroot [11], Feed-forward Neural Network (FNN), Sociologically-Informed Neural Network
+9
+
+Table5: Performancecomparisonforopinionandemotionpropagationsimulation.
+OpinionPropagation EmotionPropagation
+Method
+MSED Cor MSED Cor
+Voter 0.725 -0.01 0.892 -0.01
+DeGroot 5.614 0.373 6.763 0.242
+FNN 1.150 0.629 0.381 0.583
+SINN 0.163 0.892 0.188 0.794
+NDCN 0.060 0.882 0.060 0.828
+S3(Zero-shot) 0.182 0.858 0.051 0.892
+(SINN)[30],andNeuralDynamicsonComplexNetworks(NDCN)[44]. Thesebaselinemethods
+requiretrainingdata(50%fortraining,10%forvalidation,40%forevaluation),whileourapproach
+operatesinazero-shotmanner.
+Table5demonstratesthatourzero-shotapproachachievescompetitiveperformancewithtraining-
+dependentbaselinesforopinionpropagationandoutperformsallbaselinesforemotionpropagation,
+highlightingtheeffectivenessofourLLM-basedapproach.
+4 ArchitectureandMethodology
+4.1 ArchitectureDesign
+Inordertosimulatetheprocessofinformationpropagationontheonlinesocialnetwork,wehave
+designedamessagepropagationsimulationframeworkillustratedinFigure1andisexplainedin
+detailbelow.
+EnvironmentConstruction: Theconstructionoftheenvironmentinvolvestheformationofasocial
+networkonapublicplatform,comprisingusersandconnectionsamongthem. Forinstance,users
+havetheabilitytoestablishmutualfollowingrelationshipswiththeirfriends,orone-wayfollowing
+relationshipswithuserstheyfindinteresting. Hence,thesocialnetworkcanbecharacterizedasa
+directedgraph,wheretheoutdegreeandindegreeofnodesinthenetworkrepresentthenumberof
+peopletheyfollowandthenumberoffollowerstheypossess, respectively. Theuserswithinthis
+networkcanbebroadlycategorizedintothreegroups: influentialusers,regularusers,andlow-impact
+users. Influential users typically exhibit a significantly larger number of followers compared to
+the number of people they follow. Moreover, they demonstrate a tendency to share high-quality
+originalinformation. Regularusers,ontheotherhand,typicallymaintainabalancedproportionof
+followersandfollowings. Additionally,aconsiderableportionofregularusersengageinmutual
+followingrelationships,whichoftenreflecttheirreal-lifefriendships. Conversely,low-impactusers
+exhibitlimitedfollowers,infrequentmessageposting,andtypicallyrepresenttheterminalpointsof
+messagepropagationchains. Itisimportanttonotethatwithinthisframework,wehaveexcludedthe
+considerationofsocialbotsandzombieusers,despitetheirprevalenceonsocialplatforms.
+UserCharacterizationInadditiontothesocialrelationshipspresentwithinthenetwork,eachuser
+possessestheirownattributedescriptions. Certainattributesareobjectiveandspecific,encompassing
+factorssuchasgender,occupation,andage. Ontheotherhand,otherattributesaremoreabstract,
+includingtheirattitudestowardsspecificeventsandtheirprevailingemotionalstates. Theformer
+attributestendtoexhibitminimalfluctuationsovershortdurations,whereasthelatterattributesare
+moredynamic,particularlywhenusersengageininformationbrowsingonsocialplatforms. Insuch
+cases,theirfundamentalattributes,messagecontent,andmessagesourcesconsistentlyshapetheir
+attitudes,emotions,andotherabstractattributes. Inlightoftheaforementioneddescriptions,wealso
+introduceamemorypoolforeachuser. Giventheabundanceofmessagesfromdiverseuserson
+onlinepublicplatforms,amultitudeofmessagesemergedaily. Itisimportanttoacknowledgethat
+differentmessagesexertvaryinginfluencesondistinctusers. Toaddressthis,wedrawinspiration
+from [32] and propose the concept of influence factors. These factors calculate weighted scores
+basedonparameterssuchaspostingtime,contentrelevance,andmessageimportance. Bydoingso,
+weensurethattheuser’smemorypoolretainsthemostimpactfulmessages,makingthemhighly
+memorable.
+10
+
+• TemporalInfluence: Therecencyofmessagesplaysasignificantroleinhumanmemory,with
+previous messages gradually fading over time. A time score is ascribed to messages using a
+prescribedforgettingfunction.
+• Content Relevance: The relevance of message content is assessed with regard to the user’s
+individualcharacteristics. Notably,youngerindividualstendtoexhibitagreaterinclinationtowards
+entertainment-relatedevents,whereasmiddle-agedindividualsdemonstrateheightenedinterestin
+politicalaffairs. Toquantifythedegreeofrelevance,arelevancescoreisobtainedbymeasuring
+thecosinesimilaritybetweenauser’sfundamentalattributesandthecontentofthemessage.
+• MessageAuthenticity: Theauthenticityofmessagesiscloselyrelatedtotheirsources. Messages
+arecategorizedbasedontheirorigins, encompassingmessagesdisseminatedbyunidirectional
+followers,messagessharedbymutualfollowers,messagesrecommendedbytheplatform,and
+messagespreviouslypostedbytheuserthemselves. Distinctscoresareassignedtomessagesbased
+ontheirrespectivesources.
+UpdateandEvolutionMechanism: Duringasocialgathering,variousofficialaccountsandindivid-
+ualuserscontributepostsconcerningtheevent,encompassingnewsreportsandpersonalviewpoints.
+Uponencounteringthesemessages,theuserswhofollowthemmanifestdiverseemotionalresponses.
+Someusersmayevenformulatetheirownstancesoncontentiousmatters,eitherinsupportorop-
+position,subsequentlyengaginginonlineactivitiessuchasendorsing,disseminating,andcreating
+originalmessage. Inthissimulation,weemploylargelanguagemodelstoreplicateindividualusers,
+leveragingtheirprofilesandmemorypoolsaspromptstogeneratecognitivereactionsandbehavioral
+responses. Subsequently,theirabstractattributesandmemorypoolsundergoupdates. Following
+themodificationofauser’smemorypool,thesemessagesdisseminateandexertinfluenceontheir
+followerswhiletheyperusethecontent. Thisiterativeprocesspersists,emulatingthepropagationof
+messagesandtheevolutionofindividuals’cognitivestates.
+4.2 Initialization
+4.2.1 SocialNetworkConstruction
+Withinthescopeofthisstudy,weproposeaninitializationapproachtoconstructanetworkutilizing
+dataacquiredfromreal-worldsocialmediasources(refertoTable1). Strictadherencetoprivacy
+regulationsandpoliciesismaintainedthroughoutthecollectionofsocialmediadata. Ourapproach
+leverageskeyword-matchingtechniquestoeffectivelyextractpostsrelevanttothesimulatedscenarios.
+Subsequently,wedelveintotheidentificationoftheauthorsandextractthemasthefoundational
+nodes of our network. Expanding beyond the individual level, we meticulously gather socially
+connected users. To establish connections between users, directed edges are established if the
+correspondingfolloweeexistswithintheextracteduserset. Tooptimizesimulationefficiency,in
+thiswork,wefocussolelyonthissub-graphratherthantheentiregraphwhichistoolarge. During
+thesimulation,thedisseminationofmessagesoccursexclusivelybetweensourcenodesandtheir
+correspondingtargetnodes.
+4.2.2 UserDemographicsPrediction
+Expandinguponthepropertiesofthenode, specificallyfocusingonuserdemographicattributes,
+emerges as a pivotal stride in our endeavor towards a more exhaustive simulation. Through the
+incorporationofadditionalinformationregardingtheusersintothesystem,wecandelveintoand
+scrutinize their behaviors, interactions, and influence within the network, more effectively. User
+demographicattributesallowustocaptureheterogeneityanddiversityinreal-worldsocialnetworks.
+Thatis,demographicattributesplayasignificantroleinshapingindividualbehaviorsandpreferences,
+which,inturn,influencethenetwork’soverallattitudedynamics. Inourstudy,wechosegender,age,
+andoccupationasthemajordemographicattributes. Associalmediadatadoesnotdirectlyoffer
+attributessuchasgender,age,andoccupation,werelyonpredictiontechniquestoestimatethese
+attributes. LeveragingLLMsprovidesarobustapproachtopredictingthesedemographicattributes.
+ByutilizingLLMs,wecanleveragetheextensivecontextualunderstandingandknowledgeencoded
+within the models to infer user demographics based on available information, such as personal
+descriptionsandcontentwithinposts. Thetechnicaldetailsareasfollows.
+User Demographics Prediction with LLM. In order to predict user gender based on personal
+descriptions,sincethecollecteddatalackssufficientlabels,weuseapublicdatasetreleasedin[33,46]
+11
+
+Table7: Tenoccupations.
+1 EducationPractitioner
+Table 6: Prediction performance of gender 2 AdministrativeManager/Officer
+andage.
+3 Unemployed/Student
+Demographic Performance
+4 Engineer
+Acc F1 AUC 5 LaborTechnician/Worker
+Gender
+0.710 0.667 0.708 6 LogisticsPractitioner
+MSE MAE Avg%Error 7 MedicalPersonnel
+Age
+128.0 7.53 21.50 8 FinancialPractitioner
+9 MediaPersonnel
+10 EntertainmentandArtsPractitioner
+for assistance. It allows us to extract a vast array of labeled gender and personal description
+relationships. Wefilteroutdatawithlongerthan10wordsinthisdatasetservedasthegroundtruth
+totunethelanguagemodel. Specifically,weuseChatGLM[12]asthefoundationmodelandemploy
+theP-Tuning-v2[24]methodology. Wefeedthemodelwiththepersonaldescriptionasapromptand
+letthemodeldeterminethemostprobablegenderassociatedwiththegivendescription.
+Topredictageusingusers’posts,weuseBlogAuthorshipCorpusDataset[37]datasettoestablish
+theexpression-to-agerelationship. Thisdatasetprovidesuswithauthor-agelabelsforcorresponding
+textualposts. Werandomlyselectthehistoricalblogsin[37]andaddthemtothepromptasinput;
+then,theagecanbeusedasthelabelforprefixtuning. Thetunedlargelanguagemodelcanbeused
+topredicttheagelabelinourcollectedsocialmediadataset.
+Next,wepredictoccupationsonlyusingpre-trainedLLMs. Inthisscenario,wedirectlyfeedusers’
+posts and personal profile descriptions to the LLM for prediction. By examining the content of
+theseinputs,themodelshowcaseditscapacitytocomprehendandinferusers’occupations,further
+enhancingourdemographicpredictioncapabilities.
+PredictionResultEvaluation
+TheoutcomesofourageandgenderpredictionanalysisarepresentedinTable6.Ourgenderpredictor,
+whichreliesonafine-tunedLargeLanguageModel(LLM),achievessatisfactoryresults. Despite
+theabsenceofexplicitgenderinformationinallpersonaldescriptions,thepredictorsuccessfully
+generatesvalidpredictions. Movingontoage,weselectEnglishblogsfrom[37]andensuredsimilar
+agedistributionacrossthetrainingandtestingprocess. Theresultsshowthatthemeansquarederror
+(MSE)was128,whilethemeanabsoluteerror(MAE)wasaround7.53. Thesevaluesindicatea
+21.5%unifiedpercentageerror(seeTable6).
+Asfortheoccupations,weinitiallyincludethepostsandpersonaldescriptionsofthecombineduser
+datasetintheprompt. Wethenfeedtheprompttopre-trainedChatGLMtoobtaintheoccupationof
+eachuser. Weleavethesupervisedfine-tuningforoccupationpredictionasfuturework. Itresultsina
+totalof1,016differentoccupationsbeingidentifiedfromallusers. However,utilizingalloccupations
+isnotessentialsincesomeoccupationsareveryclose. Thus,wegroupalloccupationsinto10distinct
+occupationcategoriesusingtheLLM,ofwhichthecategoriescanbefoundinTable7.Bycondensing
+thenumberofoccupationsintoasmallerset,weareabletosimplifythesimulation.
+4.3 EmotionandAttitudeSimulation
+Inouremotionsimulationmodel,weadoptaMarkovchainapproachtocapturethedynamicprocess
+ofemotionalchangestriggeredbyauserreceivingamessage. Thesimulationinvolvesfouressential
+inputs: userdemographics,currentemotion,thereceivedpost. Emotionsareclassifiedintothree
+distinctstages: calm,moderate,andintense. Userdemographicsserveassupplementaryinformation
+LLMs, providing a reference point to contextualize emotional responses. The current emotion
+representstheuser’semotionalstatusbeforereceivingthepost,whilethereceivedpostactsasthe
+actuatorforpromptingtheLLMtodetermineanewemotionalstatus.
+12
+
+To regulate the decrease of emotional states over time, we introduce the decaying coefficient, a
+hyper-parameterthatcontrolsthedecayrateofemotions. Ourhypothesisassumesthatemotions
+tendtodiminishgraduallyastimepasses,influencingtheemotionsimulationprocess. Throughout
+thisintricatemechanism,weimpartthesedetailsbyprompttotheLLMs,whichareresponsiblefor
+decidingwhethertheemotionalstateshouldchangeinresponsetothereceivedpost. Wearetryingto
+reduceasmuchmanualinterventionaspossible,tohighlightthecapabilityofLLMsinsimulating
+emotionalchangesbyposts. Theattitudesimulationissimilartotheemotionsimulation.
+4.4 BehaviorSimulation
+4.4.1 Content-generationBehavior
+In our social network simulation model, we incorporate an advanced approach utilizing Large
+LanguageModels(LLMs)toreproducethedynamicprocessofcontentcreation,shapedbyusers’
+emotions and attitudes towards specific events. The simulation hinges on two vital inputs: user
+profileinformation,andtheircurrentemotionalorattitudinalstatetowardstheevent. Eachpieceof
+generatedcontentisanembodimentofauser’sinternalstateandexternalinfluences,reflectingtheir
+uniqueperspective.
+UserprofileinformationservesasareferencepointfortheLLMs,furnishingessentialcontextto
+shapecontentresponses. Thecurrentemotionalorattitudinalstatesymbolizestheuser’smindset
+whenreactingtotheevent,therebyplayingavitalroleintheLLM’sgenerationofpotentialresponses.
+Underpinningthissophisticatedmechanismistheprofoundcognitiveandbehavioralcomprehension
+ofLLMs. TheLLMispromptedwiththesedetailsandisthenresponsiblefordecidinghowthe
+contentshouldbeshapedinresponsetotheevent. Ouraimistominimizemanualinterventionas
+muchaspossible,tohighlightthecapabilityofLLMsinsimulatingauthenticuser-generatedcontent.
+Theapproachmirrorsthewayreal-worldusersformtheirpostsinresponsetodistinctevents,aligning
+thetextgenerationprocesswiththeemotionalorattitudinaldynamicsofusers. Inthismanner,we
+havebeensuccessfulinutilizingLLMstoemulatethecontentcreationprocessonsocialnetworks
+withhighfidelity.
+4.4.2 InteractionBehavior
+Duringthesimulation,whenauserreceivesamessagefromoneoftheirfollowees,acriticaldecision
+needstobemade—whethertorepost/postornot. Thatistosay,theinteractionbehaviorincludes
+reposting (forwarding) the original content and posting new content about the same social event.
+Theuser’sinteractionbehaviorplaysapivotalroleinpropagatingmessagestotheuser’sfollowers,
+facilitatingthespreadofinformationwithinthesocialnetwork. However,modelingthecomplex
+mechanismsgoverningauser’sinteractionbehaviorposessignificantchallenges. Toaddressit,we
+employlargelanguagemodelstocapturetheintricaterelationshipbetweentheuser,postfeatures,
+andinteractionbehavior.
+Specifically,toleveragetheabilityofLLMstosimulatearealuser’sinteractionbehavior,weprompt
+the model with information regarding the user’s demographic properties, i.e. gender, age, and
+occupation,inadditiontothespecificpostsreceived,lettingtheLLMthinkliketheuserandmakeits
+decision. Bysuchmeans,weenableLLMtomakepredictionsregardingtheuser’sinclinationto
+repostthemessageorpostnewcontent.
+Tosummarize,byemployingtheaboveapproach,wecaneffectivelyharnessthepowerofLLMsto
+predictusers’interactionbehavior,takingintoaccountvarioususerandpostfeatures.
+4.5 OtherImplementationDetails
+Thesystememploysvarioustechniquesforutilizingoradaptinglargelanguagemodelstotheagent-
+basedsimulation.Forprompting-drivenmethods,weuseeitherGPT-3.5APIprovidedbyOpenAI1or
+aChatGLM-6Bmodel[12].Forfine-tuningmethods,weconductthetuningbasedontheopen-source
+ChatGLMmodel.
+1https://platform.openai.com/overview
+13
+
+5 DiscussionsandOpenProblems
+TheS3 system,whichhasbeendeveloped,representsaninitialendeavoraimedatharnessingthe
+capabilitiesoflargelanguagemodels. Thisistofacilitatesimulationwithinthedomainofsocial
+science.
+Inlightofthis,ouranalysisdelvesfurtherintoitsapplicationandlimitations,alongwithpromising
+futureimprovements.
+5.1 ApplicationofS3System
+Leveragingthepowerfulcapabilitiesoflargelanguagemodels,thissystemexcelsinagent-based
+simulation. Thesystemhasthefollowingapplicationsinthefieldofsocialscience.
+• Prediction. Predictionisthemostfundamentalabilityofagent-basedsimulation. Largelanguage
+model-basedsimulationcanbeutilizedtopredictsocialphenomena,trends,andindividualbehav-
+iorswithhistoricallycollecteddata. Forexample,ineconomics,languagemodelscanhelpforecast
+markettrends,predictconsumerbehavior,orestimatetheimpactofpolicychanges. Insociology,
+thesemodelscanaidinpredictingsocialmovements,publicopinionshifts,ortheadoptionofnew
+culturalpractices.
+• Reasoningandexplanation. Duringthesimulation,eachagentcanbeeasilyconfigured,andthus
+thesystemcanfacilitatereasoningandexplanationinsocialsciencebygeneratingphenomenawith
+differentconfigurations. Comparingthesimulationresultscanprovideexplainthecauseofthe
+specificphenomena. Furthermore,theagentcanbeobservedbypromptswhichcanreflecthowa
+humantakesactionsinthesocialenvironment.
+• Patterndiscoveryandtheoryconstruction. Withrepeatedsimulationduringtheextremelyless
+costcomparedwithrealdatacollection,thesimulationprocesscanrevealsomepatternsofthe
+socialnetwork. Byuncoveringpatterns,thesemodelscancontributetothedevelopmentofnew
+theoriesandinsights. Furthermore,researcherscanconfigurealltheagentsandthesocialnetwork
+environment,basedonanassumptionortheory,andobservethesimulationresults. Testingthe
+simulationresultscanhelpvalidatewhethertheproposedassumptionortheoryiscorrectornot.
+• Policy making. The simulation can inform evidence-based policy-making by simulating and
+evaluating the potential outcomes of different policy interventions. It can assess the impact of
+policychangesonvarioussocialfactors,includingindividualagentsandthesocialenvironment.
+For example, in public health, it can simulate the spread of infectious diseases to evaluate the
+effectivenessofdifferentinterventionstrategies. Inurbanplanning,itcansimulatetheimpactof
+transportationpoliciesontrafficcongestionorairpollution,byaffectinghowtheusersselectpublic
+transportation. Bygeneratingsimulations,thesemodelscanaidpolicymakersinmakinginformed
+decisions.
+5.2 ImprovementonIndividual-levelSimulation
+Thecurrentdesignofindividualsimulationstillhasseverallimitationsrequiringfurtherimprovement.
+First,theagentrequiresmorepriorknowledgeofuserbehavior,includinghowrealhumankindsenses
+thesocialenvironmentandmakesdecisions. Inotherwords,thesimulationshouldencompassan
+understandingandintegrationofintricatecontextualelementsthatexertinfluenceonhumanbehavior.
+Second,whilepriorknowledgeofuserbehaviorisessential,simulationsalsoneedtoconsiderthe
+broadercontextinwhichdecisionsaremade. Thisincludesfactorssuchashistoricalevents,social
+conditions,andpersonalexperiences. Byenhancingtheagent’scapacitytoperceiveandinterpret
+contextualcues,moreprecisesimulationscanbeachieved.
+5.3 ImprovementonPopulation-levelSimulation
+First,itisbettertocombineagent-basedsimulationwithsystemdynamics-basedmethods.
+Agent-basedsimulationfocusesonmodelingindividualentitiesandtheirinteractions,whilesystem
+dynamicsfocusesonmodelingthebehaviorofthesocialcomplexsystemasawhole. Throughthe
+fusionofthesetwomethodologies,wecandevelopsimulationsofheightenedcomprehensiveness,
+encompassingbothmicro-levelinteractionsandmacro-levelsystemicbehavior. Thisintegrationcan
+14
+
+provideamoreaccuraterepresentationofpopulationdynamics,includingtheimpactofindividual
+decisionsontheoverallsystem.
+Second, we can consider a broader range of social phenomena. This involves modeling various
+societal,economic,andculturalfactorsthatinfluencehumanbehaviorandinteractions. Examplesof
+socialphenomenatoconsiderincludesocialnetworks,opiniondynamics,culturaldiffusion,income
+inequality,andinfectiousdiseasespread. Byincorporatingthesephenomenaintothesimulation,we
+canbettervalidatethesystem’seffectivenessandalsogainmoreinsightsintosocialsimulation.
+5.4 ImprovementonSystemArchitectureDesign
+First,wecanconsiderincorporatingotherchannelsforsocialeventinformation. Itisessentialto
+acknowledgethatsocial-connectedusersarenotthesoleprovidersofinformationforindividuals
+withinsocialnetworks. Consequently,theintegrationofsupplementarydatasourceshasthepotential
+toenrichtheindividualsimulation. Forinstance,recommendersystemscanbeintegratedtogather
+diverseinformationaboutsocialevents.Thisintegrationcanhelpcaptureawiderrangeofperspectives
+andincreasetherealismofthesimulation.
+Second,thesystemarchitectureshouldconsiderimprovingefficiency,whichisessentialforrunning
+large-scalesimulationseffectively. Optimizingthesystemarchitectureandcomputationalprocesses
+cansignificantlyenhancetheperformanceandspeedofsimulations. Tothisend,techniquessuchas
+parallelcomputing,distributedcomputing,andalgorithmicoptimizationscanbeemployedtoreduce
+computationalcomplexityandadvancetheefficiencyofsimulationruns. Thisallowsforfasterand
+moreextensiveexplorationofscenarios,therebyenablingresearcherstogaininsightsfaster.
+Third,itisessentialtoaddaninterfaceforpolicyintervention. Includinganinterfacethatallows
+policymakerstointeractwiththesimulationcanbebeneficial. Thisinterfacewouldenablepolicy-
+makerstoinputandtestvariousinterventionsandpoliciesinacontrolledenvironment. Bysimulating
+thepotentialoutcomesofdifferentpolicydecisions,policymakerscanmakemoreinformedchoices.
+Theycanalsoevaluatethepotentialimpactoftheirinterventionsonthesimulatedpopulation. This
+featurecanfacilitateevidence-baseddecision-makingandidentifyeffectivestrategies.
+6 Conclusion
+Inthispaper,wepresenttheS3 system(SocialNetworkSimulationSystem)asanovelapproach
+aimed at tackling the complexities of social network simulation. By harnessing the advanced
+capabilitiesoflargelanguagemodels(LLMs)intherealmsofperception,cognition,andbehavior,
+wehaveestablishedaframeworkforsocialnetworkemulation. Oursimulationsconcentrateonthree
+pivotalfacets: emotion,attitude,andinteractivebehaviors. Thisresearchmarksasignificantstride
+forwardinsocialnetworksimulation,pioneeringtheintegrationofLLM-empoweredagents. Beyond
+socialscience,ourworkpossessesthepotentialtostimulatethedevelopmentofsimulationsystems
+acrossdiversedomains. Employingthismethodologyenablesresearchersandpolicymakerstoattain
+profoundinsightsintointricatesocialdynamics,therebyfacilitatinginformeddecision-makingand
+effectivelyaddressingvarioussocietalchallenges.
+References
+[1] GatiVAher,RosaIArriaga,andAdamTaumanKalai. Usinglargelanguagemodelstosimulate
+multiplehumansandreplicatehumansubjectstudies. InInternationalConferenceonMachine
+Learning,pages337–371.PMLR,2023.
+[2] RobertAxelrod. Advancingtheartofsimulationinthesocialsciences. InSimulatingsocial
+phenomena,pages21–40.Springer,1997.
+[3] FabianBaumann,PhilippLorenz-Spreen,IgorMSokolov,andMicheleStarnini.Modelingecho
+chambersandpolarizationdynamicsinsocialnetworks.PhysicalReviewLetters,124(4):048301,
+2020.
+[4] Fabian Baumann, Philipp Lorenz-Spreen, Igor M Sokolov, and Michele Starnini. Emer-
+genceofpolarizedideologicalopinionsinmultidimensionaltopicspaces. PhysicalReviewX,
+11(1):011012,2021.
+15
+
+[5] PaulBratley,BennettLFox,andLinusESchrage. Aguidetosimulation,1987.
+[6] TomBrown,BenjaminMann,NickRyder,MelanieSubbiah,JaredDKaplan,PrafullaDhariwal,
+ArvindNeelakantan,PranavShyam,GirishSastry,AmandaAskell,etal. Languagemodelsare
+few-shotlearners. Advancesinneuralinformationprocessingsystems,33:1877–1901,2020.
+[7] GaryCharnessandMatthewRabin. Understandingsocialpreferenceswithsimpletests. The
+quarterlyjournalofeconomics,117(3):817–869,2002.
+[8] WeiChen,YifeiYuan,andLiZhang. Scalableinfluencemaximizationinsocialnetworksunder
+thelinearthresholdmodel. In2010IEEEinternationalconferenceondatamining,pages88–97.
+IEEE,2010.
+[9] Bastien Chopard and Michel Droz. Cellular automata. Modelling of Physical, pages 6–13,
+1998.
+[10] AakankshaChowdhery,SharanNarang,JacobDevlin,MaartenBosma,GauravMishra,Adam
+Roberts,PaulBarham,HyungWonChung,CharlesSutton,SebastianGehrmann,etal. Palm:
+Scalinglanguagemodelingwithpathways. arXivpreprintarXiv:2204.02311,2022.
+[11] MorrisHDeGroot. Reachingaconsensus. JournaloftheAmericanStatisticalassociation,
+69(345):118–121,1974.
+[12] ZhengxiaoDu, YujieQian, XiaoLiu, MingDing, JiezhongQiu, ZhilinYang, andJieTang.
+GLM:Generallanguagemodelpretrainingwithautoregressiveblankinfilling. InProceedings
+ofthe60thAnnualMeetingoftheAssociationforComputationalLinguistics(Volume1: Long
+Papers),pages320–335,Dublin,Ireland,May2022.AssociationforComputationalLinguistics.
+[13] RohanAniletal. Palm2technicalreport,2023.
+[14] James Flamino, Alessandro Galeazzi, Stuart Feldman, Michael W Macy, Brendan Cross,
+ZhenkunZhou,MatteoSerafino,AlexandreBovet,HernánAMakse,andBoleslawKSzyman-
+ski. Politicalpolarizationofnewsmediaandinfluencersontwitterinthe2016and2020us
+presidentialelections. NatureHumanBehaviour,pages1–13,2023.
+[15] JayWForrester. Systemdynamicsandthelessonsof35years. InAsystems-basedapproachto
+policymaking,pages199–240.Springer,1993.
+[16] NigelGilbertandKlausTroitzsch. Simulationforthesocialscientist. McGraw-HillEducation
+(UK),2005.
+[17] PerttuHämäläinen,MikkeTavast,andAntonKunnari. Evaluatinglargelanguagemodelsin
+generatingsynthetichciresearchdata:acasestudy. InProceedingsofthe2023CHIConference
+onHumanFactorsinComputingSystems,pages1–19,2023.
+[18] JingHe,ShoulingJi,RaheemBeyah,andZhipengCai. Minimum-sizedinfluentialnodeset
+selectionforsocialnetworksundertheindependentcascademodel. InProceedingsofthe15th
+ACMInternationalSymposiumonMobileadhocNetworkingandComputing,pages93–102,
+2014.
+[19] MarilenaHohmann,KarelDevriendt,andMicheleCoscia. Quantifyingideologicalpolarization
+onanetworkusinggeneralizedeuclideandistance. ScienceAdvances,9(9):eabq2044,2023.
+[20] JohnJHorton. Largelanguagemodelsassimulatedeconomicagents: Whatcanwelearnfrom
+homosilicus? Technicalreport,NationalBureauofEconomicResearch,2023.
+[21] PeterKolesarandWarrenEWalker. Asimulationmodelofpolicepatroloperations: program
+description. 1975.
+[22] Lik-HangLee,TristanBraud,PengyuanZhou,LinWang,DianleiXu,ZijunLin,Abhishek
+Kumar,CarlosBermejo,andPanHui. Alloneneedstoknowaboutmetaverse: Acomplete
+surveyontechnologicalsingularity,virtualecosystem,andresearchagenda. arXivpreprint
+arXiv:2110.05352,2021.
+[23] JiazhenLiu,ShengdaHuang,NathanielMAden,NeilFJohnson,andChaomingSong. Emer-
+genceofpolarizationincoevolvingnetworks. PhysicalReviewLetters,130(3):037401,2023.
+[24] XiaoLiu,KaixuanJi,YichengFu,WengTam,ZhengxiaoDu,ZhilinYang,andJieTang. P-
+tuning: Prompttuningcanbecomparabletofine-tuningacrossscalesandtasks. InProceedings
+ofthe60thAnnualMeetingoftheAssociationforComputationalLinguistics(Volume2: Short
+Papers),pages61–68,Dublin,Ireland,May2022.AssociationforComputationalLinguistics.
+16
+
+[25] PhilippLorenz-Spreen,LisaOswald,StephanLewandowsky,andRalphHertwig. Asystematic
+reviewofworldwidecausalandcorrelationalevidenceondigitalmediaanddemocracy. Nature
+humanbehaviour,7(1):74–101,2023.
+[26] StefanLuding. Informationpropagation. Nature,435(7039):159–160,2005.
+[27] LawrenceCMarshandMeredithScovill. Usingsystemdynamicstomodelthesocialsecurity
+system. In NBER Workshop on Policy Analysis with Social Security Research Files, pages
+15–17,1978.
+[28] DennisLMeadows,WilliamWBehrens,DonellaHMeadows,RogerFNaill,JørgenRanders,
+andErichZahn. Dynamicsofgrowthinafiniteworld. Wright-AllenPressCambridge,MA,
+1974.
+[29] Daniele Notarmuzi, Claudio Castellano, Alessandro Flammini, Dario Mazzilli, and Filippo
+Radicchi. Universality,criticalityandcomplexityofinformationpropagationinsocialmedia.
+Naturecommunications,13(1):1308,2022.
+[30] MayaOkawaandTomoharuIwata. Predictingopiniondynamicsviasociologically-informed
+neuralnetworks. InProceedingsofthe28thACMSIGKDDconferenceonknowledgediscovery
+anddatamining,pages1306–1316,2022.
+[31] OpenAI. Gpt-4technicalreport,2023.
+[32] JoonSungPark,JosephCO’Brien,CarrieJCai,MeredithRingelMorris,PercyLiang,and
+Michael S Bernstein. Generative agents: Interactive simulacra of human behavior. arXiv
+preprintarXiv:2304.03442,2023.
+[33] JiezhongQiu,JianTang,HaoMa,YuxiaoDong,KuansanWang,andJieTang. Deepinf: Social
+influencepredictionwithdeeplearning. InProceedingsofthe24thACMSIGKDDInternational
+ConferenceonKnowledgeDiscoveryandDataMining,KDD’18,page2110–2119,NewYork,
+NY,USA,2018.AssociationforComputingMachinery.
+[34] WilliamSamuelsonandRichardZeckhauser. Statusquobiasindecisionmaking. Journalof
+riskanduncertainty,1:7–59,1988.
+[35] FernandoPSantos,YphtachLelkes,andSimonALevin. Linkrecommendationalgorithmsand
+dynamicsofpolarizationinonlinesocialnetworks. ProceedingsoftheNationalAcademyof
+Sciences,118(50):e2102141118,2021.
+[36] Joseph A Schafer. Spinning the web of hate: Web-based hate propagation by extremist
+organizations. JournalofCriminalJusticeandPopularCulture,2002.
+[37] JonathanSchler,MosheKoppel,ShlomoArgamon,andJamesWPennebaker. Effectsofage
+andgenderonblogging. InAAAIspringsymposium: Computationalapproachestoanalyzing
+weblogs,volume6,pages199–205,2006.
+[38] PeterDSpencer. Theeffectofoildiscoveriesonthebritisheconomy—theoreticalambiguities
+andtheconsistentexpectationssimulationapproach. TheEconomicJournal,94(375):633–644,
+1984.
+[39] HugoTouvron,ThibautLavril,GautierIzacard,XavierMartinet,Marie-AnneLachaux,Timo-
+théeLacroix,BaptisteRozière,NamanGoyal,EricHambro,FaisalAzhar,etal. Llama: Open
+andefficientfoundationlanguagemodels. arXivpreprintarXiv:2302.13971,2023.
+[40] KlausGTroitzsch. Socialsciencemicrosimulation. SpringerScience&BusinessMedia,1996.
+[41] JianghaoWang,YichunFan,JuanPalacios,YuchenChai,NicolasGuetta-Jeanrenaud,Nick
+Obradovich,ChenghuZhou,andSiqiZheng.Globalevidenceofexpressedsentimentalterations
+duringthecovid-19pandemic. NatureHumanBehaviour,6(3):349–358,2022.
+[42] JiarongXie,FanhuiMeng,JiachenSun,XiaoMa,GangYan,andYanqingHu. Detectingand
+modellingrealpercolationandphasetransitionsofinformationonsocialmedia. NatureHuman
+Behaviour,5(9):1161–1168,2021.
+[43] MehmetEYildiz,RobertoPagliari,AsumanOzdaglar,andAnnaScaglione. Votingmodels
+inrandomnetworks. In2010informationtheoryandapplicationsworkshop(ITA),pages1–7.
+IEEE,2010.
+[44] ChengxiZangandFeiWang. Neuraldynamicsoncomplexnetworks. InProceedingsofthe
+26thACMSIGKDDinternationalconferenceonknowledgediscovery&datamining,pages
+892–902,2020.
+17
+
+[45] Aohan Zeng, Xiao Liu, Zhengxiao Du, Zihan Wang, Hanyu Lai, Ming Ding, Zhuoyi Yang,
+YifanXu,WendiZheng,XiaoXia,etal. Glm-130b:Anopenbilingualpre-trainedmodel. arXiv
+preprintarXiv:2210.02414,2022.
+[46] JingZhang,JieTang,JuanziLi,YangLiu,andChunxiaoXing. Whoinfluencedyou? predicting
+retweetviasocialinfluencelocality. ACMTrans.Knowl.Discov.Data,9(3),apr2015.
+18
