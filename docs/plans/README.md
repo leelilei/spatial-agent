@@ -1,27 +1,26 @@
 # Plans Index
 
-本目录存放 SpatialAgent 的研究计划主线。
+This directory stores the main research-planning documents for SpatialAgent.
 
-## Files
+## Current Files
 
-- `plan_v11.md`: 当前主研究计划，基于 v10 两轮 review 收敛成可执行实验协议
-- `plan_v10.md`: 上一版主研究计划的概念与 research-gap 口径
-- `plan_v9.md`: 当前主研究计划的技术 protocol 参考版本
-- `plan_v8_2.md` 及更早版本: 历史迭代版本
-- `survey_plan.md`: survey 相关计划
-- `coding_manual.md`: survey 编码手册
-- `claim_matrix.md`: survey 论断强度约束矩阵
+- `planv13-A.md`: AAAI-oriented standalone plan framed as a controlled LLM multi-agent evaluation and mechanism-identification protocol
+- `plan_v13.md`: current primary research plan for a scoped main-conference experiment on spatial-to-social network mapping
+- `plan_v*.md`: archived historical research-plan iterations
+- `survey_plan*.md`: survey-specific planning documents
+- `coding_manual.md`: survey coding manual
+- `claim_matrix.md`: survey claim-strength guardrails
 
-## Suggested Order
+## Suggested Reading Order
 
-1. `plan_v11.md`
-2. `plan_v10.md`
-3. `plan_v9.md`
-4. 需要追溯时再看更早版本
+1. `planv13-A.md` when targeting AAAI
+2. `plan_v13.md` for the scoped spatial-to-social main-paper framing
+3. `survey_plan_v4.md`
+4. `claim_matrix.md`
+5. archived `plan_v*.md` files only when historical context is needed
 
 ## Notes
 
-- 不再单独维护 `plan_summary.md`，避免与当前主计划发生漂移
-- `plan_v11.md` 负责当前概念定位、research gap、实验条件、统计端点和执行清单
-- `plan_v10.md` 保留为 v11 的概念来源与上一轮讨论记录
-- `plan_v9.md` 暂时保留为早期实验条件、统计路径、人类评估等技术细节参考
+- `planv13-A.md` is the standalone AAAI-facing plan for the next phase if the project is submitted as an LLM multi-agent evaluation paper.
+- `plan_v13.md` remains the standalone main plan for the spatial-to-social network framing.
+- Older planning files are kept for provenance, but active framing should be selected by target venue before implementation.
