@@ -9,7 +9,6 @@
 > Working name: **TGA / Tool-GA**  
 > Recommended paper-facing name: **Auditable Generative Agents**  
 > Status: research-gap and research-plan draft  
-> Relation to SpatialAgent v13/v13-A: complementary runtime / possible follow-on paper
 
 ---
 

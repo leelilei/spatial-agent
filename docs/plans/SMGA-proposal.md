@@ -7,7 +7,6 @@
 > Version: 0.1  
 > Date: 2026-05-19  
 > Status: independent research proposal  
-> Relation to previous plans: replaces the spatial-syntax-centered v13-A/v14-A direction with a memory-architecture-centered research frame.
 
 ---
 
