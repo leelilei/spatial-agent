@@ -1,0 +1,1599 @@
+Title: Cognitive Agents in Urban Mobility: Integrating LLM Reasoning into Multi-Agent Simulations
+
+Source PDF: /Users/mac/Documents/6-Research/4-SpatialAgent-Survey/assets/survey_paper/pdfs/phase1_round3_candidates/R3-03_Cognitive_Agents_Urban_Mobility_2025.pdf
+
+Extraction:
+- backend: pdfplumber
+- extracted_at_utc: 2026-05-01T03:20:14+00:00
+- page_count: 32
+- status: ok
+- text_char_count: 95437
+
+Metadata:
+- author: Christian Calderón, Pasqual Martí, Jaume Jordán, Javier Palanca and Vicente Julian
+- doi: unknown
+- keywords: urban mobility simulation; large language models; agent-based modeling; adaptive behavior; mobility disruptions
+- subject: Urban mobility systems face escalating challenges associated with sustainability, equity, and resilience, further compounded by environmental pressures. Traditional agent-based models (ABMs) often fail to capture cognitively rich, adaptive behaviors, limiting their ability to simulate realistic user responses to disruptions. In this work, we propose a cognitive agent architecture based on Large Language Models (LLMs), featuring multi-horizon memory-driven planning, reflection, and adaptation. Integrated into the SimFleet agent-based simulator with realistic sociodemographic profiles, the agents dynamically generate, adjust, and reflect upon travel plans across a 20-day simulation involving over 320 individuals. Experimental results reveal emergent adaptation patterns under both stable and disrupted transport conditions, and an ablation study under severe service disruption quantifies the contributions of short-term and long-term memory modules to memory-driven reasoning, demonstrating the potential of LLM-driven agents to enhance the realism, flexibility, and interpretability of urban mobility simulations.
+
+Outline:
+- Introduction (page 1)
+- Related Work (page 3)
+  - Limitations of Traditional ABM and ML Approaches (page 4)
+  - Cognitive Architectures with LLMs (page 5)
+  - Sociodemographic Profiles and Multimodal Travel Patterns (page 5)
+  - Open Challenges and Research Gaps (page 6)
+  - Comparative Positioning of LLM-Based Mobility Agents (page 6)
+- SimFleet: Urban Mobility Simulator (page 8)
+  - Motivation and Architectural Evolution (page 8)
+  - Functional Composition via Mixins (page 9)
+  - Agent Roles and Hierarchies (page 9)
+  - Infrastructure and Environment Integration (page 10)
+  - Behavioral Modularity via Strategy Pattern (page 11)
+- Cognitive Architecture for Mobility Simulation (page 11)
+  - Conceptual Model of the Cognitive Agent (page 11)
+  - Cognitive Decision Loop with Multi-Horizon Memory-Driven Planning (page 12)
+  - Structured Memory Representation and Semantic Continuity (page 14)
+  - Robustness and Fallback Mechanisms (page 15)
+  - Illustrative Example (page 16)
+- Experimental Setup and Simulation Design (page 16)
+  - Time Scale and Simulation Acceleration (page 16)
+  - Experiment Overview (page 17)
+  - Simulation Environment and Modalities (page 17)
+  - User Profiles and Behavioral Parameters (page 18)
+  - Illustrative Example: University Student Agents (page 19)
+- Experimental Results (page 20)
+  - Baseline Behavior: Profile-Driven Modal Evolution (page 20)
+  - Disruptive Event: Taxi Strike and Adaptive Response (page 22)
+  - Ablation Study (page 23)
+  - Interpretation and Design Insights for Memory-Driven Cognitive Agents (page 25)
+- Discussion (page 26)
+  - Limitations of LLM-Driven Cognitive Agents (page 26)
+  - Interpretability and Behavioral Transparency (page 26)
+  - Deployment Considerations (page 27)
+  - Experimental Scope (page 28)
+- Conclusions and Future Work (page 28)
+- Appendix A (page 29)
+  - Appendix A.1 (page 29)
+  - Appendix A.2 (page 29)
+  - Appendix A.3 (page 30)
+- Appendix B (page 30)
+  - Appendix B.1 (page 30)
+  - Appendix B.2 (page 30)
+  - Appendix B.3 (page 30)
+  - Appendix B.4 (page 31)
+  - Appendix B.5 (page 31)
+  - Appendix B.6 (page 31)
+- References (page 31)
+
+Markdown Content:
+
+Article
+Cognitive Agents in Urban Mobility: Integrating LLM
+Reasoning into Multi-Agent Simulations
+ChristianCalderón1 ,PasqualMartí1 ,JaumeJordán1 ,JavierPalanca1 andVicenteJulian1,2,*
+1 ValencianResearchInstituteforArtificialIntelligence,UniversitatPolitècnicadeValència(UPV),
+CaminodeVeras/n,46022Valencia,Spain;ccalderon@upv.es(C.C.);pasmargi@vrain.upv.es(P.M.);
+jjordan@dsic.upv.es(J.J.);jpalanca@dsic.upv.es(J.P.)
+2 ValencianGraduateSchoolandResearchNetworkofArtificialIntelligence(VALGRAI),46022Valencia,Spain
+* Correspondence:vinglada@dsic.upv.es
+Abstract
+Urbanmobilitysystemsfaceescalatingchallengesassociatedwithsustainability,equity,
+andresilience,furthercompoundedbyenvironmentalpressures. Traditionalagent-based
+models(ABMs)oftenfailtocapturecognitivelyrich, adaptivebehaviors, limitingtheir
+ability to simulate realistic user responses to disruptions. In this work, we propose a
+cognitiveagentarchitecturebasedonLargeLanguageModels(LLMs), featuringmulti-
+horizonmemory-drivenplanning,reflection,andadaptation. IntegratedintotheSimFleet
+agent-basedsimulatorwithrealisticsociodemographicprofiles,theagentsdynamically
+generate,adjust,andreflectupontravelplansacrossa20-daysimulationinvolvingover
+320 individuals. Experimental results reveal emergent adaptation patterns under both
+stable and disrupted transport conditions, and an ablation study under severe service
+disruptionquantifiesthecontributionsofshort-termandlong-termmemorymodulesto
+memory-drivenreasoning,demonstratingthepotentialofLLM-drivenagentstoenhance
+therealism,flexibility,andinterpretabilityofurbanmobilitysimulations.
+Keywords: urban mobility simulation; large language models; agent-based modeling;
+adaptivebehavior;mobilitydisruptions
+AcademicEditor:GeorgeYannis
+Received:18July2025 1. Introduction
+Revised:5September2025
+Therapidexpansionandincreasingcomplexityofurbanenvironmentshavetrans-
+Accepted:10September2025
+Published:12September2025 formedmobilityfromalogisticalchallengeintoamultidimensionalissueencompassing
+Citation: Calderón,C.;Martí,P.; sustainability,equity,andresilience. Citiesarenowdenseecosystems,characterizedby
+Jordán,J.;Palanca,J.;Julian,V. dynamicpopulationflows,multimodaltransportsystems,andfrequentdisruptionscaused
+CognitiveAgentsinUrbanMobility: byclimateevents, policychanges, andsocialdynamics. AccordingtotheWorldSocial
+IntegratingLLMReasoninginto Report2024[1],achievingequitableandsustainableurbandevelopmentrequiresmobil-
+Multi-AgentSimulations.Sensors2025,
+itysystemsthatarenotonlyefficientbutalsoadaptabletosocioeconomicdiversityand
+25,5688. https://doi.org/10.3390/
+exogenousshocks. Recentstudiesconfirmthatmobilityinequalityandaccessibilitygaps
+s25185688
+remainpersistentchallengesinurbansystems,oftenexacerbatedbyenvironmentaland
+Copyright:©2025bytheauthors.
+infrastructuralconstraints[2,3].
+LicenseeMDPI,Basel,Switzerland.
+Inparallel,environmentalconcernsareincreasinglyprominent. Whilesomemajor
+Thisarticleisanopenaccessarticle
+distributedunderthetermsand citiessuchasBeijingandShanghaihaveachievedsignificantimprovementsinairquality,
+conditionsoftheCreativeCommons many emerging metropolitan areas across Latin America, Africa, and Southeast Asia
+Attribution(CCBY)license continue to suffer from high pollution levels linked to modal inefficiencies and poor
+(https://creativecommons.org/
+transportintegration. Trafficcongestion,inparticular,remainsadominantexternalityof
+licenses/by/4.0/).
+Sensors2025,25,5688 https://doi.org/10.3390/s25185688
+
+Sensors2025,25,5688 2of32
+urbanmobilitysystems. Faheemetal.[2]projectthatcongestion-relatedeconomiclosses
+willexceedUSD96billionannuallyintheUnitedStatesby2030.
+Xiaetal.[3]demonstratethatcongestionpeakscorrespondwithlocalizedsurgesinNO
+2
+andCOlevels,creatinghazardousurbanmicroclimatesthatintensifypublichealthrisks.To
+addresstheseissues,simulationtoolshavebecomecentraltotransportationresearchand
+urbanplanning. Agent-basedmodeling(ABM)standsoutduetoitscapacitytorepresent
+heterogeneousbehaviorsandinteractionswithincomplexadaptivesystems[4,5].Despite
+itspromise,however,ABMsuffersfromseveralstructurallimitations. Arecentreview[4]
+highlightsthreerecurringgaps: (i)relianceonstatic,rule-basedbehaviormodels;(ii)insuf-
+ficientincorporationofadaptivelearning;and(iii)lackofemphasisonequityandresilience
+metrics. Evenrecentadvancesinhybridapproaches—suchasthoseincorporatingimitation
+learning[6]orsupervisedmodelslikeGBDT[7]—failtoovercomecorelimitationsrelated
+tocognitiveflexibility,interpretability,andgeneralizationtodisruptivecontexts.
+EmergingLargeLanguageModels(LLMs)offeranalternativeparadigmformodeling
+humandecision-making,enablingsimulationagentstoreason,reflect,andadaptthrough
+naturallanguageinteraction. RecentworkdemonstratesthatLLMscangeneraterealistic
+travel plans [8], predict multimodal travel behaviors [9], infer semantic purpose from
+trajectorydata[10],andexplainbehavioraladaptationunderdisruption[11]. Architectures
+such as ExpeL [12] introduce experiential learning mechanisms where agents retrieve
+episodicmemoryandsynthesizesemanticpatternsfrompriorinteractions, supporting
+adaptationwithoutparametertuning. Gongetal.[13]furtherillustratehowLLMscan
+generatetrippatternsbycombiningintentions,preferences,andcontextualconstraintsinto
+cognitivelyplausiblebehaviors. Thisprogressionsupportsanewclassofurbanmobility
+agentscapableofsimulatingnotonlyactionbutcognition. Agentscannowplanweekly
+routines,reflectondailychoices,adjustdecisionsinresponsetoexogenousevents,andstore
+generalizedknowledgeforfuturetasks. Theseadvancesalignwithrecentdevelopments
+in interpretable reasoning [14], multimodal planning [15], and simulation frameworks
+that incorporate user prompting [16]. In particular, systems such as ChatSUMO [16]
+andTransCompressor[14]highlightthefeasibilityofintegratingurbansimulationswith
+conversationalinterfaces,enablingflexible,explainable,andresponsiveagentbehavior.
+Beyondthecognitivearchitectureitself,modelingmobilitymustalsoreflectsociode-
+mographicheterogeneity. Numerousstudiesunderscoretherelevanceofattributessuch
+as age, gender, occupation, and educational background in shaping modal preferences
+andtravelbehavior[17–19]. Lietal.[9]applyBERT-basedembeddingstoidentifyover30
+distinctmultimodaltravelpatterns,withstronglinkstodemographicclusters.Maetal.[20]
+proposeaframeworkofAImobilityagentsembeddedinevolvingnetworks,highlighting
+the dynamic feedback between individual decisions and system-wide transport perfor-
+mance.Ourworkadoptsthisperspectivebyincorporatingasetofdiversifiedagentprofiles
+tosimulateheterogeneousandadaptivemobilityresponses(seeSection5fordetails). The
+implementationofourframeworkisgroundedinSimFleet,avalidatedagent-basedmo-
+bility simulator also used in [21] for bus ridership prediction under machine learning
+scenarios. Incontrastwiththatstudy,whichfocusesonpredictivemodeling,ourframe-
+workimplementsacognitivelyenricheddecisioncycle. Bycognitiveenrichmentofthe
+decisioncycle,wemeanthatagentsmovebeyondfixedrulesbycombiningidentity-driven
+weeklyintentionswithdailyreflectioninformedbyepisodicfeedbackandenvironmental
+context. Inthisway,thefourprofilesexhibitheterogeneousyetinterpretableadaptations
+underidenticalconditions(seeSections4and5). Thissetupenablestheexplorationof
+complexscenarios,suchasservicedisruptions,modalrestrictions,andpolicyinterventions,
+underconditionsofagent-levelreasoningandlearning.
+
+Sensors2025,25,5688 3of32
+WeadoptValencia, Spain, asareferencecasestudybecauseitreflectsthemobility
+challenges of a medium-sized European city. The city combines dense central districts
+withperipheralneighborhoods, amultimodaltransportsystemcenteredonbuses, and
+growingrelianceonon-demandmobilitysuchastaxisandprivatehirevehicles. Local
+reportshighlightrecurrentcongestioninmajorcorridorsandcapacityconstraintsonsome
+lines(e.g.,Line10),whichunderminereliabilityandequitableaccess. Thesefeaturesmake
+Valenciaarepresentativetestbedforanalyzingadaptivebehaviorsunderdisruption,with
+insightstransferabletootherurbanareasofsimilarscale.
+ThisstudydoesnotrelyonempiricalmobilitydatasetsfromValencia;instead,ituses
+stylizedbehavioralarchetypes—students,administrativeworkers,elderlyresidents,and
+factoryworkers—derivedfromsurvey-basedmobilityresearch. Thesearchetypescapture
+empiricallyobservedtendenciesinmodalchoice,costandtimesensitivity,andcomfort
+requirements, allowing controlled testing of the cognitive framework while remaining
+alignedwithreal-worldbehavioralevidence.
+Beyonditsmethodologicalnovelty,therelevanceofthisstudyistwofold.Scientifically,
+itadvancesurbanmobilitysimulationbyembeddingcognitivelyinspiredmechanisms—
+short-andlong-termmemory,reflectivereasoning,andsemanticpreferences—intoagent-
+basedmodels,overcomingtherigidityofrule-basedapproaches. Practically,itaddresses
+challenges faced by transport planners and policymakers, including anticipating how
+diverse user groups adapt to disruptions, service changes, or policy interventions. By
+enablingagentstoformroutines,reflectondisruptions,andadaptstrategiesovertime,the
+frameworkoffersatransparentandextensibletoolforevaluatingresilience,equity,and
+behavioralplausibilityinmobilitysystems.
+Specifically,thispapermakesthefollowingoriginalcontributions:
+• WeintroduceacognitiveagentarchitectureforurbanmobilitythatleveragesLLMs
+withmulti-horizonplanning(long-termweeklyplansbasedonidentityandshort-
+termdailyadaptationsusingepisodicfeedbackandenvironmentalcontext),episodic
+memoryconsolidation,andsemanticabstraction.
+• Wedevelopaprofile-basedsimulationenvironmentincorporatingrealisticsociodemo-
+graphicattributes,enablingheterogeneous,context-sensitiveagentbehaviorsacross
+multimodalurbanscenarios.
+• WeintegratethecognitiveframeworkintoSimFleet,extendingtheplatformtosup-
+portcognitivelyenrichedagentscapableofreflectiveadaptationtoenvironmental
+disruptionsandpersonalpreferenceshifts.
+• We validate the architecture via a 20-day simulation of 320 agents in baseline and
+disruptionscenarios,andperformanablationstudytoquantifytheimpactofshort-
+termandlong-termmemorymodules.
+The remainder of the paper is structured as follows: Section 2 reviews the related
+work on agent-based modeling, cognitive architectures, and LLM-driven simulations.
+Section 3 presents SimFleet, the underlying urban mobility simulator. Section 4 details
+theproposedcognitivearchitectureanditsintegrationintoSimFleet. Section5describes
+theexperimentalsetupandsimulationdesign. Section6presentstheexperimentalresults.
+Section7discussesbroaderimplications,limitations,andinterpretabilitychallenges.Finally,
+Section8concludesthepaperandoutlinesdirectionsforfutureresearch.
+2. RelatedWork
+Advances in urban mobility simulation increasingly draw from developments in
+agent-basedmodeling,machinelearning,andcognitivearchitectures. Thissectionanalyzes
+relatedworkrelevanttothedevelopmentofadaptiveandcognitivelyenrichedmobility
+simulationagents.
+
+Sensors2025,25,5688 4of32
+2.1. LimitationsofTraditionalABMandMLApproaches
+Agent-basedmodels(ABMs)havebeeninstrumentalinsimulatingurbanmobility
+systemsduetotheirabilitytorepresentheterogeneousagents,spatialenvironments,andin-
+teractiondynamics. However,severallimitationspersistinconventionalABMframeworks.
+AsDivasson-Jutglaetal.[4]outlineintheirsystematicreview,mosttransportation-focused
+ABMsrelyonstaticbehavioralrules,lackcontextualadaptation,anddonotincorporate
+memoryorreflectionmechanisms. Inthisregard,Martíetal.[22,23]introducedgenerators
+forfleets,chargingstations,andmobilitydatatoenhancetherealismandconfigurability
+ofsimulationenvironments. Whilesuchcontributionsexpandthescopeofscenariocon-
+structionandinputvariability,theyremaininput-orientedanddonotconferadaptiveor
+reflectivecapacitiesuponagentsthemselves. Therule-basednatureoftheseagentsrestricts
+theirabilitytogeneralizeorrespondtounexpectedevents,suchasinfrastructurefailures,
+modalshifts,orpolicyinterventions. Moreover,hybridapproachesthatcombineABMs
+withmachinelearninghavemadeimportantadvancesbutremainlimitedincognitiveca-
+pabilities. Forexample,Wangetal.[6]presentPateGAIL,amodelthatemploysgenerative
+adversarialimitationlearningtogeneratesyntheticmobilitytrajectorieswhilepreserving
+privacy. Although effective in trajectory synthesis, the approach is devoid of semantic
+planningorreflectivecapabilities.
+Similarly,Zhaoetal.[7]proposeaGBDT-basedclassifierfortrippurposeprediction
+usingsurveyandPOIdata. Whileachievingsolidpredictionaccuracy,theirmodeldepends
+onsupervisedlearningandpredefinedlabels,lackingadaptabilitytonewenvironmentsor
+behaviors. Martíetal.[21]integrateMLmethodssuchasRandomForestandSVRwiththe
+SimFleetsimulationenvironmenttopredictbusridership. TheirstudyvalidatesSimFleet’s
+robustnessformultimodalsimulationbutoperateswithinapredictivemodelingparadigm
+thatlacksreasoningormemory. Inallthesecases,agentsaretreatedasdata-drivenblack
+boxesorrule-basedexecutors,notascognitiveentitiescapableofreflectingonpastactions
+ormodifyingtheirstrategiesinresponsetoexperience.
+Theselimitationsjustifytheneedforanewclassofsimulationagentsthatcombine
+learning,reasoning,memory,andadaptabilitywithinurbanenvironments. Toillustrate
+thesestructuralgapsmoreexplicitly,Table1contraststhefunctionalscopeoftraditional
+rule-basedABMs,hybridABMsincorporatingmachinelearning,andourproposedLLM-
+basedcognitiveagentmodel. Whilehybridmethodsmayincreasepredictiveflexibility,
+theydonotaddresscorecognitivelimitationssuchasmemory,multi-horizonplanning,
+or reflective adaptation. These features are structurally incompatible with rule-based
+logicsystemsandcannotberetrofittedintoML-enhancedagentswithoutalteringtheir
+fundamentalarchitecture.
+Table1.ComparisonofAgent-BasedModelingParadigmsforMobilitySimulation.
+LLM-BasedCognitive
+Feature Rule-BasedABM HybridABM+ML
+Agent
+Dynamic,goal-driven
+Behaviorrules Static,expert-defined Static+MLoutput
+reasoning
+Yes(reflexive+
+Adaptability No Partial(data-driven)
+contextual)
+Multi-horizon
+Planninghorizon Noneorsingle-step Short-termprediction
+(week/day)
+Structured(episodic+
+Memoryuse None Nomemory
+semantic)
+Disruptionresponse Manualrules Implicitfromdata Reflectivere-planning
+Yes(memory
+Learningovertime No No
+consolidation)
+Demographicprofiling Limited Optionalfeatures Socio-demoprofiles
+Explainability Rule-basedtraceable Medium(white-box) High(language-level)
+
+Sensors2025,25,5688 5of32
+2.2. CognitiveArchitectureswithLLMs
+RecentdevelopmentsinLLMshavesparkedanewgenerationofcognitiveagents
+capableofintegratingmemory,planning,andcontextualadaptation. Unliketraditional
+agent-basedsimulations,thesearchitecturessimulatenotonlyactionsequencesbutalso
+theinternalreasoningprocessesunderlyingdecision-making. Onerepresentativeexample
+isExpeL[12],whichintroducesadualmechanismofexperientiallearning: episodicrecall
+ofsuccessfulbehaviorsandsemanticabstractionofstrategicinsights.
+Theagentdoesnotrelyonparameterupdatesbutinsteadreusesnaturallanguage
+memoriestoimproveacrosstasks. Theimportanceofmemorymodelingisemphasizedby
+Hatalisetal.[24],whoidentifythecognitivenecessityofseparatingepisodic,semantic,and
+proceduralmemorytoensurecoherenceandreducehallucinations. TheyarguethatLLM
+agentsusingvector-basedmemorystructuresmustbeequippedwithsemanticindexing
+andretrievaltosustaincontextualcontinuity. Houetal.[25]extendthisparadigmwitha
+time-awarerecallmodelthatusesmemorydecayfunctions,frequency-basedreinforcement,
+andcontext-awarepromptstoemulatehuman-likeconsolidation. Beyondtask-specific
+applications,Houetal.[25]proposeamemory-awareconversationalagentthatintegrates
+episodicstorageandfrequency-basedrecalltoenhancecontextualrelevance. Whilenot
+designed for urban mobility, their framework supports dynamic prompting and agent
+continuity,reinforcingtheimportanceofmemorymodelingincognitiveagents. Similarly,
+Hatalisetal.[24]presentatheoreticaltaxonomyoflong-termmemoryforLLMagents,
+arguingfortheseparationofepisodic,semantic,andproceduralknowledgetomitigate
+hallucinationsandpreservedecisionconsistency. Thesecontributions,althoughconceptual,
+informthestructuringofmemorysystemswithincognitivelyenrichedagentarchitectures.
+In terms of symbolic generalization, Gong et al. [13] present a model where travel
+preferencesareembeddedsemanticallyandusedtoguidetripgenerationinLLMagents.
+Similarly,Zhangetal.[8]proposeMobGLM,atransformer-basedLLMtrainedonmulti-
+modaltravelpatterns,achievingsuperiorrealismandgeneralizabilityacrossuserprofiles.
+Zhongetal.[11]focusonrobustforecastingunderdisruption,transformingtimeseriesinto
+semanticallyenrichedprompts,demonstratingthatLLMsoutperformtraditionalpredictors
+eveninirregularsettings.
+Paul[26]contributesNeoPlanner,ahybridplanningframeworkthatcombinesrein-
+forcementlearningwithLLM-guidedsymbolicreasoning. ThesystemconstructsPOMDP
+graphsfrominteractionsandstoresentity-relationshiptripletsaslong-termmemoryfor
+tasktransfer. Thisechoestheconsolidationflowinourmodel,whereepisodictracesare
+abstractedintoreusableknowledgepatterns. Finally,Zhangetal.[27]introduceMindMem-
+ory,anLLMagentarchitecturewithstructuredlong-termmemoryseparatedintoepisodic,
+semantic, andabstractmodules. TheirmodeloutperformsGPT-4variantsinlongitudi-
+nalmemorytasksandhighlightstheroleofpersonalitypersistenceandmemory-driven
+decisionconsistency.
+Collectively,thesearchitecturesdemonstratethefeasibilityandvalueofembedding
+LLMswithinstructuredmemorysystemsforurbansimulationagents. Ourworkbuilds
+uponthisfoundationbyextendingcognitiveplanningintoamulti-agenturbanenviron-
+mentwithexplicitsociodemographicvariabilityanditerativereflection,designedtohandle
+dailydisruptionsandemergentbehaviorovertime.
+2.3. SociodemographicProfilesandMultimodalTravelPatterns
+Understandingurbanmobilityrequiresattentionnotonlytospatialandmodalfac-
+tors, but also to the sociodemographic characteristics that shape individual travel pref-
+erences and constraints. A growing body of literature highlights the need to integrate
+demographicsegmentationintosimulationmodelstocapturethediversityofbehavioral
+
+Sensors2025,25,5688 6of32
+patterns. Huangetal.[17]emphasizegender-baseddifferencesintransportdecisions,not-
+ingthatsafety,accessibility,andreliabilityareprioritizeddifferentlybymenandwomen.
+Jafarzadehfadaki et al. [18] employ a cluster-based analysis to show how age, income,
+andemploymentstatusjointlyinfluencemodechoiceandtripfrequency. Yangetal.[19]
+analyzepublictransportusageacrossdemographicgroupsandfindsubstantialvariation
+inaccess,frequency,andsatisfactionlevels. Theirresultssupporttheuseofdifferentiated
+agentprofilestosimulaterealisticurbanmobilitydynamics.
+In a more formalized approach, Li et al. [9] leverage BERT-based embeddings to
+classifyover30distinctmultimodaltravelpatternsfromtrajectorydata. Thesepatterns
+alignstronglywithdemographicclustersandsuggestthatsemanticrepresentationofagent
+behavior enhances model generalization. Ma et al. [20] extend this view by proposing
+mobilityagentsembeddedinevolvingAInetworks,wheredecisionfeedbackloopsare
+conditionedondemographicandtemporalattributes. Theirframeworkpointstothevalue
+ofcontext-awareadaptation,whereagentsnotonlychoosebasedonstaticpreferencesbut
+alsolearnfromaccumulatedexperience.
+Our own framework adopts these principles by designing four sociodemographic
+agent profiles with varying preferences, constraints, and adaptability to disruptive sce-
+narios. Thisstructurefacilitatesexperimentationonhowdiversepopulationsrespondto
+modechangesandenvironmentalperturbations,providingaricherandmoreinclusive
+simulationofurbanmobilitysystems.
+2.4. OpenChallengesandResearchGaps
+While recent advances in LLM-based cognitive agents represent a significant leap
+forward, several research gaps remain unaddressed. First, most existing architectures
+are designed for isolated tasks or synthetic environments, lacking integration with re-
+alistic urban simulation platforms. Few studies explore how cognitive agents behave
+inmultimodaltransportsystemsorrespondtopolicychangesandexternaldisruptions.
+Moreover, although memory structuring is increasingly discussed [24,25,27], the prac-
+tical implementation of dynamic episodic-to-semantic consolidation in urban contexts
+remainsunderexplored.
+Anotherlimitationconcernstheunderrepresentationofdiversepopulationsinagent-
+basedLLMframeworks. Whilerecentworksincludebasicdemographicvariations[9,18],
+there is a lack of systematic modeling of marginalized or mobility-constrained users.
+Additionally,moststudiesfocusonpredictionorreplicationofbehavior,ratherthanon
+agent-levellearning,reflection,orethicaladaptabilityovertime. Lastly,althoughsome
+frameworksintegrateLLMswithplanningorreinforcementlearningmodules[26],thereal-
+timeinteractionbetweenplanning,memory,andenvironmentadaptationisstillnascent.
+Our work addresses these limitations by combining memory-aware LLM agents, rich
+sociodemographic profiling, and a validated simulation platform (SimFleet) to explore
+reflectiveplanninginarealistic,multimodal,anddynamicallydisruptedurbansetting.
+2.5. ComparativePositioningofLLM-BasedMobilityAgents
+Toassessthenoveltyandfunctionalscopeofourproposedcognitiveframework,we
+presentacomparativeanalysisof13relevantarchitectures,spanningagent-basedmodels
+(ABMs),machinelearningpredictors,imitation-basedgenerators,andrecentLLM-driven
+cognitive systems. The comparison is structured into two analytical axes: (i) cognitive
+capabilitiesand(ii)applicationcontext. Tables2and3summarizethisanalysis. Weclassify
+each capability or feature as ‘Yes’, ‘No’, or ‘Partial’ based on the presence, absence, or
+limitedimplementationofthatproperty,asdescribedinthecorrespondingoriginalworks.
+Forinstance,Partialadaptationdenotesimplicitadjustments(e.g.,few-shotprompting)
+
+Sensors2025,25,5688 7of32
+withoutstructuredmemoryordecisionfeedback,while‘Yes’indicatesmechanismssuchas
+memory-drivenre-planningorexplicitbehavioralrevision.
+Table2.ComparisonofCognitiveCapabilitiesinLLMandABMArchitectures.
+Profile
+Architecture Memory Planning Adaptation
+Modeling
+ABM[4] No No No No
+ML-RF[7]/GBDT[21] No No No No
+PateGAIL[6] No No No No
+ExpeL[12] Yes Yes Yes No
+MindMemory[27] Yes No Yes Partial
+NeoPlanner[26] Yes Yes Yes No
+Mobility-LLM[13] Yes No No Partial
+MobGLM[8] No No No Yes
+HMP-LLM[11] No Yes No No
+Houetal.[25] Yes No Yes No
+Hatalisetal.[24] Yes No Partial No
+TransCompressor[14] No No No No
+Ours(ThisWork) Yes Yes Yes Yes
+Cognitivecapabilities. AsshowninTable2,onlyasubsetofreviewedarchitectures
+implementstructuredmemorysystems(e.g.,ExpeL,MindMemory,NeoPlanner),andeven
+fewer support multi-horizon planning or dynamic adaptation. Most existing ABM or
+ML-basedsystems(e.g.,Divasson[4],Zhao[7])lackreflexivebehavior,relyonstaticrules
+orsupervisedpredictors,anddonotsimulatehuman-likelearningprocesses. Incontrast,
+ouragentsintegrateepisodicmemory,semanticabstraction,anddailyreflectivecyclesthat
+enable long-term behavioral evolution. Furthermore, our architecture includes explicit
+sociodemographicprofiles,allowingsimulationofheterogeneousbehavioracrossmodal
+preferences—anaspectunderrepresentedinLLM-agentresearch.
+Applicationcontext. Table3showsthatmostcognitivearchitecturesweredeveloped
+forsynthetictasks(e.g.,NeoPlanner[26]),dialogueagents(e.g.,MindMemory[27]),orthe-
+oreticalproposals(e.g.,Hatalis[24]). Amongmobility-orientedmodels,Mobility-LLM[13],
+MobGLM[8],andHMP-LLM[11]focusonpreferenceinferenceorforecastingbutdonot
+simulateagentsordisruptions.
+TransCompressor[14],whilenotacognitiveagentmodel,usesLLMstoreconstruct
+multimodaltransportdataviastructuredprompting. Itcontributestotransportsystem
+intelligencebutdoesnotengageinplanningorbehavioralsimulation.
+Positioning. OurframeworkcombinesLLM-basedmemorystructuring,multi-horizon
+planning,reflectiveadaptation,andsociodemographicagentprofilinginavalidatedagent-
+basedmobilitysimulator. Itenablescognitivelyplausibledecision-makingunderurban
+constraints,offeringanovelpathwayforsimulatingadaptive,explainable,andheteroge-
+neousbehaviorincomplextransportenvironments.
+Table3.ApplicationContextinMobilityandSimulationEnvironments.
+Architecture SimulationBased DisruptionHandling MobilityDomain
+ABM[4] Yes No Yes
+ML-RF[7]
+Yes No Yes
+/GBDT[21]
+PateGAIL[6] No No Partial
+ExpeL[12] No Partial No
+MindMemory[27] No No No
+NeoPlanner[26] No No No
+Mobility-LLM[13] No No Yes
+
+Sensors2025,25,5688 8of32
+Table3.Cont.
+Architecture Simulation-Based DisruptionHandling MobilityDomain
+MobGLM[8] No No Yes
+HMP-LLM[11] No Yes Yes
+Houetal.[25] No No No
+Hatalisetal.[24] No No No
+TransCompressor[14] No No Partial
+Ours(ThisWork) Yes Yes Yes
+3. SimFleet: UrbanMobilitySimulator
+SimFleet is an agent-based simulator built upon SPADE, purposefully developed
+to model, evaluate, and optimize urban mobility services (SPADE 4.1.2 version (Smart
+PythonAgentDevelopmentEnvironment)isanagent-orientedprogramminglibrarythat
+supportsFIPA-compliantcommunicationprotocolsandasynchronousmessagepassing
+indistributedsystems). Itpermitstheintegrationofvarioustransportationmodalities—
+includingtaxis, buses, pedestrians, andelectricvehicles—withinacohesivesimulation
+environment. Initiallyconceptualizedasamulti-agentfleetsimulator[28],SimFleethas
+since undergone substantial architectural enhancements to meet modern demands for
+scalability,extensibility,andbehavioralflexibility.
+3.1. MotivationandArchitecturalEvolution
+The original version of SimFleet was designed to coordinate urban taxi fleets and
+relied on a centralized agent architecture, with route planning handled externally and
+behaviorallogicembeddedwithinagentclasses. Whilethisapproachdemonstratedagent-
+basedinteraction,itwaslimitedtoasingletransportmode,hinderedextensibility,and
+did not accommodate emerging urban mobility paradigms such as electric vehicles or
+micromobility. Toovercometheselimitations,SimFleethasbeenfundamentallyredesigned
+as a modular, multimodal simulation platform. Key architectural innovations include
+decentralized route planning (integrated via the MovableMixin), mixin-based composi-
+tionofcapabilities,andmodular,strategy-drivenbehaviorallogic. Thesefeaturesallow
+for greater flexibility, scalability, and realism in modeling heterogeneous urban mobil-
+ity scenarios. Certain concepts underpinning this redesign—such as the use of mixins
+andtransport-specificstrategypatterns—werefirstexploredexperimentallyinprevious
+work [29]. However, that study focused on a specific application scenario and did not
+formalizeageneral-purposearchitecture.
+TheredesignedSimFleetarchitectureintroducesamodularclasshierarchystructured
+around role specialization and functional composition. Rather than relying solely on
+rigid inheritance chains, the system employs mixin-based design patterns to decouple
+capabilitiesfromcoreagenttypes. Thisenablestheflexibleconstructionofheterogeneous
+agentsbydynamicallyattachingfunctionaltraitsrelevanttotheagent’sroleinthesystem,
+withoutrequiringdeepclassnestingorcodeduplication.
+Theoveralldesignfollowsobject-orientedcompositionprinciples,allowingagents
+to be defined by their roles and capabilities rather than by strict taxonomic categories.
+For example, both vehicles and autonomous pedestrians may share navigational logic
+throughacommonmobilitymodule,whileenergy-basedbehaviorsarecomposedonly
+whenapplicable(e.g.,forelectricvehicles). Thislayereddesignfacilitatesextensibilityand
+supportsrealisticsimulationofmultimodalenvironments.
+
+Sensors2025,25,5688 9of32
+3.2. FunctionalCompositionviaMixins
+A central innovation in the current architecture is the use of mixins—lightweight,
+reusableclassfragmentsthatencapsulatespecificfunctionalities. Mixinsareappliedto
+baseagentclassestoendowthemwithadditionalbehaviorsinacomposablemanner.
+TwoprimarymixinscurrentlydefinekeycapabilitiesinSimFleet:
+• MovableMixin,whichprovidesautonomousnavigation,spatiallocalization,androute-
+followinglogic;
+• ChargeableMixin, which adds support for energy consumption tracking, battery
+capacity,andinteractionwithchargingstations.
+These mixins can be combined with any agent that requires such capabilities. For
+instance, the ElectricTaxiAgent class inherits from TaxiAgent and composes both
+MovableMixinandChargeableMixin,resultinginafullymobile,energy-awaretransport
+agent. Thisapproachavoidsredundantimplementationsacrossagenttypesandenables
+thesimulationofdiverseroleswithsharedfunctionalities. Forexample,pedestrianagents
+canalsobemademobilebycomposingtheMovableMixin,eveniftheyarenotvehicles.
+Thisdesignpatternsignificantlyimprovestheflexibilityofagentcreationandmaintainsa
+clean,modularcodebase. Thesecompositionalrelationshipsarevisuallyrepresentedin
+theclasshierarchydiagram(Figure1),wherethestructurallayeringofcoreagents,mixins,
+andspecializationscanbeobserved.
+3.3. AgentRolesandHierarchies
+SimFleetdefinesitsagentsthroughastructuredclasshierarchybasedonfunctional
+rolesandtransportmodality. AtthecoreliestheabstractSimFleetAgent,whichservesas
+thebaseclassforallagentswithinthesystem. Thisbaseisextendedintwoprimarydirec-
+tions: spatiallyembeddedagentsandcoordination-orientedagents. TheGeoLocatedAgent
+classintroducesspatialawarenessandservesasthefoundationforagentsthatoperate
+withinthesimulatedgeography. Thisincludesthefollowing:
+• CustomerAgent,withfurtherspecializationssuchasTaxiCustomerAgent,
+BusCustomerAgent,andPedestrianAgent;
+• VehicleAgent,whichgeneralizestransport-capableagentsandisextendedintospe-
+cializedtypeslikeTransportAgent,TaxiAgent,BusAgent,andElectricTaxiAgent.
+Meanwhile,theFleetManagerAgentderivesdirectlyfromSimFleetAgentandisre-
+sponsiblefororchestratingagentinteractionsandmanagingservicecoordinationpolicies.
+Thishierarchypromotesreuseandseparationofconcerns. Forinstance,apedestrianagent
+andabuscustomermaysharethesamespatialcapabilitiesbutdifferinmobilitytraitsand
+interactionlogic. Thedesignsupportscomplexmultimodalinteractionsbyallowingeach
+agenttoinheritonlythebehaviorsandcapabilitiesrequiredforitsrole.
+The hierarchical relationships among these agents are visually represented in the
+class diagram (Figure 1), which highlights the inheritance structure and compositional
+logic across agent types. This role-based structure has also been successfully applied
+in real-world simulation scenarios. For instance, in Martí et al. [21], the hierarchy en-
+abledthemodelingofpublictransportservicesusingBusCustomerAgent,BusAgent,and
+BusStopAgentroles. Thisconfigurationalloweddemand-drivenevaluationsofpassenger
+flowsandcoordinationstrategies,demonstratingthearchitecture’sapplicabilitytopractical
+urbanmobilitystudies.
+
+Sensors2025,25,5688 10of32
+BusStopAgent SimFleetAgent FleetManagerAgent
+ServiceStationAgent QueueStationAgent GeoLocatedAgent
+ChargingStationAgent TaxiCustomerAgent CustomerAgent VehicleAgent
+BusCustomerAgent PedestrianAgent TransportAgent
+MovableMixin TaxiAgent BusAgent
+ChargeableMixin ElectricTaxiAgent
+Figure1. SimFleetclassarchitecturediagram. Coloursindicateagentcategories: core/transport
+agents(orangetones),infrastructureandstationagents(bluetones),user/customeragents(yellow),
+mixins(green),hybridrolessuchasvehicle/transport(blue–orangefamily),pedestrian/customer
+hybrid(lightgreen),andelectricvariants(green–teal).Thecoloursareusedsolelytoaidreadability;
+allnodelabelsdefinethefunctionalroleinthehierarchy.
+3.4. InfrastructureandEnvironmentIntegration
+ThesimulationenvironmentinSimFleetispopulatednotonlybymobileagentsbut
+also by fixed infrastructure components that support transport operations and service
+logistics. Theseareimplementedthroughspecializedstationagents,whichinteractwith
+vehiclesandcustomerstomodelrealisticservicepointssuchaschargingstations,depots,
+orbusstops.
+Theinfrastructuredesignisgroundedintwocoreagentclasses:
+• QueueStationAgent,whichprovidesqueuinglogicforboardingandwaitingareas;
+• ServiceStationAgent,whichgeneralizesinfrastructureentitiessuchasmaintenance
+depotsorutilityaccesspoints.
+Thesecoreclassesareextendedintoapplication-specificroles,forexample,asfollows:
+• BusStopAgentextendsQueueStationAgenttosupportcustomerboardinglogicand
+busarrivalscheduling;
+• ChargingStationAgentextendsServiceStationAgentandinteractswith
+ElectricTaxiAgenttomanageenergyreplenishmentcycles.
+Allinfrastructureagentsarespatiallypositionedwithinthesimulatedmapandmay
+incorporateparameterssuchasmaximumcapacity,servicetimes,orqueuediscipline. Real-
+worldlocationscanbederivedfromOpenStreetMap(OSM)data,allowingsimulations
+toreflectactualurbantopologies. Agentsinteractwithinfrastructurecomponentsusing
+geospatialproximityandevent-driventriggers,enablingscenariossuchasdynamiccon-
+gestion,accessprioritization,ortimedservicewindows. Thisintegrationbetweenagents
+andenvironmentenablesthesimulationofrichurbanscenarios. Forinstance,busstops
+canbeconfiguredtohandlepeak-hourpassengersurges,andchargingstationscanbecome
+
+Sensors2025,25,5688 11of32
+operationalbottlenecksduringhigh-demandperiods. Theseinteractionsareespecially
+importantwhenevaluatinginfrastructureplanning,loadbalancing,orenergydistribution
+insmartmobilitysystems.
+3.5. BehavioralModularityviaStrategyPattern
+Topromoteflexibilityandreducestructuralcoupling,SimFleetadoptstheStrategy
+designpatterntomodularizeagentbehaviors. Insteadofembeddingdecision-makinglogic
+directlyintoagentclasses,behavioralstrategiesaredefinedasseparatemodulesthatcanbe
+assignedorswitchedatruntime. Eachagenttypesupportsoneormorestrategyinterfaces
+appropriatetoitsrole,forexample,asfollows:
+• TaxiAgentandBusAgentmayimplementdispatchorroutingstrategies;
+• FleetManagerAgentcanemploycoordinationstrategiesforassigningtasksorbalanc-
+ingserviceload;
+• PedestrianAgent may follow navigation strategies that incorporate shortest-path,
+attraction-based,orstochasticbehaviors.
+Thisapproachenablestheimplementationandtestingofdiversebehavioralmodels
+without altering the core agent architecture. Strategies can be changed during simula-
+tiontimetoevaluatehowdifferentlogicstructuresaffectsystem-leveloutcomessuchas
+efficiency, traveltime, orresourceusage[29]. Themodularityprovidedbythispattern
+facilitatescontrolledexperimentationandcomparativeanalysis. Forinstance,in[21],dif-
+ferent dispatching strategies were evaluated in terms of service efficiency and demand
+coveragebyalteringonlythebehavioralmodules,whilemaintainingidenticalagentand
+environment configurations. This decoupling makes SimFleet particularly suitable for
+testingandcomparingcoordinationmechanismsinurbanmobilityscenarios. Technical
+implementationdetails, includingconfigurationstructure, routinglogic, andexecution
+lifecycle,areprovidedinAppendixAtosupportreproducibilityandtransparency.
+4. CognitiveArchitectureforMobilitySimulation
+This section introduces our cognitively enriched mobility simulation framework.
+BuildinguponthemodularandmultimodalcapabilitiesofSimFleet,weembedreflective
+agentscapableoflong-horizonplanningandshort-termadaptationusingLLMs,episodic
+memory,andsemanticabstraction. Theproposedarchitectureintegratesindividualpref-
+erences, environmental context, and experience-based reasoning to simulate dynamic,
+human-liketransportbehaviors.
+4.1. ConceptualModeloftheCognitiveAgent
+Figure2presentsahigh-leveloverviewofthecognitiveagent’sarchitectureandits
+interactionwiththesimulationenvironment. Theagentoperatesthroughacyclicalloopof
+planning,execution,observation,andreflection,enablingittoadaptdynamicallytoenvi-
+ronmentalchangesandbehavioralfeedback. Atthecoreoftheagentisitsidentity,which
+definesintrinsiccharacteristicssuchassociodemographicattributes,transportpreferences,
+andactivityschedules.
+Thisidentityshapeshowtheagentinterpretsitsenvironmentandinfluencesitsinitial
+planningstrategies.
+
+Sensors2025,25,5688 12of32
+Figure2.ConceptualarchitectureandfeedbackloopofthecognitiveagentinSimFleet.
+Theagentmaintainstwomemorysystems: short-termmemory,whichholdsrecent
+experiencesfromdailysimulations,andlong-termmemory,whichcapturesgeneralbehav-
+ioralpatternsformedovertime. Thesememorystructuresarekeytoenablingreflection
+andadaptation,asadvocatedinrecentframeworksforexperientiallearninginLLM-based
+agents[12,27]. Eachsimulationcyclebeginswiththeagentsubmittingaplannedjourney
+to the environment, represented as a travel plan. The agent observes the outcomes of
+thisplanafterexecutionintheSimFleetenvironment,includingjourneyduration,delays,
+orunexpectedevents. Theagentthenengagesinareflectionprocess,drawinginsights
+fromtheobservedoutcomesandupdatingitsshort-termmemoryaccordingly. Overtime,
+consistentpatternsinbehaviorandresponseareabstractedandstoredinthelong-term
+memory,enrichingtheagent’scapacityforfutureplanning. Thisclosed-loopinteraction
+embodies a cognitively inspired decision-making framework, in which planning is not
+staticbutcontinuouslyshapedbyexperienceandcontext. Thenextsubsectionprovidesa
+formaldefinitionofthisarchitectureanditsmulti-horizonplanningprocess.
+4.2. CognitiveDecisionLoopwithMulti-HorizonMemory-DrivenPlanning
+Tosupportadaptiveandcontext-awaremobilitybehavior,weproposeacognitively
+inspiredplanningloopstructuredaroundtwocomplementaryhorizons: along-horizon
+weeklyplanandashort-horizondailyadaptation. Thisdual-layereddesignmirrorsreal-
+worlddecisionprocesses,whereindividualsformulategeneralplansandrevisethemdaily
+basedonexperiencesandenvironmentaldynamics.
+AgentStateRepresentation. Ateachtimestept,anagentaisrepresentedas:
+a = (I,Ms,Ml,p ,E )
+t t t t t
+• I: Agentidentity, includingsociodemographicinformation(e.g.,age, income)and
+modalpreferences(e.g.,comfortsensitivity).
+• Ms: Short-termmemory,whichstoresepisodicdatafrompreviousdays,including
+t
+outcomesandreflections. Thismemoryisresetattheendofeachplanningcycle.
+• Ml: Long-termmemory,consistingofabstractedbehavioralpatternsandgeneralized
+t
+strategiesformedovertime.
+
+Sensors2025,25,5688 13of32
+• p : Travel plan for day t, derived from the initial weekly plan or revised through
+t
+dailyadaptation.
+• E : Environmentalcontextondayt,includingweather,infrastructuredisruptions,or
+t
+specialevents.
+Long-HorizonWeeklyPlanning. Atthebeginningofeachcycle(e.g.,a5-daywork
+week),theagentgeneratesahigh-levelplan:
+Plan =LLM (I,Ml), where Plan = {pinit,...,pinit}
+weekly 0 1 N
+Each pinit definestheintendeddeparturetime,transportmode,anddestinationfor
+t
+dayt. Theweeklyplanisgeneratedusingidentityandlong-termmemoryonly,reflecting
+intentionsformulatedundergeneralassumptions.
+Daily Reflection and Re-Planning. On each day t, the agent executes the prior
+day’splan:
+s t−1 =SimFleet(p t−1 ,E t−1 )
+Theoutputs t−1 includestrip-levelindicatorssuchastravelduration,delays,costs,
+andsatisfactionscores. Theagentthenperformsareflectiveevaluation:
+r t−1 =LLM reflect (p t−1 ,s t−1 )
+Thisoutcomeisappendedtotheshort-termmemory:
+M t s = M t s −1 ∪{(p t−1 ,s t−1 ,r t−1 )}
+Theagentthenadaptsthecurrentday’splanusingrecentexperiences,theoriginal
+plancomponent pinit ∈ Plan,andthecurrentenvironment:
+t
+p =LLM (I,Ms,pinit,E )
+t daily t t t
+Theupdatedplanisexecutedinthesimulation:
+s =SimFleet(p ,E )
+t t t
+Pattern Abstraction and Memory Consolidation. At the end of the planning cycle
+(i.e.,afterTdays),theaccumulatedshort-termmemoryissummarizedandabstractedinto
+generalizedpatterns:
+Patterns =LLM (Ms ), Ml = Ml ∪Patterns
+T abstract 1:T T+1 T T
+Here, T denotes the total number of days in the cycle (e.g., T = 5 for a working
+week). Theshort-termmemoryisthencleared,preparingtheagentforthenextiteration.
+Thismulti-horizonarchitecturesupportsrobustbehavioralrealism: weeklyplansprovide
+temporal coherence and foresight, while daily reflection allows for adaptive correction.
+ThroughstructuredmemorymanagementandLLM-guidedabstraction,agentsdevelop
+bothhabitualpatternsandresponsivenesstochange—keytraitsofhumanmobilitybehav-
+ior. Tocomplementtheformaldescription,Algorithm1providesapseudocodesummary
+ofthecognitivedecisionloop. Itshowshowagentsgenerateweeklyplans,adaptdaily
+strategiesthroughreflection,andconsolidateexperiencesintolong-termmemory.
+
+Sensors2025,25,5688 14of32
+Algorithm1:CognitiveAgentSimulationLoopwithLLM-DrivenPlanning.
+Input: Agentidentity I,long-termmemory Ml,environmenttimeline{E }
+t
+Output: Behavioraltrajectories,updatedmemories Ms,Ml
+1 foreachweekwinsimulationdo
+2 {p 1 init,...,pi T nit} ← LLM weekly (I,Ml);
+3
+Ms ← ∅;
+4 fort ←1toTdo
+5 ift =1then
+6 p t ← pi t nit;
+7 end
+8 s t ←SimFleet(p t ,E t );
+9 r t ← LLM reflect (p t ,s t );
+10 Ms ← Ms∪{(p t ,s t ,r t )};
+11 ift < Tthen
+12 p t+1 ← LLM daily (I,Ms,pi t n + i 1 t,E t+1 );
+13 end
+14 end
+15 Patterns← LLM abstract (Ms);
+16
+Ml ← Ml∪Patterns;
+17 end
+4.3. StructuredMemoryRepresentationandSemanticContinuity
+Whiletheframeworkdescribedabovedistinguishesbetweenshort-termandlong-
+termmemory,thesestructurescanbeinterpretedthroughamorefine-grainedcognitive
+taxonomy. Short-termmemoryfulfilstheroleofepisodicmemory, temporarilystoring
+recenttravelexperiencesandreflectiveevaluations. Long-termmemoryservesasaformof
+semanticmemory,whereabstractedbehavioralpatternsareconsolidatedoversuccessive
+planningcycles. Athirdcomponent,proceduralmemory,isonlypartiallyinstantiatedin
+thepresentframework: repeatedmergingofcommonpatternsacrossweeksprovidesa
+rudimentaryformofproceduralknowledge,whereasamoreexplicitmodelingofhabitual
+rulesandroutinesisconsideredfuturework(e.g.,combiningLLM-generatedpatternswith
+machinelearningmodelstostabilizeproceduralstrategies). Thistripartiteviewofmemory
+supportscoherenceinplanningandreducestheriskofspuriousorinconsistentbehavior,
+aligningwithestablishedprinciplesofcognitivearchitectures.
+Tomaintaincontextualcontinuityacrosscycles,memoryconsolidationdoesnotsimply
+log all past experiences. Instead, accumulated episodes are periodically summarized
+throughLLM-guidedabstraction(e.g.,weekly)andselectivelymergedatlongerhorizons
+(e.g.,monthly). Thisprocessactsasaformofsemanticindexing: redundantinformation
+iscompressed,salientregularitiesareretained,andirrelevantdetailsarediscarded. As
+a result, retrieval of relevant patterns for both daily adaptation and weekly planning
+remainstractableandcontextuallygrounded,ensuringthatagentreasoningisguidedby
+meaningfulexperienceratherthanunfilteredhistoricalnoise. Figure3highlightshowthis
+layeredorganizationoperationalizestheinteractionbetweenepisodicandsemanticlayers,
+showinghowsemanticindexingandLLM-guidedabstractionmaintaincoherenceacross
+planninghorizons.
+
+Sensors2025,25,5688 15of32
+Figure 3. Structured memory management in cognitive agents. This UML sequence diagram
+complementsAlgorithm1:dailyoutcomesarestoredinepisodicmemory,abstractedbytheLLM
+intosemanticpatterns,periodicallyconsolidated,andprogressivelycontributetotheemergenceof
+proceduraltendenciesupdatedwithinsemanticmemory.
+4.4. RobustnessandFallbackMechanisms
+Toensureexecutioncontinuityandarchitecturalrobustness,especiallyunderreal-time
+constraints,ourframeworkimplementstwostructuredfallbackmechanismsembedded
+withinthecognitivedecisionloop. Crucially,thesemechanismsarenotdesignedtogen-
+eralizetheframeworkacrossallLLMs,buttopreservetheintegrityofsimulationcycles
+whilesystematicallyexposingmodellimitations.
+FallbackinWeeklyPlanning. Atthebeginningofeachsimulationcycle, theagent
+attempts to generate a complete weekly plan using an LLM conditioned on long-term
+memoryandidentity. Ifthemodelfailstoreturnavalidstructuredresponse(e.g., due
+to invalid syntax or incomplete fields) after three attempts, a fallback plan is automati-
+callysynthesized:
+IfLLM (I,Ml)fails ≥3times⇒ Plan =RandomPlan(I)
+weekly
+Thisplanisgeneratedusingpseudo-randomparameterswithintheconstraintsofthe
+agent’sidentity(e.g.,allowedtransportmodesandpreferreddeparturewindows). While
+notsemanticallyaligned,itensurescontinuityandpreventssimulationinterruption.
+FallbackinDailyPlanning. Duringshort-horizonadaptation,ifthedailyplancannot
+berevisedsuccessfully(e.g.,duetoLLMtimeout,ill-formedJSON,oremptyresponse),the
+agentretainstheoriginalplanforthatday:
+IfLLM (I,Ms,pinit,E )fails ≥3times⇒ p = pinit
+daily t t t t t
+Thisfallbackmechanismmodelsreal-worldbehavioralinertia,wherebyindividuals
+oftenadheretotheiroriginalintentionsintheabsenceofcompellingnewinformation.
+ModelEvaluationandDesignImplications. Fallbackactivationsareloggedandmoni-
+toredaspartofthemodelevaluationprocess. Preliminaryinternaltestingwithmultiple
+LLMsrevealedvariedrobustnessprofiles: modelssuchasQwen2.5-7Bexhibitedlowfall-
+back incidence, whereas others systematically failed to produce valid structured plans,
+leadingtorepeatedplanningbreakdowns. Theseobservationsinformedthearchitectural
+designoffallbackmechanismsasdiagnosticthresholds,ratherthancorrectivetools. Byem-
+
+Sensors2025,25,5688 16of32
+beddingthesestrategieswithinthecognitiveloop,theframeworkremainsoperationaleven
+whenexternalreasoningfails,enablingbothreliablelong-termsimulationsandtransparent
+evaluationofLLMsuitabilityinagent-basedmobilityenvironments.
+4.5. IllustrativeExample
+To illustrate the functioning of the proposed cognitive framework, we present the
+caseofadministrativeworkerm4, a32-year-oldofficeworkerwithastrictarrivaldead-
+lineof08:45AM.Thisagentprioritizespunctualityandreliabilityovercost,comfort,or
+environmentalimpact.
+InitialPlanningandExploration: InWeek1,theagentgenerateditsfirstweeklyplan
+basedsolelyonitssemanticidentity,asnolong-termmemoryexisted. Theplanincluded
+mostlytaxitripswithslightvariationsindeparturetimeandasinglebustriponThursday.
+Whilethetaxijourneysresultedinearlyarrivals,thebustripledtolateness. Thisprompted
+areflectiveevaluationofmodalreliabilityundertimeconstraints.
+Adaptation and Strategy Consolidation: Informed by short-term memory and the
+abstractedinsightsfromWeek1,theagentadoptedafullytaxi-basedstrategyinWeek2,
+standardizing departure at 07:32 AM. This pattern persisted into Week 3 and Week 4,
+consistentlyyieldingearlyarrivalsandstableexecution. Atemporaryshifttobusoccurred
+duringadisruptioninWeek3,demonstratinglimitedbutcontext-awareadaptation.
+ReflectionandMemoryAbstraction: Attheendofeachweek,theagentconsolidated
+its experience into long-term memory. These abstractions guided future planning and
+reinforcedsuccessfulroutines. Acrossfourweeks,theagenttransitionedfromexploratory
+behaviortoastablestrategicpattern,whileretainingtheflexibilitytofallbacktoalternative
+modeswhendisruptionsoccurred. Fulldailyoutcomesandmemoryentriesforthiscase
+areprovidedinAppendixB.
+5. ExperimentalSetupandSimulationDesign
+Thissectionpresentstheexperimentalsetupusedtovalidatetheproposedcognitive
+architecture for urban mobility simulation. Our goal was to evaluate how LLM-based
+agentsbehaveunderbothstableanddisruptedtransportconditions,usingtheQwen2.5-
+7Bmodelastheprimaryplanner. Thismodelwasselectedbecauseitprovidesastrong
+balancebetweenreasoningcapacityandcomputationalefficiency. Inpreliminarytests,it
+achievedafailureratebelow6%ingeneratingstructured,semanticallyconsistenttravel
+plans,whilebeingsubstantiallylessresource-intensivethanlargerLLMs. Thistrade-off
+madeitparticularlysuitableformulti-agentsimulationsatscale.
+Eachagentrepresentedatransportuserwithsemanticidentity,episodicmemory,and
+modalpreferences. Overa20-daysimulatedperiod,agentsgenerateddailytravelplans
+viaLLM-basedreasoningandinteractedwithtransportprovidersinstantiatedinSimFleet.
+Behavioralpatterns,adaptationtodisruptions,andalignmentwithuserprofileswere
+systematicallyassessed.
+5.1. TimeScaleandSimulationAcceleration
+Toenablepracticalexecutiontimeswhilemaintainingbehavioralrealism,thesimula-
+tionoperatesunderanacceleratedtemporalscale. Specifically,ascaleratioof4.3isapplied,
+meaningthatoneminuteofsimulatedurbantimecorrespondstoapproximately4.3sof
+real-timecomputation. Toensuretractabilityofthesimulation,atemporalacceleration
+ratioof4.3wasapplied,correspondingto1minofsimulatedtime=4.3sofrealtime. This
+ratiowascalibratedtobalancecomputationalefficiencyandbehavioralrealism: itallows
+tripdurationstoremainwithinrealistictemporalrangeswhileensuringthatlarge-scale
+multi-agentexperimentscanbeexecutedwithoutprohibitivecomputationalcosts. Conse-
+
+Sensors2025,25,5688 17of32
+quently,afullsimulationdayspanningsixhours(06:00AMto12:00PM)requiresaround
+26 min of real-world time to complete. All spatial and temporal parameters, including
+agentvelocitiesandservicefrequencies(e.g.,busarrivalsevery30simulatedminutes),are
+proportionally adjusted to preserve consistency within the compressed timeframe. For
+example,anagentexperiencinga42-sreal-timetaxiwaitcorrespondstoadelayofapproxi-
+mately10mininsimulatedurbantime. Thisaccelerationapproachensurescomputational
+feasibilityforlarge-scaleagentpopulationswhilepreservinginterpretabilityandsemantic
+plausibilityinobservedmobilitybehaviors.
+5.2. ExperimentOverview
+Atotalof320cognitiveagentsweresimulatedinasyntheticenvironmentmodeledon
+Valencia,Spain,amedium-sizedEuropeancitywithmultimodaltransportinfrastructure.
+Theagentsengagedindailyplanning-execution-reflectioncyclesasdefinedinSection4,
+generatingstructuredJSONtravelplansbasedonlong-termidentity,short-termmemory,
+andenvironmentalcontext. Twoexperimentalscenarioswereanalyzed:
+• Abaselinescenario,whereallservicesoperatednormally;
+• Aseveredisruptionscenario,inwhich80%oftaxisweredeactivatedforfiveconsecu-
+tivedays.
+Anintermediateconditioninvolving40%taxiavailabilitywasalsosimulated. How-
+ever,thebehavioraloutcomesobservedunderthispartialdisruptioncloselymirroredthose
+recordedduringnormaloperations,exhibitingminimaldivergenceinmodalchoicesor
+adaptationpatterns. Tomaintainanalyticalclarityandhighlightthecontrastsbetween
+stableandcriticallydisruptedenvironments,wefocusthediscussionexclusivelyonthe
+full-serviceandseveredisruptionscenarios. Inadditiontothese,wealsoperformedan
+ablationstudyunderthesamedisruptionscenariotoisolatetheeffectsofeachmemory
+module. Threevariants—A1(nomemory),B1(short-termmemory),andFull(short-and
+long-term memory)—were compared over 20 days (6400 trips); results are reported in
+Section6.3.
+5.3. SimulationEnvironmentandModalities
+Theurbansimulationincludedthreemaintransportmodes:
+• Bus: 10vehiclesoperatingalongLine10ofthepublicurbanbusofValencia;
+• Taxi: 64agentsprovidingon-demandservicewithanaveragewaittimeof14min
+(simulatedtime)underbaselineconditions;
+• Walking: Alwaysavailableandcost-free,withnoinfrastructureconstraints.
+AlthoughSimFleetsupportsrichermodalconfigurations(e.g.,electricscooters,car-
+sharing),wedeliberatelyconstrainedthisstudytoatri-modalsetuptoreducecomplexity
+andisolateLLM-drivenplanningunderuncertainty. Futureworkwillextendthisframe-
+worktoincorporateadditionalmobilityoptions. Thespatialdistributionofagentswas
+designedtoreflectrealisticurbanpositioningbyusertype. Eachprofilewasassigneda
+typicalresidentialzone(origin)andadailydestinationalignedwiththeiroccupational
+purpose. Asmallspatialjitterwasappliedforvisualdispersionwithoutalteringtravel
+distances. Figure4illustratestheresultinglayout.
+
+Sensors2025,25,5688 18of32
+Figure4.Spatialdistributionofagentoriginsanddestinationsbyuserprofile,overlaidonLine10bus
+stops.Reddotsindicatebusstops;othermarkersdenoteprofile-basedoriginanddestinationclusters.
+5.4. UserProfilesandBehavioralParameters
+Each agent was instantiated with a semantic identity encoding sociodemographic
+attributes,modalpreferences,incomelevel,andactivityschedules. Thedesignofthefour
+archetypes—UniversityStudent,AdministrativeWorker,ElderlyResident,andFactory
+Worker—isgroundedinempiricalmobilityliteratureandreflectsstylizedbehavioraltraits
+extractedfromrecentsurvey-basedstudies. SeespecificallyTable4:
+Table4.Behavioralparametersforagentprofiles,includingtypicalone-waytraveldistancebetween
+homeandprimarydestination.
+Nº Profile ModalPriorities Distance Expectation
+80 UniversityStudent Budget,Eco-friendly 1.8km Walk,Bus
+80 AdministrativeWorker Time,Reliability 4.0km Taxi,Bus
+80 ElderlyResident Comfort,Reliability 2.8km Bus,Taxi
+80 FactoryWorker Time,Budget 8.6km Bus,Taxi
+
+Sensors2025,25,5688 19of32
+Thefullinputdataforthesimulationisdefinedthroughstructuredconfigurationfiles,
+whichspecifyfleetoperators,transportmodes,anduserprofileswithsociodemographic
+attributes and modal preferences. These files are version-controlled and openly avail-
+ableinapublicrepository(https://github.com/cvcalderon/simfleetdatabridge_config,
+accessedon17July2025),ensuringtransparencyandreproducibility. Detailedexamples
+oftheseconfigurationsandtheirintegrationwiththeSimFleetsimulatorareprovidedin
+AppendixA.
+• Studentstendtoexhibithighpricesensitivityandenvironmentallyconsciouschoices,
+oftenfavoringwalkingandpublictransport[17].
+• Administrative workers prioritize reliability and punctuality due to fixed office
+schedules[19].
+• Elderlyresidentsoftenvaluecomfortandlowwalkingeffort,showingvariableprefer-
+encesdependingonserviceavailability[17,18].
+• Factory workers, while typically budget-conscious, may prioritize time reliabil-
+ity when shift constraints are strict, especially under uncertain public transport
+performance[18].
+ThebehavioralparameterswerenotdrawnfromaspecificValenciadatasetbutwere
+constructedasstylizedprototypesinformedbyrecentsurvey-basedmobilitystudies. In
+particular, priorities such as cost-sensitivity among students, punctuality requirements
+among administrative workers, comfort preferences among elderly residents, and the
+trade-offbetweentimeandcostforfactoryworkerswereparameterizedfromempirical
+findingsreportedinUSAurbanmobilitysurveys[17–19]. Traveldistancesweredefinedto
+reflecttypicalurbancommuteranges(1–9km)inmedium-sizedEuropeancities,consistent
+withreportsfromValencia’smetropolitanmobilityplan. Incomelevelsandmodalexpecta-
+tionswerealignedqualitativelywiththesearchetypesratherthancalibratedtostatistical
+distributions. Inthisway,theprofilesserveasempiricallygroundedbehavioraltestbeds,
+designedtoexaminewhethercognitiveagentsreproducedifferentiatedandinterpretable
+mobilitybehaviorsunderbothstableanddisruptedconditions.
+5.5. IllustrativeExample: UniversityStudentAgents
+ToillustratehowabstractcognitiveagentsareinstantiatedinSimFleetandshaped
+by spatial constraints, Figure 5 presents the case of University Students. On the left,
+thehierarchicaldecompositionshowshowtheLLM-drivencognitiveagent(reasoning,
+memory, reflection) is instantiated as a Customer Agent in SimFleet, operationalized
+throughconcreterolessuchaspedestrian,buspassenger,ortaxiuser. Thisrepresentation
+highlightsthatfinalbehaviorsemergefromtheinterplayofcognitivereasoning,semantic
+identity,andtheoperationalrulesembeddedinSimFleet. Ontheright,themapshows
+thegeolocateddeploymentoftheseroleswithinValencia’sLine10. Pedestrianandbus
+trips share almost identical origin–destination distributions, reflecting short commutes
+of1–2km. Thisoverlapindicatesthatbothmodesarespatiallyinterchangeable,andthe
+eventual predominance of walking over bus use arises not from geography but from
+cognitive evaluation of cost and reliability. By contrast, taxi trips concentrate on fewer
+destinations,suggestingthattaxisaremobilizedprimarilyaspunctuality-drivenfallbacks
+whentimereliabilityisatrisk.
+Itisimportanttonotethatonlytheuser-sideagents(instantiatedasSimFleetCustomer
+Agents)embedtheLLM-drivencognitivearchitecture. Service-sideentitiessuchasBus,
+Taxi,andBusStopagentsretaintheirstandardSimFleetimplementation,providingthe
+structuralandoperationalenvironmentinwhichcognitiveagentsinteract. Thisseparation
+ensuresthatheterogeneityandadaptationarisefromthereasoningprocessesofuseragents,
+whiletransportservicesremaingovernedbyconsistentinfrastructuralrules.
+
+Sensors2025,25,5688 20of32
+Overall,thefiguredemonstrateshowspatialinteractionsdelimitthefeasiblechoice
+setofeachprofile,whilethecognitivearchitecturedetermineswhichoptionisultimately
+adoptedunderstableordisruptedconditions.
+Figure5.IllustrationofheterogeneouscognitiveagentsandtheirspatialinteractionsfortheUniversity
+Studentprofileonsimulationday14. Thefigureillustrateshowspatialenvironmentscondition
+feasibleoptions,whilecognitivereasoningdrivesthefinalmodalchoice.
+Theseprofileswerenotintendedasrepresentativedemographicclustersbutasem-
+piricallyinformedbehavioralprototypesdesignedtotestwhethersemanticagentreason-
+ing,memory,andadaptationmechanismscanproducedifferentiatedandinterpretable
+modalbehaviors.
+Inaddition,eachagentgeneratedaninitialweeklyplanandsubsequentlyadapted
+dailyplansusingmemoryandcontext. Modaldecisionswerenotpredefinedbutemerged
+fromLLM-drivenreflectionandsituationalfeedback. Thissetupenablestheinvestigation
+of emergent, profile-sensitive modal behaviors across stable and perturbed conditions,
+formingthebasisfortheexperimentsdescribedinthefollowingsection.
+6. ExperimentalResults
+Thissectionpresentstheempiricalresultsofthe20-daysimulationconductedwith
+Qwen2.5-7Basthecognitiveplanningengine. Weevaluatethecapacityoftheproposed
+frameworktogeneratesemanticallycoherentandcontext-awaretravelbehaviorsunder
+bothstableanddisruptedurbantransportconditions. Theanalysisisdividedintotwo
+mainscenarios. Thefirstexaminesbaselinebehaviorwhenalltransportservicesarefully
+operational. Thesecondfocusesonaseveredisruption—an80%taxistrike—introduced
+duringthethirdweek,whichteststheagents’abilitytoadapttosystem-levelperturbations.
+Foreachscenario,westudymodaldistributionacrossprofiles,evolutionovertime,wait-
+ingtimes,andbehavioraldivergence,providinginsightintotheLLM’sdecision-making
+capabilitiesandtheroleofmemory-drivenreflection.
+6.1. BaselineBehavior: Profile-DrivenModalEvolution
+Undernormaloperatingconditions,agentsexhibitedtheabilitytoconvergetowards
+semanticallycoherenttravelbehaviorsthatreflectedtheiridentity,mobilitypriorities,and
+environmentalconstraints.Figure6presentstheevolutionoftransportmodeusageoverthe
+20-daysimulationforeachuserprofile. Despiteinitialexplorationphases,agentsgenerally
+
+Sensors2025,25,5688 21of32
+stabilized their decisions by day 5, forming habitual patterns through the interaction
+betweenexperienceaccumulationandmemory-drivenreflectionmechanisms.
+100
+80
+60
+40
+20
+0
+0 5 10 15 20
+Day
+stnegafo%
+100
+80
+60
+40
+20
+0
+0 5 10 15 20
+Day
+(a)AdministrativeWorker
+stnegafo%
+(b)ElderlyResident
+100
+80
+60
+40
+20
+0
+0 5 10 15 20
+Day
+stnegafo%
+100
+80
+60
+40
+20
+0
+0 5 10 15 20
+Day
+(c)FactoryWorker
+stnegafo%
+(d)UniversityStudent
+Bus Taxi Walk
+Figure 6. Evolution of transport mode selection under baseline conditions for each user profile
+(percentages).
+AdministrativeWorkerspredominantlyselectedtaxisfromtheoutset,maintaininga
+stableusagerateabove75%afteraminorexplorationevent. Notably,onday4,atransient
+surge in bus usage (31%) occurred, reflecting short-term experiential learning, but taxi
+preference was quickly re-established as memory consolidation favored time-efficient
+transport. This behavior aligns with the workers’ prioritization of time efficiency and
+reliabilityovercostconsiderations.
+ElderlyResidentsdisplayedthehighestmodalflexibilityamongallprofiles. Through-
+outthesimulation,taxisremainedthepreferredmode(60–70%),butasubstantialminority
+consistently utilized buses (18–42%). Minor daily fluctuations suggest that the reflec-
+tionmechanismenableddynamicbalancingbetweencomfortandmoderateadaptability.
+Walkingremainedvirtuallyabsent(<2%),consistentwiththecomfort-drivennatureof
+thisdemographic.
+FactoryWorkersshowedthemostsignificantdeviationfromexpectedmodalbehav-
+ior. Contrarytobudget-drivenexpectations,taxiusagedominatedtheearlydays(upto
+80% on day 1), with a notable bus usage spike (49%) on day 2. However, convergence
+towardssustainedbususagewasnotachieved. Thispersistenceoftaxipreference,despite
+longdistances(8.6km)andlowincome,indicatesthatimmediatetimesavingsandfavor-
+ableshort-termoutcomesinfluencedtheLLM’sreflectivereasoningmorestronglythan
+economicconstraints.
+UniversityStudentsinitiallydemonstratedanunexpectedpreferenceforbustransport,
+with 80% usage on day 1. This behavior, misaligned with their eco-budget profile and
+shorttraveldistance(1.8km),wasrapidlycorrectedbyday2followingmemoryupdates,
+
+Sensors2025,25,5688 22of32
+withover50%ofagentsswitchingtowalking. Fromday3onwards,studentsmaintained
+a mixed but semantically plausible modal pattern, favoring walking (12–22%) and bus
+(55–68%),withtaxiusageremainingmarginal(<5%). Thisprogressionreflectsthesystem’s
+capacityforexperience-informedadaptation.
+Overall,theseresultsvalidatethatthecognitiveframeworkenablesemergent,profile-
+awareplanningbehaviorswithouttheneedforhardcodedrules. Agentsdemonstrated
+bothhabitformationandlimitedexploration,influencedbyenvironmentalfeedbackand
+memory-drivenreflectionprocesses. MinordeviationshighlightthenuancesofLLM-based
+decision-making,wheretrade-offsbetweenmultipleprioritiescanleadtonon-intuitive
+but contextually defensible behaviors. This interpretation is consistent with the modal
+evolutioncurvesinFigure6,whereshort-liveddeviations(e.g.,theday-2busspikeamong
+FactoryWorkersortheinitialover-relianceonbusesbyStudents)gavewaytostabilized,
+profile-alignedpatternswithinthefirstsimulationweek.
+6.2. DisruptiveEvent: TaxiStrikeandAdaptiveResponse
+Toevaluatetheadaptabilityofthecognitiveagents, aseveredisruptionwasintro-
+ducedduringsimulationdays11to15: an80%reductionintaxiavailability. Specifically,
+only13outoftheoriginal64taxiagentsremainedoperational,substantiallyincreasing
+waittimesandreducingthereliabilityofon-demandtransportservices. Allwaitingtimes
+reportedinthissectionareexpressedinsimulatedminutes,followingtheacceleratedtime
+scaledefinedinSection5. InSimFleet,thetaxistrikewasoperationalizedbydeactivat-
+ing 80% of taxi agents, leading to significantly longer delays in agent pickups. Agents
+perceivedthedisruptionindirectlythroughextendedwaitingperiodsandtraveloutcome
+feedback,ratherthanviaexpliciteventnotifications. Consequently,anybehavioraladap-
+tationemergedsolelyfromexperientiallearningandmemory-basedreflection,without
+predefinedresponses.
+Figure7presentstheevolutionoftransportmodeselectionalongsidethevariationin
+taxiwaitingtimesforeachprofileimpactedbythestrike. Theresultsrevealdifferentiated
+adaptationbehaviorsacrossprofiles:
+Administrative Workers demonstrated the most effective adaptation. Following a
+sharp increase in taxi waiting times to approximately 78 simulated minutes by day 12,
+around 27–28% of these agents shifted from taxi to bus usage between days 13 and 14.
+Thismodalshiftpersistedthroughoutthedisruption,reflectingsuccessfulmemory-driven
+reflectionandstrategicre-planning. Oncetaxiservicesnormalizedafterday15,apartial
+reversion to taxi usage was observed, although bus usage remained slightly elevated
+comparedwithbaselineconditions.
+ElderlyResidentsexhibitedmoderateadaptation. Apre-existingtendencytowards
+mixedmodeusageallowedsomeresilience,withbusutilizationincreasingslightly(from
+55%tonearly58%)duringthedisruptionwindow.
+However, approximately 40–45% of elderly agents continued to attempt taxi use
+despitewaitingtimespeakingabove30simulatedminutes,reflectingastrongcomfort-
+basedinertiathatmoderatedtheirresponsivenesstoservicedegradation.
+FactoryWorkersshowednotablebuttemporaryadaptation. Initiallyhighlyreliant
+ontaxis,amarkedshifttobustransportoccurredfromday12onwards,withbususage
+increasingfrom19%toapproximately47–48%byday14. However,thisadaptationproved
+unstable: immediately after service recovery, workers reverted almost entirely to their
+original taxi preference (79% taxi usage by day 16). This indicates that the disruption
+inducedshort-termbehavioralchangesbutfailedtoproducelastinghabitreconfiguration.
+
+Sensors2025,25,5688 23of32
+100
+80
+60
+40
+20
+0
+0 5 10 15 20
+Day
+)nim(emitgnitiawixaT 100
+80
+60
+40
+20
+0
+0 5 10 15 20
+Day
+stnegafo%
+(a)AdministrativeWorker
+100
+80
+60
+40
+20
+0
+0 5 10 15 20
+Day
+)nim(emitgnitiawixaT 100
+80
+60
+40
+20
+0
+0 5 10 15 20
+Day
+stnegafo%
+(b)ElderlyResident
+100
+80
+60
+40
+20
+0
+0 5 10 15 20
+Day
+)nim(emitgnitiawixaT 100
+80
+60
+40
+20
+0
+0 5 10 15 20
+Day
+stnegafo%
+(c)FactoryWorker
+Bus Taxi Walk
+Figure7.Transportbehaviorandtaxiusageacrossdifferentuserprofiles.Linechartsrepresentmode
+selectionovertime;barchartsindicateaveragetaxiwaitingtimesperday(expressedinsimulated
+minutes,asdefinedinSection5).
+UniversityStudents,whopredominantlyreliedonwalkingandbustransportmodes
+evenunderbaselineconditions,wereminimallyaffectedbythetaxistrikeandthusarenot
+includedinthedetailedadaptationanalysis.
+Overall, whileallaffectedprofilesdemonstratedsomelevelofreactiveadaptation
+duringthedisruption,thepersistenceandconsolidationofalternativestrategiesvaried
+significantly. Thishighlightsthenuancedinterplaybetweenidentity-drivenpriorities(e.g.,
+comfort)andreactiveexperientiallearningwithinthecognitiveagentframework.
+6.3. AblationStudy
+Ablation studies are performed with the intention of evaluating the contribution
+of each individual component to the overall performance of a system. The proposed
+
+Sensors2025,25,5688 24of32
+architectureconsistsofdistinctcomponents: Agentrepresentationandidentity,theLLM
+for decision-making, the Simulator, which executes generated plans, and, finally, two
+differentmemorycomponents.Inthecontextoftheproposedarchitecture,theagentand
+simulatorcomponentscannotbedecoupled,astheyarethebasisofthearchitecture. On
+the other hand, the deactivation of the LLM component would be unaligned with the
+scope of the paper. Thus, the ablation study is designed to evaluate the impact of the
+memorymodules.
+Todiscerntheindividualimpactofeachmemorymodule,theexperimentationpre-
+sentedinSection6.2isrepeatedusingthreeframeworkvariants. Thus,eachvarianthas
+been evaluated across 20 days of simulation (320 agents, 6400 trips). The selection of
+transportmodes—bus,taxi,andwalking—remainedconsistentwiththoseadoptedinthe
+previouslydetailednon-ablationexperiments. Theevaluationoftheseexperimentswillbe
+performedbasedontheadequacyoftheframework’sdecision-making. Inthecontextof
+thecasestudy,thiswillberepresentedbythenumberofagentjourneysthataresuccessfully
+completedwithinthedesiredtimerange. Thehypothesismotivatingthisablationstudyis
+thateachindividualmemorycomponentcontributestoimprovingagentdecision-making,
+thusbeingrightfullyaddedtotheproposedarchitecturetoreproducedynamicandrealistic
+agentbehaviorinsimulations.
+Inthefollowing,welistanddescribetheframeworkvariations:
+• A1 (no memory): The system architecture is adapted for its operation without the
+memory components. Agent representation lacks short and long-term memories.
+Agents base their decision-making on Long-Horizon Weekly Plans, generated at
+the beginning of each 5-day work week. The outputs of the simulation are not
+takenintoconsideration;thatis,thereisnodailyreflection,nore-planning,andno
+patternabstraction.
+• B1(short-term): ThesystemarchitectureofA1isextendedwiththeinclusionofthe
+short-termmemorycomponent. AgentsbeginapplyingtheirLong-HorizonWeekly
+plans,but,attheendofeachsimulatedday,theirsimulationresultsaretakeninto
+accounttoapplyDailyReflectionandRe-planningforthesubsequentday,ifnecessary.
+However, no pattern abstraction is applied after each 5-day period. Thus, short-
+term memory is simply cleared out after this period, and no long-term learning
+isconsolidated.
+• Full: ThesystemarchitectureofB1isfullyextendedtoincludethelong-termmemory
+component. FortheFullscenario,thearchitectureisthesameoneemployedforthe
+experimentsofSections6.1and6.2. Agentsapplybothreflectionandre-planningafter
+eachsimulateddayandpatternconsolidationaftereach5-dayperiod.
+Table5summarizespunctualityoutcomesforeachvariantunderthedisruptionsce-
+nario(taxistrike). Resultsarepresentedaggregatingtheoutcomesofallagents,regardless
+ofitsprofilearchetype,asthealignmentoftheirbehaviortotheirprofilewasoutsidethe
+scopeoftheablationstudy.
+Table5. Ablationmetricsunder80%taxistrike(6400trips). Metrics: Early=percentageofearly
+arrivals;Late=percentageoflatearrivals;On_time=percentageofon-timearrivals;Incomplete=
+percentageoftripsnotcompleted;Completion=percentageofcompletedtrips.
+Variant Early Late On_Time Incomplete Completion
+A1 58.95% 34.25% 2.50% 4.30% 95.70%
+B1 71.95% 23.35% 3.60% 1.30% 98.70%
+Full 81.05% 14.75% 2.40% 1.80% 98.20%
+
+Sensors2025,25,5688 25of32
+Theablationstudydemonstratesaclear,stepwiseimprovementinagentperformance
+ascognitivecomponentsareadded. Introducingshort-termmemoryanddailyreflection
+(B1)reduceslatearrivalsby10.9percentagepoints(from34.25%to23.35%)anddecreases
+failed trips (“Incomplete”) by 3.0 points (from 4.3% to 1.3%). Further incorporation of
+long-term memory and weekly pattern abstraction (Full) lowers late arrivals to 14.75%
+andachievesanoverallcompletionrateof98.20%. Theseimprovementsstemprimarily
+fromtheplanner’sabilitytorefinecriticaldecisionvariables—suchasdeparturetimeand
+modechoice—basedonrecentoutcomes,whilememorymechanismsensurethatsuccessful
+strategiesareconsolidatedandreusedovermultiplecycles.
+Inthebaseline(A1),agentsre-executeafixedplanandlackfeedback:delaysorfailures
+on one day go uncorrected, leading to repeated tardiness and trip cancellations. In B1,
+episodicmemorycapturesthepreviousday’straveloutcome,enablingdailyre-planning
+that can shift the departure earlier or select a more reliable mode. Pattern abstraction
+intheFullmodelconsolidatesmulti-dayinsights,biasingfutureweeklyplanstowards
+historicallyrobustchoices. AlthoughtheFullvariantgreatlyreducedlatearrivals,itstrip
+completionratewasslightlylowerthanB1(98.2%vs. 98.7%),aslong-termhabitformation
+canoccasionallyreinforcestrategiesthatunderperformduringunexpecteddisruptions.
+Thishighlightsthetrade-offbetweenrobusthabitsandshort-termadaptabilityinmemory-
+drivenarchitectures.
+6.4. InterpretationandDesignInsightsforMemory-DrivenCognitiveAgents
+Theresultsfrombothbaselineanddisruptionscenariosprovidecriticalinsightsinto
+theeffectivenessandlimitationsoftheproposedcognitiveframeworkforurbanmobility
+simulation. First,thebaselineexperimentsconfirmedthatagentscouldformstable,profile-
+aligned behavioral patterns without hardcoded modal rules. Modal choices emerged
+organicallythroughreasoningprocessesbasedonidentityattributes,environmentalcon-
+text,andexperientialfeedback. Smallexploratoryphasesobservedduringearlysimulation
+daysfurtherreinforcetheframework’scapacityfordynamicadaptationratherthandeter-
+ministicbehavior. Underdisruptiveconditions,allaffectedprofilesexhibitedsomedegree
+ofreactiveadaptationinresponsetoenvironmentaldegradation,withadaptationemerging
+purelyfromexperience-basedperceptionofdelays,withoutexternalsignaling.
+Administrative Workers demonstrated strong and sustained modal shifts towards
+publictransport,whileElderlyResidentsshowedmoderateadaptationwithtaxisandbuses.
+Factory Workers exhibited notable but short-lived reallocation behavior, and Students
+rapidlyconvergedtowalkingandbususeafterinitialexploration. Thesedifferentiated
+responsesillustratethatagentcognitionisnotuniformlyoptimalbutrealisticallybounded
+byidentitystructures,short-termmemory,andreflectionquality. Theemergenceofboth
+resilientandinertia-drivenbehaviorsreflectsadesirableheterogeneityinagentreactions,
+enhancingtherealismofmobilitysimulations. Thisphenomenonisalignedwithrecent
+understandingsofboundedrationalityincognitivesystems[30]. Moreover, theagents’
+partialandsometimesreversibleadaptationshighlightthelimitationsofmemory-driven
+reasoningwithoutexplicitfuturepredictionmechanisms. Althoughagentsreflectedon
+dailyexperiences,theabsenceofanticipatorymechanismsmeantthattheirresponseswere
+primarilyreactiveandboundedbyimmediatefeedbackratherthanforward-looking. This
+boundedrationalitymirrorsreal-worldurbanmobility,whereadaptationstypicallyoccur
+afterdisruptionsandareconditionedbyestablishedroutines.
+Overall,thecognitiveframeworkdemonstratesstrongpotentialforsimulatingcom-
+plexhuman-likebehaviorsinurbanmobilitycontexts. Empirically,theframeworkyielded
+stableroutinesundernormalconditionsandreactiveflexibilityunderdisruptions,consis-
+tentwithbounded-rationalbehaviorinurbanmobility. However,theresultsalsopointto
+
+Sensors2025,25,5688 26of32
+areasforfutureenhancement,particularlyregardinganticipatorydecision-makingandthe
+consolidationofnewbehaviorsbeyondshort-termadaptationwindows. Theseinsights
+informboththeimmediateconclusionsandavenuesforfurtherresearch,asdiscussedin
+thenextsection.
+7. Discussion
+Basedonthestudyandexperimentsconducted,thefollowingdiscussionhighlights
+keyinsightsandchallengesobservedintheuseofLLM-drivencognitiveagents.
+7.1. LimitationsofLLM-DrivenCognitiveAgents
+Whilethecognitivearchitectureproposedinthisworkdemonstratesstrongcapabili-
+tiesinenablingexperience-basedbehavioraladaptation,severallimitationsintrinsictothe
+useofLLMsmustbecriticallyacknowledged.
+Robustness. Despitetheintegrationofstructuredfallbackmechanisms,therobustness
+ofthecognitiveagentsremainspartiallydependentontheunderlyingLLM’sperformance.
+Failuressuchasill-formedoutputs,incompleteplanningstructures,orsemanticincoher-
+enceoccasionallyoccurred,particularlywhensystemresourceswereconstrainedorprompt
+ambiguityincreased. Fallbackstrategiespreservedcontinuitybutoccasionallyintroduced
+noiseintothedata.
+Scalability. EachagentindependentlyinvokestheLLMforweeklyplanning,daily
+adaptations,reflections,andmemoryabstractions. Whilethisarchitecturesupportsrich
+individualizedcognition,itincurssubstantialcomputationalcost. Scalingthesystemto
+thousandsofagentswouldsignificantlyamplifydemandsonprocessingpower,memory,
+and,inproductionenvironments,financialcost,especiallywhenusingcommercialLLM
+APIs. Parallelizationandbatchingstrategiescouldmitigatesomeoftheseconstraints,but
+corescalabilityremainsastructuralchallenge.
+Latency. Although simulations in this study operated asynchronously, allowing
+relaxedtimingconstraints,LLMresponsetimesvariedconsiderablydependingonmodel
+sizeandsystemload.Latenciesrangedfromafewsecondstooveraminuteperdecisioncall
+duringhigh-loadscenarios. Forreal-timesimulationsorhighlyinteractiveenvironments,
+suchvariabilitycouldundermineresponsivenessandrealism.
+Dependence on External Models. The architecture inherently relies on third-party
+LLMs,eitherviaAPIsorlocaldeployments. Thisintroducesexternaldependencies,po-
+tentialsecurityrisks,andlimitedcontrolovermodelupdatesordeprecations. Incritical
+applications—suchastransportpolicyevaluationoremergencyplanningsimulations—
+suchdependenciescouldbeproblematic.
+BehavioralBiases. A furtherlimitation arisesfrom potentialbehavioral biasesem-
+beddedinLLMs,suchasimplicitpreferencesforspecifictransportmodesorstereotypical
+associationsthatarenotempiricallygrounded. Althoughourframeworkreliesonsemantic
+profilesandmemory-drivenadaptation,theselatentbiasesmaystillinfluencedecision-
+makinginsubtleways. Futureworkcouldaddressthisissuethroughmodelfine-tuning
+withdomain-specificmobilitydata,biascorrectionmechanisms,orconstrainedprompting
+strategies,ensuringthatsimulatedbehaviorsmorecloselyreflectreal-worlddiversity.
+These limitations underline the importance of continued architectural innovation,
+modelselectionrefinement,andsystemoptimizationtoensurethatLLM-drivencognitive
+agentsremainviable,scalable,andreliabletoolsforcomplexurbanmobilitysimulation.
+7.2. InterpretabilityandBehavioralTransparency
+An important challenge inherent to the proposed cognitive architecture lies in the
+interpretabilityofagentbehaviorsandthetransparencyofunderlyingdecisionprocesses.
+
+Sensors2025,25,5688 27of32
+Whileagentssuccessfullyexhibitemergent,profile-alignedmodalpatterns,themechanisms
+throughwhichindividualdecisionsareformedremainpartiallyopaque.
+EmergentVersusExplainedBehavior. Modalchoiceswerecoherent,butthespecific
+contributionofmemory,environment,oridentitytoeachdecisionremainsopaque. This
+complicatesthevalidationandauditingofsimulationresults,particularlyinapplications
+requiringhighlevelsofexplainability,suchaspublicpolicysimulation.
+ChallengeofCausalAttribution. Behavioralshiftsobservedinresponsetoenviron-
+mentaldisruptionsareplausibleandreflectexperientiallearning. However,attributing
+causality—whetherashiftresultedfromshort-termdissatisfaction,cumulativeexperiential
+thresholds,orlatentidentity-drivenheuristics—isdifficultwithoutintrusivemodelprob-
+ing. Thedistributedinfluenceofmemory,environment,andidentityintroducescomplex,
+non-lineardynamicsthatresiststraightforwardcausalexplanations.
+MemoryAbstractionComplexity. Thetransformationofepisodicexperiencesinto
+semanticmemorypatterns,althoughessentialforbehavioralgeneralization,furtherob-
+scuresinterpretability. Abstractedpatternsmayamalgamatemultipleexperientialsignals,
+makingitchallengingtoreverse-engineerspecificdecisionprecedents.
+ImplicationsforModelValidation. Limitedinterpretabilityconstrainsformalmodel
+validation. Whileemergentbehavioraltrendscanbestatisticallyanalyzed,understanding
+misalignmentsorrarebehaviorsattheagentlevelremainschallenging. Thissuggestsa
+need for enhanced monitoring tools, introspection modules, or constrained prompting
+strategiestofacilitategreaterbehavioraltransparency.
+Insights from Ablation Study. The ablation experiments under the 80% taxi strike
+scenario (see Section 6.3) reveal that introducing episodic memory and daily reflection
+reducesthenumberoflatearrivalsbynearly50%,whilealsoalmosteliminatingfailedtrips
+(seeTable5). Furtherrefinementthroughlong-termmemorylowerstardinesstolessthan
+15%,maintainingacompletionrateabove98%. Theseresultsconfirmtheroleofmemory
+in improving robustness under disruption. These findings highlight the importance of
+memorymechanismsinenhancingrobustnessunderseveredisruptions.
+Addressingthesechallengeswillbecrucialforextendingtheutilityofcognitiveagents
+indomainswheretrust,accountability,anddecisionauditingarecritical.
+7.3. DeploymentConsiderations
+The proposed framework was designed not only to model agent-level reasoning,
+butalsotosupportthesimulationoftransportpolicyinterventions. Althoughthisstudy
+focusedonvalidatingthecognitiveplanningarchitectureunderbaselineanddisruption
+conditions,theframeworkisreadilyextendabletoappliedscenariossuchasrouteredesign,
+congestionpricing,andpriorityschemesforvulnerableusers. Forinstance,futuresim-
+ulations could evaluate how agents reconfigure their routines in response to modified
+busroutesorservicefrequencies,orhowlow-incomeprofilesadapttotheintroduction
+ofdynamiccongestioncharges. Sinceagentbehaviorisdrivenbysemanticpreferences,
+memory,andenvironmentalcontext,suchinterventionscanbetestedintermsofbehavioral
+acceptability,modalreallocation,anddistributionalequity.
+Fromadeploymentperspective,thesystemistechnicallycompatiblewithhistorical
+andreal-timeurbanmobilitydatasets—suchasGTFSfeeds,ride-hailinglogs,orsensor-
+basedtrafficdata—viaintegrationwiththeSimFleetsimulationengine. Thisfacilitates
+alignmentwithreal-worldinfrastructureandserviceparameters. Nevertheless,full-scale
+operationaldeploymentwouldrequirefurtherdevelopmentinareassuchasuserinterface
+design, data pipeline integration, model calibration, and institutional adoption. These
+aspectsconstituteimportantavenuesforfuturetranslationalresearch,linkingcognitively
+enrichedsimulationwithevidence-basedpolicyevaluation.
+
+Sensors2025,25,5688 28of32
+7.4. ExperimentalScope
+Whilethecognitiveframeworkandsimulationarchitectureweredesignedtotestthe
+feasibilityofmemory-guidedbehavioralmodeling,theexperimentalconfigurationwas
+intentionally constrained. A limited set of four agent profiles and a 20-day simulation
+windowallowedforcontrolledobservationofemergentplanning,adaptation,androutine
+formation. Broader validation requires larger populations, richer profiles, and longer
+horizons(40–60days)toevaluatestability,reversibility,andemergentdynamics.
+Infuturework,weplantoconductcontrolledexperimentsthatisolateandcompare
+the impact of short-term memory, long-term abstraction, and reflective planning. This
+includesablationstudiesusingagentswithoutmemoryorwithfixedplans,inorderto
+quantifythebehavioraladaptabilityspecificallyattributabletomemoryconsolidation.
+8. ConclusionsandFutureWork
+WeevaluatedtheproposedLLM-basedcognitivearchitecture(Section4). Theresults
+show profile-consistent behaviors under baseline conditions and reactive, experience-
+drivenadaptationsduringseveredisruption,withouthardcodedmodalrules.
+Theexperimentalevaluationconsistedofsimulating320agentswithdiversesociode-
+mographicprofilesovera20-dayperiod,usingtheSimFleetplatform.Eachagentgenerated
+weeklytravelplansaccordingtoitsidentityandpastexperience,andadapteditsdaily
+choices in response to changing transport conditions, such as an abrupt 80% reduction
+in taxi availability. The results confirm that LLM-driven agents can converge toward
+profile-consistentbehaviorsandadaptreactivelyunderseveredisruptions,withoutrely-
+ingonhardcodedrules. Importantly,theablationstudydemonstratedthecriticalroleof
+short-term and long-term memory in enhancing punctuality and trip completion rates.
+Evenwithinalimited20-dayhorizon,emergentroutinesandreactiveadaptationswere
+observed,validatingtheframework’scognitiveplausibility. Theablationconfirmedthat
+short-termreflectiondrivesimmediateadaptation,whilelong-termmemorystrengthens
+punctuality. Evenifthecurrent20-daysimulationallowedfortheemergenceofmodal
+habitsandreactiveadaptation,weacknowledgethatthistimeframemaynotfullycapture
+long-termbehavioralconsolidationorinter-weekroutineevolution. Extendingthesimu-
+lationperiodto40or60dayswillenableamorecomprehensivestudyofstablepattern
+formation,disruption-inducedbehavioralshifts,andtheresilienceoflearnedstrategies
+over time. Such extensions will also allow the framework to test memory degradation,
+behavioralreversibility,andslowhabitreinforcementinmorerealisticcognitivetimelines.
+Thearchitecturecanalsobeappliedtoserviceproviderssuchasfleetmanagersor
+busoperators. Serviceproviderssuchastaxifleetmanagers,busoperators,orinfrastruc-
+turecoordinatorscouldequallyadoptmemory-drivenplanningandadaptationstrategies.
+Byintegratingmulti-horizonreasoningandexperientialreflection,serviceagentscould
+dynamicallyoptimizeoperationsinresponsetofluctuatingdemand,disruptions,orenvi-
+ronmentalchanges,enhancingbothsystemefficiencyandresilience. Futureworkincludes
+anticipatoryreasoning,introspectiveexplanationstoimprovetransparency,andextending
+profilestomarginalizedpopulationsforequity-focusedpolicyevaluation.
+Scalabilityremainsacriticalfocus: optimizingLLMinvocationstrategies,exploring
+lightweight model alternatives, and developing efficient batching mechanisms will be
+essentialforsimulatinglarge-scaleurbanpopulations. Finally,extendingtheframeworkto
+simulatepolicyinterventions,multimodalsystemdesigns,andcoordinatedagentbehaviors
+acrossheterogeneousrolesrepresentsanexcitingavenueforfutureresearch,bridgingurban
+mobilitysimulationwithcognitivemodelingandartificialsocialsystems.
+
+Sensors2025,25,5688 29of32
+AuthorContributions: Conceptualization,C.C.andP.M.;methodology,C.C.andJ.J.;software,C.C.
+andJ.P.;validation,C.C.,J.P.andJ.J.;formalanalysis,C.C.;investigation,C.C.andP.M.;resources,
+P.M.andJ.P.;writing—originaldraftpreparation,C.C.andP.M.;writing—reviewandediting,C.C.,
+J.J.,andV.J.;visualization,C.C.andJ.J.;supervision,V.J.;fundingacquisition,V.J.Allauthorshave
+readandagreedtothepublishedversionofthemanuscript.
+Funding:ThisworkwaspartiallysupportedbytheSpanishGovernmentthroughgrantPID2021-
+123673OB-C31(MCIN/AEI/10.13039/501100011033)andtheEuropeanRegionalDevelopmentFund
+(ERDF,“AwayofmakingEurope”).AdditionalsupportwasprovidedbygrantTSI-100930-2023-9
+fromthe“SecretaríadeEstadodeDigitalizacióneInteligenciaArtificial,CátedraENIA-UPV”,andby
+thePAID-01-22programmefortherecruitmentofdoctorswithintheSpanishScienceandTechnology
+SystemattheUniversitatPolitècnicadeValència.
+InstitutionalReviewBoardStatement:Notapplicable.
+InformedConsentStatement:Notapplicable.
+DataAvailabilityStatement: Nonewdatawerecreatedoranalyzedinthisstudy.Datasharingis
+notapplicabletothisarticle.
+ConflictsofInterest:Theauthorsdeclarenoconflictsofinterest.
+AppendixA.ImplementationandExecutionDetails
+Thisappendixoutlinesthetechnicalunderpinningsforconfiguring,executing,and
+reproducingexperimentsusingtheSimFleetplatformalongsidethecognitiveframework.
+Ithighlightstheprincipalconfigurationstructuresandintegrationprinciplesthatunderpin
+scientifictransparencyandreproducibility.
+AppendixA.1. SimFleetConfigurationFile
+SimFleetscenariosaredefinedviastructuredJSONconfigurationfiles,withthecentral
+filebeingsimfleet_config.json. Thisfilespecifiesallessentialsimulationentitiesand
+theirinterrelations,includingthefollowing:
+• fleets: Describeseachfleetoperator,specifyingidentifiersandfleettype(e.g.,buses).
+• transports: Listsindividualvehiclesoragents,detailingtheirtype,operationalclass,
+strategy,location,speed,andotheroperationalparameters.
+• customers: Enumeratescustomeragents,eachwithattributessuchasclass,strategy,
+position,anddestination.
+Thismodularstructureallowsforflexibleandprecisedefinitionofmultimodalurban
+mobilityscenarios,enablingscenario-specificadaptationsandextensions.
+AppendixA.2. FrameworkConfigurationFileStructure
+ThecognitiveframeworkemploysadditionalJSONfilestodefinesimulationparame-
+tersandagentbehaviors:
+• framework_config.json: Specifiessimulationenvironmentsettings, agentactions,
+AImodelparameters(includingLLMmodelselectionandendpoints),andpossible
+environmentalevents(e.g.,specialdisruptions).
+• profiles.json: Containsdetailedagentprofiles,includingsociodemographicdata,
+individual mobility preferences, and available transport modes, thus supporting
+heterogeneoussimulationpopulations.
+Collectively,theseconfigurationfilesenablereproducible,modular,andextensible
+scenariodefinitionswithinthecognitiveframework. Comprehensivedocumentationand
+examplesareavailableintheconfigurationrepository.
+
+Sensors2025,25,5688 30of32
+AppendixA.3. ReproducibilityandIntegration
+Allscenariospecificationswithinthecognitiveframeworkareexternalizedinversion-
+controlledconfigurationfiles,therebyfacilitatingfullreproducibilityofexperiments. This
+designalsoenablesseamlessintegrationwithexternalmodules,suchasalternativeLLM
+providers or custom agent strategies, by permitting dynamic references to models, ac-
+tions,andenvironmentswithintheconfigurationfiles. Thisapproachensuresthatsim-
+ulation setups, agent behaviors, and experimental conditions remain transparent and
+readilyshareable.
+Thecompletesourcecodeandsampleconfigurationsareavailableinthefollowing
+repositories:
+• https://github.com/javipalanca/simfleet(accessedon17July2025)
+• https://github.com/cvcalderon/simfleetdatabridge(accessedon17July2025)
+• https://github.com/cvcalderon/simfleetdatabridge_config(accessedon17July2025)
+AppendixB.Memory-GuidedPlanningCaseStudy
+Thisappendixpresentsdetailedsimulationoutcomesfortheagent
+administrativeworkerm4, covering all planning, execution, and reflection cycles over
+a four-week simulation. The case illustrates the memory-guided cognitive loop in
+fulloperation.
+AppendixB.1. Week1: ExploratoryPlanninginAbsenceofExperience
+Asnolong-termmemoryexistedatthestartofthesimulation,theagentgeneratedits
+weeklyplanbasedexclusivelyonsemanticidentity. Theplanshowedexploratoryfeatures:
+taxisonmostdays,butonebustriponThursday,andsmallvariationsindeparturetime.
+TableA1.Week1decisionsandoutcomesforadministrativeworkerm4.
+Day Mode Departure Arrival ReflectionSummary
+Monday Taxi 07:32AM 08:10AM Arrived35minearly;reliable.
+Tuesday Taxi 07:32AM 07:57AM Efficient;confirmedplaneffectiveness.
+Wednesday Taxi 07:46AM 08:09AM Consistentperformance.
+Arrived11minlate;questionedbus
+Thursday Bus 08:21AM 08:56AM
+reliability.
+Friday Taxi 07:35AM 07:58AM Earlyarrival;taxistrategyreaffirmed.
+AppendixB.2. Week2: Taxi-BasedRoutineandStrategyConsolidation
+Followingthereflectionsstoredinshort-termmemoryandtheabstractedlong-term
+memory from Week 1, the agent shifted to a consistent strategy using taxis only, with
+standardizeddepartureat07:32AM.Allarrivalsoccurredbetween07:57and08:09AM,
+indicatingstability.
+Memoryabstraction:“Theuserarrivedearlyeverydayusingtaxis. Thispatternmeets
+punctualitygoalsandoffersreliabletravelduration.”
+AppendixB.3. Week3: DisruptionandModeShift
+InWeek3,thesimulatedenvironmentexperiencedataxishortageduetoadisruption.
+Theagentmaintaineditspreferredplaninitially,butonThursdayswitchedtoabustoavoid
+extensivedelays. Reflectionsrecognizedthevulnerabilityoftaxirelianceunderdisruption.
+Memoryabstraction: “Taxisaregenerallyreliablebutfailedduringdisruption. Abus
+fallbackmaybewarrantedinhigh-riskperiods.”
+
+Sensors2025,25,5688 31of32
+AppendixB.4. Week4: RecoveryandReconfirmationofRoutine
+In Week 4, the agent returned to its taxi-based strategy. Although one entry was
+markedasabustrip,thereflectionindicatedthatataxiwasactuallyused,reaffirmingthe
+patternestablishedinpreviousweeks. Arrivalsremainedconsistentlyearly(between07:57
+and08:05AM).
+Memory abstraction: “The established routine continues to meet time constraints.
+Confidenceinplaneffectivenessishigh.”
+AppendixB.5. Multi-WeekMemory-GuidedAdaptation
+Theweeklymemoryabstractionsstoredinlong-termmemoryareasfollows:
+• Week1: Taxisensuredpunctuality;buscausedlateness.
+• Week2: Fullytaxi-basedstrategyconfirmedasreliable.
+• Week3: Taxifailureduringdisruptionjustifiedbusfallback.
+• Week4: Taxiroutinereaffirmed;continuedearlyarrivals.
+AppendixB.6. BehavioralSummary
+Thefullcognitiveplanningloopwasobserved:
+• Initialexplorationwithoutmemoryguidance.
+• Formationofastablemodalstrategyalignedwithuseridentity.
+• Experience-basedadaptationduringexternaldisruption.
+• Reinforcementandreuseofsuccessfulstrategiesviamemoryabstraction.
+Thiscaseprovidesempiricalgroundingforthearchitecture’smechanismsofreflection,
+adaptation,andmemory-drivenbehavioralmodeling.
+References
+1. UnitedNations.WorldSocialReport2024|DepartmentofEconomicandSocialAffairs.Availableonline:https://www.un.org/
+development/desa/dpad/publication/world-social-report-2024/(accessedon18March2025).
+2. Faheem,H.B.;Shorbagy,A.M.E.;Gabr,M.E.Impactoftrafficcongestionontransportationsystem:Challengesandremediations—
+Areview.MansouraEng.J.2024,49,18.[CrossRef]
+3. Xia,F.;Cheng,X.;Lei,Z.;Xu,J.;Liu,Y.;Zhang,Y.;Zhang,Q.Heterogeneousimpactsoflocaltrafficcongestiononlocalair
+pollutionwithinacity:Utilizingtaxitrajectorydata.J.Environ.Econ.Manag.2023,122,102896.[CrossRef]
+4. Divasson-J.,A.;Macarulla,A.M.;Garcia,J.I.;Borges,C.E.Agent-basedmodelinginurbanhumanmobility:Asystematicreview.
+Cities2025,158,105697.[CrossRef]
+5. Gao,C.;Lan,X.;Li,N.;Yuan,Y.;Ding,J.;Zhou,Z.;Xu,F.;Li,Y.Largelanguagemodelsempoweredagent-basedmodelingand
+simulation:Asurveyandperspectives.Humanit.Soc.Sci.Commun.2024,11,1259.[CrossRef]
+6. Wang,H.;Gao,C.;Wu,Y.;Jin,D.;Yao,L.;Li,Y.PateGail: Aprivacy-preservingmobilitytrajectorygeneratorwithimitation
+learning.Proc.AAAIConf.Artif.Intell.2023,37,14539–14547.[CrossRef]
+7. Zhao,D.;Zhou,W.;Wang,W.;Hua,X.TrippurposepredictionusingtravelsurveydatawithPOIinformationviagradient
+boostingdecisiontrees.IETIntell.Transp.Syst.2024,18,269–289.[CrossRef]
+8. Zhang,K.;Pang,Y.;Zhang,Y.;Sekimoto,Y.MobGLM:Alargelanguagemodelforsynthetichumanmobilitygeneration. In
+Proceedingsofthe32ndACMInternationalConferenceonAdvancesinGeographicInformationSystems,SIGSPATIAL’24,
+Atlanta,GA,USA,29October–1November2024;AssociationforComputingMachinery:NewYork,NY,USA,2024;pp.629–632.
+[CrossRef]
+9. Li,W.;Ding,L.;Zhang,Y.;Pu,Z.Understandingmultimodaltravelpatternsbasedonsemanticembeddingsofhumanmobility
+trajectories.J.Transp.Geogr.2025,124,104169.[CrossRef]
+10. Luo,Y.;Cao,Z.;Jin,X.;Liu,K.;Yin,L.Decipheringhumanmobility: Inferringsemanticsoftrajectorieswithlargelanguage
+models.InProceedingsofthe202425thIEEEInternationalConferenceonMobileDataManagement(MDM),Brussels,Belgium,
+24–27June2024;IEEE:Piscataway,NJ,USA,2024;pp.289–294.[CrossRef]
+11. Zhong,X.;Xiang,Y.;Yi,F.;Li,C.;Yang,Q.HMP-LLM:Humanmobilitypredictionbasedonpre-trainedlargelanguagemodels.
+InProceedingsofthe2024IEEE4thInternationalConferenceonDigitalTwinsandParallelIntelligence(DTPI),Wuhan,China,
+18–20October2024;IEEE:Piscataway,NJ,USA,2024;pp.687–692.[CrossRef]
+
+Sensors2025,25,5688 32of32
+12. Zhao,A.;Huang,D.;Xu,Q.;Lin,M.;Liu,Y.J.;Huang,G.ExpeL:LLMagentsareexperientiallearners.Proc.AAAIConf.Artif.
+Intell.2024,38,19632–19642.[CrossRef]
+13. Gong,L.;Lin,Y.;Zhang,X.;Lu,Y.;Han,X.;Liu,Y.;Guo,S.;Lin,Y.;Wan,H.Mobility-LLM:Learningvisitingintentionsandtravel
+preferencefromhumanmobilitydatawithlargelanguagemodels.Adv.NeuralInf.Process.Syst.2024,37,36185–36217.
+14. Yang,H.;Wu,R.;Xu,W.TransCompressor:LLM-poweredmultimodaldatacompressionforsmarttransportation.InProceedings
+ofthe30thAnnualInternationalConferenceonMobileComputingandNetworking,ACMMobiCom’24,Washington,DC,USA,
+18–22November2024;AssociationforComputingMachinery:NewYork,NY,USA,2024;pp.2335–2340.[CrossRef]
+15. Li,X.;Wang,S.;Zeng,S.;Wu,Y.;Yang,Y.AsurveyonLLM-basedmulti-agentsystems:Workflow,infrastructure,andchallenges.
+Vicinagearth2024,1,9.[CrossRef]
+16. Li,S.;Azfar,T.;Ke,R.ChatSUMO:Largelanguagemodelforautomatingtrafficscenariogenerationinsimulationofurban
+mobility.IEEETrans.Intell.Veh.2024,1–12.[CrossRef]
+17. Huang,E.;Yin,Z.;Broaddus,A.;Yan,X.Sharede-scootersasalast-miletransitsolution? TravelbehaviorinsightsfromLos
+AngelesandWashington,D.C.TravelBehav.Soc.2024,34,100663.[CrossRef]
+18. Jafarzadehfadaki,M.;Sisiopiku,V.P.Embracingurbanmicromobility:Acomparativestudyofe-scooteradoptioninWashington,
+D.C.,Miami,andLosAngeles.UrbanSci.2024,8,71.[CrossRef]
+19. Yang,W.;Jafarzadehfadaki,M.;Yan,X.;Zhao,X.;Jin,X.;Frolich,D.;Sisiopiku,V.P.Sharede-scooterusercharacteristicsand
+usagepatternsacrossfourU.S.cities.Transp.Res.Rec.2024,2678,196–207.[CrossRef]
+20. Ma,H.;Liu,Y.;Jiang,Q.;He,B.Y.;Liao,X.;Ma,J.MobilityAIagentsandnetworks.IEEETrans.Intell.Veh.2024,9,5124–5129.
+[CrossRef]
+21. Martí,P.;Ibáñez,A.;Julián,V.;Novais,P.;Jordán,J.BusridershippredictionandscenarioanalysisthroughMLandmulti-agent
+simulations.ADCAIJAdv.Distrib.Comput.Artif.Intell.J.2024,13,e31866.[CrossRef]
+22. Martí, P.; Jordán, J.; Palanca, J.; Julián, V. Load generators for automatic simulation of urban fleets. In Proceedings of the
+International Conference on Practical Applications of Agents and Multi-Agent Systems, L’Aquila, Italy, 7–9 October 2020;
+Springer:Cham,Switzerland,2020;pp.394–405.[CrossRef]
+23. Martí,P.;Jordán,J.;Palanca,J.;Julián,V.Chargingstationsandmobilitydatageneratorsforagent-basedsimulations.Neurocom-
+puting2022,484,196–210.[CrossRef]
+24. Hatalis,K.;Christou,D.;Myers,J.;Jones,S.;Lambert,K.;Amos-Binks,A.;Dannenhauer,Z.;Dannenhauer,D.Memorymatters:
+Theneedtoimprovelong-termmemoryinLLM-agents.Proc.AAAISymp.Ser.2023,2,277–280.[CrossRef]
+25. Hou,Y.;Tamoto,H.;Miyashita,H.“Myagentunderstandsmebetter”: Integratingdynamichuman-likememoryrecalland
+consolidationinLLM-basedagents.InProceedingsoftheCHIEA’24:ExtendedAbstractsoftheCHIConferenceonHuman
+FactorsinComputingSystems,Honolulu,HI,USA,11–16May2024;pp.1–7.[CrossRef]
+26. Paul, S.K. Continually learning planning agent for large environments guided by LLMs. In Proceedings of the 2024 IEEE
+ConferenceonArtificialIntelligence(CAI),Singapore,25–27June2024;IEEE:Piscataway,NJ,USA,2024;pp.377–382.[CrossRef]
+27. Zhang,Q.;Guo,B.;Jing,Y.;Liu,Y.;Yu,Z.MindMemory:AugmentedLLMwithlong-termmemoryandmentalpersonality.In
+ComputerSupportedCooperativeWorkandSocialComputing;Sun,H.,Fan,H.,Gao,Y.,Wang,X.,Liu,D.,Du,B.,Lu,T.,Eds.;Springer
+Nature:Singapore,2025;pp.462–476.[CrossRef]
+28. Palanca,J.;Terrasa,A.;Carrascosa,C.;Julián,V.SimFleet:AnewtransportfleetsimulatorbasedonMAS.InHighlightsofPractical
+ApplicationsofSurvivableAgentsandMulti-AgentSystems.ThePAAMSCollection;DeLaPrieta,F.,González-Briones,A.,Pawleski,P.,
+Calvaresi,D.,DelVal,E.,Lopes,F.,Julián,V.,Osaba,E.,Sánchez-Iborra,R.,Eds.;Springer:Cham,Switzerland,2019;pp.257–264.
+[CrossRef]
+29. Calderón, C.; Martí, P.; Jordán, J.; Palanca, J.; Julián, V. Redefining transportation modelling with advanced agent-based
+simulations.InAmbientIntelligence—SoftwareandApplications—ISAmI2025;Novais,P.,Parameshachari,B.D.,Satoh,I.,Julián,V.,
+RodríguezGonzález,S.,JovePérez,E.,ParraDomínguez,J.,Chamoso,P.,Alonso,R.S.,Eds.;Springer:Cham,Switzerland,2025;
+pp.251–262.[CrossRef]
+30. Simon,H.A.ModelsofBoundedRationality,Volume3:EmpiricallyGroundedEconomicReason;TheMITPress:Cambridge,MA,USA,
+1997;pp.291–295.
+Disclaimer/Publisher’sNote: Thestatements, opinionsanddatacontainedinallpublicationsaresolelythoseoftheindividual
+author(s)andcontributor(s)andnotofMDPIand/ortheeditor(s).MDPIand/ortheeditor(s)disclaimresponsibilityforanyinjuryto
+peopleorpropertyresultingfromanyideas,methods,instructionsorproductsreferredtointhecontent.

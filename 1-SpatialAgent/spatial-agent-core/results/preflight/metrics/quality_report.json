@@ -1,0 +1,89 @@
+{
+  "metric_correlation": {
+    "connectivity": {
+      "connectivity": 1.0,
+      "integration": 0.8525,
+      "mean_depth": -0.8525,
+      "control_value": 0.815,
+      "openness": 0.6668
+    },
+    "integration": {
+      "connectivity": 0.8525,
+      "integration": 1.0,
+      "mean_depth": -1.0,
+      "control_value": 0.4026,
+      "openness": 0.8235
+    },
+    "mean_depth": {
+      "connectivity": -0.8525,
+      "integration": -1.0,
+      "mean_depth": 1.0,
+      "control_value": -0.4026,
+      "openness": -0.8235
+    },
+    "control_value": {
+      "connectivity": 0.815,
+      "integration": 0.4026,
+      "mean_depth": -0.4026,
+      "control_value": 1.0,
+      "openness": 0.2964
+    },
+    "openness": {
+      "connectivity": 0.6668,
+      "integration": 0.8235,
+      "mean_depth": -0.8235,
+      "control_value": 0.2964,
+      "openness": 1.0
+    }
+  },
+  "distribution": {
+    "connectivity": {
+      "mean": 2.6666666666666665,
+      "std": 1.0110500592068734,
+      "min": 1.0,
+      "max": 5.0,
+      "cv": 0.37914377220257756
+    },
+    "integration": {
+      "mean": 0.4023687216386707,
+      "std": 0.06988341915645824,
+      "min": 0.2857142857142857,
+      "max": 0.5384615384615384,
+      "cv": 0.17368004866743575
+    },
+    "mean_depth": {
+      "mean": 2.571428571428571,
+      "std": 0.5050762722761054,
+      "min": 1.8571428571428572,
+      "max": 3.5,
+      "cv": 0.19641855032959657
+    },
+    "control_value": {
+      "mean": 0.9999999999999999,
+      "std": 0.4674596437325028,
+      "min": 0.3333333333333333,
+      "max": 1.6666666666666665,
+      "cv": 0.46745964373250287
+    },
+    "openness": {
+      "mean": 0.526,
+      "std": 0.23323235910424892,
+      "min": 0.18,
+      "max": 0.95,
+      "cv": 0.4434075268141614
+    }
+  },
+  "high_control_quantile": 0.8,
+  "high_control_threshold": 1.6666666666666665,
+  "high_control_nodes": [
+    "archive_room",
+    "garden_nook",
+    "plaza_center",
+    "watch_gate"
+  ],
+  "high_control_count": 4,
+  "low_discrimination_metrics": [
+    "integration",
+    "mean_depth"
+  ]
+}

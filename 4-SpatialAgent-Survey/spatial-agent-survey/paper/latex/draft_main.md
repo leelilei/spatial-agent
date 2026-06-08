@@ -1,0 +1,739 @@
+---
+title: "Spatial Configuration and Social Behavior in LLM-Agent Systems"
+subtitle: "Compact Conference-Style Draft"
+author: "Anonymous Authors"
+date: "2026-05-01"
+documentclass: article
+classoption:
+  - twocolumn
+geometry:
+  - top=1in
+  - bottom=1in
+  - left=0.75in
+  - right=0.75in
+toc: false
+numbersections: true
+header-includes:
+  - \AtBeginDocument{\fontsize{9}{10.5}\selectfont}
+  - \usepackage{graphicx}
+  - \usepackage{booktabs}
+  - \usepackage{array}
+  - \usepackage{float}
+  - \usepackage{xcolor}
+  - \usepackage{caption}
+---
+
+
+
+# Introduction
+
+
+
+\begin{table*}[t]
+\centering
+\caption{Table 1. Multi-Survey Positioning Matrix}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.175\textwidth}|>{\raggedright\arraybackslash}p{0.175\textwidth}|>{\raggedright\arraybackslash}p{0.175\textwidth}|>{\raggedright\arraybackslash}p{0.175\textwidth}|>{\raggedright\arraybackslash}p{0.175\textwidth}@{}}
+\toprule
+Neighboring review area & Representative local source(s) & Main focus in that review space & How space is usually treated & Gap this survey targets \\
+\midrule
+Spatial intelligence across scales & 01\_Feng2025\_Spatial\_Intelligence\_Across\_Scales.pdf & Broad spatial intelligence, smart-city contexts, embodied and multi-scale AI systems & Space is a broad capability domain across scales and applications & Does not center agent-accessible spatial representation in LLM-agent social simulation. \\
+LLM multi-agent systems & 02\_Guo2024\_LLM\_Multi\_Agents\_Survey.pdf & Agent architectures, collaboration, communication, planning, and multi-agent coordination & Space is one possible environment feature among many & Does not provide a fine-grained spatial representation taxonomy or evidence map. \\
+LLM game agents and NPCs & 03\_Hu2024\_LLM\_Game\_Agents\_Survey.pdf & Game agents, NPC behavior, sandbox worlds, and perception-action loops & Space appears through game worlds, locations, and embodied interaction & Does not separate backend world richness from what the agent actually receives. \\
+LLM-ABM and simulation & 04\_Gao2024\_LLM\_ABM\_Simulation\_Survey.pdf & Connections between LLM agents, ABM, simulation domains, and evaluation challenges & Environment structure is part of simulation design & Does not isolate configuration-level or agent-facing spatial input as the main analytic object. \\
+LLM social simulation & 05\_Mou2024\_Social\_Simulation\_LLM\_Agents\_Survey.pdf & Individual, scenario, and society-level social simulation with LLM agents & Social context is central; spatial structure is usually secondary & Does not ask whether spatial representation mediates social behavior. \\
+Social-agent evaluation and game theory & 06\_Feng2024\_Social\_Agents\_Game\_Theory\_Survey.pdf & Evaluation, interaction settings, and game-theoretic social behavior & Space is not the primary organizing dimension & Useful for evaluation framing, but not for spatial representation coverage. \\
+General LLM-agent methodology & 07\_Luo2025\_LLM\_Agent\_Methodology\_Survey.pdf & Agent methodology, collaboration, evolution, and evaluation ecosystems & Environment is part of agent design, not the central variable & Does not map L0-L5 agent-facing spatial representation. \\
+VLN and navigation & 08\_Gu2022\_VLN\_Survey.pdf; 09\_Zhang2024\_VLN\_Foundation\_Models\_Survey.pdf & Navigation tasks, embodied perception, route following, and foundation-model era navigation & Space is central, but mostly as navigation and world-modeling & Navigation success does not directly establish spatially mediated social behavior. \\
+VLA / embodied AI & 10\_Ma2024\_VLA\_Embodied\_AI\_Survey.pdf & Vision-language-action systems, embodied interfaces, robotic or simulated action & Geometry and embodiment are often central & Embodied action evidence does not by itself answer LLM social-simulation claims. \\
+LLM-agent scoping / architecture reviews & 11\_Silacci2026\_LLM\_Agents\_Scoping\_Review.pdf; 12\_Leiser2025\_LLM\_Architectures\_Scoping\_Review.pdf; 13\_TudorCar2020\_Conversational\_Agents\_Scoping\_Review.pdf & Scoping-review method, architecture dimensions, conceptual mapping, and outcome tables & Space is usually not the focal taxonomy & Provides reporting models, but not the WHERE-focused evidence map. \\
+This survey & Current evidence map and appendix assets & Agent-accessible spatial representation in LLM-agent social simulation & Space is coded by what agents receive: L0-L5, backend vs interface, layer and evidence status & Defines the WHERE gap: current systems stage social worlds, but rarely expose agent-facing global configuration or evaluate it under controlled social-behavior comparisons. \\
+\bottomrule
+\end{tabular}
+
+\label{tab:table-1-multi-survey-positioning-matrix}
+\end{table*}
+
+
+
+
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.94\textwidth,height=0.62\textheight,keepaspectratio]{../figures/gpt\_image\_2/figure\_1\_where\_gap\_claim\_architecture\_gpt\_image\_2\_v3.png}
+\caption{Figure 1. WHERE gap and evidence-role architecture. The survey maps a missing intersection between spatial-configuration theory, LLM spatial capability work, and LLM multi-agent social simulation: agent-facing spatial configuration linked to observed social behavior. The main evidence map is built from `Core` rows, separated into strict `anchor\_core` and lower-weight `bridge\_core` layers. `Adjacent` work supports feasibility and boundary reasoning, while `Foundational` work supports theory and transferable hypotheses. The figure defines a descriptive and gap-oriented claim architecture rather than a causal proof.}
+\label{fig:1}
+\end{figure*}
+
+
+LLM-based agents are increasingly used to build simulated towns, game worlds, virtual communities, social NPCs, embodied assistants, and agent-based social simulations. Many of these systems are spatial in an everyday sense: agents occupy places, move through environments, encounter others nearby, respond to scene context, or act inside rendered worlds. Yet the presence of a spatial world does not by itself answer a more specific question: what spatial structure is actually available to the agent, and what evidence shows that this structure changes social behavior?
+
+This review focuses on that question. Its starting point is a gap between three neighboring literatures. Space Syntax and related spatial-simulation traditions provide concepts for studying how configuration, accessibility, depth, visibility, and route structure may shape movement and encounter in physical environments. LLM spatial-reasoning and spatially aware agent work asks whether models can interpret or act on spatial inputs. LLM multi-agent and social-simulation work builds populations of language agents that interact, coordinate, move, and sometimes produce emergent social patterns. What remains underdeveloped is the intersection: agent-facing spatial configuration linked to observed social behavior in LLM multi-agent systems.
+
+We call this the WHERE gap. The issue is not simply whether LLM agents can answer spatial questions, nor whether multi-agent systems can be placed inside maps or 3D environments. The issue is where spatial information enters the agent loop: as a place label, a semantic scene description, local adjacency, co-presence, global abstract structure, geometry-bearing perception, or something else. Without this interface-level distinction, a visually rich simulator can be mistaken for a configurationally rich agent system, and a reported social pattern can be overread as evidence of spatial mediation.
+
+## 1.1 Research Question and Scope
+
+The guiding question is:
+
+> What is known, what is missing, and what is needed to study how spatial configuration may shape social behavior in LLM multi-agent systems?
+
+The wording is deliberately cautious. This paper does not ask whether spatial configuration has already been shown to shape LLM-agent societies in a general or causal sense. The current evidence base is not mature enough for that claim. Instead, the paper asks a scoping-review question: how existing systems represent space at the agent interface, which social behaviors they study, what evidence status their results support, and what future studies would need before stronger spatial-behavior claims become available.
+
+The review therefore treats "space" as an agent-accessible representation problem rather than only an environment-design problem. A system may contain a 3D engine, a graph backend, a grid, a map, or a narrative setting. Those backend forms matter, but they are not the coding target by themselves. The coding target is what the agent can consume while perceiving, reasoning, planning, communicating, or acting. This is why the review distinguishes environment-side richness from agent-facing spatial structure throughout the paper.
+
+The social side is also bounded. The review is concerned with socially relevant behavior: dialogue, co-presence, cooperation, conflict, partner choice, mobility with social consequences, group formation, role differentiation, information exposure, or emergent social structure. Pure navigation, path planning, robot control, or single-agent spatial reasoning is included only as adjacent feasibility evidence unless it connects directly to multi-agent social behavior.
+
+## 1.2 Relation to Existing Surveys
+
+Existing surveys cover much of the surrounding territory. Spatial-intelligence surveys map broad capability domains across scales. LLM multi-agent surveys emphasize agent architectures, collaboration, communication, planning, and coordination. Game-agent and NPC surveys discuss sandbox worlds, perception-action loops, and character behavior. LLM-ABM and social-simulation surveys organize the emerging simulation literature around individuals, scenarios, societies, evaluation, and applications. Navigation and embodied-AI surveys treat space as central, but usually through route following, perception, action, and task success rather than social behavior.
+
+Table 1 positions this review against those neighboring survey areas. The difference is not that previous surveys ignore environments entirely. Many of them discuss environments, embodiment, games, navigation, and simulation settings. The difference is the analytic object. This review centers agent-accessible spatial representation as the bridge between environment design and social-behavior claims. It asks what agents receive, what behavior is measured, and what level of evidence connects the two.
+
+This positioning also clarifies what the paper does not try to do. It is not a general survey of LLM agents, a full survey of spatial reasoning benchmarks, a comprehensive Space Syntax tutorial, or a navigation survey. It uses each of those literatures only to the extent needed for the WHERE problem. Space Syntax supplies transferable concepts and hypotheses. Adjacent spatial-reasoning work supplies feasibility boundaries. Core LLM-agent social-simulation papers supply the evidence map.
+
+## 1.3 Review Design and Evidence Roles
+
+The review is designed as a scoping review with a structured evidence map rather than as an effect-size synthesis. The corpus is separated into three evidence roles before claims are made. `Core` papers describe LLM multi-agent systems with identifiable spatial environments and socially relevant behavior. These form the main evidence map. `Adjacent` papers include spatial reasoning, spatially aware agents, embodied or boundary systems, and related work that informs feasibility or scope. They do not count as direct evidence for multi-agent social effects. `Foundational` papers include Space Syntax, physical-space empirical work, and earlier spatial-simulation traditions. They motivate hypotheses and vocabulary, not direct claims about LLM-agent systems.
+
+Figure 1 summarizes this role separation. Within the main evidence map, the Core corpus is further divided into a strict `anchor_core` and a widened `bridge_core`. The strict anchor supports the cleanest descriptive mapping and strict-gap claims. The bridge layer broadens coverage but carries lower evidential weight and must remain explicitly qualified. Boundary cases such as `HC01` and `TW-02` are retained for scope discipline but do not enter the stable widened-Core evidence map.
+
+The review also separates two counting units. Bibliographic screening is paper-level. Evidence-map coding is row-level, using `system / environment configuration` as the unit of analysis. This distinction is necessary because one paper or system family may expose more than one spatial interface. The current screening summary starts from `417` screened records, assigning `12` to `Core`, `42` to `Adjacent`, `47` to `Foundational`, and `316` to exclusion categories. After full-text rechecks, targeted widening, and boundary adjudication, the stable widened Core used for the evidence map contains `32` paper-level sources and `34` coded rows, with `19` `anchor_core` rows and `15` `bridge_core` rows.
+
+The closure status is also part of the scope boundary. Most rows now have local PDF or full-text-derived closure cards, but `BK02` remains a source-note-only bridge row pending full-text acquisition or downgrade. It is retained only as lower-weight bridge context and should not carry strong evidence claims.
+
+The representation taxonomy runs from `L0` to `L5`. `L0` means no spatial input. `L1` means place or action labels. `L2` means semantic scene description without explicit topology. `L3` means local relational structure such as adjacency, co-presence, nearby agents, or local movement options. `L4` means agent-facing global abstract structure such as integration, depth, control, choice, network position, or other configuration-level information. `L5` means geometry-bearing or embodied input consumed by the agent, such as coordinates, visual fields, physical constraints, or equivalent position-bearing state. The levels are not a quality ladder. They are a coding scheme for structural explicitness at the agent interface.
+
+## 1.4 Main Findings Preview
+
+The evidence map supports a careful descriptive finding. Current LLM-agent social simulations are not spatially empty. Many systems stage activity in places, neighborhoods, game worlds, social VR environments, towns, grids, graphs, or 3D scenes. Some report spatially relevant outcomes. Across the stable widened Core, the evidence map contains `19` `observed_effect` rows and `15` `designed_affordance_only` rows.
+
+The sharper finding is representational. The corpus is concentrated at local and mid-structure interfaces rather than at explicit configurational input. Across `34` coded rows, the representation distribution is `L1 = 1`, `L2 = 8`, `L3 = 18`, `L4 = 1`, and `L5 = 6`. In the strict `anchor_core`, `15` of `19` rows are `L3`, with no `L4` rows. Under the widened reading, the only `L4` case appears in the bridge layer as a digital-network case, not as strict anchor evidence for physical-layout Space Syntax mediation. The correct conclusion is not that space is absent, and not that the `L4` gap is solved. The correct conclusion is that agent-facing global abstract structure remains highly underexplored.
+
+This matters because social behavior claims depend on the representation level. A local co-presence or adjacency interface can support claims about local opportunity, encounter, or situated interaction. It does not automatically support claims about depth, integration, choice, control, or configuration-wide position. A 3D backend may support embodied interaction, but it does not automatically mean the LLM receives geometry. The bridge `L5` rows are also heterogeneous: platform support, embodied cooperation, and VR guidance should not be collapsed into a single social-mediation result. A graph backend may support analysis, but it does not count as `L4` unless global abstract structure is agent-facing.
+
+The review's agenda follows from this mismatch. Adjacent evidence suggests that richer spatial input is technically plausible, but feasibility is not validation. Space Syntax offers transferable hypotheses, but physical-space findings are not direct evidence for LLM-agent societies. Current social-simulation systems show many ways space can scaffold interaction, but stronger claims require matched controls. Future studies need to specify what agents receive, compare representation levels, measure behavior at movement, encounter, interaction, and macro-social scales, and replicate across layouts, tasks, models, populations, and seeds.
+
+## 1.5 Contributions and Organization
+
+The paper makes three contributions. First, it provides a structured evidence map of agent-accessible spatial representation in LLM-agent social-simulation systems, explicitly separating backend richness from what agents consume. Second, it connects Space Syntax and spatial-simulation concepts to LLM-agent research as transferable hypotheses rather than as direct evidence. Third, it proposes a research agenda and evaluation ladder for moving from spatial affordance to spatial sensitivity, spatial mediation, and eventually replicated mechanism.
+
+The rest of the paper is organized accordingly. Section 2 introduces the minimal Space Syntax concepts needed for the review and states the transfer boundary. Section 3 presents the review protocol, representation taxonomy, and main evidence map. Section 4 asks whether richer spatial input is technically plausible. Section 5 synthesizes how current LLM-agent social simulations use space. Section 6 defines evaluation requirements for spatially mediated behavior. Section 7 turns those requirements into a research agenda. Section 8 concludes with the main findings, limitations, and implications.
+
+
+# Space Syntax Primer
+
+
+This section provides only the Space Syntax concepts needed for the rest of the survey. Its role is not to reteach the whole Space Syntax literature, but to give AI and multi-agent-systems readers a precise vocabulary for configuration, movement opportunity, encounter structure, and claim boundaries. The section should be read as a theoretical bridge: physical-space findings motivate hypotheses for LLM-agent systems, but they are not direct evidence about current LLM-agent social behavior.
+
+
+\begin{table*}[t]
+\centering
+\caption{Table 5. Space Syntax Measure Primer for This Survey}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.175\textwidth}|>{\raggedright\arraybackslash}p{0.175\textwidth}|>{\raggedright\arraybackslash}p{0.175\textwidth}|>{\raggedright\arraybackslash}p{0.175\textwidth}|>{\raggedright\arraybackslash}p{0.175\textwidth}@{}}
+\toprule
+measure & Core intuition & What an LLM-agent system would need to expose & Survey use & Claim boundary \\
+\midrule
+integration & How accessible a location is relative to the whole layout. Highly integrated locations tend to be easier to reach from many other locations. & A layout-wide accessibility score, rank, or equivalent global position cue available to the agent, or geometry from which this relation can be derived under a controlled design. & Frames hypotheses about likely movement concentration, encounter opportunity, and publicness. & Foundational theory motivates future tests; it is not direct evidence that current LLM-agent societies are integration-mediated. \\
+depth & How many steps or transitions separate one location from others. Deeper locations are more segregated from the wider layout. & A global or task-relevant depth / segregation cue, not only a local place label or immediate neighbor list. & Frames hypotheses about privacy, withdrawal, selective interaction, and low-contact behavior. & Current L3 local adjacency is not enough to support a depth-based claim unless the broader structure is agent-facing. \\
+control & How much a location mediates access from its immediate neighbors to the rest of the local structure. & Bottleneck, gatekeeping, or local mediation information exposed as structured input, rather than only an analyst-side graph calculation. & Frames hypotheses about monitoring, guarding, brokerage, and constrained route choice. & Researcher-side control metrics do not count as L4 unless agents receive or can use them. \\
+choice & How often a location lies on plausible paths between other locations; related to path betweenness. & Route alternatives, path-betweenness, or global route-structure cues available to the agent, or embodied navigation where path alternatives can be controlled. & Frames hypotheses about route allocation, incidental co-presence, and flow concentration. & Mobility in a rich environment is not by itself evidence of choice-based social mediation. \\
+visibility / openness & What can be seen or perceived from a location, including line-of-sight and field-of-view constraints. & Visual fields, observable zones, occlusion, openness, or embodied perception supplied to the agent. & Frames hypotheses about awareness, approach, avoidance, coordination, and interruption. & Visibility can be L5 or structured L4/L3 depending on the interface; the level depends on what the agent consumes. \\
+\bottomrule
+\end{tabular}
+
+\label{tab:table-5-space-syntax-measure-primer-for-this-survey}
+\end{table*}
+
+
+
+
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.94\textwidth,height=0.62\textheight,keepaspectratio]{../figures/gpt\_image\_2/figure\_5\_local\_global\_claim\_boundary\_gpt\_image\_2\_v3.png}
+\caption{Figure 5. Toy example showing why local adjacency is not equivalent to global configuration. If an agent only receives immediate-neighbor information, both focal locations can look structurally similar. Configurational claims require additional agent-facing information about whole-layout position, such as depth, integration, control, or choice. The example motivates the survey's separation between `L3` local relations and `L4` global abstract structure and clarifies why Space Syntax propositions remain hypotheses until global structure is exposed to agents.}
+\label{fig:5}
+\end{figure*}
+
+
+## 2.1 Why Configuration Matters Here
+
+The key idea this survey borrows from Space Syntax is that spatial behavior is shaped not only by individual places, but by the way places are configured in relation to the whole layout. A room, street, corridor, plaza, or virtual location does not have only local properties. It also has a position in a wider system of possible movement, visibility, access, and encounter. That whole-layout position can affect who passes through, who meets whom, where activity concentrates, and where withdrawal or privacy becomes easier.
+
+This is directly relevant to LLM-agent social simulation because many current systems place agents in environments but expose only a partial spatial interface to them. A system may contain a map, a 3D world, or a graph backend while giving the agent only a place name, a scene description, a nearby-agent list, or a set of local movement options. Space Syntax helps articulate what is missing from such interfaces: configuration-wide structure that summarizes how a location sits within the broader environment.
+
+The transfer boundary is essential. Space Syntax findings in physical environments can motivate hypotheses about movement, co-presence, encounter probability, access asymmetry, privacy, and route choice. They do not by themselves show that LLM-agent societies are already configuration-mediated. For that claim to be testable, the relevant structure must be exposed to the agent and linked to reported behavior under an appropriate comparison.
+
+## 2.2 Measures the Reader Needs
+
+The rest of the survey uses a small set of Space Syntax concepts. `Integration` describes how accessible a location is relative to the whole layout. Highly integrated locations are easier to reach from many other locations and are often hypothesized to support movement concentration, publicness, and encounter opportunity. In an LLM-agent system, an integration-based claim would require agents to receive a layout-wide accessibility cue, a derived rank, or geometry from which such a relation can be meaningfully used under controlled conditions.
+
+`Depth` describes how many steps or transitions separate one location from others. A deeper location is more segregated from the rest of the layout. In the context of LLM-agent systems, depth-related hypotheses would concern privacy, withdrawal, selective interaction, or reduced incidental contact. A local place label or immediate neighbor list is not enough to support a depth-based claim unless the broader structure is agent-facing.
+
+`Control` describes how much a location mediates access between its neighbors and the surrounding structure. In social terms, control can motivate hypotheses about monitoring, guarding, brokerage, chokepoints, and constrained route choice. For this survey, the important point is not the formula but the interface requirement: a researcher-side control calculation does not count as agent-accessible `L4` unless the agent receives or can use that mediation information.
+
+`Choice` describes how often a location lies on plausible paths between other locations; it is related to path betweenness. Choice is useful for thinking about route allocation, incidental co-presence, and flow concentration. Again, mobility in a rich environment is not itself evidence of choice-based social mediation. The agent must receive route alternatives, path-structure cues, or embodied geometry in a design where those cues can be isolated.
+
+Finally, visibility or openness describes what can be seen or perceived from a location, including line-of-sight, field-of-view, occlusion, or observable zones. This concept may enter an LLM-agent system as `L5` visual or embodied input, or as a more symbolic structured cue, depending on what the agent consumes. The level is not determined by the existence of a visual engine. It is determined by the agent-facing interface.
+
+Table 5 summarizes these concepts in the terms used by this survey. The table deliberately includes a claim-boundary column because each measure can easily be overclaimed. The measures are useful because they define testable representational targets. They do not convert physical-space evidence into direct evidence about LLM-agent social behavior.
+
+## 2.3 Local Adjacency Is Not Global Configuration
+
+The most important distinction for the evidence map is the difference between local adjacency and global configuration. Two locations can expose the same local relation to an agent while occupying different positions in the whole environment. For example, both locations may have two immediate neighbors. If the agent receives only those immediate neighbors, the two locations can look equivalent from the agent's perspective. Yet one may be near a main spine, shallow in the broader layout, or positioned along many likely routes, while the other may sit deeper in a side branch.
+
+This distinction is why the survey separates `L3` from `L4`. `L3` captures local relations: adjacency, co-presence, nearby agents, local movement options, and local graph exposure. These are important because they structure immediate interaction opportunities. But `L3` does not automatically provide whole-layout position. Claims about depth, integration, control, or choice require additional information about the broader configuration.
+
+Figure 5 visualizes this claim boundary. Panel A shows local views that can look equivalent. Panel B reveals their different whole-layout positions. Panel C states the resulting inference rule: local opportunity or co-presence claims can often be discussed at `L3`, but configuration-wide claims require `L4` or controlled geometry-bearing `L5`. This is an explanatory diagram, not evidence from a coded system.
+
+The implication is methodological. If a paper reports that agents move, meet, or coordinate in a spatial environment, the review still asks what spatial structure the agent received. A global layout may exist in the simulator. A researcher may compute graph metrics after the fact. Neither condition is enough for a configurational agent-facing claim unless the relevant structure was part of the agent's decision interface.
+
+## 2.4 Transfer Boundary for the Survey
+
+Space Syntax enters this survey as a source of transferable propositions and missing representation layers. It supplies a vocabulary for asking whether accessibility, segregation, mediation, route structure, or visibility could affect LLM-agent movement and interaction if such structure were exposed to agents. It does not supply direct validation of current LLM-agent systems.
+
+This boundary shapes the rest of the paper. In Section 3, the evidence map asks whether current systems expose the relevant structures. The answer is mostly no for `L4`: agent-facing global abstract structure is absent from the strict anchor core and appears only once in the stable widened Core, as a digital-network bridge case rather than a physical-layout validation case. In Section 5, Space Syntax propositions are therefore treated as hypotheses for future social-simulation research, not as conclusions already supported by the LLM-agent corpus. In Section 6, the same distinction becomes an evaluation requirement: stronger spatial-behavior claims require matched controls over what agents receive.
+
+The practical rule is the same throughout the survey. If a system exposes only labels, semantic scene descriptions, or local co-presence, then configuration-level claims remain untested no matter how rich the backend world may be. If a system exposes global abstract structure, geometry, or embodied perception to agents, then stronger spatial hypotheses become testable, but still require observed behavioral evidence and appropriate controls before mechanism language is justified.
+
+
+# Evidence Map
+
+
+This section maps how current LLM-agent systems represent space at the agent interface, what kinds of social behavior they study, and what kind of evidence they actually provide. Its purpose is descriptive and gap-oriented. It does not argue that configurational spatial structure has already been robustly shown to shape LLM-agent social behavior. Instead, it establishes the current coverage, the current absences, and the evidential limits that later sections use to motivate feasibility analysis, social-simulation synthesis, and future evaluation requirements.
+
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.94\textwidth,height=0.62\textheight,keepaspectratio]{../figures/gpt\_image\_2/figure\_2\_record\_to\_row\_pipeline\_gpt\_image\_2\_v3.png}
+\caption{Figure 2. PRISMA-ScR screening and evidence-map stabilization flow. The bibliographic screening stage starts from `417` screened records and separates `Core`, `Adjacent`, `Foundational`, and excluded records. The evidence-map stage then operates at the `system / environment configuration` level, preserving the strict `anchor\_core` baseline while adding selected `bridge\_core` rows under widened scope rules. Counts therefore differ by layer: the final stable widened Core contains `32` paper-level sources and `34` coded rows. `HC01` and `TW-02` are retained as boundary materials rather than counted in the stable widened-Core evidence map; `BK02` remains a source-note-only bridge row until resolved.}
+\label{fig:2}
+\end{figure*}
+
+
+
+\begin{table*}[t]
+\centering
+\caption{Table 2. Review Protocol Summary}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.30\textwidth}|>{\raggedright\arraybackslash}p{0.30\textwidth}|>{\raggedright\arraybackslash}p{0.30\textwidth}@{}}
+\toprule
+Protocol element & Main-text summary & Appendix / source \\
+\midrule
+Review type & Scoping review and structured evidence map, not an effect-size synthesis. & paper/appendix/review\_protocol.md \\
+Review aim & Map how LLM-agent systems expose space at the agent interface, what social-behavior scales they study, and what evidence status their results can support. & paper/appendix/review\_protocol.md \\
+Bibliographic screening & Phase 1 screening separates records into Core, Adjacent, Foundational, and Excluded; PRISMA-ScR reporting uses bibliographic counts. & results/logs/prisma\_summary.json \\
+Corpus roles & Core supports the main evidence map; Adjacent supports feasibility and boundary discussion; Foundational supports theory and transferable hypotheses. & paper/appendix/review\_protocol.md; docs/plans/claim\_matrix.md \\
+Core layers & Stable widened Core distinguishes anchor\_core from bridge\_core; bridge rows extend coverage but do not carry the same evidential weight as the strict anchor nucleus. & paper/appendix/review\_protocol.md; docs/plans/claim\_matrix.md \\
+Unit of analysis & Screening is paper-level; evidence-map coding is at the system / environment configuration level. Split-row families such as Concordia and SimWorld explain why 32 paper-level sources produce 34 coded rows. & paper/appendix/review\_protocol.md; paper/appendix/appendix\_evidence\_table.csv \\
+Spatial coding rule & Code what the agent can consume, not what the simulator stores, renders, or what the analyst computes after the fact. & paper/appendix/review\_protocol.md; paper/appendix/taxonomy\_change\_log.md \\
+Representation taxonomy & L0 no spatial input; L1 labels; L2 semantic scene descriptions; L3 local relations; L4 global abstract structure; L5 geometry or embodiment consumed by the agent. & paper/figures/figure\_3\_l0\_l5\_taxonomy.svg; paper/appendix/review\_protocol.md \\
+Evidence status & designed\_affordance\_only supports architecture/affordance claims; observed\_effect supports limited reported-association claims; neither alone establishes strong causal mechanism. & paper/appendix/review\_protocol.md; docs/plans/claim\_matrix.md \\
+Boundary handling & HC01 is Adjacent / boundary / feasibility evidence. TW-02 is a scope-boundary comparison. Neither enters the stable widened-Core evidence map. BK02 remains source-note-only bridge evidence until full text is acquired or the row is downgraded. & paper/appendix/adjudication\_memo.md; assets/survey\_paper/phase1/phase1\_tw02\_scope\_decision\_2026-04-28.md; assets/survey\_paper/evidence\_closure/global\_consistency\_check\_2026-05-01.md \\
+Current stable baseline & Strict anchor baseline: 17 paper-level sources and 19 rows. Stable widened Core: 32 paper-level sources and 34 rows, with 19 anchor\_core rows and 15 bridge\_core rows. The 2026-05-01 closure check leaves only BK02 unresolved as source-note-only bridge evidence. & paper/appendix/appendix\_evidence\_table.csv; paper/tables/table\_3\_core\_evidence\_map.md; assets/survey\_paper/evidence\_closure/global\_consistency\_check\_2026-05-01.md \\
+\bottomrule
+\end{tabular}
+
+\label{tab:table-2-review-protocol-summary}
+\end{table*}
+
+
+
+
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.94\textwidth,height=0.62\textheight,keepaspectratio]{../figures/gpt\_image\_2/figure\_3\_agent\_interface\_coding\_system\_gpt\_image\_2\_v3.png}
+\caption{Figure 3. Agent-accessible spatial representation taxonomy used in the evidence map. Levels code what the agent can consume, not what the environment stores or what the analyst computes after the simulation. The stable widened Core is concentrated at `L3`, while `L4` appears only once and only in a widened digital-network bridge case. `L5` indicates geometry-bearing or embodied input, not automatic configurational mediation. This supports the interpretation of configurational or globally abstract agent-facing structure as an underexplored design space rather than a validated field-wide layer.}
+\label{fig:3}
+\end{figure*}
+
+
+
+\begin{table*}[t]
+\centering
+\caption{Table 3A. Representation Coverage by Core Layer}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.103\textwidth}|>{\raggedright\arraybackslash}p{0.103\textwidth}|>{\raggedright\arraybackslash}p{0.103\textwidth}|>{\raggedright\arraybackslash}p{0.103\textwidth}|>{\raggedright\arraybackslash}p{0.103\textwidth}|>{\raggedright\arraybackslash}p{0.103\textwidth}|>{\raggedright\arraybackslash}p{0.103\textwidth}|>{\raggedright\arraybackslash}p{0.103\textwidth}@{}}
+\toprule
+core layer & paper-level sources & coded rows & L1 & L2 & L3 & L4 & L5 \\
+\midrule
+anchor\_core & 17 & 19 & 1 & 0 & 15 & 0 & 3 \\
+bridge\_core & 15 & 15 & 0 & 8 & 3 & 1 & 3 \\
+stable widened Core & 32 & 34 & 1 & 8 & 18 & 1 & 6 \\
+\bottomrule
+\end{tabular}
+\vspace{0.25em}\par\footnotesize this table summarizes the 2026-05-01 closure baseline as 34 coded rows drawn from 32 paper-level sources. The row-paper difference comes from split-row families such as Concordia and SimWorld.
+\label{tab:table-3a-representation-coverage-by-core-layer}
+\end{table*}
+
+
+
+\begin{table*}[t]
+\centering
+\caption{Table 3B. Behavioral Scale and Evidence Status}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}p{0.22\textwidth}@{}}
+\toprule
+behavioral scale & designed\_affordance\_only & observed\_effect & total rows \\
+\midrule
+interaction & 7 & 6 & 13 \\
+emergent\_social\_structure & 4 & 9 & 13 \\
+mixed & 4 & 4 & 8 \\
+stable widened Core & 15 & 19 & 34 \\
+\bottomrule
+\end{tabular}
+
+\label{tab:table-3b-behavioral-scale-and-evidence-status}
+\end{table*}
+
+
+
+\begin{table*}[t]
+\centering
+\caption{Table 3C. Reading Notes}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.45\textwidth}|>{\raggedright\arraybackslash}p{0.45\textwidth}@{}}
+\toprule
+point & interpretation \\
+\midrule
+Strict nucleus & The anchor\_core layer is concentrated at L3, with one L1 row and three L5 rows but no admitted L2 or L4 rows. \\
+Bridge recovery & The widened bridge layer contributes all L2 rows, the only admitted L4 row, and three additional L5 rows, but these rows remain lower-weight bridge evidence. \\
+L4 boundary & The only admitted L4 row is a digital-network bridge\_core case, not strict anchor evidence for physical-layout Space Syntax mediation. \\
+L5 boundary & The bridge L5 rows are heterogeneous: platform support, embodied cooperation benchmark, and VR guidance/navigation should not be collapsed into one social-mediation result. \\
+Closure caveat & BK02 remains source-note-only bridge evidence pending full-text acquisition or downgrade; it should not carry strong evidence claims. \\
+Claim discipline & observed\_effect rows show that the corpus is not only design rhetoric, but the evidence remains heterogeneous and uneven across representation levels. \\
+Writing rule & Use this table for row-level evidence-map claims. Keep PRISMA-ScR figures on bibliographic screening counts rather than mixing the two levels. \\
+\bottomrule
+\end{tabular}
+
+\label{tab:table-3c-reading-notes}
+\end{table*}
+
+
+
+
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.94\textwidth,height=0.62\textheight,keepaspectratio]{../figures/gpt\_image\_2/figure\_4\_evidence\_map\_matrix\_gpt\_image\_2\_v3.png}
+\caption{Figure 4. Evidence-map matrix crossing agent-accessible spatial representation with behavioral scale and evidence status. The current literature is not spatially empty: it contains local, semantic, and embodied spatial interfaces and several reported observed effects. The gap is specifically configurational: `L4` appears only once, only in a widened digital-network bridge row, and remains absent from the strict `anchor\_core`. The marginal bars keep `anchor\_core` and `bridge\_core` separate so bridge recovery is not mistaken for strict anchor evidence.}
+\label{fig:4}
+\end{figure*}
+
+
+
+\begin{table*}[t]
+\centering
+\caption{Table 4. Environment-Side Richness vs Agent-Accessible Structure}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}p{0.22\textwidth}|>{\raggedright\arraybackslash}p{0.22\textwidth}@{}}
+\toprule
+row & environment-side representation & agent-accessible representation & why this coding matters \\
+\midrule
+HC06 Project Sid & 3D\_engine & L5 & Direct coordinate-bearing memories and explicit spawn/location state reach the agent interface, so geometry is genuinely agent-facing. \\
+HC10 Real-world community HD social simulation & 3D\_engine & L3 & The GIS/BIM/Unreal stack is rich, but the agent still receives categorical, prompt-mediated state rather than direct geometry. \\
+HC11 Environment-aware VR roleplay & 3D\_engine & L2 & Coordinate-like fields are treated as structured text-schema context, not as embodied geometry consumed by the agent. \\
+HC12A SimWorld visual-GPS split & 3D\_engine & L5 & The embodied split row includes visual plus GPS-like position-bearing input, so geometry is part of the usable interface. \\
+HC12B SimWorld scene-graph split & 3D\_engine & L3 & The same system family also exposes an abstracted scene-graph/layout interface, which stays below direct geometry. \\
+HC14 Crowd evacuation disaster & graph\_based & L3 & A GIS-derived road network with road attributes does not become L5 when the agent sees only text summaries, nearby communications, and route context. \\
+L4R-01 Network formation among multi-LLMs & graph\_based & L4 & This is the one admitted widened bridge case where global abstract structure is truly agent-facing through node degree, neighbors, and community information. \\
+BK06 TongSIM & 3D\_engine & L5 & A platform can expose embodied or geometry-bearing interfaces, but this supports interface feasibility more than direct LLM social-simulation mediation. \\
+R3-05 CoELA & 3D\_engine & L5 & Embodied cooperation is relevant to spatial coordination, but it is a benchmark setting rather than population-level social simulation. \\
+TW-13 TUMSphere & 3D\_engine & L5 & VR guidance and navigation show object-location and route-state integration, not emergent configurational social mediation. \\
+\bottomrule
+\end{tabular}
+
+\label{tab:table-4-environment-side-richness-vs-agent-accessible-structure}
+\end{table*}
+
+
+
+
+## 3.1 Review Protocol Summary
+
+We frame the review as a scoping review rather than an effect-validation study. The evidence map therefore asks which spatial representations appear in current LLM-agent systems, which social behaviors are studied alongside them, and which claims the available evidence can safely support. Full protocol details, coding rules, and adjudication materials are reported in Appendix A; the main text keeps only the protocol elements needed to interpret the figures and tables in this section.
+
+The review separates three corpus roles before making claims. `Core` papers form the main coded corpus for the evidence map: they describe LLM multi-agent systems with identifiable spatial environments and socially relevant behavior. `Adjacent` papers provide feasibility and boundary evidence about whether current models may handle richer spatial inputs, but they do not count as direct evidence for multi-agent social effects. `Foundational` papers provide Space Syntax theory, physical-space empirical findings, and transferable hypotheses; they support the conceptual bridge developed later in the paper, not direct empirical claims about LLM-agent societies.
+
+The screening and coding process also has two counting layers. At the bibliographic screening stage, records are assigned to review roles. The current screening summary starts from `417` screened records and assigns `12` to `Core`, `42` to `Adjacent`, `47` to `Foundational`, and `316` to exclusion categories. These numbers should not be read as the final evidence-map counts. After full-text rechecks, targeted widened review, and boundary adjudication, the evidence map operates at the `system / environment configuration` level rather than at the paper level.
+
+This unit shift is necessary because several system families expose more than one agent-facing spatial interface. For example, split-row treatment prevents a family such as `Concordia` or `SimWorld` from being coded as if all of its configurations exposed the same spatial information to the agent. The resulting stable widened Core contains `32` paper-level sources but `34` coded rows. Of these rows, `19` belong to the strict `anchor_core` and `15` belong to `bridge_core`. The `anchor_core` is the strict nucleus for the cleanest descriptive mapping and strict-gap claims. The `bridge_core` extends the map with socially and spatially meaningful bridge cases, but it remains lower weight than the strict nucleus.
+
+Two boundary decisions are especially important for reading the rest of the paper. `HC01` is retained as Adjacent and boundary evidence rather than counted in the stable widened Core. `TW-02` is retained only as a scope-boundary comparison and does not enter the stable widened-Core evidence map. A third closure qualification concerns `BK02`: it remains a source-note-only bridge row until full text is acquired or the row is downgraded. It can orient the widened design space, but the manuscript should not lean on it for strong evidence claims. Figure 2 summarizes this record-to-row pipeline so that the later representation counts are not confused with the earlier PRISMA-ScR screening categories.
+
+## 3.2 Spatial Representation Taxonomy: L0-L5
+
+The evidence map uses an agent-facing taxonomy of spatial representation. The central coding rule is simple: code what the agent can consume, not what the simulator stores or what the analyst computes after the simulation. This distinction is necessary because visually or technically rich environments often expose only sparse, local, or prompt-mediated spatial information at the agent interface.
+
+The taxonomy spans six levels. `L0` indicates no spatial information. `L1` indicates place labels or action-space labels without explicit spatial relations. `L2` indicates semantic or descriptive place information without explicit topology, such as scene context, named objects, or role-play setting. `L3` captures local relational structure, including adjacency, co-presence, nearby agents, available movement options, local feeds, or local graph exposure. `L4` is reserved for agent-facing global abstract structure beyond local next-step relations, including configurational or network-position information such as integration, depth, control, choice, degree, neighborhood, or community information when these are actually available to the agent. `L5` requires geometry-bearing or embodied input consumed by the agent, such as coordinates, visual field, first-person sensory input, physical constraints, or explicit position-bearing state.
+
+The taxonomy is not a maturity ladder. Higher levels are not automatically better for every research question, and richer backends do not automatically imply richer agent-facing input. A `3D_engine` can support `L5` if the agent receives coordinates, visual input, or embodied constraints, but the same backend can remain `L3` if the agent receives only categorical local observations or text summaries. Similarly, a `graph_based` environment does not become `L4` merely because researchers later compute network metrics. It reaches `L4` only when global abstract structure is part of the agent's decision interface.
+
+This agent-interface rule is the basis for Figure 3 and for the coding decisions in Table 3. It also explains why the same evidence map can contain rich virtual environments, graph-based platforms, and text-mediated worlds without treating them as equivalent. The survey is not measuring visual fidelity or simulator complexity. It is measuring the structural explicitness of spatial information that can plausibly enter the agent's reasoning and behavior generation.
+
+## 3.3 Main Evidence Map
+
+The stable widened-Core evidence map shows a literature concentrated in local and mid-structure spatial interfaces rather than in explicit configurational input. Across `34` coded rows, the representation distribution is `L1 = 1`, `L2 = 8`, `L3 = 18`, `L4 = 1`, and `L5 = 6`. This distribution makes `L3` the dominant level: more than half of the coded rows expose some form of local relational spatial structure, such as co-presence, adjacency, local movement options, or local graph relations.
+
+The strict and widened readings must be kept separate. In the `anchor_core`, `15` of `19` rows are coded as `L3`, with one `L1` row and three `L5` rows. No `anchor_core` row reaches `L2` or `L4`. The widened bridge layer changes the descriptive landscape by adding all `8` `L2` rows, three additional `L5` rows, three additional `L3` rows, and the only admitted `L4` row. This recovery is important because it shows that the broader design space is more varied than the strict nucleus alone would suggest. At the same time, it should not be written as if the bridge layer eliminates the strict-gap interpretation.
+
+The widened rows also require different qualifiers. The additional `L5` bridge rows are useful evidence that geometry-bearing or embodied interfaces can be connected to LLM or agent systems, but they are not homogeneous social-simulation validations: `BK06` is platform-like, `R3-05` is an embodied cooperation benchmark, and `TW-13` is a VR guidance and navigation system. Similarly, the single `L4` row is a digital-network bridge case rather than an anchor-core spatial-layout case. These rows broaden the map; they do not by themselves convert the field into one with established configurational social-mediation evidence.
+
+Behavioral-scale coverage is also uneven. `Interaction` and `emergent_social_structure` each account for `13` rows, while `mixed` rows account for `8`. Evidence status varies across these scales. Interaction rows include `7` `designed_affordance_only` rows and `6` `observed_effect` rows. Emergent-social-structure rows are more often reported as observed effects, with `9` `observed_effect` rows and `4` `designed_affordance_only` rows. Mixed rows are evenly split, with `4` rows in each evidence-status category. Across the full stable widened Core, the map contains `19` `observed_effect` rows and `15` `designed_affordance_only` rows.
+
+These observed-effect counts matter, but they do not license strong causal language. They show that the corpus is not only design rhetoric: a subset of systems reports spatially relevant behavioral outcomes or associations. However, the observed-effect rows are distributed unevenly across representation levels and evidence layers. Many reported effects occur in local, semantic, embodied, or bridge settings, not in strict-anchor configurational tests. The evidence map therefore supports a careful descriptive claim: current LLM-agent systems frequently include spatial structure and sometimes report spatially relevant outcomes, but the literature has not yet established configuration-level social mediation as a robust field-wide result.
+
+Table 3 is the central artifact for this subsection. It should be read as a row-level evidence map, not as a PRISMA screening table. Its key contribution is to show where the corpus is dense, where it is thin, and how claim strength changes when the strict anchor and widened bridge layers are separated. Figure 4 visualizes the same result as a matrix: `L3` is the dense center, `L4` is nearly empty, and observed effects exist but remain uneven.
+
+## 3.4 The L4 Gap as an Underexplored Design Space
+
+The most important gap in the evidence map is not the absence of space as such. Space is common in the corpus. The sharper gap is the scarcity of agent-facing global abstract structure. In the strict `anchor_core`, `L4` is entirely absent. In the stable widened Core, `L4` appears once, in a single admitted digital-network bridge case: `L4R-01`, coded as `bridge_core / L4`.
+
+This single bridge case is analytically useful but should not be overread. It shows that global abstract agent-facing structure is not outside the design space. The coded system exposes network-position information such as node degree, neighbors, common connections, community labels, or broader network structure to agents in a decision-relevant format. That is sufficient to prevent the claim that `L4` is impossible or conceptually incoherent. It is not sufficient to claim that the field has systematically operationalized configurational representation in LLM-agent social simulation, and it should not be treated as direct evidence that physical-layout Space Syntax constructs have already been validated in LLM-agent societies.
+
+The strict and widened readings therefore point to the same cautious conclusion. Strictly, `L4` is absent from the anchor nucleus. Under the widened reading, `L4` appears only at the boundary, in one digital-network bridge case. The correct interpretation is neither that there is no `L4` at all nor that the `L4` gap has been solved. The correct interpretation is that configurational or globally abstract agent-facing representation remains highly underexplored.
+
+Nearby cases illustrate why the coding rule matters. Some systems include global network or community metrics in the analysis, but those metrics remain researcher-side outputs rather than agent-facing inputs. In such cases, the system can remain `L3` even when the paper reports global social-network analysis. The survey is concerned with what the agent can actually use during behavior generation, not with what the analyst can compute after observing the simulation.
+
+This `L4` gap is the bridge to the rest of the paper. Section 4 asks whether current models may be able to process richer configurational input if it is provided. Section 5 asks how current social-simulation systems use space despite this gap. Section 6 asks what future studies would need to report before stronger spatial mediation claims could be made.
+
+## 3.5 Environment-Side Richness vs Agent-Accessible Structure
+
+The evidence map also reveals a recurring mismatch between environment-side richness and agent-accessible structure. The stable widened Core contains `16` rows with `3D_engine` backends, `9` `graph_based` rows, `5` `2D_grid` rows, and `4` `text-only` rows. These backend categories are useful for describing implementation substrate, but they do not determine representation level.
+
+Table 4 makes this mismatch concrete. `Project Sid` and the visual-GPS split of `SimWorld` are coded as `L5` because position-bearing or geometry-bearing information reaches the agent interface. `MineLand` similarly reaches `L5` through embodied multimodal senses and physical constraints. By contrast, the real-world community-oriented HD social simulation row remains `L3` despite a GIS/BIM/Unreal stack, because the agent-facing observations remain categorical and prompt-mediated rather than directly geometric. The scene-graph split of `SimWorld` also remains below direct geometry because it exposes an abstracted layout interface rather than full embodied input. `HC14` provides a graph-based caution: a GIS-derived road network with road attributes does not become `L5` if the agent sees only textual status summaries, nearby communications, memories, and route context. The bridge `L5` rows add further caution: platform support, embodied cooperation tasks, and VR navigation are all relevant to interface feasibility, but they should not be collapsed into a single claim about spatially mediated multi-agent social emergence.
+
+The one admitted `L4` bridge case further sharpens the distinction. `L4R-01` is graph-based, but it is not coded as `L4` simply because a graph exists. It is coded as `L4` because global or globally abstract network information is agent-facing in the decision input. This is the key difference between a graph as backend substrate, a graph as analyst-side object, and a graph as agent-accessible representation.
+
+The environment-versus-interface distinction matters for two reasons. First, it prevents the review from treating simulator richness as evidence strength. A photorealistic or physically detailed environment may still provide agents with only low-structure textual cues. Second, it identifies the missing ingredient in much of the literature. The problem is not that systems never contain space. The problem is that many systems do not expose global or geometry-level structure to agents in a form that can be tied to reported social behavior.
+
+## 3.6 Summary and Transition
+
+The evidence map supports three conclusions. First, current LLM-agent social simulations are spatially present but representation-limited: they are concentrated at local and mid-structure interfaces, especially `L3`. Second, widened bridge cases broaden the representation landscape, especially for `L2` and `L5`, but they do not erase the strict-gap interpretation for `L4`. Third, the corpus contains reported observed effects, but those effects remain heterogeneous, unevenly distributed, and insufficient for strong mechanism claims.
+
+These conclusions define the task for the next sections. The feasibility question is whether current LLMs can process richer spatial or configurational information if future systems expose it. The social-simulation question is how current systems already use space and where their evidence remains below the configurational layer. The evaluation question is what controls, baselines, and behavioral measures would be needed to move from spatial affordance toward spatial sensitivity, mediation, and eventually stronger replicated mechanism claims.
+
+
+# Feasibility
+
+
+This section asks a narrower question than the overall survey question. It does not ask whether richer spatial representation has already been shown to shape LLM-agent social behavior. It asks whether current models and adjacent systems provide enough evidence to treat richer spatial input, including configurational input, as technically plausible for future social-simulation research.
+
+The safe conclusion is about `input-side feasibility`, not about `behavior-side validation`. Adjacent spatial-reasoning benchmarks, spatially aware agents, embodied systems, and boundary cases suggest that current models may be able to consume structured spatial inputs when those inputs are made explicit. They do not show that LLM-agent societies are already spatially mediated, and they do not remove the need for the representation controls developed in Sections 6 and 7.
+
+## 4.1 Spatial Reasoning Benchmarks as Feasibility Evidence
+
+The first source of feasibility evidence comes from `Adjacent` work on spatial reasoning benchmarks and spatially aware LLM or VLM systems. This literature is relevant because it probes whether models can process topological, relational, route-based, map-based, or geometry-sensitive inputs. It is not direct evidence for multi-agent social effects. Its value for this survey is narrower: it makes richer agent-facing spatial representation a plausible design option rather than a purely speculative one.
+
+The benchmark story should be read as mixed. Earlier textual benchmarks such as spatial question answering and multi-hop relation tasks show that language models can often handle simple spatial relations but struggle as relational depth, compositionality, or viewpoint complexity increases. Later work extends this evaluation space toward map-based questions, qualitative spatial reasoning in simulated rooms, vision-language spatial grounding, and 3D-aware or geometry-enhanced models. These lines of work suggest partial structured-input feasibility, especially when tasks provide stable and legible spatial descriptions. They also show why feasibility should not be overstated: success on local or short-horizon spatial tasks does not imply reliable configurational reasoning over long-horizon social simulations.
+
+For this survey, the important distinction is between spatial language matching and structured relation maintenance. A model that answers "left of" or "near" questions may still fail when it must maintain a chain of relations, compare alternative paths, reason over hidden layout structure, or infer a global position from local evidence. Conversely, progress on relation-rich benchmarks supports the idea that future systems can expose more structured spatial inputs to agents and then test whether those inputs affect behavior. The correct claim is therefore conditional: benchmark evidence suggests that structured spatial input may be technically consumable; it does not establish that such input already mediates LLM-agent social behavior.
+
+## 4.2 Topological Structure vs Geometry vs Configuration
+
+Feasibility depends on distinguishing several kinds of spatial input that are often collapsed together. Semantic scene descriptions, local topological relations, global abstract configuration, and geometry-bearing perception are different interface problems. A model that can interpret a room description is not automatically shown to reason over layout-wide structure. A model that operates in a 3D environment is not automatically shown to receive `L5` geometry. A system that stores a graph is not automatically shown to expose `L4` global abstract structure to the agent.
+
+Semantic and local relational inputs are the most clearly feasible design primitives in the current corpus. Many systems already expose place names, scene descriptions, nearby agents, co-presence, adjacency, or local movement options. These inputs support `L1` to `L3` interfaces and are consistent with the evidence map's concentration at `L3`. They are sufficient for many local interaction questions, but they do not test configuration-wide claims.
+
+Geometry-bearing input is also technically plausible, though less uniform. Some embodied, game, VR, or navigation-oriented systems expose coordinates, visual observations, physical constraints, route state, or spatially conditioned motion. These cases support the feasibility of `L5`-style interfaces in limited settings. They should not be treated as solving the `L4` problem. Geometry and configuration are related but not interchangeable: a geometry-rich system may still hide global abstract structure from the agent, while a graph-based or text-based system may expose useful configurational summaries without full embodied perception.
+
+Configurational input remains the least demonstrated category. It refers to global abstract structure beyond the next local relation: accessibility, depth, control, choice, network position, community position, or similar layout-wide summaries. The stable widened-Core map contains only one `L4` row, and that row belongs to the bridge layer rather than the strict anchor core. This makes `L4` a plausible but underexplored design target. It is plausible because graph and spatial-reasoning work suggest that structured inputs can be surfaced to agents. It is underexplored because current LLM multi-agent social-simulation systems rarely make such structure agent-facing.
+
+## 4.3 Pattern Matching vs World-Structured Reasoning
+
+The second caution concerns interpretation. Even when a model performs well on a structured spatial task, the result does not by itself reveal whether the model is maintaining a stable spatial model, exploiting lexical regularities, using memorized spatial priors, following a narrow prompt pattern, or adapting to a benchmark-specific shortcut. This uncertainty matters because the survey's downstream question is not only whether a model can answer spatial questions, but whether a spatial interface can shape multi-agent behavior under controlled conditions.
+
+The feasibility claim should therefore remain weak and precise. Current evidence is consistent with partial structured-input feasibility: models may be able to consume richer spatial inputs if those inputs are explicit, stable, and task-relevant. It is not yet evidence that models robustly reason over configuration in a way that supports social mediation. A system might display correct local behavior without using the intended spatial structure, or it might use a structural cue only because the prompt makes the desired behavior obvious.
+
+This is why feasibility and evaluation cannot be separated. If future studies want to claim spatial sensitivity, they must show that behavior changes when spatial input changes while non-spatial context remains controlled. If they want to claim configurational mediation, they must show that a specific global abstract input changes behavior beyond local adjacency, semantic labels, or prompt wording. The world-structured reasoning question therefore becomes an empirical design problem: expose the structure, ablate it, compare it to weaker representations, and measure whether behavior changes in a way that survives plausible confounds.
+
+## 4.4 Existing Spatially Aware Agents and Embodied Bridge Systems
+
+Beyond benchmarks, the feasibility story is strengthened by adjacent and bridge systems that already expose spatial context to agents in interaction, navigation, embodiment, or socially situated environments. Their importance is not that they resolve the social-effect question. Their importance is that they show multiple implementation routes by which spatial structure can be delivered to an LLM or VLM interface.
+
+Spatially aware human-agent work provides one route. Studies such as spatially aware LLM interaction research ask whether an agent can recognize and respond to a user's spatial context during conversation. This is not multi-agent social simulation, and it is not configurational evidence. It is useful because it shows that spatial context can enter language-mediated interaction and can be evaluated as part of interaction quality, presence, responsiveness, or naturalness. That supports feasibility and motivation, not direct social-effect validation.
+
+Embodied and VR systems provide another route. Systems such as SARAH-like spatially aware embodied agents, social VR agents, NPC systems, and navigation-oriented boundary cases show that user position, trajectory, visual context, audio context, body motion, route state, or physical constraints can be connected to agent behavior. Some of these cases approach `L5` interfaces; others remain closer to semantic or local spatial awareness. The coding lesson is the same as in Section 3: a 3D engine, avatar, or VR scene does not automatically imply full geometry at the agent interface. The question is what the agent receives and uses.
+
+Bridge-core systems add a third route by showing that socially situated spatial or network structure can sometimes be exposed in more abstract form. The single admitted `L4` bridge case is especially important because it indicates that global or globally abstract agent-facing structure is within the design space. However, because it is a bridge case, it should not be treated as anchor-core validation. It supports the claim that configurational input is technically plausible and underexplored; it does not support a broad claim that the field has already tested configurational mediation.
+
+Together, these systems shift the feasibility question. The issue is no longer whether it is imaginable to provide richer spatial input to agents. The issue is how to provide it in a stable, interpretable, and controlled form, and how to connect it to social behavior without confusing implementation richness with evidence strength.
+
+## 4.5 Feasibility Assessment for Configurational Input
+
+The overall assessment is cautious but positive. Current evidence is consistent with the technical feasibility of richer spatial input. Local and mid-structure representations are already common enough to count as existing design primitives. Geometry-bearing interfaces are implemented in a limited and heterogeneous set of systems. Configurational input remains the least demonstrated layer, but it is better described as an open design frontier than as an implausible idea.
+
+This assessment depends on the corpus-role boundary. Adjacent benchmarks and spatially aware agents support input-side possibility. Bridge-core systems broaden the design space. Foundational Space Syntax work motivates which configurational variables may matter. None of these sources, by itself, proves social-behavior effects in LLM multi-agent systems. The stable widened-Core evidence map remains the main source for descriptive claims about current practice, and it shows that `L4` is sparse.
+
+The section therefore licenses a transition, not a conclusion. It allows the survey to move from "can richer spatial input be provided at all?" to "how should it be represented, controlled, and evaluated?" The answer is developed in the next sections. Section 5 shows that current social simulations already use space mostly as a local, semantic, or interaction scaffold. Section 6 defines what would count as spatial sensitivity or mediation. Section 7 turns those requirements into a research agenda focused on representation contracts, matched controls, multi-level behavior measures, and replication.
+
+The negative boundary is equally important. This section does not conclude that models understand configuration robustly. It does not conclude that embodied or 3D systems solve the representation problem. It does not conclude that richer spatial input already improves social simulation. Feasibility is a necessary precondition for future work, not proof of spatially mediated social behavior.
+
+
+# Space in Social Simulation
+
+
+This section synthesizes how space currently functions inside LLM-agent social-simulation systems. It does not restate the evidence map row by row. Its purpose is to convert the coded distribution into a readable account of current practice: current systems do use space, but they mostly use it through local, semantic, or interaction-level structure rather than through agent-facing configurational abstraction.
+
+
+\begin{table*}[t]
+\centering
+\caption{Table 6. Space Syntax Proposition Transfer Table}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.175\textwidth}|>{\raggedright\arraybackslash}p{0.175\textwidth}|>{\raggedright\arraybackslash}p{0.175\textwidth}|>{\raggedright\arraybackslash}p{0.175\textwidth}|>{\raggedright\arraybackslash}p{0.175\textwidth}@{}}
+\toprule
+Space Syntax / spatial-simulation proposition & Transferable LLM-agent hypothesis & Minimum agent-facing representation needed & Current evidence-map status & Allowable manuscript claim \\
+\midrule
+More integrated locations may increase movement and encounter opportunities. & If agents receive layout-wide accessibility information, they may allocate more movement or interaction toward highly accessible locations. & L4 for explicit global accessibility, or controlled L5 geometry with derived layout conditions. & L4 is absent from strict anchor\_core and appears only once in a widened digital-network bridge case. & Motivates future testing; does not show current LLM-agent configurational mediation. \\
+Deeper or more segregated locations may support privacy, reduced encounter, or selective interaction. & If agents receive depth or segregation cues, they may shift sensitive dialogue, withdrawal, or low-contact behavior toward less accessible areas. & L4 depth / segregation cues, or a controlled L3 vs L4 comparison. & Current rows are concentrated at L3; depth-like global cues are not systematically exposed to agents. & Transferable hypothesis only; not current direct evidence. \\
+Control points can mediate access between neighboring spaces. & If agents receive control or bottleneck information, they may concentrate guarding, monitoring, routing, or brokerage behavior at high-control positions. & L4 control / bottleneck indicators, or graph input that exposes more than local adjacency. & Current L3 graph/feed rows often expose local relations but usually not agent-facing global control values. & Identifies a missing evaluation target. \\
+Choice or path-betweenness can affect route allocation and incidental co-presence. & If agents can use path-choice structure, route decisions and encounter distributions may change under matched layouts. & L4 choice / betweenness structure, or L5 geometry with controlled route alternatives. & Some mobility rows exist, but representation controls are not sufficient to infer configuration-level mediation. & Supports agenda and evaluation design, not settled effect claims. \\
+Visibility and openness can shape awareness, approach, avoidance, and coordination. & If agents receive visual fields, openness, or line-of-sight constraints, interaction initiation and coordination may vary by visibility condition. & L5 visual / embodied input, or explicit visibility fields as structured input. & L5 appears in a limited subset of widened-Core rows; bridge L5 rows are heterogeneous and do not by themselves establish social mediation. & Supports feasibility and future controlled tests. \\
+Local co-presence and adjacency shape immediate interaction opportunities. & If agents receive nearby-agent or adjacent-place information, interaction choice may be sensitive to local spatial context. & L3 local relations. & L3 is the densest current layer, especially in anchor\_core. & Supports descriptive mapping of current practice; effect claims require reported observed\_effect rows. \\
+\bottomrule
+\end{tabular}
+
+\label{tab:table-6-space-syntax-proposition-transfer-table}
+\end{table*}
+
+
+
+
+## 5.1 From Classical ABM to LLM-Agent Societies
+
+The idea that environments shape social behavior did not begin with LLM agents. Classical agent-based modeling and adjacent simulation traditions have long treated environment structure, movement constraints, local neighborhoods, and encounter opportunities as behaviorally relevant. Those traditions are useful here because they show why spatial form can matter for social processes: where agents can move, who they can encounter, and which positions mediate access can all affect downstream patterns.
+
+LLM-agent social simulation inherits part of this intuition, but it changes the problem. The agents are no longer only rule-based entities moving through an explicitly formalized space. They are language-driven systems whose behavior is mediated by prompts, memory, social roles, tool calls, and often a game master, simulator, or environment wrapper. As a result, the relevant question is not simply whether the environment contains spatial structure. The relevant question is what part of that structure reaches the agent at the moment of perception, reasoning, planning, or action.
+
+This distinction explains why current LLM-agent systems can stage socially rich worlds without yet demonstrating strong configurational social effects. A simulated town, campus, city, game world, or online community may organize agent activity spatially. Yet if the agent sees only local co-presence, place names, nearby messages, route prompts, or scene summaries, then the system is using space primarily as a local interaction scaffold. That can be behaviorally important, but it is not the same as exposing configuration-wide structure in the sense introduced in Section 2.
+
+Earlier spatial-simulation traditions therefore provide a comparison point and a source of transferable questions, not direct evidence about current LLM-agent effects. They motivate asking whether integration, depth, control, choice, visibility, or route structure might matter in language-agent societies. They do not show that current LLM-agent systems have already tested those mechanisms.
+
+## 5.2 How Space Is Currently Used
+
+The widened-Core evidence map contains `34` coded rows. Behavioral-scale coverage is split across `interaction` rows, `emergent_social_structure` rows, and `mixed` rows, but the representation side remains concentrated in `L3`, with `18` rows at local-relational level and only one admitted `L4` bridge case. One bridge row, `BK02`, remains source-note-only pending full-text acquisition or downgrade, so it should not carry strong claims on its own. Read together, the distribution suggests that the literature is more mature in staging social activity in space than in exposing globally structured space to agents.
+
+The recurring representation patterns are consistent across otherwise different systems. Some systems use place labels, named zones, rooms, or action spaces. Others provide semantic scene descriptions, role-play contexts, nearby objects, or scenario-specific spatial cues. Many expose local relations: co-presence, nearby agents, adjacency, local movement options, feeds, follow graphs, or communication neighborhoods. A smaller subset provides embodied or geometry-bearing input such as visual observations, coordinates, GPS-like position, or physical constraints. Very few expose global abstract or configurational structure as agent-facing input.
+
+This pattern should be read as a substantive finding rather than as a deficiency of individual systems. Space is not absent from LLM-agent social simulation. In many cases, it is central to how scenarios are staged and how interactions become possible. The current limitation is more specific: space usually enters as local scene structure, local social proximity, movement context, or embodied affordance. It rarely enters as an explicit configuration-wide representation that agents can use to reason about accessibility, depth, control, route choice, or broader network position.
+
+The distinction also clarifies why visually impressive or physically rich simulations do not automatically close the gap. A 3D environment can support embodied interaction, but if the LLM-facing interface reduces the world to local textual state, the representation remains below direct geometry or global configuration. Conversely, a graph-based digital environment can reach `L4` if global or globally abstract network information is exposed to the agent. The representation level follows the agent interface, not the visual substrate.
+
+## 5.3 What the Current Evidence Actually Supports
+
+The coded corpus is not limited to design rhetoric. Across the stable widened Core, `19` rows are coded as `observed_effect` and `15` as `designed_affordance_only`. This means a subset of current systems reports spatially relevant outcomes, behavioral differences, interaction patterns, mobility patterns, or social-structure measures. However, an `observed_effect` code is not the same as a mechanism claim. It indicates that a spatial-behavior association or outcome was reported in a system-level study; it does not by itself establish why the effect occurred or whether it generalizes across systems.
+
+The behavioral-scale distribution sharpens this point. `Emergent_social_structure` rows are numerous and contain many observed-effect cases, but they are overwhelmingly concentrated at `L3`, with just one `L4` case and limited `L5` coverage. `Interaction` rows include the bridge-layer `L2` recovery and several observed effects, but much of that evidence concerns spatially situated dialogue, role-play, human-agent interaction, or local scene context rather than multi-agent configurational mediation. `Mixed` rows contribute important embodied and mobility-oriented cases, including some `L5` systems, but those cases still do not by themselves demonstrate that global spatial structure drives social emergence.
+
+The safest synthesis is therefore two-sided. On one side, current LLM-agent social simulation has already moved beyond purely non-spatial dialogue. Many systems organize behavior around places, local movement, co-presence, proximity, feeds, routes, or embodied environments. Some report observed spatially relevant outcomes. On the other side, the available evidence remains heterogeneous and mostly below the configurational layer. It supports claims about how space currently enters systems and where limited associations are reported, not claims that spatial configuration has been robustly shown to shape LLM-agent societies.
+
+This is why the `anchor_core` and `bridge_core` distinction remains important. Bridge cases broaden the representational landscape, especially for `L2`, `L5`, and the single admitted `L4` case. But bridge recovery should not be read as field-wide validation. The additional bridge `L5` rows are heterogeneous: one is platform-like, one is an embodied cooperation benchmark, and one is a VR guidance and navigation system. The single `L4` row is a digital-network bridge case rather than strict anchor evidence for physical-layout configuration. The strict anchor still shows a corpus concentrated at `L3`, with no admitted `L4` rows. The widened map is more informative than the strict map alone, but it does not erase the strict-gap conclusion.
+
+## 5.4 Space Syntax Propositions as Transferable Hypotheses
+
+The role of Space Syntax in this section is to organize hypotheses, not to import conclusions wholesale. Physical-space evidence and earlier spatial-simulation work suggest that accessibility, segregation, control points, route choice, and visibility can matter for movement, encounter, privacy, co-presence, and social organization. In this survey, those propositions become testable hypotheses for future LLM-agent systems only when the corresponding spatial structure is exposed to agents.
+
+Table 6 makes this transfer explicit. A proposition about integrated locations becomes a hypothesis about whether agents who receive layout-wide accessibility information allocate more movement or interaction to accessible locations. A proposition about depth becomes a hypothesis about whether agents with depth or segregation cues shift sensitive dialogue, withdrawal, or low-contact behavior toward less accessible areas. A proposition about control becomes a hypothesis about whether bottleneck or mediation information affects guarding, monitoring, brokerage, or route choice. In each case, the current evidence-map status limits what can be claimed now.
+
+The same pattern applies to choice, visibility, and local co-presence. Choice or path-betweenness can motivate future tests of route allocation and incidental co-presence, but current mobility evidence is not enough to infer choice-based mediation without representation controls. Visibility and openness can motivate tests of awareness, approach, avoidance, and coordination, but `L5` input in a limited subset of systems does not itself establish social mediation. Local co-presence and adjacency are the strongest current fit because `L3` is the densest layer in the evidence map; even there, effect claims require reported observed-effect rows rather than design affordances alone.
+
+The resulting agenda is not speculative in the weak sense of being detached from the corpus. It is grounded in a clear mismatch: current systems often contain enough spatial machinery to make spatial questions meaningful, but they rarely expose the configuration-wide structures needed to test stronger Space Syntax-style propositions. Future work can therefore ask sharper questions than "does space matter?" It can ask which agent-facing spatial structure is exposed, which behavior is measured, which controls separate semantic context from structural input, and which claim level the evidence supports. This framing also prevents the one digital-network `L4` bridge case from being overextended into a general Space Syntax validation claim.
+
+The central diagnosis of this section is therefore the same as the evidence map, stated in social-simulation terms. Current systems already use space as a scaffold for interaction, mobility, and social organization. What remains largely missing is direct evidence that agent-facing global configuration mediates LLM-agent social behavior under controlled conditions.
+
+
+# Evaluation Dimensions
+
+
+This section asks what would count as credible evidence for spatially mediated social behavior in future LLM-agent research. It is not a general evaluation survey. Its narrower role is to translate the gaps diagnosed in Sections 3 to 5 into concrete evidence requirements: what representation must be exposed to agents, what behavior must be measured, what comparison must be made, and what claim the result could safely support.
+
+
+\begin{table*}[t]
+\centering
+\caption{Table 7. Evaluation Dimensions for Spatially Mediated LLM-Agent Behavior}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.145\textwidth}|>{\raggedright\arraybackslash}p{0.145\textwidth}|>{\raggedright\arraybackslash}p{0.145\textwidth}|>{\raggedright\arraybackslash}p{0.145\textwidth}|>{\raggedright\arraybackslash}p{0.145\textwidth}|>{\raggedright\arraybackslash}p{0.145\textwidth}@{}}
+\toprule
+Evaluation dimension & Behavior measured & Minimum spatial representation & Required control or comparison & Candidate measures & Strongest claim if passed \\
+\midrule
+Movement and route choice & Location choice, path selection, dwell time, route diversity & L3 for local movement options; L4 or controlled L5 for configurational claims & Same agents and task under place-label, local-relation, and global/geometry conditions & route distribution, path length, location entropy, destination frequency & Spatial sensitivity; configuration claim only if global or geometry condition is isolated. \\
+Co-presence and encounter structure & Who meets whom, where, and how often & L3 for local co-presence; L4 for layout-wide encounter hypotheses & Matched social setting with altered spatial interface but stable personas, goals, and interaction rules & encounter rate, repeated co-presence, location-conditioned contact matrix & Limited observed-effect claim if spatial interface changes encounter outcomes. \\
+Interaction allocation across places or network positions & Dialogue initiation, partner choice, cooperation/conflict allocation & L3 for local relation tests; L4 for network-position or configurational allocation tests & Compare local-only input against global-structure input; hold prompts and social affordances constant & interaction counts by place, partner diversity, brokerage behavior, topic/place coupling & Reported association or spatial sensitivity; not mechanism unless controls isolate representation. \\
+Privacy, avoidance, and selective disclosure & Sensitive dialogue, withdrawal, avoidance, restricted interaction & L2 for semantic privacy cues; L4 for depth/segregation claims & Separate semantic labels from structural depth or accessibility cues & disclosure rate, avoidance moves, private-location selection, sensitive-topic placement & Transfer from semantic affordance to structural mediation only if semantic and structural cues are separated. \\
+Group formation and role differentiation & Clustering, segregation, role emergence, community structure & L3 for local network formation; L4 for global network/layout mediation & Matched runs with different spatial interfaces or layouts; same agent population and task regime & modularity, group persistence, role concentration, cross-group interaction & Limited macro-level observed effect if controls are present; stronger claims need replication across layouts. \\
+Embodied coordination and spatial cooperation & Joint tasks, collision avoidance, escorting, navigation-assisted cooperation & L5 & Compare geometry-bearing input against symbolic local relation input; hold task and communication budget fixed & task success, coordination latency, communication cost, spatial errors & Embodied-input effect claim; not automatically configurational mediation or population-level social-simulation evidence. \\
+Mechanism and confound separation & Whether behavior changes because of spatial structure rather than prompt semantics or task wording & Depends on target mechanism, usually L3 vs L4 or L3/L4 vs L5 & Matched initial conditions, prompt controls, ablations of labels vs relations vs global structure & effect persistence across seeds, ablation deltas, cross-layout robustness & Mechanism remains tentative unless repeated across systems, models, and layouts. \\
+\bottomrule
+\end{tabular}
+
+\label{tab:table-7-evaluation-dimensions-for-spatially-mediated-llm-agent-behavior}
+\end{table*}
+
+
+
+
+## 6.1 What Would Spatial Behavioral Validity Mean?
+
+For this survey, spatial behavioral validity cannot mean only that a system has a map, a virtual world, navigation, or place-aware dialogue. Those are spatial affordances. They show that space is present in the system design, but they do not by themselves show that agent behavior is sensitive to spatial structure. A system may let agents move through places while behavior remains driven mainly by prompts, goals, roles, scripts, or social context.
+
+The next level is spatial sensitivity. A system shows spatial sensitivity when behavior changes in response to variation in agent-facing spatial input. This might involve route choice, dwell time, co-presence, encounter frequency, dialogue allocation, avoidance, disclosure, group formation, or role differentiation changing when the spatial interface changes. Sensitivity is stronger than affordance because it links spatial input to behavioral output, but it still may not identify the mechanism.
+
+The strongest target is spatial mediation. A study supports a spatial mediation claim when it shows that a specific type of agent-facing spatial structure contributes to a behavioral outcome under matched controls. For this survey, the important word is specific. A mediation claim should identify whether the relevant structure is semantic scene information, local adjacency, global abstract configuration, geometry-bearing perception, or some controlled combination. It should also separate that structure from confounds such as richer prompts, more context, different goals, different tasks, or altered social affordances.
+
+Most current systems in the evidence map can be discussed safely at the affordance level. Some `observed_effect` rows may support limited spatial-sensitivity claims in particular settings. Very few, if any, cleanly establish spatial mediation under matched controls, especially for `L4` configurational input. In the current closure baseline, `L4` is absent from the strict `anchor_core` and appears only once as a widened digital-network bridge case. That row is useful for defining a possible evaluation target, but it should not be treated as validation of physical-layout Space Syntax mediation. This is not a failure of the field so much as a sign of the next evaluation problem: future work needs to move from spatial presence toward controlled spatial-behavior coupling.
+
+## 6.2 Candidate Evaluation Dimensions
+
+Table 7 organizes candidate evaluation dimensions around behaviors that matter for spatially mediated social simulation. Each row specifies the behavior being measured, the minimum spatial representation needed, the required comparison, candidate measures, and the strongest claim that a successful result could support. This structure matters because different behavioral questions require different representation levels. The table is therefore prospective: it describes what future studies would need to show, not what the current evidence map already demonstrates.
+
+Movement and route choice can often begin at `L3`, because local movement options may already shape where agents go next. However, a configurational route claim requires `L4` or controlled `L5`: agents must receive global route structure, path alternatives, accessibility cues, or embodied geometry in a design that isolates those inputs. Candidate measures include route distribution, path length, location entropy, dwell time, and destination frequency. Passing such a test may support spatial sensitivity; it supports a configuration claim only if global or geometry-bearing structure is isolated.
+
+Co-presence and encounter structure are central to the social-simulation problem. At the local level, `L3` can support tests of nearby-agent exposure, adjacency, and contact opportunities. For layout-wide encounter hypotheses, `L4` is needed because the claim concerns how broader structure shapes who meets whom, where, and how often. Candidate measures include encounter rate, repeated co-presence, contact matrices conditioned on location, and distribution of social contact across places or network positions.
+
+Interaction allocation asks whether spatial structure affects who talks, cooperates, conflicts, or exchanges information with whom. Some versions of this question can be tested with `L3` local relation input. Stronger claims about network-position or configurational allocation require `L4`, because the relevant treatment is no longer simply who is nearby but how agents understand position in a broader structure. The necessary comparison is local-only input versus global-structure input while holding prompts, roles, tasks, and social affordances constant.
+
+Privacy, avoidance, and selective disclosure illustrate why semantic and structural cues must be separated. An agent may choose a "private room" because a prompt labels it private; that is a semantic affordance and may be meaningful at `L2`. A different claim is that agents shift sensitive dialogue toward deeper or less accessible areas because they use structural depth or segregation cues. That latter claim requires `L4` or a controlled comparison between semantic labels and structural position.
+
+Group formation, segregation, role differentiation, and macro-level social structure are the highest-risk evaluation targets. They are attractive because they connect most directly to emergent social behavior, but they are also easy to overread. A macro pattern observed after a simulation is not enough. Future studies would need matched runs with different spatial interfaces or layouts, stable agent populations, controlled tasks, and repeated seeds. Candidate measures include modularity, group persistence, role concentration, cross-group interaction, and spatial distribution of roles.
+
+Embodied coordination and spatial cooperation form a related but distinct dimension. These questions often require `L5`, because collision avoidance, escorting, joint navigation, and physically grounded cooperation depend on geometry-bearing input or embodied perception. A successful comparison can support an embodied-input effect claim, but it should not automatically be treated as configurational mediation. This distinction matters for the current bridge `L5` rows: platform support, embodied cooperation benchmarks, and VR guidance systems all show relevant interface possibilities, but they do not collapse into one generic social-mediation result. Geometry and configuration are related, but not interchangeable.
+
+## 6.3 Controls, Baselines, and Confound Separation
+
+The main methodological challenge is confound separation. If a study changes spatial representation and unrelated context at the same time, then the behavioral difference cannot be attributed to the spatial interface. A stronger evaluation design should hold the agents, goals, task, social setting, communication budget, and prompt semantics as stable as possible while varying only the spatial information available to the agent.
+
+One useful control ladder follows the representation taxonomy. A `L1/L2` versus `L3` comparison asks whether local relational structure matters beyond place naming or semantic scene description. A `L3` versus `L4` comparison asks whether global abstract structure matters beyond local adjacency, co-presence, or local movement options. A `L3` or `L4` versus `L5` comparison asks whether embodied or geometry-bearing input changes behavior beyond symbolic structure alone. None of these comparisons is universally required; the right baseline depends on the claim being made. But the comparison must match the representation claim.
+
+The section also cautions against overreading common proxies. Navigation completion alone does not establish spatial mediation. User satisfaction alone does not establish spatial mediation. A visually rich environment does not establish spatial mediation. Emergent macro patterns without representation controls do not establish spatial mediation. Source-note-only bridge evidence, including the unresolved `BK02` row, also cannot carry strong evaluation claims until full text is acquired or the row is downgraded. These metrics and materials can be valuable components of an evaluation package, but they need to be tied to a controlled spatial interface comparison before stronger claims become available.
+
+This control logic also protects against prompt confounds. If a global-structure condition simply gives agents longer prompts, more semantic hints, or more task guidance, then improved behavior may reflect extra context rather than spatial structure. Similarly, if a geometry-bearing condition changes both perception and action affordances, the study should avoid claiming configurational mediation unless it isolates which part of the interface produced the effect.
+
+## 6.4 Evidence Ladder for Future Studies
+
+The evaluation problem can be summarized as an evidence ladder. The lowest rung is spatial affordance: the system contains places, routes, scenes, spatially situated interaction, or embodied action. This is valuable, but it supports design description rather than effect claims. The next rung is spatial sensitivity: behavior changes when agent-facing spatial context changes. This supports limited observed-effect claims when the outcome is reported clearly and the comparison is interpretable.
+
+The third rung is spatial mediation: a specific spatial representation contributes to a behavioral outcome in a way that survives matched controls. This is the level needed for stronger claims about spatially mediated social behavior. Even here, mechanism language should remain cautious unless the study separates plausible confounds and reports enough evidence to distinguish representation effects from prompt, task, role, or population effects.
+
+The highest rung is replicated mechanism. This would require repeated, well-controlled findings across layouts, tasks, populations, models, seeds, and preferably independent systems. The current literature is not there yet. The point of the ladder is not to dismiss current work, but to make claim strength explicit. A study can be useful at the affordance or sensitivity level without being treated as proof of configuration-mediated social emergence.
+
+Table 7 therefore contributes more than a list of possible metrics. It defines how future work could move from `designed_affordance_only` toward stronger `observed_effect` claims, and eventually toward more robust mechanism claims. It also sets up the research agenda in Section 7: the agenda should prioritize missing representation layers, matched controls, behavior measures tied to social outcomes, and replication across conditions.
+
+
+# Research Agenda
+
+
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.94\textwidth,height=0.62\textheight,keepaspectratio]{../figures/gpt\_image\_2/figure\_6\_research\_agenda\_evidence\_ladder\_gpt\_image\_2\_v3.png}
+\caption{Figure 6. Research agenda as an evidence ladder derived from the evidence map. The current diagnosis is a spatially active but representation-limited literature: `L3` is dense, `L4` is sparse and bridge-only, and observed effects are heterogeneous. Future work should move from explicit representation contracts to mechanism tests, emergent social measures, generalization checks, and application-specific validation. Each step should preserve the survey's claim discipline: future-work directions are not current evidence unless the system exposes the relevant spatial structure and reports observed spatial-behavior associations.}
+\label{fig:6}
+\end{figure*}
+
+
+This section translates the evidence-map gaps into future-work directions. It does not claim that richer spatial representation has already been shown to improve LLM-agent social simulation. The agenda follows from the more limited diagnosis developed in Sections 3 to 6: current systems frequently contain spatial worlds and often expose local relations, but agent-facing configurational structure remains sparse, and stronger claims require controls that separate spatial input from prompts, tasks, roles, and simulator richness.
+
+The agenda is organized around five linked problems: representation, mechanism, emergence, generalization, and applications. Each problem corresponds to a different failure mode in the current literature. Representation asks what spatial structure agents actually receive. Mechanism asks whether any observed behavioral difference is caused by spatial structure rather than by language or task confounds. Emergence asks how micro-level spatial sensitivity could accumulate into macro-level social patterns. Generalization asks whether effects survive across layouts, tasks, models, populations, and seeds. Applications ask how claims should be bounded when spatially situated LLM agents are used in games, urban simulation, design evaluation, environmental psychology, or human-agent interaction.
+
+## 7.1 Representation: Making Configuration Agent-Facing
+
+The first agenda item is representational. Future systems need to specify not only that an environment exists, but what spatial structure reaches the agent interface. The evidence map shows why this matters. In the stable widened Core, the dominant representation level is `L3`, with `18` of `34` coded rows exposing local relational structure such as adjacency, co-presence, nearby agents, local movement options, or local graph relations. `L4` appears only once, in a widened digital-network bridge case, and is absent from the strict `anchor_core`. The unresolved `BK02` row also remains source-note-only and should not be used for strong claims. This pattern makes configurational input a design frontier rather than an established practice.
+
+A useful research direction is therefore to develop explicit encodings for configuration. These encodings do not need to copy Space Syntax software outputs mechanically. They need to expose global abstract structure in a form that language agents can use and that researchers can control. Candidate encodings include ranked accessibility cues, depth or segregation labels, bottleneck or control indicators, path-choice summaries, neighborhood or community position, and compact graph summaries. The existing digital-network `L4` bridge case shows that agent-facing global abstract structure is possible, not that physical-layout configuration has already been validated. For embodied or geometry-bearing systems, the same agenda may involve controlled visual fields, coordinates, route alternatives, visibility masks, or derived layout features.
+
+The central requirement is that the representation be agent-facing and auditable. If a simulator stores a graph but the agent receives only a scene description, then the experiment has not tested graph-level configurational input. If an analyst computes integration or betweenness after the run, then those measures may explain a pattern, but they were not part of the agent's decision interface. Future papers should therefore report a representation contract: the backend spatial substrate, the agent-facing spatial input, the update frequency of that input, and any researcher-side metrics computed after the simulation.
+
+This agenda also requires negative and reduced representations. A strong study should not only test a rich condition. It should include lower-information baselines such as place labels, semantic descriptions, local adjacency, or local co-presence. The most informative comparison is often not "spatial world versus no spatial world," but `L2` versus `L3`, `L3` versus `L4`, or symbolic structure versus geometry-bearing `L5`. These contrasts allow future work to identify which spatial layer is doing work.
+
+## 7.2 Mechanism: Separating Spatial Structure from Language Confounds
+
+The second agenda item is mechanism. The current evidence base contains `observed_effect` rows, but an observed effect is not a mechanism. It indicates that a spatially relevant outcome or association was reported; it does not establish that the outcome was caused by configurational structure. Future research needs designs that can separate spatial structure from other sources of behavioral change.
+
+The most immediate risk is prompt confounding. A condition that gives agents global spatial summaries may also give them longer prompts, richer semantics, clearer task hints, or more social cues. If behavior changes, the difference may reflect additional context rather than spatial configuration. A stronger design should hold personas, goals, tasks, communication rules, memory access, and prompt length as stable as possible while varying the spatial information itself. Where prompt length cannot be held constant, studies should report the asymmetry and include ablations that remove non-spatial hints.
+
+Another risk is semantic-structural conflation. For example, an agent may choose a "private office" because the label says private, not because the location is deep, segregated, or low in through-movement potential. Both effects can be valid, but they support different claims. Semantic scene cues are closer to `L2`; depth, segregation, control, and choice are closer to `L4` when they are agent-facing. Future studies should therefore separate label effects from structural effects by crossing semantic labels with structural positions: a private label in an accessible location, a neutral label in a deep location, and matched alternatives in between.
+
+Mechanism work also needs stronger ablation logic. A plausible ladder is to begin with local-relation tests, then add global abstract structure, then add geometry or embodied perception if the research question requires it. If `L3` and `L4` produce similar outcomes, then local adjacency or co-presence may be sufficient for the measured behavior. If `L4` changes outcomes under matched controls, then a spatial-sensitivity claim becomes stronger. If the effect persists across layouts and tasks, then mediation language becomes more plausible, though still not automatically causal in the strong sense. The ladder should also keep `L5` separate from `L4`: embodied or geometry-bearing input can change behavior without proving that agents used global configurational structure.
+
+## 7.3 Emergence: From Micro Spatial Bias to Macro Social Structure
+
+The third agenda item is emergence. Many of the motivating claims in this area concern macro-level social outcomes: group formation, segregation, role differentiation, information diffusion, norms, brokerage, or persistent interaction networks. These outcomes are attractive because they connect spatial structure to the social-simulation promise of LLM agents. They are also easy to overclaim.
+
+Future studies should make the micro-to-macro pathway explicit. A configuration may first affect movement options, route choice, dwell time, or local co-presence. Those micro differences may then alter encounter rates, partner choice, topic exposure, cooperation opportunities, conflict frequency, or disclosure patterns. Over repeated interactions, those interaction differences may accumulate into group structure, role concentration, unequal access to information, or persistent social clustering. Without this chain, a macro pattern observed at the end of a simulation is difficult to interpret.
+
+This suggests a multi-level measurement design. At the movement level, studies can measure route distribution, location entropy, dwell time, path length, and destination frequency. At the encounter level, they can measure contact matrices, repeated co-presence, encounter rate by location, and exposure diversity. At the interaction level, they can measure dialogue initiation, partner choice, cooperation, conflict, brokerage, and topic-place coupling. At the macro level, they can measure modularity, group persistence, role concentration, cross-group interaction, or inequality in access to information.
+
+The stronger designs will connect these levels rather than report them separately. For instance, if a global accessibility cue changes dwell time in integrated locations, and dwell time changes repeated co-presence, and repeated co-presence changes group formation, then the study can make a clearer spatial-sensitivity or tentative mediation claim. If only the final network modularity changes, the claim remains weaker because the pathway is underspecified.
+
+The agenda should also include null and boundary results. It may turn out that some LLM-agent behaviors are less sensitive to spatial structure than expected because prompts, goals, memories, or social roles dominate the decision process. Such results would still be valuable if they are produced by clean representation controls. The field needs to know not only where spatial configuration matters, but also when local context, semantic labels, or non-spatial social instructions override it.
+
+## 7.4 Generalization: Layouts, Models, Populations, and Seeds
+
+The fourth agenda item is generalization. A single successful simulation is not enough to establish a robust spatial-behavior relationship. LLM-agent systems are sensitive to model choice, prompt wording, memory architecture, tool interface, population design, random seed, and scenario framing. Spatial effects may also depend heavily on the layout family being tested. Future work should therefore treat replication across conditions as part of the evidence requirement rather than as a late-stage robustness check.
+
+Layout generalization is especially important for configurational claims. A result observed in one graph, town, building, or virtual world may be a property of that specific layout rather than of the spatial measure being tested. Studies should vary layouts while preserving the target contrast: high versus low integration, shallow versus deep positions, high versus low control, high versus low choice, open versus occluded visibility, or local-only versus global-structure input. Synthetic layouts can be useful here because they allow controlled manipulation, while more realistic layouts can test ecological plausibility.
+
+Model generalization is equally important. A behavior that appears under one LLM may disappear under another because models differ in spatial reasoning, instruction following, memory use, social priors, and sensitivity to prompt format. Future studies should report model versions, decoding settings, prompt templates, and memory architecture. Where possible, they should repeat key conditions across more than one model family or at least across model sizes. The claim should then match the evidence: a single-model result supports a local system finding, not a field-wide conclusion.
+
+Population and task generalization also deserve attention. Spatial structure may matter differently for cooperative tasks, conflict tasks, information diffusion, private disclosure, navigation-assisted coordination, or open-ended role-play. It may also interact with agent heterogeneity: roles, goals, social ties, mobility preferences, risk preferences, or prior knowledge. A stronger agenda will test whether spatial sensitivity persists when the population composition and task regime change.
+
+Finally, future studies should report seed-level variation. Multi-agent simulations can produce unstable macro outcomes even when initial prompts are unchanged. If a claimed spatial effect appears in one run but not across repeated seeds, it should be described as exploratory. If it appears across seeds, layouts, models, and tasks, then the claim can move upward on the evidence ladder toward replicated mechanism.
+
+## 7.5 Applications: Bounding Claims by Representation and Evidence
+
+The final agenda item concerns applications. Spatially situated LLM agents are likely to be used in game NPCs, virtual worlds, urban simulation, planning support, environmental psychology, architectural design evaluation, education, training, and human-agent interaction. These applications motivate the research program, but they also increase the risk of overclaiming. A visually compelling simulation can look socially plausible even when the agent-facing spatial input is limited and the behavioral evidence is weak.
+
+Application papers should therefore state what kind of spatial claim they are making. A game NPC system may only need local co-presence, place semantics, and short-horizon movement to improve interaction quality. That is a valid `L2` or `L3` application claim, not a configurational mediation claim. An embodied cooperation benchmark, platform demonstration, or VR navigation aid may support an `L5` interface or usability claim without proving multi-agent social mediation. An urban or architectural simulation that aims to reason about encounter structure, publicness, privacy, or circulation needs stronger representation and evaluation controls. It should expose layout-wide or geometry-bearing structure to agents and report behavior measures tied to the claimed social process.
+
+Urban simulation and environmental psychology applications require particular caution. Space Syntax and adjacent physical-space studies can motivate hypotheses about movement, encounter, privacy, visibility, and accessibility, but those hypotheses cannot be transferred directly into LLM-agent conclusions. If LLM agents are used as simulated occupants, citizens, pedestrians, or community members, the study should report which human behavior theory is being approximated, which agent interface implements the spatial condition, and which outcomes are being validated against human, empirical, or design-relevant evidence.
+
+Human-agent and social VR applications raise a related boundary. A system may show that spatially situated agents are engaging, useful, or believable to users. That supports an interaction-design or user-experience claim. It does not by itself show that spatial configuration mediates multi-agent social behavior. To make the latter claim, the system would need agent-facing spatial variation, behavioral measures, and matched comparisons of the kind described in Section 6.
+
+The practical recommendation is to tie application claims to three labels: representation level, behavioral scale, and evidence status. A paper might claim, for example, that an `L3` local-relation interface supports spatially situated dialogue in a particular NPC setting, or that an `L5` embodied interface changes coordination latency in a cooperative task. Those are clearer and more defensible claims than saying that a system "uses space" or "models spatial social behavior" without specifying what the agents received and what evidence was observed.
+
+## 7.6 Summary: From Gap to Research Program
+
+The agenda can be summarized as a controlled progression. First, future systems should make spatial representation explicit at the agent interface. Second, they should compare representation levels under matched controls. Third, they should measure behavior at movement, encounter, interaction, and macro-social scales. Fourth, they should replicate across layouts, tasks, populations, models, and seeds. Fifth, they should bind application claims to the representation and evidence actually tested.
+
+This progression matches the evidence ladder in Section 6. Spatial affordance is the starting point: agents inhabit or interact within a spatial environment. Spatial sensitivity is the next target: behavior changes when agent-facing spatial input changes. Spatial mediation is stronger: a specific spatial representation contributes to a behavioral outcome under matched controls. Replicated mechanism is stronger still: the relationship persists across conditions and can be explained without relying on prompt, task, or simulator confounds.
+
+The most important near-term target is not to prove a broad thesis that space shapes LLM-agent societies. The better target is narrower and more actionable: test whether specific agent-facing spatial structures, especially underexplored configurational structures, change specific social behaviors under controlled conditions. If future work follows that path, the field can move from spatially rich demonstrations toward cumulative evidence about when, how, and for which behaviors spatial configuration matters.
+
+
+# Conclusion
+
+
+This review asked what is known, what is missing, and what is needed to study how spatial configuration may shape social behavior in LLM multi-agent systems. The answer is necessarily cautious. Current systems often contain spatial environments, and many use space to stage movement, encounter, dialogue, co-presence, or embodied action. Some systems report spatially relevant outcomes. However, the current literature does not yet establish that agent-facing spatial configuration robustly mediates LLM-agent social behavior. The field is spatially active, but configuration-level evidence remains sparse.
+
+The first conclusion is methodological: future claims need to distinguish environment-side richness from agent-accessible spatial representation. A simulator may contain a map, graph, grid, 3D world, or complex backend while exposing only a place label, scene description, local nearby-agent list, or prompt-mediated movement option to the LLM. Conversely, a comparatively simple graph or text interface may expose structurally meaningful global information if that information is actually part of the agent's decision input. This is why the review codes what the agent receives, not what the system stores, renders, or computes after the fact.
+
+The second conclusion is empirical and descriptive. In the stable widened-Core evidence map, representation is concentrated at local and mid-structure levels. `L3` local-relational input is the dense center of the corpus, while `L4` global abstract or configurational input is absent from the strict `anchor_core` and appears only once in a widened digital-network bridge case. `L5` geometry-bearing and embodied inputs appear in a limited subset of systems, but they are heterogeneous and do not automatically solve the configurational-representation problem. This pattern means that the main gap is not the absence of space. The gap is the scarcity of agent-facing global structure tied to controlled social-behavior evidence.
+
+The third conclusion concerns claim strength. The evidence map includes `observed_effect` rows, so the literature should not be described as purely speculative or purely design-oriented. At the same time, observed effects remain heterogeneous and do not by themselves establish mechanism. Many claims remain at the level of spatial affordance or limited spatial sensitivity. Stronger mediation claims require matched controls over representation, semantics, prompts, tasks, agent populations, memory, and simulator affordances. Replicated mechanism claims require robustness across layouts, tasks, models, populations, and seeds.
+
+The review has several limitations. It is a scoping review of a young and fast-moving area, so corpus boundaries and bridge-case decisions are inherently contestable. Some systems are difficult to code because papers do not always report the exact agent-facing spatial input. The widened-Core map improves coverage but introduces lower-weight bridge evidence that must be kept distinct from the strict anchor nucleus. One bridge row, `BK02`, remains source-note-only until full text is acquired or the row is downgraded. The review also relies on Space Syntax and physical-space research as a source of transferable hypotheses, not as direct validation for LLM-agent systems. These limitations are part of the reason the paper emphasizes claim discipline rather than broad causal conclusions.
+
+The resulting research program is straightforward. Future work should make spatial representation explicit at the agent interface, compare representation levels under matched controls, measure behavior across movement, encounter, interaction, and macro-social scales, and report robustness across layouts, tasks, models, populations, and seeds. Configurational input is a particularly important target because it remains highly underexplored in the current evidence map. The near-term goal should not be to prove that space generally shapes LLM-agent societies. It should be to test whether specific agent-facing spatial structures change specific social behaviors under controlled conditions.
+
+If that program develops, spatially situated LLM agents can move beyond impressive worlds and plausible demonstrations toward cumulative evidence. The contribution of this review is to clarify where that evidence currently stands, where the gap lies, and what would be required to turn spatially rich simulations into credible studies of spatially mediated social behavior.

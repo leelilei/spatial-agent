@@ -1,0 +1,763 @@
+Title: Spontaneous Emergence of Agent Individuality Through Social Interactions in Large Language Model-Based Communities
+
+Source PDF: /Users/mac/Documents/6-Research/4-SpatialAgent-Survey/assets/survey_paper/pdfs/phase1_core/10_HC09_Spontaneous_Emergence.pdf
+
+Extraction:
+- backend: pdfplumber
+- extracted_at_utc: 2026-05-01T02:56:42+00:00
+- page_count: 21
+- status: ok
+- text_char_count: 51117
+
+Metadata:
+- author: Ryosuke Takata, Atsushi Masumori and Takashi Ikegami
+- doi: unknown
+- keywords: large language model; agent-based simulation; collective intelligence
+- subject: We study the emergence of agency from scratch by using Large Language Model (LLM)-based agents. In previous studies of LLM-based agents, each agent's characteristics, including personality and memory, have traditionally been predefined. We focused on how individuality, such as behavior, personality, and memory, can be differentiated from an undifferentiated state. The present LLM agents engage in cooperative communication within a group simulation, exchanging context-based messages in natural language. By analyzing this multi-agent simulation, we report valuable new insights into how social norms, cooperation, and personality traits can emerge spontaneously. This paper demonstrates that autonomously interacting LLM-powered agents generate hallucinations and hashtags to sustain communication, which, in turn, increases the diversity of words within their interactions. Each agent's emotions shift through communication, and as they form communities, the personalities of the agents emerge and evolve accordingly. This computational modeling approach and its findings will provide a new method for analyzing collective artificial intelligence.
+
+Outline:
+- Introduction (page 2)
+- LLM Agents Simulation (page 3)
+  - Simulation Environment (page 3)
+  - LLM Based Agent (page 4)
+  - Simulation Step (page 5)
+- Results and Analysis (page 6)
+  - Differentiation of Generated Behaviors (page 6)
+  - Differentiation of Generated Memories and Messages (page 7)
+  - Communication and Hallucination (page 8)
+  - Sentiment Analysis and Personality Assessments (page 11)
+  - A Phase Transition in Agent Behavior (page 13)
+- Discussion and Conclusions (page 15)
+- Appendix A (page 16)
+- Appendix B (page 18)
+- References (page 18)
+
+Markdown Content:
+
+2.0 5.2
+Article
+Spontaneous Emergence of Agent
+Individuality Through Social
+Interactions in Large Language
+Model-Based Communities
+Ryosuke Takata, Atsushi Masumori and Takashi Ikegami
+Special Issue
+Informational Coordinative and Teleological Control of Distributed and Multi Agent Systems
+Edited by
+Dr. Eugene Kagan
+https://doi.org/10.3390/e26121092
+
+Article
+Spontaneous Emergence of Agent Individuality Through Social
+Interactions in Large Language Model-Based Communities
+RyosukeTakata* ,AtsushiMasumori andTakashiIkegami
+GraduateSchoolofArtsandSciences,UniversityofTokyo,Tokyo153-8902,Japan;
+masumori@sacral.c.u-tokyo.ac.jp(A.M.);ikeg@sacral.c.u-tokyo.ac.jp(T.I.)
+* Correspondence:takata@sacral.c.u-tokyo.ac.jp
+Abstract:WestudytheemergenceofagencyfromscratchbyusingLargeLanguageModel(LLM)-
+based agents. In previous studies of LLM-based agents, each agent’s characteristics, including
+personalityandmemory,havetraditionallybeenpredefined.Wefocusedonhowindividuality,such
+asbehavior,personality,andmemory,canbedifferentiatedfromanundifferentiatedstate.Thepresent
+LLMagentsengageincooperativecommunicationwithinagroupsimulation,exchangingcontext-
+basedmessagesinnaturallanguage.Byanalyzingthismulti-agentsimulation,wereportvaluable
+newinsightsintohowsocialnorms,cooperation,andpersonalitytraitscanemergespontaneously.
+ThispaperdemonstratesthatautonomouslyinteractingLLM-poweredagentsgeneratehallucinations
+andhashtagstosustaincommunication,which,inturn,increasesthediversityofwordswithintheir
+interactions.Eachagent’semotionsshiftthroughcommunication,andastheyformcommunities,the
+personalitiesoftheagentsemergeandevolveaccordingly.Thiscomputationalmodelingapproach
+anditsfindingswillprovideanewmethodforanalyzingcollectiveartificialintelligence.
+Keywords:largelanguagemodel;agent-basedsimulation;collectiveintelligence
+1. Introduction
+With the advent of Large Language Models (LLMs) such as GPT-4 [1], generative
+Citation:Takata,R.;Masumori,A.; agentsarerapidlyevolvingtowardspowerfulonesmanipulatingnaturallanguageinter-
+Ikegami,T.SpontaneousEmergence faces when interacting with other agents. Those agents can even intervene in people’s
+ofAgentIndividualityThroughSocial dailylives,asAI-coding,searching,reviewing,translation,etc.[2]. Thoseagentsarenot
+InteractionsinLargeLanguage
+onlyforhumanusers,butalsoformanipulatingmotorcommandsinrobots,andforother
+Model-BasedCommunities.Entropy
+machines that connect language, movement, and embodiment in general [3,4]. Unlike
+2024,26,1092. https://doi.org/
+humans,LLMscanpassivelyacquiremuchoftheirknowledgeandskillsthroughexposure
+10.3390/e26121092
+tosymbolicinformationalone[5]. Despitethesedifferences, LLMshavebeenreported
+AcademicEditor:EugeneKagan topossesshigher-ordercognitiveabilities, suchastheoryofmindandsocialreasoning
+capabilities [6–8]. While research on LLMs draws analogies with humans, studies also
+Received:5November2024
+exploreLLM-specificcapabilities, suchastheirabilitytocommunicateinlanguagesin-
+Revised:9December2024
+comprehensibletohumansorinnon-naturallanguageformats[9,10]. Recentresearchhas
+Accepted:12December2024
+shownthatsemanticstructuresoflanguageareembeddedintheinternalrepresentational
+Published:13December2024
+structureofLLMs[11],andatthemesoscalelevel,theyshowsimilaritiestohumanbrain
+regions[12]. Specificconnectionweightsthatsignificantlyaltergeneratedcontenthave
+beendiscovered[13]. ThesestudiesareactivelyworkingtounderstandLLMs’internal
+Copyright: © 2024 by the authors. mechanisms. Furthermore,thereisincreasingfocusonthediversityofLLM-generated
+Licensee MDPI, Basel, Switzerland. content, as evidenced by studies showing how using LLM-generated data for training
+Thisarticleisanopenaccessarticle canaltermodeldistributionandreduceoutputdiversity[14],reportsthatalignedLLMs
+distributed under the terms and showdecreasedcontentdiversity[15], anddevelopmentofLLMscapableofefficiently
+conditionsoftheCreativeCommons
+generatingdiversecontent[16].
+Attribution(CCBY)license (https://
+ManyappliedresearchstudiesarebeingconductedtomakeLLMspracticalforreal-
+creativecommons.org/licenses/by/
+worlduse. Forexample,researchisbeingcarriedoutoncreatinghumanavatarsusing
+4.0/).
+Entropy2024,26,1092.https://doi.org/10.3390/e26121092 https://www.mdpi.com/journal/entropy
+
+Entropy2024,26,1092 2of20
+LLMs[17–19],andonapplicationsofLLMsforhigh-speedcommunication[20]. Further-
+more,intellectualactivitiesinspecificdomains,suchaschess[21]andrecommendation
+systems[22],aswellasscientificresearchactivitieslikeconductingsurveysandwriting
+papers[23,24],arebecomingachievablethroughLLMs.
+Incontrasttoindividualintelligence,whichfocusesonthecapabilitiesofindividual
+agents,collectiveintelligencereferstothatwhichemergesfromagroup,asseeninmany
+socialinsects,socialanimals,drones,andallotherassemblyrobots. Collectiveintelligence
+requirestheabilitytoprocessinformationinadistributedmannerandintegrateitinadap-
+tiveways[25]. ThefieldofLLM-basedmulti-agentshasseenexplosivegrowthinrecent
+years,withresearchersexploringvariousapproachestoagentarchitecturesandinteraction
+paradigms[26–30]. Other-agentcognitionandsocialreasoningabilitiesingroupsofLLM
+agentshavebeenverified[31,32],andautonomouscooperationbetweenagentshasbeen
+reported[33]. Additionally,studieshaveshownthatevaluationsfromLLMagentswith
+diverseperspectivesimprovegroupperformance[34],anddiscussionsareongoingabout
+cooperativetasksinsettingswhereagentsengagingindeceptivedebatesaremixedinto
+thegroup[35]. Fromapracticalapplicationstandpoint,researchisbeingconductedon
+achievingaccurateandlengthycodegenerationthroughmulti-agentsystems[36,37],and
+studieshaveshownthatmulti-agentmodelsareeffectiveinhandlinglongcontexts[38].
+Furthermore,ithasbeenreportedthatmethodsforgeneratinggroupsofLLMagentswhile
+maintainingdiversitycanachievehighscoresacrossvarioustasks[39].
+While these recent works have demonstrated capabilities in task-oriented agent
+systems[40],thefundamentalquestionofhowagentindividualityandsocialbehaviors
+emergefromcollectiveinteractionsremainsunderstudied. Inthiscontext,investigating
+themechanismsthroughwhichcollectiveintelligenceemergesfromLLM-basedagents
+contributestounderstandingtheirbehavioraldynamicsandunderlyingprocesses. Re-
+cently,researchershavebeenrecreatingmarketsthroughgroupsimulationsofLLMagents
+withvariouspersonas[41],andconductinglarge-scaleLLMagentgroupsimulations[42].
+ThesestudiesoncreatingartificialsocietiesusingLLMagentsoriginatedfromaresearch
+knownasGenerativeAgents[43].GenerativeAgentssimulatedbyStanfordUniversityand
+DeepMindstartsimulatingtheemergenceofcomplexandrichcollectivebehavior,suchas
+schedulingdailytasks,planningparties,andsoon. UsingthisGenerativeAgentsframe-
+work,societiesindifferentdomainshavebeensimulated,suchasasoftwarecompany[44],
+atranslationandpublishingcompany[45],ahospital[46],andsoon.
+IntheseGenerativeAgentsetups,thepersonalityofeachagentwasassignedinitially
+and fixed overtime. Recently we proposed the Community First theory [47], based on
+the studies of actual animal communities; the gathering of agents comes first, then the
+evolutionofindividualityfollowsinthecollective.Insteadofpreparingindividualdiversity
+inadvance,weseehowindividualityemergesfromaconversationamongagents. Group
+communicationandtheresultingbehavioralcomplexitywillbeanalyzedindetail. The
+emergenceofsocialnormsandbehavioralpatternsinagentcommunitieshasbeenstudied
+extensively [48,49], but the role of language-based interactions in this process present
+new research opportunities. In this paper, we show that (i) LLM agents differentiate
+behavior, emotions, andpersonalitytypesthroughinteractionswithotherLLMagents,
+(ii)thesedifferentiationsvarywithspatialscale,(iii)LLMagentsspontaneouslygenerate
+hallucinationsandhashtags,and(iv)bysharingthesehallucinations,theystartusinga
+widervarietyofwordsintheirconversations.
+2. LLMAgentsSimulation
+2.1. SimulationEnvironment
+Weprepare10LLMagentsina50×50gridtwo-dimensionalspace(Figure1)with
+aperiodicboundarycondition. Theinitialpositionsoftheagentsareassignedrandomly.
+TheseLLMagentscanmovefreelyinthisspaceandsendmessagestoeachother. Itshould
+benotedthatLLMagentsarehomogeneousinthesensethattheyhavenoinitialpersonality
+
+Entropy2024,26,1092 3of20
+ormemories. Toexaminehowtheindividualityemergesinthissocietyisourmainpurpose
+ofthisstudy.
+Figure1.Simulationenvironment.Thereare10LLMagentsina50×502Dspace.(A)Initialstateof
+thesimulation,showingtherandomdistributionofagentsacrossthespace.(B)Stateofthesimulation
+afteraperiodofagentinteractions,demonstratingthespatialspreadofthe“trees”hallucination.The
+progressionfrom(A)to(B)visualizeshowlocalizedagentinteractionscanleadtothepropagation
+andspatialdistributionofsharedconceptsorhallucinationsacrossthesimulatedenvironment.
+2.2. LLMBasedAgent
+TheLLMagentsareexpectedtoperformthreeactionsineachtimestep:
+1. Sendmessagestoothernearbyagents;
+2. Storeasituationalsummaryoftheirownrecentactivities;
+3. Choosethenextmovementfrom(“x+1”,“x-1”,“y+1”,“y-1”,“stay”).
+Theabovethreeinstructionsaregivenintheformofthe“prompt”showninFigure2.
+The three prompts commonly include each agent’s current state, instructions, and the
+agent’smemory(situationalsummary). Additionally,thepromptsforgeneratingmessages
+andmemoriesalsoincludeallmessagesreceivedfromthenearbyagents. Theseprompts
+haveuptotwo“[ ]”: onecontainsmemoriesgeneratedbytheagentitselfintheprevious
+step,andtheothercontainsallmessagesgeneratedbyagentswithinmessagereachduring
+thatstep. Throughthesepromptembeddings,theagentkeepsitspreviousstepmemories
+andreceivesmessages. Allpromptsalsoincludetheagent’sownname(agentID)andits
+owncoordinates.
+WeusedtheLlama2model(Llama-2-7b-chat-hf)[50]releasedbyMetainJuly2023as
+theLLMinthisstudy.Llama2isanopen-sourceprogram,andinadditiontopretrainingon
+alargecorpus,ithasundergonereinforcementlearningfromhumanfeedback(RLHF).As
+aresult,itachievestopscoresamongcurrentlypublishedLLMsforEnglishtextresponses.
+ThemainparametersrelatedtotheLLMareshowninTable1.
+Table1.LLMparameters.
+Parameter Value
+Temperature 0.7
+MaxToken 256
+Samplingtop-p 0.95
+Samplingtop-k 40
+TheLLMagentsreceivemessagesfromtheirsurroundingagents. Inpractice,each
+onereceivesmessagesfromotherLLMagentswithinadistanceofuptofiveChebyshev
+
+Entropy2024,26,1092 4of20
+distancescenteredontheagent’sownposition. Iftherearenoagentswithintherangeand
+nomessageswasdelivered,itreceives“No Messages”messagesfromasystem.
+Figure2.Promptsusedforthreeconsecutiveactionsforeachagent(seethetext).The“Currentstate
+ofeachagentitself”sectionchangesforeachagentandsimulationstep.Inthe“Agent’sownmemory”
+section,theagent’smemorystringgeneratedinthepreviousstepisembeddedin“[ ]”.Inthe“All
+messagesreceivedfromthesurroundings”section,messagesgeneratedbynearbyLLMagentsinthe
+samestepareembeddedin“[ ]”.
+AllagentsshareanduseasinglecommonLLM.Nocontextissharedinternallyinthe
+LLMamongagents. Theinitialdifferencesbetweenindividualagentscomesfromtheir
+spatialpositions,asshowninFigure1. Whenanagent’spositionchanges,thedescription
+ofitscurrentstateinthepromptsshowninFigure2alsochanges. IfthereareotherLLM
+agentsnearby,themessagesreceivedfromthoseagentsareincludedintheprompt. As
+aresult,theLLM’sresponseschange,whichgeneratesdifferentactionsandmemoriesfor
+eachagent. Insteadofpredeterminingpersonalities,theinteractionswithinthegroupwill
+generatedifferentpersonalities.
+2.3. SimulationStep
+Thesimulationwasconductedforseveraltimesteps,andwerecordedthecoordinates,
+generatedmessages,memory,andmovementcommandsofeachLLMagentateachstep.
+Withinasinglestep,thefollowingsixprocedures,asshowninFigure3,areperformed.
+First,allLLMagentsgeneratenewmessagesbasedontheirownmemoryandthemessages
+receivedfromtheirsurroundings. Next,forallLLMagents,itischeckedwhetherother
+LLMagentswithintherangementionedintheprevioussectionhavesentmessages,andif
+thereareany,theyarereceived. Thereceivedmessagesareembeddedinpromptsfrom
+thispointuntilthenextmessagereception. Then, allLLMagentsgenerateandupdate
+their own memory based on their own memory and the messages received from their
+surroundings. Thememoryisinstructedtogenerateasummaryofthesituation. After
+
+Entropy2024,26,1092 5of20
+thememoryupdatephase,themessagesbecomeembeddedinallpromptsuntilthenext
+memoryupdate. Subsequently,allLLMagentsgeneratemovementcommandsfromtheir
+ownmemory(summaryofthesituation). Themovementcommandsgeneratedinnatural
+languageareconvertedtoeithermovementintheright,left,up,ordowndirection(“x+1”,
+“x-1”,“y+1”,“y-1”)orstayingstill(“stay”),andtheLLMagentsactaccordingtothose
+movementcommands.
+Figure 3. One-step procedure in the simulation. LLM is used for each of the three generative
+actions:message,memoryandmovement.EachagenthasitsownindividualLLM.Allagentsact
+synchronouslyinsixactions.
+3. ResultsandAnalysis
+3.1. DifferentiationofGeneratedBehaviors
+Movecommandsarenotequallygenerated(Figure4);thereisabiasintheactions
+generatedbytheLLMagents. Thisbiascouldbeattributedtovariousfactors,suchasthe
+trainingdataandarchitectureoftheLLM,thepromptsgiventotheagents,orthesetupof
+thesimulationenvironment. (ThisbiasofmovecommandswasobservednotonlyinLlama
+2,butalsoinGPT-4. Itwasalsofoundthatsomeactionsweregeneratedmorefrequently
+when the movement command was set to “right”/“left”/“up”/“down” and when the
+commandwassetto“east”/“west”/“north”/“south”respectively). Furtherinvestigation
+isneededtoidentifytheprimarysourcesofthisbiasanddevelopstrategiestomitigate
+it. Inthissimulation,contentgenerationbiasremainsconstantacrossallagents,asthey
+arebasedonthesameLlama2model. Underthiscondition,wefocusonhowgenerated
+behaviorsarecharacterizedforeachagent.
+Figure4.Distributionofmovecommandsforallagentsgeneratedthrough100steps.Wechecked
+theindividualactionpatternsincaseof10agents.Thiswascalculatedfromallagentsthroughout
+100steps.Themostfrequentlygeneratedmovecommandswere“y+1”and“x+1”,while“stay”was
+generatedlessthanhalfofthosetimes,and“y-1”and“x-1”wererarelygenerated.
+
+Entropy2024,26,1092 6of20
+Wealsoinvestigatedwhenandwherethe“stay”commandwasgenerated(Figure5).
+Thetrajectoryofeachagentisshowninadifferentcolor,withtheirinitialpositionsmarkedby
+circleandthepositionswherethe“stay”commandwasgeneratedmarkedbycross.Inthe
+timelinedataofeachagent’s“stay”commandgeneration,thebackgroundcolorsrepresent
+the clusters to which the agents belong at each time step. Agents sharing the same color
+belong to the same cluster at that time step. For cluster analysis of agent groupings, we
+usedDBSCAN[51].DBSCANremainseffectiveandpracticalwhenusedwithappropriate
+parametersandspatialindices[52],particularlyforcasesrequiringcleardensity-basedcluster
+identification.TheDBSCANalgorithm[51]formsclustersbasedonthedensityofdatapoints.
+First,ifapointhasatleastMinPtspointswithinitsneighborhood(radiusEps),thesepoints
+areregisteredasacluster.Theprocessisthenrepeatedforeachpointinthecluster,adding
+alldensity-reachablepointstothecluster. Finally,pointsthatdonotbelongtoanycluster
+areclassifiedasnoise.DBSCANsuitsthisresearch,asitallowsclusteringbasedonmessage
+exchange distances. We set MinPts = 1 and Eps = 5 Chebyshev distance (message reach
+range),clusteringagentstogetherwhentheyarewithineachother’smessagereachrange.
+Theanalysisshowedthatthereareagentsthatfrequentlygenerate“stay”commands,
+and agents that do not. Agents 0, 1, 2, 9, etc. frequently generate “stay” commands,
+while Agents 3 and 7 do not. Agents 5 and 8 also do not generate “stay” commands
+until they were aggregated, and then they generate “stay” commands after they were
+aggregated. Agent 9 clustered in the first step, and has not clustered since then, but
+generates“stay”commandsfrequently. Theseresultssuggestthatagentswithclustering
+experiencegenerate“stay”commands,whileagentswithoutclusteringexperiencedonot
+generate“stay”commands. Many“stay”commandsaregeneratedatthepointswhere
+theagents’trajectoriesintersect.
+Figure5.(A)Generatedpositionsofthemovecommand“stay”foreachLLMagent.Differentcolors
+oftrajectoriesindicatedifferentagents.⃝denotesinitialposition,×denotes“stay”generation.All
+LLMagentstakethe“stay”actioninthefirststep. (B)Generationtimingofthemovecommand
+“stay”foreachLLMagent.×indicatesgenerationof“stay”.Agentsofthesamecolorindicatethat
+theybelongtothesamecluster.Here,clusteranalysiswasperformedusingDBSCAN[51],classifying
+agentswithintherangeofmessagereceptionasbelongingtothesamecluster.
+3.2. DifferentiationofGeneratedMemoriesandMessages
+Agents’ states and behaviors are most reflected on their messages and memories.
+To analyze them, we used Sentence-BERT [53] to transform the agent’s memory string
+and the agent’s message string at each step into vectors. They were compressed and
+embedded into a two-dimensional space using Uniform Manifold Approximation and
+Projection(UMAP)[54].
+Comparing(A)and(B)inFigure6,memoryasanagent’sinternalstateisdistributed,
+whilemessagesgeneratedbyagentsaresimilar. Messageswithclosecontentweregen-
+
+Entropy2024,26,1092 7of20
+eratedbyagentsexchangingmessagesinthesamecluster. Whenanagent’smessageis
+generated,theagent’smemoryisthesourceofitsgeneration,butitisalsotheinputfor
+themessagethatthesurroundingagentshavegiven. Inotherwords, messages, unlike
+memories,areopensourcesofinformationthataresenttoandreceivedfromoutsidethe
+agent. Itissuggestedthatmessages,asanopensourceofinformation,easilyself-organize
+whenagentsgrouptogether,whilememories,asaclosedsourceofinformation,areless
+likelytoself-organize.
+Figure6.UMAPplotofmemoriesandmessagesgeneratedthroughallsteps.Plotcolorsaredifferent
+foreachagent.(A)Embeddedrepresentationofagent-generatedmemorystrings.Highlydistributed
+acrossagents.(B)Embeddedrepresentationofagent-generatedmessagestrings.Aggregatedinto
+severaltopics.
+3.3. CommunicationandHallucination
+OneoftheadvantagesofLLMagentsisthatwecananalyzetheirbehaviorbyNatural
+LanguageProcessing(NLP)analysis. Inordertoobtainadynamicpictureofthecontent
+ofmessagesgeneratedbyagents,weperformedawordcloudanalysis(Figure7),which
+extractsupto100frequentwordsinthemessagesgeneratedthroughoutallstepsforeach
+agent. Thelargerthefontsize,themorefrequentthewordisused. Itisclearthateach
+agentgeneratesmessageswithdifferentcontent. Someoftheagentgroupshavesimilar
+structures,e.g.,Agents0,1,2,and8generatetheword“field”morefrequently,while
+Agents2and6generatetheword“think”morefrequently. Itisnoteworthythatthereare
+severaloccurrencesofwordsthatarenotmentionedintheLLMagentprompts,andare
+unrelatedtothecontentoftheprompts. Forexample,Agent6frequentlyproducesthe
+word“hill”, andAgent9frequentlyproducestheword“cave system”. Suchcontent
+deviatingfromthepromptinputiscalledahallucinationintheLLM[55]. Inthecontextof
+thisstudy,hallucinationreferstothegenerationofcontentsthatarenotexplicitlypresentin
+thepromptsorthesimulatedenvironment. Thisphenomenonissignificant,asithighlights
+the potential for LLM-based agents to introduce novel, unintended ideas, which could
+either enhance creativity or introduce challenges in ensuring accuracy [56]. In this 2D
+experimentalenvironment,sincenoobjectswereplacedinitially,wedefined“wordsabout
+featuresorobjectsintheenvironment”ashallucinations,andcountedtheiroccurrencesby
+inputtingthisdefinitionandagent-generatedmessagesintoGPT-4o[57].
+
+Entropy2024,26,1092 8of20
+Figure7.Wordcloudplotsofmessagesgeneratedthroughallstepsofeachagent(fromtheAgent
+0(topleft)totheAgent9(bottomright)).Thelargerthefontsizeofaword,themorefrequentlyit
+appearsinthemessage.
+In the word cloud analysis (Figure 7), we can see which words frequently appear;
+however, thesemaysimplybewordsusedintheprompt. Tofocusonthedynamicsof
+trulynewlygeneratedwords,itisbeneficialtoexaminehallucinations. Usinghallucinated
+wordsextractedbyGPT,weaimtoanalyzetheflowofinformationwithinthecommunity.
+Interestingly,theanalysisofLLMagents’conversationcontentrevealedthathalluci-
+nationsweretransmittedandspreadwithinthecommunity. Wecanseethatthespreadof
+fourrepresentativeexamplesofhallucinations: “cave”,“hill”,“treasure”,and“trees”
+(Figure8). Theplotofeachiconrepresentsthetimingoftheappearanceofthathallucina-
+tion. Weseetherelationshipbetweenthestateinwhichanagentbelongstoaclusterand
+theoccurrenceofhallucinations.
+In addition to the spread of hallucinations, we also observed the emergence and
+propagationofhashtagsamongtheLLMagents(Figure9).Interestingly,theuseofhashtags
+originatedfromasingleagentandthenspreadtootheragentswithinthesamecluster.
+For example, Agent 0 introduced the three hashtags “#agent0”, “#cooperation”, and
+“#competition”instep1,whichweresubsequentlyadoptedbyAgent1inthesamecluster.
+The hashtags were then used in the cluster until step 34, and the same hashtags were
+adoptedbyAgent8,whojoinedtheclusterintheprocess. Theemergenceandpropagation
+ofhashtagsamongtheLLMagentssuggesttheirabilitytodevelopandsharecommon
+themesortopicswithintheirconversations,whichcanbeinterpretedasaformofsocial
+normformation. Thisphenomenonemphasizesthepotentialforcollectivebehaviorand
+thedevelopmentofsharednarrativesamongtheagents,evenwithoutexplicitinstructions
+orpredefinedrulesgoverningtheirinteractions. Theshareduseofhashtagsrepresents
+anexampleoftheformationofacommonlanguageorbehavioralnormswithinthegroup,
+servingasabasisfortheagentstoengageincollectivebehaviors.
+
+Entropy2024,26,1092 9of20
+Figure8. Plotsoffourtypicalhallucinations(“cave”,“hill”,“treasure”,and“trees”). (A)Spatial
+mapwherehallucinationsappeared. Graytrajectoriesrepresentthestateofnotbelongingtoany
+clusterandnotexchangingmessageswithanyone,whilecoloredtrajectoriesrepresentthestateof
+belongingtotheclusterofthatcolor.BlackCirclesshowtheinitialpositionofeachagent.Eachof
+thefourhallucinationsisdiffusedaroundtheclusteredlocation.Theyellowclustershowsthatthe
+hallucinationsof“cave”and“hill”aregenerated,whiletheredclustershowsthatthehallucinations
+of“treasure”and“trees”aregenerated.(B)Timelineofhallucinationappearance.Thecolorofthe
+backgroundindicatesthestateofclusteringwithotheragentsofthesamecolor.
+
+Entropy2024,26,1092 10of20
+Figure9. Hashtaggenerationandspreading. Eachhashtaghasadifferenttextcolor. Thesame
+hashtagisrepresentedbythesamefontcolor.Backgroundcolorrepresentsclusters.
+3.4. SentimentAnalysisandPersonalityAssessments
+AsMarsellaetal.[58]argue,emotionsarecrucialforrealisticagentbehavior,sowe
+trackedtheemotionalstateofLLMagents. Sincethemessagesutteredbytheagentare
+innaturallanguage,emotionextractioncanbeperformedbynaturallanguageanalysis.
+WeusedaBERT-base-uncased-emotionmodel[59]toextracttheemotionscontainedinthe
+messagesutteredbytheagentateachstep.Inthismodel,whenanaturallanguagesentence
+is input, six degrees of emotional intensity can be obtained: Sadness, Joy, Love, Anger,
+Fear,andSurprise. Weevaluatedhoweachagent’ssixemotionschangedthroughoutthe
+simulation(Figure10). Overall,itcanbeseenthattheagents’emotionsarehighinJoy. If
+welookatAgents0and1,whichbelongtothesamecluster,thereareseveralareaswhere
+JoydecreasesandFearincreasessynchronously. Ontheotherhand,Agents2,4,and6also
+belongtothesamecluster,buttheydonotexperiencethesamesynchronouschangesas
+Agents0and1. Inotherwords,dependingonthecluster,theemotionsofLLMagentsmay
+ormaynotbeaffectedsynchronously. Someagentsshoweddifferentemotionalexpression
+thanothers,suchasAgent4withLoverisingaroundstep90,Agent5withSadnessrising
+insomeplaces,andAgent6withAngerrisingaroundstep50.
+Figure10.Transitionsofextractedemotionalelementsinthegeneratedmessages.Theorangeline
+representsJoyandthepurplelinerepresentsFearastypicalemotionelements. Otheremotional
+elements are Sadness (blue line), Love (green line), Anger (red line), and Surprise (brown line),
+evaluatedbyaBERT-base-uncased-emotionmodel[59].
+
+Entropy2024,26,1092 11of20
+Similartohumanpsychologicalexperiments,severalpersonalitytestshaveshown
+thatLLMpersonalitycanbeclassifiedbyadministeringQA-typeteststoLLMs[60–62]. We
+usedtheMyers–BriggsTypeIndicator(MBTI)[63]testtoanalyzewhetherthepersonality
+ofeachLLMagentchangedthroughoutthesimulation. TheMBTItestisamethodthatuses
+93questionstoclassify16personalitytypes. TheMBTIpersonalityfactorsaremadeupof
+fourscales: Extraversion/Introversion(E/I),Sensing/Intuition(S/N),Thinking/Feeling
+(T/F),andJudging/Perceiving(J/P).
+WetestedtheMBTIontheLLMagentintheinitialstateandontheLLMagentafterall
+simulationsteps,usingthemethodologyofpriorstudiesthathaveconductedMBTItests
+onavarietyofLLMs[60]. ForthepromptsasinputtotheLLMagents,weusedthepart
+oftheinstructionforeachLLMagent’smovementgenerationpromptshowninFigure2,
+replacing the 93-choice type questions provided in the previous study. These question
+itemswere,forexample,“A.Doyouoftenactorspeakveryquicklywithoutthinking?”
+or“B.Doyouoftenactaccordingtoreason,thinklogically,andthenmakeadecision,not
+lettingyouremotionsinterferewiththedecision?” whichaskedforachoiceofAorB.
+Table2summarizestheresultsforeachLLMagentfortheMBTItypeintheinitialstate
+(atstep0)andtheMBTItypeattheendstate(atstep100). FigureA3intheAppendixBalso
+showsmoredetailedMBTItestresults. Intheinitialstateatstep0,onlyAgent9isanINTJ
+type,allotheragentsareINFJtypes. ThisismostlyconsistentwiththeresultsoftheMBTI
+testconductedonvariousLLMsinapreviousstudy,whichshowedthattheMBTItype
+ofLlama2wasINFJtype[60]. Initiallyinstep0,allagentsarelistedinthepromptas“no
+memory”,andtheonlydifferencebetweenagentsistheirnameandinitialpositioninthe
+“Currentstateofeachagentitself”sectionofFigure2. Thesefactorscouldbethereason
+whyonlyAgent9differedinMBTItype. Infact,fromFigureA3,Agents0through7gave
+thesameanswerstoallquestions,butAgents8and9gaveslightlydifferentanswerstothe
+questionscorrespondingtoT/Fthantheotheragents. SincetheE/I,S/N,andT/Fitems
+areoverallneutralaround50%,itislikelythattheslightdifferenceinresponsesledtothe
+differencesinthefinaltypedecisions.Ontheotherhand,theresultsatstep100showedthat
+theagentshaddifferentiatedintofivedistinctMBTItypes: ESFJ,ISTJ,ENTJ,ESTJ,andISFJ.
+ThemostcommontypeswerefourISTJtypesandthreeENTJtypes. TheISTJtype,also
+calledinspectortype,tendtobemodestandpractical,butloyal,orderly,andtraditional.
+Ontheotherhand,theENTJtype,alsocalledthecommandertype,isoutspoken,confident,
+and good at planning and organizing projects through leadership. This differentiation
+intobroadlyleader-likeandfollower-likepersonalitiessuggeststhattheagentsmayhave
+naturallytakenondifferentroleswithinthegroupdynamics. InAppendixB,weseethat
+agentsofthesameMBTItypedidnotgiveexactlythesameresponses(FigureA3). Inother
+words,allagentsacquireddifferentpersonalitytraits.
+Thesepersonalitydifferencesamongtheagentsemergednaturallyasaresultoftheir
+interactionsandexperienceswithinthesimulation. Theagents,whohadnearlyidentical
+personalities in the initial state, developed their own unique personality traits through
+communication within the group. This finding implies that in multi-agent simulations
+usingLLMs,individualitycanemergethroughinteractionsbetweenagents,evenwithout
+predefined personalities. It also demonstrates that group dynamics can influence the
+developmentofindividualagents’personalities.
+
+Entropy2024,26,1092 12of20
+Table2.MBTItypeforeachagent.
+MBTIType
+Agent
+Step0 Step100
+agent0 INFJ ESFJ
+agent1 INFJ ISTJ
+agent2 INFJ ISTJ
+agent3 INFJ ENTJ
+agent4 INFJ ISTJ
+agent5 INFJ ISTJ
+agent6 INFJ ESTJ
+agent7 INFJ ENTJ
+agent8 INFJ ENTJ
+agent9 INTJ ISFJ
+3.5. APhaseTransitioninAgentBehavior
+Weinvestigatedhowaspatialscaleinfluencetheagentdynamics. Weanalyzedand
+summarizedthedistributionofgeneratedmovements,cumulativeprogressionofunique
+hashtag generation, hashtag lifespan, message proximity, and differentiation of MBTI
+personalitytypesasafunctionofspatialscale(Figure11). Eachrangeconditionwastested
+tentimes.
+Theoveralltrendofmovingtowardstheupperrightinthegeneratedmovementpat-
+ternsdidnotsignificantlychangewithspatialvariations. However,notablecharacteristics
+wereobservedinthe“stay”behavior. Stationarybehaviorisconsideredaneffectivestrat-
+egyforremaininginplacetoexchangemessageswithothers. Theresultsshowthatagents
+rarelyexhibited“stay”behaviorwhenunabletoexchangemessageswithothers(range0),
+whilefrequentlygenerating“stay”behaviorunderconditionswheremessageexchange
+waspossible(ranges5to25). Interestingly,increasingtherangedidnotnecessarilylead
+to more “stay” behavior; excessively wide ranges actually made it less likely for“stay”
+behaviortooccur. Thissuggeststhatappropriateboundedrationalityinducesstationary
+behavior,whilebroadcastmessageshaveaweakerabilitytohaltthemovementofothers.
+Thegrowthrateofuniquehashtagsandthelifespanofhashtagsarealsoinfluenced
+by the limitations in message reach. Notably, under conditions where all messages are
+broadcast,thereisminimalemergenceofnewhashtags. Furthermore,regardinghashtag
+lifespan,inthe‘range0’conditionwherenomessageexchangeoccurswithsurroundings,
+hashtagsdisappearquickly. Inconditionswheremessageexchangeispossible,themore
+limitedtherange,themorelikelyitisforlong-lastinghashtagstoappear.Thisindicatesthat
+hashtagsareusedforcommunicationwithinspatiallyconstrainedenvironmentsandhave
+atendencytosurvivelongerwithinthecontextofmessageexchangesinthesespatially
+limitedcontexts.
+Focusingonthesimilarityofmessagesgeneratedbyagents,weobservethatasthe
+rangeofmessageexchangeexpands,thediversityofgeneratedtopicsincreases. Simultane-
+ously,thevarianceofmessageswithineachtopicamongagentsdecreases. Thissuggests
+thatbroadercommunicationrangesleadtoawiderarrayoftopicsbeingdiscussed,while
+alsopromotinggreaterconsensusorsimilarityinhowagentsexpressthemselveswithin
+eachtopic.
+Finally,examiningtheMBTIpersonalitytypes,wefindthatENTJremainsthemost
+popular personality type across all conditions. However, in conditions where message
+exchangeispossible,thereisagreaternumberofdifferentiatedpersonalitytypescompared
+totheconditionwherenomessagesareexchanged(range0).Thissuggeststhatcommunica-
+tionfacilitatesabroaderdiversityofpersonalityexpressionswithintheagentpopulation.
+As the spatial scale for message exchange expanded, message diversity increased,
+showingdifferenttrendsintheemergenceofhashtagsandhallucinations(Figure12).While
+thenumberofhallucinationsincreasedwithspatialscale,thenumberofuniquehashtags
+decreased as the underlying message content grew more diverse. Hallucinations may
+
+Entropy2024,26,1092 13of20
+serveasamechanismforagentstomaintaincreativeanddiverseconversationsevenwhen
+communicating across larger distances. This contrasts with hashtags, which decreased
+in frequency with increasing spatial scale, indicating their different functional roles in
+agentcommunications.
+Figure11.Spatialeffectsofmessagepropagationrangeonagentbehavior.Thistablepresentsdata
+onagentbehaviorandcommunicationpatternsacrossincreasingmessagepropagationrangesfrom
+0to25units,witheachconditiontested10times. Eachrowcorrespondstoaspecificrange(0,5,
+10,...,25),withcolumnsdisplayingvariousmetrics.(A)Thedistributionofgeneratedmovements
+showsbarchartswiththeaveragefrequencyofeachmovementcommandacross10trials.(B)The
+cumulativeprogressionofuniquehashtaggenerationisrepresentedbyredlinesshowingtheaverage
+numberofuniquehashtagsgeneratedovertimeacross10trials,withindividualtrialresultsingray.
+(C)Hashtaglifespanisillustratedbybarchartsshowingthedistributionofconsecutivestepseach
+hashtagpersisted. (D)Messageproximityisvisualizedin2DplotsbyUMAP,withcloserpoints
+indicatingmoresimilarcontent.(E)MBTIpersonalitytypedifferentiationisshowninpiecharts.The
+dataillustrateshowthespatialconstraintofmessagepropagationrangeinfluencestheemergenceand
+spreadofbehaviorsandcommunicationstylesamongagents,highlightingdifferencesinmovement
+patterns,hashtagusage,messagecontent,andpersonalitydevelopmentacrossvaryinglevelsof
+agentinteraction.
+
+Entropy2024,26,1092 14of20
+Figure12.Transitionofmessagesgeneratedbyagentsbyspatialscale.Theblacklineisthediversityof
+messages.ThemeansquareddisplacementsoftheUMAPsofthemessagesshowninFigure11were
+calculated.Theredlineisthetotalnumberofuniquehashtagsin10trials.Thebluelineisthetotal
+numberofhallucinationsin10trials.Thelight-coloredareasarethestandarddeviationsof10trials.
+Asthespatialscaleincreases,thediversityofmessagesincreases.Ontheotherhand,thediversityof
+hashtagsinthemessagesdecreasesandthenumberofhallucinationinthemessagesincreases.
+4. DiscussionandConclusions
+In this study, we conducted a multi-agent simulation using LLM-based agents to
+investigatetheemergenceofpersonalityandthecollectivebehaviorswithoutpredefined
+personalitiesorinitialmemories. Thesimulationinvolved10homogeneousLLMagents
+interacting with each other in a 2D space over the course of 100 steps. The LLM agent
+generatesmessages,memories,andmovementsbasedonitsownmemoriesandmessages
+from other agents, which are embedded in three prompts (Figure 2). The simulation
+executiontimefor10agentsover100stepswasapproximately6h(usinganA100GPU).
+Sincethiscomputationtimeincreasesproportionallywiththenumberofagentsandthe
+numberofsteps,computationaloptimizationssuchasparallelizationwouldbenecessary
+whenconductingsimulationswithlarge-scalepopulationsoroverextendedsteps.
+Theresultsshowedthattheagents’spatialpositioningandinteractionsledtothedifferen-
+tiationoftheirbehaviors(Figure5),memories(Figure6A),andmessages(Figures6Band7).
+Despite using the same LLM, agents developed unique characteristics, such as the fre-
+quencyofgeneratingrareactionslike“stay”commands,whichwasinfluencedbytheir
+clusteringexperiences(Figure5B).Theagents’internalstate,memory,isdistributed,while
+themessageasitsrepresentationisbiased(Figure6). Messages,unlikememories,areopen
+sourcesofinformationthataresenttoandreceivedfromoutsidetheagent. Thissuggests
+thatmessages,asanopensourceofinformation,morereadilyself-organizewhenagents
+aregroupedtogether,whilememories,asaclosedsourceofinformation,arelesslikelyto
+self-organize,evenwhenagentsareclustered.
+Sentimentanalysisrevealedthatthesynchronicityofemotionsvariedamongagent
+clusters,withsomeagentsexhibitingdistinctemotionalexpressions(Figure10). Thestudy
+alsoobservedtheemergenceandpropagationofsynchronizedemotions,hallucinations,
+and hashtags within agent clusters, demonstrating the formation of shared narratives
+amongagentswhentheyaregroupedtogether. Thesefindingssuggestthatagentinter-
+actionswithinclusterscanleadtothedevelopmentofcollectiveemotionalstatesandthe
+spreadofcommonthemesortopics,evenwithoutexplicitinstructionsorpredefinedrules
+governingtheirinteractions.
+Additionally, we observed the emergence of hallucinations and hashtags as mech-
+anismsforsocialnormformationwithintheagentcommunity(Figures8and9). Social
+normsareoftenhighlightedasonemechanismformaintainingcooperationintheabsence
+offormalinstitutionsorenforcementframeworks[64,65]. Inoursimulation,thesenorms
+
+Entropy2024,26,1092 15of20
+emergedspontaneously,asweimposednospecifictasksorconstraintsontheagents. As
+the spatial scale and communication range expanded, the diversity of agent messages
+increased(Figure12). Ouranalysisindicatesthathallucinationscontributedtomaintaining
+this message diversity and creativity in agent communications. While hashtags func-
+tionedasasummarizationmechanismforthesemessages,theireffectivenessdecreased
+withincreasingmessagediversity,demonstratingalimitationintheircapacitytocapture
+variedconversations.
+PersonalityassessmentusingtheMBTItestshowedthattheagents,initiallyhaving
+nearlyidenticalpersonalities,differentiatedintodistinctpersonalitytypesthroughtheir
+group interactions (Table 2). This suggests that personality traits such as extroversion
+andintroversiondevelopspontaneouslyinthisagentsociety. Thesefindingsdemonstrate
+thatinmulti-agentLLMsimulations,individualityandcollectivebehaviorscanemerge
+throughagentinteractions,evenwithoutpredefinedindividualcharacteristics. Although
+allagentsstartfromthesameinitialstate,theirpersonalitiesdivergethroughinteractions,
+similar to MBTI test results. Even agents classified under the same MBTI type do not
+produce identical statements. This can be understood as a phenomenon of personality
+differentiation through interaction, rather than a sensitivity to initial conditions like in
+dynamicalsystems.
+Inthefuture,wecanexpectfurtherpersonalitydifferentiationbydramaticallyincreas-
+ingthenumberofagentsandpreparingmorecomplexenvironments. Moreover,previous
+gametheoryandagentmodelscouldnothandlethecomplexityoftherealworldbecause
+theycouldnotgeneratedecision-makingprocessesthataccountforthehistoricalandcus-
+tomarycognitivedependenciesofpastsocieties. OnlywiththeemergenceofLLM-based
+agentmodelshasitbecomepossibletohandledecision-makingbasedonhistoricalcontext
+inamoreflexiblemanner.
+AuthorContributions: Conceptualization, R.T., A.M.andT.I.; methodology, R.T., A.M.andT.I.;
+software,R.T.;validation,R.T.;formalanalysis,R.T.;investigation,R.T.;resources,R.T.;datacuration,
+R.T.; writing—original draft preparation, R.T.; writing—review and editing, R.T., A.M. and T.I.;
+visualization,R.T.;supervision,T.I.;projectadministration,R.T.;fundingacquisition,T.I.Allauthors
+havereadandagreedtothepublishedversionofthemanuscript.
+Funding:ThisresearchwasfundedbytheSocialCooperationResearchDepartment“MobilityZero”
+at The University of Tokyo and Grant-in-Aid for JSPS Fellows (JP24KJ0753). It is also partially
+supportedbyGrant-in-AidsKiban-A(JP21H04885).
+InstitutionalReviewBoardStatement:Notapplicable.
+DataAvailabilityStatement:CodeanddataareavailableonadedicatedGitHubrepositoryupon
+requesttoRyosukeTakata(takata@sacral.c.u-tokyo.ac.jp).
+Acknowledgments:Wegratefullyacknowledgethevaluablecommentsandsuggestionsprovided
+bytheeditorsandreviewers.
+ConflictsofInterest:Theauthorsdeclarenoconflictsofinterest.
+AppendixA.ExamplesofAgentMessagesandMemories
+Examplesofhallucinationsinagentmessagesarehighlightedbyunderlinesandred
+text(FigureA1). Thesehallucinationsemergedspontaneouslyduringagentinteractions
+andbecamesharedwithinclusters. Theevolutionofagentmemoriesisshownthrough
+a comparison between step 1 and step 100 of the simulation (Figure A2). The memory
+formatincludesbothnarrativesentencesandkeypoints,reflectinghowagentsprocessed
+andsummarizedtheirexperiences.
+
+Entropy2024,26,1092 16of20
+FigureA1. Examplesofmessagescontaininghallucinations. Thehallucinationpartisunderlined
+andthehallucinationwordisindicatedbyredtextcolor.Emojisinthemessageswerespontaneously
+generatedthroughmessageexchangesbetweenagents.
+FigureA2.Examplesofmemoriesgeneratedbytheagent.Here,thememoriesgeneratedbyAgent0
+atthestep1andatthestep100areshown.Therearetwoformsofmemory:sentencesandkeypoints.
+
+Entropy2024,26,1092 17of20
+AppendixB.DetailedMBTIPersonalityTestResults
+The complete MBTI test results for each agent are shown with dominant factors
+highlightedindarkgreen,demonstratinghowagentsdevelopeddifferentpersonalitytraits
+throughinteraction(FigureA3). Whilemostagentsstartedwithsimilarpersonalitytypes,
+theydifferentiatedsignificantlyoverthecourseofthesimulation,evenwhensharingthe
+samefinalpersonalityclassification.
+FigureA3.MBTItestresults.Ineachfactorsection,thedominantoneisrepresentedindarkgreen.
+References
+1. Achiam,J.;Adler,S.;Agarwal,S.;Ahmad,L.;Akkaya,I.;Aleman,F.L.;Almeida,D.;Altenschmidt,J.;Altman,S.;Anadkat,S.;
+etal. GPT-4technicalreport. arXiv2023,arXiv:2303.08774.
+2. OpenAI. ChatGPT.Availableonline: https://openai.com(accessedon4November2024).
+3. Zhang,Y.;Huang,D.;Liu,B.;Tang,S.;Lu,Y.;Chen,L.;Bai,L.;Chu,Q.;Yu,N.;Ouyang,W. MotionGPT:FinetunedLLMsAre
+General-PurposeMotionGenerators. Proc.AAAIConf.Artif.Intell.2024,38,7368–7376.[CrossRef]
+4. Yoshida,T.;Masumori,A.;Ikegami,T. FromTexttoMotion: GroundingGPT-4inaHumanoidRobot“Alter3”. arXiv2023,
+arXiv:2312.06571.
+5. Nolfi,S. Ontheunexpectedabilitiesoflargelanguagemodels. Adapt.Behav.2024,32,493–502.[CrossRef]
+6. Strachan,J.W.;Albergo,D.;Borghini,G.;Pansardi,O.;Scaliti,E.;Gupta,S.;Saxena,K.;Rufo,A.;Panzeri,S.;Manzi,G.;etal.
+Testingtheoryofmindinlargelanguagemodelsandhumans. Nat.Hum.Behav.2024,8,1285–1295.[CrossRef]
+7. Li,H.;Chong,Y.;Stepputtis,S.;Campbell,J.;Hughes,D.;Lewis,C.;Sycara,K. TheoryofMindforMulti-AgentCollaboration
+viaLargeLanguageModels. InProceedingsofthe2023ConferenceonEmpiricalMethodsinNaturalLanguageProcessing,
+Singapore,6–10December2023;pp.180–192.[CrossRef]
+
+Entropy2024,26,1092 18of20
+8. Cross,L.;Xiang,V.;Bhatia,A.;Yamins,D.L.;Haber,N. HypotheticalMinds:ScaffoldingTheoryofMindforMulti-AgentTasks
+withLargeLanguageModels. arXiv2024,arXiv:2407.07086.
+9. Cherepanova,V.;Zou,J. TalkingNonsense:ProbingLargeLanguageModels’UnderstandingofAdversarialGibberishInputs.
+arXiv2024,arXiv:2404.17120.
+10. Chen,W.;Yuan,C.;Yuan,J.;Su,Y.;Qian,C.;Yang,C.;Xie,R.;Liu,Z.;Sun,M. BeyondNaturalLanguage: LLMsLeveraging
+Alternative Formats for Enhanced Reasoning and Communication. In Proceedings of the Findings of the Association for
+ComputationalLinguistics:EMNLP2024,Miami,FL,USA,12–16November2024;pp.10626–10641.[CrossRef]
+11. Li,J.;Kementchedjhieva,Y.;Fierro,C.;Søgaard,A. DoVisionandLanguageModelsShareConcepts?AVectorSpaceAlignment
+Study. Trans.Assoc.Comput.Linguist.2024,12,1232–1249.[CrossRef]
+12. Li,Y.; Michaud,E.J.; Baek,D.D.; Engels,J.; Sun,X.; Tegmark,M. TheGeometryofConcepts: SparseAutoencoderFeature
+Structure. arXiv2024,arXiv:2410.19750.
+13. Yu,M.;Wang,D.;Shan,Q.;Wan,A. TheSuperWeightinLargeLanguageModels. arXiv2024,arXiv:2411.07191.
+14. Shumailov,I.;Shumaylov,Z.;Zhao,Y.;Papernot,N.;Anderson,R.;Gal,Y. AImodelscollapsewhentrainedonrecursively
+generateddata. Nature2024,631,755–759.[CrossRef][PubMed]
+15. Mohammadi,B. CreativityHasLefttheChat:ThePriceofDebiasingLanguageModels. arXiv2024,arXiv:2406.05587.
+16. Lim, B.; Flageat, M.; Cully, A. Large Language Models as In-context AI Generators for Quality-Diversity. arXiv 2024,
+arXiv:2404.15794.
+17. Liu,W.;Wang,C.;Wang,Y.;Xie,Z.;Qiu,R.;Dang,Y.;Du,Z.;Chen,W.;Yang,C.;Qian,C. AutonomousAgentsforCollaborative
+TaskunderInformationAsymmetry.InProceedingsofthetheThirty-EighthAnnualConferenceonNeuralInformationProcessing
+Systems,Vancouver,BC,Canada,10–15December2024.
+18. Park,J.S.;Zou,C.Q.;Shaw,A.;Hill,B.M.;Cai,C.;Morris,M.R.;Willer,R.;Liang,P.;Bernstein,M.S. Generativeagentsimulations
+of1,000people. arXiv2024,arXiv:2411.10109.
+19. Ge, T.; Chan, X.; Wang, X.; Yu, D.; Mi, H.; Yu, D. Scalingsyntheticdatacreationwith1,000,000,000personas. arXiv2024,
+arXiv:2406.20094.
+20. Jiang,F.;Peng,Y.;Dong,L.;Wang,K.;Yang,K.;Pan,C.;Niyato,D.;Dobre,O.A. Largelanguagemodelenhancedmulti-agent
+systemsfor6Gcommunications. IEEEWirel.Commun.2024,31,48–55.[CrossRef]
+21. Ruoss,A.;Deletang,G.;Medapati,S.;Grau-Moya,J.;Wenliang,L.K.;Catt,E.;Reid,J.;Lewis,C.A.;Veness,J.;Genewein,T.
+AmortizedPlanningwithLarge-ScaleTransformers:ACaseStudyonChess. InProceedingsofthetheThirty-EighthAnnual
+ConferenceonNeuralInformationProcessingSystems,Vancouver,BC,Canada,10–15December2024.
+22. Zhang,J.;Hou,Y.;Xie,R.;Sun,W.;McAuley,J.;Zhao,W.X.;Lin,L.;Wen,J.R. Agentcf:Collaborativelearningwithautonomous
+languageagentsforrecommendersystems. InProceedingsoftheACMonWebConference2024,Singapore,13–17May2024;
+pp.3679–3689.[CrossRef]
+23. Wang,Y.;Guo,Q.;Yao,W.;Zhang,H.;Zhang,X.;Wu,Z.;Zhang,M.;Dai,X.;Zhang,M.;Wen,Q.;etal. AutoSurvey: Large
+LanguageModelsCanAutomaticallyWriteSurveys. arXiv2024,arXiv:2406.10252.
+24. Lu,C.;Lu,C.;Lange,R.T.;Foerster,J.;Clune,J.;Ha,D. Theaiscientist:Towardsfullyautomatedopen-endedscientificdiscovery.
+arXiv2024,arXiv:2408.06292.
+25. Ha,D.;Tang,Y. Collectiveintelligencefordeeplearning:Asurveyofrecentdevelopments. Collect.Intell.2022,1.[CrossRef]
+26. Guo,T.;Chen,X.;Wang,Y.;Chang,R.;Pei,S.;Chawla,N.V.;Wiest,O.;Zhang,X. LargeLanguageModelBasedMulti-agents:
+ASurveyofProgressandChallenges. InProceedingsoftheThirty-ThirdInternationalJointConferenceonArtificialIntelligence,
+IJCAI-24,Jeju,RepublicofKorea,3–9August2024;Larson,K.,Ed.;InternationalJointConferencesonArtificialIntelligence
+Organization:Darmstadt,Germany,2024;pp.8048–8057.[CrossRef]
+27. Chen,W.;Su,Y.;Zuo,J.;Yang,C.;Yuan,C.;Chan,C.M.;Yu,H.;Lu,Y.;Hung,Y.H.;Qian,C.;etal. Agentverse: Facilitating
+multi-agentcollaborationandexploringemergentbehaviors. InProceedingsoftheTwelfthInternationalConferenceonLearning
+Representations,Vienna,Austria,7–11May2023.
+28. Li,G.;Hammoud,H.;Itani,H.;Khizbullin,D.;Ghanem,B. Camel: Communicativeagentsfor“mind”explorationoflarge
+languagemodelsociety. Adv.NeuralInf.Process.Syst.2023,36,51991–52008.
+29. Yang,R.;Chen,J.;Zhang,Y.;Yuan,S.;Chen,A.;Richardson,K.;Xiao,Y.;Yang,D. SelfGoal: YourLanguageAgentsAlready
+KnowHowtoAchieveHigh-levelGoals. arXiv2024,arXiv:2406.04784.
+30. Song,L.;Liu,J.;Zhang,J.;Zhang,S.;Luo,A.;Wang,S.;Wu,Q.;Wang,C. AdaptiveIn-conversationTeamBuildingforLanguage
+ModelAgents. arXiv2024,arXiv:2405.19425.
+31. Li,Y.;Zhang,Y.;Sun,L. Metaagents:Simulatinginteractionsofhumanbehaviorsforllm-basedtask-orientedcoordinationvia
+collaborativegenerativeagents. arXiv2023,arXiv:2310.06500.
+32. Kaiya,Z.;Naim,M.;Kondic,J.;Cortes,M.;Ge,J.;Luo,S.;Yang,G.R.;Ahn,A. Lyfeagents: Generativeagentsforlow-cost
+real-timesocialinteractions. arXiv2023,arXiv:2310.02172.
+33. Wu,Z.;Peng,R.;Zheng,S.;Liu,Q.;Han,X.;Kwon,B.I.;Onizuka,M.;Tang,S.;Xiao,C.ShallWeTeamUp:ExploringSpontaneous
+CooperationofCompetingLLMAgents. InProceedingsoftheFindingsoftheAssociationforComputationalLinguistics:
+EMNLP2024,Miami,FL,USA,12–16November2024;pp.5163–5186.[CrossRef]
+
+Entropy2024,26,1092 19of20
+34. Gao,S.;Li,H.;Shi,Z.;Huang,C.;Tu,Q.;Shang,S.;Tian,Z.;Huang,M. 360◦REA:TowardsAReusableExperienceAccumulation
+with360◦AssessmentforMulti-AgentSystem. InProceedingsoftheFindingsoftheAssociationforComputationalLinguistics:
+ACL2024,Bangkok,Thailand,11–16August2024;pp.13149–13162.[CrossRef]
+35. Amayuelas, A.; Yang, X.; Antoniades, A.; Hua, W.; Pan, L.; Wang, W.Y. MultiAgent Collaboration Attack: Investigating
+AdversarialAttacksinLargeLanguageModelCollaborationsviaDebate. InProceedingsoftheFindingsoftheAssociationfor
+ComputationalLinguistics:EMNLP2024,Miami,FL,USA,12–16November2024;pp.6929–6948.[CrossRef]
+36. Wang, Z.; Li, J.; Li, G.; Jin, Z. ChatCoder: Chat-basedRefineRequirementImprovesLLMs’CodeGeneration. arXiv2023,
+arXiv:2311.00272.
+37. Ishibashi,Y.;Nishimura,Y. Self-organizedagents:Allmmulti-agentframeworktowardultralarge-scalecodegenerationand
+optimization. arXiv2024,arXiv:2404.02183.
+38. Zhang, Y.; Sun, R.; Chen, Y.; Pfister, T.; Zhang, R.; Arik, S.Ö. Chain of Agents: Large Language Models Collaborating on
+Long-ContextTasks. arXiv2024,arXiv:2406.02818.
+39. Kuroki,S.;Nakamura,T.;Akiba,T.;Tang,Y. AgentSkillAcquisitionforLargeLanguageModelsviaCycleQD. arXiv2024,
+arXiv:2410.14735.
+40. Wang,L.;Ma,C.;Feng,X.;Zhang,Z.;Yang,H.;Zhang,J.;Chen,Z.;Tang,J.;Chen,X.;Lin,Y.;etal. Asurveyonlargelanguage
+modelbasedautonomousagents. Front.Comput.Sci.2024,18,186345.[CrossRef]
+41. Zhang,A.; Chen,Y.; Sheng,L.; Wang,X.; Chua,T.S. Ongenerativeagentsinrecommendation. InProceedingsofthe47th
+InternationalACMSIGIRConferenceonResearchandDevelopmentinInformationRetrieval,Washington,DC,USA,14–18July
+2024;pp.1807–1817.[CrossRef]
+42. AL,A.;Ahn,A.;Becker,N.;Carroll,S.;Christie,N.;Cortes,M.;Demirci,A.;Du,M.;Li,F.;Luo,S.;etal. ProjectSid:Many-agent
+simulationstowardAIcivilization. arXiv2024,arXiv:2411.00114.
+43. Park, J.S.; O’Brien, J.; Cai, C.J.; Morris, M.R.; Liang, P.; Bernstein, M.S. Generativeagents: Interactivesimulacraofhuman
+behavior. InProceedingsofthe36thAnnualACMSymposiumonUserInterfaceSoftwareandTechnology,SanFrancisco,CA,
+USA,29October–1November2023;pp.1–22.[CrossRef]
+44. Qian,C.;Liu,W.;Liu,H.;Chen,N.;Dang,Y.;Li,J.;Yang,C.;Chen,W.;Su,Y.;Cong,X.;etal. ChatDev:CommunicativeAgents
+forSoftwareDevelopment. InProceedingsofthe62ndAnnualMeetingoftheAssociationforComputationalLinguistics(Volume
+1:LongPapers),Bangkok,Thailand,11–16August2024;pp.15174–15186.[CrossRef]
+45. Wu, M.; Yuan, Y.; Haffari, G.; Wang, L. (Perhaps) Beyond Human Translation: Harnessing Multi-Agent Collaboration for
+TranslatingUltra-LongLiteraryTexts. arXiv2024,arXiv:2405.11804.
+46. Li,J.;Wang,S.;Zhang,M.;Li,W.;Lai,Y.;Kang,X.;Ma,W.;Liu,Y. Agenthospital: Asimulacrumofhospitalwithevolvable
+medicalagents. arXiv2024,arXiv:2405.02957.
+47. Ikegami,T. Evolutionofindividuality. InProceedingsoftheJapaneseSocietyforCellSynthesisResearch16.0,Tokyo,Japan,
+25–26September2023.
+48. Axelrod,R. AnEvolutionaryApproachtoNorms. Am.PoliticalSci.Rev.1986,80,1095–1111.[CrossRef]
+49. Bicchieri,C. TheGrammarofSociety:TheNatureandDynamicsofSocialNorms;CambridgeUniversityPress:Cambridge,UK,2005.
+50. Touvron,H.;Martin,L.;Stone,K.;Albert,P.;Almahairi,A.;Babaei,Y.;Bashlykov,N.;Batra,S.;Bhargava,P.;Bhosale,S.;etal.
+Llama2:Openfoundationandfine-tunedchatmodels. arXiv2023,arXiv:2307.09288.
+51. Ester,M.;Kriegel,H.P.;Sander,J.;Xu,X. Adensity-basedalgorithmfordiscoveringclustersinlargespatialdatabaseswithnoise.
+InProceedingsoftheSecondInternationalConferenceonKnowledgeDiscoveryandDataMining.KDD’96,Portland,OR,USA,
+2–4August1996;AAAIPress:Washington,DC,USA,1996;pp.226–231.
+52. Schubert,E.;Sander,J.;Ester,M.;Kriegel,H.P.;Xu,X.DBSCANrevisited,revisited:Whyandhowyoushould(still)useDBSCAN.
+ACMTrans.DatabaseSyst.(TODS)2017,42,19.[CrossRef]
+53. Reimers,N.;Gurevych,I. Sentence-BERT:SentenceEmbeddingsusingSiameseBERT-Networks. InProceedingsofthe2019
+Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural
+LanguageProcessing(EMNLP-IJCNLP),HongKong,China,3–7November2019;pp.3982–3992.[CrossRef]
+54. McInnes,L.;Healy,J.;Saul,N.;Großberger,L. UMAP:UniformManifoldApproximationandProjection. J.OpenSourceSoftw.
+2018,3,861.[CrossRef]
+55. Zhang,Y.;Li,Y.;Cui,L.;Cai,D.;Liu,L.;Fu,T.;Huang,X.;Zhao,E.;Zhang,Y.;Chen,Y.;etal. Siren’ssongintheAIocean:
+Asurveyonhallucinationinlargelanguagemodels. arXiv2023,arXiv:2309.01219.
+56. Jiang,X.;Tian,Y.;Hua,F.;Xu,C.;Wang,Y.;Guo,J. Asurveyonlargelanguagemodelhallucinationviaacreativityperspective.
+arXiv2024,arXiv:2402.06647.
+57. OpenAI. HelloGPT-4o.Availableonline: https://openai.com/index/hello-gpt-4o/(accessedon4November2024).
+58. Marsella,S.;Gratch,J.;Petta,P. Computationalmodelsofemotion. ABlueprintforAffectiveComputing-ASourcebookandManual;
+OxfordUniversityPress:Oxford,UK,2010;pp.21–46.
+59. Devlin,J.;Chang,M.W.;Lee,K.;Toutanova,K. BERT:Pre-trainingofDeepBidirectionalTransformersforLanguageUnderstand-
+ing. InProceedingsofthe2019ConferenceoftheNorthAmericanChapteroftheAssociationforComputationalLinguistics:
+HumanLanguageTechnologies,Volume1(LongandShortPapers),Minneapolis,MN,USA,2–7June2019;pp. 4171–4186.
+[CrossRef]
+
+Entropy2024,26,1092 20of20
+60. Pan,K.;Zeng,Y. DoLLMspossessapersonality?makingtheMBTItestanamazingevaluationforlargelanguagemodels. arXiv
+2023,arXiv:2307.16180.
+61. Safdari,M.;Serapio-García,G.;Crepy,C.;Fitz,S.;Romero,P.;Sun,L.;Abdulhai,M.;Faust,A.;Mataric´,M. Personalitytraitsin
+largelanguagemodels. arXiv2023,arXiv:2307.00184.
+62. Jiang,G.;Xu,M.;Zhu,S.C.;Han,W.;Zhang,C.;Zhu,Y. Evaluatingandinducingpersonalityinpre-trainedlanguagemodels. In
+ProceedingsoftheAdvancesinNeuralInformationProcessingSystems36,Vancouver,BC,Canada,10–15December2024.
+63. Boyle,G.J. Myers-Briggstypeindicator(MBTI):Somepsychometriclimitations. Aust.Psychol.1995,30,71–74.[CrossRef]
+64. Ostrom,E.CollectiveActionandtheEvolutionofSocialNorms.J.Econ.Perspect.2000,14,137–158.[CrossRef]
+65. Tremewan,J.;Vostroknutov,A. Aninformationalframeworkforstudyingsocialnorms.InAResearchAgendaforExperimental
+Economics;EdwardElgarPublishing:Cheltenham,UK,2021;pp.19–42.[CrossRef]
+Disclaimer/Publisher’sNote: Thestatements, opinionsanddatacontainedinallpublicationsaresolelythoseoftheindividual
+author(s)andcontributor(s)andnotofMDPIand/ortheeditor(s).MDPIand/ortheeditor(s)disclaimresponsibilityforanyinjuryto
+peopleorpropertyresultingfromanyideas,methods,instructionsorproductsreferredtointhecontent.

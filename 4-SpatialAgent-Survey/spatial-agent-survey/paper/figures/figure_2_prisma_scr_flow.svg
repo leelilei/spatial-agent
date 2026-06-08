@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="980" viewBox="0 0 1400 980" role="img" aria-labelledby="title desc">
+  <title id="title">PRISMA-ScR screening and evidence-map stabilization flow</title>
+  <desc id="desc">Two-panel flowchart separating bibliographic PRISMA screening from row-level evidence-map stabilization.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8f8f5; }
+      .panel { fill: #ffffff; stroke: #222222; stroke-width: 2; }
+      .box { fill: #ffffff; stroke: #222222; stroke-width: 2; rx: 8; }
+      .soft { fill: #edf2f7; }
+      .core { fill: #e2efe4; }
+      .boundary { fill: #fff4d9; }
+      .excluded { fill: #f2e5e1; }
+      .title { font: 700 30px Georgia, serif; fill: #171717; }
+      .subtitle { font: 700 22px Georgia, serif; fill: #171717; }
+      .label { font: 600 20px Helvetica, Arial, sans-serif; fill: #171717; }
+      .text { font: 18px Helvetica, Arial, sans-serif; fill: #171717; }
+      .small { font: 15px Helvetica, Arial, sans-serif; fill: #333333; }
+      .arrow { stroke: #222222; stroke-width: 2.2; fill: none; marker-end: url(#arrowhead); }
+      .dash { stroke: #555555; stroke-width: 2; stroke-dasharray: 8 7; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <path d="M0,0 L12,4 L0,8 Z" fill="#222222"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1400" height="980"/>
+  <text class="title" x="70" y="60">Figure 2. PRISMA-ScR Screening and Evidence-Map Stabilization Flow</text>
+
+  <rect class="panel" x="60" y="95" width="610" height="790" rx="12"/>
+  <rect class="panel" x="730" y="95" width="610" height="790" rx="12"/>
+
+  <text class="subtitle" x="90" y="140">Panel A. Bibliographic Screening</text>
+  <text class="subtitle" x="760" y="140">Panel B. Evidence-Map Stabilization</text>
+
+  <rect class="box soft" x="130" y="185" width="470" height="90"/>
+  <text class="label" x="175" y="222">Records Screened</text>
+  <text class="text" x="175" y="252">n = 417</text>
+
+  <path class="arrow" d="M365 275 L365 330"/>
+  <rect class="box core" x="110" y="330" width="510" height="125"/>
+  <text class="label" x="150" y="370">Included after Screening</text>
+  <text class="text" x="150" y="400">Core = 12</text>
+  <text class="text" x="305" y="400">Adjacent = 42</text>
+  <text class="text" x="150" y="430">Foundational = 47</text>
+
+  <path class="arrow" d="M365 455 L365 510"/>
+  <rect class="box excluded" x="110" y="510" width="510" height="165"/>
+  <text class="label" x="150" y="550">Excluded Records</text>
+  <text class="text" x="150" y="580">Total excluded = 316</text>
+  <text class="small" x="150" y="615">E1 = 85</text>
+  <text class="small" x="260" y="615">E2 = 54</text>
+  <text class="small" x="370" y="615">E3 = 177</text>
+  <text class="small" x="150" y="650">Reason labels follow the screening sheet.</text>
+
+  <rect class="box boundary" x="110" y="720" width="510" height="95"/>
+  <text class="label" x="150" y="758">Audit and Recheck Status</text>
+  <text class="small" x="150" y="790">Recheck rows reviewed = 47; full rescreen not required.</text>
+
+  <rect class="box core" x="780" y="185" width="510" height="105"/>
+  <text class="label" x="820" y="225">Strict Anchor Baseline</text>
+  <text class="text" x="820" y="257">17 paper-level sources; 19 coded rows</text>
+
+  <path class="arrow" d="M1035 290 L1035 345"/>
+  <rect class="box soft" x="780" y="345" width="510" height="125"/>
+  <text class="label" x="820" y="385">Widened Bridge Review</text>
+  <text class="text" x="820" y="417">Adds bridge cases under widened scope rules</text>
+  <text class="small" x="820" y="447">Layer distinction retained: bridge is not anchor.</text>
+
+  <path class="arrow" d="M1035 470 L1035 525"/>
+  <rect class="box boundary" x="780" y="525" width="510" height="125"/>
+  <text class="label" x="820" y="565">Boundary Decisions</text>
+  <text class="text" x="820" y="597">HC01: Adjacent / boundary / feasibility</text>
+  <text class="text" x="820" y="627">TW-02: scope-boundary comparison only</text>
+
+  <path class="arrow" d="M1035 650 L1035 705"/>
+  <rect class="box core" x="780" y="705" width="510" height="125"/>
+  <text class="label" x="820" y="745">Stable Widened Core</text>
+  <text class="text" x="820" y="777">32 paper-level sources; 34 coded rows</text>
+  <text class="small" x="820" y="807">anchor_core rows = 19; bridge_core rows = 15</text>
+  <text class="small" x="820" y="835">BK02 remains source-note-only bridge evidence.</text>
+
+  <path class="dash" d="M600 392 C700 392 700 238 780 238"/>
+  <text class="small" x="610" y="365">Later full-text checks, widened review,</text>
+  <text class="small" x="610" y="385">and row-level coding stabilize the map.</text>
+
+  <text class="small" x="75" y="930">Note: PRISMA counts are bibliographic screening counts; evidence-map rows count system/environment configurations.</text>
+</svg>

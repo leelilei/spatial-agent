@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900" role="img" aria-labelledby="title desc">
+  <title id="title">Local adjacency is not global configuration</title>
+  <desc id="desc">A worked example graph showing two locations with similar local degree but different positions in the wider layout.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8f8f5; }
+      .panel { fill: #ffffff; stroke: #222222; stroke-width: 2; rx: 12; }
+      .edge { stroke: #333333; stroke-width: 4; fill: none; }
+      .faded { stroke: #b9b6ad; stroke-width: 4; fill: none; }
+      .node { fill: #ffffff; stroke: #222222; stroke-width: 3; }
+      .focusA { fill: #dfeee2; stroke: #1f4d2b; stroke-width: 5; }
+      .focusB { fill: #fff0c7; stroke: #8a651f; stroke-width: 5; }
+      .neighbor { fill: #e9edf4; stroke: #314d73; stroke-width: 3; }
+      .note { fill: #fff4d9; stroke: #8a651f; stroke-width: 2; rx: 10; }
+      .title { font: 700 32px Georgia, serif; fill: #171717; }
+      .subtitle { font: 700 22px Georgia, serif; fill: #171717; }
+      .label { font: 700 18px Helvetica, Arial, sans-serif; fill: #111111; }
+      .text { font: 16px Helvetica, Arial, sans-serif; fill: #171717; }
+      .small { font: 14px Helvetica, Arial, sans-serif; fill: #333333; }
+      .nodeText { font: 700 18px Helvetica, Arial, sans-serif; fill: #111111; text-anchor: middle; dominant-baseline: middle; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1500" height="900"/>
+  <text class="title" x="70" y="60">Figure 5. Local Adjacency Is Not Global Configuration</text>
+  <text class="text" x="70" y="92">A toy graph illustrates why immediate-neighbor input (`L3`) should not be collapsed into layout-wide structure (`L4`).</text>
+
+  <rect class="panel" x="70" y="130" width="650" height="600"/>
+  <text class="subtitle" x="105" y="175">Panel A. Agent-facing local view</text>
+  <text class="text" x="105" y="205">Both focal locations expose two immediate neighbors.</text>
+
+  <line class="edge" x1="210" y1="360" x2="340" y2="360"/>
+  <line class="edge" x1="470" y1="360" x2="340" y2="360"/>
+  <circle class="neighbor" cx="210" cy="360" r="38"/>
+  <circle class="focusA" cx="340" cy="360" r="46"/>
+  <circle class="neighbor" cx="470" cy="360" r="38"/>
+  <text class="nodeText" x="210" y="360">n1</text>
+  <text class="nodeText" x="340" y="360">B</text>
+  <text class="nodeText" x="470" y="360">n2</text>
+  <text class="label" x="235" y="450">Local degree = 2</text>
+
+  <line class="edge" x1="210" y1="580" x2="340" y2="580"/>
+  <line class="edge" x1="470" y1="580" x2="340" y2="580"/>
+  <circle class="neighbor" cx="210" cy="580" r="38"/>
+  <circle class="focusB" cx="340" cy="580" r="46"/>
+  <circle class="neighbor" cx="470" cy="580" r="38"/>
+  <text class="nodeText" x="210" y="580">n1</text>
+  <text class="nodeText" x="340" y="580">G</text>
+  <text class="nodeText" x="470" y="580">n2</text>
+  <text class="label" x="235" y="670">Local degree = 2</text>
+
+  <rect class="panel" x="780" y="130" width="650" height="600"/>
+  <text class="subtitle" x="815" y="175">Panel B. Whole-layout position</text>
+  <text class="text" x="815" y="205">The same local degree can occupy different global positions.</text>
+
+  <line class="edge" x1="900" y1="410" x2="1010" y2="410"/>
+  <line class="edge" x1="1010" y1="410" x2="1120" y2="410"/>
+  <line class="edge" x1="1120" y1="410" x2="1230" y2="410"/>
+  <line class="edge" x1="1230" y1="410" x2="1340" y2="410"/>
+  <line class="edge" x1="1120" y1="410" x2="1120" y2="520"/>
+  <line class="edge" x1="1120" y1="520" x2="1120" y2="630"/>
+  <line class="edge" x1="1120" y1="630" x2="1230" y2="630"/>
+
+  <circle class="node" cx="900" cy="410" r="34"/>
+  <circle class="focusA" cx="1010" cy="410" r="42"/>
+  <circle class="node" cx="1120" cy="410" r="34"/>
+  <circle class="node" cx="1230" cy="410" r="34"/>
+  <circle class="node" cx="1340" cy="410" r="34"/>
+  <circle class="node" cx="1120" cy="520" r="34"/>
+  <circle class="focusB" cx="1120" cy="630" r="42"/>
+  <circle class="node" cx="1230" cy="630" r="34"/>
+
+  <text class="nodeText" x="900" y="410">A</text>
+  <text class="nodeText" x="1010" y="410">B</text>
+  <text class="nodeText" x="1120" y="410">C</text>
+  <text class="nodeText" x="1230" y="410">D</text>
+  <text class="nodeText" x="1340" y="410">E</text>
+  <text class="nodeText" x="1120" y="520">F</text>
+  <text class="nodeText" x="1120" y="630">G</text>
+  <text class="nodeText" x="1230" y="630">H</text>
+
+  <text class="label" x="830" y="705">B and G each have two immediate neighbors, but B sits closer to the main spine while G sits deeper in a side branch.</text>
+
+  <rect class="note" x="180" y="775" width="1140" height="75"/>
+  <text class="subtitle" x="105" y="785">Panel C. Claim boundary</text>
+  <text class="label" x="215" y="820">Coding implication</text>
+  <text class="text" x="215" y="852">`L3` local adjacency can support local-contact claims; `L4` configurational claims require global structure such as depth, integration, control, or choice to be available to the agent.</text>
+</svg>

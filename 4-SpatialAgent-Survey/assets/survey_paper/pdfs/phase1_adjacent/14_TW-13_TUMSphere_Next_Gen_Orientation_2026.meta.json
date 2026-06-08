@@ -1,0 +1,448 @@
+{
+  "source_pdf": "/Users/mac/Documents/6-Research/4-SpatialAgent-Survey/assets/survey_paper/pdfs/phase1_adjacent/14_TW-13_TUMSphere_Next_Gen_Orientation_2026.pdf",
+  "extractor_backend": "pdfplumber",
+  "extract_time": "2026-05-01T03:19:56+00:00",
+  "title": "Next-Gen orientation: supporting international students with generative AI NPCs in VR",
+  "author": "Santiago Berrezueta-Guzman",
+  "doi": "",
+  "keywords": [
+    "Convai; educational games; virtual reality; lip-sync; LLMS; NPCs; speech recognition; speech-to-text"
+  ],
+  "subject": "Berrezueta-Guzman S and Wagner S (2026) Next-Gen orientation: supporting international students with generative AI NPCs in VR. Front. Comput. Sci. 8:1799323. doi: 10.3389/fcomp.2026.1799323",
+  "page_count": 21,
+  "outline": [
+    {
+      "title": "Next-Gen orientation: supporting international students with generative AI NPCs in VR",
+      "level": 0,
+      "page_number": 1
+    },
+    {
+      "title": "1 Introduction",
+      "level": 1,
+      "page_number": 1
+    },
+    {
+      "title": "2 Related work",
+      "level": 1,
+      "page_number": 2
+    },
+    {
+      "title": "2.1 LLM-powered NPCs in educational virtual reality",
+      "level": 2,
+      "page_number": 2
+    },
+    {
+      "title": "2.2 Virtual campus tours for university orientation",
+      "level": 2,
+      "page_number": 3
+    },
+    {
+      "title": "3 System architecture and design",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "3.1 TUMSphere platform overview",
+      "level": 2,
+      "page_number": 4
+    },
+    {
+      "title": "3.1.1 Game environment description",
+      "level": 3,
+      "page_number": 4
+    },
+    {
+      "title": "3.1.2 Educational objectives and game mechanics",
+      "level": 3,
+      "page_number": 5
+    },
+    {
+      "title": "3.1.3 Target user group",
+      "level": 3,
+      "page_number": 5
+    },
+    {
+      "title": "3.1.4 Inclusivity-driven design rationale",
+      "level": 3,
+      "page_number": 6
+    },
+    {
+      "title": "3.2 LLM integration architecture",
+      "level": 2,
+      "page_number": 6
+    },
+    {
+      "title": "3.2.1 Overall system design",
+      "level": 3,
+      "page_number": 6
+    },
+    {
+      "title": "3.2.2 Component interaction and data flow",
+      "level": 3,
+      "page_number": 6
+    },
+    {
+      "title": "3.3 Technical stack",
+      "level": 2,
+      "page_number": 7
+    },
+    {
+      "title": "3.3.1 Unreal engine",
+      "level": 3,
+      "page_number": 7
+    },
+    {
+      "title": "3.3.2 VaRest plugin",
+      "level": 3,
+      "page_number": 8
+    },
+    {
+      "title": "3.3.3 OpenAI GPT models",
+      "level": 3,
+      "page_number": 8
+    },
+    {
+      "title": "3.3.4 Convai plugin",
+      "level": 3,
+      "page_number": 8
+    },
+    {
+      "title": "3.3.5 ReadyPlayerMe",
+      "level": 3,
+      "page_number": 8
+    },
+    {
+      "title": "3.4 Alternative plugins and tools explored",
+      "level": 2,
+      "page_number": 8
+    },
+    {
+      "title": "4 Methodology and technical implementation details",
+      "level": 1,
+      "page_number": 8
+    },
+    {
+      "title": "4.1 Initial prototype development in UE as a chatbox with VaREST",
+      "level": 2,
+      "page_number": 8
+    },
+    {
+      "title": "4.1.1 User interface implementation",
+      "level": 3,
+      "page_number": 9
+    },
+    {
+      "title": "4.1.2 Input processing",
+      "level": 3,
+      "page_number": 9
+    },
+    {
+      "title": "4.1.3 API communication architecture",
+      "level": 3,
+      "page_number": 9
+    },
+    {
+      "title": "4.2 Research insights and system failure modes",
+      "level": 2,
+      "page_number": 10
+    },
+    {
+      "title": "4.2.1 Design trade-offs: cloud vs. local processing",
+      "level": 3,
+      "page_number": 10
+    },
+    {
+      "title": "4.2.2 Lessons for generalized VR+LLM systems",
+      "level": 3,
+      "page_number": 10
+    },
+    {
+      "title": "4.3 Transition to VR and voice integration",
+      "level": 2,
+      "page_number": 10
+    },
+    {
+      "title": "4.4 Convai platform integration",
+      "level": 2,
+      "page_number": 10
+    },
+    {
+      "title": "4.4.1 Platform architecture overview",
+      "level": 3,
+      "page_number": 10
+    },
+    {
+      "title": "4.4.2 Environmental awareness and object interaction",
+      "level": 3,
+      "page_number": 11
+    },
+    {
+      "title": "4.5 Character configuration through Convai web interface",
+      "level": 2,
+      "page_number": 12
+    },
+    {
+      "title": "4.5.1 Character creation and ID assignment",
+      "level": 3,
+      "page_number": 12
+    },
+    {
+      "title": "4.5.2 Character description and backstory",
+      "level": 3,
+      "page_number": 12
+    },
+    {
+      "title": "4.5.3 Knowledge bank integration",
+      "level": 3,
+      "page_number": 13
+    },
+    {
+      "title": "4.5.4 Language and speech configuration",
+      "level": 3,
+      "page_number": 14
+    },
+    {
+      "title": "4.5.5 Personality traits and core AI settings",
+      "level": 3,
+      "page_number": 14
+    },
+    {
+      "title": "4.6 Character integration with Convai ReadyPlayerMe plugin",
+      "level": 2,
+      "page_number": 14
+    },
+    {
+      "title": "4.6.1 Plugin installation and setup",
+      "level": 3,
+      "page_number": 14
+    },
+    {
+      "title": "4.6.2 Character blueprint eeconfiguration",
+      "level": 3,
+      "page_number": 14
+    },
+    {
+      "title": "4.6.3 Lip Sync and facial animation",
+      "level": 3,
+      "page_number": 14
+    },
+    {
+      "title": "5 Experimental setup and evaluation",
+      "level": 1,
+      "page_number": 14
+    },
+    {
+      "title": "5.1 User study design",
+      "level": 2,
+      "page_number": 15
+    },
+    {
+      "title": "5.1.1 Participants and demographics",
+      "level": 3,
+      "page_number": 15
+    },
+    {
+      "title": "5.1.2 Apparatus and environment",
+      "level": 3,
+      "page_number": 15
+    },
+    {
+      "title": "5.1.3 Experimental procedure",
+      "level": 3,
+      "page_number": 15
+    },
+    {
+      "title": "5.1.4 Metrics and questionnaires",
+      "level": 3,
+      "page_number": 15
+    },
+    {
+      "title": "5.1.5 Statistical reliability analysis",
+      "level": 3,
+      "page_number": 15
+    },
+    {
+      "title": "5.2 Performance evaluation",
+      "level": 2,
+      "page_number": 15
+    },
+    {
+      "title": "5.2.1 Latency measurement methodology",
+      "level": 3,
+      "page_number": 15
+    },
+    {
+      "title": "5.2.2 System resource profiling",
+      "level": 3,
+      "page_number": 16
+    },
+    {
+      "title": "5.2.3 Quantitative Lip-sync assessment",
+      "level": 3,
+      "page_number": 16
+    },
+    {
+      "title": "6 Results",
+      "level": 1,
+      "page_number": 16
+    },
+    {
+      "title": "6.1 System performance and latency analysis",
+      "level": 2,
+      "page_number": 16
+    },
+    {
+      "title": "6.1.1 Response latency (Time-to-Audio)",
+      "level": 3,
+      "page_number": 16
+    },
+    {
+      "title": "6.1.2 Frame rate stability",
+      "level": 3,
+      "page_number": 16
+    },
+    {
+      "title": "6.1.3 Lip-sync synchronization accuracy",
+      "level": 3,
+      "page_number": 16
+    },
+    {
+      "title": "6.2 User experience and usability",
+      "level": 2,
+      "page_number": 17
+    },
+    {
+      "title": "6.2.1 Task completion rates",
+      "level": 3,
+      "page_number": 17
+    },
+    {
+      "title": "6.2.2 Psychometric scores",
+      "level": 3,
+      "page_number": 17
+    },
+    {
+      "title": "6.2.3 Instrument reliability",
+      "level": 3,
+      "page_number": 17
+    },
+    {
+      "title": "6.3 Qualitative findings",
+      "level": 2,
+      "page_number": 18
+    },
+    {
+      "title": "6.3.1 Theme 1: reduced social anxiety in language learning",
+      "level": 3,
+      "page_number": 18
+    },
+    {
+      "title": "6.3.2 Theme 2: the ``Thinking'' silence",
+      "level": 3,
+      "page_number": 18
+    },
+    {
+      "title": "6.3.3 Theme 3: spatial guidance vs. verbal instructions",
+      "level": 3,
+      "page_number": 18
+    },
+    {
+      "title": "6.3.4 Negative case analysis",
+      "level": 3,
+      "page_number": 18
+    },
+    {
+      "title": "7 Discussion",
+      "level": 1,
+      "page_number": 18
+    },
+    {
+      "title": "7.1 Reducing social anxiety through artificial interlocutors",
+      "level": 2,
+      "page_number": 18
+    },
+    {
+      "title": "7.2 The latency-presence trade-off",
+      "level": 2,
+      "page_number": 18
+    },
+    {
+      "title": "7.3 Embodiment and spatial agency",
+      "level": 2,
+      "page_number": 18
+    },
+    {
+      "title": "7.4 Limitations",
+      "level": 2,
+      "page_number": 19
+    },
+    {
+      "title": "8 Conclusion",
+      "level": 1,
+      "page_number": 19
+    },
+    {
+      "title": "9 Future directions",
+      "level": 1,
+      "page_number": 19
+    },
+    {
+      "title": "9.1 Enhancing interaction fluidity and non-verbal realism",
+      "level": 2,
+      "page_number": 19
+    },
+    {
+      "title": "9.2 Structured pedagogy through hybrid narrative design",
+      "level": 2,
+      "page_number": 19
+    },
+    {
+      "title": "9.3 Environmental awareness, persistence, and scalability",
+      "level": 2,
+      "page_number": 19
+    },
+    {
+      "title": "Data availability statement",
+      "level": 1,
+      "page_number": 20
+    },
+    {
+      "title": "Ethics statement",
+      "level": 1,
+      "page_number": 20
+    },
+    {
+      "title": "Author contributions",
+      "level": 1,
+      "page_number": 20
+    },
+    {
+      "title": "Funding",
+      "level": 1,
+      "page_number": 20
+    },
+    {
+      "title": "Conflict of interest",
+      "level": 1,
+      "page_number": 20
+    },
+    {
+      "title": "Generative AI statement",
+      "level": 1,
+      "page_number": 20
+    },
+    {
+      "title": "Publisher's note",
+      "level": 1,
+      "page_number": 20
+    },
+    {
+      "title": "References",
+      "level": 1,
+      "page_number": 20
+    }
+  ],
+  "text_char_count": 95634,
+  "status": "ok",
+  "warnings": []
+}
