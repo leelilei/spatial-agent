@@ -1,0 +1,50 @@
+# SpatialAgent 默认实验配置
+
+project:
+  name: "spatial-agent"
+  version: "0.1.0"
+  seed: 42
+
+simulation:
+  num_rounds: 200          # 每次模拟轮数
+  num_repeats: 5           # 每个条件重复次数
+  num_agents: 10           # Agent 数量
+
+llm:
+  provider: "qwen"         # qwen / openai / deepseek
+  model: "qwen-max"        # 具体模型名
+  temperature: 0.7
+  max_tokens: 512
+  cache_enabled: true
+  cache_dir: "data/llm_cache"
+
+judge:
+  provider: "openai"
+  model: "gpt-4o"
+  dimensions:
+    - fluency
+    - persona_consistency
+    - spatial_appropriateness
+    - coherence
+
+space:
+  metrics:
+    - integration
+    - connectivity
+    - visual_depth
+    - control_value
+  spatial_to_language: true  # 是否启用空间→语言转换
+
+agent:
+  memory:
+    max_items: 100
+    spatial_retrieval_weight: 0.3   # δ in retrieval formula
+  action_sampling:
+    num_candidates: 5
+    spatial_scoring: true
+  planning:
+    spatial_utility: true
+
+output:
+  base_dir: "data/raw"
+  log_level: "INFO"
