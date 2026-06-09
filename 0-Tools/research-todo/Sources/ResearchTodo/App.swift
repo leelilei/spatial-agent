@@ -2,9 +2,12 @@ import SwiftUI
 import Foundation
 import AppKit
 
-private let defaultTodoPath = "/Users/mac/Documents/6-Research/1-SpatialAgent/docs/guides/todolist.md"
+private let appDisplayName = "Research Todo"
+private let researchRoot = "/Users/mac/Documents/6-Research"
+private let spatialAgentTodoPath = "\(researchRoot)/1-SpatialAgent/docs/guides/todolist.md"
 private let personalTodoDir = "/Users/mac/Documents/1-ProjectRes/Personal Todo"
 private let sourcesConfigPath = "\(personalTodoDir)/sources.json"
+private let legacySpatialAgentSourceID = "spatialagent-survey"
 
 private enum DashboardTab: String, CaseIterable, Identifiable {
     case overview = "Overview"
@@ -145,13 +148,9 @@ private final class TodoStore: ObservableObject {
             }
             lastRefresh = Date()
         } catch {
-            sources = [
-                TodoSourceState(
-                    config: defaultSourceConfig,
-                    document: nil,
-                    errorMessage: error.localizedDescription
-                )
-            ]
+            sources = defaultSourceConfigs.map {
+                TodoSourceState(config: $0, document: nil, errorMessage: error.localizedDescription)
+            }
             selectedSourceID = "all"
             lastRefresh = Date()
         }
@@ -182,17 +181,70 @@ private final class TodoStore: ObservableObject {
         try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true)
 
         if !FileManager.default.fileExists(atPath: configURL.path) {
-            let sourceFile = SourceFile(sources: [defaultSourceConfig])
+            let sourceFile = SourceFile(sources: defaultSourceConfigs)
             let data = try JSONEncoder.pretty.encode(sourceFile)
             try data.write(to: configURL)
         }
 
         let data = try Data(contentsOf: configURL)
         let sourceFile = try JSONDecoder().decode(SourceFile.self, from: data)
-        if sourceFile.sources.isEmpty {
-            return [defaultSourceConfig]
+        let mergedSources = mergeDefaultSources(into: sourceFile.sources)
+        if mergedSources != sourceFile.sources {
+            let data = try JSONEncoder.pretty.encode(SourceFile(sources: mergedSources))
+            try data.write(to: configURL)
         }
-        return sourceFile.sources
+        return mergedSources
+    }
+
+    private func mergeDefaultSources(into existingSources: [TodoSourceConfig]) -> [TodoSourceConfig] {
+        var merged = existingSources.map(normalizedLegacySource)
+
+        for defaultSource in defaultSourceConfigs {
+            if let index = merged.firstIndex(where: { $0.id == defaultSource.id }) {
+                merged[index] = mergedDefaultSource(existing: merged[index], defaultSource: defaultSource)
+                continue
+            }
+
+            if let index = merged.firstIndex(where: { $0.path == defaultSource.path }) {
+                var existing = merged[index]
+                existing.id = defaultSource.id
+                existing.name = defaultName(for: existing.name, defaultSource: defaultSource)
+                merged[index] = mergedDefaultSource(existing: existing, defaultSource: defaultSource)
+                continue
+            }
+
+            merged.append(defaultSource)
+        }
+
+        return merged
+    }
+
+    private func normalizedLegacySource(_ source: TodoSourceConfig) -> TodoSourceConfig {
+        guard source.id == legacySpatialAgentSourceID, source.path == spatialAgentTodoPath else {
+            return source
+        }
+
+        var normalized = source
+        normalized.id = defaultSourceConfigs[0].id
+        normalized.name = defaultName(for: source.name, defaultSource: defaultSourceConfigs[0])
+        return normalized
+    }
+
+    private func mergedDefaultSource(existing: TodoSourceConfig, defaultSource: TodoSourceConfig) -> TodoSourceConfig {
+        TodoSourceConfig(
+            id: defaultSource.id,
+            name: defaultName(for: existing.name, defaultSource: defaultSource),
+            path: existing.path.isEmpty ? defaultSource.path : existing.path,
+            accent: existing.accent.isEmpty ? defaultSource.accent : existing.accent,
+            enabled: existing.enabled
+        )
+    }
+
+    private func defaultName(for currentName: String, defaultSource: TodoSourceConfig) -> String {
+        if currentName.isEmpty || currentName == "SpatialAgent Survey" {
+            return defaultSource.name
+        }
+        return currentName
     }
 }
 
@@ -206,7 +258,7 @@ private final class DashboardWindowController {
         if window == nil {
             let hostingController = NSHostingController(rootView: DashboardView(store: store))
             let dashboardWindow = NSWindow(contentViewController: hostingController)
-            dashboardWindow.title = "SpatialAgent Todo"
+            dashboardWindow.title = appDisplayName
             dashboardWindow.setContentSize(NSSize(width: 1220, height: 820))
             dashboardWindow.minSize = NSSize(width: 1080, height: 720)
             dashboardWindow.styleMask = [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView]
@@ -237,13 +289,36 @@ private final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 }
 
-private let defaultSourceConfig = TodoSourceConfig(
-    id: "spatialagent-survey",
-    name: "SpatialAgent Survey",
-    path: defaultTodoPath,
-    accent: "#0071e3",
-    enabled: true
-)
+private let defaultSourceConfigs = [
+    TodoSourceConfig(
+        id: "1-spatialagent",
+        name: "1-SpatialAgent",
+        path: spatialAgentTodoPath,
+        accent: "#0071e3",
+        enabled: true
+    ),
+    TodoSourceConfig(
+        id: "2-game-agent",
+        name: "2-GAME-AGENT",
+        path: "\(researchRoot)/2-GAME-AGENT/docs/guides/todolist.md",
+        accent: "#34c759",
+        enabled: true
+    ),
+    TodoSourceConfig(
+        id: "3-smga",
+        name: "3-SMGA",
+        path: "\(researchRoot)/3-SMGA/docs/guides/todolist.md",
+        accent: "#ff9500",
+        enabled: true
+    ),
+    TodoSourceConfig(
+        id: "4-spatialagent-survey",
+        name: "4-SpatialAgent-Survey",
+        path: "\(researchRoot)/4-SpatialAgent-Survey/docs/guides/todolist.md",
+        accent: "#af52de",
+        enabled: true
+    )
+]
 
 private extension JSONEncoder {
     static var pretty: JSONEncoder {
@@ -443,9 +518,13 @@ private enum AppleTheme {
 }
 
 @main
-struct SpatialAgentTodoApp: App {
+struct ResearchTodoApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     @StateObject private var store = TodoStore.shared
+
+    init() {
+        TodoStore.shared.reload()
+    }
 
     var body: some Scene {
         MenuBarExtra(store.menuTitle, systemImage: store.totalP0Count > 0 ? "flag.fill" : "checklist") {
@@ -540,7 +619,7 @@ private struct DashboardView: View {
 
     private var navBar: some View {
         HStack(spacing: 18) {
-            Text("SpatialAgent Todo")
+            Text(appDisplayName)
                 .font(.system(size: 12, weight: .regular))
                 .foregroundStyle(.white)
             Spacer()
@@ -567,7 +646,7 @@ private struct DashboardView: View {
                     .font(.system(size: 56, weight: .semibold))
                     .lineSpacing(-2)
                     .foregroundStyle(.white)
-                Text("多个 markdown todo 的常驻观察面板。")
+                Text("Multi-project markdown todo dashboard.")
                     .font(.system(size: 21, weight: .regular))
                     .foregroundStyle(.white.opacity(0.82))
                     .multilineTextAlignment(.center)
@@ -670,7 +749,7 @@ private struct OverviewView: View {
         VStack(spacing: 18) {
             HStack(spacing: 14) {
                 SummaryCard(icon: "flag.fill", title: "Immediate Focus", value: "\(count("P0"))", caption: "urgent items")
-                SummaryCard(icon: "chart.bar.fill", title: "Evidence Map", value: "\(count("P1"))", caption: "synthesis tasks")
+                SummaryCard(icon: "chart.bar.fill", title: "Next Actions", value: "\(count("P1"))", caption: "priority tasks")
                 SummaryCard(icon: "clock.fill", title: "Later Work", value: "\(count("P2") + count("P3") + count("P4"))", caption: "queued items")
             }
 
@@ -1061,8 +1140,8 @@ private func priorityFallbackName(_ label: String) -> String {
     switch label {
     case "P0": return "Urgent"
     case "P1": return "Next"
-    case "P2": return "Boundary Work"
-    case "P3": return "Claim Check"
+    case "P2": return "Planned"
+    case "P3": return "Backlog"
     case "P4": return "Maintenance"
     default: return "Todo"
     }

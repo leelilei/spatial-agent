@@ -26,3 +26,4 @@
 - 低频单文档不再单独创建一级目录，统一收敛到 `project/`。
 - 论文 PDF、阅读笔记、分析 notebook 已迁移到顶层 `assets/`。
 - `spatial-agent-core/docs/` 不再存在，所有仓库级文档统一放在这里。
+- Research Todo 工具位于同级目录 `../0-Tools/research-todo/`。
