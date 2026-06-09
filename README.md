@@ -7,6 +7,7 @@
 - `scripts/`: 仓库级辅助脚本
 - `spatial-agent-core/`: 可运行的代码子项目
 
+Research Todo 工具位于同级目录 `../0-Tools/research-todo/`。
 Survey 项目已拆出到独立目录 `../4-SpatialAgent-Survey/`。
 
 ## Top-Level Layout
@@ -89,6 +90,17 @@ spatial-agent-core/
 
 它保留代码、配置、数据、分析 notebook 和运行输出；研究文献资产已经迁到顶层 `assets/`。
 
+### Research Todo Tool
+
+Research todo 菜单栏应用位于独立同级目录：
+
+```text
+../0-Tools/
+└── research-todo/
+```
+
+它可同时读取多个 research 项目的 `docs/guides/todolist.md`。
+
 ### Survey Project
 
 SpatialAgent survey 已迁移为独立项目：
@@ -108,4 +120,5 @@ SpatialAgent survey 已迁移为独立项目：
 - 长期保存的研究资产只放在 `assets/`
 - 仓库级工具脚本只放在 `scripts/`
 - 可运行项目代码只放在 `spatial-agent-core/`
+- research 辅助工具和小应用只放在 `../0-Tools/`
 - survey 相关可运行代码、表格、论文组装和专题资产只放在 `../4-SpatialAgent-Survey/`
