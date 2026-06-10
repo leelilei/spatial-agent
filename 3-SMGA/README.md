@@ -20,6 +20,10 @@ The current diagnostic scenario-package schema is:
 
 - `docs/project/smga_scenario_package_schema_v0.1.md`
 
+The current normalized probe response schema is:
+
+- `docs/project/normalized_probe_response_schema_v0.1.md`
+
 ## Project Layout
 
 ```text

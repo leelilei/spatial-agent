@@ -3,6 +3,8 @@ let selectedSourceId = null;
 let selectedPhaseNumber = null;
 let currentView = "home";
 let refreshTimer = null;
+let projectSectionObserver = null;
+let activeNavKey = "progress";
 
 const stateUrl = "/api/state";
 const refreshButton = document.querySelector("#refresh-button");
@@ -11,10 +13,19 @@ const projectView = document.querySelector("#project-view");
 const backButton = document.querySelector("#back-button");
 const projectTitle = document.querySelector("#project-title");
 const projectMainline = document.querySelector("#project-mainline");
+const projectProgress = document.querySelector("#project-progress");
 const projectMetrics = document.querySelector("#project-metrics");
+const projectNav = document.querySelector("#project-nav");
 const phaseModal = document.querySelector("#phase-modal");
 const phaseModalClose = document.querySelector("#phase-modal-close");
 const phaseModalContent = document.querySelector("#phase-modal-content");
+
+const PROJECT_NAV_ITEMS = [
+  { key: "progress", label: "进度线", targetId: "project-progress-section" },
+  { key: "roadmap", label: "路线图", targetId: "roadmap-section" },
+  { key: "actions", label: "当前行动", targetId: "project-actions-section" },
+  { key: "tasks", label: "任务板", targetId: "task-board-section" },
+];
 
 refreshButton.addEventListener("click", () => {
   loadState();
@@ -53,10 +64,12 @@ async function loadState() {
       throw new Error(`HTTP ${response.status}`);
     }
     dashboardState = await response.json();
+
     if (selectedSourceId && !dashboardState.sources.some((source) => source.id === selectedSourceId)) {
       selectedSourceId = null;
       currentView = "home";
     }
+
     closePhaseModal();
     render();
   } catch (error) {
@@ -64,12 +77,6 @@ async function loadState() {
   } finally {
     setRefreshState(false);
   }
-}
-
-function defaultSourceId(sources) {
-  const withPhases = sources.find((source) => source.phases.length > 0);
-  const readable = sources.find((source) => source.readable);
-  return (withPhases || readable || sources[0] || {}).id || null;
 }
 
 function render() {
@@ -82,24 +89,39 @@ function render() {
   homeView.hidden = shouldShowProject;
   projectView.hidden = !shouldShowProject;
 
+  clearProjectSectionObserver();
+
   if (shouldShowProject) {
     renderProjectHeader(selected);
+    renderProjectNav(selected);
     renderRoadmap(selected);
     renderNextActions(selected);
     renderTaskBoard(selected);
+    window.requestAnimationFrame(() => {
+      setupProjectSectionObserver();
+      syncNavFromViewport();
+    });
+    return;
   }
+
+  renderProjectNav(null);
 }
 
 function renderLastUpdated() {
-  const label = dashboardState.generatedAt
+  const label = dashboardState?.generatedAt
     ? new Date(dashboardState.generatedAt).toLocaleString()
     : "未知";
   document.querySelector("#last-updated").textContent = `更新 ${label}`;
 }
 
 function renderSummary() {
-  const totals = dashboardState.totals;
+  const totals = dashboardState?.totals;
   const summary = document.querySelector("#summary");
+  if (!totals) {
+    summary.innerHTML = "";
+    return;
+  }
+
   summary.innerHTML = [
     metric("项目源", `${totals.readableCount}/${totals.sourceCount}`, "可读取"),
     metric("待办任务", totals.openTasks, "当前任务"),
@@ -110,11 +132,12 @@ function renderSummary() {
 
 function renderSources() {
   const grid = document.querySelector("#source-grid");
-  grid.innerHTML = dashboardState.sources.map(sourceCard).join("");
+  grid.innerHTML = (dashboardState?.sources || []).map(sourceCard).join("");
   grid.querySelectorAll("[data-source-id]").forEach((card) => {
     card.addEventListener("click", () => {
       selectedSourceId = card.dataset.sourceId;
       currentView = "project";
+      activeNavKey = "progress";
       closePhaseModal();
       render();
     });
@@ -128,7 +151,7 @@ function sourceCard(source) {
     ? `路线图 ${percent(source.progress.fraction)}`
     : "暂无路线图";
   const status = source.error
-    ? `<span class="status-pill error">错误</span>`
+    ? `<span class="status-pill error">异常</span>`
     : `<span class="status-pill">就绪</span>`;
   const mainline = source.currentMainline || "暂无当前主线";
   const foot = source.error
@@ -145,7 +168,7 @@ function sourceCard(source) {
       <div class="card-stats">
         <div class="stat"><strong>${source.taskCounts.open}</strong><span>待办</span></div>
         <div class="stat"><strong>${source.priorityCounts.P0}</strong><span>P0</span></div>
-        <div class="stat"><strong>${source.phases.length}</strong><span>阶段</span></div>
+        <div class="stat"><strong>${roadmapPhases(source).length}</strong><span>阶段</span></div>
       </div>
       <p class="mainline">${escapeHtml(mainline)}</p>
       <div class="progress-track" aria-label="${escapeAttr(progressText)}">
@@ -160,12 +183,159 @@ function sourceCard(source) {
 function renderProjectHeader(source) {
   projectTitle.textContent = `${source.name} 项目详情`;
   projectMainline.textContent = source.currentMainline || "暂无当前主线";
+  document.querySelector("#overview-title").textContent = `${source.name} 关键指标`;
+
+  projectProgress.innerHTML = projectProgressMarkup(source);
   projectMetrics.innerHTML = [
     projectMetric("待办", source.taskCounts.open),
     projectMetric("P0", source.priorityCounts.P0),
-    projectMetric("阶段", source.phases.length),
-    projectMetric("路线图", source.progress.total ? percent(source.progress.fraction) : "暂无"),
+    projectMetric("阶段", roadmapPhases(source).length),
+    projectMetric("完成度", source.progress.total ? percent(source.progress.fraction) : "暂无"),
   ].join("");
+}
+
+function renderProjectNav(source) {
+  if (!source || source.error) {
+    projectNav.innerHTML = "";
+    return;
+  }
+
+  projectNav.innerHTML = PROJECT_NAV_ITEMS.map((item) => projectNavLink(item)).join("");
+  projectNav.querySelectorAll("[data-nav-key]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      const key = link.dataset.navKey;
+      const item = PROJECT_NAV_ITEMS.find((candidate) => candidate.key === key);
+      const target = item ? document.getElementById(item.targetId) : null;
+      if (!target) {
+        return;
+      }
+      setActiveNavKey(key);
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.replaceState(window.history.state, "", `#${item.targetId}`);
+    });
+  });
+}
+
+function projectNavLink(item) {
+  const active = item.key === activeNavKey ? " active" : "";
+  return `
+    <a
+      class="project-nav-link${active}"
+      href="#${escapeAttr(item.targetId)}"
+      data-nav-key="${escapeAttr(item.key)}"
+    >
+      ${escapeHtml(item.label)}
+    </a>
+  `;
+}
+
+function setActiveNavKey(key) {
+  activeNavKey = key;
+  projectNav.querySelectorAll("[data-nav-key]").forEach((link) => {
+    link.classList.toggle("active", link.dataset.navKey === key);
+  });
+}
+
+function setupProjectSectionObserver() {
+  if (typeof window.IntersectionObserver !== "function") {
+    return;
+  }
+
+  const sections = PROJECT_NAV_ITEMS
+    .map((item) => document.getElementById(item.targetId))
+    .filter(Boolean);
+
+  if (!sections.length) {
+    return;
+  }
+
+  projectSectionObserver = new window.IntersectionObserver(handleSectionIntersections, {
+    root: null,
+    rootMargin: "-18% 0px -56% 0px",
+    threshold: [0.1, 0.25, 0.5, 0.75],
+  });
+
+  sections.forEach((section) => {
+    projectSectionObserver.observe(section);
+  });
+}
+
+function handleSectionIntersections(entries) {
+  const visible = entries
+    .filter((entry) => entry.isIntersecting)
+    .sort((left, right) => {
+      if (right.intersectionRatio !== left.intersectionRatio) {
+        return right.intersectionRatio - left.intersectionRatio;
+      }
+      return Math.abs(left.boundingClientRect.top) - Math.abs(right.boundingClientRect.top);
+    });
+
+  if (!visible.length) {
+    return;
+  }
+
+  const sectionKey = visible[0].target.dataset.section;
+  if (sectionKey) {
+    setActiveNavKey(sectionKey);
+  }
+}
+
+function syncNavFromViewport() {
+  const sectionStates = PROJECT_NAV_ITEMS
+    .map((item) => {
+      const element = document.getElementById(item.targetId);
+      if (!element) {
+        return null;
+      }
+      const rect = element.getBoundingClientRect();
+      return {
+        key: item.key,
+        top: rect.top,
+        distance: Math.abs(rect.top - 140),
+      };
+    })
+    .filter(Boolean)
+    .sort((left, right) => left.distance - right.distance);
+
+  if (sectionStates.length) {
+    setActiveNavKey(sectionStates[0].key);
+  }
+}
+
+function clearProjectSectionObserver() {
+  if (projectSectionObserver) {
+    projectSectionObserver.disconnect();
+    projectSectionObserver = null;
+  }
+}
+
+function projectProgressMarkup(source) {
+  if (!source || source.error) {
+    return emptyState(source?.error || "暂无项目进度");
+  }
+
+  const phases = roadmapPhases(source);
+  if (phases.length) {
+    return roadmapTimeline(phases, { className: "project-progress-timeline" });
+  }
+
+  const accent = safeColor(source.accent);
+  const fraction = source.progress?.fraction || 0;
+  return `
+    <section class="project-progress-fallback">
+      <div class="timeline-header">
+        <div>
+          <p class="eyebrow">进度线</p>
+          <h3>${escapeHtml(source.name)} 总体进度</h3>
+        </div>
+        <strong>${percent(fraction)}</strong>
+      </div>
+      <div class="project-progress-bar">
+        <div class="project-progress-fill" style="width:${clampedPercent(fraction)}%;background:${accent}"></div>
+      </div>
+    </section>
+  `;
 }
 
 function projectMetric(label, value) {
@@ -192,18 +362,18 @@ function renderRoadmap(source) {
     return;
   }
 
-  const roadmapData = source.roadmap || { mode: "derived", phases: source.phases, tracks: [] };
-  const phases = roadmapData.phases || source.phases;
+  const roadmapData = roadmapModel(source);
+  const phases = roadmapData.phases;
   const warning = roadmapData.error ? `<p class="roadmap-warning">${escapeHtml(roadmapData.error)}</p>` : "";
-
-  if (roadmapData.mode === "structured" && phases.length) {
-    roadmap.innerHTML = `${warning}${structuredRoadmap(roadmapData)}`;
-    bindPhaseCardInteractions();
-    return;
-  }
 
   if (!phases.length) {
     roadmap.innerHTML = emptyState("这个项目暂无阶段路线图。");
+    return;
+  }
+
+  if (roadmapData.mode === "structured" && roadmapData.tracks.length) {
+    roadmap.innerHTML = `${warning}${structuredRoadmap(roadmapData)}`;
+    bindPhaseCardInteractions();
     return;
   }
 
@@ -219,32 +389,32 @@ function structuredRoadmap(roadmapData) {
   const phases = roadmapData.phases || [];
   const tracks = roadmapData.tracks || [];
   return `
-    ${roadmapTimeline(phases, roadmapData)}
     <div class="roadmap-lanes">
       ${tracks.map((track) => roadmapLane(track, phases)).join("")}
     </div>
   `;
 }
 
-function roadmapTimeline(phases, roadmapData) {
-  const completed = phases.reduce((sum, phase) => sum + phase.completedCount, 0);
-  const total = phases.reduce((sum, phase) => sum + phase.totalCount, 0);
-  const current = phases.find((phase) => phase.isCurrent);
+function roadmapTimeline(phases, options = {}) {
+  const completed = phases.reduce((sum, phase) => sum + (phase.completedCount || 0), 0);
+  const total = phases.reduce((sum, phase) => sum + (phase.totalCount || 0), 0);
+  const current = phases.find((phase) => phase.isCurrent) || null;
   const fill = clampedPercent(total ? completed / total : 0);
+  const timelineClass = options.className ? ` ${options.className}` : "";
   return `
-    <section class="roadmap-timeline" aria-label="路线图进度线">
+    <section class="roadmap-timeline${timelineClass}" aria-label="路线图进度线">
       <div class="timeline-header">
         <div>
           <p class="eyebrow">进度线</p>
           <h3>${current ? `当前 Phase ${current.number}：${escapeHtml(current.title)}` : "暂无当前阶段"}</h3>
         </div>
-        <strong>${completed}/${total} · ${percent(total ? completed / total : 0)}</strong>
+        <strong>${completed}/${total} 项 ${percent(total ? completed / total : 0)}</strong>
       </div>
       <div class="timeline-scroll">
         <div class="timeline-bar" style="--timeline-fill:${fill}%">
           <div class="timeline-track"></div>
           <div class="timeline-fill"></div>
-          <div class="timeline-markers" style="grid-template-columns: repeat(${Math.max(phases.length, 1)}, minmax(72px, 1fr));">
+          <div class="timeline-markers" style="grid-template-columns: repeat(${Math.max(phases.length, 1)}, minmax(88px, 1fr));">
             ${phases.map((phase) => timelineMarker(phase)).join("")}
           </div>
         </div>
@@ -334,7 +504,7 @@ function bindPhaseCardInteractions() {
 
 function openPhaseModal(phaseNumber) {
   const source = selectedSource();
-  const phase = source?.phases.find((item) => item.number === phaseNumber);
+  const phase = roadmapPhases(source).find((item) => item.number === phaseNumber);
   if (!source || !phase) {
     return;
   }
@@ -354,7 +524,7 @@ function closePhaseModal() {
 }
 
 function phaseModalMarkup(source, phase) {
-  const track = source.roadmap?.tracks.find((item) => item.id === phase.track);
+  const track = roadmapModel(source).tracks.find((item) => item.id === phase.track);
   const openTasks = (phase.tasks || []).filter((task) => !task.completed);
   const completedTasks = (phase.tasks || []).filter((task) => task.completed);
   const outputs = phase.outputs || [];
@@ -420,14 +590,14 @@ function phaseDetailTask(task, isCompleted) {
 }
 
 function phaseNode(phase, index, total) {
-  const statusClass = phase.status === "complete" ? "complete" : phase.isCurrent ? "current" : "";
+  const phaseStatus = phase.status === "complete" ? "complete" : phase.isCurrent ? "current" : "";
   const connector = index < total - 1 ? `<span class="phase-connector"></span>` : "";
   const circleColor = phase.status === "complete" || phase.isCurrent ? safeColor(phase.sourceAccent) : "";
 
   return `
     <div class="phase-node">
       <div class="phase-top">
-        <div class="phase-circle ${statusClass}" style="${circleColor ? `background:${circleColor}` : ""}">
+        <div class="phase-circle ${phaseStatus}" style="${circleColor ? `background:${circleColor}` : ""}">
           ${phase.number}
         </div>
         ${connector}
@@ -436,7 +606,7 @@ function phaseNode(phase, index, total) {
       <div class="progress-track">
         <div class="progress-fill" style="width:${clampedPercent(phase.fraction)}%;background:${safeColor(phase.sourceAccent)}"></div>
       </div>
-      <p class="phase-meta">${phase.completedCount}/${phase.totalCount} · ${statusLabel(phase.status)}</p>
+      <p class="phase-meta">${phase.completedCount}/${phase.totalCount} 项 ${statusLabel(phase.status)}</p>
     </div>
   `;
 }
@@ -509,7 +679,18 @@ function metric(title, value, caption) {
 }
 
 function selectedSource() {
-  return dashboardState.sources.find((source) => source.id === selectedSourceId) || null;
+  return dashboardState?.sources.find((source) => source.id === selectedSourceId) || null;
+}
+
+function roadmapModel(source) {
+  const fallback = { mode: "derived", phases: source?.phases || [], tracks: [], error: null };
+  return source?.roadmap
+    ? { ...fallback, ...source.roadmap, phases: source.roadmap.phases || source.phases || [] }
+    : fallback;
+}
+
+function roadmapPhases(source) {
+  return roadmapModel(source).phases || [];
 }
 
 function emptyState(message) {
@@ -563,8 +744,10 @@ function setRefreshState(isLoading) {
 
 function renderError(error) {
   currentView = "home";
+  clearProjectSectionObserver();
   homeView.hidden = false;
   projectView.hidden = true;
+  renderProjectNav(null);
   document.querySelector("#last-updated").textContent = "加载失败";
   document.querySelector("#summary").innerHTML = "";
   document.querySelector("#source-grid").innerHTML = "";

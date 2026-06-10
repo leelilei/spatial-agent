@@ -1,6 +1,6 @@
 version: 1
 project: 3-SMGA
-currentPhase: 2
+currentPhase: 3
 
 tracks:
   - id: foundation
@@ -44,7 +44,7 @@ phases:
   - number: 2
     title: Experiment 0 基础设施
     track: infrastructure
-    status: current
+    status: done
     summary: 把手写 seed_0001 变成稳定的 validate-load-score benchmark 闭环。
     outputs:
       - seed_0001 校验器
@@ -55,11 +55,14 @@ phases:
   - number: 3
     title: 第一轮 baseline 运行
     track: infrastructure
-    status: planned
+    status: current
     summary: 先在 seed_0001 上跑非 SMGA baseline，拿到真实模型输出与失败案例。
     outputs:
       - M0_GA harness
       - M0_prompted harness
+      - model-calling runner
+      - condition-blind response normalizer
+      - baseline model config template
       - baseline probe responses
       - scorer 可读的 baseline JSON
 

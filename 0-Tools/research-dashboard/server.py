@@ -23,9 +23,26 @@ except ImportError:  # pragma: no cover - local environment includes PyYAML
     yaml = None
 
 
-RESEARCH_ROOT = Path("/Users/mac/Documents/6-Research")
-PERSONAL_TODO_DIR = Path("/Users/mac/Documents/1-ProjectRes/Personal Todo")
-SOURCES_CONFIG_PATH = PERSONAL_TODO_DIR / "sources.json"
+SCRIPT_DIR = Path(__file__).resolve().parent
+REPO_ROOT = SCRIPT_DIR.parents[1]
+LEGACY_RESEARCH_ROOT = Path("/Users/mac/Documents/6-Research")
+LEGACY_PERSONAL_TODO_DIR = Path("/Users/mac/Documents/1-ProjectRes/Personal Todo")
+
+
+def configured_path(env_name: str) -> Path | None:
+    value = os.environ.get(env_name)
+    return Path(value).expanduser() if value else None
+
+
+RESEARCH_ROOT = (
+    configured_path("RESEARCH_DASHBOARD_ROOT")
+    or (LEGACY_RESEARCH_ROOT if LEGACY_RESEARCH_ROOT.exists() else REPO_ROOT)
+)
+PERSONAL_TODO_DIR = (
+    configured_path("RESEARCH_DASHBOARD_CONFIG_DIR")
+    or (LEGACY_PERSONAL_TODO_DIR if LEGACY_PERSONAL_TODO_DIR.exists() else SCRIPT_DIR)
+)
+SOURCES_CONFIG_PATH = configured_path("RESEARCH_DASHBOARD_SOURCES") or (PERSONAL_TODO_DIR / "sources.json")
 
 DEFAULT_SOURCES = [
     {

@@ -103,8 +103,25 @@ button:hover {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  margin-bottom: 18px;
   padding: 22px;
+}
+
+.project-section {
+  scroll-margin-top: 22px;
+}
+
+.project-detail-layout {
+  align-items: start;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 220px minmax(0, 1fr);
+}
+
+.project-content-column {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
 }
 
 .back-button {
@@ -132,21 +149,68 @@ button:hover {
   margin: 0;
 }
 
+.project-progress {
+  min-width: 0;
+}
+
+.project-nav-panel {
+  min-width: 0;
+}
+
+.project-nav-shell {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  position: sticky;
+  top: 20px;
+}
+
+.project-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.project-nav-link {
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 11px 12px;
+  text-decoration: none;
+  transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.project-nav-link:hover {
+  background: #f8fbff;
+  border-color: rgba(0, 113, 227, 0.14);
+  color: var(--ink);
+}
+
+.project-nav-link.active {
+  background: #eef6ff;
+  border-color: rgba(0, 113, 227, 0.28);
+  color: var(--blue);
+}
+
 .project-metrics {
   display: grid;
   gap: 10px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .project-metric {
   background: var(--page);
+  border: 1px solid var(--soft);
   border-radius: var(--radius);
   padding: 14px;
 }
 
 .project-metric strong {
   display: block;
-  font-size: 24px;
+  font-size: 26px;
 }
 
 .project-metric span {
@@ -269,18 +333,38 @@ button:hover {
   color: var(--danger);
 }
 
-.workspace-grid {
+.project-main-grid {
   align-items: start;
   display: grid;
   gap: 18px;
-  grid-template-columns: minmax(0, 1fr) 340px;
-  margin-bottom: 18px;
+  grid-template-columns: minmax(0, 1fr) 280px;
+}
+
+.project-primary-column {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
 }
 
 .roadmap-panel,
 .side-panel,
 .task-board {
   padding: 22px;
+}
+
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.side-section {
+  min-width: 0;
+}
+
+.side-section-title {
+  margin-bottom: 14px;
 }
 
 .section-title {
@@ -310,6 +394,31 @@ button:hover {
   border-radius: var(--radius);
   margin-bottom: 16px;
   padding: 16px;
+}
+
+.project-progress .roadmap-timeline {
+  background: linear-gradient(180deg, #f8fbff 0%, #f4f5f7 100%);
+  margin-bottom: 0;
+}
+
+.project-progress-fallback {
+  background: linear-gradient(180deg, #f8fbff 0%, #f4f5f7 100%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.project-progress-bar {
+  background: var(--soft);
+  border-radius: 999px;
+  height: 12px;
+  overflow: hidden;
+}
+
+.project-progress-fill {
+  border-radius: inherit;
+  height: 100%;
+  min-width: 8px;
 }
 
 .timeline-header {
@@ -833,14 +942,30 @@ button:hover {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .workspace-grid,
+  .project-detail-layout,
+  .project-main-grid,
   .task-columns {
     grid-template-columns: 1fr;
   }
 
-  .project-heading,
-  .project-metrics {
+  .project-heading {
     grid-template-columns: 1fr;
+  }
+
+  .project-nav-shell {
+    padding: 14px;
+    position: static;
+  }
+
+  .project-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .project-nav-link {
+    flex: 0 0 auto;
+    white-space: nowrap;
   }
 
   .roadmap-lane {
@@ -878,6 +1003,19 @@ button:hover {
 
   .summary-grid,
   .source-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-nav-shell {
+    padding: 12px;
+  }
+
+  .project-nav-link {
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+
+  .project-metrics {
     grid-template-columns: 1fr;
   }
 

@@ -30,43 +30,66 @@
         </section>
 
         <section id="project-view" hidden>
-          <section class="project-hero">
-            <button id="back-button" class="back-button" type="button">返回所有项目</button>
-            <div class="project-heading">
-              <div>
-                <p class="eyebrow">项目详情</p>
-                <h2 id="project-title">项目详情</h2>
+          <div class="project-detail-layout">
+            <aside class="project-nav-panel" aria-label="项目详情导航">
+              <div class="project-nav-shell">
+                <p class="eyebrow">详情导航</p>
+                <nav id="project-nav" class="project-nav"></nav>
               </div>
-              <p id="project-mainline" class="project-mainline"></p>
-            </div>
-            <div id="project-metrics" class="project-metrics"></div>
-          </section>
-
-          <section class="workspace-grid">
-            <div class="roadmap-panel">
-              <div class="section-title">
-                <p class="eyebrow">路线图</p>
-                <h2 id="roadmap-title">项目路线图</h2>
-              </div>
-              <div id="roadmap"></div>
-            </div>
-
-            <aside class="side-panel">
-              <div class="section-title">
-                <p class="eyebrow">当前行动</p>
-                <h2 id="now-title">下一步</h2>
-              </div>
-              <div id="next-actions"></div>
             </aside>
-          </section>
 
-          <section class="task-board">
-            <div class="section-title">
-              <p class="eyebrow">执行任务</p>
-              <h2 id="task-title">优先级任务板</h2>
+            <div class="project-content-column">
+              <section id="project-progress-section" class="project-hero project-section" data-section="progress">
+                <button id="back-button" class="back-button" type="button">返回所有项目</button>
+                <div class="project-heading">
+                  <div>
+                    <p class="eyebrow">项目详情</p>
+                    <h2 id="project-title">项目详情</h2>
+                  </div>
+                  <p id="project-mainline" class="project-mainline"></p>
+                </div>
+                <div id="project-progress" class="project-progress"></div>
+              </section>
+
+              <section class="project-main-grid">
+                <div class="project-primary-column">
+                  <section id="roadmap-section" class="roadmap-panel project-section" data-section="roadmap">
+                    <div class="section-title">
+                      <p class="eyebrow">路线图</p>
+                      <h2 id="roadmap-title">项目路线图</h2>
+                    </div>
+                    <div id="roadmap"></div>
+                  </section>
+
+                  <section id="task-board-section" class="task-board project-section" data-section="tasks">
+                    <div class="section-title">
+                      <p class="eyebrow">执行任务</p>
+                      <h2 id="task-title">优先级任务板</h2>
+                    </div>
+                    <div id="task-columns" class="task-columns"></div>
+                  </section>
+                </div>
+
+                <aside class="side-panel">
+                  <div class="side-section">
+                    <div class="section-title side-section-title">
+                      <p class="eyebrow">项目概览</p>
+                      <h2 id="overview-title">关键指标</h2>
+                    </div>
+                    <div id="project-metrics" class="project-metrics"></div>
+                  </div>
+
+                  <div id="project-actions-section" class="side-section project-section" data-section="actions">
+                    <div class="section-title side-section-title">
+                      <p class="eyebrow">当前行动</p>
+                      <h2 id="now-title">下一步</h2>
+                    </div>
+                    <div id="next-actions"></div>
+                  </div>
+                </aside>
+              </section>
             </div>
-            <div id="task-columns" class="task-columns"></div>
-          </section>
+          </div>
         </section>
       </main>
     </div>
