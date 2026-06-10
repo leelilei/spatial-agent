@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>研究进度看板</title>
+    <title>Research Project Map</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <div class="app-shell">
       <header class="topbar">
         <div>
-          <p class="eyebrow">本地研究工作区</p>
-          <h1>研究进度看板</h1>
+          <p class="eyebrow">Local Research Workspace</p>
+          <h1>Research Project Map</h1>
         </div>
         <div class="topbar-actions">
           <p id="last-updated" class="muted">加载中...</p>
@@ -22,83 +22,70 @@
       <main>
         <section id="home-view">
           <div class="section-title">
-            <p class="eyebrow">所有项目</p>
+            <p class="eyebrow">All Projects</p>
             <h2>项目总览</h2>
           </div>
           <section id="summary" class="summary-grid" aria-label="工作区汇总"></section>
-          <section id="source-grid" class="source-grid" aria-label="项目总览"></section>
+          <section id="source-grid" class="source-grid" aria-label="项目列表"></section>
         </section>
 
         <section id="project-view" hidden>
           <div class="project-detail-layout">
-            <aside class="project-nav-panel" aria-label="项目详情导航">
+            <aside class="project-nav-panel" aria-label="研究地图导航">
               <div class="project-nav-shell">
-                <p class="eyebrow">详情导航</p>
+                <p class="eyebrow">Map Views</p>
                 <nav id="project-nav" class="project-nav"></nav>
               </div>
             </aside>
 
-            <div class="project-content-column">
-              <section id="project-progress-section" class="project-hero project-section" data-section="progress">
+            <div class="project-map-workspace">
+              <section id="project-map-section" class="project-map-panel project-section" data-section="map">
                 <button id="back-button" class="back-button" type="button">返回所有项目</button>
-                <div class="project-heading">
+                <div class="project-map-header">
                   <div>
-                    <p class="eyebrow">项目详情</p>
+                    <p class="eyebrow">Research Project</p>
                     <h2 id="project-title">项目详情</h2>
                   </div>
-                  <p id="project-mainline" class="project-mainline"></p>
+                  <div class="project-focus-card">
+                    <span>Current Focus</span>
+                    <p id="project-mainline"></p>
+                  </div>
                 </div>
-                <div id="project-progress" class="project-progress"></div>
+                <p id="research-question" class="research-question"></p>
+                <div id="project-map" class="project-map"></div>
               </section>
 
-              <section class="project-main-grid">
-                <div class="project-primary-column">
-                  <section id="roadmap-section" class="roadmap-panel project-section" data-section="roadmap">
-                    <div class="section-title">
-                      <p class="eyebrow">路线图</p>
-                      <h2 id="roadmap-title">项目路线图</h2>
-                    </div>
-                    <div id="roadmap"></div>
-                  </section>
-
-                  <section id="task-board-section" class="task-board project-section" data-section="tasks">
-                    <div class="section-title">
-                      <p class="eyebrow">执行任务</p>
-                      <h2 id="task-title">优先级任务板</h2>
-                    </div>
-                    <div id="task-columns" class="task-columns"></div>
-                  </section>
+              <section id="history-section" class="history-panel project-section" data-section="history">
+                <div class="section-title">
+                  <p class="eyebrow">History</p>
+                  <h2>之前做过什么</h2>
                 </div>
+                <div id="project-history"></div>
+              </section>
 
-                <aside class="side-panel">
-                  <div class="side-section">
-                    <div class="section-title side-section-title">
-                      <p class="eyebrow">项目概览</p>
-                      <h2 id="overview-title">关键指标</h2>
-                    </div>
-                    <div id="project-metrics" class="project-metrics"></div>
-                  </div>
+              <section id="next-work-section" class="next-work-panel project-section" data-section="next">
+                <div class="section-title">
+                  <p class="eyebrow">Next Work</p>
+                  <h2>之后需要做什么</h2>
+                </div>
+                <div id="next-work"></div>
+              </section>
 
-                  <div id="project-actions-section" class="side-section project-section" data-section="actions">
-                    <div class="section-title side-section-title">
-                      <p class="eyebrow">当前行动</p>
-                      <h2 id="now-title">下一步</h2>
-                    </div>
-                    <div id="next-actions"></div>
-                  </div>
-                </aside>
+              <section id="paper-readiness-section" class="paper-readiness-panel project-section" data-section="paper">
+                <div class="section-title">
+                  <p class="eyebrow">Paper Readiness</p>
+                  <h2>论文准备度</h2>
+                </div>
+                <div id="paper-readiness"></div>
               </section>
             </div>
+
+            <aside class="map-detail-drawer" aria-label="地图节点详情">
+              <div id="map-node-detail"></div>
+            </aside>
           </div>
         </section>
       </main>
-    </div>
-
-    <div id="phase-modal" class="modal-backdrop" hidden>
-      <section class="phase-modal" role="dialog" aria-modal="true" aria-labelledby="phase-modal-title">
-        <button id="phase-modal-close" class="modal-close" type="button" aria-label="关闭详情">×</button>
-        <div id="phase-modal-content"></div>
-      </section>
     </div>
 
     <script src="/app.js"></script>

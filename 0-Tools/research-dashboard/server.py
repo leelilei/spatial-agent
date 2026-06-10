@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import importlib
 import json
 import os
 import re
@@ -27,6 +28,26 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_ROOT = SCRIPT_DIR.parents[1]
 LEGACY_RESEARCH_ROOT = Path("/Users/mac/Documents/6-Research")
 LEGACY_PERSONAL_TODO_DIR = Path("/Users/mac/Documents/1-ProjectRes/Personal Todo")
+
+
+def import_yaml_from_workspace_venv():
+    candidates = [
+        *REPO_ROOT.glob(".venv/Lib/site-packages"),
+        *REPO_ROOT.glob(".venv/lib/python*/site-packages"),
+    ]
+    for candidate in candidates:
+        if not candidate.exists():
+            continue
+        sys.path.insert(0, str(candidate))
+        try:
+            return importlib.import_module("yaml")
+        except ImportError:
+            continue
+    return None
+
+
+if yaml is None:
+    yaml = import_yaml_from_workspace_venv()
 
 
 def configured_path(env_name: str) -> Path | None:
@@ -80,6 +101,19 @@ HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*$")
 PHASE_RE = re.compile(r"(?:^|\s)Phase\s*(\d+)\s*(?:[-\u2013\u2014:：]\s*)?(.*)$", re.I)
 TASK_RE = re.compile(r"^\s*-\s*\[([ xX])\]\s+(.+?)\s*$")
 PRIORITY_RE = re.compile(r"Priority\s*(\d+)", re.I)
+PROJECT_MAP_STATUSES = {"done", "current", "next", "planned", "blocked", "draft", "ready", "missing"}
+PROJECT_MAP_STATUS_ALIASES = {
+    "complete": "done",
+    "completed": "done",
+    "finished": "done",
+    "in_progress": "current",
+    "active": "current",
+    "todo": "planned",
+    "not_started": "planned",
+    "empty": "planned",
+    "open": "planned",
+}
+PROJECT_MAP_LANES = {"done", "now", "next", "paper"}
 
 
 @dataclass
@@ -158,6 +192,16 @@ def parse_source(config: dict) -> dict:
         "nextActions": [],
         "progress": {"completed": 0, "open": 0, "total": 0, "fraction": 0},
         "roadmap": {"mode": "none", "tracks": [], "phases": [], "error": None},
+        "projectMap": {
+            "mode": "none",
+            "milestones": [],
+            "mapNodes": [],
+            "paper": {"sections": []},
+            "history": [],
+            "nextWork": [],
+            "readinessSummary": {"total": 0, "ready": 0, "blocked": 0, "missing": 0, "planned": 0, "fraction": 0},
+            "error": None,
+        },
     }
 
     if not config["enabled"]:
@@ -181,6 +225,17 @@ def parse_source(config: dict) -> dict:
     parsed["phases"] = roadmap["phases"]
     parsed["nextActions"] = next_actions(parsed["tasks"], parsed["phases"])
     parsed["progress"] = progress_summary(parsed["phases"])
+    parsed["projectMap"] = load_project_map(
+        path.with_name("project_map.yaml"),
+        path,
+        config,
+        roadmap,
+        parsed["phases"],
+        parsed["tasks"],
+        parsed["nextActions"],
+        parsed["progress"],
+        parsed["currentMainline"],
+    )
     parsed.update({"readable": True, "error": None})
     return {**base, **parsed}
 
@@ -391,6 +446,463 @@ def structured_roadmap(
         "phases": phases,
         "error": None,
     }
+
+
+def load_project_map(
+    map_path: Path,
+    todo_path: Path,
+    config: dict,
+    roadmap: dict,
+    phases: list[dict],
+    tasks: list[dict],
+    next_actions_list: list[dict],
+    progress: dict,
+    current_mainline: str,
+) -> dict:
+    project_root = infer_project_root(todo_path)
+    if not map_path.exists():
+        return derived_project_map(
+            map_path,
+            config,
+            roadmap,
+            phases,
+            tasks,
+            next_actions_list,
+            progress,
+            current_mainline,
+            None,
+        )
+
+    if yaml is None:
+        return derived_project_map(
+            map_path,
+            config,
+            roadmap,
+            phases,
+            tasks,
+            next_actions_list,
+            progress,
+            current_mainline,
+            "Current environment does not have PyYAML, so project_map.yaml could not be read.",
+        )
+
+    try:
+        payload = yaml.safe_load(map_path.read_text(encoding="utf-8")) or {}
+        if not isinstance(payload, dict):
+            raise ValueError("project_map.yaml must contain a mapping at the top level")
+        return normalize_project_map(
+            payload,
+            map_path,
+            project_root,
+            config,
+            phases,
+            tasks,
+            next_actions_list,
+            progress,
+            current_mainline,
+        )
+    except Exception as exc:  # noqa: BLE001 - fallback keeps the dashboard usable
+        return derived_project_map(
+            map_path,
+            config,
+            roadmap,
+            phases,
+            tasks,
+            next_actions_list,
+            progress,
+            current_mainline,
+            f"Project map configuration error: {exc}",
+        )
+
+
+def normalize_project_map(
+    payload: dict,
+    map_path: Path,
+    project_root: Path,
+    config: dict,
+    phases: list[dict],
+    tasks: list[dict],
+    next_actions_list: list[dict],
+    progress: dict,
+    current_mainline: str,
+) -> dict:
+    milestones = [
+        normalize_milestone(item, project_root, index)
+        for index, item in enumerate(ensure_list(payload.get("milestones")), start=1)
+    ]
+    map_nodes = [
+        normalize_map_node(item, project_root, index)
+        for index, item in enumerate(ensure_list(payload.get("mapNodes")), start=1)
+    ]
+
+    if not map_nodes:
+        map_nodes = derived_map_nodes(phases, config, current_mainline)
+
+    paper_payload = payload.get("paper") if isinstance(payload.get("paper"), dict) else {}
+    paper_sections = [
+        normalize_paper_section(item, project_root, index)
+        for index, item in enumerate(ensure_list(paper_payload.get("sections")), start=1)
+    ]
+
+    next_work_payload = payload.get("nextWork") or payload.get("next_work")
+    next_work = [
+        normalize_work_item(item, index)
+        for index, item in enumerate(ensure_list(next_work_payload), start=1)
+    ] if next_work_payload else build_next_work(map_nodes, next_actions_list)
+
+    return {
+        "mode": "manifest",
+        "path": str(map_path),
+        "version": payload.get("version", 1),
+        "project": str(payload.get("project") or config["name"]),
+        "title": str(payload.get("title") or config["name"]),
+        "currentFocus": str(payload.get("currentFocus") or current_mainline or ""),
+        "researchQuestion": str(payload.get("researchQuestion") or ""),
+        "milestones": milestones,
+        "mapNodes": map_nodes,
+        "paper": {"sections": paper_sections},
+        "history": milestones or history_from_nodes(map_nodes),
+        "nextWork": next_work,
+        "readinessSummary": readiness_summary(paper_sections),
+        "progress": progress,
+        "taskCount": len(tasks),
+        "error": None,
+    }
+
+
+def derived_project_map(
+    map_path: Path,
+    config: dict,
+    roadmap: dict,
+    phases: list[dict],
+    tasks: list[dict],
+    next_actions_list: list[dict],
+    progress: dict,
+    current_mainline: str,
+    map_error: str | None,
+) -> dict:
+    map_nodes = derived_map_nodes(phases, config, current_mainline)
+    if not map_nodes:
+        map_nodes = [
+            {
+                "id": f"{config['id']}-research-thread",
+                "title": current_mainline or config["name"],
+                "lane": "now",
+                "status": "current",
+                "phase": None,
+                "summary": "Simplified map generated from the active todo list.",
+                "dependsOn": [],
+                "outputs": [],
+                "taskRefs": [],
+                "nextActions": [str(task.get("title", "")) for task in next_actions_list[:4]],
+            }
+        ]
+
+    paper_sections: list[dict] = []
+    return {
+        "mode": "derived",
+        "path": str(map_path),
+        "version": 1,
+        "project": config["name"],
+        "title": config["name"],
+        "currentFocus": current_mainline or "",
+        "researchQuestion": "",
+        "milestones": history_from_nodes(map_nodes),
+        "mapNodes": map_nodes,
+        "paper": {"sections": paper_sections},
+        "history": history_from_nodes(map_nodes),
+        "nextWork": build_next_work(map_nodes, next_actions_list),
+        "readinessSummary": readiness_summary(paper_sections),
+        "progress": progress,
+        "taskCount": len(tasks),
+        "roadmapMode": roadmap.get("mode", "derived"),
+        "error": map_error,
+    }
+
+
+def derived_map_nodes(phases: list[dict], config: dict, current_mainline: str) -> list[dict]:
+    sorted_phases = sorted(phases, key=lambda phase: phase.get("number") or 0)
+    current_phase = next((phase for phase in sorted_phases if phase.get("isCurrent")), None)
+    current_number = current_phase.get("number") if current_phase else None
+    first_future_number = next(
+        (
+            phase.get("number")
+            for phase in sorted_phases
+            if current_number is not None and (phase.get("number") or 0) > current_number
+        ),
+        None,
+    )
+    nodes = []
+
+    for phase in sorted_phases:
+        phase_number = phase.get("number")
+        raw_status = str(phase.get("status") or "")
+        status = normalize_project_status(raw_status, "planned")
+        if phase.get("isCurrent"):
+            lane = "now"
+            status = "current"
+        elif status == "done":
+            lane = "done"
+        elif current_number is not None and phase_number and phase_number > current_number:
+            lane = "next"
+            status = "next" if phase_number == first_future_number else "planned"
+        elif raw_status == "in_progress":
+            lane = "now"
+            status = "current"
+        else:
+            lane = "done" if status == "done" else "next"
+
+        open_tasks = [task for task in phase.get("tasks", []) if not task.get("completed")]
+        outputs = [
+            normalize_reference(item, infer_project_root(Path(config["path"])), "ready")
+            for item in ensure_list(phase.get("outputs"))
+        ]
+        nodes.append(
+            {
+                "id": str(phase.get("id") or f"{config['id']}-phase-{phase_number or len(nodes) + 1}"),
+                "title": f"Phase {phase_number}: {phase.get('title')}" if phase_number else str(phase.get("title") or config["name"]),
+                "lane": lane,
+                "status": status,
+                "phase": phase_number,
+                "summary": str(phase.get("summary") or current_mainline or "Generated from roadmap and todo progress."),
+                "dependsOn": [],
+                "outputs": outputs,
+                "taskRefs": [
+                    f"line-{task.get('lineNumber')}"
+                    for task in phase.get("tasks", [])[:8]
+                    if task.get("lineNumber")
+                ],
+                "nextActions": [str(task.get("title", "")) for task in open_tasks[:4]],
+                "progress": {
+                    "completed": phase.get("completedCount", 0),
+                    "total": phase.get("totalCount", 0),
+                    "fraction": phase.get("fraction", 0),
+                },
+            }
+        )
+
+    return nodes
+
+
+def normalize_milestone(item: object, project_root: Path, index: int) -> dict:
+    payload = item if isinstance(item, dict) else {"title": str(item)}
+    title = str(payload.get("title") or f"Milestone {index}")
+    return {
+        "id": str(payload.get("id") or slugify(title, f"milestone-{index}")),
+        "title": title,
+        "status": normalize_project_status(payload.get("status"), "done"),
+        "phase": optional_int(payload.get("phase")),
+        "date": str(payload.get("date") or ""),
+        "summary": str(payload.get("summary") or ""),
+        "outputs": [
+            normalize_reference(output, project_root, "ready")
+            for output in ensure_list(payload.get("outputs"))
+        ],
+        "taskRefs": [str(item) for item in ensure_list(payload.get("taskRefs"))],
+    }
+
+
+def normalize_map_node(item: object, project_root: Path, index: int) -> dict:
+    payload = item if isinstance(item, dict) else {"title": str(item)}
+    title = str(payload.get("title") or f"Map node {index}")
+    status = normalize_project_status(payload.get("status"), "planned")
+    return {
+        "id": str(payload.get("id") or slugify(title, f"node-{index}")),
+        "title": title,
+        "lane": normalize_map_lane(payload.get("lane"), status),
+        "status": status,
+        "phase": optional_int(payload.get("phase")),
+        "summary": str(payload.get("summary") or ""),
+        "dependsOn": [str(item) for item in ensure_list(payload.get("dependsOn"))],
+        "outputs": [
+            normalize_reference(output, project_root, "ready")
+            for output in ensure_list(payload.get("outputs"))
+        ],
+        "taskRefs": [str(item) for item in ensure_list(payload.get("taskRefs"))],
+        "nextActions": [str(item) for item in ensure_list(payload.get("nextActions"))],
+    }
+
+
+def normalize_paper_section(item: object, project_root: Path, index: int) -> dict:
+    payload = item if isinstance(item, dict) else {"title": str(item)}
+    title = str(payload.get("title") or f"Paper section {index}")
+    return {
+        "id": str(payload.get("id") or slugify(title, f"paper-section-{index}")),
+        "title": title,
+        "status": normalize_project_status(payload.get("status"), "planned"),
+        "summary": str(payload.get("summary") or ""),
+        "assets": [
+            normalize_reference(asset, project_root, "missing")
+            for asset in ensure_list(payload.get("assets"))
+        ],
+        "blockers": [str(item) for item in ensure_list(payload.get("blockers"))],
+        "nextActions": [str(item) for item in ensure_list(payload.get("nextActions"))],
+    }
+
+
+def normalize_work_item(item: object, index: int) -> dict:
+    if isinstance(item, dict):
+        title = str(item.get("title") or item.get("summary") or f"Next work {index}")
+        return {
+            "id": str(item.get("id") or slugify(title, f"next-work-{index}")),
+            "title": title,
+            "status": normalize_project_status(item.get("status"), "next"),
+            "summary": str(item.get("summary") or ""),
+            "source": str(item.get("source") or "project_map"),
+        }
+    title = str(item)
+    return {
+        "id": slugify(title, f"next-work-{index}"),
+        "title": title,
+        "status": "next",
+        "summary": "",
+        "source": "project_map",
+    }
+
+
+def normalize_reference(item: object, project_root: Path, default_status: str) -> dict:
+    if isinstance(item, dict):
+        path_value = str(item.get("path") or "")
+        label = str(item.get("label") or item.get("title") or path_value or "Asset")
+        ref_type = str(item.get("type") or ("file" if path_value else "output"))
+        status = normalize_project_status(item.get("status"), default_status)
+    else:
+        label = str(item)
+        path_value = label if looks_like_path(label) else ""
+        ref_type = "file" if path_value else "output"
+        status = normalize_project_status(default_status, default_status)
+
+    resolved = (project_root / path_value).resolve() if path_value else None
+    return {
+        "path": path_value,
+        "label": label,
+        "type": ref_type,
+        "status": status,
+        "exists": bool(resolved and resolved.exists()),
+        "absolutePath": str(resolved) if resolved else "",
+    }
+
+
+def build_next_work(map_nodes: list[dict], next_actions_list: list[dict]) -> list[dict]:
+    work = []
+    focus_nodes = [
+        node
+        for node in map_nodes
+        if node.get("lane") in {"now", "next"} or node.get("status") in {"current", "next"}
+    ]
+    for index, node in enumerate(focus_nodes[:4], start=1):
+        work.append(
+            {
+                "id": f"node-{node.get('id')}",
+                "title": str(node.get("title") or f"Map node {index}"),
+                "status": normalize_project_status(node.get("status"), "next"),
+                "summary": str(node.get("summary") or ""),
+                "source": "map",
+            }
+        )
+
+    for task in next_actions_list[:6]:
+        title = str(task.get("title") or "")
+        if not title:
+            continue
+        work.append(
+            {
+                "id": f"task-{task.get('lineNumber') or slugify(title, 'task')}",
+                "title": title,
+                "status": "next",
+                "summary": f"Todo line {task.get('lineNumber')}" if task.get("lineNumber") else "",
+                "source": "todo",
+            }
+        )
+    return work
+
+
+def history_from_nodes(map_nodes: list[dict]) -> list[dict]:
+    history = []
+    for node in map_nodes:
+        if node.get("lane") != "done" and node.get("status") != "done":
+            continue
+        history.append(
+            {
+                "id": str(node.get("id") or ""),
+                "title": str(node.get("title") or ""),
+                "status": "done",
+                "phase": node.get("phase"),
+                "date": "",
+                "summary": str(node.get("summary") or ""),
+                "outputs": node.get("outputs", []),
+                "taskRefs": node.get("taskRefs", []),
+            }
+        )
+    return history
+
+
+def readiness_summary(sections: list[dict]) -> dict:
+    total = len(sections)
+    ready = sum(1 for section in sections if section.get("status") in {"ready", "done", "draft"})
+    blocked = sum(1 for section in sections if section.get("status") == "blocked")
+    missing = sum(1 for section in sections if section.get("status") == "missing")
+    planned = sum(1 for section in sections if section.get("status") == "planned")
+    return {
+        "total": total,
+        "ready": ready,
+        "blocked": blocked,
+        "missing": missing,
+        "planned": planned,
+        "fraction": fraction(ready, total),
+    }
+
+
+def normalize_project_status(value: object, default: str) -> str:
+    status = str(value or default).strip().lower().replace("-", "_").replace(" ", "_")
+    status = PROJECT_MAP_STATUS_ALIASES.get(status, status)
+    return status if status in PROJECT_MAP_STATUSES else default
+
+
+def normalize_map_lane(value: object, status: str) -> str:
+    lane = str(value or "").strip().lower().replace("-", "_").replace(" ", "_")
+    if lane in PROJECT_MAP_LANES:
+        return lane
+    if status == "done":
+        return "done"
+    if status == "current":
+        return "now"
+    if status in {"draft", "ready", "missing"}:
+        return "paper"
+    return "next"
+
+
+def infer_project_root(todo_path: Path) -> Path:
+    try:
+        return todo_path.expanduser().resolve().parents[2]
+    except IndexError:
+        return todo_path.expanduser().resolve().parent
+
+
+def ensure_list(value: object) -> list:
+    if value is None:
+        return []
+    if isinstance(value, list):
+        return value
+    return [value]
+
+
+def optional_int(value: object) -> int | None:
+    if value in (None, ""):
+        return None
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def looks_like_path(value: str) -> bool:
+    return "/" in value or "\\" in value or bool(re.search(r"\.[a-zA-Z0-9]{1,8}$", value))
+
+
+def slugify(value: str, fallback: str) -> str:
+    slug = re.sub(r"[^a-zA-Z0-9]+", "-", value.strip().lower()).strip("-")
+    return slug or fallback
 
 
 def normalize_track(track: dict) -> dict:
