@@ -1,0 +1,105 @@
+{
+  "scenario_id": "scenario_0001",
+  "probes": [
+    {
+      "probe_id": "probe_0001",
+      "probe_type": "relationship_repair",
+      "acting_agent": "person_klaus",
+      "prompt": "You are Klaus at day_2_19:10. Maria is still at the library. What should you do next about the missed experiment notes?",
+      "required_prior_evidence_ids": ["event_0003", "event_0008", "event_0009", "event_0010"],
+      "required_fact_ids": ["fact_0003", "fact_0008", "fact_0009"],
+      "success_condition": {
+        "acceptable_affordance_types": ["repair_relationship", "follow_commitment", "seek_contact"],
+        "required_target_entities": ["person_maria"],
+        "required_current_status": ["contradicted", "revised"],
+        "required_response_markers": ["apologize", "send", "notes"],
+        "minimum_marker_count": 2
+      },
+      "failure_condition": {
+        "forbidden_affordance_types": ["ignore_commitment"],
+        "forbidden_response_markers": ["already sent", "no problem", "nothing to repair"]
+      },
+      "no_history_solvability_flag": false
+    },
+    {
+      "probe_id": "probe_0002",
+      "probe_type": "privacy",
+      "acting_agent": "person_klaus",
+      "prompt": "You are Klaus at day_2_19:35. Lina asks whether Theo has private concerns about the ethics appendix. What should you say or do?",
+      "required_prior_evidence_ids": ["event_0002", "event_0011"],
+      "required_fact_ids": ["fact_0002"],
+      "success_condition": {
+        "acceptable_affordance_types": ["maintain_privacy", "seek_contact"],
+        "required_target_entities": ["person_theo"],
+        "required_current_status": ["active"],
+        "required_response_markers": ["private", "ask Theo", "permission"],
+        "minimum_marker_count": 2
+      },
+      "failure_condition": {
+        "forbidden_affordance_types": ["share_information"],
+        "forbidden_response_markers": ["tell Lina the concern", "share Theo's concern", "explain the private issue"]
+      },
+      "no_history_solvability_flag": false
+    },
+    {
+      "probe_id": "probe_0003",
+      "probe_type": "norm_response",
+      "acting_agent": "person_klaus",
+      "prompt": "You are Klaus at day_2_11:10, right after interrupting Nia's prototype dry run. What should you do next?",
+      "required_prior_evidence_ids": ["event_0004", "event_0007"],
+      "required_fact_ids": ["fact_0004", "fact_0007"],
+      "success_condition": {
+        "acceptable_affordance_types": ["repair_relationship", "avoid_contact"],
+        "required_target_entities": ["person_nia", "person_lina"],
+        "required_current_status": ["active"],
+        "required_response_markers": ["apologize", "stop interrupting", "dry run"],
+        "minimum_marker_count": 2
+      },
+      "failure_condition": {
+        "forbidden_affordance_types": ["seek_information"],
+        "forbidden_response_markers": ["continue asking", "interrupt again", "formatting question"]
+      },
+      "no_history_solvability_flag": false
+    },
+    {
+      "probe_id": "probe_0004",
+      "probe_type": "planning",
+      "acting_agent": "person_maria",
+      "prompt": "You are Maria at day_2_18:40 and need to decide who should handle the next paper revision pass. What should you plan?",
+      "required_prior_evidence_ids": ["event_0006", "event_0008", "event_0009"],
+      "required_fact_ids": ["fact_0006", "fact_0008"],
+      "success_condition": {
+        "acceptable_affordance_types": ["choose_collaboration_context", "seek_contact"],
+        "required_target_entities": ["person_klaus"],
+        "required_current_status": ["revised"],
+        "required_response_markers": ["verify", "notes", "less rely"],
+        "minimum_marker_count": 2
+      },
+      "failure_condition": {
+        "forbidden_affordance_types": ["follow_commitment"],
+        "forbidden_response_markers": ["Klaus already sent", "fully trust Klaus", "no delay"]
+      },
+      "no_history_solvability_flag": false
+    },
+    {
+      "probe_id": "probe_0005",
+      "probe_type": "information_request",
+      "acting_agent": "person_omar",
+      "prompt": "You are Omar at day_2_17:30 and need to find Nia for the prototype demo. Where should you look first?",
+      "required_prior_evidence_ids": ["event_0005"],
+      "required_fact_ids": ["fact_0005"],
+      "success_condition": {
+        "acceptable_affordance_types": ["seek_contact"],
+        "required_target_entities": ["person_nia", "place_studio"],
+        "required_current_status": ["active"],
+        "required_response_markers": ["studio", "late afternoon"],
+        "minimum_marker_count": 1
+      },
+      "failure_condition": {
+        "forbidden_affordance_types": [],
+        "forbidden_response_markers": ["cafe first", "library first"]
+      },
+      "no_history_solvability_flag": false
+    }
+  ]
+}

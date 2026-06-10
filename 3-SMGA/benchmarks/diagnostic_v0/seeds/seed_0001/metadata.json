@@ -1,0 +1,19 @@
+{
+  "scenario_id": "scenario_0001",
+  "seed_id": "seed_0001",
+  "benchmark_id": "diagnostic_v0",
+  "schema_version": "0.1",
+  "phase_1_design": "scripted_replay",
+  "simulated_horizon": "2_days",
+  "agent_count": 6,
+  "location_count": 4,
+  "held_out_patterns": [
+    "failed_promise",
+    "shared_secret",
+    "norm_violation",
+    "repair_after_conflict",
+    "indirect_reputation",
+    "relationship_change"
+  ],
+  "notes": "Minimal hand-authored seed for Experiment 0 validation."
+}

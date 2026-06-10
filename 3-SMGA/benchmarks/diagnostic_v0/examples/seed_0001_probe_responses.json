@@ -1,0 +1,41 @@
+{
+  "scenario_id": "scenario_0001",
+  "condition_id": "example_oracle",
+  "responses": [
+    {
+      "probe_id": "probe_0001",
+      "response_text": "I should apologize to Maria, send the missing experiment notes now, and repair the missed commitment by taking the next revision pass.",
+      "chosen_affordance_type": "repair_relationship",
+      "target_entities": ["person_maria"],
+      "current_status_used": ["contradicted", "revised"]
+    },
+    {
+      "probe_id": "probe_0002",
+      "response_text": "Theo shared this as private, so I should not disclose it. I should ask Theo for permission before saying anything specific to Lina.",
+      "chosen_affordance_type": "maintain_privacy",
+      "target_entities": ["person_theo"],
+      "current_status_used": ["active"]
+    },
+    {
+      "probe_id": "probe_0003",
+      "response_text": "I should apologize to Nia and Lina, stop interrupting the dry run, and wait until the prototype demo work is finished.",
+      "chosen_affordance_type": "repair_relationship",
+      "target_entities": ["person_nia", "person_lina"],
+      "current_status_used": ["active"]
+    },
+    {
+      "probe_id": "probe_0004",
+      "response_text": "I should verify whether Klaus has the notes before assigning him the next paper revision, and less rely on him until the delay is repaired.",
+      "chosen_affordance_type": "choose_collaboration_context",
+      "target_entities": ["person_klaus"],
+      "current_status_used": ["revised"]
+    },
+    {
+      "probe_id": "probe_0005",
+      "response_text": "I should look for Nia in the studio first because she usually works there in the late afternoon.",
+      "chosen_affordance_type": "seek_contact",
+      "target_entities": ["person_nia", "place_studio"],
+      "current_status_used": ["active"]
+    }
+  ]
+}

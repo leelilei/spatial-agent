@@ -6,17 +6,26 @@ SMGA is an independent research project split out from SpatialAgent. Its working
 
 The implementation-oriented proposal is:
 
-- `docs/plans/SMGA-proposal-v4.5-lite.md`
+- `docs/plans/SMGA-proposal-v4.6.md`
 
 The full defensive research blueprint is:
 
 - `docs/plans/SMGA-proposal-v4.4.md`
+
+The current implementation-facing memory schema is:
+
+- `docs/project/smga_memory_schema_v0.1.md`
+
+The current diagnostic scenario-package schema is:
+
+- `docs/project/smga_scenario_package_schema_v0.1.md`
 
 ## Project Layout
 
 ```text
 .
 ├── docs/
+│   ├── guides/
 │   ├── plans/
 │   └── project/
 ├── assets/
@@ -32,6 +41,7 @@ The full defensive research blueprint is:
 ## Directory Roles
 
 - `docs/plans/`: proposal versions and staged research plans
+- `docs/guides/`: active todo lists and execution guides
 - `docs/project/`: project notes, reference-source indexes, decisions, and execution logs
 - `assets/papers/`: curated SMGA reference papers, notes, and generated indexes
 - `smga-core/`: implementation of SMGA memory formation and planning interfaces

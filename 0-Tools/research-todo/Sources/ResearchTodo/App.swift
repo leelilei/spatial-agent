@@ -11,6 +11,7 @@ private let legacySpatialAgentSourceID = "spatialagent-survey"
 
 private enum DashboardTab: String, CaseIterable, Identifiable {
     case overview = "Overview"
+    case progress = "Progress"
     case board = "Board"
     case timeline = "Timeline"
     case charts = "Charts"
@@ -37,6 +38,7 @@ private struct TodoSourceState: Identifiable, Hashable {
 
     var id: String { config.id }
     var tasks: [TodoItem] { document?.tasks ?? [] }
+    var progressPhases: [ProgressPhase] { document?.progressPhases ?? [] }
     var updateDate: Date? { document?.updateDate }
     var statusLine: String { document?.statusLine ?? "无法读取 todo 源文件。" }
     var openCount: Int { tasks.count }
@@ -61,9 +63,47 @@ private struct TodoItem: Identifiable, Hashable {
 
 private struct TodoDocument: Hashable {
     let updateDate: Date?
+    let currentMainline: String
     let statusLine: String
     let tasks: [TodoItem]
+    let progressPhases: [ProgressPhase]
     let completedCount: Int
+}
+
+private struct ProgressTask: Identifiable, Hashable {
+    let id: String
+    let title: String
+    let isCompleted: Bool
+    let lineNumber: Int
+    let sourceID: String
+    let sourceName: String
+    let sourceAccent: String
+}
+
+private struct ProgressPhase: Identifiable, Hashable {
+    let id: String
+    let sourceID: String
+    let sourceName: String
+    let sourceAccent: String
+    let phaseNumber: Int
+    let title: String
+    let status: String
+    let tasks: [ProgressTask]
+    let isCurrent: Bool
+
+    var completedCount: Int { tasks.filter(\.isCompleted).count }
+    var openCount: Int { tasks.filter { !$0.isCompleted }.count }
+    var totalCount: Int { tasks.count }
+    var progressFraction: Double {
+        guard totalCount > 0 else { return 0 }
+        return Double(completedCount) / Double(totalCount)
+    }
+}
+
+private struct ProgressPhaseBuilder {
+    let phaseNumber: Int
+    let title: String
+    var tasks: [ProgressTask]
 }
 
 private struct PriorityGroup: Identifiable, Hashable {
@@ -130,6 +170,44 @@ private final class TodoStore: ObservableObject {
             return "All Lists"
         }
         return sources.first { $0.id == selectedSourceID }?.config.name ?? "Selected List"
+    }
+
+    var filteredProgressPhases: [ProgressPhase] {
+        let phaseSources = selectedSourceID == "all"
+            ? sources
+            : sources.filter { $0.id == selectedSourceID }
+        return phaseSources.flatMap(\.progressPhases).sorted(by: sortProgressPhases)
+    }
+
+    var progressCompletedCount: Int {
+        filteredProgressPhases.map(\.completedCount).reduce(0, +)
+    }
+
+    var progressTotalCount: Int {
+        filteredProgressPhases.map(\.totalCount).reduce(0, +)
+    }
+
+    var progressOpenCount: Int {
+        filteredProgressPhases.map(\.openCount).reduce(0, +)
+    }
+
+    var progressFraction: Double {
+        guard progressTotalCount > 0 else { return 0 }
+        return Double(progressCompletedCount) / Double(progressTotalCount)
+    }
+
+    var currentProgressPhase: ProgressPhase? {
+        filteredProgressPhases.first { $0.isCurrent }
+    }
+
+    var nextProgressTasks: [ProgressTask] {
+        if let currentProgressPhase {
+            let currentOpenTasks = currentProgressPhase.tasks.filter { !$0.isCompleted }
+            if !currentOpenTasks.isEmpty {
+                return Array(currentOpenTasks.prefix(6))
+            }
+        }
+        return Array(filteredProgressPhases.flatMap(\.tasks).filter { !$0.isCompleted }.prefix(6))
     }
 
     func reload() {
@@ -338,8 +416,11 @@ private enum TodoParser {
         var headings: [Int: String] = [:]
         var updateDate: Date?
         var statusLine = "读取当前 todo。"
+        var currentMainline = ""
         var activeTasks: [TodoItem] = []
         var fallbackTasks: [TodoItem] = []
+        var progressBuilders: [ProgressPhaseBuilder] = []
+        var currentProgressIndex: Int?
         var completedCount = 0
 
         let lines = content.components(separatedBy: .newlines)
@@ -350,12 +431,21 @@ private enum TodoParser {
 
             if line.contains("当前主线") {
                 statusLine = cleanMarkdownText(textAfterColon(line))
+                currentMainline = statusLine
             }
 
             if let heading = parseHeading(line) {
                 headings[heading.level] = heading.text
                 for key in Array(headings.keys) where key > heading.level {
                     headings.removeValue(forKey: key)
+                }
+                if let phase = parsePhaseHeading(heading.text) {
+                    progressBuilders.append(
+                        ProgressPhaseBuilder(phaseNumber: phase.number, title: phase.title, tasks: [])
+                    )
+                    currentProgressIndex = progressBuilders.indices.last
+                } else if heading.level <= 2 {
+                    currentProgressIndex = nil
                 }
                 continue
             }
@@ -369,13 +459,31 @@ private enum TodoParser {
                 continue
             }
 
+            let cleanTitle = cleanMarkdownText(task.title)
+            if let currentProgressIndex {
+                let progressID = makeStableID(
+                    sourceID: config.id,
+                    headingPath: headingPath,
+                    rawTitle: "progress:\(cleanTitle)"
+                )
+                let progressTask = ProgressTask(
+                    id: progressID,
+                    title: cleanTitle,
+                    isCompleted: task.checked,
+                    lineNumber: index + 1,
+                    sourceID: config.id,
+                    sourceName: config.name,
+                    sourceAccent: config.accent
+                )
+                progressBuilders[currentProgressIndex].tasks.append(progressTask)
+            }
+
             if task.checked {
                 completedCount += 1
                 continue
             }
 
             let priority = priorityInfo(from: headingPath)
-            let cleanTitle = cleanMarkdownText(task.title)
             let stableID = makeStableID(sourceID: config.id, headingPath: headingPath, rawTitle: cleanTitle)
             let item = TodoItem(
                 id: stableID,
@@ -401,10 +509,16 @@ private enum TodoParser {
         }
 
         let chosenTasks = activeTasks.isEmpty ? fallbackTasks : activeTasks
+        let currentPhaseNumber = parsePhaseNumber(from: currentMainline)
+        let progressPhases = progressBuilders.map { builder in
+            makeProgressPhase(builder: builder, config: config, currentPhaseNumber: currentPhaseNumber)
+        }
         return TodoDocument(
             updateDate: updateDate,
+            currentMainline: currentMainline,
             statusLine: statusLine,
             tasks: chosenTasks.sorted(by: sortTasks),
+            progressPhases: progressPhases.sorted(by: sortProgressPhases),
             completedCount: completedCount
         )
     }
@@ -416,6 +530,56 @@ private enum TodoParser {
         guard level > 0, trimmed.count > level else { return nil }
         let text = String(trimmed.dropFirst(level)).trimmingCharacters(in: .whitespaces)
         return (level, cleanMarkdownText(text))
+    }
+
+    private static func parsePhaseHeading(_ text: String) -> (number: Int, title: String)? {
+        guard let match = firstMatch(pattern: #"(?i)(?:^|\s)Phase\s*(\d+)\s*(?:[-—:：]\s*)?(.*)$"#, in: text),
+              match.count > 1,
+              let number = Int(match[1])
+        else {
+            return nil
+        }
+        let rawTitle = match.count > 2 ? match[2] : ""
+        let title = rawTitle.isEmpty ? "Phase \(number)" : rawTitle
+        return (number, title)
+    }
+
+    private static func parsePhaseNumber(from text: String) -> Int? {
+        firstCapture(pattern: #"(?i)Phase\s*(\d+)"#, in: text).flatMap(Int.init)
+    }
+
+    private static func makeProgressPhase(
+        builder: ProgressPhaseBuilder,
+        config: TodoSourceConfig,
+        currentPhaseNumber: Int?
+    ) -> ProgressPhase {
+        let completedCount = builder.tasks.filter(\.isCompleted).count
+        let totalCount = builder.tasks.count
+        let isCurrent = builder.phaseNumber == currentPhaseNumber
+        let status: String
+        if totalCount == 0 {
+            status = "empty"
+        } else if completedCount == totalCount {
+            status = "complete"
+        } else if isCurrent {
+            status = "current"
+        } else if completedCount > 0 {
+            status = "in_progress"
+        } else {
+            status = "not_started"
+        }
+
+        return ProgressPhase(
+            id: "\(config.id)-phase-\(builder.phaseNumber)",
+            sourceID: config.id,
+            sourceName: config.name,
+            sourceAccent: config.accent,
+            phaseNumber: builder.phaseNumber,
+            title: builder.title,
+            status: status,
+            tasks: builder.tasks,
+            isCurrent: isCurrent
+        )
     }
 
     private static func parseTask(_ line: String) -> (checked: Bool, title: String)? {
@@ -471,11 +635,17 @@ private enum TodoParser {
     }
 
     private static func firstCapture(pattern: String, in text: String) -> String? {
+        firstMatch(pattern: pattern, in: text)?.dropFirst().first
+    }
+
+    private static func firstMatch(pattern: String, in text: String) -> [String]? {
         guard let regex = try? NSRegularExpression(pattern: pattern) else { return nil }
         let range = NSRange(text.startIndex..<text.endIndex, in: text)
-        guard let match = regex.firstMatch(in: text, range: range), match.numberOfRanges > 1 else { return nil }
-        guard let captureRange = Range(match.range(at: 1), in: text) else { return nil }
-        return String(text[captureRange])
+        guard let match = regex.firstMatch(in: text, range: range) else { return nil }
+        return (0..<match.numberOfRanges).map { index in
+            guard let captureRange = Range(match.range(at: index), in: text) else { return "" }
+            return String(text[captureRange]).trimmingCharacters(in: .whitespacesAndNewlines)
+        }
     }
 
     private static func textAfterColon(_ line: String) -> String {
@@ -567,6 +737,24 @@ private struct MenuBarPanel: View {
                 }
             }
 
+            if store.progressTotalCount > 0 {
+                Divider()
+                HStack {
+                    Label("Research progress", systemImage: "map.fill")
+                    Spacer()
+                    Text(percentFormatter.string(from: NSNumber(value: store.progressFraction)) ?? "0%")
+                        .foregroundStyle(AppleTheme.blue)
+                }
+                .font(.subheadline)
+
+                if let current = store.currentProgressPhase {
+                    Text("Phase \(current.phaseNumber) · \(current.title)")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(2)
+                }
+            }
+
             let urgentTasks = store.tasks(for: "P0", limit: 5)
             if !urgentTasks.isEmpty {
                 Divider()
@@ -600,7 +788,7 @@ private struct MenuBarPanel: View {
 
 private struct DashboardView: View {
     @ObservedObject var store: TodoStore
-    @State private var selectedTab: DashboardTab = .overview
+    @State private var selectedTab: DashboardTab = .progress
 
     var body: some View {
         VStack(spacing: 0) {
@@ -653,10 +841,25 @@ private struct DashboardView: View {
             }
 
             HStack(spacing: 12) {
-                HeroMetric(icon: "checklist", title: "Open Tasks", value: "\(store.filteredTasks.count)")
-                HeroMetric(icon: "flag.fill", title: "Urgent P0", value: "\(store.filteredTasks.filter { $0.priorityLabel == "P0" }.count)")
-                HeroMetric(icon: "folder", title: "Sources", value: "\(store.enabledSourceCount)")
-                HeroMetric(icon: "exclamationmark.triangle", title: "Errors", value: "\(store.errorCount)")
+                if store.progressTotalCount > 0 {
+                    HeroMetric(
+                        icon: "chart.line.uptrend.xyaxis",
+                        title: "Paper Progress",
+                        value: percentFormatter.string(from: NSNumber(value: store.progressFraction)) ?? "0%"
+                    )
+                    HeroMetric(
+                        icon: "map.fill",
+                        title: "Current Phase",
+                        value: store.currentProgressPhase.map { "Phase \($0.phaseNumber)" } ?? "--"
+                    )
+                    HeroMetric(icon: "arrow.forward.circle.fill", title: "Open Progress", value: "\(store.progressOpenCount)")
+                    HeroMetric(icon: "checklist", title: "Open Tasks", value: "\(store.filteredTasks.count)")
+                } else {
+                    HeroMetric(icon: "checklist", title: "Open Tasks", value: "\(store.filteredTasks.count)")
+                    HeroMetric(icon: "flag.fill", title: "Urgent P0", value: "\(store.filteredTasks.filter { $0.priorityLabel == "P0" }.count)")
+                    HeroMetric(icon: "folder", title: "Sources", value: "\(store.enabledSourceCount)")
+                    HeroMetric(icon: "exclamationmark.triangle", title: "Errors", value: "\(store.errorCount)")
+                }
             }
             .frame(maxWidth: 920)
 
@@ -689,7 +892,7 @@ private struct DashboardView: View {
                 }
             }
             .pickerStyle(.segmented)
-            .frame(width: 480)
+            .frame(width: 600)
         }
         .padding(.top, 28)
         .padding(.bottom, 18)
@@ -701,6 +904,8 @@ private struct DashboardView: View {
             switch selectedTab {
             case .overview:
                 OverviewView(store: store)
+            case .progress:
+                ProgressDashboardView(store: store)
             case .board:
                 BoardView(groups: store.priorityGroups())
             case .timeline:
@@ -784,6 +989,277 @@ private struct OverviewView: View {
 
     private func count(_ label: String) -> Int {
         store.filteredTasks.filter { $0.priorityLabel == label }.count
+    }
+}
+
+private struct ProgressDashboardView: View {
+    @ObservedObject var store: TodoStore
+
+    var body: some View {
+        VStack(spacing: 18) {
+            HStack(spacing: 14) {
+                SummaryCard(
+                    icon: "map.fill",
+                    title: "Roadmap",
+                    value: "\(store.filteredProgressPhases.count)",
+                    caption: "phases"
+                )
+                SummaryCard(
+                    icon: "checkmark.circle.fill",
+                    title: "Progress",
+                    value: percentFormatter.string(from: NSNumber(value: store.progressFraction)) ?? "0%",
+                    caption: "\(store.progressCompletedCount)/\(store.progressTotalCount) tasks"
+                )
+                SummaryCard(
+                    icon: "arrow.forward.circle.fill",
+                    title: "Open Work",
+                    value: "\(store.progressOpenCount)",
+                    caption: "remaining tasks"
+                )
+            }
+
+            if store.filteredProgressPhases.isEmpty {
+                EmptyHint(text: "No phase roadmap found in this source.")
+            } else {
+                ProgressRoadmapChart(phases: store.filteredProgressPhases)
+
+                HStack(alignment: .top, spacing: 18) {
+                    VStack(alignment: .leading, spacing: 14) {
+                        SectionHeader(title: "Current Phase", subtitle: store.selectedSourceName)
+                        if let current = store.currentProgressPhase {
+                            CurrentPhaseCard(phase: current)
+                        } else {
+                            EmptyHint(text: "No current phase marked. Add a 当前主线 line with Phase N.")
+                        }
+
+                        SectionHeader(title: "Next Actions", subtitle: "First open tasks from the current phase.")
+                            .padding(.top, 8)
+                        if store.nextProgressTasks.isEmpty {
+                            EmptyHint(text: "No open progress tasks.")
+                        } else {
+                            ForEach(store.nextProgressTasks) { task in
+                                ProgressTaskRow(task: task)
+                            }
+                        }
+                    }
+                    .padding(22)
+                    .frame(width: 430, alignment: .topLeading)
+                    .background(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+
+                    VStack(alignment: .leading, spacing: 14) {
+                        SectionHeader(title: "Roadmap", subtitle: "Phase progress parsed from markdown.")
+                        ForEach(store.filteredProgressPhases) { phase in
+                            ProgressPhaseRow(phase: phase)
+                        }
+                    }
+                    .padding(22)
+                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                    .background(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                }
+            }
+        }
+    }
+}
+
+private struct ProgressRoadmapChart: View {
+    let phases: [ProgressPhase]
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            SectionHeader(title: "Phase Map", subtitle: "Parsed directly from markdown headings.")
+
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(alignment: .top, spacing: 0) {
+                    ForEach(Array(phases.enumerated()), id: \.element.id) { index, phase in
+                        HStack(alignment: .top, spacing: 0) {
+                            PhaseMapNode(phase: phase)
+                            if index < phases.count - 1 {
+                                Rectangle()
+                                    .fill(AppleTheme.lightGray)
+                                    .frame(width: 34, height: 3)
+                                    .padding(.top, 24)
+                            }
+                        }
+                    }
+                }
+                .padding(.vertical, 2)
+            }
+        }
+        .padding(22)
+        .background(.white)
+        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+    }
+}
+
+private struct PhaseMapNode: View {
+    let phase: ProgressPhase
+
+    private var accent: Color {
+        colorFromHex(phase.sourceAccent) ?? AppleTheme.blue
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 9) {
+            ZStack {
+                Circle()
+                    .fill(nodeFill)
+                Text("\(phase.phaseNumber)")
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundStyle(phase.isCurrent || phase.status == "complete" ? .white : AppleTheme.nearBlack)
+            }
+            .frame(width: 50, height: 50)
+            .overlay(
+                Circle()
+                    .stroke(phase.isCurrent ? accent : .clear, lineWidth: 3)
+            )
+
+            Text("Phase \(phase.phaseNumber)")
+                .font(.system(size: 12, weight: .semibold))
+                .foregroundStyle(phase.isCurrent ? accent : AppleTheme.secondaryText)
+                .lineLimit(1)
+
+            Text(phase.title)
+                .font(.system(size: 13, weight: .semibold))
+                .foregroundStyle(AppleTheme.nearBlack)
+                .lineLimit(2)
+                .fixedSize(horizontal: false, vertical: true)
+
+            ProgressBar(fraction: phase.progressFraction, accent: accent)
+
+            Text("\(phase.completedCount)/\(phase.totalCount) · \(progressStatusLabel(phase.status))")
+                .font(.system(size: 11, weight: .regular))
+                .foregroundStyle(AppleTheme.secondaryText)
+                .lineLimit(1)
+        }
+        .frame(width: 142, alignment: .topLeading)
+    }
+
+    private var nodeFill: Color {
+        if phase.status == "complete" {
+            return accent
+        }
+        if phase.isCurrent {
+            return accent.opacity(0.82)
+        }
+        return AppleTheme.lightGray
+    }
+}
+
+private struct CurrentPhaseCard: View {
+    let phase: ProgressPhase
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            HStack(spacing: 8) {
+                SourceDot(hex: phase.sourceAccent)
+                Text("Phase \(phase.phaseNumber)")
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundStyle(AppleTheme.blue)
+                Text(progressStatusLabel(phase.status))
+                    .font(.system(size: 12, weight: .semibold))
+                    .foregroundStyle(AppleTheme.secondaryText)
+                Spacer()
+                Text("\(phase.completedCount)/\(phase.totalCount)")
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundStyle(AppleTheme.nearBlack)
+            }
+
+            Text(phase.title)
+                .font(.system(size: 26, weight: .semibold))
+                .foregroundStyle(AppleTheme.nearBlack)
+                .fixedSize(horizontal: false, vertical: true)
+
+            ProgressBar(fraction: phase.progressFraction, accent: colorFromHex(phase.sourceAccent) ?? AppleTheme.blue)
+
+            Text(phase.sourceName)
+                .font(.system(size: 12, weight: .regular))
+                .foregroundStyle(AppleTheme.secondaryText)
+        }
+        .padding(18)
+        .background(AppleTheme.lightGray)
+        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+    }
+}
+
+private struct ProgressPhaseRow: View {
+    let phase: ProgressPhase
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack(spacing: 10) {
+                ZStack {
+                    Circle()
+                        .fill(phase.isCurrent ? (colorFromHex(phase.sourceAccent) ?? AppleTheme.blue) : AppleTheme.lightGray)
+                    Text("\(phase.phaseNumber)")
+                        .font(.system(size: 12, weight: .semibold))
+                        .foregroundStyle(phase.isCurrent ? .white : AppleTheme.nearBlack)
+                }
+                .frame(width: 30, height: 30)
+
+                VStack(alignment: .leading, spacing: 3) {
+                    Text(phase.title)
+                        .font(.system(size: 15, weight: .semibold))
+                        .foregroundStyle(AppleTheme.nearBlack)
+                        .lineLimit(2)
+                    Text("\(phase.sourceName) · \(progressStatusLabel(phase.status))")
+                        .font(.system(size: 11, weight: .regular))
+                        .foregroundStyle(AppleTheme.secondaryText)
+                }
+
+                Spacer()
+
+                Text("\(phase.completedCount)/\(phase.totalCount)")
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundStyle(AppleTheme.secondaryText)
+                    .frame(width: 48, alignment: .trailing)
+            }
+
+            ProgressBar(fraction: phase.progressFraction, accent: colorFromHex(phase.sourceAccent) ?? AppleTheme.blue)
+        }
+        .padding(.vertical, 8)
+    }
+}
+
+private struct ProgressTaskRow: View {
+    let task: ProgressTask
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 10) {
+            Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundStyle(task.isCompleted ? AppleTheme.blue : AppleTheme.secondaryText)
+                .frame(width: 18)
+            VStack(alignment: .leading, spacing: 3) {
+                Text(task.title)
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundStyle(AppleTheme.nearBlack)
+                    .lineLimit(3)
+                Text(task.sourceName)
+                    .font(.system(size: 11, weight: .regular))
+                    .foregroundStyle(AppleTheme.secondaryText)
+            }
+        }
+        .padding(.vertical, 5)
+    }
+}
+
+private struct ProgressBar: View {
+    let fraction: Double
+    let accent: Color
+
+    var body: some View {
+        GeometryReader { proxy in
+            ZStack(alignment: .leading) {
+                Capsule()
+                    .fill(AppleTheme.lightGray)
+                Capsule()
+                    .fill(accent)
+                    .frame(width: max(6, proxy.size.width * CGFloat(min(max(fraction, 0), 1))))
+            }
+        }
+        .frame(height: 9)
     }
 }
 
@@ -1134,6 +1610,24 @@ private func sortTasks(_ lhs: TodoItem, _ rhs: TodoItem) -> Bool {
         return lhs.sourceName < rhs.sourceName
     }
     return lhs.lineNumber < rhs.lineNumber
+}
+
+private func sortProgressPhases(_ lhs: ProgressPhase, _ rhs: ProgressPhase) -> Bool {
+    if lhs.sourceName != rhs.sourceName {
+        return lhs.sourceName < rhs.sourceName
+    }
+    return lhs.phaseNumber < rhs.phaseNumber
+}
+
+private func progressStatusLabel(_ status: String) -> String {
+    switch status {
+    case "complete": return "Complete"
+    case "current": return "Current"
+    case "in_progress": return "In progress"
+    case "not_started": return "Not started"
+    case "empty": return "Empty"
+    default: return status
+    }
 }
 
 private func priorityFallbackName(_ label: String) -> String {

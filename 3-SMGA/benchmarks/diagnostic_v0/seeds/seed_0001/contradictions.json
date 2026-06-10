@@ -1,0 +1,29 @@
+{
+  "scenario_id": "scenario_0001",
+  "contradictions": [
+    {
+      "contradiction_id": "contra_0001",
+      "original_fact_id": "fact_0003",
+      "original_evidence_id": "event_0003",
+      "contradicting_evidence_id": "event_0008",
+      "contradiction_type": "promise_broken",
+      "expected_current_status": "contradicted"
+    },
+    {
+      "contradiction_id": "contra_0002",
+      "original_fact_id": "fact_0001",
+      "original_evidence_id": "event_0001",
+      "contradicting_evidence_id": "event_0009",
+      "contradiction_type": "relationship_reversal",
+      "expected_current_status": "revised"
+    },
+    {
+      "contradiction_id": "contra_0003",
+      "original_fact_id": "fact_0008",
+      "original_evidence_id": "event_0009",
+      "contradicting_evidence_id": "event_0010",
+      "contradiction_type": "revision",
+      "expected_current_status": "revised"
+    }
+  ]
+}

@@ -1,5 +1,11 @@
 # Research Todo
 
+Deprecated: the primary visual dashboard is now:
+
+```text
+/Users/mac/Documents/6-Research/0-Tools/research-dashboard
+```
+
 Native macOS dashboard for research project todo files.
 
 The app is a resident menu bar utility. It reads one or more markdown todo

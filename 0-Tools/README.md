@@ -5,4 +5,6 @@ This directory contains shared helper tools for projects under
 
 ## Tools
 
-- `research-todo/`: native macOS menu bar app for research project todo files
+- `research-dashboard/`: recommended local HTML dashboard for research project
+  progress and markdown todo files
+- `research-todo/`: deprecated native macOS menu bar app kept for reference
