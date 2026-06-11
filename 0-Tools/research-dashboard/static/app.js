@@ -3,8 +3,7 @@ let selectedSourceId = null;
 let selectedMapNodeId = null;
 let currentView = "home";
 let refreshTimer = null;
-let projectSectionObserver = null;
-let activeNavKey = "map";
+let activeDetailPage = "map";
 
 const stateUrl = "/api/state";
 const refreshButton = document.querySelector("#refresh-button");
@@ -22,11 +21,13 @@ const paperReadiness = document.querySelector("#paper-readiness");
 const mapNodeDetail = document.querySelector("#map-node-detail");
 
 const PROJECT_NAV_ITEMS = [
-  { key: "map", label: "Project Map", targetId: "project-map-section" },
-  { key: "history", label: "History", targetId: "history-section" },
-  { key: "next", label: "Next Work", targetId: "next-work-section" },
-  { key: "paper", label: "Paper Readiness", targetId: "paper-readiness-section" },
+  { key: "map", label: "Project Map", hash: "project-map" },
+  { key: "history", label: "History", hash: "history" },
+  { key: "next", label: "Next Work", hash: "next-work" },
+  { key: "paper", label: "Paper Readiness", hash: "paper-readiness" },
 ];
+
+activeDetailPage = detailPageFromHash();
 
 const MAP_LANES = [
   { key: "done", label: "Done", caption: "已经形成的基础" },
@@ -53,9 +54,13 @@ refreshButton.addEventListener("click", () => {
 backButton.addEventListener("click", () => {
   currentView = "home";
   selectedMapNodeId = null;
-  activeNavKey = "map";
+  activeDetailPage = "map";
+  window.history.replaceState(window.history.state, "", window.location.pathname);
   render();
 });
+
+window.addEventListener("popstate", handleDetailLocationChange);
+window.addEventListener("hashchange", handleDetailLocationChange);
 
 loadState();
 refreshTimer = window.setInterval(loadState, 60000);
@@ -92,14 +97,9 @@ function render() {
   const shouldShowProject = currentView === "project" && selected;
   homeView.hidden = shouldShowProject;
   projectView.hidden = !shouldShowProject;
-  clearProjectSectionObserver();
 
   if (shouldShowProject) {
     renderProject(selected);
-    window.requestAnimationFrame(() => {
-      setupProjectSectionObserver();
-      syncNavFromViewport();
-    });
     return;
   }
 
@@ -109,16 +109,19 @@ function render() {
 function renderProject(source) {
   const model = projectMapModel(source);
   const defaultNode = defaultMapNode(model);
+  activeDetailPage = normalizeDetailPage(activeDetailPage);
   if (!selectedMapNodeId || !findMapNode(model, selectedMapNodeId)) {
     selectedMapNodeId = defaultNode?.id || null;
   }
 
+  projectView.dataset.activePage = activeDetailPage;
   projectTitle.textContent = model.title || `${source.name} Research Map`;
   projectMainline.textContent = model.currentFocus || source.currentMainline || "暂无当前焦点";
   researchQuestion.textContent = model.researchQuestion
     ? `Research Question: ${model.researchQuestion}`
     : "Research Question: 暂未记录，先用项目路线图和 todo 派生地图。";
 
+  updateProjectPagesVisibility();
   renderProjectNav(source);
   renderProjectMap(source, model);
   renderMapNodeDetail(source, model);
@@ -158,7 +161,8 @@ function renderSources() {
       selectedSourceId = card.dataset.sourceId;
       selectedMapNodeId = null;
       currentView = "project";
-      activeNavKey = "map";
+      activeDetailPage = "map";
+      replaceDetailHash("map");
       render();
       window.requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "smooth" }));
     });
@@ -214,22 +218,15 @@ function renderProjectNav(source) {
     link.addEventListener("click", (event) => {
       event.preventDefault();
       const key = link.dataset.navKey;
-      const item = PROJECT_NAV_ITEMS.find((candidate) => candidate.key === key);
-      const target = item ? document.getElementById(item.targetId) : null;
-      if (!target) {
-        return;
-      }
-      setActiveNavKey(key);
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-      window.history.replaceState(window.history.state, "", `#${item.targetId}`);
+      setActiveDetailPage(key, { updateHash: true });
     });
   });
 }
 
 function projectNavLink(item) {
-  const active = item.key === activeNavKey ? " active" : "";
+  const active = item.key === activeDetailPage ? " active" : "";
   return `
-    <a class="project-nav-link${active}" href="#${escapeAttr(item.targetId)}" data-nav-key="${escapeAttr(item.key)}">
+    <a class="project-nav-link${active}" href="#${escapeAttr(item.hash)}" data-nav-key="${escapeAttr(item.key)}">
       ${escapeHtml(item.label)}
     </a>
   `;
@@ -453,83 +450,73 @@ function paperSectionCard(section) {
   `;
 }
 
-function setupProjectSectionObserver() {
-  if (typeof window.IntersectionObserver !== "function") {
-    return;
-  }
-
-  const sections = PROJECT_NAV_ITEMS
-    .map((item) => document.getElementById(item.targetId))
-    .filter(Boolean);
-
-  if (!sections.length) {
-    return;
-  }
-
-  projectSectionObserver = new window.IntersectionObserver(handleSectionIntersections, {
-    root: null,
-    rootMargin: "-18% 0px -56% 0px",
-    threshold: [0.1, 0.25, 0.5, 0.75],
-  });
-
-  sections.forEach((section) => {
-    projectSectionObserver.observe(section);
-  });
-}
-
-function handleSectionIntersections(entries) {
-  const visible = entries
-    .filter((entry) => entry.isIntersecting)
-    .sort((left, right) => {
-      if (right.intersectionRatio !== left.intersectionRatio) {
-        return right.intersectionRatio - left.intersectionRatio;
-      }
-      return Math.abs(left.boundingClientRect.top) - Math.abs(right.boundingClientRect.top);
-    });
-
-  if (!visible.length) {
-    return;
-  }
-
-  const sectionKey = visible[0].target.dataset.section;
-  if (sectionKey) {
-    setActiveNavKey(sectionKey);
-  }
-}
-
-function syncNavFromViewport() {
-  const sectionStates = PROJECT_NAV_ITEMS
-    .map((item) => {
-      const element = document.getElementById(item.targetId);
-      if (!element) {
-        return null;
-      }
-      const rect = element.getBoundingClientRect();
-      return {
-        key: item.key,
-        distance: Math.abs(rect.top - 140),
-      };
-    })
-    .filter(Boolean)
-    .sort((left, right) => left.distance - right.distance);
-
-  if (sectionStates.length) {
-    setActiveNavKey(sectionStates[0].key);
-  }
-}
-
-function clearProjectSectionObserver() {
-  if (projectSectionObserver) {
-    projectSectionObserver.disconnect();
-    projectSectionObserver = null;
-  }
-}
-
-function setActiveNavKey(key) {
-  activeNavKey = key;
+function setActiveDetailPage(key, options = {}) {
+  activeDetailPage = normalizeDetailPage(key);
+  projectView.dataset.activePage = activeDetailPage;
+  updateProjectPagesVisibility();
   projectNav.querySelectorAll("[data-nav-key]").forEach((link) => {
-    link.classList.toggle("active", link.dataset.navKey === key);
+    link.classList.toggle("active", link.dataset.navKey === activeDetailPage);
   });
+
+  if (options.updateHash) {
+    pushDetailHash(activeDetailPage);
+  }
+
+  if (options.scrollTop) {
+    projectView.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
+function updateProjectPagesVisibility() {
+  document.querySelectorAll(".project-page").forEach((section) => {
+    section.hidden = section.dataset.section !== activeDetailPage;
+  });
+}
+
+function handleDetailLocationChange() {
+  const page = detailPageFromHash();
+  if (page === activeDetailPage) {
+    return;
+  }
+  activeDetailPage = page;
+  if (currentView === "project") {
+    render();
+  }
+}
+
+function detailPageFromHash() {
+  const hash = window.location.hash.replace(/^#/, "");
+  const legacyHashes = {
+    "project-map-section": "map",
+    "history-section": "history",
+    "next-work-section": "next",
+    "paper-readiness-section": "paper",
+  };
+  if (legacyHashes[hash]) {
+    return legacyHashes[hash];
+  }
+  const item = PROJECT_NAV_ITEMS.find((candidate) => candidate.hash === hash || candidate.key === hash);
+  return item ? item.key : "map";
+}
+
+function normalizeDetailPage(key) {
+  return PROJECT_NAV_ITEMS.some((item) => item.key === key) ? key : "map";
+}
+
+function pushDetailHash(key) {
+  const item = PROJECT_NAV_ITEMS.find((candidate) => candidate.key === key);
+  if (!item) {
+    return;
+  }
+  window.history.pushState(window.history.state, "", `#${item.hash}`);
+}
+
+function replaceDetailHash(key) {
+  const item = PROJECT_NAV_ITEMS.find((candidate) => candidate.key === key);
+  if (!item) {
+    return;
+  }
+  window.history.replaceState(window.history.state, "", `#${item.hash}`);
 }
 
 function projectMapModel(source) {
@@ -722,7 +709,6 @@ function setRefreshState(isLoading) {
 
 function renderError(error) {
   currentView = "home";
-  clearProjectSectionObserver();
   homeView.hidden = false;
   projectView.hidden = true;
   renderProjectNav(null);

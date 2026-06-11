@@ -120,6 +120,7 @@ button:hover {
 
 .metric,
 .source-card,
+.project-detail-header-panel,
 .project-map-panel,
 .history-panel,
 .next-work-panel,
@@ -264,8 +265,20 @@ button:hover {
   grid-template-columns: 220px minmax(0, 1fr) 320px;
 }
 
+#project-view:not([data-active-page="map"]) .project-detail-layout {
+  grid-template-columns: 220px minmax(0, 1fr);
+}
+
+#project-view:not([data-active-page="map"]) .map-detail-drawer {
+  display: none;
+}
+
 .project-section {
   scroll-margin-top: 22px;
+}
+
+.project-page[hidden] {
+  display: none;
 }
 
 .project-nav-panel {
@@ -314,6 +327,7 @@ button:hover {
   min-width: 0;
 }
 
+.project-detail-header-panel,
 .project-map-panel,
 .history-panel,
 .next-work-panel,
@@ -915,6 +929,7 @@ button:hover {
   }
 
   .project-map-panel,
+  .project-detail-header-panel,
   .history-panel,
   .next-work-panel,
   .paper-readiness-panel,
