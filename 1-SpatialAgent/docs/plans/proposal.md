@@ -1,5 +1,7 @@
 # SpatialAgent Research Plan v14-A
 
+> 规范说明：本文件为当前 live 研究计划（proposal.md）。历史版本见 docs/plans/archive/。
+
 ## Environment Structure, Not Space Syntax as Agent Cognition
 
 > Version: 14-A  
