@@ -64,12 +64,41 @@ milestones:
       - P2-10
 
 mapNodes:
+  - id: project-setup
+    title: Project hygiene and workspace split
+    lane: done
+    status: done
+    phase: 0
+    summary: SMGA became a separate project workspace with an active todo list and clear project documents.
+    dependsOn: []
+    outputs:
+      - README.md
+      - todolist.md
+    nextActions: []
+
+  - id: research-plan-freeze
+    title: Proposal and schema freeze
+    lane: done
+    status: done
+    phase: 1
+    summary: The research plan, memory object, scenario package, and response schema are stable enough to support implementation.
+    dependsOn:
+      - project-setup
+    outputs:
+      - SMGA Proposal v4.6
+      - Memory Schema v0.1
+      - Scenario Package Schema v0.1
+      - Normalized Probe Response Schema v0.1
+    nextActions: []
+
   - id: experiment-0-infra
     title: Experiment 0 infrastructure
     lane: done
     status: done
     phase: 2
     summary: A hand-authored diagnostic seed can now be validated, loaded, and scored end to end.
+    dependsOn:
+      - research-plan-freeze
     outputs:
       - benchmark_loader.py
       - validate_seed.py
@@ -142,6 +171,35 @@ mapNodes:
       - Validate placebo leakage.
       - Decide Stage 2 seed budget.
 
+  - id: stage-2-main-experiment
+    title: Stage 2 main experiment
+    lane: next
+    status: planned
+    phase: 6
+    summary: Scale up evaluations on a larger set of seeds to establish statistical significance for SMGA grounding benefits.
+    dependsOn:
+      - stage-1-pilot
+    outputs:
+      - 30-seed benchmark runs
+      - SMGA vs baseline stats
+    nextActions:
+      - Generate full benchmark suite.
+      - Execute batch model runners.
+
+  - id: stage-2b-secondary-controls
+    title: Stage 2b secondary controls
+    lane: next
+    status: planned
+    phase: 7
+    summary: Run placebo and ablation controls to isolate the social grounding and memory claims.
+    dependsOn:
+      - stage-2-main-experiment
+    outputs:
+      - Placebo ablation data
+      - Memory-only ablation data
+    nextActions:
+      - Execute control conditions.
+
   - id: paper-readiness
     title: Paper readiness
     lane: paper
@@ -149,9 +207,7 @@ mapNodes:
     phase: 8
     summary: The paper skeleton can start, but results and ablations are blocked on baseline and treatment runs.
     dependsOn:
-      - baseline-runs
-      - smga-treatment
-      - stage-1-pilot
+      - stage-2b-secondary-controls
     outputs:
       - Introduction and method skeleton
       - Benchmark construction section

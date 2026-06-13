@@ -26,34 +26,41 @@
             <h2>项目总览</h2>
           </div>
           <section id="summary" class="summary-grid" aria-label="工作区汇总"></section>
+
+          <section id="trend-section" class="trend-panel" style="display: none; margin-bottom: 22px; padding: 22px; background: color-mix(in srgb, var(--surface) 92%, white); border: 1px solid rgba(109, 96, 74, 0.2); border-radius: var(--radius); box-shadow: var(--shadow);">
+            <div class="section-title">
+              <p class="eyebrow">Progress Trend</p>
+              <h2>进度积累走势</h2>
+            </div>
+            <div class="trend-chart-container" style="position: relative;">
+              <svg id="trend-chart" class="trend-chart" viewBox="0 0 800 220" preserveAspectRatio="none" style="width: 100%; height: 220px; overflow: visible; display: block;"></svg>
+              <div id="trend-legend" class="trend-legend" style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 14px; justify-content: center; font-size: 13px;"></div>
+            </div>
+          </section>
+
           <section id="source-grid" class="source-grid" aria-label="项目列表"></section>
         </section>
 
         <section id="project-view" hidden>
-          <div class="project-detail-layout">
-            <aside class="project-nav-panel" aria-label="研究地图导航">
-              <div class="project-nav-shell">
-                <p class="eyebrow">Map Views</p>
-                <nav id="project-nav" class="project-nav"></nav>
+          <header class="project-detail-header-panel">
+            <button id="back-button" class="back-button" type="button">← 返回所有项目</button>
+            <div class="project-map-header">
+              <div>
+                <p class="eyebrow">Research Project</p>
+                <h2 id="project-title">项目详情</h2>
               </div>
-            </aside>
+              <div class="project-focus-card">
+                <span>Current Focus</span>
+                <p id="project-mainline"></p>
+              </div>
+            </div>
+            <p id="research-question" class="research-question"></p>
+          </header>
 
+          <nav id="project-nav" class="project-nav"></nav>
+
+          <div class="project-detail-layout">
             <div class="project-map-workspace">
-              <section class="project-detail-header-panel">
-                <button id="back-button" class="back-button" type="button">返回所有项目</button>
-                <div class="project-map-header">
-                  <div>
-                    <p class="eyebrow">Research Project</p>
-                    <h2 id="project-title">项目详情</h2>
-                  </div>
-                  <div class="project-focus-card">
-                    <span>Current Focus</span>
-                    <p id="project-mainline"></p>
-                  </div>
-                </div>
-                <p id="research-question" class="research-question"></p>
-              </section>
-
               <section id="project-map-section" class="project-map-panel project-section project-page" data-section="map">
                 <div class="section-title">
                   <p class="eyebrow">Project Map</p>
@@ -86,10 +93,6 @@
                 <div id="paper-readiness"></div>
               </section>
             </div>
-
-            <aside class="map-detail-drawer" aria-label="地图节点详情">
-              <div id="map-node-detail"></div>
-            </aside>
           </div>
         </section>
       </main>

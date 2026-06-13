@@ -1,4 +1,5 @@
 let dashboardState = null;
+let historyData = [];
 let selectedSourceId = null;
 let selectedMapNodeId = null;
 let currentView = "home";
@@ -68,11 +69,21 @@ refreshTimer = window.setInterval(loadState, 60000);
 async function loadState() {
   setRefreshState(true);
   try {
-    const response = await fetch(stateUrl, { cache: "no-store" });
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
+    const [stateRes, historyRes] = await Promise.all([
+      fetch(stateUrl, { cache: "no-store" }),
+      fetch("/api/history", { cache: "no-store" }).catch(() => null)
+    ]);
+
+    if (!stateRes.ok) {
+      throw new Error(`HTTP ${stateRes.status}`);
     }
-    dashboardState = await response.json();
+    dashboardState = await stateRes.json();
+
+    if (historyRes && historyRes.ok) {
+      historyData = await historyRes.json();
+    } else {
+      historyData = [];
+    }
 
     if (selectedSourceId && !dashboardState.sources.some((source) => source.id === selectedSourceId)) {
       selectedSourceId = null;
@@ -98,20 +109,26 @@ function render() {
   homeView.hidden = shouldShowProject;
   projectView.hidden = !shouldShowProject;
 
+  const topbar = document.querySelector(".topbar");
+  if (topbar) {
+    topbar.style.display = shouldShowProject ? "none" : "flex";
+  }
+
   if (shouldShowProject) {
     renderProject(selected);
     return;
   }
+
+  renderTrendChart();
 
   renderProjectNav(null);
 }
 
 function renderProject(source) {
   const model = projectMapModel(source);
-  const defaultNode = defaultMapNode(model);
   activeDetailPage = normalizeDetailPage(activeDetailPage);
-  if (!selectedMapNodeId || !findMapNode(model, selectedMapNodeId)) {
-    selectedMapNodeId = defaultNode?.id || null;
+  if (selectedMapNodeId && !findMapNode(model, selectedMapNodeId)) {
+    selectedMapNodeId = null;
   }
 
   projectView.dataset.activePage = activeDetailPage;
@@ -125,7 +142,7 @@ function renderProject(source) {
   renderProjectNav(source);
   renderProjectMap(source, model);
   renderMapNodeDetail(source, model);
-  renderHistory(model);
+  renderHistory(source, model);
   renderNextWork(model);
   renderPaperReadiness(model);
 }
@@ -169,14 +186,31 @@ function renderSources() {
   });
 }
 
+function renderDonutChart(fraction, color, size = 56, strokeWidth = 6) {
+  const radius = (size - strokeWidth) / 2;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - fraction * circumference;
+  return `
+    <svg class="donut-chart" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+      <circle cx="${size/2}" cy="${size/2}" r="${radius}" fill="none" stroke="var(--soft)" stroke-width="${strokeWidth}" />
+      <circle cx="${size/2}" cy="${size/2}" r="${radius}" fill="none" stroke="${escapeAttr(color)}" stroke-width="${strokeWidth}"
+        stroke-dasharray="${circumference}" stroke-dashoffset="${offset}" stroke-linecap="round"
+        transform="rotate(-90 ${size/2} ${size/2})" />
+      <text x="50%" y="50%" class="donut-label" dominant-baseline="central" text-anchor="middle">
+        ${percent(fraction)}
+      </text>
+    </svg>
+  `;
+}
+
 function sourceCard(source) {
   const model = projectMapModel(source);
   const active = currentView === "project" && source.id === selectedSourceId ? " active" : "";
   const error = source.error ? " error" : "";
   const mapMode = model.mode === "manifest" ? "Manifest" : "Fallback";
   const progressText = source.progress.total
-    ? `路线图 ${percent(source.progress.fraction)}`
-    : "暂无路线图进度";
+    ? `${source.progress.completed}/${source.progress.total} 阶段`
+    : "暂无进度";
   const status = source.error
     ? `<span class="status-pill error">异常</span>`
     : `<span class="status-pill">${escapeHtml(mapMode)}</span>`;
@@ -184,6 +218,11 @@ function sourceCard(source) {
   const foot = source.error
     ? `<p class="error-text">${escapeHtml(source.error)}</p>`
     : `<p class="path">${escapeHtml(source.path)}</p>`;
+    
+  const fraction = source.progress.fraction || 0;
+  const donutHtml = source.progress.total > 0
+    ? renderDonutChart(fraction, safeColor(source.accent))
+    : `<div style="width:56px;height:56px;border-radius:50%;border:2px dashed var(--line);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:10px;">-</div>`;
 
   return `
     <article class="source-card${active}${error}" data-source-id="${escapeAttr(source.id)}">
@@ -192,16 +231,23 @@ function sourceCard(source) {
         <h3>${escapeHtml(source.name)}</h3>
         ${status}
       </div>
-      <div class="card-stats">
-        <div class="stat"><strong>${source.taskCounts.open}</strong><span>待办</span></div>
-        <div class="stat"><strong>${source.priorityCounts.P0}</strong><span>P0</span></div>
-        <div class="stat"><strong>${(model.mapNodes || []).length}</strong><span>地图节点</span></div>
+      
+      <div class="card-body-row">
+        <div class="card-stats-col">
+          <div class="card-stats" style="display:flex; gap:12px; margin:0;">
+            <div class="stat"><strong>${source.taskCounts.open}</strong><span>待办</span></div>
+            <div class="stat"><strong>${source.priorityCounts.P0}</strong><span>P0</span></div>
+            <div class="stat"><strong>${(model.mapNodes || []).length}</strong><span>节点</span></div>
+          </div>
+          <p class="mainline" style="margin:4px 0 0 0; line-height:1.4; display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${escapeHtml(focus)}</p>
+        </div>
+        
+        <div class="card-donut">
+          ${donutHtml}
+          <span style="font-size:10px; color:var(--muted); font-weight:600; white-space:nowrap;">${progressText}</span>
+        </div>
       </div>
-      <p class="mainline">${escapeHtml(focus)}</p>
-      <div class="progress-track" aria-label="${escapeAttr(progressText)}">
-        <div class="progress-fill" style="width:${clampedPercent(source.progress.fraction)}%;background:${safeColor(source.accent)}"></div>
-      </div>
-      <p class="phase-meta">${escapeHtml(progressText)}</p>
+      
       ${foot}
     </article>
   `;
@@ -248,61 +294,197 @@ function renderProjectMap(source, model) {
     return;
   }
 
-  const lanes = MAP_LANES.map((lane) => {
-    const laneNodes = nodes.filter((node) => normalizedLane(node.lane) === lane.key);
-    return `
-      <section class="map-lane map-lane-${escapeAttr(lane.key)}">
-        <header class="map-lane-header">
-          <div>
-            <h3>${escapeHtml(lane.label)}</h3>
-            <p>${escapeHtml(lane.caption)}</p>
+  const timelineNodes = [...nodes].sort((a, b) => {
+    const aPhase = a.phase !== undefined ? a.phase : 9999;
+    const bPhase = b.phase !== undefined ? b.phase : 9999;
+    if (aPhase !== bPhase) {
+      return aPhase - bPhase;
+    }
+    return String(a.title || "").localeCompare(String(b.title || ""));
+  });
+
+  const timelineHtml = timelineNodes.map((node) => mapTimelineStage(node)).join("");
+
+  // Check if we need to render the modal overlay
+  let modalOverlayHtml = "";
+  if (selectedMapNodeId) {
+    const selectedNode = nodes.find(n => n.id === selectedMapNodeId);
+    if (selectedNode) {
+      const phaseText = selectedNode.phase !== undefined ? `Phase ${selectedNode.phase}` : "General";
+      const outputsHtml = referenceList(selectedNode.outputs, "暂无产物。");
+      const nextActionsHtml = plainList(selectedNode.nextActions, "暂无下一步动作。");
+      const relations = [
+        ...(selectedNode.dependsOn || []).map((item) => `Depends on: ${item}`),
+        ...(selectedNode.taskRefs || []).map((item) => `Task: ${item}`)
+      ];
+      const relationsHtml = plainList(relations, "暂无关联。");
+
+      modalOverlayHtml = `
+        <div class="map-node-modal-overlay" id="node-modal-overlay">
+          <div class="map-node-modal-card" style="--project-accent:${safeColor(source.accent)};">
+            <div class="node-header-row" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--soft); padding-bottom: 14px; margin-bottom: 10px;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span class="node-status status-${statusClass(selectedNode.status)}" style="padding: 5px 10px; font-weight: 800; border-radius: 999px;">${escapeHtml(statusLabel(selectedNode.status))}</span>
+                <span style="font-size: 12px; font-weight: 800; color: var(--muted); background: var(--soft); padding: 5px 10px; border-radius: 999px;">${phaseText}</span>
+                <span style="font-size: 12px; font-weight: 800; color: var(--muted); background: var(--surface-2); border: 1px solid var(--line); padding: 5px 10px; border-radius: 999px;">${escapeHtml(laneLabel(selectedNode.lane))}</span>
+              </div>
+              <button class="close-expansion-btn" type="button" style="cursor: pointer; font-size: 12px; font-weight: 800; color: var(--muted); padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface-2);" title="关闭">关闭 ✕</button>
+            </div>
+            
+            <div class="node-modal-body" style="display: flex; flex-direction: column; gap: 14px;">
+              <h2 style="font-size: 24px; color: var(--ink); margin: 0; font-family: Georgia, serif;">${escapeHtml(selectedNode.title)}</h2>
+              <p style="font-size: 15px; color: var(--muted); line-height: 1.6; margin: 0; white-space: pre-wrap;">${escapeHtml(selectedNode.summary || "暂无节点摘要。")}</p>
+              
+              <div class="node-expanded-details-grid" style="border-top: 1px solid var(--soft); padding-top: 20px; margin-top: 10px;">
+                <div>
+                  <h4 style="margin: 0 0 10px 0; font-size: 14px; color: var(--blue); font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid color-mix(in srgb, var(--blue) 20%, transparent); padding-bottom: 6px;">产物 / 证据</h4>
+                  ${outputsHtml}
+                </div>
+                <div>
+                  <h4 style="margin: 0 0 10px 0; font-size: 14px; color: var(--amber); font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid color-mix(in srgb, var(--amber) 20%, transparent); padding-bottom: 6px;">下一步动作</h4>
+                  ${nextActionsHtml}
+                </div>
+                <div>
+                  <h4 style="margin: 0 0 10px 0; font-size: 14px; color: var(--muted); font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid color-mix(in srgb, var(--line) 50%, transparent); padding-bottom: 6px;">关联与依赖</h4>
+                  ${relationsHtml}
+                </div>
+              </div>
+            </div>
           </div>
-          <span>${laneNodes.length}</span>
-        </header>
-        <div class="map-node-list">
-          ${laneNodes.length ? laneNodes.map((node) => mapNodeButton(node)).join("") : emptyState("暂无节点")}
         </div>
-      </section>
-    `;
-  }).join("");
+      `;
+    }
+  }
 
   projectMapElement.innerHTML = `
     ${warning}
-    <div class="map-canvas" style="--project-accent:${safeColor(source.accent)}">
-      <svg class="map-flow-lines" viewBox="0 0 1000 160" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M 34 82 C 210 24 324 136 500 82 S 790 34 966 82" />
-      </svg>
-      <div class="map-lanes">${lanes}</div>
+    <div class="map-canvas timeline-canvas" style="--project-accent:${safeColor(source.accent)}">
+      <div class="process-timeline" aria-label="研究阶段流程图">
+        ${timelineHtml}
+      </div>
     </div>
+    ${modalOverlayHtml}
   `;
 
-  projectMapElement.querySelectorAll("[data-node-id]").forEach((button) => {
-    button.addEventListener("click", () => {
-      selectedMapNodeId = button.dataset.nodeId;
-      updateMapNodeActiveStates();
-      renderMapNodeDetail(selectedSource(), projectMapModel(selectedSource()));
+  projectMapElement.querySelectorAll("[data-node-id]").forEach((card) => {
+    const nodeId = card.dataset.nodeId;
+    card.addEventListener("click", () => {
+      selectedMapNodeId = nodeId;
+      render();
     });
   });
+
+  // Attach event listener to close the modal if open
+  if (selectedMapNodeId) {
+    const overlay = document.getElementById("node-modal-overlay");
+    if (overlay) {
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) {
+          selectedMapNodeId = null;
+          render();
+        }
+      });
+      const closeBtn = overlay.querySelector(".close-expansion-btn");
+      if (closeBtn) {
+        closeBtn.addEventListener("click", () => {
+          selectedMapNodeId = null;
+          render();
+        });
+      }
+    }
+  }
+}
+
+window.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && selectedMapNodeId) {
+    selectedMapNodeId = null;
+    render();
+  }
+});
+
+function mapTimelineStage(node) {
+  const statusCls = statusClass(node.status);
+  const activeClass = node.id === selectedMapNodeId ? " active" : "";
+  const phaseLabel = node.phase !== undefined ? `Phase ${node.phase}` : "General";
+  const phaseNumber = node.phase !== undefined ? node.phase : "*";
+  const branchItems = timelineBranchItems(node);
+  const visibleItems = branchItems.slice(0, 5);
+  const moreCount = Math.max(0, branchItems.length - visibleItems.length);
+
+  return `
+    <article class="timeline-stage status-${statusCls}${activeClass}" data-node-id="${escapeAttr(node.id)}">
+      <header class="timeline-stage-header">
+        <span>${escapeHtml(phaseLabel)}</span>
+        <h3>${escapeHtml(node.title)}</h3>
+      </header>
+      <div class="timeline-mainline-row" aria-hidden="true">
+        <span class="timeline-mainline-dot">${escapeHtml(phaseNumber)}</span>
+      </div>
+      <div class="timeline-branch">
+        ${visibleItems.map((item) => timelineBranchItem(item)).join("")}
+        ${moreCount ? `<button class="timeline-more" type="button">+${moreCount} more</button>` : ""}
+      </div>
+    </article>
+  `;
+}
+
+function timelineBranchItems(node) {
+  const nextActions = (node.nextActions || []).filter(Boolean).map((value) => ({ label: value, type: "action" }));
+  if (nextActions.length) {
+    return nextActions;
+  }
+
+  const outputs = (node.outputs || []).filter(Boolean).map((value) => {
+    const label = typeof value === "string" ? value : value.label || value.path || "Output";
+    return { label, type: "output" };
+  });
+  if (outputs.length) {
+    return outputs;
+  }
+
+  return (node.taskRefs || []).filter(Boolean).map((value) => ({ label: value, type: "task" }));
+}
+
+function timelineBranchItem(item) {
+  return `
+    <div class="timeline-branch-item timeline-branch-${escapeAttr(item.type)}">
+      <span></span>
+      <p>${escapeHtml(item.label)}</p>
+    </div>
+  `;
 }
 
 function mapNodeButton(node) {
-  const active = node.id === selectedMapNodeId ? " active" : "";
-  const phase = node.phase ? `<span>Phase ${escapeHtml(node.phase)}</span>` : "";
+  const activeClass = node.id === selectedMapNodeId ? " active" : "";
+  const phaseText = node.phase !== undefined ? `Phase ${node.phase}` : "";
+  const statusLabelText = statusLabel(node.status);
+  const statusCls = statusClass(node.status);
+
+  // Render count badges for outputs and nextActions if they exist
+  const outputsBadge = node.outputs && node.outputs.length
+    ? `<span class="compact-badge">${node.outputs.length} 产物</span>`
+    : '';
+  const actionsBadge = node.nextActions && node.nextActions.length
+    ? `<span class="compact-badge">${node.nextActions.length} 待办</span>`
+    : '';
+
   return `
-    <button
-      class="map-node status-${statusClass(node.status)}${active}"
-      type="button"
+    <div
+      class="map-node status-${statusCls}${activeClass}"
       data-node-id="${escapeAttr(node.id)}"
-      aria-pressed="${node.id === selectedMapNodeId ? "true" : "false"}"
+      style="display: flex; flex-direction: column; gap: 8px;"
     >
-      <span class="node-status">${escapeHtml(statusLabel(node.status))}</span>
-      <strong>${escapeHtml(node.title)}</strong>
-      <p>${escapeHtml(node.summary || "暂无节点摘要。")}</p>
-      <div class="node-meta">
-        ${phase}
-        <span>${escapeHtml(laneLabel(node.lane))}</span>
+      <div class="node-compact-header">
+        <span class="node-status">${escapeHtml(statusLabelText)}</span>
+        ${phaseText ? `<span class="node-phase-badge">${escapeHtml(phaseText)}</span>` : ""}
       </div>
-    </button>
+      <strong>${escapeHtml(node.title)}</strong>
+      <p class="node-compact-summary">${escapeHtml(node.summary || "暂无节点摘要。")}</p>
+      <div class="node-meta-row">
+        ${outputsBadge}
+        ${actionsBadge}
+      </div>
+    </div>
   `;
 }
 
@@ -315,49 +497,19 @@ function updateMapNodeActiveStates() {
 }
 
 function renderMapNodeDetail(source, model) {
-  const node = findMapNode(model, selectedMapNodeId) || defaultMapNode(model);
-  if (!source || source.error || !node) {
-    mapNodeDetail.innerHTML = emptyState(source?.error || "请选择一个地图节点。");
-    return;
-  }
-
-  mapNodeDetail.innerHTML = `
-    <div class="drawer-kicker">${escapeHtml(laneLabel(node.lane))} / ${escapeHtml(statusLabel(node.status))}</div>
-    <h2>${escapeHtml(node.title)}</h2>
-    <p class="drawer-summary">${escapeHtml(node.summary || "暂无节点摘要。")}</p>
-
-    <div class="drawer-meta-grid">
-      <div><span>Phase</span><strong>${node.phase || "N/A"}</strong></div>
-      <div><span>Tasks</span><strong>${(node.taskRefs || []).length}</strong></div>
-      <div><span>Outputs</span><strong>${(node.outputs || []).length}</strong></div>
-      <div><span>Depends</span><strong>${(node.dependsOn || []).length}</strong></div>
-    </div>
-
-    <section class="drawer-section">
-      <h3>产物 / 证据</h3>
-      ${referenceList(node.outputs, "这个节点还没有记录产物。")}
-    </section>
-
-    <section class="drawer-section">
-      <h3>下一步动作</h3>
-      ${plainList(node.nextActions, "这个节点暂时没有下一步动作。")}
-    </section>
-
-    <section class="drawer-section">
-      <h3>关联</h3>
-      ${plainList([...(node.dependsOn || []).map((item) => `Depends on: ${item}`), ...(node.taskRefs || []).map((item) => `Task: ${item}`)], "暂无依赖或任务引用。")}
-    </section>
-  `;
+  // No-op. Details are shown inline in expanded cards.
 }
 
-function renderHistory(model) {
+function renderHistory(source, model) {
+  const heatmapHtml = renderHistoryHeatmap(source);
   const history = model.history || model.milestones || [];
   if (!history.length) {
-    projectHistory.innerHTML = emptyState("还没有记录历史 milestone。");
+    projectHistory.innerHTML = `${heatmapHtml}${emptyState("还没有记录历史 milestone。")}`;
     return;
   }
 
   projectHistory.innerHTML = `
+    ${heatmapHtml}
     <div class="history-list">
       ${history.map((item) => `
         <article class="history-item">
@@ -376,23 +528,266 @@ function renderHistory(model) {
   `;
 }
 
+function renderHistoryHeatmap(source) {
+  const accent = safeColor(source.accent);
+  const rows = historyData
+    .filter((entry) => (entry.sources || []).some((item) => item.id === source.id))
+    .map((entry) => {
+      const matched = (entry.sources || []).find((item) => item.id === source.id) || {};
+      return {
+        date: entry.date,
+        completed: Number(matched.completed) || 0,
+        total: Number(matched.total) || 0,
+        fraction: Number(matched.fraction) || 0,
+        openTasks: Number(matched.openTasks) || 0,
+      };
+    })
+    .filter((entry) => entry.date)
+    .sort((a, b) => a.date.localeCompare(b.date));
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const endDate = new Date(today);
+  const startDate = new Date(endDate);
+  startDate.setDate(startDate.getDate() - (7 * 53 - 1));
+  const gridStart = new Date(startDate);
+  gridStart.setDate(gridStart.getDate() - gridStart.getDay());
+
+  const seriesByDate = new Map(rows.map((item, index) => {
+    const prev = index > 0 ? rows[index - 1] : null;
+    return [item.date, {
+      ...item,
+      delta: Math.max(0, item.completed - (prev ? prev.completed : item.completed)),
+    }];
+  }));
+
+  const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const dayCells = [];
+  const cursor = new Date(gridStart);
+
+  while (cursor <= endDate) {
+    const iso = formatDateKey(cursor);
+    const entry = seriesByDate.get(iso) || null;
+    const delta = entry ? entry.delta : 0;
+    const level = heatmapLevel(delta);
+    const label = entry
+      ? `${iso} · 新增完成 ${delta} · 累计完成 ${entry.completed}/${entry.total || "-"}`
+      : `${iso} · 没有快照`;
+
+    dayCells.push(`
+      <div class="heatmap-cell-wrap" style="grid-column:${heatmapWeekColumn(gridStart, cursor)}; grid-row:${weekRow(cursor)};">
+        <span class="heatmap-cell heatmap-level-${level}${entry ? " heatmap-has-snapshot" : ""}" title="${escapeAttr(label)}"></span>
+      </div>
+    `);
+
+    cursor.setDate(cursor.getDate() + 1);
+  }
+
+  const monthMarkers = heatmapMonthMarkers(gridStart, endDate);
+  const visibleEntries = Array.from(seriesByDate.values()).filter((entry) => {
+    const date = new Date(`${entry.date}T00:00:00`);
+    return date >= startDate && date <= endDate;
+  });
+  const activeDays = visibleEntries.filter((entry) => entry.delta > 0).length;
+  const totalDelta = visibleEntries.reduce((sum, entry) => sum + entry.delta, 0);
+  const latest = rows[rows.length - 1] || null;
+
+  return `
+    <section class="history-heatmap-panel" style="--heatmap-accent:${accent};">
+      <div class="history-heatmap-header">
+        <div>
+          <p class="eyebrow">Activity Heatmap</p>
+          <h3>过去一年推进热力图</h3>
+        </div>
+        <div class="history-heatmap-legend" aria-label="热力图图例">
+          <span>少</span>
+          <i class="heatmap-cell heatmap-level-0" aria-hidden="true"></i>
+          <i class="heatmap-cell heatmap-level-1" aria-hidden="true"></i>
+          <i class="heatmap-cell heatmap-level-2" aria-hidden="true"></i>
+          <i class="heatmap-cell heatmap-level-3" aria-hidden="true"></i>
+          <i class="heatmap-cell heatmap-level-4" aria-hidden="true"></i>
+          <span>多</span>
+        </div>
+      </div>
+      <div class="history-heatmap-stats">
+        <span><strong>${totalDelta}</strong> 新增完成</span>
+        <span><strong>${activeDays}</strong> 活跃天</span>
+        <span><strong>${latest ? latest.completed : 0}/${latest && latest.total ? latest.total : "-"}</strong> 当前完成</span>
+      </div>
+      ${rows.length < 2 ? `<p class="muted history-heatmap-note">需要更多每日快照后，热力图才会开始显示连续推进趋势。</p>` : ""}
+      <div class="history-heatmap-scroll" role="img" aria-label="项目每日推进热力图">
+        <div class="history-heatmap-grid-wrap">
+        <div class="history-heatmap-weekdays">
+          ${weekDays.map((day) => `<span>${day}</span>`).join("")}
+        </div>
+        <div class="history-heatmap-grid">
+          ${monthMarkers}
+          ${dayCells.join("")}
+        </div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function heatmapLevel(delta) {
+  if (delta <= 0) return 0;
+  if (delta === 1) return 1;
+  if (delta === 2) return 2;
+  if (delta <= 4) return 3;
+  return 4;
+}
+
+function heatmapWeekColumn(gridStart, date) {
+  const dayMs = 24 * 60 * 60 * 1000;
+  return Math.floor((date - gridStart) / (7 * dayMs)) + 1;
+}
+
+function weekRow(date) {
+  return date.getDay() + 2;
+}
+
+function heatmapMonthMarkers(startDate, endDate) {
+  const markers = [];
+  const seen = new Set();
+  const cursor = new Date(startDate);
+  while (cursor <= endDate) {
+    if (cursor.getDate() === 1) {
+      const key = formatDateKey(cursor).slice(0, 7);
+      if (!seen.has(key)) {
+        seen.add(key);
+        markers.push(`
+          <span class="heatmap-month-label" style="grid-column:${heatmapWeekColumn(startDate, cursor)};">
+            ${cursor.toLocaleDateString("en-US", { month: "short" })}
+          </span>
+        `);
+      }
+    }
+    cursor.setDate(cursor.getDate() + 1);
+  }
+  return markers.join("");
+}
+
+function formatDateKey(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
 function renderNextWork(model) {
   const work = model.nextWork || [];
+  const focusNode = defaultMapNode(model);
   if (!work.length) {
     nextWorkElement.innerHTML = emptyState("暂时没有下一步工作。");
     return;
   }
 
+  const actionItems = nextWorkActionItems(focusNode, work);
+  const doNext = actionItems.slice(0, 3);
+  const thenQueue = actionItems.slice(3, 10);
+  const nextPhase = work.find((item) => item.source === "map" && item.status !== "current") || null;
+  const outputs = focusNode?.outputs || [];
+  const dependencies = focusNode?.dependsOn || [];
+  const taskRefs = focusNode?.taskRefs || [];
+
   nextWorkElement.innerHTML = `
-    <div class="next-work-list">
-      ${work.map((item) => `
-        <article class="next-work-item status-${statusClass(item.status)}">
-          <span>${escapeHtml(statusLabel(item.status))} · ${escapeHtml(item.source || "map")}</span>
-          <h3>${escapeHtml(item.title)}</h3>
-          ${item.summary ? `<p>${escapeHtml(item.summary)}</p>` : ""}
-        </article>
-      `).join("")}
+    <div class="execution-board">
+      <section class="execution-focus-panel">
+        <p class="eyebrow">Now Focus</p>
+        <div class="execution-focus-row">
+          <div>
+            <h3>${escapeHtml(focusNode?.title || work[0]?.title || "下一步工作")}</h3>
+            <p>${escapeHtml(focusNode?.summary || work[0]?.summary || "暂无当前阶段说明。")}</p>
+          </div>
+          <div class="execution-focus-meta">
+            <span>${escapeHtml(statusLabel(focusNode?.status || work[0]?.status))}</span>
+            ${focusNode?.phase ? `<span>Phase ${escapeHtml(focusNode.phase)}</span>` : ""}
+            ${nextPhase ? `<span>Then: ${escapeHtml(nextPhase.title)}</span>` : ""}
+          </div>
+        </div>
+      </section>
+
+      <div class="execution-layout">
+        <section class="execution-main">
+          <div class="execution-section-title">
+            <p class="eyebrow">Do Next</p>
+            <h3>先做这几件</h3>
+          </div>
+          <div class="do-next-list">
+            ${doNext.length ? doNext.map((item, index) => executionActionCard(item, index)).join("") : emptyState("当前节点没有明确下一步动作。")}
+          </div>
+
+          <div class="execution-section-title compact">
+            <p class="eyebrow">Then</p>
+            <h3>后续队列</h3>
+          </div>
+          <ol class="then-queue-list">
+            ${thenQueue.length ? thenQueue.map((item) => executionQueueItem(item)).join("") : `<li class="then-queue-empty">后续任务会在完成当前动作后展开。</li>`}
+          </ol>
+        </section>
+
+        <aside class="execution-context">
+          <section>
+            <p class="eyebrow">Expected Outputs</p>
+            ${referenceList(outputs, "当前阶段还没有记录产物。")}
+          </section>
+          <section>
+            <p class="eyebrow">Dependencies</p>
+            ${plainList(dependencies, "暂无阻塞依赖。")}
+          </section>
+          <section>
+            <p class="eyebrow">Task Refs</p>
+            ${plainList(taskRefs, "暂无任务引用。")}
+          </section>
+        </aside>
+      </div>
     </div>
+  `;
+}
+
+function nextWorkActionItems(focusNode, work) {
+  const focusActions = (focusNode?.nextActions || []).map((title, index) => ({
+    id: `focus-action-${index}`,
+    title,
+    status: index === 0 ? "current" : "next",
+    summary: index === 0 ? "当前最小可执行动作" : "当前阶段动作",
+    source: "map",
+  }));
+  const todoActions = work
+    .filter((item) => item.source === "todo")
+    .map((item) => ({ ...item, summary: item.summary || "Todo" }));
+
+  const seen = new Set();
+  return [...focusActions, ...todoActions].filter((item) => {
+    const key = String(item.title || "").trim().toLowerCase();
+    if (!key || seen.has(key)) {
+      return false;
+    }
+    seen.add(key);
+    return true;
+  });
+}
+
+function executionActionCard(item, index) {
+  return `
+    <article class="do-next-item status-${statusClass(item.status)}">
+      <div class="action-index">${index + 1}</div>
+      <div>
+        <span>${escapeHtml(statusLabel(item.status))} · ${escapeHtml(item.source || "map")}</span>
+        <h4>${escapeHtml(item.title)}</h4>
+        ${item.summary ? `<p>${escapeHtml(item.summary)}</p>` : ""}
+      </div>
+    </article>
+  `;
+}
+
+function executionQueueItem(item) {
+  return `
+    <li>
+      <span>${escapeHtml(item.title)}</span>
+      ${item.summary ? `<small>${escapeHtml(item.summary)}</small>` : ""}
+    </li>
   `;
 }
 
@@ -720,4 +1115,124 @@ function renderError(error) {
   nextWorkElement.innerHTML = "";
   paperReadiness.innerHTML = "";
   mapNodeDetail.innerHTML = "";
+}
+
+function renderTrendChart() {
+  const section = document.querySelector("#trend-section");
+  const svg = document.querySelector("#trend-chart");
+  const legend = document.querySelector("#trend-legend");
+  
+  if (!section || !svg || !legend) return;
+  
+  if (!historyData || historyData.length < 2) {
+    section.style.display = "none";
+    return;
+  }
+  
+  section.style.display = "block";
+  
+  // Get all unique active sources in the history
+  const sourceIds = Array.from(new Set(
+    historyData.flatMap(d => (d.sources || []).map(s => s.id))
+  ));
+  
+  // Find accent colors from dashboardState
+  const colorMap = {};
+  const nameMap = {};
+  if (dashboardState && dashboardState.sources) {
+    dashboardState.sources.forEach(s => {
+      colorMap[s.id] = s.accent || "#0071e3";
+      nameMap[s.id] = s.name;
+    });
+  }
+  
+  const width = 800;
+  const height = 220;
+  const paddingLeft = 50;
+  const paddingRight = 30;
+  const paddingTop = 20;
+  const paddingBottom = 30;
+  
+  const graphWidth = width - paddingLeft - paddingRight;
+  const graphHeight = height - paddingTop - paddingBottom;
+  
+  const days = historyData.length;
+  
+  // Generate Y axis grid lines (0%, 25%, 50%, 75%, 100%)
+  let gridHtml = "";
+  for (let pct = 0; pct <= 100; pct += 25) {
+    const y = paddingTop + graphHeight * (1 - pct / 100);
+    gridHtml += `
+      <line x1="${paddingLeft}" y1="${y}" x2="${width - paddingRight}" y2="${y}" stroke="var(--soft)" stroke-width="1" stroke-dasharray="4 4" />
+      <text x="${paddingLeft - 10}" y="${y}" fill="var(--muted)" font-size="11" text-anchor="end" dominant-baseline="central">${pct}%</text>
+    `;
+  }
+  
+  // Generate X axis date labels (Start, Middle, End)
+  let datesHtml = "";
+  const dateIndices = days > 2 ? [0, Math.floor((days - 1) / 2), days - 1] : [0, days - 1];
+  dateIndices.forEach(idx => {
+    const dateStr = historyData[idx].date;
+    const x = paddingLeft + (idx / (days - 1)) * graphWidth;
+    datesHtml += `
+      <text x="${x}" y="${height - 10}" fill="var(--muted)" font-size="11" text-anchor="middle">${dateStr.substring(5)}</text>
+    `;
+  });
+  
+  // Draw lines for each project
+  let linesHtml = "";
+  let legendHtml = "";
+  
+  sourceIds.forEach(sourceId => {
+    const color = colorMap[sourceId] || "#999";
+    const name = nameMap[sourceId] || sourceId;
+    
+    // Build path points
+    const points = [];
+    historyData.forEach((day, dayIdx) => {
+      const src = (day.sources || []).find(s => s.id === sourceId);
+      if (src && src.total > 0) {
+        const fraction = src.fraction || 0;
+        const x = paddingLeft + (dayIdx / (days - 1)) * graphWidth;
+        const y = paddingTop + graphHeight * (1 - fraction);
+        points.push({ x, y, fraction, date: day.date, completed: src.completed, total: src.total });
+      }
+    });
+    
+    if (points.length < 2) return;
+    
+    const pathD = points.map((p, idx) => `${idx === 0 ? 'M' : 'L'} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(" ");
+    
+    // Draw line and circles
+    linesHtml += `
+      <path d="${pathD}" fill="none" stroke="${escapeAttr(color)}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    `;
+    
+    // Draw circles at data points
+    points.forEach(p => {
+      linesHtml += `
+        <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4" fill="var(--surface)" stroke="${escapeAttr(color)}" stroke-width="2">
+          <title>${name}: ${percent(p.fraction)} (${p.completed}/${p.total} 节点) 于 ${p.date}</title>
+        </circle>
+      `;
+    });
+    
+    // Build legend
+    legendHtml += `
+      <div class="legend-item" style="display: flex; align-items: center; gap: 6px;">
+        <span style="width: 10px; height: 10px; border-radius: 50%; background: ${escapeAttr(color)}; display: inline-block;"></span>
+        <span style="font-weight: 600; color: var(--ink);">${escapeHtml(name)}</span>
+      </div>
+    `;
+  });
+  
+  svg.innerHTML = `
+    <!-- Grid and axes -->
+    ${gridHtml}
+    ${datesHtml}
+    <!-- Lines and markers -->
+    ${linesHtml}
+  `;
+  
+  legend.innerHTML = legendHtml;
 }

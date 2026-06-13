@@ -1076,11 +1076,63 @@ def fraction(completed: int, total: int) -> float:
     return completed / total if total else 0
 
 
+def record_snapshot(state: dict) -> None:
+    """Record a daily snapshot of the dashboard state to history.jsonl."""
+    history_path = SCRIPT_DIR / "history.jsonl"
+    today = datetime.now().strftime("%Y-%m-%d")
+    
+    sources_data = []
+    for s in state.get("sources", []):
+        sources_data.append({
+            "id": s.get("id"),
+            "name": s.get("name"),
+            "completed": s.get("progress", {}).get("completed", 0),
+            "total": s.get("progress", {}).get("total", 0),
+            "fraction": s.get("progress", {}).get("fraction", 0),
+            "openTasks": s.get("taskCounts", {}).get("open", 0)
+        })
+    
+    new_entry = {
+        "date": today,
+        "sources": sources_data
+    }
+    
+    entries = []
+    if history_path.exists():
+        try:
+            with open(history_path, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line:
+                        continue
+                    try:
+                        entry = json.loads(line)
+                        if entry.get("date") != today:
+                            entries.append(entry)
+                    except json.JSONDecodeError:
+                        pass
+        except Exception as exc:
+            sys.stderr.write(f"Error reading history.jsonl: {exc}\n")
+    
+    entries.append(new_entry)
+    entries = entries[-90:]
+    
+    try:
+        with open(history_path, "w", encoding="utf-8") as f:
+            for entry in entries:
+                f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+    except Exception as exc:
+        sys.stderr.write(f"Error writing to history.jsonl: {exc}\n")
+
+
 class DashboardHandler(SimpleHTTPRequestHandler):
     def do_GET(self) -> None:  # noqa: N802 - stdlib method name
         parsed = urlparse(self.path)
         if parsed.path == "/api/state":
             self.send_dashboard_state()
+            return
+        if parsed.path == "/api/history":
+            self.send_history()
             return
         if parsed.path == "/":
             self.path = "/index.html"
@@ -1088,9 +1140,36 @@ class DashboardHandler(SimpleHTTPRequestHandler):
 
     def send_dashboard_state(self) -> None:
         try:
-            payload = json.dumps(dashboard_state(), ensure_ascii=False).encode("utf-8")
+            state = dashboard_state()
+            record_snapshot(state)
+            payload = json.dumps(state, ensure_ascii=False).encode("utf-8")
             self.send_response(HTTPStatus.OK)
         except Exception as exc:  # noqa: BLE001 - return useful local error
+            payload = json.dumps({"error": str(exc)}, ensure_ascii=False).encode("utf-8")
+            self.send_response(HTTPStatus.INTERNAL_SERVER_ERROR)
+
+        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Cache-Control", "no-store")
+        self.send_header("Content-Length", str(len(payload)))
+        self.end_headers()
+        self.wfile.write(payload)
+
+    def send_history(self) -> None:
+        try:
+            history_path = SCRIPT_DIR / "history.jsonl"
+            entries = []
+            if history_path.exists():
+                with open(history_path, "r", encoding="utf-8") as f:
+                    for line in f:
+                        line = line.strip()
+                        if line:
+                            try:
+                                entries.append(json.loads(line))
+                            except json.JSONDecodeError:
+                                pass
+            payload = json.dumps(entries, ensure_ascii=False).encode("utf-8")
+            self.send_response(HTTPStatus.OK)
+        except Exception as exc:
             payload = json.dumps({"error": str(exc)}, ensure_ascii=False).encode("utf-8")
             self.send_response(HTTPStatus.INTERNAL_SERVER_ERROR)
 
