@@ -1,0 +1,14 @@
+{
+  "id": "auto-001",
+  "source": "ai",
+  "lecture": "lec02",
+  "title": "练习：判断闰年",
+  "description": "写一个函数 is_leap(year)，判断某一年是不是闰年。\n\n规则：能被 4 整除、但不能被 100 整除的是闰年；不过能被 400 整除的也是闰年。\n例：2000 是闰年，1900 不是，2024 是，2023 不是。\n\n要求：实现 is_leap(year)，闰年返回 True，否则返回 False。",
+  "starter_code": "def is_leap(year):\n    # 在这里写你的代码\n    pass\n",
+  "tests": [
+    {"call": "is_leap(2000)", "expected": "True"},
+    {"call": "is_leap(1900)", "expected": "False"},
+    {"call": "is_leap(2024)", "expected": "True"},
+    {"call": "is_leap(2023)", "expected": "False"}
+  ]
+}
