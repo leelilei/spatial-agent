@@ -1356,7 +1356,7 @@ function clampedPercent(value) {
 }
 
 function safeColor(value) {
-  return /^#[0-9a-fA-F]{6}$/.test(value || "") ? value : "#0071e3";
+  return /^#[0-9a-fA-F]{6}$/.test(value || "") ? value : "#2563eb";
 }
 
 function escapeHtml(value) {
@@ -1416,7 +1416,7 @@ function renderTrendChart() {
   const nameMap = {};
   if (dashboardState && dashboardState.sources) {
     dashboardState.sources.forEach(s => {
-      colorMap[s.id] = s.accent || "#0071e3";
+      colorMap[s.id] = s.accent || "#2563eb";
       nameMap[s.id] = s.name;
     });
   }

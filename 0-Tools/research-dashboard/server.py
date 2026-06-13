@@ -74,7 +74,7 @@ RESEARCH_ROOT = (
 SOURCES_CONFIG_PATH = configured_path("RESEARCH_DASHBOARD_SOURCES") or (SCRIPT_DIR / "sources.json")
 
 # Accent palette assigned by discovery order when no override sets a colour.
-ACCENT_PALETTE = ["#0071e3", "#34c759", "#ff9500", "#af52de", "#ff2d55", "#5856d6", "#00c7be"]
+ACCENT_PALETTE = ["#2563eb", "#16a34a", "#d97706", "#7c3aed", "#db2777", "#0891b2", "#4f46e5"]
 
 # Directories that are not paper projects (learning / tooling). Mirrors the
 # research-standard exclusion list so the dashboard and compliance agree.
