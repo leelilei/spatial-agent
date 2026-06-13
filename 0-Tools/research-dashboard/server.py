@@ -11,7 +11,7 @@ import re
 import sys
 import webbrowser
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from functools import partial
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -50,6 +50,15 @@ if yaml is None:
     yaml = import_yaml_from_workspace_venv()
 
 
+COMPLIANCE_DIR = SCRIPT_DIR.parent / "research-standard"
+try:
+    if str(COMPLIANCE_DIR) not in sys.path:
+        sys.path.insert(0, str(COMPLIANCE_DIR))
+    import check_compliance  # type: ignore
+except Exception:  # noqa: BLE001 - compliance view is optional
+    check_compliance = None
+
+
 def configured_path(env_name: str) -> Path | None:
     value = os.environ.get(env_name)
     return Path(value).expanduser() if value else None
@@ -59,42 +68,24 @@ RESEARCH_ROOT = (
     configured_path("RESEARCH_DASHBOARD_ROOT")
     or (LEGACY_RESEARCH_ROOT if LEGACY_RESEARCH_ROOT.exists() else REPO_ROOT)
 )
-PERSONAL_TODO_DIR = (
-    configured_path("RESEARCH_DASHBOARD_CONFIG_DIR")
-    or (LEGACY_PERSONAL_TODO_DIR if LEGACY_PERSONAL_TODO_DIR.exists() else SCRIPT_DIR)
-)
-SOURCES_CONFIG_PATH = configured_path("RESEARCH_DASHBOARD_SOURCES") or (PERSONAL_TODO_DIR / "sources.json")
+# Single source of truth lives inside the repo and is an OVERRIDE layer only:
+# projects are auto-discovered from RESEARCH_ROOT/*/docs/guides/todolist.md, and
+# sources.json may rename / recolor / disable them or add non-standard paths.
+SOURCES_CONFIG_PATH = configured_path("RESEARCH_DASHBOARD_SOURCES") or (SCRIPT_DIR / "sources.json")
 
-DEFAULT_SOURCES = [
-    {
-        "id": "1-spatialagent",
-        "name": "1-SpatialAgent",
-        "path": str(RESEARCH_ROOT / "1-SpatialAgent/docs/guides/todolist.md"),
-        "accent": "#0071e3",
-        "enabled": True,
-    },
-    {
-        "id": "2-game-agent",
-        "name": "2-GAME-AGENT",
-        "path": str(RESEARCH_ROOT / "2-GAME-AGENT/docs/guides/todolist.md"),
-        "accent": "#34c759",
-        "enabled": True,
-    },
-    {
-        "id": "3-smga",
-        "name": "3-SMGA",
-        "path": str(RESEARCH_ROOT / "3-SMGA/docs/guides/todolist.md"),
-        "accent": "#ff9500",
-        "enabled": True,
-    },
-    {
-        "id": "4-spatialagent-survey",
-        "name": "4-SpatialAgent-Survey",
-        "path": str(RESEARCH_ROOT / "4-SpatialAgent-Survey/docs/guides/todolist.md"),
-        "accent": "#af52de",
-        "enabled": True,
-    },
-]
+# Accent palette assigned by discovery order when no override sets a colour.
+ACCENT_PALETTE = ["#0071e3", "#34c759", "#ff9500", "#af52de", "#ff2d55", "#5856d6", "#00c7be"]
+
+# Directories that are not paper projects (learning / tooling). Mirrors the
+# research-standard exclusion list so the dashboard and compliance agree.
+if check_compliance is not None:
+    EXCLUDED_DIR_NAMES = set(check_compliance.EXCLUDED_DIR_NAMES)
+else:
+    EXCLUDED_DIR_NAMES = {"0-Tools", "0-LLM-learning", "2-GAME-AGENT"}
+
+# Staleness thresholds (days since 更新日期) for the "心里有底" freshness badge.
+STALE_WARN_DAYS = 14
+STALE_BLOCK_DAYS = 30
 
 DATE_RE = re.compile(r"(\d{4}-\d{2}-\d{2})")
 HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*$")
@@ -123,28 +114,75 @@ class PhaseBuilder:
     tasks: list[dict]
 
 
-def load_source_configs() -> tuple[list[dict], str | None]:
-    if not SOURCES_CONFIG_PATH.exists():
-        return DEFAULT_SOURCES, f"配置文件不存在：{SOURCES_CONFIG_PATH}"
-
-    try:
-        payload = json.loads(SOURCES_CONFIG_PATH.read_text(encoding="utf-8"))
-        sources = payload.get("sources", [])
-    except Exception as exc:  # noqa: BLE001 - surface local config errors in UI
-        return DEFAULT_SOURCES, f"无法读取 sources.json：{exc}"
-
-    normalized = []
-    for index, source in enumerate(sources):
-        normalized.append(
+def discover_source_configs() -> list[dict]:
+    """Auto-discover paper projects from RESEARCH_ROOT/*/docs/guides/todolist.md."""
+    configs: list[dict] = []
+    index = 0
+    for todo_path in sorted(RESEARCH_ROOT.glob("*/docs/guides/todolist.md")):
+        project_dir = todo_path.parents[2]
+        name = project_dir.name
+        if name in EXCLUDED_DIR_NAMES or name.startswith("."):
+            continue
+        configs.append(
             {
-                "id": str(source.get("id") or f"source-{index + 1}"),
-                "name": str(source.get("name") or f"Source {index + 1}"),
-                "path": str(source.get("path") or ""),
-                "accent": str(source.get("accent") or "#0071e3"),
-                "enabled": bool(source.get("enabled", True)),
+                "id": name.lower(),
+                "name": name,
+                "path": str(todo_path),
+                "accent": ACCENT_PALETTE[index % len(ACCENT_PALETTE)],
+                "enabled": True,
             }
         )
-    return normalized, None
+        index += 1
+    return configs
+
+
+def apply_source_overrides(configs: list[dict], overrides: list[dict]) -> list[dict]:
+    """Merge sources.json overrides onto discovered configs (matched by id)."""
+    by_id = {config["id"]: config for config in configs}
+    extra: list[dict] = []
+    for index, override in enumerate(overrides):
+        override_id = str(override.get("id") or "").strip()
+        target = by_id.get(override_id)
+        if target is None:
+            # A manual entry for a non-standard path is only usable if it has one.
+            if override.get("path"):
+                extra.append(
+                    {
+                        "id": override_id or f"source-{index + 1}",
+                        "name": str(override.get("name") or override_id or f"Source {index + 1}"),
+                        "path": str(override["path"]),
+                        "accent": str(override.get("accent") or ACCENT_PALETTE[0]),
+                        "enabled": bool(override.get("enabled", True)),
+                    }
+                )
+            continue
+        if override.get("name"):
+            target["name"] = str(override["name"])
+        if override.get("accent"):
+            target["accent"] = str(override["accent"])
+        if override.get("path"):
+            target["path"] = str(override["path"])
+        if "enabled" in override:
+            target["enabled"] = bool(override["enabled"])
+    return configs + extra
+
+
+def load_source_configs() -> tuple[list[dict], str | None]:
+    configs = discover_source_configs()
+    config_error: str | None = None
+
+    if SOURCES_CONFIG_PATH.exists():
+        try:
+            payload = json.loads(SOURCES_CONFIG_PATH.read_text(encoding="utf-8"))
+            configs = apply_source_overrides(configs, payload.get("sources", []))
+        except Exception as exc:  # noqa: BLE001 - surface local config errors in UI
+            config_error = f"无法读取覆盖配置 sources.json：{exc}"
+
+    if not configs:
+        config_error = config_error or (
+            f"未在 {RESEARCH_ROOT} 下发现任何 docs/guides/todolist.md"
+        )
+    return configs, config_error
 
 
 def dashboard_state() -> dict:
@@ -161,8 +199,11 @@ def dashboard_state() -> dict:
         "phaseCount": sum(len(source["phases"]) for source in sources),
         "progressCompleted": sum(source["progress"]["completed"] for source in sources),
         "progressTotal": sum(source["progress"]["total"] for source in sources),
+        "activeCount": sum(1 for source in sources if source["readable"] and source["staleness"]["level"] in {"fresh", "warn"}),
+        "staleCount": sum(1 for source in sources if source["readable"] and source["staleness"]["level"] == "stale"),
     }
     totals["progressFraction"] = fraction(totals["progressCompleted"], totals["progressTotal"])
+    totals["weeklyCompletedDelta"] = weekly_completed_delta(totals["progressCompleted"])
 
     return {
         "generatedAt": datetime.now(timezone.utc).isoformat(),
@@ -190,7 +231,9 @@ def parse_source(config: dict) -> dict:
         "phases": [],
         "currentPhaseNumber": None,
         "nextActions": [],
-        "progress": {"completed": 0, "open": 0, "total": 0, "fraction": 0},
+        "progress": {"completed": 0, "open": 0, "total": 0, "fraction": 0, "mode": "none"},
+        "staleness": {"days": None, "level": "unknown"},
+        "compliance": None,
         "roadmap": {"mode": "none", "tracks": [], "phases": [], "error": None},
         "projectMap": {
             "mode": "none",
@@ -224,7 +267,9 @@ def parse_source(config: dict) -> dict:
     parsed["roadmap"] = roadmap
     parsed["phases"] = roadmap["phases"]
     parsed["nextActions"] = next_actions(parsed["tasks"], parsed["phases"])
-    parsed["progress"] = progress_summary(parsed["phases"])
+    parsed["progress"] = progress_with_fallback(parsed["phases"], parsed["taskCounts"])
+    parsed["staleness"] = staleness_info(parsed["updateDate"])
+    parsed["compliance"] = compliance_info(path)
     parsed["projectMap"] = load_project_map(
         path.with_name("project_map.yaml"),
         path,
@@ -238,6 +283,87 @@ def parse_source(config: dict) -> dict:
     )
     parsed.update({"readable": True, "error": None})
     return {**base, **parsed}
+
+
+def progress_with_fallback(phases: list[dict], task_counts: dict) -> dict:
+    """Phase-based progress when phases exist; otherwise fall back to all checkboxes."""
+    summary = progress_summary(phases)
+    if summary["total"] > 0:
+        summary["mode"] = "phase"
+        return summary
+    completed = task_counts.get("completed", 0)
+    total = task_counts.get("tracked", 0)
+    if total <= 0:
+        return {"completed": 0, "open": 0, "total": 0, "fraction": 0, "mode": "none"}
+    return {
+        "completed": completed,
+        "open": total - completed,
+        "total": total,
+        "fraction": fraction(completed, total),
+        "mode": "checkbox",
+    }
+
+
+def staleness_info(update_date: str | None) -> dict:
+    if not update_date:
+        return {"days": None, "level": "unknown"}
+    try:
+        updated = datetime.strptime(update_date, "%Y-%m-%d").date()
+    except ValueError:
+        return {"days": None, "level": "unknown"}
+    days = (datetime.now().date() - updated).days
+    if days < 0:
+        days = 0
+    if days <= STALE_WARN_DAYS:
+        level = "fresh"
+    elif days <= STALE_BLOCK_DAYS:
+        level = "warn"
+    else:
+        level = "stale"
+    return {"days": days, "level": level}
+
+
+def compliance_info(todo_path: Path) -> dict | None:
+    if check_compliance is None:
+        return None
+    try:
+        report = check_compliance.check_project(infer_project_root(todo_path))
+    except Exception:  # noqa: BLE001 - compliance view must never break the board
+        return None
+    return {
+        "achievedLevel": report.get("achievedLevel"),
+        "levels": [
+            {"code": level["code"], "name": level["name"], "complete": level["complete"], "missing": level["missing"]}
+            for level in report.get("levels", [])
+        ],
+        "strayProposalVersions": report.get("strayProposalVersions", []),
+    }
+
+
+def weekly_completed_delta(current_completed: int) -> int:
+    """Net completed tasks vs the snapshot closest to ~7 days ago (0 if no history)."""
+    history_path = SCRIPT_DIR / "history.jsonl"
+    if not history_path.exists():
+        return 0
+    totals_by_date: dict[str, int] = {}
+    try:
+        for line in history_path.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            entry = json.loads(line)
+            date = entry.get("date")
+            if not date:
+                continue
+            totals_by_date[date] = sum(int(s.get("completed", 0)) for s in entry.get("sources", []))
+    except Exception:  # noqa: BLE001 - trend delta is best-effort
+        return 0
+    if not totals_by_date:
+        return 0
+    target = (datetime.now().date() - timedelta(days=7)).isoformat()
+    on_or_before = [d for d in totals_by_date if d <= target]
+    baseline_date = max(on_or_before) if on_or_before else min(totals_by_date)
+    return current_completed - totals_by_date[baseline_date]
 
 
 def parse_todo(content: str, config: dict) -> dict:

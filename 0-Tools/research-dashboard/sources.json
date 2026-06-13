@@ -1,32 +1,9 @@
 {
+  "_comment": "Override layer only. Projects are auto-discovered from <root>/*/docs/guides/todolist.md. Entries here may rename / recolor / disable a discovered project (matched by id = lowercased dir name), or add a non-standard path. Discovery supplies paths; do not hardcode them here.",
   "sources": [
-    {
-      "id": "1-spatialagent",
-      "name": "1-SpatialAgent",
-      "path": "D:\\0-AI相关研究\\1-spatialagent\\spatial-agent\\1-SpatialAgent\\docs\\guides\\todolist.md",
-      "accent": "#0071e3",
-      "enabled": true
-    },
-    {
-      "id": "2-game-agent",
-      "name": "2-GAME-AGENT",
-      "path": "D:\\0-AI相关研究\\1-spatialagent\\spatial-agent\\2-GAME-AGENT\\docs\\guides\\todolist.md",
-      "accent": "#34c759",
-      "enabled": false
-    },
-    {
-      "id": "3-smga",
-      "name": "3-SMGA",
-      "path": "D:\\0-AI相关研究\\1-spatialagent\\spatial-agent\\3-SMGA\\docs\\guides\\todolist.md",
-      "accent": "#ff9500",
-      "enabled": true
-    },
-    {
-      "id": "4-spatialagent-survey",
-      "name": "4-SpatialAgent-Survey",
-      "path": "D:\\0-AI相关研究\\1-spatialagent\\spatial-agent\\4-SpatialAgent-Survey\\docs\\guides\\todolist.md",
-      "accent": "#af52de",
-      "enabled": false
-    }
+    { "id": "1-spatialagent", "accent": "#0071e3" },
+    { "id": "3-smga", "accent": "#ff9500" },
+    { "id": "4-spatialagent-survey", "accent": "#af52de" },
+    { "id": "5-chinese-asr-compression", "accent": "#34c759" }
   ]
 }

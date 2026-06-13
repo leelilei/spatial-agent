@@ -162,11 +162,13 @@ function renderSummary() {
     return;
   }
 
+  const delta = Number(totals.weeklyCompletedDelta) || 0;
+  const deltaCaption = delta > 0 ? `本周净完成 +${delta}` : delta < 0 ? `本周净变化 ${delta}` : "本周暂无净完成";
   summary.innerHTML = [
-    metric("项目源", `${totals.readableCount}/${totals.sourceCount}`, "可读取项目"),
-    metric("待办任务", totals.openTasks, "当前任务"),
+    metric("活跃 / 停滞", `${totals.activeCount ?? totals.readableCount} / ${totals.staleCount ?? 0}`, "≤30天有更新 / 超30天"),
+    metric("待办任务", totals.openTasks, deltaCaption),
     metric("P0 / P1", `${totals.p0}/${totals.p1}`, "紧急 / 下一步"),
-    metric("路线图进度", percent(totals.progressFraction), `${totals.progressCompleted}/${totals.progressTotal} 个阶段任务`),
+    metric("总进度", percent(totals.progressFraction), `${totals.progressCompleted}/${totals.progressTotal} 个任务`),
   ].join("");
 }
 
@@ -204,23 +206,28 @@ function renderDonutChart(fraction, color, size = 56, strokeWidth = 6) {
 }
 
 function sourceCard(source) {
-  const model = projectMapModel(source);
   const active = currentView === "project" && source.id === selectedSourceId ? " active" : "";
   const error = source.error ? " error" : "";
-  const mapMode = model.mode === "manifest" ? "Manifest" : "Fallback";
-  const progressText = source.progress.total
-    ? `${source.progress.completed}/${source.progress.total} 阶段`
+  const progress = source.progress || {};
+  const modeLabel = progress.mode === "checkbox" ? "按任务" : progress.mode === "phase" ? "按阶段" : "";
+  const progressText = progress.total
+    ? `${progress.completed}/${progress.total}${modeLabel ? " · " + modeLabel : ""}`
     : "暂无进度";
   const status = source.error
     ? `<span class="status-pill error">异常</span>`
-    : `<span class="status-pill">${escapeHtml(mapMode)}</span>`;
-  const focus = model.currentFocus || source.currentMainline || "暂无当前焦点";
+    : complianceBadge(source.compliance);
+  const focus = source.currentMainline || projectMapModel(source).currentFocus || "暂无当前焦点";
+  const phaseLabel = currentPhaseLabel(source);
+  const nextActions = (source.nextActions || []).slice(0, 2);
+
   const foot = source.error
     ? `<p class="error-text">${escapeHtml(source.error)}</p>`
-    : `<p class="path">${escapeHtml(source.path)}</p>`;
-    
-  const fraction = source.progress.fraction || 0;
-  const donutHtml = source.progress.total > 0
+    : (nextActions.length
+        ? `<div class="card-next"><span class="card-next-label">下一步</span><ul>${nextActions.map((t) => `<li>${escapeHtml(t.title)}</li>`).join("")}</ul></div>`
+        : `<p class="path">${escapeHtml(source.path)}</p>`);
+
+  const fraction = progress.fraction || 0;
+  const donutHtml = progress.total > 0
     ? renderDonutChart(fraction, safeColor(source.accent))
     : `<div style="width:56px;height:56px;border-radius:50%;border:2px dashed var(--line);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:10px;">-</div>`;
 
@@ -231,26 +238,57 @@ function sourceCard(source) {
         <h3>${escapeHtml(source.name)}</h3>
         ${status}
       </div>
-      
+
+      <div class="card-confidence">
+        ${phaseLabel ? `<span class="card-phase">${escapeHtml(phaseLabel)}</span>` : ""}
+        ${stalenessBadge(source.staleness)}
+      </div>
+
       <div class="card-body-row">
         <div class="card-stats-col">
           <div class="card-stats" style="display:flex; gap:12px; margin:0;">
             <div class="stat"><strong>${source.taskCounts.open}</strong><span>待办</span></div>
             <div class="stat"><strong>${source.priorityCounts.P0}</strong><span>P0</span></div>
-            <div class="stat"><strong>${(model.mapNodes || []).length}</strong><span>节点</span></div>
+            <div class="stat"><strong>${source.priorityCounts.P1}</strong><span>P1</span></div>
           </div>
           <p class="mainline" style="margin:4px 0 0 0; line-height:1.4; display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${escapeHtml(focus)}</p>
         </div>
-        
+
         <div class="card-donut">
           ${donutHtml}
           <span style="font-size:10px; color:var(--muted); font-weight:600; white-space:nowrap;">${progressText}</span>
         </div>
       </div>
-      
+
       ${foot}
     </article>
   `;
+}
+
+function currentPhaseLabel(source) {
+  const phases = source.phases || [];
+  const current = phases.find((p) => p.isCurrent) || phases.find((p) => p.status === "current");
+  if (!current) return "";
+  return current.number !== undefined && current.number !== null
+    ? `Phase ${current.number} · ${current.title}`
+    : String(current.title || "");
+}
+
+function stalenessBadge(staleness) {
+  const s = staleness || {};
+  if (s.level === "unknown" || s.days === null || s.days === undefined) {
+    return `<span class="freshness-badge unknown">更新日期未知</span>`;
+  }
+  const text = s.days === 0 ? "今日更新" : `${s.days} 天前更新`;
+  const suffix = s.level === "stale" ? " · 可能停滞" : "";
+  return `<span class="freshness-badge ${escapeAttr(s.level)}">${escapeHtml(text + suffix)}</span>`;
+}
+
+function complianceBadge(compliance) {
+  if (!compliance) return "";
+  const level = compliance.achievedLevel || "—";
+  const title = level === "—" ? "未达 L0" : `规范合规 ${level}`;
+  return `<span class="compliance-badge level-${escapeAttr(String(level))}" title="${escapeAttr(title)}">${escapeHtml(level)}</span>`;
 }
 
 function renderProjectNav(source) {
