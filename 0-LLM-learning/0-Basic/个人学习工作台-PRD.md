@@ -107,12 +107,16 @@
 - **自动判题（P1）**：题目自带测试用例时，运行后显示「通过 X/Y」。
 - **提交**：把答案存到硬盘 `data/submissions/`，供 Claude 读取点评。
 
-### 模块 E：Claude 点评闭环（P0，文件桥接）
+### 模块 E：AI 助教点评闭环（P0，文件桥接，**工具中立**）
 - 用户提交后，答案落盘。
-- 用户到 Claude Code 终端发起点评（如「点评 ps1」）。
-- Claude 读 `submissions/` + 题目，写点评到 `data/reviews/xxx.review.md`。
+- 用户到任意 AI 编码 agent 的终端发起点评（如「点评 ps1」）。
+- **Phase 1 工具中立**：因为是纯文件桥接，**任何能读写本地文件的 agent 都能当老师**
+  —— Claude Code、**Codex CLI**、Gemini CLI 等皆可。工作台对用哪个 AI 无感。
+- agent 读 `submissions/` + 题目，写点评到 `data/reviews/xxx.review.md`。
 - 工作台读取并展示点评（手动刷新或轮询）。
-- 二期（P2）：接 API，做到网页内一键点评 / 对话。
+- **点评协议工具中立**：协议写在 `TUTOR.md`（点评/判题规则：给提示不给答案），
+  再让 `CLAUDE.md`（Claude Code 读）和 `AGENTS.md`（Codex 读）都指向它，行为一致。
+- 二期（P2）：接 API 做网页内一键点评 / 对话；**P2 固定单一 provider，不做抽象层**（见模块 E 边界）。
 
 ### 模块 F：学习日志（P1）
 - 记录每天「学了啥、卡在哪、心得」，存成结构化文件。
@@ -142,8 +146,10 @@
 └─────────────────────────────────────────────┘
 ```
 
-**关键设计**：工作台本身不内置 AI；它只负责把学习「落到硬盘」。
-Claude Code（用户已在用）通过读写这些文件，充当老师。这是 MVP 不接 API 也能闭环的原因。
+**关键设计（AI 工具中立）**：工作台本身不内置 AI；它只负责把学习「落到硬盘」。
+任意能读写本地文件的 AI 编码 agent（Claude Code / **Codex CLI** / Gemini CLI…）
+通过读写这些文件充当老师。这既是 MVP 不接 API 也能闭环的原因，也让 Phase 1 天然兼容多家工具。
+> 边界：**仅 Phase 1（文件桥接）保持工具中立**；Phase 2（网页内接 API 对话）**固定单一 provider，不做抽象层**——避免过度设计。
 
 **技术选型**
 - 服务器：Python 标准库 `http.server` 或轻量 Flask（参考 `0-Tools/research-dashboard/server.py` 的现有风格，保持一致）。
@@ -159,6 +165,9 @@ Claude Code（用户已在用）通过读写这些文件，充当老师。这是
 0-Basic/
 └── workbench/
     ├── server.py                 # 本地服务器
+    ├── TUTOR.md                  # 工具中立的点评/判题协议（核心）
+    ├── CLAUDE.md                 # → 指向 TUTOR.md（Claude Code 读）
+    ├── AGENTS.md                 # → 指向 TUTOR.md（Codex 读）
     ├── static/
     │   ├── index.html
     │   ├── app.js
@@ -171,12 +180,12 @@ Claude Code（用户已在用）通过读写这些文件，充当老师。这是
         │   └── lec02.json
         ├── assignments/          # 题目（两种来源统一格式）
         │   ├── ps1.json          # 6.100L 习题（题面 + 测试）
-        │   └── auto-001.json     # Claude 出的题
-        ├── submissions/          # 用户提交的答案/检查点作答（Claude 读这里）
+        │   └── auto-001.json     # AI 出的题
+        ├── submissions/          # 用户提交的答案/检查点作答（AI agent 读这里）
         │   ├── lec01.checkpoint.json
         │   ├── ps1.py
         │   └── auto-001.py
-        └── reviews/              # Claude 写的点评/确认（工作台显示）
+        └── reviews/              # AI agent 写的点评/确认（工作台显示）
             ├── lec01.review.md
             ├── ps1.review.md
             └── auto-001.review.md
@@ -255,7 +264,8 @@ Claude Code（用户已在用）通过读写这些文件，充当老师。这是
   ②「做题运行 → 提交 → 终端点评 → 看反馈」。
 
 ### Phase 2 — 增强
-- 网页内直接与 Claude 对话 / 一键点评（接 Claude API）。
+- 网页内直接与 AI 对话 / 一键点评（接 API）。**固定单一 provider，不做抽象层**
+  （Phase 1 已靠文件桥接实现多工具兼容，P2 无需再抽象）。
 - 学习日志模块 F 完整化、数据可视化（学习时长、连续天数等）。
 - Claude 根据薄弱点**自动出题**并推送到工作台。
 
@@ -287,7 +297,27 @@ Claude Code（用户已在用）通过读写这些文件，充当老师。这是
 
 ---
 
-## 11. 待确认 / 开放问题
+## 11. Obsidian 轻量联动（设计约定，非独立模块）
+
+**定位**：只做「轻量联动」——不自建知识图谱引擎。整个 `0-Basic/` 文件夹本身
+就能当一个 Obsidian 仓库直接打开，白嫖 Obsidian 的图谱视图与反向链接。
+**工作台是「做」的地方，Obsidian 是「连/回看」的地方，两者共享同一批文件。**
+
+**实现成本几乎为零**，靠几条约定即可（不需要专门写功能）：
+- **凡是给人看的产出，一律写成 markdown**（笔记、Claude 点评、检查点小结、学习日志），
+  而非只存 JSON。机器读的状态（progress 等）仍用 JSON。
+- **概念之间用 `[[双链]]`**：可建一个 `concepts/` 目录，每个概念一个小笔记
+  （如 `[[变量]]`、`[[函数]]`、`[[递归]]`），课程笔记 / 点评里引用它们。
+  Obsidian 会据此自动画出「你的知识关系图」。
+- 与 Claude 记忆同源：`[[name]]` 链接范式和 Claude 的记忆系统一致，写法统一。
+
+**不做的（划清边界，避免膨胀）**
+- ❌ 概念「亮灯」/ 前置解锁 / 掌握度图谱 → 那是重活，留作 **Phase 3** 再议。
+- ❌ 不引入 Obsidian 插件依赖；纯 markdown + 双链，换任何 markdown 工具都能用。
+
+---
+
+## 12. 待确认 / 开放问题
 
 - [ ] 启动方式：纯命令，还是额外做个双击启动脚本？
 - [ ] 是否需要「启动脚本」一并把浏览器自动打开？
