@@ -1,5 +1,8 @@
 # SMGA Proposal v4.6
 
+> 版本：v4.6 ｜ 更新：2026-06-14 ｜ 状态：active
+> 历史版本见 docs/plans/archive/。
+
 ## Structured Memory for Generative Agents
 
 > Working title: **Structured Memory for Generative Agents: Evidence-Grounded Social Context for Long-Horizon Planning**
