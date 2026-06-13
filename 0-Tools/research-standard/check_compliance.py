@@ -40,7 +40,7 @@ LEVELS: list[tuple[str, str, list[tuple[str, bool]]]] = [
     ]),
     ("L1", "Tracked", [
         ("docs/guides/roadmap.yaml", False),
-        ("docs/plans/proposal.md", False),
+        ("docs/plans/proposal.md|docs/plans/survey_plan.md", False),
     ]),
     ("L2", "Mapped", [
         ("docs/guides/project_map.yaml", False),
@@ -54,8 +54,13 @@ LEVELS: list[tuple[str, str, list[tuple[str, bool]]]] = [
 
 
 def requirement_met(project_dir: Path, rel_path: str, is_dir: bool) -> bool:
-    target = project_dir / rel_path
-    return target.is_dir() if is_dir else target.is_file()
+    # rel_path may list alternatives separated by "|" (any one satisfies it),
+    # e.g. empirical projects use proposal.md, surveys use survey_plan.md.
+    for candidate in rel_path.split("|"):
+        target = project_dir / candidate
+        if (target.is_dir() if is_dir else target.is_file()):
+            return True
+    return False
 
 
 def check_project(project_dir: Path) -> dict:

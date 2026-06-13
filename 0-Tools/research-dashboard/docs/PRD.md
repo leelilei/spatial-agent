@@ -348,7 +348,7 @@ paper:             # 「论文准备度」：各 section 的状态、依赖资�
 - **数量口径变化**：原 PRD 假设 6 个项目；现仪表盘实际为 3 个论文项目
   （1-SpatialAgent、3-SMGA、4-SpatialAgent-Survey），因 5-ASR 已删除、2 与 0-LLM 学习类排除。
 - **数据契约**：§4 仍准确；roadmap.yaml 的 track 取值现统一为标准 4-track（见 standard）。
-- **两层流图覆盖不全**：标准 4-track 两层流图目前只有 3-SMGA 完整生效（仅它有
-  `roadmap.yaml`）；1-SpatialAgent 与 4-SpatialAgent-Survey 无 roadmap.yaml，流图回退为
-  单一 track。需给这两个项目补 `roadmap.yaml`（按标准 4-track）才能享受完整两层视图。
+- ~~两层流图覆盖不全~~（已解决）：三个论文项目现在都有 `roadmap.yaml`，均显示完整两层
+  流图。1-SpatialAgent、3-SMGA 为 4-track；4-SpatialAgent-Survey 为 3-track（综述无"构建"）。
+  1 与 4 已升至 **L1**（check_compliance L1 现接受综述的 `survey_plan.md` 代替 proposal.md）。
 - **遗留细节**：`history.jsonl` 为运行时数据却被 git 跟踪，每次访问都改动，考虑 `.gitignore`。
