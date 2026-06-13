@@ -1,0 +1,76 @@
+version: 1
+project: 1-SpatialAgent
+currentPhase: 1
+
+# 标准 4-track 骨架（见 0-Tools/research-standard）。track 归属可按需微调。
+tracks:
+  - id: design
+    name: 设计
+    accent: "#0071e3"
+    order: 1
+  - id: build
+    name: 构建
+    accent: "#ff9500"
+    order: 2
+  - id: experiment
+    name: 实验
+    accent: "#34c759"
+    order: 3
+  - id: write
+    name: 写作
+    accent: "#af52de"
+    order: 4
+
+phases:
+  - number: 0
+    title: 研究框架与版本治理
+    track: design
+    status: done
+    summary: 完成 v14-A 概念重构（环境结构 vs space syntax 认知），确定 AAAI/AAMAS 方向并收敛计划版本。
+    outputs:
+      - proposal.md（原 v14-A）
+      - docs/plans/archive 历史版本
+
+  - number: 1
+    title: 预实验与模型门控
+    track: experiment
+    status: current
+    summary: 跑 preflight 确认模型可用并固定 prompt 位置，再把任务对齐到 v14-A 重构后的 framing。
+    outputs:
+      - gpt-5.4 20 轮核心门控结果
+      - 默认 prompt 位置 system_prefix
+
+  - number: 2
+    title: 受控环境与对照条件构建
+    track: build
+    status: planned
+    summary: 构建 matched graph 环境与研究者侧空间指标，实现信息量/shuffled mapping/共现暴露三类对照。
+    outputs:
+      - matched graph 环境
+      - 三类对照条件
+
+  - number: 3
+    title: 对话网络与机制识别
+    track: experiment
+    status: planned
+    summary: 规则化事件抽取与对话网络构建，QAP/run-level dyadic 分析与 null models。
+    outputs:
+      - 对话网络构建管线
+      - QAP / null model 分析
+
+  - number: 4
+    title: Stage 1 pilot 与主实验
+    track: experiment
+    status: planned
+    summary: 小规模 pilot 判定主实验是否值得扩展，再跑出主实验对话网络结果与对照对比。
+    outputs:
+      - pilot 结果
+      - 主实验结果表
+
+  - number: 5
+    title: 分析与论文写作
+    track: write
+    status: planned
+    summary: 主结果与机制识别分析，撰写面向 AAAI/AAMAS 的论文 draft。
+    outputs:
+      - 论文 draft
