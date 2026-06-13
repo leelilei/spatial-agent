@@ -74,6 +74,51 @@ backButton.addEventListener("click", () => {
   render();
 });
 
+const homeNav = document.querySelector("#home-nav");
+if (homeNav) {
+  homeNav.addEventListener("click", () => {
+    currentView = "home";
+    selectedSourceId = null;
+    selectedMapNodeId = null;
+    window.history.replaceState(window.history.state, "", window.location.pathname);
+    render();
+  });
+}
+
+function renderSidebar() {
+  const switcher = document.querySelector("#project-switcher");
+  if (switcher) {
+    switcher.innerHTML = (dashboardState?.sources || []).map(sidebarRow).join("");
+    switcher.querySelectorAll("[data-source-id]").forEach((row) => {
+      row.addEventListener("click", () => {
+        selectedSourceId = row.dataset.sourceId;
+        selectedMapNodeId = null;
+        currentView = "project";
+        activeDetailPage = "overview";
+        replaceDetailHash("overview");
+        render();
+        window.requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "smooth" }));
+      });
+    });
+  }
+  if (homeNav) homeNav.classList.toggle("active", currentView !== "project");
+}
+
+function sidebarRow(source) {
+  const active = currentView === "project" && source.id === selectedSourceId ? " active" : "";
+  const pct = source.progress && source.progress.total ? percent(source.progress.fraction) : "—";
+  const level = (source.compliance || {}).achievedLevel || "";
+  const meta = [pct, level].filter(Boolean).join(" · ");
+  const dotColor = source.error ? "var(--muted)" : safeColor(source.accent);
+  return `
+    <button type="button" class="nav-row project${active}" data-source-id="${escapeAttr(source.id)}">
+      <span class="nav-row-dot" style="background:${dotColor}"></span>
+      <span class="nav-row-name">${escapeHtml(source.name)}</span>
+      <span class="nav-row-meta">${escapeHtml(meta)}</span>
+    </button>
+  `;
+}
+
 window.addEventListener("popstate", handleDetailLocationChange);
 window.addEventListener("hashchange", handleDetailLocationChange);
 
@@ -116,6 +161,7 @@ async function loadState() {
 function render() {
   const selected = selectedSource();
   renderLastUpdated();
+  renderSidebar();
   renderSummary();
   renderSources();
 

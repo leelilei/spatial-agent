@@ -2228,3 +2228,66 @@ button:focus-visible {
   padding: 3px 9px;
   white-space: nowrap;
 }
+
+/* ================= V2 layout: sidebar app-shell (overrides earlier rules) ================= */
+.app-shell {
+  display: flex;
+  align-items: stretch;
+  min-height: 100vh;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+.sidebar {
+  flex: 0 0 260px;
+  width: 260px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px 14px;
+  background: var(--surface);
+  border-right: 1px solid var(--line);
+  overflow-y: auto;
+}
+.sidebar-brand { padding: 4px 10px 14px; }
+.sidebar-title { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 2px 0 0; }
+.sidebar-nav { display: flex; flex-direction: column; gap: 2px; }
+.sidebar-label {
+  color: var(--faint);
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  margin: 16px 10px 6px; text-transform: uppercase;
+}
+.nav-row {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; text-align: left;
+  background: none; border: 1px solid transparent; border-radius: var(--radius-sm);
+  color: var(--ink-2); font-weight: 600; font-size: 14px; padding: 8px 10px;
+}
+.nav-row:hover { background: var(--surface-2); border-color: transparent; }
+.nav-row.active { background: var(--accent-weak); color: var(--blue); }
+.nav-row-dot { flex: 0 0 auto; width: 9px; height: 9px; border-radius: 999px; background: var(--blue); }
+.nav-row-dot.home { background: var(--faint); }
+.nav-row-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nav-row-meta { color: var(--faint); font-size: 11px; font-weight: 700; white-space: nowrap; }
+.nav-row.active .nav-row-meta { color: var(--blue); }
+.sidebar-foot { margin-top: auto; padding: 12px 10px 4px; display: flex; flex-direction: column; gap: 8px; }
+.sidebar-foot #last-updated { font-size: 11px; color: var(--faint); }
+.sidebar-foot #refresh-button { width: 100%; }
+
+.main { flex: 1; min-width: 0; padding: 30px 40px; max-width: 1280px; }
+
+/* tighter, responsive grids now that main is narrower */
+.summary-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+.source-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+
+@media (max-width: 860px) {
+  .app-shell { flex-direction: column; }
+  .sidebar {
+    flex: none; width: auto; height: auto; position: static;
+    border-right: none; border-bottom: 1px solid var(--line);
+  }
+  .main { padding: 22px 18px; }
+}

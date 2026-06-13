@@ -8,18 +8,26 @@
   </head>
   <body>
     <div class="app-shell">
-      <header class="topbar">
-        <div>
-          <p class="eyebrow">Local Research Workspace</p>
-          <h1>Research Project Map</h1>
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <p class="eyebrow">Research</p>
+          <h1 class="sidebar-title">Cockpit</h1>
         </div>
-        <div class="topbar-actions">
-          <p id="last-updated" class="muted">加载中...</p>
+        <nav class="sidebar-nav" aria-label="项目导航">
+          <button id="home-nav" class="nav-row" type="button">
+            <span class="nav-row-dot home"></span>
+            <span class="nav-row-name">工作区总览</span>
+          </button>
+          <p class="sidebar-label">项目</p>
+          <div id="project-switcher"></div>
+        </nav>
+        <div class="sidebar-foot">
           <button id="refresh-button" type="button">刷新</button>
+          <p id="last-updated" class="muted">加载中...</p>
         </div>
-      </header>
+      </aside>
 
-      <main>
+      <main class="main">
         <section id="home-view">
           <div class="section-title">
             <p class="eyebrow">All Projects</p>
