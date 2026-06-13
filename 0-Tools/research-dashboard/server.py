@@ -234,6 +234,7 @@ def parse_source(config: dict) -> dict:
         "progress": {"completed": 0, "open": 0, "total": 0, "fraction": 0, "mode": "none"},
         "staleness": {"days": None, "level": "unknown"},
         "compliance": None,
+        "decisions": {"present": False, "entries": []},
         "roadmap": {"mode": "none", "tracks": [], "phases": [], "error": None},
         "projectMap": {
             "mode": "none",
@@ -263,24 +264,44 @@ def parse_source(config: dict) -> dict:
         return base
 
     parsed = parse_todo(content, config)
-    roadmap = load_roadmap(path.with_name("roadmap.yaml"), parsed["phases"], parsed["currentPhaseNumber"], config)
+
+    # V2: a single project.yaml (if present) supplies both roadmap and project map.
+    # Otherwise fall back to the V1 pair roadmap.yaml + project_map.yaml.
+    project_payload = load_project_yaml(path.with_name("project.yaml"))
+
+    if project_payload is not None:
+        roadmap = roadmap_from_project_yaml(
+            project_payload, path.with_name("project.yaml"), parsed["phases"], parsed["currentPhaseNumber"], config
+        )
+    else:
+        roadmap = load_roadmap(path.with_name("roadmap.yaml"), parsed["phases"], parsed["currentPhaseNumber"], config)
+
     parsed["roadmap"] = roadmap
     parsed["phases"] = roadmap["phases"]
     parsed["nextActions"] = next_actions(parsed["tasks"], parsed["phases"])
     parsed["progress"] = progress_with_fallback(parsed["phases"], parsed["taskCounts"])
     parsed["staleness"] = staleness_info(parsed["updateDate"])
     parsed["compliance"] = compliance_info(path)
-    parsed["projectMap"] = load_project_map(
-        path.with_name("project_map.yaml"),
-        path,
-        config,
-        roadmap,
-        parsed["phases"],
-        parsed["tasks"],
-        parsed["nextActions"],
-        parsed["progress"],
-        parsed["currentMainline"],
-    )
+    parsed["decisions"] = decisions_info(path)
+
+    if project_payload is not None:
+        parsed["projectMap"] = projectmap_from_project_yaml(
+            project_payload, path.with_name("project.yaml"), path, config,
+            parsed["phases"], parsed["tasks"], parsed["nextActions"],
+            parsed["progress"], parsed["currentMainline"],
+        )
+    else:
+        parsed["projectMap"] = load_project_map(
+            path.with_name("project_map.yaml"),
+            path,
+            config,
+            roadmap,
+            parsed["phases"],
+            parsed["tasks"],
+            parsed["nextActions"],
+            parsed["progress"],
+            parsed["currentMainline"],
+        )
     parsed.update({"readable": True, "error": None})
     return {**base, **parsed}
 
@@ -364,6 +385,32 @@ def weekly_completed_delta(current_completed: int) -> int:
     on_or_before = [d for d in totals_by_date if d <= target]
     baseline_date = max(on_or_before) if on_or_before else min(totals_by_date)
     return current_completed - totals_by_date[baseline_date]
+
+
+def decisions_info(todo_path: Path) -> dict:
+    """Read docs/project/decisions.md (if present) into ## heading entries."""
+    path = infer_project_root(todo_path) / "docs/project/decisions.md"
+    if not path.exists():
+        return {"present": False, "entries": []}
+    try:
+        content = path.read_text(encoding="utf-8")
+    except Exception:  # noqa: BLE001 - decisions view is optional
+        return {"present": False, "entries": []}
+    entries: list[dict] = []
+    current: dict | None = None
+    for line in content.splitlines():
+        heading = re.match(r"^##\s+(.+?)\s*$", line)
+        if heading:
+            if current:
+                entries.append(current)
+            current = {"title": clean_markdown(heading.group(1)), "body": []}
+        elif current is not None and line.strip():
+            current["body"].append(line.rstrip())
+    if current:
+        entries.append(current)
+    for entry in entries:
+        entry["body"] = "\n".join(entry["body"]).strip()
+    return {"present": True, "entries": entries}
 
 
 def parse_todo(content: str, config: dict) -> dict:
@@ -473,6 +520,130 @@ def parse_todo(content: str, config: dict) -> dict:
         "nextActions": next_actions(chosen_tasks, phases),
         "progress": progress_summary(phases),
     }
+
+
+# Standard 4-track skeleton (mirrors research-standard). Used when a project.yaml
+# declares phases by track but does not redefine the tracks themselves.
+STANDARD_TRACKS = [
+    {"id": "design", "name": "设计", "accent": "#0071e3", "order": 1},
+    {"id": "build", "name": "构建", "accent": "#ff9500", "order": 2},
+    {"id": "experiment", "name": "实验", "accent": "#34c759", "order": 3},
+    {"id": "write", "name": "写作", "accent": "#af52de", "order": 4},
+]
+
+
+def project_phase_number(phase: dict) -> int | None:
+    return optional_int(phase.get("n", phase.get("number")))
+
+
+def lane_from_status(status: str) -> str:
+    status = str(status or "").lower()
+    if status == "done":
+        return "done"
+    if status == "current":
+        return "now"
+    if status == "blocked":
+        return "next"
+    return "next"
+
+
+def load_project_yaml(project_yaml_path: Path) -> dict | None:
+    """Return the parsed project.yaml mapping, or None to fall back to V1 files."""
+    if not project_yaml_path.exists() or yaml is None:
+        return None
+    try:
+        payload = yaml.safe_load(project_yaml_path.read_text(encoding="utf-8")) or {}
+    except Exception:  # noqa: BLE001 - bad project.yaml falls back to V1 pair
+        return None
+    return payload if isinstance(payload, dict) else None
+
+
+def roadmap_from_project_yaml(
+    payload: dict, path: Path, md_phases: list[dict], current_phase_number: int | None, config: dict
+) -> dict:
+    phases_in = payload.get("phases", []) or []
+    current = payload.get("currentPhase")
+    if current is None:
+        current_phase = next((p for p in phases_in if str(p.get("status")) == "current"), None)
+        current = project_phase_number(current_phase) if current_phase else current_phase_number
+    used = {str(p.get("track", "")) for p in phases_in}
+    tracks = [dict(t) for t in STANDARD_TRACKS if t["id"] in used] or [dict(t) for t in STANDARD_TRACKS]
+    roadmap_payload = {
+        "version": payload.get("version", 2),
+        "project": payload.get("project") or config["name"],
+        "currentPhase": current,
+        "tracks": tracks,
+        "phases": [
+            {
+                "number": project_phase_number(p),
+                "title": p.get("title"),
+                "track": p.get("track", "untracked"),
+                "status": p.get("status"),
+                "summary": p.get("summary", ""),
+                "outputs": p.get("outputs", []) or [],
+            }
+            for p in phases_in
+        ],
+    }
+    return structured_roadmap(roadmap_payload, path, md_phases, current, config)
+
+
+def projectmap_from_project_yaml(
+    payload: dict,
+    path: Path,
+    todo_path: Path,
+    config: dict,
+    phases: list[dict],
+    tasks: list[dict],
+    next_actions_list: list[dict],
+    progress: dict,
+    current_mainline: str,
+) -> dict:
+    phases_in = payload.get("phases", []) or []
+    map_nodes = []
+    milestones = []
+    for p in phases_in:
+        number = project_phase_number(p)
+        status = str(p.get("status", "planned"))
+        title = f"Phase {number}: {p.get('title')}" if number is not None else str(p.get("title") or "")
+        map_nodes.append(
+            {
+                "id": f"{config['id']}-phase-{number}",
+                "title": title,
+                "lane": lane_from_status(status),
+                "status": status,
+                "phase": number,
+                "summary": p.get("summary", ""),
+                "dependsOn": p.get("dependsOn", []) or [],
+                "outputs": p.get("outputs", []) or [],
+                "nextActions": p.get("next", []) or [],
+            }
+        )
+        if status == "done" and p.get("date"):
+            milestones.append(
+                {
+                    "id": f"{config['id']}-phase-{number}",
+                    "title": p.get("title"),
+                    "status": "done",
+                    "phase": number,
+                    "date": p.get("date", ""),
+                    "summary": p.get("summary", ""),
+                    "outputs": p.get("outputs", []) or [],
+                }
+            )
+    pm_payload = {
+        "version": payload.get("version", 2),
+        "project": payload.get("project") or config["name"],
+        "title": payload.get("title") or config["name"],
+        "currentFocus": payload.get("currentFocus") or current_mainline or "",
+        "researchQuestion": payload.get("researchQuestion", ""),
+        "mapNodes": map_nodes,
+        "milestones": milestones,
+        "paper": payload.get("paper", {}) or {},
+    }
+    return normalize_project_map(
+        pm_payload, path, infer_project_root(todo_path), config, phases, tasks, next_actions_list, progress, current_mainline
+    )
 
 
 def load_roadmap(roadmap_path: Path, md_phases: list[dict], current_phase_number: int | None, config: dict) -> dict:

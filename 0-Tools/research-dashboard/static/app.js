@@ -26,7 +26,21 @@ const PROJECT_NAV_ITEMS = [
   { key: "map", label: "路线图", hash: "project-map" },
   { key: "history", label: "进展", hash: "history" },
   { key: "paper", label: "论文", hash: "paper-readiness" },
+  { key: "decisions", label: "决策", hash: "decisions" },
+  { key: "artifacts", label: "产出", hash: "artifacts" },
 ];
+
+// 决策/产出仅在有内容时出现，避免空 tab。
+function availableNavItems(source) {
+  const model = projectMapModel(source);
+  const hasDecisions = !!(source.decisions && source.decisions.present && (source.decisions.entries || []).length);
+  const hasArtifacts = collectArtifacts(model).length > 0;
+  return PROJECT_NAV_ITEMS.filter((item) => {
+    if (item.key === "decisions") return hasDecisions;
+    if (item.key === "artifacts") return hasArtifacts;
+    return true;
+  });
+}
 
 activeDetailPage = detailPageFromHash();
 
@@ -127,6 +141,11 @@ function render() {
 function renderProject(source) {
   const model = projectMapModel(source);
   activeDetailPage = normalizeDetailPage(activeDetailPage);
+  // 若当前页在本项目不可用（如无决策/产出），回退到概览。
+  if (!availableNavItems(source).some((item) => item.key === activeDetailPage)) {
+    activeDetailPage = "overview";
+  }
+  projectView.dataset.activePage = activeDetailPage;
   if (selectedMapNodeId && !findMapNode(model, selectedMapNodeId)) {
     selectedMapNodeId = null;
   }
@@ -145,6 +164,8 @@ function renderProject(source) {
   renderMapNodeDetail(source, model);
   renderHistory(source, model);
   renderPaperReadiness(model);
+  renderDecisions(source);
+  renderArtifacts(source, model);
 }
 
 function renderLastUpdated() {
@@ -297,7 +318,7 @@ function renderProjectNav(source) {
     return;
   }
 
-  projectNav.innerHTML = PROJECT_NAV_ITEMS.map((item) => projectNavLink(item)).join("");
+  projectNav.innerHTML = availableNavItems(source).map((item) => projectNavLink(item)).join("");
   projectNav.querySelectorAll("[data-nav-key]").forEach((link) => {
     link.addEventListener("click", (event) => {
       event.preventDefault();
@@ -417,6 +438,90 @@ function nextComplianceGap(compliance) {
   if (!next || !next.missing || !next.missing.length) return null;
   const missing = next.missing.map((m) => (m.includes("|") ? m.split("|").join(" 或 ") : m));
   return { code: next.code, missing };
+}
+
+function normalizeRef(item) {
+  if (item && typeof item === "object") {
+    return {
+      label: item.label || item.path || "Asset",
+      path: item.path || "",
+      type: item.type || (item.path ? "file" : "output"),
+      status: item.status || "",
+      exists: !!item.exists,
+    };
+  }
+  return { label: String(item), path: "", type: "output", status: "", exists: false };
+}
+
+function collectArtifacts(model) {
+  const buckets = [
+    ...(model.mapNodes || []).flatMap((n) => n.outputs || []),
+    ...(model.milestones || []).flatMap((m) => m.outputs || []),
+    ...((model.paper && model.paper.sections) || []).flatMap((s) => s.assets || []),
+  ];
+  const seen = new Set();
+  const out = [];
+  buckets.forEach((raw) => {
+    const ref = normalizeRef(raw);
+    const key = (ref.path || ref.label).toLowerCase();
+    if (!key || seen.has(key)) return;
+    seen.add(key);
+    out.push(ref);
+  });
+  return out;
+}
+
+function renderDecisions(source) {
+  const el = document.querySelector("#project-decisions");
+  if (!el) return;
+  const entries = (source.decisions && source.decisions.entries) || [];
+  if (!entries.length) {
+    el.innerHTML = emptyState("还没有 docs/project/decisions.md，或其中没有 ## 决策条目。");
+    return;
+  }
+  el.innerHTML = `
+    <div class="decisions-list">
+      ${entries.map((e) => `
+        <article class="decision-item">
+          <div class="decision-dot"></div>
+          <div>
+            <h3>${escapeHtml(e.title)}</h3>
+            ${e.body ? `<p>${escapeHtml(e.body)}</p>` : ""}
+          </div>
+        </article>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderArtifacts(source, model) {
+  const el = document.querySelector("#project-artifacts");
+  if (!el) return;
+  const artifacts = collectArtifacts(model);
+  if (!artifacts.length) {
+    el.innerHTML = emptyState("暂无登记的产出物（在 project_map / roadmap 的 outputs 里声明）。");
+    return;
+  }
+  const present = artifacts.filter((a) => a.exists);
+  const missing = artifacts.filter((a) => !a.exists);
+  el.innerHTML = `
+    <div class="artifacts-summary">
+      <span><strong>${present.length}</strong> 已存在</span>
+      <span><strong>${missing.length}</strong> 待产出 / 缺失</span>
+    </div>
+    <ul class="artifacts-list">
+      ${artifacts.map((a) => `
+        <li class="artifact-item ${a.exists ? "exists" : "absent"}">
+          <span class="artifact-mark">${a.exists ? "✓" : "○"}</span>
+          <div>
+            <span class="artifact-label">${escapeHtml(a.label)}</span>
+            ${a.path ? `<code class="artifact-path">${escapeHtml(a.path)}</code>` : ""}
+          </div>
+          ${a.type ? `<span class="artifact-type">${escapeHtml(a.type)}</span>` : ""}
+        </li>
+      `).join("")}
+    </ul>
+  `;
 }
 
 function renderProjectMap(source, model) {

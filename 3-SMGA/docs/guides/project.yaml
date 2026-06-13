@@ -1,0 +1,207 @@
+version: 2
+project: 3-SMGA
+type: empirical
+title: Social Memory Graph Architecture
+researchQuestion: How can socially actionable memory improve grounded planning and
+  behavior in LLM social agents?
+currentFocus: Phase 3 - First baseline runs
+phases:
+- n: 0
+  title: 项目卫生与版本管理
+  track: design
+  status: done
+  summary: 让 SMGA 工作区保持清楚、可恢复，并能按关键里程碑稳定提交。
+  date: 2026-06-11
+  outputs:
+  - 独立的 SMGA 项目结构
+  - 可追踪的 todo 与进度地图
+  - 关键里程碑的 git checkpoint
+- n: 1
+  title: 研究计划与结构冻结
+  track: design
+  status: done
+  summary: 将 proposal、memory structure、scenario package 固定到足够支持工程实现的程度。
+  date: 2026-06-11
+  outputs:
+  - SMGA Proposal v4.6
+  - Memory Schema v0.1
+  - Scenario Package Schema v0.1
+- n: 2
+  title: Experiment 0 基础设施
+  track: build
+  status: done
+  summary: 把手写 seed_0001 变成稳定的 validate-load-score benchmark 闭环。
+  date: 2026-06-11
+  outputs:
+  - seed_0001 校验器
+  - probe success scorer
+  - benchmark_loader.py
+  - normalized probe response schema
+- n: 3
+  title: 第一轮 baseline 运行
+  track: experiment
+  status: current
+  summary: 先在 seed_0001 上跑非 SMGA baseline，拿到真实模型输出与失败案例。
+  outputs:
+  - M0_GA harness
+  - M0_prompted harness
+  - model-calling runner
+  - condition-blind response normalizer
+  - baseline model config template
+  - baseline probe responses
+  - scorer 可读的 baseline JSON
+  next:
+  - Freeze provider, model version, temperature, and decoding settings.
+  - Generate M0_GA raw model outputs for seed_0001.
+  - Generate M0_prompted raw model outputs for seed_0001.
+  - Score both baselines and record failure cases.
+- n: 4
+  title: SMGA treatment 与 ablations
+  track: experiment
+  status: planned
+  summary: 将 actionable memory、placebo memory、memory-only ablations 接入同一 benchmark
+    管线。
+  outputs:
+  - memory artifact format
+  - M3_actionable response path
+  - M3_placebo construction
+  - M2_memory_only serialization
+  next:
+  - Define the memory artifact output format.
+  - Implement minimal M3_actionable memory formation.
+  - Implement M3_placebo stale memory construction.
+- n: 5
+  title: Stage 1 pilot
+  track: experiment
+  status: planned
+  summary: 用小规模 seed set 判断主实验是否值得扩展。
+  outputs:
+  - 5-seed pilot
+  - placebo leakage check
+  - claim extractor pilot
+  - Gate 1 decision
+  next:
+  - Expand to five diagnostic seeds.
+  - Validate placebo leakage.
+  - Decide Stage 2 seed budget.
+- n: 6
+  title: Stage 2 主实验
+  track: experiment
+  status: planned
+  summary: 跑出论文核心条件下的主结果表。
+  outputs:
+  - main condition runs
+  - paired seed-level results
+  - Holm correction 与 SESOI 判断
+  - 可进入论文的结果表
+  next:
+  - Generate full benchmark suite.
+  - Execute batch model runners.
+- n: 7
+  title: Stage 2b 次级控制实验
+  track: experiment
+  status: planned
+  summary: 补 reviewer 可能关心的 compute-matched 与 graph-style memory 控制条件。
+  outputs:
+  - M0_plus control
+  - GraphMemory_social_schema control
+  - secondary comparison CI
+  - 最终 claim 边界判断
+  next:
+  - Execute control conditions.
+- n: 8
+  title: 分析、写作与发布
+  track: write
+  status: planned
+  summary: 将验证过的实验结果转成论文 draft 与可复现 release package。
+  outputs:
+  - paper skeleton 与 method sections
+  - results 与 failure analysis
+  - appendix assets
+  - reproducible release package
+  next:
+  - Draft Introduction and Method once baseline design is fixed.
+  - Keep Results and Discussion blocked until scorer outputs exist.
+paper:
+  sections:
+  - id: introduction
+    title: Introduction
+    status: planned
+    summary: Motivate SMGA as a diagnostic architecture for socially grounded memory
+      and planning.
+    assets:
+    - path: docs/plans/proposal.md
+      type: source
+      status: ready
+    blockers:
+    - Baseline result framing is not available yet.
+    nextActions:
+    - Turn proposal motivation into a short paper introduction.
+  - id: related-work
+    title: Related Work
+    status: planned
+    summary: Connect LLM social agents, memory architectures, and evaluation of grounded
+      planning.
+    assets:
+    - path: docs/project/reference_sources.md
+      type: source
+      status: ready
+    blockers:
+    - Need final claim boundary after first baseline run.
+    nextActions:
+    - Convert reference notes into a compact related-work outline.
+  - id: method
+    title: Method
+    status: draft
+    summary: Describe scenario package, memory schema, response normalization, and
+      probe success scoring.
+    assets:
+    - path: docs/project/smga_memory_schema_v0.1.md
+      type: schema
+      status: ready
+    - path: docs/project/smga_scenario_package_schema_v0.1.md
+      type: schema
+      status: ready
+    - path: docs/project/normalized_probe_response_schema_v0.1.md
+      type: schema
+      status: ready
+    blockers:
+    - Memory artifact format for M3 is not frozen.
+    nextActions:
+    - Draft the diagnostic benchmark construction and scoring subsections.
+  - id: experiments
+    title: Experiments
+    status: blocked
+    summary: Experimental conditions are conceptually clear but need real baseline
+      and treatment outputs.
+    assets:
+    - path: benchmarks/diagnostic_v0
+      type: benchmark
+      status: ready
+    blockers:
+    - M0_GA and M0_prompted baseline responses are not generated.
+    - M3_actionable treatment is not implemented.
+    nextActions:
+    - Freeze model config.
+    - Run baseline responses for seed_0001.
+  - id: results
+    title: Results
+    status: missing
+    summary: Results are intentionally empty until scorer-readable outputs exist.
+    assets: []
+    blockers:
+    - Baseline and treatment scores are missing.
+    nextActions:
+    - Populate after probe_success_scorer.py has scored baseline and SMGA outputs.
+  - id: discussion
+    title: Discussion and limitations
+    status: planned
+    summary: Interpret grounded memory benefits, failure cases, and downgrade rules.
+    assets:
+    - path: docs/plans/proposal.md
+      type: source
+      status: ready
+    blockers:
+    - Needs observed failures and ablation results.
+    nextActions:
+    - Record failure cases during baseline scoring.

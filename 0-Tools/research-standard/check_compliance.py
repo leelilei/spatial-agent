@@ -39,11 +39,11 @@ LEVELS: list[tuple[str, str, list[tuple[str, bool]]]] = [
         ("docs/guides/todolist.md", False),
     ]),
     ("L1", "Tracked", [
-        ("docs/guides/roadmap.yaml", False),
+        ("docs/guides/roadmap.yaml|docs/guides/project.yaml", False),
         ("docs/plans/proposal.md|docs/plans/survey_plan.md", False),
     ]),
     ("L2", "Mapped", [
-        ("docs/guides/project_map.yaml", False),
+        ("docs/guides/project_map.yaml|docs/guides/project.yaml", False),
         ("docs/project/reference_sources.md", False),
     ]),
     ("L3", "Paper-ready", [
@@ -134,11 +134,33 @@ def print_human(reports: list[dict]) -> None:
                   f"{', '.join(report['strayProposalVersions'])}")
 
 
+def doctor_line(report: dict) -> str:
+    """One-line 'what to do next' for a project."""
+    level = report["achievedLevel"]
+    nxt = next((lv for lv in report["levels"] if not lv["complete"]), None)
+    name = report["name"]
+    if nxt is None:
+        return f"{name}: ✓ 已达 L3，结构完整。"
+    missing = "、".join(m.split("|")[0] + ("…" if "|" in m else "") for m in nxt["missing"])
+    here = level or "未达 L0"
+    extra = ""
+    if report.get("strayProposalVersions"):
+        extra = f"（另有散落 proposal 版本，建议移入 archive/）"
+    return f"{name}: 现 {here} → 补 {missing} 即达 {nxt['code']}{extra}"
+
+
+def print_doctor(reports: list[dict]) -> None:
+    print("规范健康度 — 下一步建议：\n")
+    for report in reports:
+        print("  " + doctor_line(report))
+
+
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Check research projects against the standard.")
     parser.add_argument("paths", nargs="*", help="Project directories to check (default: discover all).")
     parser.add_argument("--root", default=str(DEFAULT_RESEARCH_ROOT), help="Research root for discovery.")
     parser.add_argument("--json", action="store_true", help="Emit JSON instead of human-readable output.")
+    parser.add_argument("--doctor", action="store_true", help="Print a one-line next-step per project.")
     return parser.parse_args(argv)
 
 
@@ -153,6 +175,8 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.json:
         print(json.dumps(reports, ensure_ascii=False, indent=2))
+    elif args.doctor:
+        print_doctor(reports)
     else:
         print_human(reports)
     return 0

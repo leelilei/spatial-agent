@@ -139,6 +139,11 @@
   schema 见 PRD §4.3。
 - 无此文件时四面板从 roadmap + todolist 派生（功能较弱）。
 
+> **V2 统一文件（推荐）**：`docs/guides/project.yaml` 可一文件替代 `roadmap.yaml` +
+> `project_map.yaml`（消除 phases 与 mapNodes 的重复），schema 见 `0-Tools/docs/PRD-v2.0.md` §5.2。
+> 仪表盘与合规检查都优先读 `project.yaml`，并接受它满足 L1/L2 的 roadmap/map 要求。
+> 用 `python3 0-Tools/research-standard/migrate.py <项目目录>` 从 V1 双文件迁移。
+
 ### 2.6 `docs/project/reference_sources.md` — 文献索引 〔L2 推荐〕
 
 - **用途**：项目引用的核心文献清单 + 一句话定位，避免重复找。
