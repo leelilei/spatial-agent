@@ -108,9 +108,30 @@
 
 ### 2.4 `docs/guides/roadmap.yaml` — 结构化阶段 〔L1 推荐〕
 
-- **用途**：定义阶段流图的轨道与阶段。仪表盘契约，schema 见
+- **用途**：定义阶段流图的轨道（tracks）与阶段（phases）。仪表盘契约，schema 见
   `research-dashboard/docs/PRD.md` §4.2。
 - 无此文件时阶段从 todolist 的 Phase 标题派生。
+
+#### 标准 Track 骨架（实证项目统一使用）
+
+实证论文项目的 track **统一采用下面四个**，对应研究的生命周期弧线
+`设计 → 构建 → 实验 → 写作`。每个 track 有一句"什么该进来"的判定，避免把实验
+和工程混在一起：
+
+| id | 名称 | order | accent | 判定：什么该进来 |
+|---|---|---|---|---|
+| `design` | 设计 | 1 | `#0071e3` | 还在决定"测什么、怎么测"：研究问题、proposal、schema、场景/benchmark 设计、项目搭建 |
+| `build` | 构建 | 2 | `#ff9500` | 在造"用来跑实验的机器"：评测 harness、scorer、方法与对照的实现 |
+| `experiment` | 实验 | 3 | `#34c759` | 在产出证据：baseline、treatment、ablation、pilot → 主实验 → 控制实验 |
+| `write` | 写作 | 4 | `#af52de` | 在把证据讲成论文：统计分析、失败分析、draft、可复现 release |
+
+约定：
+
+- 所有"跑实验产出结果"的 phase（无论 baseline 还是 ablation）都归 `experiment`，
+  不要拆进 `build`——这是把流图理清楚的关键。
+- `build` 只放"造工具/实现方法"本身；方法实现完成后的运行归 `experiment`。
+- `design` 包含项目卫生与版本治理这类 setup 工作。
+- benchmark 若是项目核心贡献，可在 `design` 与 `build` 之间细分，但默认不拆。
 
 ### 2.5 `docs/guides/project_map.yaml` — 全功能研究地图 〔L2 推荐〕
 

@@ -3,27 +3,27 @@ project: 3-SMGA
 currentPhase: 3
 
 tracks:
-  - id: foundation
-    name: 项目基础
+  - id: design
+    name: 设计
     accent: "#0071e3"
     order: 1
-  - id: infrastructure
-    name: 工程基础设施
+  - id: build
+    name: 构建
     accent: "#ff9500"
     order: 2
-  - id: experiments
-    name: 实验阶段
+  - id: experiment
+    name: 实验
     accent: "#34c759"
     order: 3
-  - id: writing_release
-    name: 写作与发布
+  - id: write
+    name: 写作
     accent: "#af52de"
     order: 4
 
 phases:
   - number: 0
     title: 项目卫生与版本管理
-    track: foundation
+    track: design
     status: in_progress
     summary: 让 SMGA 工作区保持清楚、可恢复，并能按关键里程碑稳定提交。
     outputs:
@@ -33,7 +33,7 @@ phases:
 
   - number: 1
     title: 研究计划与结构冻结
-    track: foundation
+    track: design
     status: in_progress
     summary: 将 proposal、memory structure、scenario package 固定到足够支持工程实现的程度。
     outputs:
@@ -43,7 +43,7 @@ phases:
 
   - number: 2
     title: Experiment 0 基础设施
-    track: infrastructure
+    track: build
     status: done
     summary: 把手写 seed_0001 变成稳定的 validate-load-score benchmark 闭环。
     outputs:
@@ -54,7 +54,7 @@ phases:
 
   - number: 3
     title: 第一轮 baseline 运行
-    track: infrastructure
+    track: experiment
     status: current
     summary: 先在 seed_0001 上跑非 SMGA baseline，拿到真实模型输出与失败案例。
     outputs:
@@ -68,7 +68,7 @@ phases:
 
   - number: 4
     title: SMGA treatment 与 ablations
-    track: infrastructure
+    track: experiment
     status: planned
     summary: 将 actionable memory、placebo memory、memory-only ablations 接入同一 benchmark 管线。
     outputs:
@@ -79,7 +79,7 @@ phases:
 
   - number: 5
     title: Stage 1 pilot
-    track: experiments
+    track: experiment
     status: planned
     summary: 用小规模 seed set 判断主实验是否值得扩展。
     outputs:
@@ -90,7 +90,7 @@ phases:
 
   - number: 6
     title: Stage 2 主实验
-    track: experiments
+    track: experiment
     status: planned
     summary: 跑出论文核心条件下的主结果表。
     outputs:
@@ -101,7 +101,7 @@ phases:
 
   - number: 7
     title: Stage 2b 次级控制实验
-    track: experiments
+    track: experiment
     status: planned
     summary: 补 reviewer 可能关心的 compute-matched 与 graph-style memory 控制条件。
     outputs:
@@ -112,7 +112,7 @@ phases:
 
   - number: 8
     title: 分析、写作与发布
-    track: writing_release
+    track: write
     status: planned
     summary: 将验证过的实验结果转成论文 draft 与可复现 release package。
     outputs:
