@@ -332,16 +332,8 @@ function renderProjectMap(source, model) {
     return;
   }
 
-  const timelineNodes = [...nodes].sort((a, b) => {
-    const aPhase = a.phase !== undefined ? a.phase : 9999;
-    const bPhase = b.phase !== undefined ? b.phase : 9999;
-    if (aPhase !== bPhase) {
-      return aPhase - bPhase;
-    }
-    return String(a.title || "").localeCompare(String(b.title || ""));
-  });
-
-  const timelineHtml = timelineNodes.map((node) => mapTimelineStage(node)).join("");
+  const trackGroups = groupNodesByTrack(source, nodes);
+  const timelineHtml = trackGroups.map((group, index) => trackColumn(group, index)).join("");
 
   // Check if we need to render the modal overlay
   let modalOverlayHtml = "";
@@ -396,8 +388,8 @@ function renderProjectMap(source, model) {
 
   projectMapElement.innerHTML = `
     ${warning}
-    <div class="map-canvas timeline-canvas" style="--project-accent:${safeColor(source.accent)}">
-      <div class="process-timeline" aria-label="研究阶段流程图">
+    <div class="map-canvas track-canvas" style="--project-accent:${safeColor(source.accent)}">
+      <div class="track-timeline" aria-label="研究阶段流程图">
         ${timelineHtml}
       </div>
     </div>
@@ -440,55 +432,90 @@ window.addEventListener("keydown", (event) => {
   }
 });
 
-function mapTimelineStage(node) {
-  const statusCls = statusClass(node.status);
-  const activeClass = node.id === selectedMapNodeId ? " active" : "";
-  const phaseLabel = node.phase !== undefined ? `Phase ${node.phase}` : "General";
-  const phaseNumber = node.phase !== undefined ? node.phase : "*";
-  const branchItems = timelineBranchItems(node);
-  const visibleItems = branchItems.slice(0, 5);
-  const moreCount = Math.max(0, branchItems.length - visibleItems.length);
+function nodePhaseValue(node) {
+  return node.phase !== undefined && node.phase !== null ? node.phase : 9999;
+}
 
+function groupNodesByTrack(source, nodes) {
+  const byPhase = (a, b) => nodePhaseValue(a) - nodePhaseValue(b);
+  const tracks = (source.roadmap?.tracks || [])
+    .slice()
+    .sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
+
+  // No structured roadmap tracks: keep a single track so the view still works.
+  if (!tracks.length) {
+    return [{ id: "all", name: "研究阶段", accent: source.accent, nodes: [...nodes].sort(byPhase) }];
+  }
+
+  const phaseToTrack = {};
+  (source.roadmap?.phases || []).forEach((phase) => {
+    if (phase.number !== undefined && phase.number !== null) {
+      phaseToTrack[phase.number] = phase.track;
+    }
+  });
+
+  const groups = tracks.map((track) => ({ ...track, nodes: [] }));
+  const byId = Object.fromEntries(groups.map((group) => [group.id, group]));
+  const untracked = [];
+  nodes.forEach((node) => {
+    const trackId = phaseToTrack[node.phase];
+    if (trackId && byId[trackId]) {
+      byId[trackId].nodes.push(node);
+    } else {
+      untracked.push(node);
+    }
+  });
+  if (untracked.length) {
+    groups.push({ id: "untracked", name: "其他", accent: source.accent, nodes: untracked });
+  }
+  groups.forEach((group) => group.nodes.sort(byPhase));
+  return groups.filter((group) => group.nodes.length);
+}
+
+function trackStatus(nodes) {
+  if (nodes.some((node) => node.status === "current") || nodes.some((node) => node.lane === "now")) {
+    return "current";
+  }
+  if (nodes.length && nodes.every((node) => node.status === "done")) {
+    return "done";
+  }
+  if (nodes.some((node) => node.status === "next")) {
+    return "next";
+  }
+  return "planned";
+}
+
+function trackColumn(group, index) {
+  const status = trackStatus(group.nodes);
+  const subnodes = group.nodes.map((node) => phaseSubnode(node)).join("");
   return `
-    <article class="timeline-stage status-${statusCls}${activeClass}" data-node-id="${escapeAttr(node.id)}">
-      <header class="timeline-stage-header">
-        <span>${escapeHtml(phaseLabel)}</span>
-        <h3>${escapeHtml(node.title)}</h3>
+    <article class="track-column status-${statusClass(status)}">
+      <header class="track-header">
+        <span class="eyebrow">Track ${index + 1}</span>
+        <h3>${escapeHtml(group.name)}</h3>
       </header>
-      <div class="timeline-mainline-row" aria-hidden="true">
-        <span class="timeline-mainline-dot">${escapeHtml(phaseNumber)}</span>
+      <div class="track-mainline-row" aria-hidden="true">
+        <span class="track-dot">${index + 1}</span>
       </div>
-      <div class="timeline-branch">
-        ${visibleItems.map((item) => timelineBranchItem(item)).join("")}
-        ${moreCount ? `<button class="timeline-more" type="button">+${moreCount} more</button>` : ""}
+      <div class="track-phases">
+        ${subnodes}
       </div>
     </article>
   `;
 }
 
-function timelineBranchItems(node) {
-  const nextActions = (node.nextActions || []).filter(Boolean).map((value) => ({ label: value, type: "action" }));
-  if (nextActions.length) {
-    return nextActions;
-  }
-
-  const outputs = (node.outputs || []).filter(Boolean).map((value) => {
-    const label = typeof value === "string" ? value : value.label || value.path || "Output";
-    return { label, type: "output" };
-  });
-  if (outputs.length) {
-    return outputs;
-  }
-
-  return (node.taskRefs || []).filter(Boolean).map((value) => ({ label: value, type: "task" }));
-}
-
-function timelineBranchItem(item) {
+function phaseSubnode(node) {
+  const statusCls = statusClass(node.status);
+  const activeClass = node.id === selectedMapNodeId ? " active" : "";
+  const phaseLabel = node.phase !== undefined && node.phase !== null ? `Phase ${node.phase}` : "General";
   return `
-    <div class="timeline-branch-item timeline-branch-${escapeAttr(item.type)}">
-      <span></span>
-      <p>${escapeHtml(item.label)}</p>
-    </div>
+    <button type="button" class="phase-subnode status-${statusCls}${activeClass}" data-node-id="${escapeAttr(node.id)}">
+      <span class="phase-subnode-top">
+        <span class="phase-badge">${escapeHtml(phaseLabel)}</span>
+        <span class="phase-status">${escapeHtml(statusLabel(node.status))}</span>
+      </span>
+      <strong>${escapeHtml(node.title)}</strong>
+    </button>
   `;
 }
 

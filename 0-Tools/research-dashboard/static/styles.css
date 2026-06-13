@@ -573,6 +573,201 @@ button:hover {
   margin: 0;
 }
 
+/* ---- Two-level track timeline (tracks = big nodes, phases = sub-nodes) ---- */
+.track-canvas {
+  min-height: 360px;
+}
+
+.track-timeline {
+  display: grid;
+  gap: 0;
+  grid-auto-columns: minmax(220px, 1fr);
+  grid-auto-flow: column;
+  min-width: max-content;
+  padding: 0 12px 10px;
+  position: relative;
+}
+
+.track-timeline::before {
+  background: color-mix(in srgb, var(--project-accent) 45%, var(--line));
+  content: "";
+  height: 4px;
+  left: 12px;
+  right: 12px;
+  position: absolute;
+  top: 104px;
+  z-index: 0;
+}
+
+.track-column {
+  display: grid;
+  grid-template-rows: 84px 44px minmax(0, 1fr);
+  padding: 0 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.track-header {
+  align-content: end;
+  display: grid;
+  gap: 6px;
+  padding-bottom: 14px;
+  text-align: center;
+}
+
+.track-header h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  line-height: 1.12;
+  margin: 0;
+}
+
+.track-mainline-row {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.track-dot {
+  align-items: center;
+  background: var(--surface);
+  border: 3px solid var(--line);
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(45, 38, 27, 0.12);
+  color: var(--ink);
+  display: flex;
+  font-size: 16px;
+  font-weight: 900;
+  height: 42px;
+  justify-content: center;
+  width: 42px;
+  z-index: 2;
+}
+
+.track-column.status-done .track-dot {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.track-column.status-current .track-dot {
+  background: var(--blue);
+  border-color: var(--blue);
+  box-shadow: 0 0 0 8px rgba(47, 111, 159, 0.14), 0 8px 24px rgba(47, 111, 159, 0.24);
+  color: white;
+  height: 48px;
+  width: 48px;
+}
+
+.track-column.status-next .track-dot {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+.track-phases {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 auto;
+  padding-top: 22px;
+  position: relative;
+  width: 210px;
+}
+
+.track-phases::before {
+  border-left: 3px dotted color-mix(in srgb, var(--project-accent) 42%, var(--line));
+  bottom: 8px;
+  content: "";
+  left: 50%;
+  position: absolute;
+  top: 0;
+  transform: translateX(-1.5px);
+  z-index: 0;
+}
+
+.phase-subnode {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(45, 38, 27, 0.06);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font: inherit;
+  gap: 5px;
+  padding: 9px 11px;
+  position: relative;
+  text-align: left;
+  width: 100%;
+  z-index: 1;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.phase-subnode:hover,
+.phase-subnode.active {
+  border-color: var(--blue);
+  box-shadow: 0 6px 18px rgba(47, 111, 159, 0.18);
+  transform: translateY(-1px);
+}
+
+.phase-subnode.status-done {
+  border-left-color: var(--green);
+}
+
+.phase-subnode.status-current {
+  border-left-color: var(--blue);
+}
+
+.phase-subnode.status-next {
+  border-left-color: var(--amber);
+}
+
+.phase-subnode-top {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.phase-badge {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.phase-status {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+.phase-subnode.status-done .phase-status {
+  background: color-mix(in srgb, var(--green) 12%, transparent);
+  border-color: color-mix(in srgb, var(--green) 30%, transparent);
+  color: var(--green);
+}
+
+.phase-subnode.status-current .phase-status {
+  background: color-mix(in srgb, var(--blue) 12%, transparent);
+  border-color: color-mix(in srgb, var(--blue) 30%, transparent);
+  color: var(--blue);
+}
+
+.phase-subnode strong {
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
 .timeline-more {
   align-self: flex-start;
   background: transparent;
