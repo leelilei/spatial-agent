@@ -1,26 +1,26 @@
 # Plans Index
 
-This directory stores the main research-planning documents for SpatialAgent.
+This directory stores the research-planning documents for the empirical SpatialAgent project.
+
+## Current
+
+- `proposal.md`: 当前 live 研究计划（原 plan v14-A，2026-05-19）。framing 为
+  "Environment Structure, Not Space Syntax as Agent Cognition"，目标会议 AAAI / AAMAS 主会。
+  v14-A 是对 v13-A 的概念升级版（space syntax/图指标仅作研究者侧测量工具）。
 
 ## Migrated Projects
 
-- SMGA proposal versions were split into the independent project `../../../3-SMGA/`. The active SMGA plan is now maintained at `../../../3-SMGA/docs/plans/SMGA-proposal-v4.4.md`.
-- SpatialAgent survey plans were split into the independent project `../../../4-SpatialAgent-Survey/`. The active survey plan is now maintained at `../../../4-SpatialAgent-Survey/docs/plans/survey_plan_v4.md`.
+- SMGA proposals → 独立项目 `../../../3-SMGA/`，当前版 `3-SMGA/docs/plans/proposal.md`。
+- SpatialAgent survey → 独立项目 `../../../4-SpatialAgent-Survey/`，当前版
+  `4-SpatialAgent-Survey/docs/plans/survey_plan_v4.md`，任务清单见其 `docs/guides/todolist.md`。
 
-## Current Files
+## Archive
 
-- `planv13-A.md`: AAAI-oriented standalone plan framed as a controlled LLM multi-agent evaluation and mechanism-identification protocol
-- `plan_v13.md`: current primary research plan for a scoped main-conference experiment on spatial-to-social network mapping
-- `plan_v*.md`: archived historical research-plan iterations
+`archive/` 保留历史计划版本，仅在需要 provenance 时查阅：
 
-## Suggested Reading Order
+- `plan_v1.md` … `plan_v13.md`、`plan_v8_2.md`：历次主计划迭代
+- `planv13-A.md`：v13-A，面向 AAAI 的早期 standalone framing（已被 proposal.md 即 v14-A 取代）
+- `TGA-PLAN.md`：早期 TGA 计划
 
-1. `planv13-A.md` when targeting AAAI
-2. `plan_v13.md` for the scoped spatial-to-social main-paper framing
-3. archived `plan_v*.md` files only when historical context is needed
-
-## Notes
-
-- `planv13-A.md` is the standalone AAAI-facing plan for the next phase if the project is submitted as an LLM multi-agent evaluation paper.
-- `plan_v13.md` remains the standalone main plan for the spatial-to-social network framing.
-- Older planning files are kept for provenance, but active framing should be selected by target venue before implementation.
+> 版本治理（依据 0-Tools/research-standard）：`proposal.md` 永远是当前版；产生新版本时
+> 先把当前内容复制到 `archive/proposal_v<N>.md`，再更新 `proposal.md`。
