@@ -1,9 +1,34 @@
 # Research Dashboard PRD
 
-- 版本：v1（完整规范）
-- 状态：草案，待评审
-- 日期：2026-06-14
+- 版本：v1.1（随实现刷新）
+- 状态：M1 + 合规接入 + M2 已交付；M3 部分；持续维护
+- 创建：2026-06-14 ｜ 最近更新：2026-06-14
 - 适用范围：`/Users/mac/Documents/6-Research/0-Tools/research-dashboard`
+- 关联：研究项目结构规范见 `../../research-standard/RESEARCH-PROJECT-STANDARD.md`
+
+---
+
+## 0. 实施进展（v1.1 刷新）
+
+本节是 PRD 与代码的对齐快照。**下文 §1 的"现状/根因"描述的是动手前的状态，多数问题已解决**，阅读时请以本节为准。
+
+已交付：
+
+- **G1 点亮所有项目**：自动发现 `<root>/*/docs/guides/todolist.md`；无 `## Phase N`
+  时按全量 checkbox 算进度（`progress.mode = phase|checkbox`）。4 个论文项目进度全部非零。
+- **G3 统一配置**：配置改为仓库内 `sources.json` 覆盖层 + 自动发现；删除仓库外影子配置
+  与 Windows 旧路径；排除学习/工具目录（复用 research-standard 的排除名单）。
+- **G2 心里有底**：项目卡显示当前阶段、新鲜度徽标（fresh/warn/stale）、下一步、合规等级；
+  总览显示活跃/停滞、本周净完成。
+- **合规接入**：每个项目读取 `check_compliance` 的 L0–L3 等级并展示。
+- **两层研究阶段流图**：track 作为主节点、phase 作为可点击子节点（弹详情）。track 采用
+  research-standard 的标准 4-track 骨架：设计 / 构建 / 实验 / 写作。
+
+尚未做（详见 §7 M3 与 §11 出入清单）：
+
+- 缺 `todolist.md` 的已知项目占位卡（F1.4）。
+- `--check` 的可观测性增强（F3.4）。
+- 趋势图与合规视图的少量打磨。
 
 ---
 
@@ -250,26 +275,35 @@ paper:             # 「论文准备度」：各 section 的状态、依赖资�
 
 每个里程碑独立可验收、可单独提交，契合 ≤5h/周 的节奏。
 
-### M1 — 点亮 + 统一配置（G1 + G3 的 P0）
+### M1 — 点亮 + 统一配置（G1 + G3 的 P0）✅ 已交付
 - F3.1/F3.2 重写配置加载（发现 + 覆盖）。
 - F1.1 无 Phase 时按全量 checkbox 算进度。
 - F1.2 自动发现 6 个项目。
 - **验收**：`--check` 显示 6 个项目，凡有 `todolist.md` 的进度均非零且数值正确；
   仓库内单一配置生效；删除仓库外配置后仍正常。
 
-### M2 — 心里有底（G2 的 P0）
+### M2 — 心里有底（G2 的 P0）✅ 已交付
 - F2.1 项目卡顶部摘要行。
 - F2.2 新鲜度徽标 + 停滞提醒。
 - F2.3 下一步 1–3 条。
 - **验收**：打开首页，每个点亮项目 3 秒内能看清「阶段 / %/ 多久没更新 / 下一步」。
 
-### M3 — 收尾增强（P1 + P2）
-- F1.3/F1.4 占位卡与调色板。
-- F2.4 总览活跃/停滞/本周净完成。
-- F3.3/F3.4 环境变量与 `--check` 可观测性。
-- 模板文件 + README 更新。
-- 给缺失项目（2-GAME-AGENT、4-Survey、5-ASR、0-LLM-learning）各补一个最小
-  `todolist.md`，使 6 个项目全部点亮。
+### M3 — 收尾增强（P1 + P2）🟡 部分
+- ✅ F1.3 调色板（accent 按发现顺序轮转）。
+- ✅ F2.4 总览活跃/停滞/本周净完成。
+- ✅ F3.3 `RESEARCH_DASHBOARD_ROOT` 环境变量覆盖。
+- ✅ 给缺 todolist 的论文项目补最小清单：4-Survey、（已删除的 5-ASR 曾补过）。
+- ⬜ F1.4 缺 `todolist.md` 的占位卡（当前缺文件的项目直接不出现，而非占位）。
+- ⬜ F3.4 `--check` 打印发现详情 / 解析模式。
+- ⬜ 模板/README 与最新配置语义对齐复核。
+- 注：2-GAME-AGENT、0-LLM-learning 已定为学习项目，**不纳入**仪表盘（非"补 todolist"）。
+
+### M4 — 两层研究阶段流图 + 标准 4-track ✅ 已交付
+- 研究阶段流图从"phase 平铺"改为两层：**track 作为主节点、phase 作为可点击子节点**
+  （点击弹详情框），并修正子节点与主节点对齐。
+- track 采用 research-standard 的标准 4-track 骨架（设计/构建/实验/写作）；无 roadmap
+  tracks 的项目回退为单一 track。
+- **验收**：SMGA 流图显示 4 个 track 大节点，phase 归位且子节点可点开详情。
 
 ---
 
@@ -295,8 +329,26 @@ paper:             # 「论文准备度」：各 section 的状态、依赖资�
 
 ---
 
-## 10. 开放问题（待用户拍板）
+## 10. 决议记录（原开放问题，已拍板）
 
-- 停滞阈值用默认 14 天 / 30 天，还是按你的实际节奏调整？
-- 是否要把 `0-LLM-learning`（偏学习、非论文项目）也纳入同一仪表盘，还是单独标记为
-  「学习类」不参与论文准备度？
+- ✅ **停滞阈值**：采用默认 14 天（warn）/ 30 天（stale）。可由 `server.py` 常量
+  `STALE_WARN_DAYS` / `STALE_BLOCK_DAYS` 调整。
+- ✅ **学习类项目**：`0-LLM-learning` 与 `2-GAME-AGENT`（自述为"做中学"入门 demo）
+  均判定为学习项目，**不纳入**仪表盘与规范（在 `check_compliance.EXCLUDED_DIR_NAMES`，
+  仪表盘自动发现共用此名单）。
+- ✅ **配置单一来源**：仓库内 `sources.json` 为唯一覆盖层，自动发现为基础，仓库外影子
+  配置已废弃。
+- ✅ **track 骨架**：采用标准 4-track（设计/构建/实验/写作），写入 research-standard。
+
+## 11. 项目与 PRD 的出入（v1.1 盘点）
+
+- **已实现且超出原 PRD**：合规等级展示、两层 track 流图、标准 4-track —— 原 PRD 未写，
+  本次刷新已补记（§0、§7-M4、§10）。
+- **PRD 写了但尚未实现**：F1.4 占位卡、F3.4 `--check` 可观测性。
+- **数量口径变化**：原 PRD 假设 6 个项目；现仪表盘实际为 3 个论文项目
+  （1-SpatialAgent、3-SMGA、4-SpatialAgent-Survey），因 5-ASR 已删除、2 与 0-LLM 学习类排除。
+- **数据契约**：§4 仍准确；roadmap.yaml 的 track 取值现统一为标准 4-track（见 standard）。
+- **两层流图覆盖不全**：标准 4-track 两层流图目前只有 3-SMGA 完整生效（仅它有
+  `roadmap.yaml`）；1-SpatialAgent 与 4-SpatialAgent-Survey 无 roadmap.yaml，流图回退为
+  单一 track。需给这两个项目补 `roadmap.yaml`（按标准 4-track）才能享受完整两层视图。
+- **遗留细节**：`history.jsonl` 为运行时数据却被 git 跟踪，每次访问都改动，考虑 `.gitignore`。
