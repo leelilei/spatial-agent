@@ -17,15 +17,15 @@ const researchQuestion = document.querySelector("#research-question");
 const projectNav = document.querySelector("#project-nav");
 const projectMapElement = document.querySelector("#project-map");
 const projectHistory = document.querySelector("#project-history");
-const nextWorkElement = document.querySelector("#next-work");
+const overviewElement = document.querySelector("#project-overview");
 const paperReadiness = document.querySelector("#paper-readiness");
 const mapNodeDetail = document.querySelector("#map-node-detail");
 
 const PROJECT_NAV_ITEMS = [
-  { key: "map", label: "Project Map", hash: "project-map" },
-  { key: "history", label: "History", hash: "history" },
-  { key: "next", label: "Next Work", hash: "next-work" },
-  { key: "paper", label: "Paper Readiness", hash: "paper-readiness" },
+  { key: "overview", label: "概览", hash: "overview" },
+  { key: "map", label: "路线图", hash: "project-map" },
+  { key: "history", label: "进展", hash: "history" },
+  { key: "paper", label: "论文", hash: "paper-readiness" },
 ];
 
 activeDetailPage = detailPageFromHash();
@@ -55,7 +55,7 @@ refreshButton.addEventListener("click", () => {
 backButton.addEventListener("click", () => {
   currentView = "home";
   selectedMapNodeId = null;
-  activeDetailPage = "map";
+  activeDetailPage = "overview";
   window.history.replaceState(window.history.state, "", window.location.pathname);
   render();
 });
@@ -140,10 +140,10 @@ function renderProject(source) {
 
   updateProjectPagesVisibility();
   renderProjectNav(source);
+  renderOverview(source, model);
   renderProjectMap(source, model);
   renderMapNodeDetail(source, model);
   renderHistory(source, model);
-  renderNextWork(model);
   renderPaperReadiness(model);
 }
 
@@ -180,8 +180,8 @@ function renderSources() {
       selectedSourceId = card.dataset.sourceId;
       selectedMapNodeId = null;
       currentView = "project";
-      activeDetailPage = "map";
-      replaceDetailHash("map");
+      activeDetailPage = "overview";
+      replaceDetailHash("overview");
       render();
       window.requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "smooth" }));
     });
@@ -314,6 +314,109 @@ function projectNavLink(item) {
       ${escapeHtml(item.label)}
     </a>
   `;
+}
+
+function renderOverview(source, model) {
+  if (!overviewElement) return;
+  if (source.error) {
+    overviewElement.innerHTML = emptyState(source.error);
+    return;
+  }
+
+  const progress = source.progress || {};
+  const phaseLabel = currentPhaseLabel(source) || "未标注当前阶段";
+  const progressLine = progress.total
+    ? `${progress.completed}/${progress.total} 任务${progress.mode === "checkbox" ? "（按任务）" : ""}`
+    : "暂无进度";
+
+  const focusNode = defaultMapNode(model);
+  let doNext = (focusNode?.nextActions || []).filter(Boolean);
+  if (!doNext.length) doNext = (source.nextActions || []).map((t) => t.title).filter(Boolean);
+  doNext = doNext.slice(0, 3);
+
+  const sections = model.paper?.sections || [];
+  const blockers = sections.flatMap((s) => (s.blockers || []).map((b) => ({ section: s.title, text: b })));
+  const readiness = model.readinessSummary || readinessSummary(sections);
+
+  const delta = sourceWeeklyDelta(source.id);
+  const lastMilestone = (model.history || model.milestones || []).slice(-1)[0] || null;
+  const upgrade = nextComplianceGap(source.compliance);
+  const accent = safeColor(source.accent);
+
+  overviewElement.innerHTML = `
+    <div class="cockpit">
+      <article class="cockpit-card cockpit-now">
+        <p class="eyebrow">当前阶段</p>
+        <h3>${escapeHtml(phaseLabel)}</h3>
+        <div class="cockpit-progress">
+          <div class="cockpit-bar"><span style="width:${clampedPercent(progress.fraction)}%; background:${accent}"></span></div>
+          <strong>${percent(progress.fraction || 0)}</strong>
+        </div>
+        <p class="muted">${escapeHtml(progressLine)}</p>
+        <div class="cockpit-badges">${stalenessBadge(source.staleness)}${complianceBadge(source.compliance)}</div>
+      </article>
+
+      <article class="cockpit-card cockpit-donext">
+        <p class="eyebrow">此刻该做</p>
+        ${doNext.length
+          ? `<ol class="cockpit-donext-list">${doNext.map((t) => `<li>${escapeHtml(t)}</li>`).join("")}</ol>`
+          : emptyState("当前没有明确下一步，去 todolist 补几条。")}
+      </article>
+
+      <article class="cockpit-card cockpit-blockers">
+        <p class="eyebrow">卡住 / 风险</p>
+        ${blockers.length
+          ? `<ul class="cockpit-blocker-list">${blockers.slice(0, 4).map((b) => `<li><span class="blocker-sec">${escapeHtml(b.section)}</span>${escapeHtml(b.text)}</li>`).join("")}</ul>${blockers.length > 4 ? `<p class="muted">+${blockers.length - 4} 更多</p>` : ""}`
+          : `<p class="cockpit-clear">✓ 暂无记录的阻塞</p>`}
+      </article>
+
+      <article class="cockpit-card cockpit-paper">
+        <p class="eyebrow">论文准备度</p>
+        ${readiness.total
+          ? `<div class="cockpit-progress"><div class="cockpit-bar"><span style="width:${clampedPercent(readiness.fraction)}%; background:var(--green)"></span></div><strong>${readiness.ready}/${readiness.total}</strong></div><p class="muted">${readiness.ready} ready · ${readiness.blocked || 0} blocked · ${readiness.missing || 0} missing</p>`
+          : emptyState("还没有 paper 章节清单。")}
+      </article>
+
+      <article class="cockpit-card cockpit-recent">
+        <p class="eyebrow">最近动态</p>
+        <p class="cockpit-delta"><strong>${delta > 0 ? "+" + delta : delta}</strong> 本周净完成</p>
+        ${lastMilestone ? `<p class="muted">上次里程碑：${escapeHtml(lastMilestone.title)}${lastMilestone.date ? " (" + escapeHtml(lastMilestone.date) + ")" : ""}</p>` : ""}
+      </article>
+
+      ${upgrade ? `
+      <article class="cockpit-card cockpit-upgrade">
+        <p class="eyebrow">规范升级</p>
+        <p>距 <strong>${escapeHtml(upgrade.code)}</strong> 还差：</p>
+        <ul class="cockpit-upgrade-list">${upgrade.missing.map((m) => `<li>${escapeHtml(m)}</li>`).join("")}</ul>
+      </article>` : ""}
+    </div>
+  `;
+}
+
+function sourceWeeklyDelta(sourceId) {
+  const rows = (historyData || [])
+    .map((d) => {
+      const s = (d.sources || []).find((x) => x.id === sourceId);
+      return s ? { date: d.date, completed: Number(s.completed) || 0 } : null;
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.date.localeCompare(b.date));
+  if (rows.length < 2) return 0;
+  const latest = rows[rows.length - 1];
+  const target = new Date(`${latest.date}T00:00:00`);
+  target.setDate(target.getDate() - 7);
+  const targetKey = formatDateKey(target);
+  const onOrBefore = rows.filter((r) => r.date <= targetKey);
+  const baseline = onOrBefore.length ? onOrBefore[onOrBefore.length - 1] : rows[0];
+  return latest.completed - baseline.completed;
+}
+
+function nextComplianceGap(compliance) {
+  if (!compliance || !Array.isArray(compliance.levels)) return null;
+  const next = compliance.levels.find((l) => !l.complete);
+  if (!next || !next.missing || !next.missing.length) return null;
+  const missing = next.missing.map((m) => (m.includes("|") ? m.split("|").join(" 或 ") : m));
+  return { code: next.code, missing };
 }
 
 function renderProjectMap(source, model) {
@@ -949,14 +1052,16 @@ function detailPageFromHash() {
   const legacyHashes = {
     "project-map-section": "map",
     "history-section": "history",
-    "next-work-section": "next",
+    "next-work-section": "overview",
+    "next-work": "overview",
+    "next": "overview",
     "paper-readiness-section": "paper",
   };
   if (legacyHashes[hash]) {
     return legacyHashes[hash];
   }
   const item = PROJECT_NAV_ITEMS.find((candidate) => candidate.hash === hash || candidate.key === hash);
-  return item ? item.key : "map";
+  return item ? item.key : "overview";
 }
 
 function normalizeDetailPage(key) {
@@ -1177,9 +1282,9 @@ function renderError(error) {
   document.querySelector("#source-grid").innerHTML = "";
   projectMapElement.innerHTML = emptyState(error.message);
   projectHistory.innerHTML = "";
-  nextWorkElement.innerHTML = "";
+  if (overviewElement) overviewElement.innerHTML = "";
   paperReadiness.innerHTML = "";
-  mapNodeDetail.innerHTML = "";
+  if (mapNodeDetail) mapNodeDetail.innerHTML = "";
 }
 
 function renderTrendChart() {
