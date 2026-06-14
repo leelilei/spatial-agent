@@ -17,9 +17,10 @@ scorer 已升级：affordance 候选集（v0.2）+ condition-blind LLM-judge（j
 关键发现：关键词尺子 4/5 vs 1-2/5 的差距是测量假象；LLM-judge 下两个 baseline 均 4/5（旗鼓相当）
 judge 仍能抓真实失败（M0_prompted probe_0003 转去问无关信息）并区分实质差异（probe_0004）
 测量已修到可信，足以进入 treatment 比较
-Phase 4 首轮（seed_0001，n=1 诊断，非结论）：M0_GA=4/5, M0_prompted=4/5, M2_memory_only=5/5, M3_actionable=3/5
-意外信号：记忆蒸馏(M2)有益；但当前 affordance 契约(M3)反而拖累——M3 被 affordance 牵着选 follow_commitment（probe_0004 应更谨慎），且忙于"声明用了哪条记忆/affordance"漏掉道歉（probe_0001）
-下一步：迭代 M3 prompt 设计 v0.2（affordance 作软提示而非"选一个并声明"，保留完整社交回应），再跑对比
+Phase 4（seed_0001，n=1 诊断，非结论）：M0_GA=4/5, M0_prompted=4/5, M2=5/5, M3 v0.1=3/5 → M3 v0.2=5/5
+诊断闭环：M3 v0.1 的 3/5 是 prompt 设计问题（affordance 过度牵引 + 元叙述挤掉社交实质），改成软提示后 M3 v0.2 恢复 5/5
+新问题：M2=M3=5/5，指标在 seed_0001 上饱和，无法区分"可执行结构"是否增益（核心对比 C2: M3>M2）
+下一步：手写 seed_0002（更难、更具区分度），测试量提到 ≥10，再跑四条件对比
 ```
 
 当前工程骨架：
