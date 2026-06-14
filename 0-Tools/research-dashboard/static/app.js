@@ -413,8 +413,13 @@ function renderOverview(source, model) {
   const lastMilestone = (model.history || model.milestones || []).slice(-1)[0] || null;
   const upgrade = nextComplianceGap(source.compliance);
   const accent = safeColor(source.accent);
+  const tm = (source.compliance || {}).titleMismatch;
+  const warnHtml = tm
+    ? `<div class="cockpit-warn">⚠ 标题不一致：project.yaml「${escapeHtml(tm.projectTitle)}」≠ proposal「${escapeHtml(tm.proposalTitle)}」</div>`
+    : "";
 
   overviewElement.innerHTML = `
+    ${warnHtml}
     <div class="cockpit">
       <article class="cockpit-card cockpit-now">
         <p class="eyebrow">当前阶段</p>

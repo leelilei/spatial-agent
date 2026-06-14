@@ -21,6 +21,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -61,6 +62,38 @@ def requirement_met(project_dir: Path, rel_path: str, is_dir: bool) -> bool:
         if (target.is_dir() if is_dir else target.is_file()):
             return True
     return False
+
+
+def _first_match(path: Path, pattern: str) -> str | None:
+    if not path.is_file():
+        return None
+    try:
+        for line in path.read_text(encoding="utf-8").splitlines():
+            m = re.match(pattern, line)
+            if m:
+                return m.group(1).strip().strip("\"'")
+    except Exception:  # noqa: BLE001 - best effort
+        return None
+    return None
+
+
+def title_consistency(project_dir: Path) -> dict | None:
+    """Flag when project.yaml's title disagrees with the proposal's title."""
+    project_title = _first_match(project_dir / "docs/guides/project.yaml", r"^title:\s*(.+?)\s*$")
+    if not project_title:
+        return None
+    proposal_title = None
+    for candidate in ("docs/plans/proposal.md", "docs/plans/survey_plan.md"):
+        path = project_dir / candidate
+        if path.is_file():
+            proposal_title = _first_match(path, r"^##\s+(.+?)\s*$")
+            break
+    if not proposal_title:
+        return None
+    a, b = project_title.lower(), proposal_title.lower()
+    if a == b or a in b or b in a:
+        return None
+    return {"projectTitle": project_title, "proposalTitle": proposal_title}
 
 
 def check_project(project_dir: Path) -> dict:
@@ -107,6 +140,7 @@ def check_project(project_dir: Path) -> dict:
         "achievedLevel": achieved,           # None means below L0
         "levels": levels,
         "strayProposalVersions": stray_versions,
+        "titleMismatch": title_consistency(project_dir),
     }
 
 
@@ -132,6 +166,9 @@ def print_human(reports: list[dict]) -> None:
         if report["strayProposalVersions"]:
             print(f"  ⚠ 散落的 proposal 版本（应移入 archive/）："
                   f"{', '.join(report['strayProposalVersions'])}")
+        if report.get("titleMismatch"):
+            tm = report["titleMismatch"]
+            print(f"  ⚠ 标题不一致：project.yaml「{tm['projectTitle']}」≠ proposal「{tm['proposalTitle']}」")
 
 
 def doctor_line(report: dict) -> str:
@@ -145,7 +182,9 @@ def doctor_line(report: dict) -> str:
     here = level or "未达 L0"
     extra = ""
     if report.get("strayProposalVersions"):
-        extra = f"（另有散落 proposal 版本，建议移入 archive/）"
+        extra += "（另有散落 proposal 版本，建议移入 archive/）"
+    if report.get("titleMismatch"):
+        extra += "（⚠ project.yaml 标题与 proposal 不一致）"
     return f"{name}: 现 {here} → 补 {missing} 即达 {nxt['code']}{extra}"
 
 

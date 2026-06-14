@@ -358,6 +358,7 @@ def compliance_info(todo_path: Path) -> dict | None:
             for level in report.get("levels", [])
         ],
         "strayProposalVersions": report.get("strayProposalVersions", []),
+        "titleMismatch": report.get("titleMismatch"),
     }
 
 
