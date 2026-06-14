@@ -17,10 +17,13 @@ scorer 已升级：affordance 候选集（v0.2）+ condition-blind LLM-judge（j
 关键发现：关键词尺子 4/5 vs 1-2/5 的差距是测量假象；LLM-judge 下两个 baseline 均 4/5（旗鼓相当）
 judge 仍能抓真实失败（M0_prompted probe_0003 转去问无关信息）并区分实质差异（probe_0004）
 测量已修到可信，足以进入 treatment 比较
-Phase 4（seed_0001，n=1 诊断，非结论）：M0_GA=4/5, M0_prompted=4/5, M2=5/5, M3 v0.1=3/5 → M3 v0.2=5/5
-诊断闭环：M3 v0.1 的 3/5 是 prompt 设计问题（affordance 过度牵引 + 元叙述挤掉社交实质），改成软提示后 M3 v0.2 恢复 5/5
-新问题：M2=M3=5/5，指标在 seed_0001 上饱和，无法区分"可执行结构"是否增益（核心对比 C2: M3>M2）
-下一步：手写 seed_0002（更难、更具区分度），测试量提到 ≥10，再跑四条件对比
+Phase 4 两种子对比（n=10，诊断，非结论）：
+  seed_0001（易，饱和）：M0_GA=4 M0_prompted=4 M2=5 M3=5
+  seed_0002（难，有区分）：M0_GA=3 M0_prompted=4 M2=2 M3=3
+  合计/10：M0_GA=7 M0_prompted=8 M2=7 M3=8
+关键信号：M3(结构化可执行记忆)未优于最简单的 prompted baseline（都 8/10）；记忆蒸馏不稳健（M2 易题 5/5 → 难题 2/5，反成最差）；
+  专为"追踪修订"设计的 probe_0002：M0_prompted 答对，而 M2/M3 反而答错——记忆里的 currency_status=revised 没转化成正确行为
+下一步：扩规模前先弄清"为什么结构化记忆没帮上忙"——查 probe_0002 的 M3 回答（为何没用上修订）、formation 质量、affordance/currency 的使用方式、以及 probe_0002 口径是否过严
 ```
 
 当前工程骨架：
@@ -461,26 +464,26 @@ M0_prompted score: pending
 下一步只做一件事：
 
 ```text
-迭代 M3 prompt 设计 v0.2（affordance 作软提示，去掉"声明用了哪条 affordance"，保留完整社交回应），再跑 M3 对比
+归因：为什么 M3（结构化可执行记忆）没有优于简单 baseline
 ```
 
-为什么：首轮 M3=3/5 低于 M2=5/5 与 baseline=4/5。诊断显示不是"结构化记忆没用"
-（M2 用同一批记忆纯文本反而 5/5），而是当前 affordance 契约把 planner 引偏 + 元叙述挤掉社交实质。
-先修 M3 prompt 设计再判断"可执行结构"到底有没有价值。
+为什么：10 条测试下 M3=M0_prompted=8/10，M3 并未体现结构优势；而专门设计的修订-追踪 probe_0002
+反而是 M2/M3 答错、M0_prompted 答对。需先理解机制，再决定是改 M3/formation 设计还是收窄 claim。
 
 目标输出：
 
 ```text
-M3 prompt v0.2（affordance=可选上下文，不强制选一个、不要求声明；强调完整、得体的社交回应）
-重跑 M3，LLM-judge 对比 M2 / M0（同一 seed_0001）
-若 M3 v0.2 仍 < M2 → 记录"affordance 层在此 benchmark 不增益"的发现
+读 seed_0002 probe_0002 的 M3 回答：明明 smem_0004 标了 revised+contra，为何 M3 仍偏向保密？
+判断责任在哪：formation（记忆形成）/ M3 序列化（affordance+currency 呈现）/ probe_0002 口径过严 / judge 噪声
+据此定 M3 或 formation 的 v0.3，或记录"当前 SMGA 设计在此 benchmark 不增益"的诚实发现
+（暂不扩到 5+ seeds——先把机制弄清）
 ```
 
-已完成（Phase 3 测量修复 + Phase 4 首轮）：
+已完成（Phase 3 测量修复 + Phase 4 两种子对比）：
 
 ```text
-scorer v0.2（affordance 候选集）+ judge_scorer.py（condition-blind LLM-judge，已验证）
-memory_module.py（Module A，模型形成 9 条 schema-valid 记忆，condition-blind）
-treatment_harness.py（M2/M3 序列化，matched-candidate）
-首轮 judge：M0_GA=4/5 M0_prompted=4/5 M2=5/5 M3=3/5（n=1 诊断）
+scorer v0.2 + judge_scorer.py（condition-blind LLM-judge）
+memory_module.py（Module A）+ treatment_harness.py（M2/M3）
+seed_0002（更难、修订-追踪，validate 通过）
+10 条 judge：M0_GA=7 M0_prompted=8 M2=7 M3=8（/10，诊断）
 ```
