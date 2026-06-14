@@ -52,6 +52,15 @@ python3 model_calling_runner.py \
   --response-template tmp/smga_baseline_harness/seed_0001_M0_GA_responses.template.json
 ```
 
+Run a prompt bundle through the `fhl` Responses API after setting `FHL_API_KEY` or `OPENAI_API_KEY`:
+
+```bash
+python3 model_calling_runner.py \
+  tmp/smga_baseline_harness/seed_0001_M0_GA_prompts.jsonl \
+  --config configs/fhl_responses_gpt54_config.example.json \
+  --response-template tmp/smga_baseline_harness/seed_0001_M0_GA_responses.template.json
+```
+
 Normalize a raw response draft into scorer-readable fields:
 
 ```bash

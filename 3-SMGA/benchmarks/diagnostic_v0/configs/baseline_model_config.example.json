@@ -1,6 +1,8 @@
 {
   "provider": "openai_chat",
   "model": "MODEL_VERSION_TO_PIN_BEFORE_STAGE_1",
+  "wire_api": "chat_completions",
+  "base_url": "https://api.openai.com/v1/chat/completions",
   "temperature": 0,
   "timeout": 120,
   "sleep": 0,
