@@ -1,0 +1,457 @@
+{
+  "scenario_id": "scenario_0001",
+  "seed_id": "seed_0001",
+  "source": "memory_module.py (Module A, model-formed, condition-blind)",
+  "memory_count": 9,
+  "validation_issues": [],
+  "memories": [
+    {
+      "claim": "Klaus and Maria generally coordinate well on the paper deadline in informal cafe settings.",
+      "contradicting_evidence_ids": [],
+      "currency_status": "current",
+      "memory_id": "smem_0001",
+      "memory_type": "relationship_memory",
+      "planning_affordances": [
+        {
+          "affordance_type": "choose_collaboration_context",
+          "suggested_context": "Use informal cafe meetings for paper-deadline coordination when possible.",
+          "supporting_evidence_ids": [
+            "event_0001"
+          ],
+          "target_entities": [
+            "person_klaus",
+            "person_maria"
+          ]
+        }
+      ],
+      "subject_entities": [
+        "person_klaus",
+        "person_maria",
+        "rel_person_klaus__person_maria",
+        "place_cafe",
+        "topic_paper_deadline"
+      ],
+      "supporting_evidence_ids": [
+        "event_0001"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "rel_person_klaus__person_maria",
+          "place_cafe",
+          "topic_paper_deadline"
+        ],
+        "time_window": "as of day_1_09:00 onward unless revised"
+      }
+    },
+    {
+      "claim": "Theo shared a private ethics concern with Klaus and asked that it not be shared beyond a one-on-one conversation.",
+      "contradicting_evidence_ids": [],
+      "currency_status": "current",
+      "memory_id": "smem_0002",
+      "memory_type": "secret_or_privacy_memory",
+      "planning_affordances": [
+        {
+          "affordance_type": "maintain_privacy",
+          "suggested_context": "Do not disclose Theo's ethics concern to others without Theo's permission.",
+          "supporting_evidence_ids": [
+            "event_0002",
+            "event_0011"
+          ],
+          "target_entities": [
+            "person_klaus",
+            "person_theo",
+            "info_ethics_concern"
+          ]
+        },
+        {
+          "affordance_type": "seek_information",
+          "suggested_context": "If ethics-concern details are needed, ask Theo directly rather than asking Klaus to reveal them.",
+          "supporting_evidence_ids": [
+            "event_0002",
+            "event_0011"
+          ],
+          "target_entities": [
+            "person_theo"
+          ]
+        }
+      ],
+      "subject_entities": [
+        "person_theo",
+        "person_klaus",
+        "topic_ethics_concern",
+        "info_ethics_concern"
+      ],
+      "supporting_evidence_ids": [
+        "event_0002",
+        "event_0011"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "topic_ethics_concern",
+          "info_ethics_concern",
+          "person_theo",
+          "person_klaus"
+        ],
+        "time_window": "from day_1_10:30 onward"
+      }
+    },
+    {
+      "claim": "Klaus promised Maria he would send the experiment notes before dinner, but he missed that deadline.",
+      "contradicting_evidence_ids": [],
+      "currency_status": "current",
+      "memory_id": "smem_0003",
+      "memory_type": "commitment_memory",
+      "planning_affordances": [
+        {
+          "affordance_type": "follow_commitment",
+          "suggested_context": "Track and complete promised note-sharing promptly when coordinating on the paper deadline.",
+          "supporting_evidence_ids": [
+            "event_0003",
+            "event_0008"
+          ],
+          "target_entities": [
+            "person_klaus",
+            "person_maria"
+          ]
+        },
+        {
+          "affordance_type": "repair_relationship",
+          "suggested_context": "Use a concrete make-good action after missed delivery commitments.",
+          "supporting_evidence_ids": [
+            "event_0008"
+          ],
+          "target_entities": [
+            "person_klaus",
+            "person_maria"
+          ]
+        }
+      ],
+      "subject_entities": [
+        "person_klaus",
+        "person_maria",
+        "topic_paper_deadline"
+      ],
+      "supporting_evidence_ids": [
+        "event_0003",
+        "event_0008"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "person_klaus",
+          "person_maria",
+          "topic_paper_deadline"
+        ],
+        "time_window": "promise made day_1_14:00 and evaluated by day_2_18:05"
+      }
+    },
+    {
+      "claim": "Omar reported to Maria that Klaus is usually careful with shared research notes based on prior collaborations.",
+      "contradicting_evidence_ids": [
+        "event_0008"
+      ],
+      "currency_status": "revised",
+      "memory_id": "smem_0004",
+      "memory_type": "reputation_memory",
+      "planning_affordances": [
+        {
+          "affordance_type": "seek_information",
+          "suggested_context": "Use Omar as an indirect source for Klaus's prior reliability reputation, while accounting for newer evidence.",
+          "supporting_evidence_ids": [
+            "event_0006"
+          ],
+          "target_entities": [
+            "person_omar"
+          ]
+        },
+        {
+          "affordance_type": "share_information",
+          "suggested_context": "Temper positive assumptions about note reliability with the more recent missed commitment.",
+          "supporting_evidence_ids": [
+            "event_0006",
+            "event_0008"
+          ],
+          "target_entities": [
+            "person_maria",
+            "person_klaus"
+          ]
+        }
+      ],
+      "subject_entities": [
+        "person_klaus",
+        "person_omar",
+        "person_maria",
+        "topic_paper_deadline"
+      ],
+      "supporting_evidence_ids": [
+        "event_0006"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "person_klaus",
+          "person_maria",
+          "person_omar",
+          "topic_paper_deadline"
+        ],
+        "time_window": "reported on day_2_09:30, weakened by later missed delivery that day"
+      }
+    },
+    {
+      "claim": "In prototype dry runs, the team norm is not to interrupt unless there is an emergency.",
+      "contradicting_evidence_ids": [],
+      "currency_status": "current",
+      "memory_id": "smem_0005",
+      "memory_type": "norm_memory",
+      "planning_affordances": [
+        {
+          "affordance_type": "choose_collaboration_context",
+          "suggested_context": "During studio dry runs, hold non-urgent questions until the run is over.",
+          "supporting_evidence_ids": [
+            "event_0004"
+          ],
+          "target_entities": [
+            "person_klaus",
+            "person_nia",
+            "person_lina"
+          ]
+        },
+        {
+          "affordance_type": "avoid_contact",
+          "suggested_context": "Avoid interrupting Nia during active prototype dry runs unless there is an emergency.",
+          "supporting_evidence_ids": [
+            "event_0004"
+          ],
+          "target_entities": [
+            "person_klaus",
+            "person_nia"
+          ]
+        }
+      ],
+      "subject_entities": [
+        "person_lina",
+        "person_klaus",
+        "person_nia",
+        "norm_no_interruptions",
+        "place_studio",
+        "topic_prototype_demo"
+      ],
+      "supporting_evidence_ids": [
+        "event_0004"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "norm_no_interruptions",
+          "place_studio",
+          "topic_prototype_demo",
+          "person_lina",
+          "person_klaus",
+          "person_nia"
+        ],
+        "time_window": "from day_1_15:30 onward"
+      }
+    },
+    {
+      "claim": "Klaus violated the no-interruptions norm by interrupting Nia's prototype dry run about an unrelated paper issue, and Lina observed it.",
+      "contradicting_evidence_ids": [],
+      "currency_status": "current",
+      "memory_id": "smem_0006",
+      "memory_type": "conflict_or_repair_memory",
+      "planning_affordances": [
+        {
+          "affordance_type": "repair_relationship",
+          "suggested_context": "Acknowledge the interruption and adapt future behavior around studio dry runs.",
+          "supporting_evidence_ids": [
+            "event_0007"
+          ],
+          "target_entities": [
+            "person_klaus",
+            "person_nia",
+            "person_lina"
+          ]
+        },
+        {
+          "affordance_type": "avoid_contact",
+          "suggested_context": "Avoid approaching Nia with unrelated paper questions during dry runs.",
+          "supporting_evidence_ids": [
+            "event_0007"
+          ],
+          "target_entities": [
+            "person_klaus",
+            "person_nia"
+          ]
+        }
+      ],
+      "subject_entities": [
+        "person_klaus",
+        "person_nia",
+        "person_lina",
+        "norm_no_interruptions",
+        "topic_prototype_demo"
+      ],
+      "supporting_evidence_ids": [
+        "event_0007"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "norm_no_interruptions",
+          "topic_prototype_demo",
+          "person_klaus",
+          "person_nia",
+          "person_lina"
+        ],
+        "time_window": "day_2_11:00 incident"
+      }
+    },
+    {
+      "claim": "Nia usually works in the studio in the late afternoon on the prototype demo.",
+      "contradicting_evidence_ids": [],
+      "currency_status": "current",
+      "memory_id": "smem_0007",
+      "memory_type": "routine_memory",
+      "planning_affordances": [
+        {
+          "affordance_type": "seek_contact",
+          "suggested_context": "Look for Nia in the studio during late afternoons for prototype-related coordination.",
+          "supporting_evidence_ids": [
+            "event_0005"
+          ],
+          "target_entities": [
+            "person_nia"
+          ]
+        },
+        {
+          "affordance_type": "choose_collaboration_context",
+          "suggested_context": "Schedule prototype-focused coordination around Nia's late-afternoon studio routine.",
+          "supporting_evidence_ids": [
+            "event_0005"
+          ],
+          "target_entities": [
+            "person_nia"
+          ]
+        }
+      ],
+      "subject_entities": [
+        "person_nia",
+        "activity_late_studio_work",
+        "place_studio",
+        "topic_prototype_demo"
+      ],
+      "supporting_evidence_ids": [
+        "event_0005"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "activity_late_studio_work",
+          "place_studio",
+          "topic_prototype_demo",
+          "person_nia"
+        ],
+        "time_window": "recurring late-afternoon pattern observed by day_1_17:00"
+      }
+    },
+    {
+      "claim": "Maria's trust in Klaus for the paper revision dropped after the missed notes, and after Klaus's apology and repair offer it was only partially restored.",
+      "contradicting_evidence_ids": [],
+      "currency_status": "current",
+      "memory_id": "smem_0008",
+      "memory_type": "relationship_memory",
+      "planning_affordances": [
+        {
+          "affordance_type": "repair_relationship",
+          "suggested_context": "Use reliable follow-through and concrete help to rebuild Maria's trust on the paper work.",
+          "supporting_evidence_ids": [
+            "event_0009",
+            "event_0010"
+          ],
+          "target_entities": [
+            "person_klaus",
+            "person_maria"
+          ]
+        },
+        {
+          "affordance_type": "follow_commitment",
+          "suggested_context": "Prefer explicit, promptly completed next steps when collaborating on tonight's revision.",
+          "supporting_evidence_ids": [
+            "event_0010"
+          ],
+          "target_entities": [
+            "person_klaus",
+            "person_maria"
+          ]
+        }
+      ],
+      "subject_entities": [
+        "person_maria",
+        "person_klaus",
+        "rel_person_klaus__person_maria",
+        "topic_paper_deadline"
+      ],
+      "supporting_evidence_ids": [
+        "event_0009",
+        "event_0010"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "rel_person_klaus__person_maria",
+          "topic_paper_deadline",
+          "person_maria",
+          "person_klaus"
+        ],
+        "time_window": "from day_2_18:30 onward"
+      }
+    },
+    {
+      "claim": "Theo is the appropriate owner/source for details about the ethics concern; Klaus treats himself as not authorized to disclose it to Lina.",
+      "contradicting_evidence_ids": [],
+      "currency_status": "current",
+      "memory_id": "smem_0009",
+      "memory_type": "information_ownership_memory",
+      "planning_affordances": [
+        {
+          "affordance_type": "seek_information",
+          "suggested_context": "Direct questions about the ethics concern to Theo rather than pressing Klaus or Lina.",
+          "supporting_evidence_ids": [
+            "event_0002",
+            "event_0011"
+          ],
+          "target_entities": [
+            "person_theo"
+          ]
+        },
+        {
+          "affordance_type": "maintain_privacy",
+          "suggested_context": "Do not circulate Theo's ethics concern through the team without Theo's consent.",
+          "supporting_evidence_ids": [
+            "event_0002",
+            "event_0011"
+          ],
+          "target_entities": [
+            "person_klaus",
+            "person_lina",
+            "info_ethics_concern"
+          ]
+        }
+      ],
+      "subject_entities": [
+        "person_theo",
+        "info_ethics_concern",
+        "topic_ethics_concern",
+        "person_klaus",
+        "person_lina"
+      ],
+      "supporting_evidence_ids": [
+        "event_0002",
+        "event_0011"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "person_theo",
+          "info_ethics_concern",
+          "topic_ethics_concern",
+          "person_klaus",
+          "person_lina"
+        ],
+        "time_window": "from day_1_10:30 onward"
+      }
+    }
+  ]
+}
