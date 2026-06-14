@@ -6,11 +6,31 @@ SMGA is an independent research project split out from SpatialAgent. Its working
 
 The implementation-oriented proposal is:
 
-- `docs/plans/SMGA-proposal-v4.6.md`
+- `docs/plans/proposal.md`
 
 The full defensive research blueprint is:
 
-- `docs/plans/SMGA-proposal-v4.4.md`
+- `docs/plans/archive/SMGA-proposal-v4.4.md`
+
+The current Experiment 0 failure-analysis note is:
+
+- `docs/project/experiment0_probe_0002_diagnostic.md`
+
+The current Experiment 0 judge snapshot is:
+
+- `docs/project/experiment0_judge_snapshot_2026-06-14.md`
+
+The current Stage 1 10-seed pilot report is:
+
+- `docs/project/stage1_pilot_10seed_2026-06-15.md`
+
+The current Gate 1 failure audit is:
+
+- `docs/project/gate1_failure_audit_2026-06-15.md`
+
+The earlier Stage 1 alpha pilot report is:
+
+- `docs/project/stage1_pilot_alpha_2026-06-15.md`
 
 The current implementation-facing memory schema is:
 

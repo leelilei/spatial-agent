@@ -1,0 +1,126 @@
+{
+  "entities": [
+    {
+      "aliases": [],
+      "description": "The lead coordinating the robotics demo package.",
+      "display_name": "Aria",
+      "entity_id": "person_aria",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A teammate responsible for the calibration script.",
+      "display_name": "Blake",
+      "entity_id": "person_blake",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "The person who controls the vendor discount information.",
+      "display_name": "Chen",
+      "entity_id": "person_chen",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A core team member who asks about sensitive project context.",
+      "display_name": "Dina",
+      "entity_id": "person_dina",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A colleague who relays indirect reliability updates about Blake.",
+      "display_name": "Eli",
+      "entity_id": "person_eli",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A teammate with a predictable hardware standup routine.",
+      "display_name": "Faye",
+      "entity_id": "person_faye",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "Shared project office.",
+      "display_name": "Office",
+      "entity_id": "place_office",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "Shared work lab.",
+      "display_name": "Lab",
+      "entity_id": "place_lab",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [
+        "campus cafe"
+      ],
+      "description": "Informal discussion space.",
+      "display_name": "Cafe",
+      "entity_id": "place_cafe",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "Location for the hardware standup.",
+      "display_name": "Robotics Bay",
+      "entity_id": "place_robotics_bay",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "The main collaborative task: robotics demo package.",
+      "display_name": "Robotics Demo Package",
+      "entity_id": "topic_robotics_demo",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "Sensitive information about the vendor discount.",
+      "display_name": "Vendor Discount",
+      "entity_id": "topic_vendor_discount",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "A distractor topic about shipping slot.",
+      "display_name": "Shipping Slot",
+      "entity_id": "topic_shipping_slot",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "Team norm not to share sensitive numbers outside the team.",
+      "display_name": "No external vendor discount sharing",
+      "entity_id": "norm_no_external_vendor_discount_sharing",
+      "entity_type": "norm"
+    },
+    {
+      "aliases": [],
+      "description": "The specific vendor-discount detail controlled by Chen.",
+      "display_name": "Vendor-Discount Detail",
+      "entity_id": "info_vendor_discount_detail",
+      "entity_type": "information_item"
+    },
+    {
+      "aliases": [],
+      "description": "Recurring hardware standup activity.",
+      "display_name": "Hardware Standup",
+      "entity_id": "activity_hardware_standup",
+      "entity_type": "activity"
+    },
+    {
+      "aliases": [],
+      "description": "Dyadic working relationship between Aria and Blake.",
+      "display_name": "Aria-Blake relationship",
+      "entity_id": "rel_person_aria__person_blake",
+      "entity_type": "relationship"
+    }
+  ],
+  "scenario_id": "scenario_0005"
+}

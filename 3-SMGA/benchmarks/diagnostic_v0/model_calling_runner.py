@@ -190,13 +190,15 @@ class OpenAIResponsesClient:
             command,
             input=json.dumps(payload),
             text=True,
+            encoding="utf-8",
+            errors="replace",
             capture_output=True,
             timeout=self.timeout,
             check=False,
         )
         if completed.returncode != 0:
             raise RuntimeError(f"curl request failed: {completed.stderr.strip()}")
-        output = completed.stdout
+        output = completed.stdout or ""
         body, separator, status_text = output.rpartition("\n")
         if not separator or not status_text.isdigit():
             raise RuntimeError(f"curl response missing HTTP status: {output}")
@@ -206,6 +208,9 @@ class OpenAIResponsesClient:
         try:
             data = json.loads(body)
         except json.JSONDecodeError as exc:
+            content = extract_responses_text_from_raw_body(body)
+            if isinstance(content, str):
+                return content
             raise RuntimeError(f"Responses API returned invalid JSON: {body}") from exc
         content = extract_responses_text(data)
         if not isinstance(content, str):
@@ -339,6 +344,30 @@ def extract_responses_text(data: dict[str, Any]) -> str | None:
     if chunks:
         return "".join(chunks)
     return None
+
+
+def extract_responses_text_from_raw_body(body: str) -> str | None:
+    """Best-effort recovery for proxy responses with malformed JSON escaping."""
+    start_token = '"text":"'
+    start = body.find(start_token)
+    if start == -1:
+        return None
+    start += len(start_token)
+
+    end_candidates = [
+        body.find('"}],"status"', start),
+        body.find('"}]},"usage"', start),
+        body.find('"}]}', start),
+    ]
+    end_candidates = [index for index in end_candidates if index != -1]
+    if not end_candidates:
+        return None
+    raw_text = body[start : min(end_candidates)]
+
+    try:
+        return json.loads(f'"{raw_text}"')
+    except json.JSONDecodeError:
+        return raw_text.replace(r"\"", '"').replace(r"\\", "\\")
 
 
 def get_api_key(provider: str) -> str:

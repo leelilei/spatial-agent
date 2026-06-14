@@ -1,0 +1,126 @@
+{
+  "entities": [
+    {
+      "aliases": [],
+      "description": "The lead coordinating the security audit response.",
+      "display_name": "Tara",
+      "entity_id": "person_tara",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A teammate responsible for the mitigation matrix.",
+      "display_name": "Uma",
+      "entity_id": "person_uma",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "The person who controls the vulnerability window information.",
+      "display_name": "Vik",
+      "entity_id": "person_vik",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A core team member who asks about sensitive project context.",
+      "display_name": "Wen",
+      "entity_id": "person_wen",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A colleague who relays indirect reliability updates about Uma.",
+      "display_name": "Xena",
+      "entity_id": "person_xena",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A teammate with a predictable threat review routine.",
+      "display_name": "Yuri",
+      "entity_id": "person_yuri",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "Shared project office.",
+      "display_name": "Office",
+      "entity_id": "place_office",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "Shared work lab.",
+      "display_name": "Lab",
+      "entity_id": "place_lab",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [
+        "campus cafe"
+      ],
+      "description": "Informal discussion space.",
+      "display_name": "Cafe",
+      "entity_id": "place_cafe",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "Location for the threat review.",
+      "display_name": "Secure Room",
+      "entity_id": "place_secure_room",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "The main collaborative task: security audit response.",
+      "display_name": "Security Audit Response",
+      "entity_id": "topic_security_audit",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "Sensitive information about the vulnerability window.",
+      "display_name": "Vulnerability Window",
+      "entity_id": "topic_vulnerability_window",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "A distractor topic about access badges.",
+      "display_name": "Access Badges",
+      "entity_id": "topic_access_badges",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "Team norm not to share sensitive numbers outside the team.",
+      "display_name": "No external vulnerability window sharing",
+      "entity_id": "norm_no_external_vulnerability_window_sharing",
+      "entity_type": "norm"
+    },
+    {
+      "aliases": [],
+      "description": "The specific vulnerability-window detail controlled by Vik.",
+      "display_name": "Vulnerability-Window Detail",
+      "entity_id": "info_vulnerability_window_detail",
+      "entity_type": "information_item"
+    },
+    {
+      "aliases": [],
+      "description": "Recurring threat review activity.",
+      "display_name": "Threat Review",
+      "entity_id": "activity_threat_review",
+      "entity_type": "activity"
+    },
+    {
+      "aliases": [],
+      "description": "Dyadic working relationship between Tara and Uma.",
+      "display_name": "Tara-Uma relationship",
+      "entity_id": "rel_person_tara__person_uma",
+      "entity_type": "relationship"
+    }
+  ],
+  "scenario_id": "scenario_0008"
+}

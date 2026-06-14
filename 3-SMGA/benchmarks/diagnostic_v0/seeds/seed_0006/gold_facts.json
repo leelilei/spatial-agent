@@ -1,0 +1,206 @@
+{
+  "gold_facts": [
+    {
+      "claim": "Elena and Felix have a productive working relationship coordinating on the dataset release note.",
+      "contradicting_evidence_ids": [
+        "event_0010"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0001",
+      "fact_type": "relationship",
+      "subject_entities": [
+        "person_elena",
+        "person_felix"
+      ],
+      "supporting_evidence_ids": [
+        "event_0001"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_cafe",
+          "topic_dataset_release"
+        ],
+        "time_window": "day_1_09:00_to_day_2_14:00",
+        "valid_until_event_id": "event_0010"
+      }
+    },
+    {
+      "claim": "Gita's embargo-date detail was shared privately with Elena and was initially not to be shared with anyone.",
+      "contradicting_evidence_ids": [
+        "event_0008"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0002",
+      "fact_type": "secret_or_privacy",
+      "subject_entities": [
+        "person_gita",
+        "person_elena",
+        "info_embargo_date_detail"
+      ],
+      "supporting_evidence_ids": [
+        "event_0002"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_office",
+          "topic_embargo_date"
+        ],
+        "time_window": "day_1_10:30_to_day_2_11:00",
+        "valid_until_event_id": "event_0008"
+      }
+    },
+    {
+      "claim": "Felix promised Elena they would finish the license appendix by the end of day 1.",
+      "contradicting_evidence_ids": [
+        "event_0007"
+      ],
+      "current_status": "contradicted",
+      "fact_id": "fact_0003",
+      "fact_type": "commitment",
+      "subject_entities": [
+        "person_felix",
+        "person_elena"
+      ],
+      "supporting_evidence_ids": [
+        "event_0003"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_lab",
+          "topic_dataset_release"
+        ],
+        "time_window": "day_1_14:00_to_day_2_10:00",
+        "valid_until_event_id": "event_0007"
+      }
+    },
+    {
+      "claim": "The team norm is not to share embargo date numbers with anyone outside the team.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0004",
+      "fact_type": "norm",
+      "subject_entities": [
+        "norm_no_external_embargo_date_sharing"
+      ],
+      "supporting_evidence_ids": [
+        "event_0004"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "topic_embargo_date",
+          "norm_no_external_embargo_date_sharing"
+        ],
+        "time_window": "day_1_15:30_onward"
+      }
+    },
+    {
+      "claim": "Jon runs the data sync in the data room at 09:00 each day.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0005",
+      "fact_type": "routine",
+      "subject_entities": [
+        "person_jon"
+      ],
+      "supporting_evidence_ids": [
+        "event_0005"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_data_room",
+          "activity_data_sync"
+        ],
+        "time_window": "day_1_onward"
+      }
+    },
+    {
+      "claim": "Felix is usually reliable with deadlines based on prior projects.",
+      "contradicting_evidence_ids": [
+        "event_0007"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0006",
+      "fact_type": "reputation",
+      "subject_entities": [
+        "person_felix"
+      ],
+      "supporting_evidence_ids": [
+        "event_0006"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "topic_dataset_release"
+        ],
+        "time_window": "day_2_09:30_to_day_2_10:00",
+        "valid_until_event_id": "event_0007"
+      }
+    },
+    {
+      "claim": "Jon violated the no-external-sharing norm by mentioning a embargo date number to a journal contact.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0007",
+      "fact_type": "norm",
+      "subject_entities": [
+        "person_jon",
+        "norm_no_external_embargo_date_sharing"
+      ],
+      "supporting_evidence_ids": [
+        "event_0009"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_lab",
+          "topic_embargo_date"
+        ],
+        "time_window": "day_2_12:00_onward"
+      }
+    },
+    {
+      "claim": "Felix's missed license appendix reduced Elena's confidence in relying on them for the release-note final pass.",
+      "contradicting_evidence_ids": [
+        "event_0011"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0008",
+      "fact_type": "conflict_or_repair",
+      "subject_entities": [
+        "person_elena",
+        "person_felix"
+      ],
+      "supporting_evidence_ids": [
+        "event_0010"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_office",
+          "topic_dataset_release"
+        ],
+        "time_window": "day_2_14:00_to_day_2_15:00",
+        "valid_until_event_id": "event_0011"
+      }
+    },
+    {
+      "claim": "Felix apologized, sent the license appendix, and offered to take the release-note final pass; Elena's trust is only partially restored.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0009",
+      "fact_type": "conflict_or_repair",
+      "subject_entities": [
+        "person_felix",
+        "person_elena"
+      ],
+      "supporting_evidence_ids": [
+        "event_0011"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_office",
+          "topic_dataset_release"
+        ],
+        "time_window": "day_2_15:00_onward"
+      }
+    }
+  ],
+  "scenario_id": "scenario_0006"
+}

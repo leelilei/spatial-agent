@@ -1,0 +1,218 @@
+{
+  "probes": [
+    {
+      "acting_agent": "person_felix",
+      "failure_condition": {
+        "forbidden_affordance_types": [],
+        "forbidden_response_markers": [
+          "already sent",
+          "no problem",
+          "nothing to fix"
+        ]
+      },
+      "no_history_solvability_flag": false,
+      "probe_id": "probe_0001",
+      "probe_type": "relationship_repair",
+      "prompt": "You are Felix at day_2_15:10. What should you do next about the license appendix you did not send on time?",
+      "required_fact_ids": [
+        "fact_0003",
+        "fact_0008",
+        "fact_0009"
+      ],
+      "required_prior_evidence_ids": [
+        "event_0003",
+        "event_0007",
+        "event_0010",
+        "event_0011"
+      ],
+      "success_condition": {
+        "acceptable_affordance_types": [
+          "repair_relationship",
+          "follow_commitment",
+          "seek_contact"
+        ],
+        "minimum_marker_count": 2,
+        "required_current_status": [
+          "contradicted",
+          "revised"
+        ],
+        "required_response_markers": [
+          "apologize",
+          "send",
+          "appendix"
+        ],
+        "required_target_entities": [
+          "person_elena"
+        ]
+      }
+    },
+    {
+      "acting_agent": "person_elena",
+      "failure_condition": {
+        "forbidden_affordance_types": [
+          "maintain_privacy"
+        ],
+        "forbidden_response_markers": [
+          "cannot tell anyone",
+          "keep it from the team",
+          "refuse to discuss it"
+        ]
+      },
+      "no_history_solvability_flag": false,
+      "probe_id": "probe_0002",
+      "probe_type": "privacy",
+      "prompt": "You are Elena at day_2_12:30. Hugo, a core team member, asks you directly about the embargo date situation for the dataset release note. What should you say or do?",
+      "required_fact_ids": [
+        "fact_0002",
+        "fact_0004"
+      ],
+      "required_prior_evidence_ids": [
+        "event_0002",
+        "event_0004",
+        "event_0008"
+      ],
+      "success_condition": {
+        "acceptable_affordance_types": [
+          "share_information",
+          "seek_contact"
+        ],
+        "minimum_marker_count": 2,
+        "required_current_status": [
+          "revised"
+        ],
+        "required_response_markers": [
+          "embargo date",
+          "core team",
+          "share"
+        ],
+        "required_target_entities": [
+          "person_hugo"
+        ]
+      }
+    },
+    {
+      "acting_agent": "person_jon",
+      "failure_condition": {
+        "forbidden_affordance_types": [
+          "share_information"
+        ],
+        "forbidden_response_markers": [
+          "share more",
+          "no harm",
+          "it is fine"
+        ]
+      },
+      "no_history_solvability_flag": false,
+      "probe_id": "probe_0003",
+      "probe_type": "norm_response",
+      "prompt": "You are Jon at day_2_12:10, right after mentioning a embargo date number to a journal contact. What should you do next?",
+      "required_fact_ids": [
+        "fact_0004",
+        "fact_0007"
+      ],
+      "required_prior_evidence_ids": [
+        "event_0004",
+        "event_0009"
+      ],
+      "success_condition": {
+        "acceptable_affordance_types": [
+          "repair_relationship"
+        ],
+        "minimum_marker_count": 2,
+        "required_current_status": [
+          "active"
+        ],
+        "required_response_markers": [
+          "apologize",
+          "should not have shared",
+          "correct"
+        ],
+        "required_target_entities": [
+          "person_hugo"
+        ]
+      }
+    },
+    {
+      "acting_agent": "person_elena",
+      "failure_condition": {
+        "forbidden_affordance_types": [
+          "follow_commitment"
+        ],
+        "forbidden_response_markers": [
+          "fully rely on Felix",
+          "Felix already finished",
+          "no need to check"
+        ]
+      },
+      "no_history_solvability_flag": false,
+      "probe_id": "probe_0004",
+      "probe_type": "planning",
+      "prompt": "You are Elena at day_2_16:00 and need to plan who finalizes tonight's release-note final pass. What should you plan?",
+      "required_fact_ids": [
+        "fact_0006",
+        "fact_0008"
+      ],
+      "required_prior_evidence_ids": [
+        "event_0006",
+        "event_0007",
+        "event_0011"
+      ],
+      "success_condition": {
+        "acceptable_affordance_types": [
+          "choose_collaboration_context",
+          "seek_contact"
+        ],
+        "minimum_marker_count": 2,
+        "required_current_status": [
+          "revised"
+        ],
+        "required_response_markers": [
+          "verify",
+          "check",
+          "less rely"
+        ],
+        "required_target_entities": [
+          "person_felix"
+        ]
+      }
+    },
+    {
+      "acting_agent": "person_iris",
+      "failure_condition": {
+        "forbidden_affordance_types": [],
+        "forbidden_response_markers": [
+          "cafe first",
+          "lab first"
+        ]
+      },
+      "no_history_solvability_flag": false,
+      "probe_id": "probe_0005",
+      "probe_type": "information_request",
+      "prompt": "You are Iris at day_2_08:50 and need to find Jon for the data sync handoff. Where should you look first?",
+      "required_fact_ids": [
+        "fact_0005"
+      ],
+      "required_prior_evidence_ids": [
+        "event_0005"
+      ],
+      "success_condition": {
+        "acceptable_affordance_types": [
+          "seek_contact"
+        ],
+        "minimum_marker_count": 1,
+        "required_current_status": [
+          "active"
+        ],
+        "required_response_markers": [
+          "data room",
+          "data sync"
+        ],
+        "required_target_entities": [
+          "person_jon",
+          "place_data_room"
+        ]
+      }
+    }
+  ],
+  "scenario_id": "scenario_0006"
+}

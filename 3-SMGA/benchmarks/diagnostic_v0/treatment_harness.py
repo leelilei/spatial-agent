@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Build M2_memory_only and M3_actionable prompt bundles from a memory artifact.
+"""Build SMGA treatment prompt bundles from a memory artifact.
 
 Both conditions receive the SAME model-formed memory candidate set (the matched-
 candidate rule, schema v0.1 §13). They differ only in serialization:
 - M2_memory_only: the memories as plain-text notes.
+- M3_placebo: stale early-log memories in the M3 structured interface.
 - M3_actionable: the same memories as structured objects (types, currency status,
   evidence links) plus a planning contract over their affordances.
 
@@ -23,9 +24,30 @@ from pathlib import Path
 from typing import Any
 
 from baseline_harness import build_response_template
-from benchmark_loader import load_seed
+from benchmark_loader import ScenarioPackage, load_seed
 
-CONDITIONS = ("M2_memory_only", "M3_actionable")
+CONDITIONS = ("M2_memory_only", "M3_placebo", "M3_actionable")
+
+FACT_TO_MEMORY_TYPE = {
+    "relationship": "relationship_memory",
+    "commitment": "commitment_memory",
+    "reputation": "reputation_memory",
+    "secret_or_privacy": "secret_or_privacy_memory",
+    "norm": "norm_memory",
+    "preference": "preference_memory",
+    "routine": "routine_memory",
+    "information_ownership": "information_ownership_memory",
+    "conflict_or_repair": "conflict_or_repair_memory",
+}
+
+PLACEBO_CUTOFF_EVENT_TYPES = {
+    "promise_broken",
+    "norm_violation",
+    "relationship_negative",
+    "relationship_repair",
+    "information_share",
+    "contradiction_update",
+}
 
 
 def serialize_m2(memories: list[dict[str, Any]]) -> str:
@@ -60,6 +82,127 @@ def serialize_m3(memories: list[dict[str, Any]]) -> str:
     return json.dumps(compact, ensure_ascii=False, indent=2)
 
 
+def construct_placebo_memories(package: ScenarioPackage) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    """Construct topically-plausible stale memories from the early log.
+
+    Placebo should test whether M3 wins because of current memory content, not
+    because of the structured interface alone. We therefore keep the M3 format
+    but cut the source log before the first planted contradiction/revision and
+    present those early facts as usable memories. Later contradicting evidence
+    is intentionally omitted so the placebo does not leak current content.
+    """
+    event_order = {str(event.get("event_id")): index for index, event in enumerate(package.events)}
+    contradiction_events = [
+        str(item.get("contradicting_evidence_id"))
+        for item in package.contradictions
+        if str(item.get("contradicting_evidence_id")) in event_order
+    ]
+    update_events = [
+        str(event.get("event_id"))
+        for event in package.events
+        if str(event.get("event_type")) in PLACEBO_CUTOFF_EVENT_TYPES
+    ]
+    cutoff_candidates = [event_id for event_id in contradiction_events + update_events if event_id in event_order]
+    if cutoff_candidates:
+        cutoff_event = min(cutoff_candidates, key=lambda event_id: event_order[event_id])
+        cutoff_index = event_order[cutoff_event]
+    else:
+        cutoff_event = None
+        cutoff_index = len(package.events)
+
+    placebo_facts = []
+    for fact in package.gold_facts:
+        supporting_ids = [str(eid) for eid in fact.get("supporting_evidence_ids", [])]
+        if not supporting_ids:
+            continue
+        if all(event_order.get(eid, len(package.events)) < cutoff_index for eid in supporting_ids):
+            placebo_facts.append(fact)
+
+    memories = [fact_to_placebo_memory(index, fact) for index, fact in enumerate(placebo_facts, start=1)]
+    meta = {
+        "construction": "early_log_stale_placebo",
+        "cutoff_event_id": cutoff_event,
+        "source_fact_count": len(placebo_facts),
+        "notes": (
+            "Constructed from gold facts whose supporting evidence occurs before the first "
+            "planted contradiction/revision event. Later contradicting evidence is omitted; "
+            "currency_status is presented as current to preserve an interface-matched stale placebo."
+        ),
+    }
+    return memories, meta
+
+
+def fact_to_placebo_memory(index: int, fact: dict[str, Any]) -> dict[str, Any]:
+    subject_entities = list(fact.get("subject_entities", []) or [])
+    supporting_evidence_ids = list(fact.get("supporting_evidence_ids", []) or [])
+    memory_type = FACT_TO_MEMORY_TYPE.get(str(fact.get("fact_type")), "relationship_memory")
+    return {
+        "memory_id": f"placebo_smem_{index:04d}",
+        "memory_type": memory_type,
+        "subject_entities": subject_entities,
+        "claim": fact.get("claim", ""),
+        "supporting_evidence_ids": supporting_evidence_ids,
+        "contradicting_evidence_ids": [],
+        "validity_scope": scrub_placebo_scope(fact.get("validity_scope", {})),
+        "currency_status": "current",
+        "planning_affordances": [
+            {
+                "affordance_type": infer_placebo_affordance(fact),
+                "target_entities": infer_placebo_targets(subject_entities),
+                "suggested_context": infer_placebo_context(fact),
+                "supporting_evidence_ids": supporting_evidence_ids,
+            }
+        ],
+    }
+
+
+def scrub_placebo_scope(scope: Any) -> dict[str, Any]:
+    if not isinstance(scope, dict):
+        return {"time_window": "early_log_placebo", "contexts": []}
+    scrubbed = {
+        "time_window": "early_log_placebo_before_current_updates",
+        "contexts": list(scope.get("contexts", []) or []),
+    }
+    return scrubbed
+
+
+def infer_placebo_targets(subject_entities: list[str]) -> list[str]:
+    return subject_entities[:3]
+
+
+def infer_placebo_context(fact: dict[str, Any]) -> str:
+    scope = fact.get("validity_scope", {})
+    if isinstance(scope, dict):
+        contexts = scope.get("contexts") or []
+        if contexts:
+            return "Use this early-log memory in contexts involving " + ", ".join(str(c) for c in contexts[:3]) + "."
+    return "Use this early-log memory when the same people or topic come up."
+
+
+def infer_placebo_affordance(fact: dict[str, Any]) -> str:
+    fact_type = str(fact.get("fact_type", ""))
+    claim = str(fact.get("claim", "")).lower()
+    if fact_type == "secret_or_privacy":
+        if any(marker in claim for marker in ("not to share", "private", "privately", "secret")):
+            return "maintain_privacy"
+        return "share_information"
+    if fact_type == "norm":
+        if any(marker in claim for marker in ("not to share", "private", "confidential", "budget")):
+            return "maintain_privacy"
+        return "avoid_contact"
+    if fact_type == "routine":
+        return "seek_contact"
+    if fact_type == "commitment":
+        return "follow_commitment"
+    if fact_type == "reputation":
+        return "follow_commitment"
+    if fact_type == "conflict_or_repair":
+        return "repair_relationship"
+    if fact_type == "information_ownership":
+        return "seek_information"
+    return "choose_collaboration_context"
+
+
 SYSTEM_M2 = (
     "You are answering a social-planning probe using a set of prepared memory notes "
     "about past interactions. Use only these notes; do not invent new facts. "
@@ -81,7 +224,7 @@ SYSTEM_M3 = (
 def build_user_prompt(condition: str, memory_block: str, probe: dict[str, Any]) -> str:
     header = (
         "Structured social memories (typed, with currency status and planning affordances):"
-        if condition == "M3_actionable"
+        if condition in {"M3_placebo", "M3_actionable"}
         else "Memory notes:"
     )
     parts = [
@@ -89,7 +232,7 @@ def build_user_prompt(condition: str, memory_block: str, probe: dict[str, Any]) 
         header,
         memory_block,
     ]
-    if condition == "M3_actionable":
+    if condition in {"M3_placebo", "M3_actionable"}:
         parts.append(
             "The planning_affordances are optional hints. Respect each memory's currency_status "
             "and give the most appropriate, complete social response."
@@ -113,14 +256,34 @@ def main() -> int:
     package = load_seed(args.seed_dir)
     artifact = json.loads(args.memory_artifact.read_text(encoding="utf-8"))
     memories = artifact.get("memories", [])
+    placebo_memories, placebo_meta = construct_placebo_memories(package)
     probes = json.loads((args.seed_dir / "probes.json").read_text(encoding="utf-8")).get("probes", [])
 
-    serializers = {"M2_memory_only": serialize_m2, "M3_actionable": serialize_m3}
-    systems = {"M2_memory_only": SYSTEM_M2, "M3_actionable": SYSTEM_M3}
+    condition_memories = {
+        "M2_memory_only": memories,
+        "M3_placebo": placebo_memories,
+        "M3_actionable": memories,
+    }
+    serializers = {"M2_memory_only": serialize_m2, "M3_placebo": serialize_m3, "M3_actionable": serialize_m3}
+    systems = {"M2_memory_only": SYSTEM_M2, "M3_placebo": SYSTEM_M3, "M3_actionable": SYSTEM_M3}
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
+    placebo_artifact_path = args.output_dir / f"{package.seed_id}_M3_placebo_memory_artifact.json"
+    with placebo_artifact_path.open("w", encoding="utf-8", newline="\n") as f:
+        json.dump({
+            "scenario_id": package.scenario_id,
+            "seed_id": package.seed_id,
+            "condition_id": "M3_placebo",
+            "source": "treatment_harness.py deterministic early-log stale placebo",
+            "placebo_construction": placebo_meta,
+            "memory_count": len(placebo_memories),
+            "memories": placebo_memories,
+        }, f, indent=2, ensure_ascii=False, sort_keys=True)
+        f.write("\n")
+    print(f"M3_placebo memory artifact: {placebo_artifact_path}")
+
     for condition in CONDITIONS:
-        memory_block = serializers[condition](memories)
+        memory_block = serializers[condition](condition_memories[condition])
         records = [
             {
                 "probe_id": probe["probe_id"],

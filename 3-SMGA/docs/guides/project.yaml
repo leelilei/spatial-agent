@@ -4,7 +4,7 @@ type: empirical
 title: Structured Memory for Generative Agents
 researchQuestion: How can socially actionable memory improve grounded planning and
   behavior in LLM social agents?
-currentFocus: Phase 3 - First baseline runs
+currentFocus: Phase 5 - Stage 1 pilot analysis and Gate 1 prep
 phases:
 - n: 0
   title: 项目卫生与版本管理
@@ -40,7 +40,7 @@ phases:
 - n: 3
   title: 第一轮 baseline 运行
   track: experiment
-  status: current
+  status: done
   summary: 先在 seed_0001 上跑非 SMGA baseline，拿到真实模型输出与失败案例。
   outputs:
   - M0_GA harness
@@ -51,14 +51,11 @@ phases:
   - baseline probe responses
   - scorer 可读的 baseline JSON
   next:
-  - Freeze provider, model version, temperature, and decoding settings.
-  - Generate M0_GA raw model outputs for seed_0001.
-  - Generate M0_prompted raw model outputs for seed_0001.
-  - Score both baselines and record failure cases.
+  - Maintain persisted judge summaries for future reruns.
 - n: 4
   title: SMGA treatment 与 ablations
   track: experiment
-  status: planned
+  status: done
   summary: 将 actionable memory、placebo memory、memory-only ablations 接入同一 benchmark
     管线。
   outputs:
@@ -66,24 +63,26 @@ phases:
   - M3_actionable response path
   - M3_placebo construction
   - M2_memory_only serialization
+  - 2-seed Stage 1 alpha pilot
+  - 10-seed Stage 1 pilot pipeline
   next:
-  - Define the memory artifact output format.
-  - Implement minimal M3_actionable memory formation.
-  - Implement M3_placebo stale memory construction.
+  - Carry M3 social naturalness and evidence-ID leakage checks into Gate 1.
 - n: 5
   title: Stage 1 pilot
   track: experiment
-  status: planned
+  status: current
   summary: 用小规模 seed set 判断主实验是否值得扩展。
   outputs:
-  - 5-seed pilot
+  - 10-seed pilot
+  - seed-level variance table
+  - Gate 1 failure audit
   - placebo leakage check
   - claim extractor pilot
   - Gate 1 decision
   next:
-  - Expand to five diagnostic seeds.
-  - Validate placebo leakage.
-  - Decide Stage 2 seed budget.
+  - Revise probe_0003 containment vs repair measurement.
+  - Clarify probe_0004 checked-collaboration rubric boundary.
+  - Reduce M3 unrelated-memory intrusion and rerun the 10-seed pilot.
 - n: 6
   title: Stage 2 主实验
   track: experiment
@@ -171,28 +170,37 @@ paper:
     - Draft the diagnostic benchmark construction and scoring subsections.
   - id: experiments
     title: Experiments
-    status: blocked
-    summary: Experimental conditions are conceptually clear but need real baseline
-      and treatment outputs.
+    status: draft
+    summary: Diagnostic conditions are implemented and have a 10-seed pilot; Stage
+      2 budget and final claim boundary remain gated on failure analysis.
     assets:
     - path: benchmarks/diagnostic_v0
       type: benchmark
       status: ready
     blockers:
-    - M0_GA and M0_prompted baseline responses are not generated.
-    - M3_actionable treatment is not implemented.
+    - Gate 1 measurement hardening is not complete.
+    - Stage 2 seed budget is not decided.
     nextActions:
-    - Freeze model config.
-    - Run baseline responses for seed_0001.
+    - Revise probe_0003 and probe_0004 measurement definitions.
+    - Draft Stage 1 pilot subsection from the 10-seed report and Gate 1 audit.
   - id: results
     title: Results
-    status: missing
-    summary: Results are intentionally empty until scorer-readable outputs exist.
-    assets: []
+    status: pilot
+    summary: Pilot results exist for 10 diagnostic seeds; main results remain
+      blocked until Stage 2.
+    assets:
+    - path: docs/project/stage1_pilot_10seed_2026-06-15.md
+      type: pilot-report
+      status: ready
+    - path: docs/project/gate1_failure_audit_2026-06-15.md
+      type: audit-report
+      status: ready
     blockers:
-    - Baseline and treatment scores are missing.
+    - Measurement-hardened 10-seed rerun and claim-boundary decision are missing.
+    - Stage 2 main experiment is not run.
     nextActions:
-    - Populate after probe_success_scorer.py has scored baseline and SMGA outputs.
+    - Convert 10-seed table into a pilot-only results note.
+    - Decide whether Stage 2 runs 30, 40, or 50 seeds.
   - id: discussion
     title: Discussion and limitations
     status: planned
@@ -202,6 +210,6 @@ paper:
       type: source
       status: ready
     blockers:
-    - Needs observed failures and ablation results.
+    - Needs measurement-hardened Gate 1 rerun and Stage 2 result boundary.
     nextActions:
-    - Record failure cases during baseline scoring.
+    - Summarize probe_0003 and probe_0004 failure classes from the Gate 1 audit.

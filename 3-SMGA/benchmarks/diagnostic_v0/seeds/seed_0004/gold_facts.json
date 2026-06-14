@@ -1,0 +1,206 @@
+{
+  "gold_facts": [
+    {
+      "claim": "Maya and Noah have a productive working relationship coordinating on the clinical abstract resubmission.",
+      "contradicting_evidence_ids": [
+        "event_0010"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0001",
+      "fact_type": "relationship",
+      "subject_entities": [
+        "person_maya",
+        "person_noah"
+      ],
+      "supporting_evidence_ids": [
+        "event_0001"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_cafe",
+          "topic_clinical_abstract"
+        ],
+        "time_window": "day_1_09:00_to_day_2_14:00",
+        "valid_until_event_id": "event_0010"
+      }
+    },
+    {
+      "claim": "Priya's participant-incident detail was shared privately with Maya and was initially not to be shared with anyone.",
+      "contradicting_evidence_ids": [
+        "event_0008"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0002",
+      "fact_type": "secret_or_privacy",
+      "subject_entities": [
+        "person_priya",
+        "person_maya",
+        "info_participant_incident_detail"
+      ],
+      "supporting_evidence_ids": [
+        "event_0002"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_office",
+          "topic_participant_incident"
+        ],
+        "time_window": "day_1_10:30_to_day_2_11:00",
+        "valid_until_event_id": "event_0008"
+      }
+    },
+    {
+      "claim": "Noah promised Maya they would finish the statistics table by the end of day 1.",
+      "contradicting_evidence_ids": [
+        "event_0007"
+      ],
+      "current_status": "contradicted",
+      "fact_id": "fact_0003",
+      "fact_type": "commitment",
+      "subject_entities": [
+        "person_noah",
+        "person_maya"
+      ],
+      "supporting_evidence_ids": [
+        "event_0003"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_lab",
+          "topic_clinical_abstract"
+        ],
+        "time_window": "day_1_14:00_to_day_2_10:00",
+        "valid_until_event_id": "event_0007"
+      }
+    },
+    {
+      "claim": "The team norm is not to share participant incident numbers with anyone outside the team.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0004",
+      "fact_type": "norm",
+      "subject_entities": [
+        "norm_no_external_participant_incident_sharing"
+      ],
+      "supporting_evidence_ids": [
+        "event_0004"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "topic_participant_incident",
+          "norm_no_external_participant_incident_sharing"
+        ],
+        "time_window": "day_1_15:30_onward"
+      }
+    },
+    {
+      "claim": "Sofia runs the consent huddle in the review room at 09:00 each day.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0005",
+      "fact_type": "routine",
+      "subject_entities": [
+        "person_sofia"
+      ],
+      "supporting_evidence_ids": [
+        "event_0005"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_review_room",
+          "activity_consent_huddle"
+        ],
+        "time_window": "day_1_onward"
+      }
+    },
+    {
+      "claim": "Noah is usually reliable with deadlines based on prior projects.",
+      "contradicting_evidence_ids": [
+        "event_0007"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0006",
+      "fact_type": "reputation",
+      "subject_entities": [
+        "person_noah"
+      ],
+      "supporting_evidence_ids": [
+        "event_0006"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "topic_clinical_abstract"
+        ],
+        "time_window": "day_2_09:30_to_day_2_10:00",
+        "valid_until_event_id": "event_0007"
+      }
+    },
+    {
+      "claim": "Sofia violated the no-external-sharing norm by mentioning a participant incident number to a outside reviewer.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0007",
+      "fact_type": "norm",
+      "subject_entities": [
+        "person_sofia",
+        "norm_no_external_participant_incident_sharing"
+      ],
+      "supporting_evidence_ids": [
+        "event_0009"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_lab",
+          "topic_participant_incident"
+        ],
+        "time_window": "day_2_12:00_onward"
+      }
+    },
+    {
+      "claim": "Noah's missed statistics table reduced Maya's confidence in relying on them for the abstract integration pass.",
+      "contradicting_evidence_ids": [
+        "event_0011"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0008",
+      "fact_type": "conflict_or_repair",
+      "subject_entities": [
+        "person_maya",
+        "person_noah"
+      ],
+      "supporting_evidence_ids": [
+        "event_0010"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_office",
+          "topic_clinical_abstract"
+        ],
+        "time_window": "day_2_14:00_to_day_2_15:00",
+        "valid_until_event_id": "event_0011"
+      }
+    },
+    {
+      "claim": "Noah apologized, sent the statistics table, and offered to take the abstract integration pass; Maya's trust is only partially restored.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0009",
+      "fact_type": "conflict_or_repair",
+      "subject_entities": [
+        "person_noah",
+        "person_maya"
+      ],
+      "supporting_evidence_ids": [
+        "event_0011"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_office",
+          "topic_clinical_abstract"
+        ],
+        "time_window": "day_2_15:00_onward"
+      }
+    }
+  ],
+  "scenario_id": "scenario_0004"
+}

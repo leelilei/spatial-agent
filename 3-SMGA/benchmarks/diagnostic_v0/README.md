@@ -5,10 +5,14 @@ This benchmark is the first controlled diagnostic benchmark for the v4.6 SMGA pl
 Current contents:
 
 ```text
-seeds/seed_0001/
+seeds/seed_0001/ ... seeds/seed_0010/
 ```
 
-`seed_0001` is a hand-authored Experiment 0 seed. It is designed to validate schema, parsing, scorer behavior, and memory-module wiring before generating larger seed batches.
+`seed_0001` and `seed_0002` are hand-authored Experiment 0 seeds. They are
+designed to validate schema, parsing, scorer behavior, and memory-module wiring
+before generating larger seed batches. `seed_0003` through `seed_0010` are
+template-generated Stage 1 diagnostic seeds created by
+`generate_stage1_seeds.py`.
 
 Validate all seeds:
 
@@ -26,6 +30,12 @@ Load a seed and print its package summary:
 
 ```bash
 python3 benchmark_loader.py seeds/seed_0001
+```
+
+Generate the Stage 1 diagnostic seed expansion:
+
+```bash
+python3 generate_stage1_seeds.py --start 3 --end 10
 ```
 
 Prepare baseline prompt bundles and scorer-readable response templates:
@@ -112,9 +122,14 @@ Run a single probe when debugging or filling a failed call:
 python3 model_calling_runner.py \
   tmp/smga_baseline_harness/seed_0001_M0_GA_prompts.jsonl \
   --config configs/fhl_responses_gpt54_config.example.json \
-  --response-template tmp/smga_baseline_harness/seed_0001_M0_GA_responses.template.json \
-  --probe-id probe_0002
+  --probe-id probe_0002 \
+  --raw-output tmp/smga_baseline_harness/repair_seed_0001_M0_GA_probe_0002_raw_outputs.jsonl
 ```
+
+When filling a failed call, merge the repaired raw record into the existing
+condition raw output / response draft before rerunning the judge. Passing
+`--response-template` with `--probe-id` creates a draft with only that selected
+probe filled.
 
 Print non-secret resolved config:
 
@@ -209,7 +224,9 @@ the runner / judge / memory module call the API directly.
   objects, validated against the schema.
 - `treatment_harness.py` — serializes the shared memory set two ways:
   `M2_memory_only` (plain-text notes) and `M3_actionable` (structured objects +
-  optional planning-affordance hints, respecting `currency_status`).
+  optional planning-affordance hints, respecting `currency_status`). It also
+  builds `M3_placebo`, an interface-matched stale-memory control constructed
+  from the early log before current-update events.
 - `judge_scorer.py` — condition-blind LLM-judge. Builds one judge prompt per
   probe (probe + plain-language rubric from the locked success/failure conditions
   + the agent's answer) and returns per-probe pass + rationale. Replaces brittle
@@ -238,23 +255,33 @@ python3 memory_module.py $SEED --config $CFG --output-dir tmp/smga_memory
 
 # 3. treatment: build M2/M3 prompts, run, judge
 python3 treatment_harness.py $SEED tmp/smga_memory/<seed>_memory_artifact.json
+python3 model_calling_runner.py tmp/smga_treatment/<seed>_M3_placebo_prompts.jsonl --config $CFG \
+  --response-template tmp/smga_treatment/<seed>_M3_placebo_responses.template.json --output-dir tmp/smga_treatment
+python3 judge_scorer.py $SEED tmp/smga_treatment/<seed>_M3_placebo_responses.raw_draft.json --config $CFG
 python3 model_calling_runner.py tmp/smga_treatment/<seed>_M3_actionable_prompts.jsonl --config $CFG \
   --response-template tmp/smga_treatment/<seed>_M3_actionable_responses.template.json --output-dir tmp/smga_treatment
 python3 judge_scorer.py $SEED tmp/smga_treatment/<seed>_M3_actionable_responses.raw_draft.json --config $CFG
 ```
 
-### Result snapshot (LLM-judge, n=10 across 2 seeds — diagnostic, not conclusive)
+For resume-friendly Stage 1 execution across a seed range:
 
-```text
-              seed_0001   seed_0002   total/10
-M0_GA            4/5         3/5         7
-M0_prompted      4/5         4/5         8
-M2_memory_only   5/5         2/5         7
-M3_actionable    5/5         3/5         8
+```bash
+python3 run_stage1_pilot.py --start 1 --end 10
 ```
 
-Headline diagnostic: the structured/actionable memory (M3) does not yet beat the
-simple prompted baseline; memory distillation (M2) is fragile (best on the easy
-seed, worst on the hard one); and the revision-tracking probe (seed_0002
-probe_0002) was failed by both memory conditions but passed by M0_prompted.
-Next work is attribution before scaling — see `docs/guides/todolist.md`.
+### Result snapshot (LLM-judge, 10 seeds x 5 probes)
+
+```text
+condition         pass/total   rate
+M0_GA              37/50       74%
+M0_prompted        35/50       70%
+M2_memory_only     33/50       66%
+M3_placebo         28/50       56%
+M3_actionable      38/50       76%
+```
+
+Headline diagnostic: `M3_actionable` is strongest, but narrowly above `M0_GA`.
+The clearer mechanism signal is the gap over the interface-matched stale
+placebo (38/50 vs 28/50), especially on reduced-reliance planning
+(`probe_0004`: 7/10 vs 0/10). See
+`docs/project/stage1_pilot_10seed_2026-06-15.md`.

@@ -1,7 +1,7 @@
 # SMGA Todo List
 
-> 更新日期：2026-06-14
-> 当前主线：Phase 3 — First baseline runs
+> 更新日期：2026-06-15
+> 当前主线：Phase 5 — Stage 1 pilot analysis and Gate 1 prep
 
 ---
 
@@ -17,13 +17,14 @@ scorer 已升级：affordance 候选集（v0.2）+ condition-blind LLM-judge（j
 关键发现：关键词尺子 4/5 vs 1-2/5 的差距是测量假象；LLM-judge 下两个 baseline 均 4/5（旗鼓相当）
 judge 仍能抓真实失败（M0_prompted probe_0003 转去问无关信息）并区分实质差异（probe_0004）
 测量已修到可信，足以进入 treatment 比较
-Phase 4 两种子对比（n=10，诊断，非结论）：
-  seed_0001（易，饱和）：M0_GA=4 M0_prompted=4 M2=5 M3=5
-  seed_0002（难，有区分）：M0_GA=3 M0_prompted=4 M2=2 M3=3
-  合计/10：M0_GA=7 M0_prompted=8 M2=7 M3=8
-关键信号：M3(结构化可执行记忆)未优于最简单的 prompted baseline（都 8/10）；记忆蒸馏不稳健（M2 易题 5/5 → 难题 2/5，反成最差）；
-  专为"追踪修订"设计的 probe_0002：M0_prompted 答对，而 M2/M3 反而答错——记忆里的 currency_status=revised 没转化成正确行为
-下一步：扩规模前先弄清"为什么结构化记忆没帮上忙"——查 probe_0002 的 M3 回答（为何没用上修订）、formation 质量、affordance/currency 的使用方式、以及 probe_0002 口径是否过严
+Stage 1 10-seed pilot 已完成（10 seeds x 5 probes x 5 conditions）：
+  M0_GA=37/50, M0_prompted=35/50, M2_memory_only=33/50, M3_placebo=28/50, M3_actionable=38/50
+关键信号：M3(结构化可执行记忆)仍是最强条件，但只比 M0_GA 高 1/50；更清楚的机制信号是高于 interface-matched stale placebo 10/50，尤其是 probe_0004 reduced-reliance planning（M3=7/10, placebo=0/10）。
+主要风险：probe_0003 norm-response/social-repair 仍弱（M3=3/10），需要失败案例盲审；不能直接把 10-seed pilot 当论文结论。
+probe_0002 归因更新：M3 的原始回答其实正确执行了“可向核心团队分享、不可外传”的修订规则；更大的问题是评估口径把 bounded sharing 误判成 maintain_privacy failure。详见 `docs/project/experiment0_probe_0002_diagnostic.md`。
+评估卫生更新：`judge_scorer.py` 已支持落盘 verdict JSON，并已把 bounded sharing / global refusal / external privacy boundary 的 rubric 区分清楚。
+10-seed pilot 结果见 `docs/project/stage1_pilot_10seed_2026-06-15.md`；Gate 1 failure audit 见 `docs/project/gate1_failure_audit_2026-06-15.md`；2-seed alpha 记录见 `docs/project/stage1_pilot_alpha_2026-06-15.md`。
+Gate 1 结论：conditional go for Stage 2 prep，但不能直接开 40-50 seeds。先修 `probe_0003` 的 target/rubric mismatch、明确 `probe_0004` 的 checked-collaboration 边界、降低 M3 unrelated-memory intrusion，然后重跑 10-seed。
 ```
 
 当前工程骨架：
@@ -33,10 +34,11 @@ Phase 4 两种子对比（n=10，诊断，非结论）：
 - [x] `O-03` baseline harness
 - [x] `O-04` model-calling runner
 - [x] `O-05` condition-blind response normalizer
-- [ ] `O-06` memory artifact format for M0/M3 outputs
+- [x] `O-06` memory artifact format for M2/M3/placebo outputs
 - [ ] `O-07` claim extraction scorer
 - [ ] `O-08` planning-grounding scorer
-- [ ] `O-09` Stage 1 pilot runs
+- [x] `O-09a` Stage 1 alpha pilot run on existing 2 seeds
+- [x] `O-09b` Stage 1 expanded pilot run on 5-10 seeds
 
 ---
 
@@ -46,9 +48,9 @@ Phase 4 两种子对比（n=10，诊断，非结论）：
 Phase 0  Project / Git / Todo hygiene
 Phase 1  Research plan and schemas
 Phase 2  Experiment 0 infrastructure
-Phase 3  First baseline runs                  <-- current phase
+Phase 3  First baseline runs
 Phase 4  SMGA treatment and ablations
-Phase 5  Stage 1 pilot
+Phase 5  Stage 1 pilot                        <-- current phase
 Phase 6  Stage 2 main experiment
 Phase 7  Stage 2b secondary controls
 Phase 8  Analysis, writing, and release
@@ -207,14 +209,14 @@ responses 能被 scorer 机械评分
 
 目标：把 SMGA treatment 和必要 ablations 接到同一个 benchmark/scorer 管线里。
 
-- [ ] `P4-01` 定义 memory artifact output format
-- [ ] `P4-02` 实现最小 `M3_actionable` memory formation
-- [ ] `P4-03` 实现 planning affordance serialization
-- [ ] `P4-04` 生成 `M3_actionable` probe responses
-- [ ] `P4-05` 实现 `M3_placebo` stale memory construction
-- [ ] `P4-06` 实现 `M2_memory_only` matched-candidate serialization
-- [ ] `P4-07` 比较 `M0_prompted` vs `M3_actionable` 的 probe success
-- [ ] `P4-08` 检查 `M3` 是否出现 socially unnatural / evidence-ID leakage 风险
+- [x] `P4-01` 定义 memory artifact output format
+- [x] `P4-02` 实现最小 `M3_actionable` memory formation
+- [x] `P4-03` 实现 planning affordance serialization
+- [x] `P4-04` 生成 `M3_actionable` probe responses
+- [x] `P4-05` 实现 `M3_placebo` stale memory construction
+- [x] `P4-06` 实现 `M2_memory_only` matched-candidate serialization
+- [x] `P4-07` 比较 `M0_prompted` vs `M3_actionable` 的 probe success
+- [x] `P4-08` 检查 `M3` 是否出现 socially unnatural / evidence-ID leakage 风险
 
 完成标准：
 
@@ -237,31 +239,34 @@ M3_actionable
 ```text
 M0_GA
 M0_prompted
+M2_memory_only
 M3_placebo
 M3_actionable
 ```
 
-计划规模：
+实际 pilot 规模：
 
 ```text
-4 conditions × 5 seeds
+5 conditions × 10 seeds
 ```
 
 要完成：
 
-- [ ] `P5-01` 扩展到 5 个 hand-authored 或 generated seeds
-- [ ] `P5-02` 验证 placebo 不泄露 current content
+- [x] `P5-01` 扩展到 10 个 hand-authored/generated diagnostic seeds
+- [ ] `P5-02` 验证 placebo 不泄露 current content（construction 已实现，Gate 1 audit 未发现 current-content 胜出迹象；仍需 artifact spot-check）
 - [ ] `P5-03` 验证 claim extractor pilot
-- [ ] `P5-04` 验证 judge / annotation pilot
-- [ ] `P5-05` 测 seed-level variance
-- [ ] `P5-06` Gate 1：判断是否进入 Stage 2
+- [x] `P5-04` 验证 judge / annotation pilot（LLM-judge 50 summaries present, 0 status errors）
+- [x] `P5-05` 测 seed-level variance
+- [x] `P5-06a` Gate 1 failure audit：probe_0003/probe_0004 + M3 naturalness/leakage
+- [ ] `P5-06b` Gate 1 measurement hardening：修 probe/rubric/M3 retrieval 后重跑 10-seed
+- [ ] `P5-06c` Gate 1 final decision：判断是否进入 Stage 2 main run
 
 完成标准：
 
 ```text
 pipeline 稳定
 M3 至少在 memory / planning / behavior 中一个方向有正向信号
-Stage 2 seed budget 能决定 40 或 50
+Stage 2 seed budget 能决定 30/40/50
 ```
 
 ---
@@ -431,15 +436,17 @@ M0_prompted score: pending
 
 ### Priority 2：接入 SMGA treatment
 
-- [ ] `R2-01` 定义 memory artifact output format
-- [ ] `R2-02` 实现最小 `M3_actionable` memory formation
-- [ ] `R2-03` 实现 planning affordance serialization
-- [ ] `R2-04` 生成 `M3_actionable` probe responses
-- [ ] `R2-05` 对比 `M0_prompted` vs `M3_actionable`
+- [x] `R2-01` 定义 memory artifact output format
+- [x] `R2-02` 实现最小 `M3_actionable` memory formation
+- [x] `R2-03` 实现 planning affordance serialization
+- [x] `R2-04` 生成 `M3_actionable` probe responses
+- [x] `R2-05` 对比 `M0_prompted` vs `M3_actionable`
+- [x] `R2-06` 实现并运行 `M3_placebo`
+- [x] `R2-07` 记录 Stage 1 alpha pilot 结果
 
 ### Priority 3：准备 pilot 和论文骨架
 
-- [ ] `R3-01` 扩展到 5 个 seeds
+- [x] `R3-01` 扩展到 10 个 diagnostic seeds
 - [ ] `R3-02` 写 claim extractor 输入/输出 schema
 - [ ] `R3-03` 写 grounded memory F1 scorer
 - [ ] `R3-04` 写 history-grounded planning scorer
@@ -473,21 +480,29 @@ Experiment 0：用 seed_0001（易）+ seed_0002（难）两个手写诊断场�
 
 ### 发现了什么（n=10，诊断级，**非结论**）
 
-合计 /10：`M0_GA=7`，`M0_prompted=8`，`M2=7`，`M3=8`。
-- **M3 没有优于最简单的 M0_prompted（都 8/10）**——SMGA 的“可执行结构”暂未体现出优势。
-- **记忆蒸馏不稳健**：M2 易题 5/5、难题 2/5（最差）——蒸馏在难场景丢了 baseline 还留着的信息。
-- **最关键**：seed_0002 的 `probe_0002` 是专门为“追踪修订”设计的（隐私事实中途获得“可对核心团队说”的许可）。
-  尽管 M3 的记忆 `smem_0004` 已正确标 `revised + contra=event_0008`，**M3/M2 仍答错、只有 M0_prompted 答对**——
-  结构化的 `currency_status` 没有转化为正确行为。这与 SMGA 的核心假设相反。
+合计 /10：`M0_GA=9`，`M0_prompted=7`，`M2=8`，`M3_placebo=7`，`M3=10`。
+- **M3 在当前两种子诊断中最强（10/10）**，但样本太小，只能作为继续 pilot 的信号，不能作为论文结论。
+- **M3 > M3_placebo（10/10 vs 7/10）**，提供了初步 memory-content signal。
+- **M2 仍不稳健**：seed_0002 只有 3/5，尤其 `probe_0002` 把 Dan 转去问 Cara，而不是直接分享允许范围内的信息。
+- **M0_GA 意外很强（9/10）**：这提醒我们后续 claim 不能只针对最简单 prompted baseline，还要保留 GA-style baseline 的强度判断。
+- **probe_0002 结论修正**：M3 没有失败；失败的是早先的 bounded-sharing 评估口径。
 
 ### 下一步：先归因，**不要扩规模**
 
-只做一件事：**搞清“为什么结构化记忆没帮上忙”**。
-1. 读 `tmp/smga_treatment/seed_0002_M3_actionable_responses.raw_draft.json` 里 `probe_0002` 的 M3 回答：
-   既然记忆标了 revised，为什么 M3 仍偏保密？是 `smem_0004` 同时挂了 `maintain_privacy` affordance 把它带偏，
-   还是 norm 记忆（no_external_sharing）压过了许可，还是模型根本没注意到 `currency_status`？
-2. 定位责任：formation（记忆形成）/ M3 序列化（currency 不够突出？affordance 误导？）/ probe_0002 口径过严 / judge 噪声。
-3. 据此决定：改 M3 或 formation 的 v0.3 再比一轮；或**诚实记录“当前 SMGA 设计在此 benchmark 不增益”**（这本身是有价值的论文发现——诊断 benchmark 揭示了 actionable memory 的失败模式）。
+刚完成的归因：`probe_0002` 不是一个干净的 M3 行为失败。M3 回答已经说清 Dan 是 core team member，因此可以分享 budget-cut detail，同时不能外传。失败信号主要来自评估层：
+
+1. mechanical normalizer 把 “do not share outside the team” 选成 dominant `maintain_privacy`，尽管同一回答也表达了 `share_information`。
+2. mechanical scorer 把这个 dominant label 当作 forbidden action，无法区分“拒绝向 Dan 分享”和“向 Dan 分享但不外传”。
+3. `current_status_used` 规则没有识别 “core team member / can share / within the core team” 这种修订后许可语义。
+
+评估卫生已推进：
+
+1. `judge_scorer.py` 现在保存 machine-readable verdict summary，结果不再只停留在终端输出。
+2. judge rubric 已明确区分 bounded sharing、global refusal、external privacy boundary。
+
+重跑/复核已经完成：M3 在 seed_0002 为 5/5，probe_0002 为 PASS。
+
+下一步只做一件事：**Gate 1 measurement hardening**。根据 `docs/project/gate1_failure_audit_2026-06-15.md`，先修 `probe_0003` 的 containment/repair 混淆、明确 `probe_0004` 的 checked-collaboration 判定边界、降低 M3 unrelated-memory intrusion，然后重跑 10-seed。
 
 ### 为什么是这个顺序（原因）
 
@@ -501,5 +516,5 @@ Experiment 0：用 seed_0001（易）+ seed_0002（难）两个手写诊断场�
 scorer v0.2 + judge_scorer.py（condition-blind LLM-judge）
 memory_module.py（Module A）+ treatment_harness.py（M2/M3）
 seed_0002（更难、修订-追踪，validate 通过）
-10 条 judge：M0_GA=7 M0_prompted=8 M2=7 M3=8（/10，诊断）
+10 条 judge：M0_GA=9 M0_prompted=7 M2=8 M3_placebo=7 M3=10（/10，诊断，bounded-sharing rubric + placebo 后）
 ```

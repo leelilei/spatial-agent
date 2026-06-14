@@ -1,0 +1,206 @@
+{
+  "gold_facts": [
+    {
+      "claim": "Tara and Uma have a productive working relationship coordinating on the security audit response.",
+      "contradicting_evidence_ids": [
+        "event_0010"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0001",
+      "fact_type": "relationship",
+      "subject_entities": [
+        "person_tara",
+        "person_uma"
+      ],
+      "supporting_evidence_ids": [
+        "event_0001"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_cafe",
+          "topic_security_audit"
+        ],
+        "time_window": "day_1_09:00_to_day_2_14:00",
+        "valid_until_event_id": "event_0010"
+      }
+    },
+    {
+      "claim": "Vik's vulnerability-window detail was shared privately with Tara and was initially not to be shared with anyone.",
+      "contradicting_evidence_ids": [
+        "event_0008"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0002",
+      "fact_type": "secret_or_privacy",
+      "subject_entities": [
+        "person_vik",
+        "person_tara",
+        "info_vulnerability_window_detail"
+      ],
+      "supporting_evidence_ids": [
+        "event_0002"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_office",
+          "topic_vulnerability_window"
+        ],
+        "time_window": "day_1_10:30_to_day_2_11:00",
+        "valid_until_event_id": "event_0008"
+      }
+    },
+    {
+      "claim": "Uma promised Tara they would finish the mitigation matrix by the end of day 1.",
+      "contradicting_evidence_ids": [
+        "event_0007"
+      ],
+      "current_status": "contradicted",
+      "fact_id": "fact_0003",
+      "fact_type": "commitment",
+      "subject_entities": [
+        "person_uma",
+        "person_tara"
+      ],
+      "supporting_evidence_ids": [
+        "event_0003"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_lab",
+          "topic_security_audit"
+        ],
+        "time_window": "day_1_14:00_to_day_2_10:00",
+        "valid_until_event_id": "event_0007"
+      }
+    },
+    {
+      "claim": "The team norm is not to share vulnerability window numbers with anyone outside the team.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0004",
+      "fact_type": "norm",
+      "subject_entities": [
+        "norm_no_external_vulnerability_window_sharing"
+      ],
+      "supporting_evidence_ids": [
+        "event_0004"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "topic_vulnerability_window",
+          "norm_no_external_vulnerability_window_sharing"
+        ],
+        "time_window": "day_1_15:30_onward"
+      }
+    },
+    {
+      "claim": "Yuri runs the threat review in the secure room at 09:00 each day.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0005",
+      "fact_type": "routine",
+      "subject_entities": [
+        "person_yuri"
+      ],
+      "supporting_evidence_ids": [
+        "event_0005"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_secure_room",
+          "activity_threat_review"
+        ],
+        "time_window": "day_1_onward"
+      }
+    },
+    {
+      "claim": "Uma is usually reliable with deadlines based on prior projects.",
+      "contradicting_evidence_ids": [
+        "event_0007"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0006",
+      "fact_type": "reputation",
+      "subject_entities": [
+        "person_uma"
+      ],
+      "supporting_evidence_ids": [
+        "event_0006"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "topic_security_audit"
+        ],
+        "time_window": "day_2_09:30_to_day_2_10:00",
+        "valid_until_event_id": "event_0007"
+      }
+    },
+    {
+      "claim": "Yuri violated the no-external-sharing norm by mentioning a vulnerability window number to a external assessor.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0007",
+      "fact_type": "norm",
+      "subject_entities": [
+        "person_yuri",
+        "norm_no_external_vulnerability_window_sharing"
+      ],
+      "supporting_evidence_ids": [
+        "event_0009"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_lab",
+          "topic_vulnerability_window"
+        ],
+        "time_window": "day_2_12:00_onward"
+      }
+    },
+    {
+      "claim": "Uma's missed mitigation matrix reduced Tara's confidence in relying on them for the audit-response pass.",
+      "contradicting_evidence_ids": [
+        "event_0011"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0008",
+      "fact_type": "conflict_or_repair",
+      "subject_entities": [
+        "person_tara",
+        "person_uma"
+      ],
+      "supporting_evidence_ids": [
+        "event_0010"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_office",
+          "topic_security_audit"
+        ],
+        "time_window": "day_2_14:00_to_day_2_15:00",
+        "valid_until_event_id": "event_0011"
+      }
+    },
+    {
+      "claim": "Uma apologized, sent the mitigation matrix, and offered to take the audit-response pass; Tara's trust is only partially restored.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0009",
+      "fact_type": "conflict_or_repair",
+      "subject_entities": [
+        "person_uma",
+        "person_tara"
+      ],
+      "supporting_evidence_ids": [
+        "event_0011"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_office",
+          "topic_security_audit"
+        ],
+        "time_window": "day_2_15:00_onward"
+      }
+    }
+  ],
+  "scenario_id": "scenario_0008"
+}
