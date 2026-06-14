@@ -1,6 +1,6 @@
 # SMGA Todo List
 
-> 更新日期：2026-06-11
+> 更新日期：2026-06-14
 > 当前主线：Phase 3 — First baseline runs
 
 ---
@@ -12,8 +12,10 @@ SMGA 现在的位置：
 ```text
 Proposal / schema 已定稿到 v4.6
 Experiment 0 的 benchmark seed 已经可以被验证和评分
-当前正在接入第一轮非 SMGA baseline
-下一步：固定 model config 并运行真实 baseline
+`fhl` Responses API provider 已接入并用 `gpt-5.4` 跑通 `M0_GA` 与 `M0_prompted`
+两个 baseline 已完成评分（seed_0001，单 seed 管线诊断）：`M0_GA` = 4/5，`M0_prompted` = 1/5
+意外信号：`M0_prompted` 远低于 `M0_GA`（probe_0003 还触发 forbidden marker），疑似 probe/marker 口径过窄
+下一步：先做 probe/marker 口径复盘（marker v0.2），再进入 Phase 4（SMGA treatment）
 ```
 
 当前工程骨架：
@@ -66,7 +68,7 @@ Phase 8  Analysis, writing, and release
 - [x] `P0-01` SMGA 从 SpatialAgent 中独立成项目目录
 - [x] `P0-02` `3-SMGA/README.md` 指向当前 proposal 和 schema
 - [x] `P0-03` 建立 active todo list
-- [ ] `P0-04` 将当前 SMGA docs / benchmark / scorer 改动提交到 git
+- [x] `P0-04` 将当前 SMGA docs / benchmark / scorer 改动提交到 git
 - [ ] `P0-05` 之后每完成一个 phase 或关键 milestone 都提交一次
 
 完成标准：
@@ -138,14 +140,50 @@ python3 probe_success_scorer.py seeds/seed_0001 examples/seed_0001_probe_respons
 - [x] `P3-03` 实现 `model_calling_runner.py`
 - [x] `P3-04` 实现 `response_normalizer.py`
 - [x] `P3-05` 建立 baseline model config 模板
-- [ ] `P3-06` 固定 model config：provider / model version / temperature / decoding settings
-- [ ] `P3-07` 为 `seed_0001` 生成 `M0_GA` raw model outputs
-- [ ] `P3-08` 为 `seed_0001` 生成 `M0_prompted` raw model outputs
-- [ ] `P3-09` 将 `M0_GA` responses 输出为 scorer 可读 JSON
-- [ ] `P3-10` 将 `M0_prompted` responses 输出为 scorer 可读 JSON
-- [ ] `P3-11` 用 `probe_success_scorer.py` 评分 `M0_GA`
-- [ ] `P3-12` 用 `probe_success_scorer.py` 评分 `M0_prompted`
-- [ ] `P3-13` 记录 baseline failure cases，检查 probe 是否过窄或过宽
+- [x] `P3-06` 固定 model config：provider / model version / temperature / decoding settings
+- [x] `P3-07` 为 `seed_0001` 生成 `M0_GA` raw model outputs
+- [x] `P3-08` 为 `seed_0001` 生成 `M0_prompted` raw model outputs
+- [x] `P3-09` 将 `M0_GA` responses 输出为 scorer 可读 JSON
+- [x] `P3-10` 将 `M0_prompted` responses 输出为 scorer 可读 JSON
+- [x] `P3-11` 用 `probe_success_scorer.py` 评分 `M0_GA`
+- [x] `P3-12` 用 `probe_success_scorer.py` 评分 `M0_prompted`
+- [x] `P3-13` 记录 baseline failure cases，检查 probe 是否过窄或过宽
+
+当前已固定 baseline 调用配置：
+
+```text
+provider: fhl
+wire_api: responses
+model: gpt-5.4
+transport: curl
+responses_input_mode: string
+omit_temperature: true
+json_mode: false
+disable_response_storage: true
+sleep: 3
+retries: 3
+retry_sleep: 5
+```
+
+当前 `M0_GA` 真实结果：
+
+```text
+seed_0001 / M0_GA / fhl gpt-5.4
+score: 4/5 headline probes passed (80.0%)
+failed: probe_0004
+failure reason: not enough required response markers
+interpretation: 模型方向基本正确，但没有显式包含 verify / less rely 等 planning-grounding marker
+```
+
+下一步具体动作：
+
+```text
+1. 用同一 `fhl_responses_gpt54_config.example.json` 跑 `M0_prompted`
+2. normalize `M0_prompted` responses
+3. score `M0_prompted`
+4. 对比 `M0_GA` vs `M0_prompted` 的 failure cases
+5. 判断 probe_0004 是合理 baseline failure，还是 normalizer / marker 需要 v0.2 调整
+```
 
 完成标准：
 
@@ -353,7 +391,7 @@ claim 不超过 v4.6 success/downgrade rules
 
 ### Priority 0：完成当前工程闭环
 
-- [ ] `R0-01` 将当前 SMGA docs / benchmark / scorer 改动提交到 git
+- [x] `R0-01` 将当前 SMGA docs / benchmark / scorer 改动提交到 git
 - [x] `R0-02` 实现 `benchmark_loader.py`
 - [x] `R0-03` 为 `benchmark_loader.py` 加 CLI summary
 - [x] `R0-04` 定义 normalized probe response schema
@@ -366,11 +404,22 @@ claim 不超过 v4.6 success/downgrade rules
 - [x] `R1-03` 实现 model-calling runner
 - [x] `R1-04` 实现 condition-blind response normalizer
 - [x] `R1-05` 建立 baseline model config 模板
-- [ ] `R1-06` 固定 model config
-- [ ] `R1-07` 为 `seed_0001` 生成 baseline probe responses
-- [ ] `R1-08` 将 baseline responses 输出为 scorer 可读 JSON
-- [ ] `R1-09` 用 `probe_success_scorer.py` 评分 `M0_GA` 和 `M0_prompted`
-- [ ] `R1-10` 记录 baseline failure cases
+- [x] `R1-06` 固定 model config
+- [x] `R1-07` 为 `seed_0001` 生成 baseline probe responses
+- [x] `R1-08` 将 baseline responses 输出为 scorer 可读 JSON
+- [x] `R1-09` 用 `probe_success_scorer.py` 评分 `M0_GA` 和 `M0_prompted`
+- [x] `R1-10` 记录 baseline failure cases
+
+R1 当前细分状态：
+
+```text
+M0_GA raw outputs: done
+M0_GA normalized scorer JSON: done
+M0_GA score: 4/5
+M0_prompted raw outputs: next
+M0_prompted normalized scorer JSON: pending
+M0_prompted score: pending
+```
 
 ### Priority 2：接入 SMGA treatment
 
@@ -407,14 +456,26 @@ claim 不超过 v4.6 success/downgrade rules
 下一步只做一件事：
 
 ```text
-固定 model config 并运行真实 baseline
+复盘 probe / marker 口径（marker v0.2）
 ```
+
+为什么：`M0_prompted` 在 `seed_0001` 上仅 1/5，远低于 `M0_GA` 的 4/5，违反直觉。
+疑似 probe 的 required/forbidden marker 过窄、或 affordance 判定过严。
+先判断是"口径问题"还是"真实差异"，再决定扩 seeds / 进 Phase 4。
 
 目标输出：
 
 ```text
-provider / model version / temperature / decoding settings
-M0_GA raw outputs + normalized scorer JSON
-M0_prompted raw outputs + normalized scorer JSON
-probe_success_scorer.py baseline scores
+probe_0001 / 0003 / 0004 / 0005 失败归因（口径问题 vs 真实差异）
+marker v0.2 调整建议（required / forbidden / affordance）
+Phase 4 启动判断
+```
+
+已完成（Phase 3 收尾）：
+
+```text
+provider / model / decoding: fhl / gpt-5.4 / responses / curl transport
+M0_GA：raw + normalized + score = 4/5
+M0_prompted：raw + normalized + score = 1/5
+两个 baseline 的 failure cases 已记录
 ```
