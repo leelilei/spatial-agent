@@ -199,9 +199,13 @@ function renderProject(source) {
   projectView.dataset.activePage = activeDetailPage;
   projectTitle.textContent = model.title || `${source.name} Research Map`;
   projectMainline.textContent = model.currentFocus || source.currentMainline || "暂无当前焦点";
-  researchQuestion.textContent = model.researchQuestion
-    ? `Research Question: ${model.researchQuestion}`
-    : "Research Question: 暂未记录，先用项目路线图和 todo 派生地图。";
+  if (model.researchQuestion) {
+    researchQuestion.textContent = `Research Question: ${model.researchQuestion}`;
+    researchQuestion.hidden = false;
+  } else {
+    researchQuestion.textContent = "";
+    researchQuestion.hidden = true;
+  }
 
   updateProjectPagesVisibility();
   renderProjectNav(source);

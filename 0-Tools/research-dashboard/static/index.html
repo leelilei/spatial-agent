@@ -3,36 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Research Project Map</title>
+    <title>Research Cockpit</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <div class="app-shell">
-      <aside class="sidebar">
-        <div class="sidebar-brand">
-          <p class="eyebrow">Research</p>
-          <h1 class="sidebar-title">Cockpit</h1>
-        </div>
-        <nav class="sidebar-nav" aria-label="项目导航">
-          <button id="home-nav" class="nav-row" type="button">
-            <span class="nav-row-dot home"></span>
-            <span class="nav-row-name">工作区总览</span>
-          </button>
-          <p class="sidebar-label">项目</p>
-          <div id="project-switcher"></div>
-        </nav>
-        <div class="sidebar-foot">
-          <button id="refresh-button" type="button">刷新</button>
-          <p id="last-updated" class="muted">加载中...</p>
-        </div>
-      </aside>
-
-      <main class="main">
+      <main>
         <section id="home-view">
-          <div class="section-title">
-            <p class="eyebrow">All Projects</p>
-            <h2>项目总览</h2>
+          <div class="home-appbar">
+            <h1 class="home-title">Research Cockpit</h1>
+            <div class="home-appbar-actions">
+              <p id="last-updated" class="muted">加载中...</p>
+              <button id="refresh-button" type="button">刷新</button>
+            </div>
           </div>
+
           <section id="summary" class="summary-grid" aria-label="工作区汇总"></section>
 
           <section id="trend-section" class="trend-panel" style="display: none; margin-bottom: 22px; padding: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);">
@@ -50,70 +35,40 @@
         </section>
 
         <section id="project-view" hidden>
-          <header class="project-detail-header-panel">
-            <button id="back-button" class="back-button" type="button">← 返回所有项目</button>
-            <div class="project-map-header">
-              <div>
-                <p class="eyebrow">Research Project</p>
-                <h2 id="project-title">项目详情</h2>
-              </div>
-              <div class="project-focus-card">
-                <span>Current Focus</span>
-                <p id="project-mainline"></p>
-              </div>
+          <div class="project-topbar">
+            <div class="project-topbar-main">
+              <button id="back-button" class="back-button" type="button">← 返回</button>
+              <h2 id="project-title" class="project-title-sm">项目详情</h2>
+              <p id="project-mainline" class="project-focus-inline"></p>
             </div>
-            <p id="research-question" class="research-question"></p>
-          </header>
+            <nav id="project-nav" class="project-nav"></nav>
+          </div>
 
-          <nav id="project-nav" class="project-nav"></nav>
+          <p id="research-question" class="research-question"></p>
 
           <div class="project-detail-layout">
             <div class="project-map-workspace">
               <section id="overview-section" class="overview-panel project-section project-page" data-section="overview">
-                <div class="section-title">
-                  <p class="eyebrow">Overview</p>
-                  <h2>项目概览</h2>
-                </div>
                 <div id="project-overview"></div>
               </section>
 
               <section id="project-map-section" class="project-map-panel project-section project-page" data-section="map">
-                <div class="section-title">
-                  <p class="eyebrow">Project Map</p>
-                  <h2>研究阶段流图</h2>
-                </div>
                 <div id="project-map" class="project-map"></div>
               </section>
 
               <section id="history-section" class="history-panel project-section project-page" data-section="history">
-                <div class="section-title">
-                  <p class="eyebrow">History</p>
-                  <h2>之前做过什么</h2>
-                </div>
                 <div id="project-history"></div>
               </section>
 
               <section id="paper-readiness-section" class="paper-readiness-panel project-section project-page" data-section="paper">
-                <div class="section-title">
-                  <p class="eyebrow">Paper Readiness</p>
-                  <h2>论文准备度</h2>
-                </div>
                 <div id="paper-readiness"></div>
               </section>
 
               <section id="decisions-section" class="decisions-panel project-section project-page" data-section="decisions">
-                <div class="section-title">
-                  <p class="eyebrow">Decisions</p>
-                  <h2>决策日志</h2>
-                </div>
                 <div id="project-decisions"></div>
               </section>
 
               <section id="artifacts-section" class="artifacts-panel project-section project-page" data-section="artifacts">
-                <div class="section-title">
-                  <p class="eyebrow">Artifacts</p>
-                  <h2>产出 / 资产</h2>
-                </div>
                 <div id="project-artifacts"></div>
               </section>
             </div>
