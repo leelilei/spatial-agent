@@ -17,7 +17,9 @@ scorer 已升级：affordance 候选集（v0.2）+ condition-blind LLM-judge（j
 关键发现：关键词尺子 4/5 vs 1-2/5 的差距是测量假象；LLM-judge 下两个 baseline 均 4/5（旗鼓相当）
 judge 仍能抓真实失败（M0_prompted probe_0003 转去问无关信息）并区分实质差异（probe_0004）
 测量已修到可信，足以进入 treatment 比较
-下一步：进入 Phase 4 —— 实现最小 M3_actionable，用同一 LLM-judge 与 baseline 对比
+Phase 4 首轮（seed_0001，n=1 诊断，非结论）：M0_GA=4/5, M0_prompted=4/5, M2_memory_only=5/5, M3_actionable=3/5
+意外信号：记忆蒸馏(M2)有益；但当前 affordance 契约(M3)反而拖累——M3 被 affordance 牵着选 follow_commitment（probe_0004 应更谨慎），且忙于"声明用了哪条记忆/affordance"漏掉道歉（probe_0001）
+下一步：迭代 M3 prompt 设计 v0.2（affordance 作软提示而非"选一个并声明"，保留完整社交回应），再跑对比
 ```
 
 当前工程骨架：
@@ -458,25 +460,26 @@ M0_prompted score: pending
 下一步只做一件事：
 
 ```text
-实现最小 M3_actionable treatment，用同一 LLM-judge 与 baseline 对比
+迭代 M3 prompt 设计 v0.2（affordance 作软提示，去掉"声明用了哪条 affordance"，保留完整社交回应），再跑 M3 对比
 ```
 
-为什么：测量已修对（condition-blind LLM-judge，format-neutral），baseline 基线也已确立
-（judge 下 M0_GA / M0_prompted 均 4/5）。现在可以回答真正的研究问题：
-结构化、可执行的记忆（M3）是否比普通 baseline 更好。
+为什么：首轮 M3=3/5 低于 M2=5/5 与 baseline=4/5。诊断显示不是"结构化记忆没用"
+（M2 用同一批记忆纯文本反而 5/5），而是当前 affordance 契约把 planner 引偏 + 元叙述挤掉社交实质。
+先修 M3 prompt 设计再判断"可执行结构"到底有没有价值。
 
 目标输出：
 
 ```text
-memory artifact output format（P4-01）
-最小 M3_actionable memory formation + probe responses（P4-02 / P4-04）
-M3 vs M0 的 LLM-judge 对比（同一 seed_0001）
+M3 prompt v0.2（affordance=可选上下文，不强制选一个、不要求声明；强调完整、得体的社交回应）
+重跑 M3，LLM-judge 对比 M2 / M0（同一 seed_0001）
+若 M3 v0.2 仍 < M2 → 记录"affordance 层在此 benchmark 不增益"的发现
 ```
 
-已完成（Phase 3 + 测量修复）：
+已完成（Phase 3 测量修复 + Phase 4 首轮）：
 
 ```text
-M0_GA / M0_prompted：raw + LLM-judge score 各 4/5（seed_0001）
-scorer v0.2：affordance 候选集修复（结构性、不放水）
-judge_scorer.py：condition-blind LLM-judge，已验证不冤枉好回答、能抓真实失败
+scorer v0.2（affordance 候选集）+ judge_scorer.py（condition-blind LLM-judge，已验证）
+memory_module.py（Module A，模型形成 9 条 schema-valid 记忆，condition-blind）
+treatment_harness.py（M2/M3 序列化，matched-candidate）
+首轮 judge：M0_GA=4/5 M0_prompted=4/5 M2=5/5 M3=3/5（n=1 诊断）
 ```
