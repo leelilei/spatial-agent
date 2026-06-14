@@ -204,12 +204,13 @@ def normalize_response_file(seed_dir: Path, input_path: Path) -> dict[str, Any]:
     normalized_doc["responses"] = normalized_responses
     normalized_doc["normalization"] = {
         "normalizer": "response_normalizer.py",
-        "normalizer_version": "0.1-rule-based",
+        "normalizer_version": "0.2-rule-based-candidates",
         "condition_blind": True,
         "uses_success_conditions": False,
         "notes": (
             "Rule-based pilot normalizer. It uses response_text and the entity catalog, "
-            "not condition_id or probe success conditions."
+            "not condition_id or probe success conditions. v0.2 adds affordance_candidates "
+            "(all matched affordances) to replace winner-take-all single-label assignment."
         ),
     }
     return normalized_doc
@@ -219,10 +220,12 @@ def normalize_response(package: ScenarioPackage, response: dict[str, Any]) -> di
     text = str(response.get("response_text", ""))
     normalized = dict(response)
     affordance, affordance_matches = infer_affordance(text)
+    candidates = infer_affordance_candidates(text)
     entities, entity_matches = infer_target_entities(package, text)
     statuses, status_matches = infer_statuses(text)
 
     normalized["chosen_affordance_type"] = affordance
+    normalized["affordance_candidates"] = candidates
     normalized["target_entities"] = entities
     normalized["current_status_used"] = statuses
     normalized["normalization_notes"] = (
@@ -244,6 +247,23 @@ def infer_affordance(text: str) -> tuple[str, list[str]]:
             best_affordance = affordance
             best_matches = matches
     return best_affordance, best_matches
+
+
+def infer_affordance_candidates(text: str) -> list[str]:
+    """All affordances with at least one keyword match.
+
+    A verbose response can legitimately express several action types; collapsing
+    to a single winner-take-all label penalized substantively-correct answers
+    that happened to also trip another category's keywords. The scorer judges
+    acceptability against this candidate set, while forbidden affordances are
+    still flagged if present anywhere in the set.
+    """
+    normalized_text = text.lower()
+    candidates: list[str] = []
+    for affordance, markers in AFFORDANCE_RULES:
+        if any(marker in normalized_text for marker in markers):
+            candidates.append(affordance)
+    return candidates
 
 
 def infer_statuses(text: str) -> tuple[list[str], dict[str, list[str]]]:

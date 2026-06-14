@@ -50,12 +50,21 @@ def score_probe(probe: dict[str, Any], response: dict[str, Any] | None) -> dict[
     failure_condition = probe.get("failure_condition", {})
     response_text = str(response.get("response_text", ""))
     chosen_affordance = response.get("chosen_affordance_type")
+    # v0.2: judge acceptability against the set of all expressed affordances, not a
+    # single winner-take-all label. Fall back to the single label for older drafts.
+    affordance_candidates = set(normalize_list(response.get("affordance_candidates")))
+    if not affordance_candidates and chosen_affordance:
+        affordance_candidates = {chosen_affordance}
     target_entities = set(normalize_list(response.get("target_entities")))
     current_status_used = set(normalize_list(response.get("current_status_used")))
 
     failure_details: dict[str, Any] = {}
     failure_reasons: list[str] = []
 
+    # Forbidden affordance is judged on the single dominant label only: an
+    # incidental keyword mention in a verbose answer should not count as the
+    # agent *choosing* a forbidden action. Acceptable affordance (below) is the
+    # lenient candidate-set check.
     forbidden_affordances = set(normalize_list(failure_condition.get("forbidden_affordance_types")))
     if chosen_affordance in forbidden_affordances:
         failure_details["forbidden_affordance"] = chosen_affordance
@@ -72,10 +81,13 @@ def score_probe(probe: dict[str, Any], response: dict[str, Any] | None) -> dict[
     success_details: dict[str, Any] = {}
     acceptable_affordances = set(normalize_list(success_condition.get("acceptable_affordance_types")))
     if acceptable_affordances:
-        affordance_ok = chosen_affordance in acceptable_affordances
+        matched_acceptable = sorted(acceptable_affordances & affordance_candidates)
+        affordance_ok = bool(matched_acceptable)
         success_details["affordance_ok"] = affordance_ok
+        success_details["matched_acceptable_affordances"] = matched_acceptable
+        success_details["affordance_candidates"] = sorted(affordance_candidates)
         if not affordance_ok:
-            failure_reasons.append("chosen affordance is not acceptable")
+            failure_reasons.append("no acceptable affordance expressed")
 
     required_targets = set(normalize_list(success_condition.get("required_target_entities")))
     if required_targets:
