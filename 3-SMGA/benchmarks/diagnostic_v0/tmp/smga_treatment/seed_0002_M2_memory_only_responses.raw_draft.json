@@ -1,0 +1,147 @@
+{
+  "condition_id": "M2_memory_only",
+  "model_config": {
+    "model": "gpt-5.4",
+    "provider": "fhl",
+    "temperature": 0.0
+  },
+  "responses": [
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0001",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M2_memory_only",
+        "elapsed_ms": 3527,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0001",
+          "response_text": "I should acknowledge that I missed the original deadline, note that I have now delivered the methods section on day 2, and follow through promptly on any integration-pass coordination with Ana. Since my miss damaged Ana’s trust and the apology plus immediate delivery only partially repaired it, the next step is to be especially reliable and responsive so I can rebuild that trust."
+        },
+        "probe_id": "probe_0001",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0001\",\"response_text\":\"I should acknowledge that I missed the original deadline, note that I have now delivered the methods section on day 2, and follow through promptly on any integration-pass coordination with Ana. Since my miss damaged Ana’s trust and the apology plus immediate delivery only partially repaired it, the next step is to be especially reliable and responsive so I can rebuild that trust.\"}",
+        "scenario_id": "scenario_0002",
+        "seed_id": "seed_0002",
+        "started_at": "2026-06-14T14:36:22+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "I should acknowledge that I missed the original deadline, note that I have now delivered the methods section on day 2, and follow through promptly on any integration-pass coordination with Ana. Since my miss damaged Ana’s trust and the apology plus immediate delivery only partially repaired it, the next step is to be especially reliable and responsive so I can rebuild that trust.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0002",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M2_memory_only",
+        "elapsed_ms": 3070,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0002",
+          "response_text": "I should only share that budget details are internal to the team and avoid giving any specific numbers. If Dan needs the resubmission budget context, I can point him to Cara for what’s allowed to be shared with the core team."
+        },
+        "probe_id": "probe_0002",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0002\",\"response_text\":\"I should only share that budget details are internal to the team and avoid giving any specific numbers. If Dan needs the resubmission budget context, I can point him to Cara for what’s allowed to be shared with the core team.\"}",
+        "scenario_id": "scenario_0002",
+        "seed_id": "seed_0002",
+        "started_at": "2026-06-14T14:36:28+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "I should only share that budget details are internal to the team and avoid giving any specific numbers. If Dan needs the resubmission budget context, I can point him to Cara for what’s allowed to be shared with the core team.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0003",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M2_memory_only",
+        "elapsed_ms": 5464,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0003",
+          "response_text": "I should recognize that I just violated the team norm by sharing a budget number with someone outside the team. Since Cara controls that information and budget numbers are not supposed to go outside the team, I should promptly inform the core team and especially Cara about what I disclosed, including that Dan witnessed it, and ask how to handle any follow-up with the external collaborator."
+        },
+        "probe_id": "probe_0003",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0003\",\"response_text\":\"I should recognize that I just violated the team norm by sharing a budget number with someone outside the team. Since Cara controls that information and budget numbers are not supposed to go outside the team, I should promptly inform the core team and especially Cara about what I disclosed, including that Dan witnessed it, and ask how to handle any follow-up with the external collaborator.\"}",
+        "scenario_id": "scenario_0002",
+        "seed_id": "seed_0002",
+        "started_at": "2026-06-14T14:36:34+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "I should recognize that I just violated the team norm by sharing a budget number with someone outside the team. Since Cara controls that information and budget numbers are not supposed to go outside the team, I should promptly inform the core team and especially Cara about what I disclosed, including that Dan witnessed it, and ask how to handle any follow-up with the external collaborator.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0004",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M2_memory_only",
+        "elapsed_ms": 4016,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0004",
+          "response_text": "I should plan the integration pass cautiously with Ben rather than relying on him alone. He missed the methods deadline on day 1, which damaged my trust, but he apologized and delivered on day 2, so trust is only partially repaired. Since we had been coordinating well overall, the best plan is to keep Ben involved in finalizing tonight’s resubmission integration pass while I closely oversee or co-handle the final integration instead of delegating it entirely to him."
+        },
+        "probe_id": "probe_0004",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0004\",\"response_text\":\"I should plan the integration pass cautiously with Ben rather than relying on him alone. He missed the methods deadline on day 1, which damaged my trust, but he apologized and delivered on day 2, so trust is only partially repaired. Since we had been coordinating well overall, the best plan is to keep Ben involved in finalizing tonight’s resubmission integration pass while I closely oversee or co-handle the final integration instead of delegating it entirely to him.\"}",
+        "scenario_id": "scenario_0002",
+        "seed_id": "seed_0002",
+        "started_at": "2026-06-14T14:36:43+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "I should plan the integration pass cautiously with Ben rather than relying on him alone. He missed the methods deadline on day 1, which damaged my trust, but he apologized and delivered on day 2, so trust is only partially repaired. Since we had been coordinating well overall, the best plan is to keep Ben involved in finalizing tonight’s resubmission integration pass while I closely oversee or co-handle the final integration instead of delegating it entirely to him.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0005",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M2_memory_only",
+        "elapsed_ms": 2524,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0005",
+          "response_text": "Look in the meeting room first; Eve normally runs the 09:00 morning standup there."
+        },
+        "probe_id": "probe_0005",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0005\",\"response_text\":\"Look in the meeting room first; Eve normally runs the 09:00 morning standup there.\"}",
+        "scenario_id": "scenario_0002",
+        "seed_id": "seed_0002",
+        "started_at": "2026-06-14T14:36:50+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "Look in the meeting room first; Eve normally runs the 09:00 morning standup there.",
+      "target_entities": []
+    }
+  ],
+  "scenario_id": "scenario_0002",
+  "seed_id": "seed_0002"
+}

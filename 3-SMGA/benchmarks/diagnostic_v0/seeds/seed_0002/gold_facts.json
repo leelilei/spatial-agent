@@ -1,0 +1,95 @@
+{
+  "scenario_id": "scenario_0002",
+  "gold_facts": [
+    {
+      "fact_id": "fact_0001",
+      "fact_type": "relationship",
+      "subject_entities": ["person_ana", "person_ben"],
+      "claim": "Ana and Ben have a productive working relationship coordinating on the grant resubmission.",
+      "supporting_evidence_ids": ["event_0001"],
+      "contradicting_evidence_ids": ["event_0010"],
+      "current_status": "revised",
+      "validity_scope": {"time_window": "day_1_09:00_to_day_2_14:00", "contexts": ["place_cafe", "topic_grant_resubmission"], "valid_until_event_id": "event_0010"}
+    },
+    {
+      "fact_id": "fact_0002",
+      "fact_type": "secret_or_privacy",
+      "subject_entities": ["person_cara", "person_ana", "info_budget_cut"],
+      "claim": "Cara's budget-cut information was shared privately with Ana and was initially not to be shared with anyone.",
+      "supporting_evidence_ids": ["event_0002"],
+      "contradicting_evidence_ids": ["event_0008"],
+      "current_status": "revised",
+      "validity_scope": {"time_window": "day_1_10:30_to_day_2_11:00", "contexts": ["place_office", "topic_budget_cut"], "valid_until_event_id": "event_0008"}
+    },
+    {
+      "fact_id": "fact_0003",
+      "fact_type": "commitment",
+      "subject_entities": ["person_ben", "person_ana"],
+      "claim": "Ben promised Ana he would finish the methods section by the end of day 1.",
+      "supporting_evidence_ids": ["event_0003"],
+      "contradicting_evidence_ids": ["event_0007"],
+      "current_status": "contradicted",
+      "validity_scope": {"time_window": "day_1_14:00_to_day_2_10:00", "contexts": ["place_lab", "topic_grant_resubmission"], "valid_until_event_id": "event_0007"}
+    },
+    {
+      "fact_id": "fact_0004",
+      "fact_type": "norm",
+      "subject_entities": ["norm_no_external_budget_sharing"],
+      "claim": "The team norm is not to share budget numbers with anyone outside the team.",
+      "supporting_evidence_ids": ["event_0004"],
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "validity_scope": {"time_window": "day_1_15:30_onward", "contexts": ["topic_budget_cut", "norm_no_external_budget_sharing"]}
+    },
+    {
+      "fact_id": "fact_0005",
+      "fact_type": "routine",
+      "subject_entities": ["person_eve"],
+      "claim": "Eve runs the morning standup in the meeting room at 09:00 each day.",
+      "supporting_evidence_ids": ["event_0005"],
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "validity_scope": {"time_window": "day_1_onward", "contexts": ["place_meeting_room", "activity_morning_standup"]}
+    },
+    {
+      "fact_id": "fact_0006",
+      "fact_type": "reputation",
+      "subject_entities": ["person_ben"],
+      "claim": "Ben is usually reliable with deadlines based on prior projects.",
+      "supporting_evidence_ids": ["event_0006"],
+      "contradicting_evidence_ids": ["event_0007"],
+      "current_status": "revised",
+      "validity_scope": {"time_window": "day_2_09:30_to_day_2_10:00", "contexts": ["topic_grant_resubmission"], "valid_until_event_id": "event_0007"}
+    },
+    {
+      "fact_id": "fact_0007",
+      "fact_type": "norm",
+      "subject_entities": ["person_eve", "norm_no_external_budget_sharing"],
+      "claim": "Eve violated the no-external-budget-sharing norm by mentioning a budget number to an external collaborator.",
+      "supporting_evidence_ids": ["event_0009"],
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "validity_scope": {"time_window": "day_2_12:00_onward", "contexts": ["place_lab", "topic_budget_cut"]}
+    },
+    {
+      "fact_id": "fact_0008",
+      "fact_type": "conflict_or_repair",
+      "subject_entities": ["person_ana", "person_ben"],
+      "claim": "Ben's missed methods section reduced Ana's confidence in relying on him for the integration pass.",
+      "supporting_evidence_ids": ["event_0010"],
+      "contradicting_evidence_ids": ["event_0011"],
+      "current_status": "revised",
+      "validity_scope": {"time_window": "day_2_14:00_to_day_2_15:00", "contexts": ["place_office", "topic_grant_resubmission"], "valid_until_event_id": "event_0011"}
+    },
+    {
+      "fact_id": "fact_0009",
+      "fact_type": "conflict_or_repair",
+      "subject_entities": ["person_ben", "person_ana"],
+      "claim": "Ben apologized, sent the methods section, and offered to take the integration pass; Ana's trust is only partially restored.",
+      "supporting_evidence_ids": ["event_0011"],
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "validity_scope": {"time_window": "day_2_15:00_onward", "contexts": ["place_office", "topic_grant_resubmission"]}
+    }
+  ]
+}

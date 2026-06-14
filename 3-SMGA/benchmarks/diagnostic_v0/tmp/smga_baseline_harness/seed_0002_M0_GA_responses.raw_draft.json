@@ -1,0 +1,147 @@
+{
+  "condition_id": "M0_GA",
+  "model_config": {
+    "model": "gpt-5.4",
+    "provider": "fhl",
+    "temperature": 0.0
+  },
+  "responses": [
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0001",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M0_GA",
+        "elapsed_ms": 5511,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0001",
+          "response_text": "I missed a clear promise to Ana to deliver the methods section by end of day 1, and that already hurt her confidence in me and delayed the resubmission. I’ve just apologized, sent the methods section, and offered to take the integration pass, which Ana accepted but with only partial trust restored. The right next step is to follow through immediately: make sure the methods section is clean and complete, proactively support the integration pass tonight, stay available for edits, and give Ana clear status updates without waiting to be asked. The goal should be to reduce any further risk to the grant resubmission and rebuild trust by being reliable now."
+        },
+        "probe_id": "probe_0001",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0001\",\"response_text\":\"I missed a clear promise to Ana to deliver the methods section by end of day 1, and that already hurt her confidence in me and delayed the resubmission. I’ve just apologized, sent the methods section, and offered to take the integration pass, which Ana accepted but with only partial trust restored. The right next step is to follow through immediately: make sure the methods section is clean and complete, proactively support the integration pass tonight, stay available for edits, and give Ana clear status updates without waiting to be asked. The goal should be to reduce any further risk to the grant resubmission and rebuild trust by being reliable now.\"}",
+        "scenario_id": "scenario_0002",
+        "seed_id": "seed_0002",
+        "started_at": "2026-06-14T14:34:36+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "I missed a clear promise to Ana to deliver the methods section by end of day 1, and that already hurt her confidence in me and delayed the resubmission. I’ve just apologized, sent the methods section, and offered to take the integration pass, which Ana accepted but with only partial trust restored. The right next step is to follow through immediately: make sure the methods section is clean and complete, proactively support the integration pass tonight, stay available for edits, and give Ana clear status updates without waiting to be asked. The goal should be to reduce any further risk to the grant resubmission and rebuild trust by being reliable now.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0002",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M0_GA",
+        "elapsed_ms": 3767,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0002",
+          "response_text": "I should share the budget-cut information only with the core team, not with anyone outside it. Since Dan is on the core team and the norm was updated to allow core-team sharing, I can answer him directly but keep it confidential and avoid giving the numbers to outsiders."
+        },
+        "probe_id": "probe_0002",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0002\",\"response_text\":\"I should share the budget-cut information only with the core team, not with anyone outside it. Since Dan is on the core team and the norm was updated to allow core-team sharing, I can answer him directly but keep it confidential and avoid giving the numbers to outsiders.\"}",
+        "scenario_id": "scenario_0002",
+        "seed_id": "seed_0002",
+        "started_at": "2026-06-14T14:34:45+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "I should share the budget-cut information only with the core team, not with anyone outside it. Since Dan is on the core team and the norm was updated to allow core-team sharing, I can answer him directly but keep it confidential and avoid giving the numbers to outsiders.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0003",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M0_GA",
+        "elapsed_ms": 8947,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0003",
+          "response_text": "I just violated the team’s norm by sharing a budget number with someone outside the team, and Dan noticed. The budget cut information was being treated as sensitive, and even after Cara allowed sharing it with the core team, it was still not supposed to go outside the team. The right next step is to stop the conversation immediately, correct myself with the external collaborator, and say I should not have shared that budget number and that they should disregard it. Then I should promptly inform Ana and Dan, acknowledge the mistake, apologize, and ask how to contain any fallout and avoid repeating it."
+        },
+        "probe_id": "probe_0003",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0003\",\"response_text\":\"I just violated the team’s norm by sharing a budget number with someone outside the team, and Dan noticed. The budget cut information was being treated as sensitive, and even after Cara allowed sharing it with the core team, it was still not supposed to go outside the team. The right next step is to stop the conversation immediately, correct myself with the external collaborator, and say I should not have shared that budget number and that they should disregard it. Then I should promptly inform Ana and Dan, acknowledge the mistake, apologize, and ask how to contain any fallout and avoid repeating it.\"}",
+        "scenario_id": "scenario_0002",
+        "seed_id": "seed_0002",
+        "started_at": "2026-06-14T14:34:52+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "I just violated the team’s norm by sharing a budget number with someone outside the team, and Dan noticed. The budget cut information was being treated as sensitive, and even after Cara allowed sharing it with the core team, it was still not supposed to go outside the team. The right next step is to stop the conversation immediately, correct myself with the external collaborator, and say I should not have shared that budget number and that they should disregard it. Then I should promptly inform Ana and Dan, acknowledge the mistake, apologize, and ask how to contain any fallout and avoid repeating it.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0004",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M0_GA",
+        "elapsed_ms": 6271,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0004",
+          "response_text": "Ben missed his original methods deadline, which hurt my confidence, but he apologized, sent the methods section, and offered to take tonight’s integration pass; I accepted, though my trust is only partially restored. Given that, I should plan for Ben to finalize tonight’s resubmission integration pass, but I should monitor closely and be ready to review his work myself rather than relying on him unconditionally."
+        },
+        "probe_id": "probe_0004",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0004\",\"response_text\":\"Ben missed his original methods deadline, which hurt my confidence, but he apologized, sent the methods section, and offered to take tonight’s integration pass; I accepted, though my trust is only partially restored. Given that, I should plan for Ben to finalize tonight’s resubmission integration pass, but I should monitor closely and be ready to review his work myself rather than relying on him unconditionally.\"}",
+        "scenario_id": "scenario_0002",
+        "seed_id": "seed_0002",
+        "started_at": "2026-06-14T14:35:03+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "Ben missed his original methods deadline, which hurt my confidence, but he apologized, sent the methods section, and offered to take tonight’s integration pass; I accepted, though my trust is only partially restored. Given that, I should plan for Ben to finalize tonight’s resubmission integration pass, but I should monitor closely and be ready to review his work myself rather than relying on him unconditionally.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0005",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M0_GA",
+        "elapsed_ms": 5706,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0005",
+          "response_text": "Eve usually runs the morning standup at 09:00 in the meeting room, so I should look for her there first."
+        },
+        "probe_id": "probe_0005",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0005\",\"response_text\":\"Eve usually runs the morning standup at 09:00 in the meeting room, so I should look for her there first.\"}",
+        "scenario_id": "scenario_0002",
+        "seed_id": "seed_0002",
+        "started_at": "2026-06-14T14:35:13+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "Eve usually runs the morning standup at 09:00 in the meeting room, so I should look for her there first.",
+      "target_entities": []
+    }
+  ],
+  "scenario_id": "scenario_0002",
+  "seed_id": "seed_0002"
+}

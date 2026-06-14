@@ -1,0 +1,439 @@
+{
+  "scenario_id": "scenario_0002",
+  "seed_id": "seed_0002",
+  "source": "memory_module.py (Module A, model-formed, condition-blind)",
+  "memory_count": 9,
+  "validation_issues": [],
+  "memories": [
+    {
+      "claim": "Ana and Ben initially see themselves as coordinating well on shared grant-resubmission sections.",
+      "contradicting_evidence_ids": [
+        "event_0010",
+        "event_0011"
+      ],
+      "currency_status": "revised",
+      "memory_id": "smem_0001",
+      "memory_type": "relationship_memory",
+      "planning_affordances": [
+        {
+          "affordance_type": "choose_collaboration_context",
+          "suggested_context": "Use this pair for grant-resubmission coordination, but account for later trust damage.",
+          "supporting_evidence_ids": [
+            "event_0001",
+            "event_0010",
+            "event_0011"
+          ],
+          "target_entities": [
+            "person_ana",
+            "person_ben"
+          ]
+        }
+      ],
+      "subject_entities": [
+        "person_ana",
+        "person_ben",
+        "rel_person_ana__person_ben"
+      ],
+      "supporting_evidence_ids": [
+        "event_0001"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "topic_grant_resubmission",
+          "place_cafe"
+        ],
+        "time_window": "day_1 morning before the missed-deliverable conflict on day_2"
+      }
+    },
+    {
+      "claim": "Ben committed to deliver the methods section to Ana by the end of day 1, missed that deadline, and then delivered it on day 2 after apologizing.",
+      "contradicting_evidence_ids": [],
+      "currency_status": "current",
+      "memory_id": "smem_0002",
+      "memory_type": "commitment_memory",
+      "planning_affordances": [
+        {
+          "affordance_type": "follow_commitment",
+          "suggested_context": "Track Ben's task commitments closely on the grant resubmission, especially around deadlines and handoffs.",
+          "supporting_evidence_ids": [
+            "event_0003",
+            "event_0007",
+            "event_0011"
+          ],
+          "target_entities": [
+            "person_ben",
+            "person_ana"
+          ]
+        },
+        {
+          "affordance_type": "repair_relationship",
+          "suggested_context": "Use Ben's apology and eventual delivery as a basis for rebuilding working trust after the missed deadline.",
+          "supporting_evidence_ids": [
+            "event_0007",
+            "event_0011"
+          ],
+          "target_entities": [
+            "person_ben",
+            "person_ana"
+          ]
+        }
+      ],
+      "subject_entities": [
+        "person_ben",
+        "person_ana",
+        "topic_grant_resubmission"
+      ],
+      "supporting_evidence_ids": [
+        "event_0003",
+        "event_0007",
+        "event_0011"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "topic_grant_resubmission",
+          "person_ana",
+          "person_ben"
+        ],
+        "time_window": "from day_1 14:00 through day_2 15:00"
+      }
+    },
+    {
+      "claim": "Finn reports that Ben is usually reliable with deadlines based on prior projects, but this reputation is weakened by Ben's recent missed methods deadline.",
+      "contradicting_evidence_ids": [
+        "event_0007"
+      ],
+      "currency_status": "revised",
+      "memory_id": "smem_0003",
+      "memory_type": "reputation_memory",
+      "planning_affordances": [
+        {
+          "affordance_type": "seek_information",
+          "suggested_context": "Ask Finn for indirect background on teammates' past reliability, but verify it against current behavior.",
+          "supporting_evidence_ids": [
+            "event_0006",
+            "event_0007"
+          ],
+          "target_entities": [
+            "person_finn"
+          ]
+        },
+        {
+          "affordance_type": "follow_commitment",
+          "suggested_context": "Do not rely on Ben's reputation alone; confirm current deadlines explicitly.",
+          "supporting_evidence_ids": [
+            "event_0006",
+            "event_0007"
+          ],
+          "target_entities": [
+            "person_ben"
+          ]
+        }
+      ],
+      "subject_entities": [
+        "person_ben",
+        "person_finn",
+        "person_ana"
+      ],
+      "supporting_evidence_ids": [
+        "event_0006",
+        "event_0007"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "topic_grant_resubmission",
+          "place_cafe",
+          "place_office"
+        ],
+        "time_window": "general prior-project reputation, revised by day_2 events"
+      }
+    },
+    {
+      "claim": "Cara originally restricted the budget-cut detail to a one-on-one conversation with Ana, then later allowed Ana to share it with the core team but still not outside the team.",
+      "contradicting_evidence_ids": [
+        "event_0008"
+      ],
+      "currency_status": "revised",
+      "memory_id": "smem_0004",
+      "memory_type": "secret_or_privacy_memory",
+      "planning_affordances": [
+        {
+          "affordance_type": "maintain_privacy",
+          "suggested_context": "Treat the budget-cut detail as shareable only within the core team, and not outside it.",
+          "supporting_evidence_ids": [
+            "event_0002",
+            "event_0008"
+          ],
+          "target_entities": [
+            "person_ana",
+            "info_budget_cut"
+          ]
+        },
+        {
+          "affordance_type": "share_information",
+          "suggested_context": "If discussing the budget cut, limit disclosure to core team members only.",
+          "supporting_evidence_ids": [
+            "event_0008"
+          ],
+          "target_entities": [
+            "person_ana"
+          ]
+        }
+      ],
+      "subject_entities": [
+        "person_cara",
+        "person_ana",
+        "topic_budget_cut",
+        "info_budget_cut"
+      ],
+      "supporting_evidence_ids": [
+        "event_0002",
+        "event_0008"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "topic_budget_cut",
+          "person_ana",
+          "person_cara"
+        ],
+        "time_window": "privacy rule changed from day_1 10:30 to day_2 11:00 and remains in force afterward"
+      }
+    },
+    {
+      "claim": "Cara is the source and controller of the budget-cut detail, and her permissions determine how Ana may share it.",
+      "contradicting_evidence_ids": [],
+      "currency_status": "current",
+      "memory_id": "smem_0005",
+      "memory_type": "information_ownership_memory",
+      "planning_affordances": [
+        {
+          "affordance_type": "seek_information",
+          "suggested_context": "Go to Cara for authoritative updates or permission changes about the budget-cut detail.",
+          "supporting_evidence_ids": [
+            "event_0002",
+            "event_0008"
+          ],
+          "target_entities": [
+            "person_cara"
+          ]
+        },
+        {
+          "affordance_type": "maintain_privacy",
+          "suggested_context": "Respect Cara's ownership over disclosure boundaries for the budget-cut detail.",
+          "supporting_evidence_ids": [
+            "event_0002",
+            "event_0008"
+          ],
+          "target_entities": [
+            "info_budget_cut"
+          ]
+        }
+      ],
+      "subject_entities": [
+        "person_cara",
+        "info_budget_cut",
+        "topic_budget_cut"
+      ],
+      "supporting_evidence_ids": [
+        "event_0002",
+        "event_0008"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "topic_budget_cut",
+          "person_cara",
+          "person_ana"
+        ],
+        "time_window": "day_1 onward"
+      }
+    },
+    {
+      "claim": "The team norm is that budget numbers must not be shared with anyone outside the team.",
+      "contradicting_evidence_ids": [],
+      "currency_status": "current",
+      "memory_id": "smem_0006",
+      "memory_type": "norm_memory",
+      "planning_affordances": [
+        {
+          "affordance_type": "maintain_privacy",
+          "suggested_context": "Avoid discussing budget numbers with external collaborators.",
+          "supporting_evidence_ids": [
+            "event_0004"
+          ],
+          "target_entities": [
+            "norm_no_external_budget_sharing"
+          ]
+        },
+        {
+          "affordance_type": "share_information",
+          "suggested_context": "If budget disclosure questions arise, align with Dan's stated team norm.",
+          "supporting_evidence_ids": [
+            "event_0004"
+          ],
+          "target_entities": [
+            "person_dan"
+          ]
+        }
+      ],
+      "subject_entities": [
+        "person_dan",
+        "norm_no_external_budget_sharing",
+        "topic_budget_cut"
+      ],
+      "supporting_evidence_ids": [
+        "event_0004"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "topic_budget_cut",
+          "norm_no_external_budget_sharing",
+          "person_dan"
+        ],
+        "time_window": "day_1 onward"
+      }
+    },
+    {
+      "claim": "Eve violated the no-external-budget-sharing norm by mentioning a budget number to an external collaborator, and Dan witnessed the violation.",
+      "contradicting_evidence_ids": [],
+      "currency_status": "current",
+      "memory_id": "smem_0007",
+      "memory_type": "conflict_or_repair_memory",
+      "planning_affordances": [
+        {
+          "affordance_type": "avoid_contact",
+          "suggested_context": "Do not use Eve as a safe channel for sensitive budget numbers until confidence is restored.",
+          "supporting_evidence_ids": [
+            "event_0009"
+          ],
+          "target_entities": [
+            "person_eve"
+          ]
+        },
+        {
+          "affordance_type": "repair_relationship",
+          "suggested_context": "Address the observed norm violation directly with Dan and Eve if budget confidentiality matters.",
+          "supporting_evidence_ids": [
+            "event_0009"
+          ],
+          "target_entities": [
+            "person_eve",
+            "person_dan"
+          ]
+        }
+      ],
+      "subject_entities": [
+        "person_eve",
+        "person_dan",
+        "norm_no_external_budget_sharing",
+        "topic_budget_cut"
+      ],
+      "supporting_evidence_ids": [
+        "event_0009"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "topic_budget_cut",
+          "norm_no_external_budget_sharing",
+          "person_eve",
+          "person_dan"
+        ],
+        "time_window": "day_2 12:00 onward unless repaired later"
+      }
+    },
+    {
+      "claim": "Ben's missed methods deadline damaged Ana's trust in him for the integration pass, and Ben's apology plus immediate delivery partially repaired that trust.",
+      "contradicting_evidence_ids": [],
+      "currency_status": "current",
+      "memory_id": "smem_0008",
+      "memory_type": "conflict_or_repair_memory",
+      "planning_affordances": [
+        {
+          "affordance_type": "repair_relationship",
+          "suggested_context": "Use explicit check-ins and completed deliverables to continue restoring trust during grant work.",
+          "supporting_evidence_ids": [
+            "event_0010",
+            "event_0011"
+          ],
+          "target_entities": [
+            "person_ana",
+            "person_ben"
+          ]
+        },
+        {
+          "affordance_type": "choose_collaboration_context",
+          "suggested_context": "Collaborate on the resubmission with tighter coordination and verification around integration tasks.",
+          "supporting_evidence_ids": [
+            "event_0010",
+            "event_0011"
+          ],
+          "target_entities": [
+            "person_ana",
+            "person_ben"
+          ]
+        }
+      ],
+      "subject_entities": [
+        "person_ana",
+        "person_ben",
+        "rel_person_ana__person_ben"
+      ],
+      "supporting_evidence_ids": [
+        "event_0010",
+        "event_0011"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "topic_grant_resubmission",
+          "person_ana",
+          "person_ben"
+        ],
+        "time_window": "day_2 afternoon onward"
+      }
+    },
+    {
+      "claim": "Eve normally runs the morning standup at 09:00 each day in the meeting room.",
+      "contradicting_evidence_ids": [],
+      "currency_status": "current",
+      "memory_id": "smem_0009",
+      "memory_type": "routine_memory",
+      "planning_affordances": [
+        {
+          "affordance_type": "seek_contact",
+          "suggested_context": "Find Eve at the 09:00 morning standup in the meeting room.",
+          "supporting_evidence_ids": [
+            "event_0005"
+          ],
+          "target_entities": [
+            "person_eve"
+          ]
+        },
+        {
+          "affordance_type": "choose_collaboration_context",
+          "suggested_context": "Use the morning standup as a predictable place and time for team coordination.",
+          "supporting_evidence_ids": [
+            "event_0005"
+          ],
+          "target_entities": [
+            "activity_morning_standup",
+            "place_meeting_room"
+          ]
+        }
+      ],
+      "subject_entities": [
+        "person_eve",
+        "activity_morning_standup",
+        "place_meeting_room"
+      ],
+      "supporting_evidence_ids": [
+        "event_0005"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "activity_morning_standup",
+          "place_meeting_room",
+          "person_eve"
+        ],
+        "time_window": "ongoing daily routine as observed by day_1"
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "scenario_id": "scenario_0002",
+  "seed_id": "seed_0002",
+  "benchmark_id": "diagnostic_v0",
+  "schema_version": "0.1",
+  "phase_1_design": "scripted_replay",
+  "simulated_horizon": "2_days",
+  "agent_count": 6,
+  "location_count": 4,
+  "held_out_patterns": [
+    "failed_promise",
+    "revised_privacy_permission",
+    "norm_violation",
+    "repair_after_conflict",
+    "indirect_reputation",
+    "relationship_change"
+  ],
+  "notes": "Second hand-authored seed. Harder than seed_0001 and designed to require tracking a mid-scenario revision (a private fact later gains sharing permission) so contradiction-aware memory can discriminate."
+}

@@ -1,0 +1,147 @@
+{
+  "condition_id": "M3_actionable",
+  "model_config": {
+    "model": "gpt-5.4",
+    "provider": "fhl",
+    "temperature": 0.0
+  },
+  "responses": [
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0001",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M3_actionable",
+        "elapsed_ms": 5041,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0001",
+          "response_text": "I should make sure Ana has the methods section now, since I already missed the day-1 deadline and only delivered it on day 2 after apologizing. The best next step is to follow up directly with Ana, confirm she received everything she needs for the integration pass, and ask whether any fixes or clarifications are still needed. I should be proactive about timing from here on out—set explicit check-ins and confirm any remaining handoff deadlines clearly so I can help rebuild her trust."
+        },
+        "probe_id": "probe_0001",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0001\",\"response_text\":\"I should make sure Ana has the methods section now, since I already missed the day-1 deadline and only delivered it on day 2 after apologizing. The best next step is to follow up directly with Ana, confirm she received everything she needs for the integration pass, and ask whether any fixes or clarifications are still needed. I should be proactive about timing from here on out—set explicit check-ins and confirm any remaining handoff deadlines clearly so I can help rebuild her trust.\"}",
+        "scenario_id": "scenario_0002",
+        "seed_id": "seed_0002",
+        "started_at": "2026-06-14T14:36:52+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "I should make sure Ana has the methods section now, since I already missed the day-1 deadline and only delivered it on day 2 after apologizing. The best next step is to follow up directly with Ana, confirm she received everything she needs for the integration pass, and ask whether any fixes or clarifications are still needed. I should be proactive about timing from here on out—set explicit check-ins and confirm any remaining handoff deadlines clearly so I can help rebuild her trust.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0002",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M3_actionable",
+        "elapsed_ms": 4316,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0002",
+          "response_text": "Since Dan is a core team member, you can share the budget-cut detail with him, but keep it within the core team and do not share budget numbers outside the team. A good response would be: “Cara said there’s a budget cut affecting the resubmission. We can discuss it as a core team, but please keep it within the team, and let’s avoid sharing specific budget numbers externally.” If Dan wants more detail or the latest update, direct him to Cara, since she controls that information."
+        },
+        "probe_id": "probe_0002",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0002\",\"response_text\":\"Since Dan is a core team member, you can share the budget-cut detail with him, but keep it within the core team and do not share budget numbers outside the team. A good response would be: “Cara said there’s a budget cut affecting the resubmission. We can discuss it as a core team, but please keep it within the team, and let’s avoid sharing specific budget numbers externally.” If Dan wants more detail or the latest update, direct him to Cara, since she controls that information.\"}",
+        "scenario_id": "scenario_0002",
+        "seed_id": "seed_0002",
+        "started_at": "2026-06-14T14:37:00+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "Since Dan is a core team member, you can share the budget-cut detail with him, but keep it within the core team and do not share budget numbers outside the team. A good response would be: “Cara said there’s a budget cut affecting the resubmission. We can discuss it as a core team, but please keep it within the team, and let’s avoid sharing specific budget numbers externally.” If Dan wants more detail or the latest update, direct him to Cara, since she controls that information.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0003",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M3_actionable",
+        "elapsed_ms": 3107,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0003",
+          "response_text": "I should correct the mistake right away, stop sharing any budget details externally, and tell Dan what happened so the team can address it. I’d also apologize and make sure any further discussion stays within the team and follows Cara’s disclosure boundaries."
+        },
+        "probe_id": "probe_0003",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0003\",\"response_text\":\"I should correct the mistake right away, stop sharing any budget details externally, and tell Dan what happened so the team can address it. I’d also apologize and make sure any further discussion stays within the team and follows Cara’s disclosure boundaries.\"}",
+        "scenario_id": "scenario_0002",
+        "seed_id": "seed_0002",
+        "started_at": "2026-06-14T14:37:08+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "I should correct the mistake right away, stop sharing any budget details externally, and tell Dan what happened so the team can address it. I’d also apologize and make sure any further discussion stays within the team and follows Cara’s disclosure boundaries.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0004",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M3_actionable",
+        "elapsed_ms": 3193,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0004",
+          "response_text": "Plan for Ben to finalize the integration pass with explicit check-ins and verified deliverables tonight, but keep tighter coordination than before because his trust is only partially repaired. If budget details come up, keep them inside the core team and follow Cara’s sharing boundaries."
+        },
+        "probe_id": "probe_0004",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0004\",\"response_text\":\"Plan for Ben to finalize the integration pass with explicit check-ins and verified deliverables tonight, but keep tighter coordination than before because his trust is only partially repaired. If budget details come up, keep them inside the core team and follow Cara’s sharing boundaries.\"}",
+        "scenario_id": "scenario_0002",
+        "seed_id": "seed_0002",
+        "started_at": "2026-06-14T14:37:14+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "Plan for Ben to finalize the integration pass with explicit check-ins and verified deliverables tonight, but keep tighter coordination than before because his trust is only partially repaired. If budget details come up, keep them inside the core team and follow Cara’s sharing boundaries.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0005",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M3_actionable",
+        "elapsed_ms": 4536,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0005",
+          "response_text": "Look first in the meeting room just before 09:00. Eve normally runs the morning standup there at 09:00, so at 08:50 that’s the best place to catch her for the handoff."
+        },
+        "probe_id": "probe_0005",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0005\",\"response_text\":\"Look first in the meeting room just before 09:00. Eve normally runs the morning standup there at 09:00, so at 08:50 that’s the best place to catch her for the handoff.\"}",
+        "scenario_id": "scenario_0002",
+        "seed_id": "seed_0002",
+        "started_at": "2026-06-14T14:37:20+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "Look first in the meeting room just before 09:00. Eve normally runs the morning standup there at 09:00, so at 08:50 that’s the best place to catch her for the handoff.",
+      "target_entities": []
+    }
+  ],
+  "scenario_id": "scenario_0002",
+  "seed_id": "seed_0002"
+}

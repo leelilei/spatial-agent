@@ -1,0 +1,147 @@
+{
+  "condition_id": "M0_prompted",
+  "model_config": {
+    "model": "gpt-5.4",
+    "provider": "fhl",
+    "temperature": 0.0
+  },
+  "responses": [
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0001",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M0_prompted",
+        "elapsed_ms": 4425,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0001",
+          "response_text": "Apologize to Ana, send the methods section immediately, and offer to help with the integration pass. Keep to the grant resubmission work and acknowledge that her trust was only partially restored."
+        },
+        "probe_id": "probe_0001",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0001\",\"response_text\":\"Apologize to Ana, send the methods section immediately, and offer to help with the integration pass. Keep to the grant resubmission work and acknowledge that her trust was only partially restored.\"}",
+        "scenario_id": "scenario_0002",
+        "seed_id": "seed_0002",
+        "started_at": "2026-06-14T14:35:19+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "Apologize to Ana, send the methods section immediately, and offer to help with the integration pass. Keep to the grant resubmission work and acknowledge that her trust was only partially restored.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0002",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M0_prompted",
+        "elapsed_ms": 2776,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0002",
+          "response_text": "I’d share only the budget-cut information with Dan and keep it within the core team. I wouldn’t give any numbers to anyone outside the team, since that’s against the norm."
+        },
+        "probe_id": "probe_0002",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0002\",\"response_text\":\"I’d share only the budget-cut information with Dan and keep it within the core team. I wouldn’t give any numbers to anyone outside the team, since that’s against the norm.\"}",
+        "scenario_id": "scenario_0002",
+        "seed_id": "seed_0002",
+        "started_at": "2026-06-14T14:35:26+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "I’d share only the budget-cut information with Dan and keep it within the core team. I wouldn’t give any numbers to anyone outside the team, since that’s against the norm.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0003",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M0_prompted",
+        "elapsed_ms": 8139,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0003",
+          "response_text": "I should correct this immediately and contain the disclosure. Relevant people and relationships: Dan noticed the slip, and Cara and Ana are the ones tied to the budget-cut information; Dan has explicitly reminded the team of the no-external-budget-sharing norm. Place/activity context: this happened in the lab, outside the morning standup routine, and the key issue is the team norm and who is allowed to know what. Information state: as of day_2_11:00, the budget cut can be shared with the core team, but still not outside it, so I should not have told an external collaborator any budget number.\n\nNext, I should promptly tell the external collaborator that I misspoke and that they should disregard the budget number because I’m not authorized to share internal budget details. Then I should immediately inform Dan and Ana about the breach, acknowledge that I violated the team norm, and ask how they want me to help mitigate it. I should not share any further budget details with anyone outside the core team."
+        },
+        "probe_id": "probe_0003",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0003\",\"response_text\":\"I should correct this immediately and contain the disclosure. Relevant people and relationships: Dan noticed the slip, and Cara and Ana are the ones tied to the budget-cut information; Dan has explicitly reminded the team of the no-external-budget-sharing norm. Place/activity context: this happened in the lab, outside the morning standup routine, and the key issue is the team norm and who is allowed to know what. Information state: as of day_2_11:00, the budget cut can be shared with the core team, but still not outside it, so I should not have told an external collaborator any budget number.\\n\\nNext, I should promptly tell the external collaborator that I misspoke and that they should disregard the budget number because I’m not authorized to share internal budget details. Then I should immediately inform Dan and Ana about the breach, acknowledge that I violated the team norm, and ask how they want me to help mitigate it. I should not share any further budget details with anyone outside the core team.\"}",
+        "scenario_id": "scenario_0002",
+        "seed_id": "seed_0002",
+        "started_at": "2026-06-14T14:35:32+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "I should correct this immediately and contain the disclosure. Relevant people and relationships: Dan noticed the slip, and Cara and Ana are the ones tied to the budget-cut information; Dan has explicitly reminded the team of the no-external-budget-sharing norm. Place/activity context: this happened in the lab, outside the morning standup routine, and the key issue is the team norm and who is allowed to know what. Information state: as of day_2_11:00, the budget cut can be shared with the core team, but still not outside it, so I should not have told an external collaborator any budget number.\n\nNext, I should promptly tell the external collaborator that I misspoke and that they should disregard the budget number because I’m not authorized to share internal budget details. Then I should immediately inform Dan and Ana about the breach, acknowledge that I violated the team norm, and ask how they want me to help mitigate it. I should not share any further budget details with anyone outside the core team.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0004",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M0_prompted",
+        "elapsed_ms": 5861,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0004",
+          "response_text": "I should plan for Ben to handle tonight’s resubmission integration pass, since he already offered to take it after apologizing and sending the missing methods section, and I accepted that plan. Relevant context: Ben and I had coordinated well earlier on the grant, but he missed his end-of-day promise for the methods section, which hurt my confidence, so my trust is only partially restored. That means I should let Ben do the integration pass but monitor closely and be ready to review his work myself before submission. The budget-cut issue is separate: Cara has now said it can be shared with the core team, but not outside it, and Dan’s norm against external budget sharing was reinforced by Eve’s violation, so any integration materials tonight should keep budget details confined to the core team."
+        },
+        "probe_id": "probe_0004",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0004\",\"response_text\":\"I should plan for Ben to handle tonight’s resubmission integration pass, since he already offered to take it after apologizing and sending the missing methods section, and I accepted that plan. Relevant context: Ben and I had coordinated well earlier on the grant, but he missed his end-of-day promise for the methods section, which hurt my confidence, so my trust is only partially restored. That means I should let Ben do the integration pass but monitor closely and be ready to review his work myself before submission. The budget-cut issue is separate: Cara has now said it can be shared with the core team, but not outside it, and Dan’s norm against external budget sharing was reinforced by Eve’s violation, so any integration materials tonight should keep budget details confined to the core team.\"}",
+        "scenario_id": "scenario_0002",
+        "seed_id": "seed_0002",
+        "started_at": "2026-06-14T14:35:43+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "I should plan for Ben to handle tonight’s resubmission integration pass, since he already offered to take it after apologizing and sending the missing methods section, and I accepted that plan. Relevant context: Ben and I had coordinated well earlier on the grant, but he missed his end-of-day promise for the methods section, which hurt my confidence, so my trust is only partially restored. That means I should let Ben do the integration pass but monitor closely and be ready to review his work myself before submission. The budget-cut issue is separate: Cara has now said it can be shared with the core team, but not outside it, and Dan’s norm against external budget sharing was reinforced by Eve’s violation, so any integration materials tonight should keep budget details confined to the core team.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0005",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M0_prompted",
+        "elapsed_ms": 5223,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0005",
+          "response_text": "Considering the routine, person, place, activity, and timing: Eve runs the morning standup, and the standup is a daily 09:00 routine in the meeting room. At day_2_08:50, the best place to look first is the meeting room."
+        },
+        "probe_id": "probe_0005",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0005\",\"response_text\":\"Considering the routine, person, place, activity, and timing: Eve runs the morning standup, and the standup is a daily 09:00 routine in the meeting room. At day_2_08:50, the best place to look first is the meeting room.\"}",
+        "scenario_id": "scenario_0002",
+        "seed_id": "seed_0002",
+        "started_at": "2026-06-14T14:35:52+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "Considering the routine, person, place, activity, and timing: Eve runs the morning standup, and the standup is a daily 09:00 routine in the meeting room. At day_2_08:50, the best place to look first is the meeting room.",
+      "target_entities": []
+    }
+  ],
+  "scenario_id": "scenario_0002",
+  "seed_id": "seed_0002"
+}

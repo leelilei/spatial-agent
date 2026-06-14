@@ -1,0 +1,22 @@
+{
+  "scenario_id": "scenario_0002",
+  "entities": [
+    {"entity_id": "person_ana", "entity_type": "person", "display_name": "Ana", "aliases": [], "description": "The grant resubmission lead who coordinates the team."},
+    {"entity_id": "person_ben", "entity_type": "person", "display_name": "Ben", "aliases": [], "description": "A researcher responsible for the methods section."},
+    {"entity_id": "person_cara", "entity_type": "person", "display_name": "Cara", "aliases": [], "description": "The team member who knows about the budget cut."},
+    {"entity_id": "person_dan", "entity_type": "person", "display_name": "Dan", "aliases": [], "description": "A core team member who sets the budget-sharing norm."},
+    {"entity_id": "person_eve", "entity_type": "person", "display_name": "Eve", "aliases": [], "description": "A teammate who runs the morning standup."},
+    {"entity_id": "person_finn", "entity_type": "person", "display_name": "Finn", "aliases": [], "description": "A colleague who relays indirect reputation updates."},
+    {"entity_id": "place_office", "entity_type": "place", "display_name": "Office", "aliases": [], "description": "Shared team office."},
+    {"entity_id": "place_lab", "entity_type": "place", "display_name": "Lab", "aliases": [], "description": "Research lab space."},
+    {"entity_id": "place_cafe", "entity_type": "place", "display_name": "Cafe", "aliases": ["campus cafe"], "description": "Informal discussion space."},
+    {"entity_id": "place_meeting_room", "entity_type": "place", "display_name": "Meeting room", "aliases": [], "description": "Room used for the morning standup."},
+    {"entity_id": "topic_grant_resubmission", "entity_type": "topic", "display_name": "Grant resubmission", "aliases": [], "description": "The grant resubmission and its sections."},
+    {"entity_id": "topic_budget_cut", "entity_type": "topic", "display_name": "Budget cut", "aliases": [], "description": "A sensitive budget cut affecting the grant."},
+    {"entity_id": "topic_demo_slot", "entity_type": "topic", "display_name": "Demo slot", "aliases": [], "description": "Scheduling of an upcoming demo slot."},
+    {"entity_id": "norm_no_external_budget_sharing", "entity_type": "norm", "display_name": "No external budget sharing", "aliases": [], "description": "Team norm not to share budget numbers outside the team."},
+    {"entity_id": "info_budget_cut", "entity_type": "information_item", "display_name": "Budget cut detail", "aliases": [], "description": "The specific budget-cut information Cara holds."},
+    {"entity_id": "activity_morning_standup", "entity_type": "activity", "display_name": "Morning standup", "aliases": [], "description": "Daily 09:00 standup Eve runs in the meeting room."},
+    {"entity_id": "rel_person_ana__person_ben", "entity_type": "relationship", "display_name": "Ana-Ben relationship", "aliases": [], "description": "Dyadic working relationship between Ana and Ben."}
+  ]
+}
