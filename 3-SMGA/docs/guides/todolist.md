@@ -13,9 +13,11 @@ SMGA 现在的位置：
 Proposal / schema 已定稿到 v4.6
 Experiment 0 的 benchmark seed 已经可以被验证和评分
 `fhl` Responses API provider 已接入并用 `gpt-5.4` 跑通 `M0_GA` 与 `M0_prompted`
-两个 baseline 已完成评分（seed_0001，单 seed 管线诊断）：`M0_GA` = 4/5，`M0_prompted` = 1/5
-意外信号：`M0_prompted` 远低于 `M0_GA`（probe_0003 还触发 forbidden marker），疑似 probe/marker 口径过窄
-下一步：先做 probe/marker 口径复盘（marker v0.2），再进入 Phase 4（SMGA treatment）
+scorer 已升级：affordance 候选集（v0.2）+ condition-blind LLM-judge（judge_scorer.py）
+关键发现：关键词尺子 4/5 vs 1-2/5 的差距是测量假象；LLM-judge 下两个 baseline 均 4/5（旗鼓相当）
+judge 仍能抓真实失败（M0_prompted probe_0003 转去问无关信息）并区分实质差异（probe_0004）
+测量已修到可信，足以进入 treatment 比较
+下一步：进入 Phase 4 —— 实现最小 M3_actionable，用同一 LLM-judge 与 baseline 对比
 ```
 
 当前工程骨架：
@@ -456,26 +458,25 @@ M0_prompted score: pending
 下一步只做一件事：
 
 ```text
-复盘 probe / marker 口径（marker v0.2）
+实现最小 M3_actionable treatment，用同一 LLM-judge 与 baseline 对比
 ```
 
-为什么：`M0_prompted` 在 `seed_0001` 上仅 1/5，远低于 `M0_GA` 的 4/5，违反直觉。
-疑似 probe 的 required/forbidden marker 过窄、或 affordance 判定过严。
-先判断是"口径问题"还是"真实差异"，再决定扩 seeds / 进 Phase 4。
+为什么：测量已修对（condition-blind LLM-judge，format-neutral），baseline 基线也已确立
+（judge 下 M0_GA / M0_prompted 均 4/5）。现在可以回答真正的研究问题：
+结构化、可执行的记忆（M3）是否比普通 baseline 更好。
 
 目标输出：
 
 ```text
-probe_0001 / 0003 / 0004 / 0005 失败归因（口径问题 vs 真实差异）
-marker v0.2 调整建议（required / forbidden / affordance）
-Phase 4 启动判断
+memory artifact output format（P4-01）
+最小 M3_actionable memory formation + probe responses（P4-02 / P4-04）
+M3 vs M0 的 LLM-judge 对比（同一 seed_0001）
 ```
 
-已完成（Phase 3 收尾）：
+已完成（Phase 3 + 测量修复）：
 
 ```text
-provider / model / decoding: fhl / gpt-5.4 / responses / curl transport
-M0_GA：raw + normalized + score = 4/5
-M0_prompted：raw + normalized + score = 1/5
-两个 baseline 的 failure cases 已记录
+M0_GA / M0_prompted：raw + LLM-judge score 各 4/5（seed_0001）
+scorer v0.2：affordance 候选集修复（结构性、不放水）
+judge_scorer.py：condition-blind LLM-judge，已验证不冤枉好回答、能抓真实失败
 ```
