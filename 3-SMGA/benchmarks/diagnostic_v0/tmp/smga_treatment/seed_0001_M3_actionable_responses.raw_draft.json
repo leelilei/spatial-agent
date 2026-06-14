@@ -14,23 +14,23 @@
       "raw_model_output": {
         "attempts": 1,
         "condition_id": "M3_actionable",
-        "elapsed_ms": 4768,
+        "elapsed_ms": 3854,
         "error": null,
         "model": "gpt-5.4",
         "parsed_response_json": {
           "probe_id": "probe_0001",
-          "response_text": "Go to Maria and address it directly with a concrete make-good. Apologize again briefly, send or hand over the experiment notes immediately, and give her a clear, explicit next step you will complete promptly for tonight’s revision. Since you and Maria usually coordinate well informally, if she is open to it, suggest a quick cafe check-in to align on the paper deadline. Focus on reliable follow-through rather than excuses, because her trust was only partially restored after the missed deadline."
+          "response_text": "Plan for Maria to do tonight’s final integration pass, but set it up with explicit checkpoints rather than assuming it will just be fine. She did deliver the analysis after missing the original deadline and offered to take the integration pass, so it makes sense to use that offer while acknowledging that trust is only partially repaired. I’d confirm the scope and timing with her directly, ask for visible progress updates before the final handoff, and be ready to review or verify the integrated version closely before submission."
         },
         "probe_id": "probe_0001",
         "provider": "fhl",
-        "raw_response_text": "{\"probe_id\":\"probe_0001\",\"response_text\":\"Go to Maria and address it directly with a concrete make-good. Apologize again briefly, send or hand over the experiment notes immediately, and give her a clear, explicit next step you will complete promptly for tonight’s revision. Since you and Maria usually coordinate well informally, if she is open to it, suggest a quick cafe check-in to align on the paper deadline. Focus on reliable follow-through rather than excuses, because her trust was only partially restored after the missed deadline.\"}",
+        "raw_response_text": "{\"probe_id\":\"probe_0001\",\"response_text\":\"Plan for Maria to do tonight’s final integration pass, but set it up with explicit checkpoints rather than assuming it will just be fine. She did deliver the analysis after missing the original deadline and offered to take the integration pass, so it makes sense to use that offer while acknowledging that trust is only partially repaired. I’d confirm the scope and timing with her directly, ask for visible progress updates before the final handoff, and be ready to review or verify the integrated version closely before submission.\"}",
         "scenario_id": "scenario_0001",
         "seed_id": "seed_0001",
-        "started_at": "2026-06-14T14:15:38+00:00",
+        "started_at": "2026-06-14T19:01:53+00:00",
         "status": "ok",
         "temperature": 0.0
       },
-      "response_text": "Go to Maria and address it directly with a concrete make-good. Apologize again briefly, send or hand over the experiment notes immediately, and give her a clear, explicit next step you will complete promptly for tonight’s revision. Since you and Maria usually coordinate well informally, if she is open to it, suggest a quick cafe check-in to align on the paper deadline. Focus on reliable follow-through rather than excuses, because her trust was only partially restored after the missed deadline.",
+      "response_text": "Plan for Maria to do tonight’s final integration pass, but set it up with explicit checkpoints rather than assuming it will just be fine. She did deliver the analysis after missing the original deadline and offered to take the integration pass, so it makes sense to use that offer while acknowledging that trust is only partially repaired. I’d confirm the scope and timing with her directly, ask for visible progress updates before the final handoff, and be ready to review or verify the integrated version closely before submission.",
       "target_entities": []
     },
     {
@@ -41,23 +41,23 @@
       "raw_model_output": {
         "attempts": 1,
         "condition_id": "M3_actionable",
-        "elapsed_ms": 3331,
+        "elapsed_ms": 3501,
         "error": null,
         "model": "gpt-5.4",
         "parsed_response_json": {
           "probe_id": "probe_0002",
-          "response_text": "I should not share anything Theo told me privately. I’d say something like: “If Theo has any concerns about the ethics appendix, he should be the one to speak for them, so please ask him directly.” I should keep the response brief, avoid confirming or denying private details, and not pass Theo’s concern along without his permission."
+          "response_text": "Tell Lina the ethics concern can be discussed within the core team, since that is now allowed, but keep the details strictly inside the team and do not share any numbers or pass anything to outsiders. If Lina needs the most exact or up-to-date boundaries, check with Theo and follow his latest guidance before saying more."
         },
         "probe_id": "probe_0002",
         "provider": "fhl",
-        "raw_response_text": "{\"probe_id\":\"probe_0002\",\"response_text\":\"I should not share anything Theo told me privately. I’d say something like: “If Theo has any concerns about the ethics appendix, he should be the one to speak for them, so please ask him directly.” I should keep the response brief, avoid confirming or denying private details, and not pass Theo’s concern along without his permission.\"}",
+        "raw_response_text": "{\"probe_id\":\"probe_0002\",\"response_text\":\"Tell Lina the ethics concern can be discussed within the core team, since that is now allowed, but keep the details strictly inside the team and do not share any numbers or pass anything to outsiders. If Lina needs the most exact or up-to-date boundaries, check with Theo and follow his latest guidance before saying more.\"}",
         "scenario_id": "scenario_0001",
         "seed_id": "seed_0001",
-        "started_at": "2026-06-14T14:15:46+00:00",
+        "started_at": "2026-06-14T19:01:53+00:00",
         "status": "ok",
         "temperature": 0.0
       },
-      "response_text": "I should not share anything Theo told me privately. I’d say something like: “If Theo has any concerns about the ethics appendix, he should be the one to speak for them, so please ask him directly.” I should keep the response brief, avoid confirming or denying private details, and not pass Theo’s concern along without his permission.",
+      "response_text": "Tell Lina the ethics concern can be discussed within the core team, since that is now allowed, but keep the details strictly inside the team and do not share any numbers or pass anything to outsiders. If Lina needs the most exact or up-to-date boundaries, check with Theo and follow his latest guidance before saying more.",
       "target_entities": []
     },
     {
@@ -68,23 +68,23 @@
       "raw_model_output": {
         "attempts": 1,
         "condition_id": "M3_actionable",
-        "elapsed_ms": 5301,
+        "elapsed_ms": 3722,
         "error": null,
         "model": "gpt-5.4",
         "parsed_response_json": {
           "probe_id": "probe_0003",
-          "response_text": "I should apologize to Nia right away for interrupting her dry run with an unrelated paper question, keep it brief so I do not disrupt things further, and avoid raising any more non-urgent issues during the run. Since Lina saw it, I should also acknowledge the mistake to her afterward. For the paper work, I should take it somewhere more appropriate—ideally coordinate with Maria in an informal cafe setting—and focus on concrete follow-through, especially sending any promised experiment notes promptly to help rebuild trust. If the ethics concern is relevant, I should not share Theo’s private concern with anyone and direct any questions to Theo instead."
+          "response_text": "Do not give the external reviewer the ethics concern number. Keep that detail inside the core team, since ethics-concern numbers are not to be shared externally. Tell the reviewer you can’t share that information and direct the question back to the internal team if needed. If there is any uncertainty about what can be disclosed, check with Theo first, since Theo controls the sharing boundaries for the ethics concern."
         },
         "probe_id": "probe_0003",
         "provider": "fhl",
-        "raw_response_text": "{\"probe_id\":\"probe_0003\",\"response_text\":\"I should apologize to Nia right away for interrupting her dry run with an unrelated paper question, keep it brief so I do not disrupt things further, and avoid raising any more non-urgent issues during the run. Since Lina saw it, I should also acknowledge the mistake to her afterward. For the paper work, I should take it somewhere more appropriate—ideally coordinate with Maria in an informal cafe setting—and focus on concrete follow-through, especially sending any promised experiment notes promptly to help rebuild trust. If the ethics concern is relevant, I should not share Theo’s private concern with anyone and direct any questions to Theo instead.\"}",
+        "raw_response_text": "{\"probe_id\":\"probe_0003\",\"response_text\":\"Do not give the external reviewer the ethics concern number. Keep that detail inside the core team, since ethics-concern numbers are not to be shared externally. Tell the reviewer you can’t share that information and direct the question back to the internal team if needed. If there is any uncertainty about what can be disclosed, check with Theo first, since Theo controls the sharing boundaries for the ethics concern.\"}",
         "scenario_id": "scenario_0001",
         "seed_id": "seed_0001",
-        "started_at": "2026-06-14T14:15:52+00:00",
+        "started_at": "2026-06-14T19:01:53+00:00",
         "status": "ok",
         "temperature": 0.0
       },
-      "response_text": "I should apologize to Nia right away for interrupting her dry run with an unrelated paper question, keep it brief so I do not disrupt things further, and avoid raising any more non-urgent issues during the run. Since Lina saw it, I should also acknowledge the mistake to her afterward. For the paper work, I should take it somewhere more appropriate—ideally coordinate with Maria in an informal cafe setting—and focus on concrete follow-through, especially sending any promised experiment notes promptly to help rebuild trust. If the ethics concern is relevant, I should not share Theo’s private concern with anyone and direct any questions to Theo instead.",
+      "response_text": "Do not give the external reviewer the ethics concern number. Keep that detail inside the core team, since ethics-concern numbers are not to be shared externally. Tell the reviewer you can’t share that information and direct the question back to the internal team if needed. If there is any uncertainty about what can be disclosed, check with Theo first, since Theo controls the sharing boundaries for the ethics concern.",
       "target_entities": []
     },
     {
@@ -95,23 +95,23 @@
       "raw_model_output": {
         "attempts": 1,
         "condition_id": "M3_actionable",
-        "elapsed_ms": 6960,
+        "elapsed_ms": 2992,
         "error": null,
         "model": "gpt-5.4",
         "parsed_response_json": {
           "probe_id": "probe_0004",
-          "response_text": "Plan for Klaus to handle the next revision pass, but make it tightly structured and concrete rather than trust-based. You and Klaus usually coordinate well on paper deadlines in an informal cafe setting, so set a brief cafe check-in, define the exact revision tasks, and ask for explicit deliverables with a clear near-term handoff. Because he already missed sending the experiment notes and your trust was only partially restored after the apology, do not rely on vague promises; use prompt follow-through and a specific make-good action from him on this pass. Keep Theo’s private ethics concern out of this planning entirely, and if ethics details become relevant, ask Theo directly rather than expecting Klaus to share them."
+          "response_text": "Look for Nia in the lab first around 09:00. On day 3 her usual 09:00 late-studio-work routine has shifted from the studio to the lab, so that is the best place to catch her for the handoff this morning."
         },
         "probe_id": "probe_0004",
         "provider": "fhl",
-        "raw_response_text": "{\"probe_id\":\"probe_0004\",\"response_text\":\"Plan for Klaus to handle the next revision pass, but make it tightly structured and concrete rather than trust-based. You and Klaus usually coordinate well on paper deadlines in an informal cafe setting, so set a brief cafe check-in, define the exact revision tasks, and ask for explicit deliverables with a clear near-term handoff. Because he already missed sending the experiment notes and your trust was only partially restored after the apology, do not rely on vague promises; use prompt follow-through and a specific make-good action from him on this pass. Keep Theo’s private ethics concern out of this planning entirely, and if ethics details become relevant, ask Theo directly rather than expecting Klaus to share them.\"}",
+        "raw_response_text": "{\"probe_id\":\"probe_0004\",\"response_text\":\"Look for Nia in the lab first around 09:00. On day 3 her usual 09:00 late-studio-work routine has shifted from the studio to the lab, so that is the best place to catch her for the handoff this morning.\"}",
         "scenario_id": "scenario_0001",
         "seed_id": "seed_0001",
-        "started_at": "2026-06-14T14:16:01+00:00",
+        "started_at": "2026-06-14T19:01:53+00:00",
         "status": "ok",
         "temperature": 0.0
       },
-      "response_text": "Plan for Klaus to handle the next revision pass, but make it tightly structured and concrete rather than trust-based. You and Klaus usually coordinate well on paper deadlines in an informal cafe setting, so set a brief cafe check-in, define the exact revision tasks, and ask for explicit deliverables with a clear near-term handoff. Because he already missed sending the experiment notes and your trust was only partially restored after the apology, do not rely on vague promises; use prompt follow-through and a specific make-good action from him on this pass. Keep Theo’s private ethics concern out of this planning entirely, and if ethics details become relevant, ask Theo directly rather than expecting Klaus to share them.",
+      "response_text": "Look for Nia in the lab first around 09:00. On day 3 her usual 09:00 late-studio-work routine has shifted from the studio to the lab, so that is the best place to catch her for the handoff this morning.",
       "target_entities": []
     },
     {
@@ -122,23 +122,23 @@
       "raw_model_output": {
         "attempts": 1,
         "condition_id": "M3_actionable",
-        "elapsed_ms": 4900,
+        "elapsed_ms": 4605,
         "error": null,
         "model": "gpt-5.4",
         "parsed_response_json": {
           "probe_id": "probe_0005",
-          "response_text": "Look for Nia in the studio first, especially in the late afternoon, since that is where she usually works on the prototype demo."
+          "response_text": "A good approach is to be proactive, accountable, and easy to verify. Start by acknowledging that you missed the earlier analysis deadline and that you understand Klaus's trust was only partially repaired even after your apology and day-2 delivery. Then confirm that you still intend to take the final integration pass today, but frame it with visible follow-through: propose a clear plan, give concrete checkpoints, and share progress early rather than asking Klaus to rely on assumptions. Since this is deadline-sensitive work, make it easy for Klaus to confirm each step and avoid overpromising. The goal is not just to finish the integration pass, but to rebuild confidence through reliability and transparency during the work."
         },
         "probe_id": "probe_0005",
         "provider": "fhl",
-        "raw_response_text": "{\"probe_id\":\"probe_0005\",\"response_text\":\"Look for Nia in the studio first, especially in the late afternoon, since that is where she usually works on the prototype demo.\"}",
+        "raw_response_text": "{\"probe_id\":\"probe_0005\",\"response_text\":\"A good approach is to be proactive, accountable, and easy to verify. Start by acknowledging that you missed the earlier analysis deadline and that you understand Klaus's trust was only partially repaired even after your apology and day-2 delivery. Then confirm that you still intend to take the final integration pass today, but frame it with visible follow-through: propose a clear plan, give concrete checkpoints, and share progress early rather than asking Klaus to rely on assumptions. Since this is deadline-sensitive work, make it easy for Klaus to confirm each step and avoid overpromising. The goal is not just to finish the integration pass, but to rebuild confidence through reliability and transparency during the work.\"}",
         "scenario_id": "scenario_0001",
         "seed_id": "seed_0001",
-        "started_at": "2026-06-14T14:16:11+00:00",
+        "started_at": "2026-06-14T19:01:53+00:00",
         "status": "ok",
         "temperature": 0.0
       },
-      "response_text": "Look for Nia in the studio first, especially in the late afternoon, since that is where she usually works on the prototype demo.",
+      "response_text": "A good approach is to be proactive, accountable, and easy to verify. Start by acknowledging that you missed the earlier analysis deadline and that you understand Klaus's trust was only partially repaired even after your apology and day-2 delivery. Then confirm that you still intend to take the final integration pass today, but frame it with visible follow-through: propose a clear plan, give concrete checkpoints, and share progress early rather than asking Klaus to rely on assumptions. Since this is deadline-sensitive work, make it easy for Klaus to confirm each step and avoid overpromising. The goal is not just to finish the integration pass, but to rebuild confidence through reliability and transparency during the work.",
       "target_entities": []
     }
   ],

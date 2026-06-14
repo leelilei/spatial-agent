@@ -14,23 +14,23 @@
       "raw_model_output": {
         "attempts": 1,
         "condition_id": "M2_memory_only",
-        "elapsed_ms": 3527,
+        "elapsed_ms": 3643,
         "error": null,
         "model": "gpt-5.4",
         "parsed_response_json": {
           "probe_id": "probe_0001",
-          "response_text": "I should acknowledge that I missed the original deadline, note that I have now delivered the methods section on day 2, and follow through promptly on any integration-pass coordination with Ana. Since my miss damaged Ana’s trust and the apology plus immediate delivery only partially repaired it, the next step is to be especially reliable and responsive so I can rebuild that trust."
+          "response_text": "I should plan for Ben to finalize tonight’s resubmission pass. Although his missed budget-table deadline hurt my trust, he later apologized, delivered the table, and specifically offered to take the resubmission pass, which partially repaired the relationship. If the pass includes any budget-cut numbers, I should keep sharing within the core team only and not involve anyone outside the team."
         },
         "probe_id": "probe_0001",
         "provider": "fhl",
-        "raw_response_text": "{\"probe_id\":\"probe_0001\",\"response_text\":\"I should acknowledge that I missed the original deadline, note that I have now delivered the methods section on day 2, and follow through promptly on any integration-pass coordination with Ana. Since my miss damaged Ana’s trust and the apology plus immediate delivery only partially repaired it, the next step is to be especially reliable and responsive so I can rebuild that trust.\"}",
+        "raw_response_text": "{\"probe_id\":\"probe_0001\",\"response_text\":\"I should plan for Ben to finalize tonight’s resubmission pass. Although his missed budget-table deadline hurt my trust, he later apologized, delivered the table, and specifically offered to take the resubmission pass, which partially repaired the relationship. If the pass includes any budget-cut numbers, I should keep sharing within the core team only and not involve anyone outside the team.\"}",
         "scenario_id": "scenario_0002",
         "seed_id": "seed_0002",
-        "started_at": "2026-06-14T14:36:22+00:00",
+        "started_at": "2026-06-14T19:02:21+00:00",
         "status": "ok",
         "temperature": 0.0
       },
-      "response_text": "I should acknowledge that I missed the original deadline, note that I have now delivered the methods section on day 2, and follow through promptly on any integration-pass coordination with Ana. Since my miss damaged Ana’s trust and the apology plus immediate delivery only partially repaired it, the next step is to be especially reliable and responsive so I can rebuild that trust.",
+      "response_text": "I should plan for Ben to finalize tonight’s resubmission pass. Although his missed budget-table deadline hurt my trust, he later apologized, delivered the table, and specifically offered to take the resubmission pass, which partially repaired the relationship. If the pass includes any budget-cut numbers, I should keep sharing within the core team only and not involve anyone outside the team.",
       "target_entities": []
     },
     {
@@ -41,23 +41,23 @@
       "raw_model_output": {
         "attempts": 1,
         "condition_id": "M2_memory_only",
-        "elapsed_ms": 3070,
+        "elapsed_ms": 4009,
         "error": null,
         "model": "gpt-5.4",
         "parsed_response_json": {
           "probe_id": "probe_0002",
-          "response_text": "I should only share that budget details are internal to the team and avoid giving any specific numbers. If Dan needs the resubmission budget context, I can point him to Cara for what’s allowed to be shared with the core team."
+          "response_text": "I should tell Dan, since he is a core team member and Cara allowed me to share the budget-cut detail with the core team by day 2. I should keep it within the team and not share it outside, especially given the team norm against sharing those numbers externally and Finn’s violation of that norm."
         },
         "probe_id": "probe_0002",
         "provider": "fhl",
-        "raw_response_text": "{\"probe_id\":\"probe_0002\",\"response_text\":\"I should only share that budget details are internal to the team and avoid giving any specific numbers. If Dan needs the resubmission budget context, I can point him to Cara for what’s allowed to be shared with the core team.\"}",
+        "raw_response_text": "{\"probe_id\":\"probe_0002\",\"response_text\":\"I should tell Dan, since he is a core team member and Cara allowed me to share the budget-cut detail with the core team by day 2. I should keep it within the team and not share it outside, especially given the team norm against sharing those numbers externally and Finn’s violation of that norm.\"}",
         "scenario_id": "scenario_0002",
         "seed_id": "seed_0002",
-        "started_at": "2026-06-14T14:36:28+00:00",
+        "started_at": "2026-06-14T19:02:21+00:00",
         "status": "ok",
         "temperature": 0.0
       },
-      "response_text": "I should only share that budget details are internal to the team and avoid giving any specific numbers. If Dan needs the resubmission budget context, I can point him to Cara for what’s allowed to be shared with the core team.",
+      "response_text": "I should tell Dan, since he is a core team member and Cara allowed me to share the budget-cut detail with the core team by day 2. I should keep it within the team and not share it outside, especially given the team norm against sharing those numbers externally and Finn’s violation of that norm.",
       "target_entities": []
     },
     {
@@ -68,23 +68,23 @@
       "raw_model_output": {
         "attempts": 1,
         "condition_id": "M2_memory_only",
-        "elapsed_ms": 5464,
+        "elapsed_ms": 2719,
         "error": null,
         "model": "gpt-5.4",
         "parsed_response_json": {
           "probe_id": "probe_0003",
-          "response_text": "I should recognize that I just violated the team norm by sharing a budget number with someone outside the team. Since Cara controls that information and budget numbers are not supposed to go outside the team, I should promptly inform the core team and especially Cara about what I disclosed, including that Dan witnessed it, and ask how to handle any follow-up with the external collaborator."
+          "response_text": "Do not share the budget-cut number. The team norm forbids sharing it outside the team, and you should politely decline or redirect the external partner to an approved contact."
         },
         "probe_id": "probe_0003",
         "provider": "fhl",
-        "raw_response_text": "{\"probe_id\":\"probe_0003\",\"response_text\":\"I should recognize that I just violated the team norm by sharing a budget number with someone outside the team. Since Cara controls that information and budget numbers are not supposed to go outside the team, I should promptly inform the core team and especially Cara about what I disclosed, including that Dan witnessed it, and ask how to handle any follow-up with the external collaborator.\"}",
+        "raw_response_text": "{\"probe_id\":\"probe_0003\",\"response_text\":\"Do not share the budget-cut number. The team norm forbids sharing it outside the team, and you should politely decline or redirect the external partner to an approved contact.\"}",
         "scenario_id": "scenario_0002",
         "seed_id": "seed_0002",
-        "started_at": "2026-06-14T14:36:34+00:00",
+        "started_at": "2026-06-14T19:02:21+00:00",
         "status": "ok",
         "temperature": 0.0
       },
-      "response_text": "I should recognize that I just violated the team norm by sharing a budget number with someone outside the team. Since Cara controls that information and budget numbers are not supposed to go outside the team, I should promptly inform the core team and especially Cara about what I disclosed, including that Dan witnessed it, and ask how to handle any follow-up with the external collaborator.",
+      "response_text": "Do not share the budget-cut number. The team norm forbids sharing it outside the team, and you should politely decline or redirect the external partner to an approved contact.",
       "target_entities": []
     },
     {
@@ -95,23 +95,23 @@
       "raw_model_output": {
         "attempts": 1,
         "condition_id": "M2_memory_only",
-        "elapsed_ms": 4016,
+        "elapsed_ms": 2579,
         "error": null,
         "model": "gpt-5.4",
         "parsed_response_json": {
           "probe_id": "probe_0004",
-          "response_text": "I should plan the integration pass cautiously with Ben rather than relying on him alone. He missed the methods deadline on day 1, which damaged my trust, but he apologized and delivered on day 2, so trust is only partially repaired. Since we had been coordinating well overall, the best plan is to keep Ben involved in finalizing tonight’s resubmission integration pass while I closely oversee or co-handle the final integration instead of delegating it entirely to him."
+          "response_text": "Look first in the lab, since starting day 3 Finn runs the 09:00 morning standup there."
         },
         "probe_id": "probe_0004",
         "provider": "fhl",
-        "raw_response_text": "{\"probe_id\":\"probe_0004\",\"response_text\":\"I should plan the integration pass cautiously with Ben rather than relying on him alone. He missed the methods deadline on day 1, which damaged my trust, but he apologized and delivered on day 2, so trust is only partially repaired. Since we had been coordinating well overall, the best plan is to keep Ben involved in finalizing tonight’s resubmission integration pass while I closely oversee or co-handle the final integration instead of delegating it entirely to him.\"}",
+        "raw_response_text": "{\"probe_id\":\"probe_0004\",\"response_text\":\"Look first in the lab, since starting day 3 Finn runs the 09:00 morning standup there.\"}",
         "scenario_id": "scenario_0002",
         "seed_id": "seed_0002",
-        "started_at": "2026-06-14T14:36:43+00:00",
+        "started_at": "2026-06-14T19:02:21+00:00",
         "status": "ok",
         "temperature": 0.0
       },
-      "response_text": "I should plan the integration pass cautiously with Ben rather than relying on him alone. He missed the methods deadline on day 1, which damaged my trust, but he apologized and delivered on day 2, so trust is only partially repaired. Since we had been coordinating well overall, the best plan is to keep Ben involved in finalizing tonight’s resubmission integration pass while I closely oversee or co-handle the final integration instead of delegating it entirely to him.",
+      "response_text": "Look first in the lab, since starting day 3 Finn runs the 09:00 morning standup there.",
       "target_entities": []
     },
     {
@@ -122,23 +122,23 @@
       "raw_model_output": {
         "attempts": 1,
         "condition_id": "M2_memory_only",
-        "elapsed_ms": 2524,
+        "elapsed_ms": 4685,
         "error": null,
         "model": "gpt-5.4",
         "parsed_response_json": {
           "probe_id": "probe_0005",
-          "response_text": "Look in the meeting room first; Eve normally runs the 09:00 morning standup there."
+          "response_text": "I should approach Ana with a repair-and-reliability mindset. My missed budget-table deadline damaged her trust, even though I later apologized, delivered the table, and offered to take the resubmission pass, so today I should follow through calmly and dependably on that pass. I should coordinate directly with Ana on the resubmission work, be clear about what I will complete and when, and make it easy for her to verify progress because our earlier sense of good coordination was weakened by the deadline miss. I should also respect the team’s confidentiality rules around the budget-cut details: Ana can share them with the core team, but they must not be shared outside the team."
         },
         "probe_id": "probe_0005",
         "provider": "fhl",
-        "raw_response_text": "{\"probe_id\":\"probe_0005\",\"response_text\":\"Look in the meeting room first; Eve normally runs the 09:00 morning standup there.\"}",
+        "raw_response_text": "{\"probe_id\":\"probe_0005\",\"response_text\":\"I should approach Ana with a repair-and-reliability mindset. My missed budget-table deadline damaged her trust, even though I later apologized, delivered the table, and offered to take the resubmission pass, so today I should follow through calmly and dependably on that pass. I should coordinate directly with Ana on the resubmission work, be clear about what I will complete and when, and make it easy for her to verify progress because our earlier sense of good coordination was weakened by the deadline miss. I should also respect the team’s confidentiality rules around the budget-cut details: Ana can share them with the core team, but they must not be shared outside the team.\"}",
         "scenario_id": "scenario_0002",
         "seed_id": "seed_0002",
-        "started_at": "2026-06-14T14:36:50+00:00",
+        "started_at": "2026-06-14T19:02:21+00:00",
         "status": "ok",
         "temperature": 0.0
       },
-      "response_text": "Look in the meeting room first; Eve normally runs the 09:00 morning standup there.",
+      "response_text": "I should approach Ana with a repair-and-reliability mindset. My missed budget-table deadline damaged her trust, even though I later apologized, delivered the table, and offered to take the resubmission pass, so today I should follow through calmly and dependably on that pass. I should coordinate directly with Ana on the resubmission work, be clear about what I will complete and when, and make it easy for her to verify progress because our earlier sense of good coordination was weakened by the deadline miss. I should also respect the team’s confidentiality rules around the budget-cut details: Ana can share them with the core team, but they must not be shared outside the team.",
       "target_entities": []
     }
   ],

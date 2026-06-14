@@ -1,124 +1,126 @@
 {
-  "scenario_id": "scenario_0001",
   "entities": [
     {
-      "entity_id": "person_klaus",
-      "entity_type": "person",
+      "aliases": [],
+      "description": "The lead coordinating the paper deadline.",
       "display_name": "Klaus",
-      "aliases": [],
-      "description": "A researcher responsible for sharing experiment notes."
+      "entity_id": "person_klaus",
+      "entity_type": "person"
     },
     {
-      "entity_id": "person_maria",
-      "entity_type": "person",
+      "aliases": [],
+      "description": "A teammate responsible for the analysis section.",
       "display_name": "Maria",
-      "aliases": [],
-      "description": "A researcher coordinating the shared paper deadline."
+      "entity_id": "person_maria",
+      "entity_type": "person"
     },
     {
-      "entity_id": "person_theo",
-      "entity_type": "person",
+      "aliases": [],
+      "description": "The person who controls the ethics concern information.",
       "display_name": "Theo",
-      "aliases": [],
-      "description": "A lab member who knows private details about the ethics concern."
+      "entity_id": "person_theo",
+      "entity_type": "person"
     },
     {
-      "entity_id": "person_lina",
-      "entity_type": "person",
+      "aliases": [],
+      "description": "A core team member who asks about sensitive project context.",
       "display_name": "Lina",
-      "aliases": [],
-      "description": "A teammate who values careful meeting norms."
+      "entity_id": "person_lina",
+      "entity_type": "person"
     },
     {
-      "entity_id": "person_omar",
-      "entity_type": "person",
+      "aliases": [],
+      "description": "A colleague who relays indirect reliability updates about Maria.",
       "display_name": "Omar",
-      "aliases": [],
-      "description": "A colleague who reports indirect reputation updates."
+      "entity_id": "person_omar",
+      "entity_type": "person"
     },
     {
-      "entity_id": "person_nia",
-      "entity_type": "person",
+      "aliases": [],
+      "description": "A teammate with a predictable late studio work routine.",
       "display_name": "Nia",
+      "entity_id": "person_nia",
+      "entity_type": "person"
+    },
+    {
       "aliases": [],
-      "description": "A teammate who usually works in the studio during late afternoons."
+      "description": "Shared project office.",
+      "display_name": "Office",
+      "entity_id": "place_office",
+      "entity_type": "place"
     },
     {
-      "entity_id": "place_cafe",
-      "entity_type": "place",
-      "display_name": "Cafe",
-      "aliases": ["campus cafe"],
-      "description": "Informal discussion space."
-    },
-    {
-      "entity_id": "place_library",
-      "entity_type": "place",
-      "display_name": "Library",
       "aliases": [],
-      "description": "Quiet work location for research coordination."
-    },
-    {
-      "entity_id": "place_lab",
-      "entity_type": "place",
+      "description": "Shared work lab.",
       "display_name": "Lab",
-      "aliases": [],
-      "description": "Shared research lab."
+      "entity_id": "place_lab",
+      "entity_type": "place"
     },
     {
-      "entity_id": "place_studio",
-      "entity_type": "place",
+      "aliases": [
+        "campus cafe"
+      ],
+      "description": "Informal discussion space.",
+      "display_name": "Cafe",
+      "entity_id": "place_cafe",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "Location for the late studio work.",
       "display_name": "Studio",
-      "aliases": [],
-      "description": "Design and prototype work space."
+      "entity_id": "place_studio",
+      "entity_type": "place"
     },
     {
+      "aliases": [],
+      "description": "The main collaborative task: paper deadline.",
+      "display_name": "Paper Deadline",
       "entity_id": "topic_paper_deadline",
-      "entity_type": "topic",
-      "display_name": "Paper deadline",
-      "aliases": [],
-      "description": "The shared paper deadline and experiment notes."
+      "entity_type": "topic"
     },
     {
+      "aliases": [],
+      "description": "Sensitive information about the ethics concern.",
+      "display_name": "Ethics Concern",
       "entity_id": "topic_ethics_concern",
-      "entity_type": "topic",
-      "display_name": "Ethics concern",
-      "aliases": [],
-      "description": "A private concern about the ethics appendix."
+      "entity_type": "topic"
     },
     {
+      "aliases": [],
+      "description": "A distractor topic about prototype demo.",
+      "display_name": "Prototype Demo",
       "entity_id": "topic_prototype_demo",
-      "entity_type": "topic",
-      "display_name": "Prototype demo",
-      "aliases": [],
-      "description": "A late-afternoon prototype demonstration."
+      "entity_type": "topic"
     },
     {
-      "entity_id": "norm_no_interruptions",
-      "entity_type": "norm",
-      "display_name": "No interruptions during dry runs",
       "aliases": [],
-      "description": "Team norm that prototype dry runs should not be interrupted."
+      "description": "Team norm not to share sensitive numbers outside the team.",
+      "display_name": "No external ethics concern sharing",
+      "entity_id": "norm_no_external_ethics_concern_sharing",
+      "entity_type": "norm"
     },
     {
-      "entity_id": "info_ethics_concern",
-      "entity_type": "information_item",
-      "display_name": "Private ethics concern",
       "aliases": [],
-      "description": "Theo's private concern that should not be shared broadly."
+      "description": "The specific ethics-concern detail controlled by Theo.",
+      "display_name": "Ethics-Concern Detail",
+      "entity_id": "info_ethics_concern_detail",
+      "entity_type": "information_item"
     },
     {
+      "aliases": [],
+      "description": "Recurring late studio work activity.",
+      "display_name": "Late Studio Work",
       "entity_id": "activity_late_studio_work",
-      "entity_type": "activity",
-      "display_name": "Late studio work",
-      "aliases": [],
-      "description": "Nia's recurring late-afternoon work routine in the studio."
+      "entity_type": "activity"
     },
     {
-      "entity_id": "rel_person_klaus__person_maria",
-      "entity_type": "relationship",
-      "display_name": "Klaus-Maria relationship",
       "aliases": [],
-      "description": "Dyadic collaboration relationship between Klaus and Maria."
+      "description": "Dyadic working relationship between Klaus and Maria.",
+      "display_name": "Klaus-Maria relationship",
+      "entity_id": "rel_person_klaus__person_maria",
+      "entity_type": "relationship"
     }
-  ]
+  ],
+  "scenario_id": "scenario_0001"
 }

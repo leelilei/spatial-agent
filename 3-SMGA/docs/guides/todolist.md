@@ -1,7 +1,7 @@
 # SMGA Todo List
 
 > 更新日期：2026-06-15
-> 当前主线：Phase 5 — Stage 1 pilot analysis and Gate 1 prep
+> 当前主线：Phase 6 完成（Stage 2 主实验 40 seeds），下一步 Phase 7 次级控制（含 horizon sweep）
 
 ---
 
@@ -11,20 +11,23 @@ SMGA 现在的位置：
 
 ```text
 Proposal / schema 已定稿到 v4.6
-Experiment 0 的 benchmark seed 已经可以被验证和评分
-`fhl` Responses API provider 已接入并用 `gpt-5.4` 跑通 `M0_GA` 与 `M0_prompted`
-scorer 已升级：affordance 候选集（v0.2）+ condition-blind LLM-judge（judge_scorer.py）
-关键发现：关键词尺子 4/5 vs 1-2/5 的差距是测量假象；LLM-judge 下两个 baseline 均 4/5（旗鼓相当）
-judge 仍能抓真实失败（M0_prompted probe_0003 转去问无关信息）并区分实质差异（probe_0004）
-测量已修到可信，足以进入 treatment 比较
-Stage 1 10-seed pilot 已完成（10 seeds x 5 probes x 5 conditions）：
-  M0_GA=37/50, M0_prompted=35/50, M2_memory_only=33/50, M3_placebo=28/50, M3_actionable=38/50
-关键信号：M3(结构化可执行记忆)仍是最强条件，但只比 M0_GA 高 1/50；更清楚的机制信号是高于 interface-matched stale placebo 10/50，尤其是 probe_0004 reduced-reliance planning（M3=7/10, placebo=0/10）。
-主要风险：probe_0003 norm-response/social-repair 仍弱（M3=3/10），需要失败案例盲审；不能直接把 10-seed pilot 当论文结论。
-probe_0002 归因更新：M3 的原始回答其实正确执行了“可向核心团队分享、不可外传”的修订规则；更大的问题是评估口径把 bounded sharing 误判成 maintain_privacy failure。详见 `docs/project/experiment0_probe_0002_diagnostic.md`。
-评估卫生更新：`judge_scorer.py` 已支持落盘 verdict JSON，并已把 bounded sharing / global refusal / external privacy boundary 的 rubric 区分清楚。
-10-seed pilot 结果见 `docs/project/stage1_pilot_10seed_2026-06-15.md`；Gate 1 failure audit 见 `docs/project/gate1_failure_audit_2026-06-15.md`；2-seed alpha 记录见 `docs/project/stage1_pilot_alpha_2026-06-15.md`。
-Gate 1 结论：conditional go for Stage 2 prep，但不能直接开 40-50 seeds。先修 `probe_0003` 的 target/rubric mismatch、明确 `probe_0004` 的 checked-collaboration 边界、降低 M3 unrelated-memory intrusion，然后重跑 10-seed。
+Experiment 0 基础设施、5 个条件、LLM-judge 测量全部跑通
+Gate 1 诊断到关键问题：v1 的 "M0≈M3" 是 benchmark 缺陷，不是机制失效
+  —— M0_GA 看的是形成记忆的同一份原始日志，强模型能当场重推；且 5 个 probe 有 3 个饱和/坏掉
+v2 重设计（A+B 一起做）已实现并验证：
+  A 双 session 信息差：事件加 session 标签；M0 只看 current session，memory 读全量（baseline_harness 窗口化）
+  B currency 敏感 probe：每个 probe 决定性事实只在 S1 记忆里、带 stale-trap；probe_0003 改为 no-history 负对照
+Stage 2 主实验已完成（40 seeds × 5 conditions × 5 probes，200/200，0 失败）：
+  headline（4 个区分 probe）：M0_GA=9% M0_prompted=9% M2=79% M3_placebo=22% M3_actionable=94%
+  核心对比：M3 vs M0 +85pp；placebo gap +72pp；M3 vs M2 +15pp（全来自 probe_0001 reduced-reliance planning）
+  负对照 probe_0003 全员 ~40/40 → M0 不是被普遍削弱，缺陷是记忆特异的
+结论：核心 SMGA claim 在 40 seeds 上以大效应被支持，机制已立住。
+工程加成：并发（max_concurrency，3-5×）、参数化种子生成器（name/theme 池，可扩任意规模）、
+  pipeline per-seed 容错、实时进度监控 progress_monitor.py。
+文档：v2 设计 `stage1_v2_dual_session_design_2026-06-15.md`；10-seed final `stage1_v2_final_2026-06-15.md`；
+  Stage 2 主结果 `stage2_main_40seed_2026-06-15.md`。
+最可能被审稿人攻击的点：信息差由 session 窗口化制造（"你只是把信息从 M0 藏起来了"）。
+  最强反驳 = Phase 7 horizon sweep（给 M0 完整但长的历史，证明优势随时长扩展）。详见 `stage2b_horizon_sweep_plan_2026-06-15.md`。
 ```
 
 当前工程骨架：
@@ -39,6 +42,10 @@ Gate 1 结论：conditional go for Stage 2 prep，但不能直接开 40-50 seeds
 - [ ] `O-08` planning-grounding scorer
 - [x] `O-09a` Stage 1 alpha pilot run on existing 2 seeds
 - [x] `O-09b` Stage 1 expanded pilot run on 5-10 seeds
+- [x] `O-10` dual-session windowing + currency-sensitive probe v2 redesign
+- [x] `O-11` parametrized seed generator (name/theme pools, scales to N seeds)
+- [x] `O-12` concurrency (max_concurrency) + per-seed-resilient pipeline + progress_monitor.py
+- [x] `O-13` Stage 2 main run (40 seeds × 5 conditions)
 
 ---
 
@@ -50,9 +57,9 @@ Phase 1  Research plan and schemas
 Phase 2  Experiment 0 infrastructure
 Phase 3  First baseline runs
 Phase 4  SMGA treatment and ablations
-Phase 5  Stage 1 pilot                        <-- current phase
-Phase 6  Stage 2 main experiment
-Phase 7  Stage 2b secondary controls
+Phase 5  Stage 1 pilot                        done (v2 redesign closed Gate 1)
+Phase 6  Stage 2 main experiment              done (40 seeds, M3 94% vs M0 9%)
+Phase 7  Stage 2b secondary controls          <-- current (horizon sweep first)
 Phase 8  Analysis, writing, and release
 ```
 
@@ -253,13 +260,13 @@ M3_actionable
 要完成：
 
 - [x] `P5-01` 扩展到 10 个 hand-authored/generated diagnostic seeds
-- [ ] `P5-02` 验证 placebo 不泄露 current content（construction 已实现，Gate 1 audit 未发现 current-content 胜出迹象；仍需 artifact spot-check）
-- [ ] `P5-03` 验证 claim extractor pilot
-- [x] `P5-04` 验证 judge / annotation pilot（LLM-judge 50 summaries present, 0 status errors）
-- [x] `P5-05` 测 seed-level variance
+- [x] `P5-02` 验证 placebo 不泄露 current content（v2 stale-trap 设计下 placebo 稳定失败，placebo gap +72pp）
+- [ ] `P5-03` 验证 claim extractor pilot（仍未做，O-07/O-08 scorer 待补）
+- [x] `P5-04` 验证 judge / annotation pilot（LLM-judge，0 status errors）
+- [x] `P5-05` 测 seed-level variance（v2 40 seeds：M3 4/4 on 32/40，方差低）
 - [x] `P5-06a` Gate 1 failure audit：probe_0003/probe_0004 + M3 naturalness/leakage
-- [ ] `P5-06b` Gate 1 measurement hardening：修 probe/rubric/M3 retrieval 后重跑 10-seed
-- [ ] `P5-06c` Gate 1 final decision：判断是否进入 Stage 2 main run
+- [x] `P5-06b` Gate 1 measurement hardening：v2 双 session + currency probe 重设计后重跑（10-seed 干净）
+- [x] `P5-06c` Gate 1 final decision：GO for Stage 2（10-seed M3 98% vs M0 18%）
 
 完成标准：
 
@@ -303,12 +310,15 @@ C4: M3_actionable > M0_prompted on probe behavior success
 
 要完成：
 
-- [ ] `P6-01` 运行 5 conditions × 40 seeds
-- [ ] `P6-02` 如 Gate 1 variance 过高，扩展到 50 seeds
-- [ ] `P6-03` 生成 C1-C4 paired seed-level results
+- [x] `P6-01` 运行 5 conditions × 40 seeds（200/200，0 失败）
+- [x] `P6-02` 40 seeds 方差已足够低，不需扩到 50
+- [~] `P6-03` 生成 C1-C4 seed-level results（headline/probe-level 已聚合；正式 paired 检验待补）
 - [ ] `P6-04` 实现 Holm correction
 - [ ] `P6-05` 实现 SESOI 判断
-- [ ] `P6-06` 生成可进入论文 Results section 的主结果表
+- [~] `P6-06` 主结果表已成形于 `stage2_main_40seed_2026-06-15.md`，待转入论文 Results
+
+> 注：C2（M3 > M2 on planning）在 probe_0001 上明确成立（M3 34/40 vs M2 10/40）。
+> C3（M3 > placebo）+72pp、C4（M3 > M0_prompted）+85pp 均大效应。统计检验（Holm/SESOI）为待补的形式化步骤。
 
 完成标准：
 
@@ -322,9 +332,13 @@ Holm correction 和 SESOI 判断可复现
 
 ## 9. Phase 7 — Stage 2b Secondary Controls
 
-目标：补 reviewer 最可能攻击的两个控制条件。
+目标：补 reviewer 最可能攻击的控制条件。**优先级最高的是 horizon sweep**——它直接反驳
+"信息差只是把内容从 M0 藏起来了"这一最可能的审稿质疑（给 M0 完整但长的历史，证明优势随时长扩展）。
+方案见 `docs/project/stage2b_horizon_sweep_plan_2026-06-15.md`。
 
-条件：
+- [ ] `P7-00` **horizon sweep**：S1 历史长度 短/中/长，M0 看全量长历史，测 M3−M0 gap 是否随 horizon 变宽（**第一优先**）
+
+其余控制条件：
 
 ```text
 M0_plus
@@ -457,7 +471,7 @@ M0_prompted score: pending
 
 ## 暂不做
 
-- [ ] `H-01` 自动生成 40-50 个 seeds
+- [x] `H-01` 自动生成 40-50 个 seeds（参数化生成器已就绪，已用于 Stage 2 的 40 seeds）
 - [ ] `H-02` GraphMemory baseline
 - [ ] `H-03` `M0_plus` compute-matched baseline
 - [ ] `H-04` second-model replication

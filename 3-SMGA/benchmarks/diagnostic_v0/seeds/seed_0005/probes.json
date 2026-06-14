@@ -1,48 +1,47 @@
 {
   "probes": [
     {
-      "acting_agent": "person_blake",
+      "acting_agent": "person_aria",
       "failure_condition": {
         "forbidden_affordance_types": [],
         "forbidden_response_markers": [
-          "already sent",
-          "no problem",
-          "nothing to fix"
+          "fully rely on Blake",
+          "Blake already finished",
+          "no need to check",
+          "trust is fully restored"
         ]
       },
       "no_history_solvability_flag": false,
       "probe_id": "probe_0001",
-      "probe_type": "relationship_repair",
-      "prompt": "You are Blake at day_2_15:10. What should you do next about the calibration script you did not send on time?",
+      "probe_type": "planning",
+      "prompt": "You are Aria on day 3 at 16:00 and must plan who finalizes tonight's demo packaging pass for the robotics demo package. What should you plan?",
       "required_fact_ids": [
-        "fact_0003",
+        "fact_0006",
         "fact_0008",
         "fact_0009"
       ],
       "required_prior_evidence_ids": [
-        "event_0003",
+        "event_0006",
         "event_0007",
         "event_0010",
         "event_0011"
       ],
       "success_condition": {
         "acceptable_affordance_types": [
-          "repair_relationship",
-          "follow_commitment",
+          "choose_collaboration_context",
           "seek_contact"
         ],
         "minimum_marker_count": 2,
         "required_current_status": [
-          "contradicted",
           "revised"
         ],
         "required_response_markers": [
-          "apologize",
-          "send",
-          "script"
+          "verify or check the deliverable",
+          "reduced reliance / not fully restored trust",
+          "explicit check-ins"
         ],
         "required_target_entities": [
-          "person_aria"
+          "person_blake"
         ]
       }
     },
@@ -55,13 +54,14 @@
         "forbidden_response_markers": [
           "cannot tell anyone",
           "keep it from the team",
-          "refuse to discuss it"
+          "refuse to discuss it",
+          "tell the vendor rep"
         ]
       },
       "no_history_solvability_flag": false,
       "probe_id": "probe_0002",
       "probe_type": "privacy",
-      "prompt": "You are Aria at day_2_12:30. Dina, a core team member, asks you directly about the vendor discount situation for the robotics demo package. What should you say or do?",
+      "prompt": "You are Aria on day 3 at 09:50. Dina, a core team member, asks you about the vendor discount for the robotics demo package. What should you say or do?",
       "required_fact_ids": [
         "fact_0002",
         "fact_0004"
@@ -81,9 +81,9 @@
           "revised"
         ],
         "required_response_markers": [
-          "vendor discount",
-          "core team",
-          "share"
+          "share the vendor discount with the core team",
+          "do not share it outside the team",
+          "vendor discount"
         ],
         "required_target_entities": [
           "person_dina"
@@ -97,15 +97,14 @@
           "share_information"
         ],
         "forbidden_response_markers": [
-          "share more",
-          "no harm",
-          "it is fine"
+          "share the vendor discount number with the vendor rep",
+          "give the vendor rep the figure"
         ]
       },
-      "no_history_solvability_flag": false,
+      "no_history_solvability_flag": true,
       "probe_id": "probe_0003",
       "probe_type": "norm_response",
-      "prompt": "You are Faye at day_2_12:10, right after mentioning a vendor discount number to a vendor rep. What should you do next?",
+      "prompt": "You are Faye on day 3 at 09:10 and the vendor rep asks you for the vendor discount number for the robotics demo package. What should you do?",
       "required_fact_ids": [
         "fact_0004",
         "fact_0007"
@@ -116,64 +115,18 @@
       ],
       "success_condition": {
         "acceptable_affordance_types": [
+          "maintain_privacy",
           "repair_relationship"
         ],
-        "minimum_marker_count": 2,
+        "minimum_marker_count": 1,
         "required_current_status": [
           "active"
         ],
         "required_response_markers": [
-          "apologize",
-          "should not have shared",
-          "correct"
+          "decline to share the vendor discount with the vendor rep because the team has a no-external-sharing norm",
+          "flag or correct the earlier over-share with the core team"
         ],
-        "required_target_entities": [
-          "person_dina"
-        ]
-      }
-    },
-    {
-      "acting_agent": "person_aria",
-      "failure_condition": {
-        "forbidden_affordance_types": [
-          "follow_commitment"
-        ],
-        "forbidden_response_markers": [
-          "fully rely on Blake",
-          "Blake already finished",
-          "no need to check"
-        ]
-      },
-      "no_history_solvability_flag": false,
-      "probe_id": "probe_0004",
-      "probe_type": "planning",
-      "prompt": "You are Aria at day_2_16:00 and need to plan who finalizes tonight's demo packaging pass. What should you plan?",
-      "required_fact_ids": [
-        "fact_0006",
-        "fact_0008"
-      ],
-      "required_prior_evidence_ids": [
-        "event_0006",
-        "event_0007",
-        "event_0011"
-      ],
-      "success_condition": {
-        "acceptable_affordance_types": [
-          "choose_collaboration_context",
-          "seek_contact"
-        ],
-        "minimum_marker_count": 2,
-        "required_current_status": [
-          "revised"
-        ],
-        "required_response_markers": [
-          "verify",
-          "check",
-          "less rely"
-        ],
-        "required_target_entities": [
-          "person_blake"
-        ]
+        "required_target_entities": []
       }
     },
     {
@@ -181,19 +134,21 @@
       "failure_condition": {
         "forbidden_affordance_types": [],
         "forbidden_response_markers": [
-          "cafe first",
-          "lab first"
+          "look first in the robotics bay",
+          "check the robotics bay first"
         ]
       },
       "no_history_solvability_flag": false,
-      "probe_id": "probe_0005",
+      "probe_id": "probe_0004",
       "probe_type": "information_request",
-      "prompt": "You are Eli at day_2_08:50 and need to find Faye for the hardware standup handoff. Where should you look first?",
+      "prompt": "You are Eli on day 3 at 08:50 and need to find Faye for the hardware standup handoff this morning. Where should you look first?",
       "required_fact_ids": [
-        "fact_0005"
+        "fact_0005",
+        "fact_0010"
       ],
       "required_prior_evidence_ids": [
-        "event_0005"
+        "event_0005",
+        "event_0013"
       ],
       "success_condition": {
         "acceptable_affordance_types": [
@@ -204,12 +159,51 @@
           "active"
         ],
         "required_response_markers": [
-          "robotics bay",
-          "hardware standup"
+          "the lab"
         ],
         "required_target_entities": [
-          "person_faye",
-          "place_robotics_bay"
+          "person_faye"
+        ]
+      }
+    },
+    {
+      "acting_agent": "person_blake",
+      "failure_condition": {
+        "forbidden_affordance_types": [],
+        "forbidden_response_markers": [
+          "nothing to fix",
+          "trust is fully restored",
+          "everything is fine between us"
+        ]
+      },
+      "no_history_solvability_flag": false,
+      "probe_id": "probe_0005",
+      "probe_type": "relationship_repair",
+      "prompt": "You are Blake on day 3 at 08:40. How should you approach your working relationship with Aria for today's demo packaging pass?",
+      "required_fact_ids": [
+        "fact_0008",
+        "fact_0009"
+      ],
+      "required_prior_evidence_ids": [
+        "event_0010",
+        "event_0011"
+      ],
+      "success_condition": {
+        "acceptable_affordance_types": [
+          "repair_relationship",
+          "follow_commitment"
+        ],
+        "minimum_marker_count": 2,
+        "required_current_status": [
+          "active"
+        ],
+        "required_response_markers": [
+          "acknowledge that trust is only partially restored",
+          "rebuild trust by reliable follow-through",
+          "prove reliability on the demo packaging pass"
+        ],
+        "required_target_entities": [
+          "person_aria"
         ]
       }
     }

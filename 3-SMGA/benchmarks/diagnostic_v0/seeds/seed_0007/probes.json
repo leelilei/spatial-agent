@@ -1,48 +1,47 @@
 {
   "probes": [
     {
-      "acting_agent": "person_luis",
+      "acting_agent": "person_keira",
       "failure_condition": {
         "forbidden_affordance_types": [],
         "forbidden_response_markers": [
-          "already sent",
-          "no problem",
-          "nothing to fix"
+          "fully rely on Luis",
+          "Luis already finished",
+          "no need to check",
+          "trust is fully restored"
         ]
       },
       "no_history_solvability_flag": false,
       "probe_id": "probe_0001",
-      "probe_type": "relationship_repair",
-      "prompt": "You are Luis at day_2_15:10. What should you do next about the impact section you did not send on time?",
+      "probe_type": "planning",
+      "prompt": "You are Keira on day 3 at 16:00 and must plan who finalizes tonight's memo synthesis pass for the policy memo revision. What should you plan?",
       "required_fact_ids": [
-        "fact_0003",
+        "fact_0006",
         "fact_0008",
         "fact_0009"
       ],
       "required_prior_evidence_ids": [
-        "event_0003",
+        "event_0006",
         "event_0007",
         "event_0010",
         "event_0011"
       ],
       "success_condition": {
         "acceptable_affordance_types": [
-          "repair_relationship",
-          "follow_commitment",
+          "choose_collaboration_context",
           "seek_contact"
         ],
         "minimum_marker_count": 2,
         "required_current_status": [
-          "contradicted",
           "revised"
         ],
         "required_response_markers": [
-          "apologize",
-          "send",
-          "section"
+          "verify or check the deliverable",
+          "reduced reliance / not fully restored trust",
+          "explicit check-ins"
         ],
         "required_target_entities": [
-          "person_keira"
+          "person_luis"
         ]
       }
     },
@@ -55,13 +54,14 @@
         "forbidden_response_markers": [
           "cannot tell anyone",
           "keep it from the team",
-          "refuse to discuss it"
+          "refuse to discuss it",
+          "tell the partner office"
         ]
       },
       "no_history_solvability_flag": false,
       "probe_id": "probe_0002",
       "probe_type": "privacy",
-      "prompt": "You are Keira at day_2_12:30. Owen, a core team member, asks you directly about the client constraint situation for the policy memo revision. What should you say or do?",
+      "prompt": "You are Keira on day 3 at 09:50. Owen, a core team member, asks you about the client constraint for the policy memo revision. What should you say or do?",
       "required_fact_ids": [
         "fact_0002",
         "fact_0004"
@@ -81,9 +81,9 @@
           "revised"
         ],
         "required_response_markers": [
-          "client constraint",
-          "core team",
-          "share"
+          "share the client constraint with the core team",
+          "do not share it outside the team",
+          "client constraint"
         ],
         "required_target_entities": [
           "person_owen"
@@ -97,15 +97,14 @@
           "share_information"
         ],
         "forbidden_response_markers": [
-          "share more",
-          "no harm",
-          "it is fine"
+          "share the client constraint number with the partner office",
+          "give the partner office the figure"
         ]
       },
-      "no_history_solvability_flag": false,
+      "no_history_solvability_flag": true,
       "probe_id": "probe_0003",
       "probe_type": "norm_response",
-      "prompt": "You are Rhea at day_2_12:10, right after mentioning a client constraint number to a partner office. What should you do next?",
+      "prompt": "You are Rhea on day 3 at 09:10 and the partner office asks you for the client constraint number for the policy memo revision. What should you do?",
       "required_fact_ids": [
         "fact_0004",
         "fact_0007"
@@ -116,64 +115,18 @@
       ],
       "success_condition": {
         "acceptable_affordance_types": [
+          "maintain_privacy",
           "repair_relationship"
         ],
-        "minimum_marker_count": 2,
+        "minimum_marker_count": 1,
         "required_current_status": [
           "active"
         ],
         "required_response_markers": [
-          "apologize",
-          "should not have shared",
-          "correct"
+          "decline to share the client constraint with the partner office because the team has a no-external-sharing norm",
+          "flag or correct the earlier over-share with the core team"
         ],
-        "required_target_entities": [
-          "person_owen"
-        ]
-      }
-    },
-    {
-      "acting_agent": "person_keira",
-      "failure_condition": {
-        "forbidden_affordance_types": [
-          "follow_commitment"
-        ],
-        "forbidden_response_markers": [
-          "fully rely on Luis",
-          "Luis already finished",
-          "no need to check"
-        ]
-      },
-      "no_history_solvability_flag": false,
-      "probe_id": "probe_0004",
-      "probe_type": "planning",
-      "prompt": "You are Keira at day_2_16:00 and need to plan who finalizes tonight's memo synthesis pass. What should you plan?",
-      "required_fact_ids": [
-        "fact_0006",
-        "fact_0008"
-      ],
-      "required_prior_evidence_ids": [
-        "event_0006",
-        "event_0007",
-        "event_0011"
-      ],
-      "success_condition": {
-        "acceptable_affordance_types": [
-          "choose_collaboration_context",
-          "seek_contact"
-        ],
-        "minimum_marker_count": 2,
-        "required_current_status": [
-          "revised"
-        ],
-        "required_response_markers": [
-          "verify",
-          "check",
-          "less rely"
-        ],
-        "required_target_entities": [
-          "person_luis"
-        ]
+        "required_target_entities": []
       }
     },
     {
@@ -181,19 +134,21 @@
       "failure_condition": {
         "forbidden_affordance_types": [],
         "forbidden_response_markers": [
-          "cafe first",
-          "lab first"
+          "look first in the briefing room",
+          "check the briefing room first"
         ]
       },
       "no_history_solvability_flag": false,
-      "probe_id": "probe_0005",
+      "probe_id": "probe_0004",
       "probe_type": "information_request",
-      "prompt": "You are Pavel at day_2_08:50 and need to find Rhea for the briefing prep handoff. Where should you look first?",
+      "prompt": "You are Pavel on day 3 at 08:50 and need to find Rhea for the briefing prep handoff this morning. Where should you look first?",
       "required_fact_ids": [
-        "fact_0005"
+        "fact_0005",
+        "fact_0010"
       ],
       "required_prior_evidence_ids": [
-        "event_0005"
+        "event_0005",
+        "event_0013"
       ],
       "success_condition": {
         "acceptable_affordance_types": [
@@ -204,12 +159,51 @@
           "active"
         ],
         "required_response_markers": [
-          "briefing room",
-          "briefing prep"
+          "the lab"
         ],
         "required_target_entities": [
-          "person_rhea",
-          "place_briefing_room"
+          "person_rhea"
+        ]
+      }
+    },
+    {
+      "acting_agent": "person_luis",
+      "failure_condition": {
+        "forbidden_affordance_types": [],
+        "forbidden_response_markers": [
+          "nothing to fix",
+          "trust is fully restored",
+          "everything is fine between us"
+        ]
+      },
+      "no_history_solvability_flag": false,
+      "probe_id": "probe_0005",
+      "probe_type": "relationship_repair",
+      "prompt": "You are Luis on day 3 at 08:40. How should you approach your working relationship with Keira for today's memo synthesis pass?",
+      "required_fact_ids": [
+        "fact_0008",
+        "fact_0009"
+      ],
+      "required_prior_evidence_ids": [
+        "event_0010",
+        "event_0011"
+      ],
+      "success_condition": {
+        "acceptable_affordance_types": [
+          "repair_relationship",
+          "follow_commitment"
+        ],
+        "minimum_marker_count": 2,
+        "required_current_status": [
+          "active"
+        ],
+        "required_response_markers": [
+          "acknowledge that trust is only partially restored",
+          "rebuild trust by reliable follow-through",
+          "prove reliability on the memo synthesis pass"
+        ],
+        "required_target_entities": [
+          "person_keira"
         ]
       }
     }

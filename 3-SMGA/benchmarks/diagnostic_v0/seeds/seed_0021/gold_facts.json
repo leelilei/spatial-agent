@@ -1,0 +1,229 @@
+{
+  "gold_facts": [
+    {
+      "claim": "Milo and Nadia have a productive working relationship coordinating on the patent filing.",
+      "contradicting_evidence_ids": [
+        "event_0010"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0001",
+      "fact_type": "relationship",
+      "subject_entities": [
+        "person_milo",
+        "person_nadia"
+      ],
+      "supporting_evidence_ids": [
+        "event_0001"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_cafe",
+          "topic_patent_filing"
+        ],
+        "time_window": "day_1_09:00_to_day_2_14:00",
+        "valid_until_event_id": "event_0010"
+      }
+    },
+    {
+      "claim": "Oskar's prior-art-gap detail was shared privately with Milo and was initially not to be shared with anyone.",
+      "contradicting_evidence_ids": [
+        "event_0008"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0002",
+      "fact_type": "secret_or_privacy",
+      "subject_entities": [
+        "person_oskar",
+        "person_milo",
+        "info_prior_art_gap_detail"
+      ],
+      "supporting_evidence_ids": [
+        "event_0002"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_office",
+          "topic_prior_art_gap"
+        ],
+        "time_window": "day_1_10:30_to_day_2_11:00",
+        "valid_until_event_id": "event_0008"
+      }
+    },
+    {
+      "claim": "Nadia promised Milo they would finish the claims draft by the end of day 1.",
+      "contradicting_evidence_ids": [
+        "event_0007"
+      ],
+      "current_status": "contradicted",
+      "fact_id": "fact_0003",
+      "fact_type": "commitment",
+      "subject_entities": [
+        "person_nadia",
+        "person_milo"
+      ],
+      "supporting_evidence_ids": [
+        "event_0003"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_lab",
+          "topic_patent_filing"
+        ],
+        "time_window": "day_1_14:00_to_day_2_10:00",
+        "valid_until_event_id": "event_0007"
+      }
+    },
+    {
+      "claim": "The team norm is not to share prior-art gap numbers with anyone outside the team.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0004",
+      "fact_type": "norm",
+      "subject_entities": [
+        "norm_no_external_prior_art_gap_sharing"
+      ],
+      "supporting_evidence_ids": [
+        "event_0004"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "topic_prior_art_gap",
+          "norm_no_external_prior_art_gap_sharing"
+        ],
+        "time_window": "day_1_15:30_onward"
+      }
+    },
+    {
+      "claim": "Rosa ran the prototype test in the test bay at 09:00 on days 1-2.",
+      "contradicting_evidence_ids": [
+        "event_0013"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0005",
+      "fact_type": "routine",
+      "subject_entities": [
+        "person_rosa"
+      ],
+      "supporting_evidence_ids": [
+        "event_0005"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_test_bay",
+          "activity_prototype_test"
+        ],
+        "time_window": "day_1_to_day_2",
+        "valid_until_event_id": "event_0013"
+      }
+    },
+    {
+      "claim": "Nadia is usually reliable with deadlines based on prior projects.",
+      "contradicting_evidence_ids": [
+        "event_0007"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0006",
+      "fact_type": "reputation",
+      "subject_entities": [
+        "person_nadia"
+      ],
+      "supporting_evidence_ids": [
+        "event_0006"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "topic_patent_filing"
+        ],
+        "time_window": "day_2_09:30_to_day_2_10:00",
+        "valid_until_event_id": "event_0007"
+      }
+    },
+    {
+      "claim": "Rosa violated the no-external-sharing norm by mentioning a prior-art gap number to a outside counsel.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0007",
+      "fact_type": "norm",
+      "subject_entities": [
+        "person_rosa",
+        "norm_no_external_prior_art_gap_sharing"
+      ],
+      "supporting_evidence_ids": [
+        "event_0009"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_lab",
+          "topic_prior_art_gap"
+        ],
+        "time_window": "day_2_12:00_onward"
+      }
+    },
+    {
+      "claim": "Nadia's missed claims draft reduced Milo's confidence in relying on them for the filing assembly.",
+      "contradicting_evidence_ids": [
+        "event_0011"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0008",
+      "fact_type": "conflict_or_repair",
+      "subject_entities": [
+        "person_milo",
+        "person_nadia"
+      ],
+      "supporting_evidence_ids": [
+        "event_0010"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_office",
+          "topic_patent_filing"
+        ],
+        "time_window": "day_2_14:00_to_day_2_15:00",
+        "valid_until_event_id": "event_0011"
+      }
+    },
+    {
+      "claim": "Nadia apologized, sent the claims draft, and offered to take the filing assembly; Milo's trust is only partially restored.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0009",
+      "fact_type": "conflict_or_repair",
+      "subject_entities": [
+        "person_nadia",
+        "person_milo"
+      ],
+      "supporting_evidence_ids": [
+        "event_0011"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_office",
+          "topic_patent_filing"
+        ],
+        "time_window": "day_2_15:00_onward"
+      }
+    },
+    {
+      "claim": "Starting day 3, Rosa runs the prototype test in the lab at 09:00, no longer in the test bay.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0010",
+      "fact_type": "routine",
+      "subject_entities": [
+        "person_rosa"
+      ],
+      "supporting_evidence_ids": [
+        "event_0013"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_lab",
+          "activity_prototype_test"
+        ],
+        "time_window": "day_3_onward"
+      }
+    }
+  ],
+  "scenario_id": "scenario_0021"
+}

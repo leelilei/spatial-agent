@@ -16,6 +16,7 @@ import sys
 import time
 import urllib.error
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -56,6 +57,7 @@ class RunConfig:
     responses_input_mode: str = "messages"
     input_char_limit: int | None = None
     transport: str = "urllib"
+    max_concurrency: int = 1
 
 
 @dataclass(frozen=True)
@@ -462,6 +464,10 @@ def resolve_run_config(args: argparse.Namespace) -> RunConfig:
     if input_char_limit is not None:
         input_char_limit = int(input_char_limit)
     transport = str(config_doc.get("transport", "urllib"))
+    max_concurrency = args.workers
+    if max_concurrency is None:
+        max_concurrency = int(config_doc.get("max_concurrency", 1))
+    max_concurrency = max(1, int(max_concurrency))
 
     return RunConfig(
         provider=provider,
@@ -481,6 +487,7 @@ def resolve_run_config(args: argparse.Namespace) -> RunConfig:
         responses_input_mode=responses_input_mode,
         input_char_limit=input_char_limit,
         transport=transport,
+        max_concurrency=max_concurrency,
     )
 
 
@@ -500,6 +507,66 @@ def default_response_draft_path(prompt_path: Path, output_dir: Path | None) -> P
     return (output_dir or prompt_path.parent) / filename
 
 
+def process_prompt(
+    *,
+    index: int,
+    total: int,
+    prompt: dict[str, Any],
+    client: ModelClient,
+    provider: str,
+    model: str,
+    temperature: float,
+    retries: int,
+    retry_sleep: float,
+) -> dict[str, Any]:
+    """Run one prompt with retries and return its raw record (thread-safe)."""
+    print(f"{index}/{total} {prompt.get('probe_id')}: calling", flush=True)
+    started_at = utc_now()
+    start_time = time.monotonic()
+    raw_text = ""
+    parsed_json: dict[str, Any] | None = None
+    error = None
+    status = "ok"
+    attempts = 0
+    while True:
+        attempts += 1
+        try:
+            raw_text = client.complete(prompt)
+            parsed_json = parse_response_json(raw_text)
+            status = "unparseable_json" if parsed_json is None else "ok"
+            error = None
+            break
+        except Exception as exc:  # Provider failures should be captured per probe.
+            status = "error"
+            error = str(exc)
+            if attempts > retries:
+                break
+            print(
+                f"{index}/{total} {prompt.get('probe_id')}: retry {attempts}/{retries} after {error}",
+                flush=True,
+            )
+            time.sleep(retry_sleep)
+
+    elapsed_ms = int((time.monotonic() - start_time) * 1000)
+    print(f"{index}/{total} {prompt.get('probe_id')}: {status}", flush=True)
+    return {
+        "scenario_id": prompt.get("scenario_id"),
+        "seed_id": prompt.get("seed_id"),
+        "condition_id": prompt.get("condition_id"),
+        "probe_id": prompt.get("probe_id"),
+        "provider": provider,
+        "model": model,
+        "temperature": temperature,
+        "status": status,
+        "attempts": attempts,
+        "started_at": started_at,
+        "elapsed_ms": elapsed_ms,
+        "raw_response_text": raw_text,
+        "parsed_response_json": parsed_json,
+        "error": error,
+    }
+
+
 def run_prompts(
     *,
     prompt_path: Path,
@@ -512,6 +579,7 @@ def run_prompts(
     sleep_seconds: float,
     retries: int,
     retry_sleep: float,
+    max_concurrency: int = 1,
 ) -> list[dict[str, Any]]:
     prompts = load_jsonl(prompt_path)
     if probe_ids:
@@ -519,58 +587,42 @@ def run_prompts(
     if limit is not None:
         prompts = prompts[:limit]
 
-    records: list[dict[str, Any]] = []
-    for index, prompt in enumerate(prompts, start=1):
-        print(f"{index}/{len(prompts)} {prompt.get('probe_id')}: calling", flush=True)
-        started_at = utc_now()
-        start_time = time.monotonic()
-        raw_text = ""
-        parsed_json: dict[str, Any] | None = None
-        error = None
-        status = "ok"
-        attempts = 0
-        while True:
-            attempts += 1
-            try:
-                raw_text = client.complete(prompt)
-                parsed_json = parse_response_json(raw_text)
-                status = "unparseable_json" if parsed_json is None else "ok"
-                error = None
-                break
-            except Exception as exc:  # Provider failures should be captured per probe.
-                status = "error"
-                error = str(exc)
-                if attempts > retries:
-                    break
-                print(
-                    f"{index}/{len(prompts)} {prompt.get('probe_id')}: retry {attempts}/{retries} after {error}",
-                    flush=True,
-                )
-                time.sleep(retry_sleep)
+    total = len(prompts)
+    workers = max(1, max_concurrency)
 
-        elapsed_ms = int((time.monotonic() - start_time) * 1000)
-        records.append(
-            {
-                "scenario_id": prompt.get("scenario_id"),
-                "seed_id": prompt.get("seed_id"),
-                "condition_id": prompt.get("condition_id"),
-                "probe_id": prompt.get("probe_id"),
-                "provider": provider,
-                "model": model,
-                "temperature": temperature,
-                "status": status,
-                "attempts": attempts,
-                "started_at": started_at,
-                "elapsed_ms": elapsed_ms,
-                "raw_response_text": raw_text,
-                "parsed_response_json": parsed_json,
-                "error": error,
-            }
+    def work(index: int, prompt: dict[str, Any]) -> dict[str, Any]:
+        return process_prompt(
+            index=index,
+            total=total,
+            prompt=prompt,
+            client=client,
+            provider=provider,
+            model=model,
+            temperature=temperature,
+            retries=retries,
+            retry_sleep=retry_sleep,
         )
-        print(f"{index}/{len(prompts)} {prompt.get('probe_id')}: {status}", flush=True)
-        if sleep_seconds and index < len(prompts):
-            time.sleep(sleep_seconds)
-    return records
+
+    if workers == 1:
+        records: list[dict[str, Any]] = []
+        for index, prompt in enumerate(prompts, start=1):
+            records.append(work(index, prompt))
+            if sleep_seconds and index < total:
+                time.sleep(sleep_seconds)
+        return records
+
+    # Concurrent path: the thread pool itself caps in-flight requests at
+    # `workers`, so we no longer pace with sleep_seconds. Results are collected
+    # by submission index to preserve deterministic output order.
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        futures = {
+            executor.submit(work, index, prompt): index
+            for index, prompt in enumerate(prompts, start=1)
+        }
+        ordered: list[dict[str, Any] | None] = [None] * total
+        for future in futures:
+            ordered[futures[future] - 1] = future.result()
+    return [record for record in ordered if record is not None]
 
 
 def config_summary(config: RunConfig) -> dict[str, Any]:
@@ -592,6 +644,7 @@ def config_summary(config: RunConfig) -> dict[str, Any]:
         "responses_input_mode": config.responses_input_mode,
         "input_char_limit": config.input_char_limit,
         "transport": config.transport,
+        "max_concurrency": config.max_concurrency,
     }
 
 
@@ -711,7 +764,13 @@ def parse_args() -> argparse.Namespace:
         "--sleep",
         type=float,
         default=None,
-        help="Seconds to sleep between provider calls.",
+        help="Seconds to sleep between provider calls (sequential mode only).",
+    )
+    parser.add_argument(
+        "--workers",
+        type=int,
+        default=None,
+        help="Max concurrent provider calls. Defaults to config max_concurrency or 1 (sequential).",
     )
     parser.add_argument(
         "--limit",
@@ -802,6 +861,7 @@ def main() -> int:
             sleep_seconds=config.sleep,
             retries=config.retries,
             retry_sleep=config.retry_sleep,
+            max_concurrency=config.max_concurrency,
         )
         write_jsonl(raw_output_path, raw_records)
         print(f"raw outputs: {raw_output_path}")

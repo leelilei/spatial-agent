@@ -1,0 +1,126 @@
+{
+  "entities": [
+    {
+      "aliases": [],
+      "description": "The lead coordinating the release notes.",
+      "display_name": "Sade",
+      "entity_id": "person_sade",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A teammate responsible for the changelog draft.",
+      "display_name": "Tomas",
+      "entity_id": "person_tomas",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "The person who controls the embargo window information.",
+      "display_name": "Ute",
+      "entity_id": "person_ute",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A core team member who asks about sensitive project context.",
+      "display_name": "Viktor",
+      "entity_id": "person_viktor",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A colleague who relays indirect reliability updates about Tomas.",
+      "display_name": "Wanda",
+      "entity_id": "person_wanda",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A teammate with a predictable build review routine.",
+      "display_name": "Ximena",
+      "entity_id": "person_ximena",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "Shared project office.",
+      "display_name": "Office",
+      "entity_id": "place_office",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "Shared work lab.",
+      "display_name": "Lab",
+      "entity_id": "place_lab",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [
+        "campus cafe"
+      ],
+      "description": "Informal discussion space.",
+      "display_name": "Cafe",
+      "entity_id": "place_cafe",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "Location for the build review.",
+      "display_name": "Build Room",
+      "entity_id": "place_build_room",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "The main collaborative task: release notes.",
+      "display_name": "Release Notes",
+      "entity_id": "topic_release_notes",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "Sensitive information about the embargo window.",
+      "display_name": "Embargo Window",
+      "entity_id": "topic_embargo_window",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "A distractor topic about mirror backup.",
+      "display_name": "Mirror Backup",
+      "entity_id": "topic_mirror_backup",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "Team norm not to share sensitive numbers outside the team.",
+      "display_name": "No external embargo window sharing",
+      "entity_id": "norm_no_external_embargo_window_sharing",
+      "entity_type": "norm"
+    },
+    {
+      "aliases": [],
+      "description": "The specific embargo-window detail controlled by Ute.",
+      "display_name": "Embargo-Window Detail",
+      "entity_id": "info_embargo_window_detail",
+      "entity_type": "information_item"
+    },
+    {
+      "aliases": [],
+      "description": "Recurring build review activity.",
+      "display_name": "Build Review",
+      "entity_id": "activity_build_review",
+      "entity_type": "activity"
+    },
+    {
+      "aliases": [],
+      "description": "Dyadic working relationship between Sade and Tomas.",
+      "display_name": "Sade-Tomas relationship",
+      "entity_id": "rel_person_sade__person_tomas",
+      "entity_type": "relationship"
+    }
+  ],
+  "scenario_id": "scenario_0017"
+}

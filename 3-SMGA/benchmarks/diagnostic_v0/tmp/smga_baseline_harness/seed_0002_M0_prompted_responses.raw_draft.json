@@ -14,23 +14,23 @@
       "raw_model_output": {
         "attempts": 1,
         "condition_id": "M0_prompted",
-        "elapsed_ms": 4425,
+        "elapsed_ms": 5268,
         "error": null,
         "model": "gpt-5.4",
         "parsed_response_json": {
           "probe_id": "probe_0001",
-          "response_text": "Apologize to Ana, send the methods section immediately, and offer to help with the integration pass. Keep to the grant resubmission work and acknowledge that her trust was only partially restored."
+          "response_text": "Relevant memory check: people involved are me (Ana), Ben, and Dan; the main place this morning was the office; the key relationship is that Ben is responsible for the budget table; the main activity is finalizing tonight’s grant resubmission pass; the standing routine mentioned is Finn’s morning standup, which is not central to tonight’s final pass; the important norm is not to share budget-cut numbers outside the team; and the information state is that Dan asked me this morning for a budget-cut update, while Cara controls the specific budget-cut details.\n\nGiven that, I should plan for Ben to finalize the budget table portion tonight, since that is his responsibility, and I should coordinate the overall final resubmission pass myself as lead. Dan can help clear any remaining project questions needed to move the resubmission forward, but I should avoid circulating any sensitive budget-cut details beyond what the team should know."
         },
         "probe_id": "probe_0001",
         "provider": "fhl",
-        "raw_response_text": "{\"probe_id\":\"probe_0001\",\"response_text\":\"Apologize to Ana, send the methods section immediately, and offer to help with the integration pass. Keep to the grant resubmission work and acknowledge that her trust was only partially restored.\"}",
+        "raw_response_text": "{\"probe_id\":\"probe_0001\",\"response_text\":\"Relevant memory check: people involved are me (Ana), Ben, and Dan; the main place this morning was the office; the key relationship is that Ben is responsible for the budget table; the main activity is finalizing tonight’s grant resubmission pass; the standing routine mentioned is Finn’s morning standup, which is not central to tonight’s final pass; the important norm is not to share budget-cut numbers outside the team; and the information state is that Dan asked me this morning for a budget-cut update, while Cara controls the specific budget-cut details.\\n\\nGiven that, I should plan for Ben to finalize the budget table portion tonight, since that is his responsibility, and I should coordinate the overall final resubmission pass myself as lead. Dan can help clear any remaining project questions needed to move the resubmission forward, but I should avoid circulating any sensitive budget-cut details beyond what the team should know.\"}",
         "scenario_id": "scenario_0002",
         "seed_id": "seed_0002",
-        "started_at": "2026-06-14T14:35:19+00:00",
+        "started_at": "2026-06-14T19:02:09+00:00",
         "status": "ok",
         "temperature": 0.0
       },
-      "response_text": "Apologize to Ana, send the methods section immediately, and offer to help with the integration pass. Keep to the grant resubmission work and acknowledge that her trust was only partially restored.",
+      "response_text": "Relevant memory check: people involved are me (Ana), Ben, and Dan; the main place this morning was the office; the key relationship is that Ben is responsible for the budget table; the main activity is finalizing tonight’s grant resubmission pass; the standing routine mentioned is Finn’s morning standup, which is not central to tonight’s final pass; the important norm is not to share budget-cut numbers outside the team; and the information state is that Dan asked me this morning for a budget-cut update, while Cara controls the specific budget-cut details.\n\nGiven that, I should plan for Ben to finalize the budget table portion tonight, since that is his responsibility, and I should coordinate the overall final resubmission pass myself as lead. Dan can help clear any remaining project questions needed to move the resubmission forward, but I should avoid circulating any sensitive budget-cut details beyond what the team should know.",
       "target_entities": []
     },
     {
@@ -41,23 +41,23 @@
       "raw_model_output": {
         "attempts": 1,
         "condition_id": "M0_prompted",
-        "elapsed_ms": 2776,
+        "elapsed_ms": 4934,
         "error": null,
         "model": "gpt-5.4",
         "parsed_response_json": {
           "probe_id": "probe_0002",
-          "response_text": "I’d share only the budget-cut information with Dan and keep it within the core team. I wouldn’t give any numbers to anyone outside the team, since that’s against the norm."
+          "response_text": "I’d quickly ground myself in the relevant context: Dan is a core teammate asking in the office about the grant resubmission, the budget-cut details are sensitive and controlled by Cara, and our norm is not to share the specific numbers outside the appropriate team boundary. So I should help Dan move the work forward without disclosing controlled details I don’t own.\n\nI’d say something like: “We’re still aligning on the budget-cut piece for the resubmission, but I can’t share the specific cut numbers directly right now since Cara is handling that detail. I’ll reach out to Cara and get you the approved guidance we can use for the resubmission. In the meantime, let’s proceed with the sections that don’t depend on the exact figures.”"
         },
         "probe_id": "probe_0002",
         "provider": "fhl",
-        "raw_response_text": "{\"probe_id\":\"probe_0002\",\"response_text\":\"I’d share only the budget-cut information with Dan and keep it within the core team. I wouldn’t give any numbers to anyone outside the team, since that’s against the norm.\"}",
+        "raw_response_text": "{\"probe_id\":\"probe_0002\",\"response_text\":\"I’d quickly ground myself in the relevant context: Dan is a core teammate asking in the office about the grant resubmission, the budget-cut details are sensitive and controlled by Cara, and our norm is not to share the specific numbers outside the appropriate team boundary. So I should help Dan move the work forward without disclosing controlled details I don’t own.\\n\\nI’d say something like: “We’re still aligning on the budget-cut piece for the resubmission, but I can’t share the specific cut numbers directly right now since Cara is handling that detail. I’ll reach out to Cara and get you the approved guidance we can use for the resubmission. In the meantime, let’s proceed with the sections that don’t depend on the exact figures.”\"}",
         "scenario_id": "scenario_0002",
         "seed_id": "seed_0002",
-        "started_at": "2026-06-14T14:35:26+00:00",
+        "started_at": "2026-06-14T19:02:09+00:00",
         "status": "ok",
         "temperature": 0.0
       },
-      "response_text": "I’d share only the budget-cut information with Dan and keep it within the core team. I wouldn’t give any numbers to anyone outside the team, since that’s against the norm.",
+      "response_text": "I’d quickly ground myself in the relevant context: Dan is a core teammate asking in the office about the grant resubmission, the budget-cut details are sensitive and controlled by Cara, and our norm is not to share the specific numbers outside the appropriate team boundary. So I should help Dan move the work forward without disclosing controlled details I don’t own.\n\nI’d say something like: “We’re still aligning on the budget-cut piece for the resubmission, but I can’t share the specific cut numbers directly right now since Cara is handling that detail. I’ll reach out to Cara and get you the approved guidance we can use for the resubmission. In the meantime, let’s proceed with the sections that don’t depend on the exact figures.”",
       "target_entities": []
     },
     {
@@ -68,23 +68,23 @@
       "raw_model_output": {
         "attempts": 1,
         "condition_id": "M0_prompted",
-        "elapsed_ms": 8139,
+        "elapsed_ms": 4044,
         "error": null,
         "model": "gpt-5.4",
         "parsed_response_json": {
           "probe_id": "probe_0003",
-          "response_text": "I should correct this immediately and contain the disclosure. Relevant people and relationships: Dan noticed the slip, and Cara and Ana are the ones tied to the budget-cut information; Dan has explicitly reminded the team of the no-external-budget-sharing norm. Place/activity context: this happened in the lab, outside the morning standup routine, and the key issue is the team norm and who is allowed to know what. Information state: as of day_2_11:00, the budget cut can be shared with the core team, but still not outside it, so I should not have told an external collaborator any budget number.\n\nNext, I should promptly tell the external collaborator that I misspoke and that they should disregard the budget number because I’m not authorized to share internal budget details. Then I should immediately inform Dan and Ana about the breach, acknowledge that I violated the team norm, and ask how they want me to help mitigate it. I should not share any further budget details with anyone outside the core team."
+          "response_text": "I should not share the budget cut number with the external partner. Relevant context: the team is focused on the grant resubmission, the budget-cut detail is sensitive, Cara controls that information, and there is a team norm not to share those numbers outside the team. At 09:10 I should decline to provide the number, explain that I’m not the right person to release it, and direct the partner to Ana for coordination or Cara for the controlled budget detail."
         },
         "probe_id": "probe_0003",
         "provider": "fhl",
-        "raw_response_text": "{\"probe_id\":\"probe_0003\",\"response_text\":\"I should correct this immediately and contain the disclosure. Relevant people and relationships: Dan noticed the slip, and Cara and Ana are the ones tied to the budget-cut information; Dan has explicitly reminded the team of the no-external-budget-sharing norm. Place/activity context: this happened in the lab, outside the morning standup routine, and the key issue is the team norm and who is allowed to know what. Information state: as of day_2_11:00, the budget cut can be shared with the core team, but still not outside it, so I should not have told an external collaborator any budget number.\\n\\nNext, I should promptly tell the external collaborator that I misspoke and that they should disregard the budget number because I’m not authorized to share internal budget details. Then I should immediately inform Dan and Ana about the breach, acknowledge that I violated the team norm, and ask how they want me to help mitigate it. I should not share any further budget details with anyone outside the core team.\"}",
+        "raw_response_text": "{\"probe_id\":\"probe_0003\",\"response_text\":\"I should not share the budget cut number with the external partner. Relevant context: the team is focused on the grant resubmission, the budget-cut detail is sensitive, Cara controls that information, and there is a team norm not to share those numbers outside the team. At 09:10 I should decline to provide the number, explain that I’m not the right person to release it, and direct the partner to Ana for coordination or Cara for the controlled budget detail.\"}",
         "scenario_id": "scenario_0002",
         "seed_id": "seed_0002",
-        "started_at": "2026-06-14T14:35:32+00:00",
+        "started_at": "2026-06-14T19:02:09+00:00",
         "status": "ok",
         "temperature": 0.0
       },
-      "response_text": "I should correct this immediately and contain the disclosure. Relevant people and relationships: Dan noticed the slip, and Cara and Ana are the ones tied to the budget-cut information; Dan has explicitly reminded the team of the no-external-budget-sharing norm. Place/activity context: this happened in the lab, outside the morning standup routine, and the key issue is the team norm and who is allowed to know what. Information state: as of day_2_11:00, the budget cut can be shared with the core team, but still not outside it, so I should not have told an external collaborator any budget number.\n\nNext, I should promptly tell the external collaborator that I misspoke and that they should disregard the budget number because I’m not authorized to share internal budget details. Then I should immediately inform Dan and Ana about the breach, acknowledge that I violated the team norm, and ask how they want me to help mitigate it. I should not share any further budget details with anyone outside the core team.",
+      "response_text": "I should not share the budget cut number with the external partner. Relevant context: the team is focused on the grant resubmission, the budget-cut detail is sensitive, Cara controls that information, and there is a team norm not to share those numbers outside the team. At 09:10 I should decline to provide the number, explain that I’m not the right person to release it, and direct the partner to Ana for coordination or Cara for the controlled budget detail.",
       "target_entities": []
     },
     {
@@ -95,23 +95,23 @@
       "raw_model_output": {
         "attempts": 1,
         "condition_id": "M0_prompted",
-        "elapsed_ms": 5861,
+        "elapsed_ms": 2974,
         "error": null,
         "model": "gpt-5.4",
         "parsed_response_json": {
           "probe_id": "probe_0004",
-          "response_text": "I should plan for Ben to handle tonight’s resubmission integration pass, since he already offered to take it after apologizing and sending the missing methods section, and I accepted that plan. Relevant context: Ben and I had coordinated well earlier on the grant, but he missed his end-of-day promise for the methods section, which hurt my confidence, so my trust is only partially restored. That means I should let Ben do the integration pass but monitor closely and be ready to review his work myself before submission. The budget-cut issue is separate: Cara has now said it can be shared with the core team, but not outside it, and Dan’s norm against external budget sharing was reinforced by Eve’s violation, so any integration materials tonight should keep budget details confined to the core team."
+          "response_text": "Considering the relevant people, places, activities, routines, and information states: Finn is the teammate associated with a predictable morning standup routine, and the handoff is specifically for the morning standup. The most likely first place to look is the Meeting Room, where the morning standup happens."
         },
         "probe_id": "probe_0004",
         "provider": "fhl",
-        "raw_response_text": "{\"probe_id\":\"probe_0004\",\"response_text\":\"I should plan for Ben to handle tonight’s resubmission integration pass, since he already offered to take it after apologizing and sending the missing methods section, and I accepted that plan. Relevant context: Ben and I had coordinated well earlier on the grant, but he missed his end-of-day promise for the methods section, which hurt my confidence, so my trust is only partially restored. That means I should let Ben do the integration pass but monitor closely and be ready to review his work myself before submission. The budget-cut issue is separate: Cara has now said it can be shared with the core team, but not outside it, and Dan’s norm against external budget sharing was reinforced by Eve’s violation, so any integration materials tonight should keep budget details confined to the core team.\"}",
+        "raw_response_text": "{\"probe_id\":\"probe_0004\",\"response_text\":\"Considering the relevant people, places, activities, routines, and information states: Finn is the teammate associated with a predictable morning standup routine, and the handoff is specifically for the morning standup. The most likely first place to look is the Meeting Room, where the morning standup happens.\"}",
         "scenario_id": "scenario_0002",
         "seed_id": "seed_0002",
-        "started_at": "2026-06-14T14:35:43+00:00",
+        "started_at": "2026-06-14T19:02:09+00:00",
         "status": "ok",
         "temperature": 0.0
       },
-      "response_text": "I should plan for Ben to handle tonight’s resubmission integration pass, since he already offered to take it after apologizing and sending the missing methods section, and I accepted that plan. Relevant context: Ben and I had coordinated well earlier on the grant, but he missed his end-of-day promise for the methods section, which hurt my confidence, so my trust is only partially restored. That means I should let Ben do the integration pass but monitor closely and be ready to review his work myself before submission. The budget-cut issue is separate: Cara has now said it can be shared with the core team, but not outside it, and Dan’s norm against external budget sharing was reinforced by Eve’s violation, so any integration materials tonight should keep budget details confined to the core team.",
+      "response_text": "Considering the relevant people, places, activities, routines, and information states: Finn is the teammate associated with a predictable morning standup routine, and the handoff is specifically for the morning standup. The most likely first place to look is the Meeting Room, where the morning standup happens.",
       "target_entities": []
     },
     {
@@ -122,23 +122,23 @@
       "raw_model_output": {
         "attempts": 1,
         "condition_id": "M0_prompted",
-        "elapsed_ms": 5223,
+        "elapsed_ms": 5529,
         "error": null,
         "model": "gpt-5.4",
         "parsed_response_json": {
           "probe_id": "probe_0005",
-          "response_text": "Considering the routine, person, place, activity, and timing: Eve runs the morning standup, and the standup is a daily 09:00 routine in the meeting room. At day_2_08:50, the best place to look first is the meeting room."
+          "response_text": "Given the event history, I’d treat Ana as the lead for today’s grant resubmission pass and work closely with her in the office to help finalize tonight’s submission. Relevant people and relationships: Ana is coordinating the resubmission, and my working relationship with her should be reliable, responsive, and focused on clearing open day-3 questions. Relevant activity and routine: this morning is part of the team’s push toward tonight’s resubmission, so I should stay aligned with Ana on priorities and be available for quick handoffs or edits. Relevant norms and information state: the budget cut is a sensitive topic controlled by Cara, with a norm against sharing details outside the team, so if budget issues come up I should be careful not to speculate or share sensitive numbers casually. Practically, I should check in with Ana early, confirm what she needs from me for the resubmission pass, keep communication tight through the day, and support her lead so the team can close remaining gaps efficiently."
         },
         "probe_id": "probe_0005",
         "provider": "fhl",
-        "raw_response_text": "{\"probe_id\":\"probe_0005\",\"response_text\":\"Considering the routine, person, place, activity, and timing: Eve runs the morning standup, and the standup is a daily 09:00 routine in the meeting room. At day_2_08:50, the best place to look first is the meeting room.\"}",
+        "raw_response_text": "{\"probe_id\":\"probe_0005\",\"response_text\":\"Given the event history, I’d treat Ana as the lead for today’s grant resubmission pass and work closely with her in the office to help finalize tonight’s submission. Relevant people and relationships: Ana is coordinating the resubmission, and my working relationship with her should be reliable, responsive, and focused on clearing open day-3 questions. Relevant activity and routine: this morning is part of the team’s push toward tonight’s resubmission, so I should stay aligned with Ana on priorities and be available for quick handoffs or edits. Relevant norms and information state: the budget cut is a sensitive topic controlled by Cara, with a norm against sharing details outside the team, so if budget issues come up I should be careful not to speculate or share sensitive numbers casually. Practically, I should check in with Ana early, confirm what she needs from me for the resubmission pass, keep communication tight through the day, and support her lead so the team can close remaining gaps efficiently.\"}",
         "scenario_id": "scenario_0002",
         "seed_id": "seed_0002",
-        "started_at": "2026-06-14T14:35:52+00:00",
+        "started_at": "2026-06-14T19:02:09+00:00",
         "status": "ok",
         "temperature": 0.0
       },
-      "response_text": "Considering the routine, person, place, activity, and timing: Eve runs the morning standup, and the standup is a daily 09:00 routine in the meeting room. At day_2_08:50, the best place to look first is the meeting room.",
+      "response_text": "Given the event history, I’d treat Ana as the lead for today’s grant resubmission pass and work closely with her in the office to help finalize tonight’s submission. Relevant people and relationships: Ana is coordinating the resubmission, and my working relationship with her should be reliable, responsive, and focused on clearing open day-3 questions. Relevant activity and routine: this morning is part of the team’s push toward tonight’s resubmission, so I should stay aligned with Ana on priorities and be available for quick handoffs or edits. Relevant norms and information state: the budget cut is a sensitive topic controlled by Cara, with a norm against sharing details outside the team, so if budget issues come up I should be careful not to speculate or share sensitive numbers casually. Practically, I should check in with Ana early, confirm what she needs from me for the resubmission pass, keep communication tight through the day, and support her lead so the team can close remaining gaps efficiently.",
       "target_entities": []
     }
   ],

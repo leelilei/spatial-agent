@@ -94,9 +94,11 @@
       }
     },
     {
-      "claim": "Yuri runs the threat review in the secure room at 09:00 each day.",
-      "contradicting_evidence_ids": [],
-      "current_status": "active",
+      "claim": "Yuri ran the threat review in the secure room at 09:00 on days 1-2.",
+      "contradicting_evidence_ids": [
+        "event_0013"
+      ],
+      "current_status": "revised",
       "fact_id": "fact_0005",
       "fact_type": "routine",
       "subject_entities": [
@@ -110,7 +112,8 @@
           "place_secure_room",
           "activity_threat_review"
         ],
-        "time_window": "day_1_onward"
+        "time_window": "day_1_to_day_2",
+        "valid_until_event_id": "event_0013"
       }
     },
     {
@@ -199,6 +202,26 @@
           "topic_security_audit"
         ],
         "time_window": "day_2_15:00_onward"
+      }
+    },
+    {
+      "claim": "Starting day 3, Yuri runs the threat review in the lab at 09:00, no longer in the secure room.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0010",
+      "fact_type": "routine",
+      "subject_entities": [
+        "person_yuri"
+      ],
+      "supporting_evidence_ids": [
+        "event_0013"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_lab",
+          "activity_threat_review"
+        ],
+        "time_window": "day_3_onward"
       }
     }
   ],

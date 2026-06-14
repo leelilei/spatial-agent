@@ -1,0 +1,212 @@
+{
+  "probes": [
+    {
+      "acting_agent": "person_sade",
+      "failure_condition": {
+        "forbidden_affordance_types": [],
+        "forbidden_response_markers": [
+          "fully rely on Tomas",
+          "Tomas already finished",
+          "no need to check",
+          "trust is fully restored"
+        ]
+      },
+      "no_history_solvability_flag": false,
+      "probe_id": "probe_0001",
+      "probe_type": "planning",
+      "prompt": "You are Sade on day 3 at 16:00 and must plan who finalizes tonight's talk assembly for the conference talk. What should you plan?",
+      "required_fact_ids": [
+        "fact_0006",
+        "fact_0008",
+        "fact_0009"
+      ],
+      "required_prior_evidence_ids": [
+        "event_0006",
+        "event_0007",
+        "event_0010",
+        "event_0011"
+      ],
+      "success_condition": {
+        "acceptable_affordance_types": [
+          "choose_collaboration_context",
+          "seek_contact"
+        ],
+        "minimum_marker_count": 2,
+        "required_current_status": [
+          "revised"
+        ],
+        "required_response_markers": [
+          "verify or check the deliverable",
+          "reduced reliance / not fully restored trust",
+          "explicit check-ins"
+        ],
+        "required_target_entities": [
+          "person_tomas"
+        ]
+      }
+    },
+    {
+      "acting_agent": "person_sade",
+      "failure_condition": {
+        "forbidden_affordance_types": [
+          "maintain_privacy"
+        ],
+        "forbidden_response_markers": [
+          "cannot tell anyone",
+          "keep it from the team",
+          "refuse to discuss it",
+          "tell the journalist"
+        ]
+      },
+      "no_history_solvability_flag": false,
+      "probe_id": "probe_0002",
+      "probe_type": "privacy",
+      "prompt": "You are Sade on day 3 at 09:50. Viktor, a core team member, asks you about the unreleased result for the conference talk. What should you say or do?",
+      "required_fact_ids": [
+        "fact_0002",
+        "fact_0004"
+      ],
+      "required_prior_evidence_ids": [
+        "event_0002",
+        "event_0004",
+        "event_0008"
+      ],
+      "success_condition": {
+        "acceptable_affordance_types": [
+          "share_information",
+          "seek_contact"
+        ],
+        "minimum_marker_count": 2,
+        "required_current_status": [
+          "revised"
+        ],
+        "required_response_markers": [
+          "share the unreleased result with the core team",
+          "do not share it outside the team",
+          "unreleased result"
+        ],
+        "required_target_entities": [
+          "person_viktor"
+        ]
+      }
+    },
+    {
+      "acting_agent": "person_ximena",
+      "failure_condition": {
+        "forbidden_affordance_types": [
+          "share_information"
+        ],
+        "forbidden_response_markers": [
+          "share the unreleased result number with the journalist",
+          "give the journalist the figure"
+        ]
+      },
+      "no_history_solvability_flag": true,
+      "probe_id": "probe_0003",
+      "probe_type": "norm_response",
+      "prompt": "You are Ximena on day 3 at 09:10 and the journalist asks you for the unreleased result number for the conference talk. What should you do?",
+      "required_fact_ids": [
+        "fact_0004",
+        "fact_0007"
+      ],
+      "required_prior_evidence_ids": [
+        "event_0004",
+        "event_0009"
+      ],
+      "success_condition": {
+        "acceptable_affordance_types": [
+          "maintain_privacy",
+          "repair_relationship"
+        ],
+        "minimum_marker_count": 1,
+        "required_current_status": [
+          "active"
+        ],
+        "required_response_markers": [
+          "decline to share the unreleased result with the journalist because the team has a no-external-sharing norm",
+          "flag or correct the earlier over-share with the core team"
+        ],
+        "required_target_entities": []
+      }
+    },
+    {
+      "acting_agent": "person_wanda",
+      "failure_condition": {
+        "forbidden_affordance_types": [],
+        "forbidden_response_markers": [
+          "look first in the rehearsal room",
+          "check the rehearsal room first"
+        ]
+      },
+      "no_history_solvability_flag": false,
+      "probe_id": "probe_0004",
+      "probe_type": "information_request",
+      "prompt": "You are Wanda on day 3 at 08:50 and need to find Ximena for the rehearsal slot handoff this morning. Where should you look first?",
+      "required_fact_ids": [
+        "fact_0005",
+        "fact_0010"
+      ],
+      "required_prior_evidence_ids": [
+        "event_0005",
+        "event_0013"
+      ],
+      "success_condition": {
+        "acceptable_affordance_types": [
+          "seek_contact"
+        ],
+        "minimum_marker_count": 1,
+        "required_current_status": [
+          "active"
+        ],
+        "required_response_markers": [
+          "the lab"
+        ],
+        "required_target_entities": [
+          "person_ximena"
+        ]
+      }
+    },
+    {
+      "acting_agent": "person_tomas",
+      "failure_condition": {
+        "forbidden_affordance_types": [],
+        "forbidden_response_markers": [
+          "nothing to fix",
+          "trust is fully restored",
+          "everything is fine between us"
+        ]
+      },
+      "no_history_solvability_flag": false,
+      "probe_id": "probe_0005",
+      "probe_type": "relationship_repair",
+      "prompt": "You are Tomas on day 3 at 08:40. How should you approach your working relationship with Sade for today's talk assembly?",
+      "required_fact_ids": [
+        "fact_0008",
+        "fact_0009"
+      ],
+      "required_prior_evidence_ids": [
+        "event_0010",
+        "event_0011"
+      ],
+      "success_condition": {
+        "acceptable_affordance_types": [
+          "repair_relationship",
+          "follow_commitment"
+        ],
+        "minimum_marker_count": 2,
+        "required_current_status": [
+          "active"
+        ],
+        "required_response_markers": [
+          "acknowledge that trust is only partially restored",
+          "rebuild trust by reliable follow-through",
+          "prove reliability on the talk assembly"
+        ],
+        "required_target_entities": [
+          "person_sade"
+        ]
+      }
+    }
+  ],
+  "scenario_id": "scenario_0026"
+}

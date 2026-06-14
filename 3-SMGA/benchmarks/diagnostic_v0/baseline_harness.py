@@ -20,6 +20,13 @@ from benchmark_loader import ScenarioPackage, load_seed
 
 BASELINE_CONDITIONS = ("M0_GA", "M0_prompted")
 
+# In the dual-session design, M0 baselines are single-session agents without
+# persistent memory: they only see the current session window. The memory module
+# still reads the full history upstream, so M2/M3 carry session-1 state forward.
+# Untagged seeds (no event has a "session" field) fall back to the full log for
+# backward compatibility with the original hand-authored seeds.
+CURRENT_SESSION = "session_2_current"
+
 
 @dataclass(frozen=True)
 class BaselineCondition:
@@ -49,9 +56,21 @@ CONDITIONS: dict[str, BaselineCondition] = {
 }
 
 
+def baseline_visible_events(package: ScenarioPackage) -> list[dict[str, Any]]:
+    """Events the M0 baselines may see: the current session window only.
+
+    If no event carries a `session` field (legacy untagged seeds), return the
+    full log so older seeds behave exactly as before.
+    """
+    tagged = [event for event in package.events if event.get("session")]
+    if not tagged:
+        return list(package.events)
+    return [event for event in package.events if event.get("session") == CURRENT_SESSION]
+
+
 def build_prompt_bundle(package: ScenarioPackage, condition: BaselineCondition) -> list[dict[str, Any]]:
     entity_catalog = format_entity_catalog(package)
-    event_history = format_event_history(package)
+    event_history = format_event_history(package, events=baseline_visible_events(package))
 
     return [
         {
@@ -158,9 +177,11 @@ def format_entity_catalog(package: ScenarioPackage) -> str:
     return "\n".join(lines)
 
 
-def format_event_history(package: ScenarioPackage) -> str:
+def format_event_history(
+    package: ScenarioPackage, events: list[dict[str, Any]] | None = None
+) -> str:
     lines = []
-    for event in package.events:
+    for event in (package.events if events is None else events):
         actor_names = ", ".join(entity_name(package, entity_id) for entity_id in event.get("actors", []))
         location = entity_name(package, str(event.get("location", "")))
         topic = entity_name(package, str(event.get("topic", "")))

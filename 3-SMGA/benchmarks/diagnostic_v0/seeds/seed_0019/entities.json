@@ -1,0 +1,126 @@
+{
+  "entities": [
+    {
+      "aliases": [],
+      "description": "The lead coordinating the journal revision.",
+      "display_name": "Aaron",
+      "entity_id": "person_aaron",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A teammate responsible for the results section.",
+      "display_name": "Bela",
+      "entity_id": "person_bela",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "The person who controls the reviewer identity information.",
+      "display_name": "Cleo",
+      "entity_id": "person_cleo",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A core team member who asks about sensitive project context.",
+      "display_name": "Dario",
+      "entity_id": "person_dario",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A colleague who relays indirect reliability updates about Bela.",
+      "display_name": "Esme",
+      "entity_id": "person_esme",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A teammate with a predictable lab cleanup routine.",
+      "display_name": "Farouk",
+      "entity_id": "person_farouk",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "Shared project office.",
+      "display_name": "Office",
+      "entity_id": "place_office",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "Shared work lab.",
+      "display_name": "Lab",
+      "entity_id": "place_lab",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [
+        "campus cafe"
+      ],
+      "description": "Informal discussion space.",
+      "display_name": "Cafe",
+      "entity_id": "place_cafe",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "Location for the lab cleanup.",
+      "display_name": "Storage Room",
+      "entity_id": "place_storage_room",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "The main collaborative task: journal revision.",
+      "display_name": "Journal Revision",
+      "entity_id": "topic_journal_revision",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "Sensitive information about the reviewer identity.",
+      "display_name": "Reviewer Identity",
+      "entity_id": "topic_reviewer_identity",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "A distractor topic about figure order.",
+      "display_name": "Figure Order",
+      "entity_id": "topic_figure_order",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "Team norm not to share sensitive numbers outside the team.",
+      "display_name": "No external reviewer identity sharing",
+      "entity_id": "norm_no_external_reviewer_identity_sharing",
+      "entity_type": "norm"
+    },
+    {
+      "aliases": [],
+      "description": "The specific reviewer-identity detail controlled by Cleo.",
+      "display_name": "Reviewer-Identity Detail",
+      "entity_id": "info_reviewer_identity_detail",
+      "entity_type": "information_item"
+    },
+    {
+      "aliases": [],
+      "description": "Recurring lab cleanup activity.",
+      "display_name": "Lab Cleanup",
+      "entity_id": "activity_lab_cleanup",
+      "entity_type": "activity"
+    },
+    {
+      "aliases": [],
+      "description": "Dyadic working relationship between Aaron and Bela.",
+      "display_name": "Aaron-Bela relationship",
+      "entity_id": "rel_person_aaron__person_bela",
+      "entity_type": "relationship"
+    }
+  ],
+  "scenario_id": "scenario_0019"
+}

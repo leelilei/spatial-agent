@@ -1,0 +1,229 @@
+{
+  "gold_facts": [
+    {
+      "claim": "Gita and Hana have a productive working relationship coordinating on the thesis chapter.",
+      "contradicting_evidence_ids": [
+        "event_0010"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0001",
+      "fact_type": "relationship",
+      "subject_entities": [
+        "person_gita",
+        "person_hana"
+      ],
+      "supporting_evidence_ids": [
+        "event_0001"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_cafe",
+          "topic_thesis_chapter"
+        ],
+        "time_window": "day_1_09:00_to_day_2_14:00",
+        "valid_until_event_id": "event_0010"
+      }
+    },
+    {
+      "claim": "Idris's committee-dispute detail was shared privately with Gita and was initially not to be shared with anyone.",
+      "contradicting_evidence_ids": [
+        "event_0008"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0002",
+      "fact_type": "secret_or_privacy",
+      "subject_entities": [
+        "person_idris",
+        "person_gita",
+        "info_committee_dispute_detail"
+      ],
+      "supporting_evidence_ids": [
+        "event_0002"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_office",
+          "topic_committee_dispute"
+        ],
+        "time_window": "day_1_10:30_to_day_2_11:00",
+        "valid_until_event_id": "event_0008"
+      }
+    },
+    {
+      "claim": "Hana promised Gita they would finish the methods chapter by the end of day 1.",
+      "contradicting_evidence_ids": [
+        "event_0007"
+      ],
+      "current_status": "contradicted",
+      "fact_id": "fact_0003",
+      "fact_type": "commitment",
+      "subject_entities": [
+        "person_hana",
+        "person_gita"
+      ],
+      "supporting_evidence_ids": [
+        "event_0003"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_lab",
+          "topic_thesis_chapter"
+        ],
+        "time_window": "day_1_14:00_to_day_2_10:00",
+        "valid_until_event_id": "event_0007"
+      }
+    },
+    {
+      "claim": "The team norm is not to share committee dispute numbers with anyone outside the team.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0004",
+      "fact_type": "norm",
+      "subject_entities": [
+        "norm_no_external_committee_dispute_sharing"
+      ],
+      "supporting_evidence_ids": [
+        "event_0004"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "topic_committee_dispute",
+          "norm_no_external_committee_dispute_sharing"
+        ],
+        "time_window": "day_1_15:30_onward"
+      }
+    },
+    {
+      "claim": "Lottie ran the reading group in the seminar room at 09:00 on days 1-2.",
+      "contradicting_evidence_ids": [
+        "event_0013"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0005",
+      "fact_type": "routine",
+      "subject_entities": [
+        "person_lottie"
+      ],
+      "supporting_evidence_ids": [
+        "event_0005"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_seminar_room",
+          "activity_reading_group"
+        ],
+        "time_window": "day_1_to_day_2",
+        "valid_until_event_id": "event_0013"
+      }
+    },
+    {
+      "claim": "Hana is usually reliable with deadlines based on prior projects.",
+      "contradicting_evidence_ids": [
+        "event_0007"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0006",
+      "fact_type": "reputation",
+      "subject_entities": [
+        "person_hana"
+      ],
+      "supporting_evidence_ids": [
+        "event_0006"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "topic_thesis_chapter"
+        ],
+        "time_window": "day_2_09:30_to_day_2_10:00",
+        "valid_until_event_id": "event_0007"
+      }
+    },
+    {
+      "claim": "Lottie violated the no-external-sharing norm by mentioning a committee dispute number to a external examiner.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0007",
+      "fact_type": "norm",
+      "subject_entities": [
+        "person_lottie",
+        "norm_no_external_committee_dispute_sharing"
+      ],
+      "supporting_evidence_ids": [
+        "event_0009"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_lab",
+          "topic_committee_dispute"
+        ],
+        "time_window": "day_2_12:00_onward"
+      }
+    },
+    {
+      "claim": "Hana's missed methods chapter reduced Gita's confidence in relying on them for the chapter integration.",
+      "contradicting_evidence_ids": [
+        "event_0011"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0008",
+      "fact_type": "conflict_or_repair",
+      "subject_entities": [
+        "person_gita",
+        "person_hana"
+      ],
+      "supporting_evidence_ids": [
+        "event_0010"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_office",
+          "topic_thesis_chapter"
+        ],
+        "time_window": "day_2_14:00_to_day_2_15:00",
+        "valid_until_event_id": "event_0011"
+      }
+    },
+    {
+      "claim": "Hana apologized, sent the methods chapter, and offered to take the chapter integration; Gita's trust is only partially restored.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0009",
+      "fact_type": "conflict_or_repair",
+      "subject_entities": [
+        "person_hana",
+        "person_gita"
+      ],
+      "supporting_evidence_ids": [
+        "event_0011"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_office",
+          "topic_thesis_chapter"
+        ],
+        "time_window": "day_2_15:00_onward"
+      }
+    },
+    {
+      "claim": "Starting day 3, Lottie runs the reading group in the lab at 09:00, no longer in the seminar room.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0010",
+      "fact_type": "routine",
+      "subject_entities": [
+        "person_lottie"
+      ],
+      "supporting_evidence_ids": [
+        "event_0013"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_lab",
+          "activity_reading_group"
+        ],
+        "time_window": "day_3_onward"
+      }
+    }
+  ],
+  "scenario_id": "scenario_0020"
+}

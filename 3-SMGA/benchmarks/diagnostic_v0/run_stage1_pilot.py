@@ -134,8 +134,18 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
+    failed: list[str] = []
     for seed_id in seed_ids(args.start, args.end):
-        run_seed(seed_id, args)
+        try:
+            run_seed(seed_id, args)
+        except (subprocess.CalledProcessError, OSError) as exc:
+            # One bad seed (e.g. a malformed model draft) must not abort the
+            # whole batch. Record it and continue; rerun the named seeds later.
+            print(f"!! seed {seed_id} failed and was skipped: {exc}", flush=True)
+            failed.append(seed_id)
+    if failed:
+        print(f"\nCompleted with {len(failed)} failed seed(s): {', '.join(failed)}", flush=True)
+        return 1
     return 0
 
 

@@ -4,7 +4,7 @@ type: empirical
 title: Structured Memory for Generative Agents
 researchQuestion: How can socially actionable memory improve grounded planning and
   behavior in LLM social agents?
-currentFocus: Phase 5 - Stage 1 pilot analysis and Gate 1 prep
+currentFocus: Phase 7 - Stage 2b secondary controls (horizon sweep first); Phase 6 main result done
 phases:
 - n: 0
   title: 项目卫生与版本管理
@@ -70,44 +70,41 @@ phases:
 - n: 5
   title: Stage 1 pilot
   track: experiment
-  status: current
-  summary: 用小规模 seed set 判断主实验是否值得扩展。
+  status: done
+  summary: 用小规模 seed set 判断主实验是否值得扩展；Gate 1 经 v2 重设计闭环。
   outputs:
   - 10-seed pilot
   - seed-level variance table
   - Gate 1 failure audit
-  - placebo leakage check
-  - claim extractor pilot
-  - Gate 1 decision
+  - v2 dual-session + currency-probe redesign
+  - Gate 1 decision = GO (10-seed M3 98% vs M0 18%)
   next:
-  - Revise probe_0003 containment vs repair measurement.
-  - Clarify probe_0004 checked-collaboration rubric boundary.
-  - Reduce M3 unrelated-memory intrusion and rerun the 10-seed pilot.
+  - (done) 进入 Stage 2 主实验。
 - n: 6
   title: Stage 2 主实验
   track: experiment
-  status: planned
-  summary: 跑出论文核心条件下的主结果表。
+  status: done
+  summary: 40 seeds × 5 conditions 主结果表；核心 SMGA claim 以大效应被支持。
   outputs:
-  - main condition runs
-  - paired seed-level results
-  - Holm correction 与 SESOI 判断
-  - 可进入论文的结果表
+  - 40-seed run (200/200, 0 failed)
+  - headline M3=94% M2=79% placebo=22% M0=9%
+  - M3-M0 +85pp; placebo gap +72pp; M3-M2 +15pp (probe_0001)
+  - docs/project/stage2_main_40seed_2026-06-15.md
   next:
-  - Generate full benchmark suite.
-  - Execute batch model runners.
+  - 补正式 paired 检验 (Holm/SESOI)，目前为聚合差距。
 - n: 7
   title: Stage 2b 次级控制实验
   track: experiment
-  status: planned
-  summary: 补 reviewer 可能关心的 compute-matched 与 graph-style memory 控制条件。
+  status: current
+  summary: 补 reviewer 可能攻击的控制；horizon sweep 优先（反驳"只是藏了信息"）。
   outputs:
+  - horizon sweep (P7-00, 第一优先)
   - M0_plus control
   - GraphMemory_social_schema control
   - secondary comparison CI
   - 最终 claim 边界判断
   next:
-  - Execute control conditions.
+  - Run horizon sweep per docs/project/stage2b_horizon_sweep_plan_2026-06-15.md.
 - n: 8
   title: 分析、写作与发布
   track: write

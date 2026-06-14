@@ -1,0 +1,126 @@
+{
+  "entities": [
+    {
+      "aliases": [],
+      "description": "The lead coordinating the trial protocol.",
+      "display_name": "Fritz",
+      "entity_id": "person_fritz",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A teammate responsible for the dosing table.",
+      "display_name": "Greta",
+      "entity_id": "person_greta",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "The person who controls the adverse event information.",
+      "display_name": "Hiro",
+      "entity_id": "person_hiro",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A core team member who asks about sensitive project context.",
+      "display_name": "Ines",
+      "entity_id": "person_ines",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A colleague who relays indirect reliability updates about Greta.",
+      "display_name": "Jonas",
+      "entity_id": "person_jonas",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A teammate with a predictable safety review routine.",
+      "display_name": "Kira",
+      "entity_id": "person_kira",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "Shared project office.",
+      "display_name": "Office",
+      "entity_id": "place_office",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "Shared work lab.",
+      "display_name": "Lab",
+      "entity_id": "place_lab",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [
+        "campus cafe"
+      ],
+      "description": "Informal discussion space.",
+      "display_name": "Cafe",
+      "entity_id": "place_cafe",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "Location for the safety review.",
+      "display_name": "Safety Room",
+      "entity_id": "place_safety_room",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "The main collaborative task: trial protocol.",
+      "display_name": "Trial Protocol",
+      "entity_id": "topic_trial_protocol",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "Sensitive information about the adverse event.",
+      "display_name": "Adverse Event",
+      "entity_id": "topic_adverse_event",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "A distractor topic about site logo.",
+      "display_name": "Site Logo",
+      "entity_id": "topic_site_logo",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "Team norm not to share sensitive numbers outside the team.",
+      "display_name": "No external adverse event sharing",
+      "entity_id": "norm_no_external_adverse_event_sharing",
+      "entity_type": "norm"
+    },
+    {
+      "aliases": [],
+      "description": "The specific adverse-event detail controlled by Hiro.",
+      "display_name": "Adverse-Event Detail",
+      "entity_id": "info_adverse_event_detail",
+      "entity_type": "information_item"
+    },
+    {
+      "aliases": [],
+      "description": "Recurring safety review activity.",
+      "display_name": "Safety Review",
+      "entity_id": "activity_safety_review",
+      "entity_type": "activity"
+    },
+    {
+      "aliases": [],
+      "description": "Dyadic working relationship between Fritz and Greta.",
+      "display_name": "Fritz-Greta relationship",
+      "entity_id": "rel_person_fritz__person_greta",
+      "entity_type": "relationship"
+    }
+  ],
+  "scenario_id": "scenario_0024"
+}

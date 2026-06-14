@@ -1,0 +1,24 @@
+{
+  "agent_count": 6,
+  "benchmark_id": "diagnostic_v0",
+  "held_out_patterns": [
+    "failed_promise",
+    "shared_secret_with_revision",
+    "norm_violation",
+    "repair_after_conflict",
+    "indirect_reputation",
+    "relationship_change",
+    "routine_change_lookup"
+  ],
+  "location_count": 4,
+  "notes": "Template-generated Stage 1 v2 diagnostic seed: dual-session information gap + currency-sensitive probes.",
+  "phase_1_design": "scripted_replay",
+  "scenario_id": "scenario_0018",
+  "schema_version": "0.1",
+  "seed_id": "seed_0018",
+  "session_design": {
+    "session_1_past": "Days 1-2. Establishes facts and their updates/contradictions. Read only by the memory module (M2/M3 carry it forward).",
+    "session_2_current": "Day 3. The current window the M0 baselines see; sets up the probe asks without revealing session-1 social history."
+  },
+  "simulated_horizon": "3_days"
+}
