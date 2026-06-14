@@ -461,25 +461,41 @@ M0_prompted score: pending
 
 ## 下一步具体动作
 
-下一步只做一件事：
+### 现在在哪（上下文）
 
-```text
-归因：为什么 M3（结构化可执行记忆）没有优于简单 baseline
-```
+Experiment 0：用 seed_0001（易）+ seed_0002（难）两个手写诊断场景，比较 4 个条件——
+- `M0_GA` / `M0_prompted`：读**原始事件日志**的 GA 式 baseline（一个普通反思、一个提示式反思）
+- `M2_memory_only`：模型形成的结构化记忆，但以**纯文本**喂入
+- `M3_actionable`：**同一批记忆**，额外给结构 + `currency_status` + planning affordance（SMGA 的核心治疗）
 
-为什么：10 条测试下 M3=M0_prompted=8/10，M3 并未体现结构优势；而专门设计的修订-追踪 probe_0002
-反而是 M2/M3 答错、M0_prompted 答对。需先理解机制，再决定是改 M3/formation 设计还是收窄 claim。
+测量用 condition-blind 的 LLM-judge（`judge_scorer.py`，已验证不冤枉好回答、也能抓真实失败）。
+完整跑法见 `benchmarks/diagnostic_v0/README.md` 的 “Full Pipeline” 一节。
 
-目标输出：
+### 发现了什么（n=10，诊断级，**非结论**）
 
-```text
-读 seed_0002 probe_0002 的 M3 回答：明明 smem_0004 标了 revised+contra，为何 M3 仍偏向保密？
-判断责任在哪：formation（记忆形成）/ M3 序列化（affordance+currency 呈现）/ probe_0002 口径过严 / judge 噪声
-据此定 M3 或 formation 的 v0.3，或记录"当前 SMGA 设计在此 benchmark 不增益"的诚实发现
-（暂不扩到 5+ seeds——先把机制弄清）
-```
+合计 /10：`M0_GA=7`，`M0_prompted=8`，`M2=7`，`M3=8`。
+- **M3 没有优于最简单的 M0_prompted（都 8/10）**——SMGA 的“可执行结构”暂未体现出优势。
+- **记忆蒸馏不稳健**：M2 易题 5/5、难题 2/5（最差）——蒸馏在难场景丢了 baseline 还留着的信息。
+- **最关键**：seed_0002 的 `probe_0002` 是专门为“追踪修订”设计的（隐私事实中途获得“可对核心团队说”的许可）。
+  尽管 M3 的记忆 `smem_0004` 已正确标 `revised + contra=event_0008`，**M3/M2 仍答错、只有 M0_prompted 答对**——
+  结构化的 `currency_status` 没有转化为正确行为。这与 SMGA 的核心假设相反。
 
-已完成（Phase 3 测量修复 + Phase 4 两种子对比）：
+### 下一步：先归因，**不要扩规模**
+
+只做一件事：**搞清“为什么结构化记忆没帮上忙”**。
+1. 读 `tmp/smga_treatment/seed_0002_M3_actionable_responses.raw_draft.json` 里 `probe_0002` 的 M3 回答：
+   既然记忆标了 revised，为什么 M3 仍偏保密？是 `smem_0004` 同时挂了 `maintain_privacy` affordance 把它带偏，
+   还是 norm 记忆（no_external_sharing）压过了许可，还是模型根本没注意到 `currency_status`？
+2. 定位责任：formation（记忆形成）/ M3 序列化（currency 不够突出？affordance 误导？）/ probe_0002 口径过严 / judge 噪声。
+3. 据此决定：改 M3 或 formation 的 v0.3 再比一轮；或**诚实记录“当前 SMGA 设计在此 benchmark 不增益”**（这本身是有价值的论文发现——诊断 benchmark 揭示了 actionable memory 的失败模式）。
+
+### 为什么是这个顺序（原因）
+
+扩到 proposal 计划的 40–50 seeds 很贵（钱 + 时间）。在“treatment 未显收益、且关键诊断 probe 反向”时就扩规模，
+只会得到一堆**无法解释的噪声**、还烧掉预算。**必须先把单点机制弄清，再决定扩不扩、扩什么、claim 怎么收窄。**
+这正是 Experiment 0（诊断、小规模、可解释）存在的意义。
+
+### 已完成（Phase 3 测量修复 + Phase 4 两种子对比）
 
 ```text
 scorer v0.2 + judge_scorer.py（condition-blind LLM-judge）

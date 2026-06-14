@@ -24,6 +24,10 @@ The current normalized probe response schema is:
 
 - `docs/project/normalized_probe_response_schema_v0.1.md`
 
+The current model-calling and baseline-run guide is:
+
+- `benchmarks/diagnostic_v0/README.md`
+
 ## Project Layout
 
 ```text
