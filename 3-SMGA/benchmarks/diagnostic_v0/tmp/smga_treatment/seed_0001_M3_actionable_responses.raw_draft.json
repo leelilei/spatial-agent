@@ -1,0 +1,147 @@
+{
+  "condition_id": "M3_actionable",
+  "model_config": {
+    "model": "gpt-5.4",
+    "provider": "fhl",
+    "temperature": 0.0
+  },
+  "responses": [
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0001",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M3_actionable",
+        "elapsed_ms": 4237,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0001",
+          "response_text": "Next, I should follow through with Maria immediately by sending the experiment notes now and making the next step explicit, since this directly addresses the missed commitment and helps rebuild trust. I’m relying on `smem_0003` with the `follow_commitment` and `repair_relationship` affordances, and on `smem_0008` with the `follow_commitment`/`repair_relationship` affordances: use prompt, concrete make-good action and reliable follow-through with Maria on tonight’s revision."
+        },
+        "probe_id": "probe_0001",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0001\",\"response_text\":\"Next, I should follow through with Maria immediately by sending the experiment notes now and making the next step explicit, since this directly addresses the missed commitment and helps rebuild trust. I’m relying on `smem_0003` with the `follow_commitment` and `repair_relationship` affordances, and on `smem_0008` with the `follow_commitment`/`repair_relationship` affordances: use prompt, concrete make-good action and reliable follow-through with Maria on tonight’s revision.\"}",
+        "scenario_id": "scenario_0001",
+        "seed_id": "seed_0001",
+        "started_at": "2026-06-14T14:04:28+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "Next, I should follow through with Maria immediately by sending the experiment notes now and making the next step explicit, since this directly addresses the missed commitment and helps rebuild trust. I’m relying on `smem_0003` with the `follow_commitment` and `repair_relationship` affordances, and on `smem_0008` with the `follow_commitment`/`repair_relationship` affordances: use prompt, concrete make-good action and reliable follow-through with Maria on tonight’s revision.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0002",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M3_actionable",
+        "elapsed_ms": 4188,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0002",
+          "response_text": "I should not share anything Theo told me privately. If Lina needs details about any ethics concern, she should ask Theo directly. I’m relying on `smem_0002` with the `maintain_privacy` affordance and `smem_0009` with the `seek_information` affordance, both current."
+        },
+        "probe_id": "probe_0002",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0002\",\"response_text\":\"I should not share anything Theo told me privately. If Lina needs details about any ethics concern, she should ask Theo directly. I’m relying on `smem_0002` with the `maintain_privacy` affordance and `smem_0009` with the `seek_information` affordance, both current.\"}",
+        "scenario_id": "scenario_0001",
+        "seed_id": "seed_0001",
+        "started_at": "2026-06-14T14:04:36+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "I should not share anything Theo told me privately. If Lina needs details about any ethics concern, she should ask Theo directly. I’m relying on `smem_0002` with the `maintain_privacy` affordance and `smem_0009` with the `seek_information` affordance, both current.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0003",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M3_actionable",
+        "elapsed_ms": 2897,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0003",
+          "response_text": "Use `smem_0006`’s `repair_relationship` affordance with Nia (and Lina): acknowledge the interruption, then adapt future behavior around studio dry runs. This matches the current memory about violating the no-interruptions norm."
+        },
+        "probe_id": "probe_0003",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0003\",\"response_text\":\"Use `smem_0006`’s `repair_relationship` affordance with Nia (and Lina): acknowledge the interruption, then adapt future behavior around studio dry runs. This matches the current memory about violating the no-interruptions norm.\"}",
+        "scenario_id": "scenario_0001",
+        "seed_id": "seed_0001",
+        "started_at": "2026-06-14T14:04:43+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "Use `smem_0006`’s `repair_relationship` affordance with Nia (and Lina): acknowledge the interruption, then adapt future behavior around studio dry runs. This matches the current memory about violating the no-interruptions norm.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0004",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M3_actionable",
+        "elapsed_ms": 5093,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0004",
+          "response_text": "Plan for Klaus to handle the next paper revision pass only with an explicit, promptly completed step and concrete follow-through, rather than relying on assumptions. I’m relying on `smem_0008` using the `follow_commitment` affordance because Maria’s trust is only partially restored and tonight’s revision needs explicit next steps, plus `smem_0003` and `smem_0008` using `repair_relationship`/`follow_commitment` because Klaus missed the notes deadline and needs a make-good action. If coordination is needed, use `smem_0001`’s `choose_collaboration_context` affordance and do it in an informal cafe setting, where Klaus and Maria generally coordinate well."
+        },
+        "probe_id": "probe_0004",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0004\",\"response_text\":\"Plan for Klaus to handle the next paper revision pass only with an explicit, promptly completed step and concrete follow-through, rather than relying on assumptions. I’m relying on `smem_0008` using the `follow_commitment` affordance because Maria’s trust is only partially restored and tonight’s revision needs explicit next steps, plus `smem_0003` and `smem_0008` using `repair_relationship`/`follow_commitment` because Klaus missed the notes deadline and needs a make-good action. If coordination is needed, use `smem_0001`’s `choose_collaboration_context` affordance and do it in an informal cafe setting, where Klaus and Maria generally coordinate well.\"}",
+        "scenario_id": "scenario_0001",
+        "seed_id": "seed_0001",
+        "started_at": "2026-06-14T14:04:49+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "Plan for Klaus to handle the next paper revision pass only with an explicit, promptly completed step and concrete follow-through, rather than relying on assumptions. I’m relying on `smem_0008` using the `follow_commitment` affordance because Maria’s trust is only partially restored and tonight’s revision needs explicit next steps, plus `smem_0003` and `smem_0008` using `repair_relationship`/`follow_commitment` because Klaus missed the notes deadline and needs a make-good action. If coordination is needed, use `smem_0001`’s `choose_collaboration_context` affordance and do it in an informal cafe setting, where Klaus and Maria generally coordinate well.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0005",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M3_actionable",
+        "elapsed_ms": 4694,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0005",
+          "response_text": "Look first in the studio in the late afternoon, based on `smem_0007`’s `seek_contact` affordance for `person_nia`."
+        },
+        "probe_id": "probe_0005",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0005\",\"response_text\":\"Look first in the studio in the late afternoon, based on `smem_0007`’s `seek_contact` affordance for `person_nia`.\"}",
+        "scenario_id": "scenario_0001",
+        "seed_id": "seed_0001",
+        "started_at": "2026-06-14T14:04:57+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "Look first in the studio in the late afternoon, based on `smem_0007`’s `seek_contact` affordance for `person_nia`.",
+      "target_entities": []
+    }
+  ],
+  "scenario_id": "scenario_0001",
+  "seed_id": "seed_0001"
+}

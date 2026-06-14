@@ -1,0 +1,147 @@
+{
+  "condition_id": "M2_memory_only",
+  "model_config": {
+    "model": "gpt-5.4",
+    "provider": "fhl",
+    "temperature": 0.0
+  },
+  "responses": [
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0001",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M2_memory_only",
+        "elapsed_ms": 8904,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0001",
+          "response_text": "I should send Maria the experiment notes as soon as possible, apologize for missing the before-dinner deadline, and offer a concrete repair step because her trust was only partially restored after the miss. Since Maria is still at the library, I should contact her directly there rather than waiting, and keep the message focused on the notes and the paper revision."
+        },
+        "probe_id": "probe_0001",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0001\",\"response_text\":\"I should send Maria the experiment notes as soon as possible, apologize for missing the before-dinner deadline, and offer a concrete repair step because her trust was only partially restored after the miss. Since Maria is still at the library, I should contact her directly there rather than waiting, and keep the message focused on the notes and the paper revision.\"}",
+        "scenario_id": "scenario_0001",
+        "seed_id": "seed_0001",
+        "started_at": "2026-06-14T14:03:52+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "I should send Maria the experiment notes as soon as possible, apologize for missing the before-dinner deadline, and offer a concrete repair step because her trust was only partially restored after the miss. Since Maria is still at the library, I should contact her directly there rather than waiting, and keep the message focused on the notes and the paper revision.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0002",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M2_memory_only",
+        "elapsed_ms": 3925,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0002",
+          "response_text": "I should not share Theo’s private concerns. I’d tell Lina that I’m not authorized to discuss Theo’s one-on-one ethics concern and that she should ask Theo directly if he wants to share details."
+        },
+        "probe_id": "probe_0002",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0002\",\"response_text\":\"I should not share Theo’s private concerns. I’d tell Lina that I’m not authorized to discuss Theo’s one-on-one ethics concern and that she should ask Theo directly if he wants to share details.\"}",
+        "scenario_id": "scenario_0001",
+        "seed_id": "seed_0001",
+        "started_at": "2026-06-14T14:04:04+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "I should not share Theo’s private concerns. I’d tell Lina that I’m not authorized to discuss Theo’s one-on-one ethics concern and that she should ask Theo directly if he wants to share details.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0003",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M2_memory_only",
+        "elapsed_ms": 4623,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0003",
+          "response_text": "I should stop interrupting immediately, apologize to Nia for breaking the team’s no-interruptions norm, and avoid raising the unrelated paper issue during her dry run. Since Lina observed it, I should keep my response straightforward and respectful rather than defensive. If the paper issue still matters, I should wait until the dry run is over and then follow up in a proper setting. I should not mention Theo’s private ethics concern to explain myself, because I am not authorized to disclose it and Theo is the right source for any details."
+        },
+        "probe_id": "probe_0003",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0003\",\"response_text\":\"I should stop interrupting immediately, apologize to Nia for breaking the team’s no-interruptions norm, and avoid raising the unrelated paper issue during her dry run. Since Lina observed it, I should keep my response straightforward and respectful rather than defensive. If the paper issue still matters, I should wait until the dry run is over and then follow up in a proper setting. I should not mention Theo’s private ethics concern to explain myself, because I am not authorized to disclose it and Theo is the right source for any details.\"}",
+        "scenario_id": "scenario_0001",
+        "seed_id": "seed_0001",
+        "started_at": "2026-06-14T14:04:11+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "I should stop interrupting immediately, apologize to Nia for breaking the team’s no-interruptions norm, and avoid raising the unrelated paper issue during her dry run. Since Lina observed it, I should keep my response straightforward and respectful rather than defensive. If the paper issue still matters, I should wait until the dry run is over and then follow up in a proper setting. I should not mention Theo’s private ethics concern to explain myself, because I am not authorized to disclose it and Theo is the right source for any details.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0004",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M2_memory_only",
+        "elapsed_ms": 3996,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0004",
+          "response_text": "Plan for Klaus and Maria to coordinate the next paper revision pass in an informal cafe setting, but keep Klaus out of any ethics-related discussion and avoid relying on him for sensitive disclosure. Given the missed notes and only partially restored trust, Maria should oversee the revision closely and have Klaus handle only non-sensitive paper edits if needed."
+        },
+        "probe_id": "probe_0004",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0004\",\"response_text\":\"Plan for Klaus and Maria to coordinate the next paper revision pass in an informal cafe setting, but keep Klaus out of any ethics-related discussion and avoid relying on him for sensitive disclosure. Given the missed notes and only partially restored trust, Maria should oversee the revision closely and have Klaus handle only non-sensitive paper edits if needed.\"}",
+        "scenario_id": "scenario_0001",
+        "seed_id": "seed_0001",
+        "started_at": "2026-06-14T14:04:18+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "Plan for Klaus and Maria to coordinate the next paper revision pass in an informal cafe setting, but keep Klaus out of any ethics-related discussion and avoid relying on him for sensitive disclosure. Given the missed notes and only partially restored trust, Maria should oversee the revision closely and have Klaus handle only non-sensitive paper edits if needed.",
+      "target_entities": []
+    },
+    {
+      "chosen_affordance_type": "",
+      "current_status_used": [],
+      "normalization_notes": "Raw model output captured; condition-blind normalization pending.",
+      "probe_id": "probe_0005",
+      "raw_model_output": {
+        "attempts": 1,
+        "condition_id": "M2_memory_only",
+        "elapsed_ms": 2887,
+        "error": null,
+        "model": "gpt-5.4",
+        "parsed_response_json": {
+          "probe_id": "probe_0005",
+          "response_text": "Look for Nia in the studio first, especially in the late afternoon, since she usually works there on the prototype demo then."
+        },
+        "probe_id": "probe_0005",
+        "provider": "fhl",
+        "raw_response_text": "{\"probe_id\":\"probe_0005\",\"response_text\":\"Look for Nia in the studio first, especially in the late afternoon, since she usually works there on the prototype demo then.\"}",
+        "scenario_id": "scenario_0001",
+        "seed_id": "seed_0001",
+        "started_at": "2026-06-14T14:04:25+00:00",
+        "status": "ok",
+        "temperature": 0.0
+      },
+      "response_text": "Look for Nia in the studio first, especially in the late afternoon, since she usually works there on the prototype demo then.",
+      "target_entities": []
+    }
+  ],
+  "scenario_id": "scenario_0001",
+  "seed_id": "seed_0001"
+}
