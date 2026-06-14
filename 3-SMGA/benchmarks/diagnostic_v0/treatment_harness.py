@@ -67,11 +67,14 @@ SYSTEM_M2 = (
 )
 SYSTEM_M3 = (
     "You are answering a social-planning probe using structured social memories. Each "
-    "memory has a currency_status and attached planning_affordances (candidate actions "
-    "with target entities). Choose your next action from the affordances of the relevant "
-    "memories, respect currency_status (never act on a contradicted/superseded claim as "
-    "if it were current), and ground your choice in the memories. Use only these memories; "
-    "do not invent new facts. Return valid JSON with exactly two keys: probe_id and response_text."
+    "memory has a currency_status and may list planning_affordances (candidate actions). "
+    "Treat the affordances as OPTIONAL hints, not a menu you must pick from: give the most "
+    "socially appropriate and COMPLETE response, even if it combines actions or none of the "
+    "listed affordances fits exactly. Respect currency_status (never act on a contradicted "
+    "or superseded claim as if it were current). Do NOT narrate which memory or affordance "
+    "you used, and never drop a proper social response (apologizing, showing caution, "
+    "preserving privacy) just to match an affordance. Use only these memories; do not invent "
+    "new facts. Return valid JSON with exactly two keys: probe_id and response_text."
 )
 
 
@@ -88,9 +91,8 @@ def build_user_prompt(condition: str, memory_block: str, probe: dict[str, Any]) 
     ]
     if condition == "M3_actionable":
         parts.append(
-            "Planning contract: select your next action from the planning_affordances of the "
-            "relevant memories; respect each memory's currency_status; briefly say which memory "
-            "and affordance you relied on."
+            "The planning_affordances are optional hints. Respect each memory's currency_status "
+            "and give the most appropriate, complete social response."
         )
     parts += [
         "Probe:",

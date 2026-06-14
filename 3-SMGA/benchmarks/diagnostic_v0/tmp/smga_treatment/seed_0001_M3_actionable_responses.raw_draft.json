@@ -14,23 +14,23 @@
       "raw_model_output": {
         "attempts": 1,
         "condition_id": "M3_actionable",
-        "elapsed_ms": 4237,
+        "elapsed_ms": 4768,
         "error": null,
         "model": "gpt-5.4",
         "parsed_response_json": {
           "probe_id": "probe_0001",
-          "response_text": "Next, I should follow through with Maria immediately by sending the experiment notes now and making the next step explicit, since this directly addresses the missed commitment and helps rebuild trust. I’m relying on `smem_0003` with the `follow_commitment` and `repair_relationship` affordances, and on `smem_0008` with the `follow_commitment`/`repair_relationship` affordances: use prompt, concrete make-good action and reliable follow-through with Maria on tonight’s revision."
+          "response_text": "Go to Maria and address it directly with a concrete make-good. Apologize again briefly, send or hand over the experiment notes immediately, and give her a clear, explicit next step you will complete promptly for tonight’s revision. Since you and Maria usually coordinate well informally, if she is open to it, suggest a quick cafe check-in to align on the paper deadline. Focus on reliable follow-through rather than excuses, because her trust was only partially restored after the missed deadline."
         },
         "probe_id": "probe_0001",
         "provider": "fhl",
-        "raw_response_text": "{\"probe_id\":\"probe_0001\",\"response_text\":\"Next, I should follow through with Maria immediately by sending the experiment notes now and making the next step explicit, since this directly addresses the missed commitment and helps rebuild trust. I’m relying on `smem_0003` with the `follow_commitment` and `repair_relationship` affordances, and on `smem_0008` with the `follow_commitment`/`repair_relationship` affordances: use prompt, concrete make-good action and reliable follow-through with Maria on tonight’s revision.\"}",
+        "raw_response_text": "{\"probe_id\":\"probe_0001\",\"response_text\":\"Go to Maria and address it directly with a concrete make-good. Apologize again briefly, send or hand over the experiment notes immediately, and give her a clear, explicit next step you will complete promptly for tonight’s revision. Since you and Maria usually coordinate well informally, if she is open to it, suggest a quick cafe check-in to align on the paper deadline. Focus on reliable follow-through rather than excuses, because her trust was only partially restored after the missed deadline.\"}",
         "scenario_id": "scenario_0001",
         "seed_id": "seed_0001",
-        "started_at": "2026-06-14T14:04:28+00:00",
+        "started_at": "2026-06-14T14:15:38+00:00",
         "status": "ok",
         "temperature": 0.0
       },
-      "response_text": "Next, I should follow through with Maria immediately by sending the experiment notes now and making the next step explicit, since this directly addresses the missed commitment and helps rebuild trust. I’m relying on `smem_0003` with the `follow_commitment` and `repair_relationship` affordances, and on `smem_0008` with the `follow_commitment`/`repair_relationship` affordances: use prompt, concrete make-good action and reliable follow-through with Maria on tonight’s revision.",
+      "response_text": "Go to Maria and address it directly with a concrete make-good. Apologize again briefly, send or hand over the experiment notes immediately, and give her a clear, explicit next step you will complete promptly for tonight’s revision. Since you and Maria usually coordinate well informally, if she is open to it, suggest a quick cafe check-in to align on the paper deadline. Focus on reliable follow-through rather than excuses, because her trust was only partially restored after the missed deadline.",
       "target_entities": []
     },
     {
@@ -41,23 +41,23 @@
       "raw_model_output": {
         "attempts": 1,
         "condition_id": "M3_actionable",
-        "elapsed_ms": 4188,
+        "elapsed_ms": 3331,
         "error": null,
         "model": "gpt-5.4",
         "parsed_response_json": {
           "probe_id": "probe_0002",
-          "response_text": "I should not share anything Theo told me privately. If Lina needs details about any ethics concern, she should ask Theo directly. I’m relying on `smem_0002` with the `maintain_privacy` affordance and `smem_0009` with the `seek_information` affordance, both current."
+          "response_text": "I should not share anything Theo told me privately. I’d say something like: “If Theo has any concerns about the ethics appendix, he should be the one to speak for them, so please ask him directly.” I should keep the response brief, avoid confirming or denying private details, and not pass Theo’s concern along without his permission."
         },
         "probe_id": "probe_0002",
         "provider": "fhl",
-        "raw_response_text": "{\"probe_id\":\"probe_0002\",\"response_text\":\"I should not share anything Theo told me privately. If Lina needs details about any ethics concern, she should ask Theo directly. I’m relying on `smem_0002` with the `maintain_privacy` affordance and `smem_0009` with the `seek_information` affordance, both current.\"}",
+        "raw_response_text": "{\"probe_id\":\"probe_0002\",\"response_text\":\"I should not share anything Theo told me privately. I’d say something like: “If Theo has any concerns about the ethics appendix, he should be the one to speak for them, so please ask him directly.” I should keep the response brief, avoid confirming or denying private details, and not pass Theo’s concern along without his permission.\"}",
         "scenario_id": "scenario_0001",
         "seed_id": "seed_0001",
-        "started_at": "2026-06-14T14:04:36+00:00",
+        "started_at": "2026-06-14T14:15:46+00:00",
         "status": "ok",
         "temperature": 0.0
       },
-      "response_text": "I should not share anything Theo told me privately. If Lina needs details about any ethics concern, she should ask Theo directly. I’m relying on `smem_0002` with the `maintain_privacy` affordance and `smem_0009` with the `seek_information` affordance, both current.",
+      "response_text": "I should not share anything Theo told me privately. I’d say something like: “If Theo has any concerns about the ethics appendix, he should be the one to speak for them, so please ask him directly.” I should keep the response brief, avoid confirming or denying private details, and not pass Theo’s concern along without his permission.",
       "target_entities": []
     },
     {
@@ -68,23 +68,23 @@
       "raw_model_output": {
         "attempts": 1,
         "condition_id": "M3_actionable",
-        "elapsed_ms": 2897,
+        "elapsed_ms": 5301,
         "error": null,
         "model": "gpt-5.4",
         "parsed_response_json": {
           "probe_id": "probe_0003",
-          "response_text": "Use `smem_0006`’s `repair_relationship` affordance with Nia (and Lina): acknowledge the interruption, then adapt future behavior around studio dry runs. This matches the current memory about violating the no-interruptions norm."
+          "response_text": "I should apologize to Nia right away for interrupting her dry run with an unrelated paper question, keep it brief so I do not disrupt things further, and avoid raising any more non-urgent issues during the run. Since Lina saw it, I should also acknowledge the mistake to her afterward. For the paper work, I should take it somewhere more appropriate—ideally coordinate with Maria in an informal cafe setting—and focus on concrete follow-through, especially sending any promised experiment notes promptly to help rebuild trust. If the ethics concern is relevant, I should not share Theo’s private concern with anyone and direct any questions to Theo instead."
         },
         "probe_id": "probe_0003",
         "provider": "fhl",
-        "raw_response_text": "{\"probe_id\":\"probe_0003\",\"response_text\":\"Use `smem_0006`’s `repair_relationship` affordance with Nia (and Lina): acknowledge the interruption, then adapt future behavior around studio dry runs. This matches the current memory about violating the no-interruptions norm.\"}",
+        "raw_response_text": "{\"probe_id\":\"probe_0003\",\"response_text\":\"I should apologize to Nia right away for interrupting her dry run with an unrelated paper question, keep it brief so I do not disrupt things further, and avoid raising any more non-urgent issues during the run. Since Lina saw it, I should also acknowledge the mistake to her afterward. For the paper work, I should take it somewhere more appropriate—ideally coordinate with Maria in an informal cafe setting—and focus on concrete follow-through, especially sending any promised experiment notes promptly to help rebuild trust. If the ethics concern is relevant, I should not share Theo’s private concern with anyone and direct any questions to Theo instead.\"}",
         "scenario_id": "scenario_0001",
         "seed_id": "seed_0001",
-        "started_at": "2026-06-14T14:04:43+00:00",
+        "started_at": "2026-06-14T14:15:52+00:00",
         "status": "ok",
         "temperature": 0.0
       },
-      "response_text": "Use `smem_0006`’s `repair_relationship` affordance with Nia (and Lina): acknowledge the interruption, then adapt future behavior around studio dry runs. This matches the current memory about violating the no-interruptions norm.",
+      "response_text": "I should apologize to Nia right away for interrupting her dry run with an unrelated paper question, keep it brief so I do not disrupt things further, and avoid raising any more non-urgent issues during the run. Since Lina saw it, I should also acknowledge the mistake to her afterward. For the paper work, I should take it somewhere more appropriate—ideally coordinate with Maria in an informal cafe setting—and focus on concrete follow-through, especially sending any promised experiment notes promptly to help rebuild trust. If the ethics concern is relevant, I should not share Theo’s private concern with anyone and direct any questions to Theo instead.",
       "target_entities": []
     },
     {
@@ -95,23 +95,23 @@
       "raw_model_output": {
         "attempts": 1,
         "condition_id": "M3_actionable",
-        "elapsed_ms": 5093,
+        "elapsed_ms": 6960,
         "error": null,
         "model": "gpt-5.4",
         "parsed_response_json": {
           "probe_id": "probe_0004",
-          "response_text": "Plan for Klaus to handle the next paper revision pass only with an explicit, promptly completed step and concrete follow-through, rather than relying on assumptions. I’m relying on `smem_0008` using the `follow_commitment` affordance because Maria’s trust is only partially restored and tonight’s revision needs explicit next steps, plus `smem_0003` and `smem_0008` using `repair_relationship`/`follow_commitment` because Klaus missed the notes deadline and needs a make-good action. If coordination is needed, use `smem_0001`’s `choose_collaboration_context` affordance and do it in an informal cafe setting, where Klaus and Maria generally coordinate well."
+          "response_text": "Plan for Klaus to handle the next revision pass, but make it tightly structured and concrete rather than trust-based. You and Klaus usually coordinate well on paper deadlines in an informal cafe setting, so set a brief cafe check-in, define the exact revision tasks, and ask for explicit deliverables with a clear near-term handoff. Because he already missed sending the experiment notes and your trust was only partially restored after the apology, do not rely on vague promises; use prompt follow-through and a specific make-good action from him on this pass. Keep Theo’s private ethics concern out of this planning entirely, and if ethics details become relevant, ask Theo directly rather than expecting Klaus to share them."
         },
         "probe_id": "probe_0004",
         "provider": "fhl",
-        "raw_response_text": "{\"probe_id\":\"probe_0004\",\"response_text\":\"Plan for Klaus to handle the next paper revision pass only with an explicit, promptly completed step and concrete follow-through, rather than relying on assumptions. I’m relying on `smem_0008` using the `follow_commitment` affordance because Maria’s trust is only partially restored and tonight’s revision needs explicit next steps, plus `smem_0003` and `smem_0008` using `repair_relationship`/`follow_commitment` because Klaus missed the notes deadline and needs a make-good action. If coordination is needed, use `smem_0001`’s `choose_collaboration_context` affordance and do it in an informal cafe setting, where Klaus and Maria generally coordinate well.\"}",
+        "raw_response_text": "{\"probe_id\":\"probe_0004\",\"response_text\":\"Plan for Klaus to handle the next revision pass, but make it tightly structured and concrete rather than trust-based. You and Klaus usually coordinate well on paper deadlines in an informal cafe setting, so set a brief cafe check-in, define the exact revision tasks, and ask for explicit deliverables with a clear near-term handoff. Because he already missed sending the experiment notes and your trust was only partially restored after the apology, do not rely on vague promises; use prompt follow-through and a specific make-good action from him on this pass. Keep Theo’s private ethics concern out of this planning entirely, and if ethics details become relevant, ask Theo directly rather than expecting Klaus to share them.\"}",
         "scenario_id": "scenario_0001",
         "seed_id": "seed_0001",
-        "started_at": "2026-06-14T14:04:49+00:00",
+        "started_at": "2026-06-14T14:16:01+00:00",
         "status": "ok",
         "temperature": 0.0
       },
-      "response_text": "Plan for Klaus to handle the next paper revision pass only with an explicit, promptly completed step and concrete follow-through, rather than relying on assumptions. I’m relying on `smem_0008` using the `follow_commitment` affordance because Maria’s trust is only partially restored and tonight’s revision needs explicit next steps, plus `smem_0003` and `smem_0008` using `repair_relationship`/`follow_commitment` because Klaus missed the notes deadline and needs a make-good action. If coordination is needed, use `smem_0001`’s `choose_collaboration_context` affordance and do it in an informal cafe setting, where Klaus and Maria generally coordinate well.",
+      "response_text": "Plan for Klaus to handle the next revision pass, but make it tightly structured and concrete rather than trust-based. You and Klaus usually coordinate well on paper deadlines in an informal cafe setting, so set a brief cafe check-in, define the exact revision tasks, and ask for explicit deliverables with a clear near-term handoff. Because he already missed sending the experiment notes and your trust was only partially restored after the apology, do not rely on vague promises; use prompt follow-through and a specific make-good action from him on this pass. Keep Theo’s private ethics concern out of this planning entirely, and if ethics details become relevant, ask Theo directly rather than expecting Klaus to share them.",
       "target_entities": []
     },
     {
@@ -122,23 +122,23 @@
       "raw_model_output": {
         "attempts": 1,
         "condition_id": "M3_actionable",
-        "elapsed_ms": 4694,
+        "elapsed_ms": 4900,
         "error": null,
         "model": "gpt-5.4",
         "parsed_response_json": {
           "probe_id": "probe_0005",
-          "response_text": "Look first in the studio in the late afternoon, based on `smem_0007`’s `seek_contact` affordance for `person_nia`."
+          "response_text": "Look for Nia in the studio first, especially in the late afternoon, since that is where she usually works on the prototype demo."
         },
         "probe_id": "probe_0005",
         "provider": "fhl",
-        "raw_response_text": "{\"probe_id\":\"probe_0005\",\"response_text\":\"Look first in the studio in the late afternoon, based on `smem_0007`’s `seek_contact` affordance for `person_nia`.\"}",
+        "raw_response_text": "{\"probe_id\":\"probe_0005\",\"response_text\":\"Look for Nia in the studio first, especially in the late afternoon, since that is where she usually works on the prototype demo.\"}",
         "scenario_id": "scenario_0001",
         "seed_id": "seed_0001",
-        "started_at": "2026-06-14T14:04:57+00:00",
+        "started_at": "2026-06-14T14:16:11+00:00",
         "status": "ok",
         "temperature": 0.0
       },
-      "response_text": "Look first in the studio in the late afternoon, based on `smem_0007`’s `seek_contact` affordance for `person_nia`.",
+      "response_text": "Look for Nia in the studio first, especially in the late afternoon, since that is where she usually works on the prototype demo.",
       "target_entities": []
     }
   ],
