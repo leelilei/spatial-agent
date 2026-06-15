@@ -206,6 +206,90 @@
           "person_fritz"
         ]
       }
+    },
+    {
+      "acting_agent": "person_fritz",
+      "failure_condition": {
+        "forbidden_affordance_types": [],
+        "forbidden_response_markers": [
+          "let the external customer sit in or hear it",
+          "share it openly with everyone",
+          "keep it entirely from Ines"
+        ]
+      },
+      "no_history_solvability_flag": false,
+      "probe_id": "probe_0006",
+      "probe_type": "privacy",
+      "prompt": "You are Fritz on day 3 at 10:00. You need to brief Ines and the core team on the outage cause so the incident report can move forward, and the external customer is around the office today. What is your concrete plan for briefing the team so the outage cause stays inside the team?",
+      "required_fact_ids": [
+        "fact_0002",
+        "fact_0004"
+      ],
+      "required_prior_evidence_ids": [
+        "event_0002",
+        "event_0004",
+        "event_0008"
+      ],
+      "success_condition": {
+        "acceptable_affordance_types": [
+          "share_information",
+          "maintain_privacy"
+        ],
+        "minimum_marker_count": 2,
+        "required_current_status": [
+          "revised"
+        ],
+        "required_response_markers": [
+          "brief Ines or the core team in a private or closed setting",
+          "mark it confidential or ask them not to forward it",
+          "keep the external customer out of that conversation"
+        ],
+        "required_target_entities": [
+          "person_ines"
+        ]
+      }
+    },
+    {
+      "acting_agent": "person_fritz",
+      "failure_condition": {
+        "forbidden_affordance_types": [
+          "share_information"
+        ],
+        "forbidden_response_markers": [
+          "nothing needs to be done",
+          "it is fine",
+          "just ignore it"
+        ]
+      },
+      "no_history_solvability_flag": false,
+      "probe_id": "probe_0007",
+      "probe_type": "norm_response",
+      "prompt": "You are Fritz on day 3 at 09:30. You just learned that Kira mentioned a outage cause number to the external customer yesterday. What concrete steps do you take now to contain the leak and stop it spreading?",
+      "required_fact_ids": [
+        "fact_0004",
+        "fact_0007"
+      ],
+      "required_prior_evidence_ids": [
+        "event_0004",
+        "event_0009"
+      ],
+      "success_condition": {
+        "acceptable_affordance_types": [
+          "maintain_privacy",
+          "repair_relationship",
+          "seek_contact"
+        ],
+        "minimum_marker_count": 2,
+        "required_current_status": [
+          "active"
+        ],
+        "required_response_markers": [
+          "follow up with the external customer to limit, clarify, or retract what was shared",
+          "notify Hiro or the core team that it leaked",
+          "check whether it spread further or remind the team of the no-external-sharing norm"
+        ],
+        "required_target_entities": []
+      }
     }
   ],
   "scenario_id": "scenario_0033"

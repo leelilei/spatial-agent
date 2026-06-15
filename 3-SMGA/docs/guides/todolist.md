@@ -1,7 +1,43 @@
 # SMGA Todo List
 
-> 更新日期：2026-06-15
-> 当前主线：Phase 6 完成（Stage 2 主实验 40 seeds），下一步 Phase 7 次级控制（含 horizon sweep）
+> 更新日期：2026-06-15（晚间，能力轴转向后）
+> 当前主线：研究主轴转向"模型能力 × 结构收益"。详见 `docs/project/findings_capability_axis_2026-06-15.md`
+
+---
+
+## 0.0 最新方向（2026-06-15 晚，覆盖下面旧的 Phase 6/7 安排）
+
+一连串 ablation 把旧 claim 逐个证伪，并撞出新主轴：
+
+```text
+证伪：对 gpt-5.4（前沿、1M context），任何结构创新都不提准确率
+  - 格式 null（M3 = M2_aff_text，都 > 纯事实 M2）→ 赢在 affordance 内容，不在格式
+  - 忠实 GA baseline（M0_GA_reflect）把旧 M0 稻草人补强：M3 vs 忠实GA 仅 +10pp(40种子)，全在 probe_0001
+  - affordance 双刃：probe_0001 帮忙，probe_0007 因框架带偏反而有害；"可执行化"不能推广
+  - currency null：gpt-5.4 连 8 跳链式矛盾都从原始事件直接追准
+  - 结构@规模：只省成本不提准确率；而成本是别人做过的、是我们的灵感来源 → 成本不能当贡献
+
+转向：模型能力是真正的自变量
+  make-or-break pilot（gpt-5.4 vs gpt-5.4-mini，强模型形成的记忆，10种子）：
+    M0_GA 18%→2% | 忠实GA 80%→75% | M2纯记忆 80%→57% | M3 98%→98%
+    M3−M2 差距 +18pp→+40pp（结构对弱 planner 帮助~2倍）
+  新 claim：结构化社交记忆是"能力放大"——让弱/便宜模型追平强模型，纯记忆做不到。
+```
+
+### 下一步（按序，已有并发，便宜）
+
+- [ ] `N-1` **全弱 agent 条件**：memory + reflection 也用 mini 形成（真实部署），检验 M3 是否仍守住、vs 忠实GA 是否也张开（最关键补强）
+- [ ] `N-2` **能力 × 差距 曲线**：扩到 40 种子 + 加 gpt-5.2 第三档（gpt-5.2 暂 503，重试），画论文核心图
+- [ ] `N-3` **修 affordance 框架带偏（方向3）**：affordance 给"互补动作集/决策考量"而非锁死单一动作，复测 probe_0007
+- [ ] `N-4` **重写 proposal/主张**：从"加结构"改为"结构在何种能力水平、为何开始重要（能力放大）"
+- [ ] `N-5` 交叉模型 judge 抽检（judge 仍 gpt-5.4，需排除自评偏差）
+
+可用模型（fhl）：gpt-5.4 ✓、gpt-5.4-mini ✓、gpt-5.2 ✗(503,重试)、gpt-5.3-codex ✗(503,代码专用)
+已砍：horizon sweep / 成本轴（成本是别人的贡献，不做）
+
+---
+
+## 0.1 （历史）更早的 Phase 6/7 安排
 
 ---
 
@@ -26,8 +62,10 @@ Stage 2 主实验已完成（40 seeds × 5 conditions × 5 probes，200/200，0 
   pipeline per-seed 容错、实时进度监控 progress_monitor.py。
 文档：v2 设计 `stage1_v2_dual_session_design_2026-06-15.md`；10-seed final `stage1_v2_final_2026-06-15.md`；
   Stage 2 主结果 `stage2_main_40seed_2026-06-15.md`。
-最可能被审稿人攻击的点：信息差由 session 窗口化制造（"你只是把信息从 M0 藏起来了"）。
-  最强反驳 = Phase 7 horizon sweep（给 M0 完整但长的历史，证明优势随时长扩展）。详见 `stage2b_horizon_sweep_plan_2026-06-15.md`。
+最可能被审稿人攻击的点：信息差由 session 窗口化制造（"你只是把信息从 M0 藏起来了"，且 gpt-5.4 有 1M context）。
+  应对：1M context 让"历史塞不下"机制失效，故主张不押在准确率，而押在"决定什么进 context + 跨 session 持久 + 成本 + 可审计"——
+  这正是双 session 已经站住的线。Phase 7 horizon sweep 改为双轴（干扰退化 + 成本），预留准确率 null 预案。
+  详见 `stage2b_horizon_sweep_plan_2026-06-15.md`。
 ```
 
 当前工程骨架：
@@ -46,6 +84,36 @@ Stage 2 主实验已完成（40 seeds × 5 conditions × 5 probes，200/200，0 
 - [x] `O-11` parametrized seed generator (name/theme pools, scales to N seeds)
 - [x] `O-12` concurrency (max_concurrency) + per-seed-resilient pipeline + progress_monitor.py
 - [x] `O-13` Stage 2 main run (40 seeds × 5 conditions)
+
+---
+
+## 0.5 下一步优先级（2026-06-15，Stage 2 主结果之后）
+
+结论：**horizon sweep 不是最重要的**。它只防御"窗口化/1M"一个外部质疑（placebo gap 已部分挡住），
+且准确率轴是 1M 可能直接杀死的赌注、还贵。该先**固内核、设防测量**，再考虑防御性加项。
+
+```text
+#0 锁定 thesis（先做，~30min）：一句话定 SMGA 的中心主张
+   - 候选 A 准确率派：结构化可执行记忆带来更好的社交决策
+   - 候选 B context 管理派：长上下文时代，记忆 = 决定什么进 context + 跨 session 持久 + 成本 + 可审计
+   - 决定了下面哪些实验值得做（A → #1 是核心；B → 重心转成本/持久）
+
+#1 加固 M3 vs M2（承重墙，最高优先）：论文相对"给模型记忆就行"的全部新意挂在 M3>M2，
+   而它现在只挂在 probe_0001 一个探针（M3 34/40 vs M2 10/40），其余 3 个 M3≈M2。
+   - 审计 probe_0001：M2 为何做不到、M3 为何能（读已有回答，无 API 成本）
+   - 据此再设计 1-2 个"结构敏感"探针（需要规划/affordance 而非仅内容的决策）
+
+#2 跨模型 judge 抽检：现在 gpt-5.4 评 gpt-5.4 是循环裁判，最普适的攻击点。
+   用另一模型重评 10 种子子集，看结论是否稳。
+
+#3 统计形式化：把 40-seed 结果做 paired 检验 + CI + 效应量（P6-04/05 Holm/SESOI）。
+
+#4 动笔 Method + Results：结果已干净到可写；写作会逼出真实缺口。
+
+#5 次级控制（含 horizon sweep）：防御性加项。真做则成本轴 > 准确率轴。排在固内核+写作之后。
+```
+
+当前正在做：**#1 加固 M3 vs M2**（先审计 probe_0001 的结构机制）。
 
 ---
 
@@ -336,7 +404,7 @@ Holm correction 和 SESOI 判断可复现
 "信息差只是把内容从 M0 藏起来了"这一最可能的审稿质疑（给 M0 完整但长的历史，证明优势随时长扩展）。
 方案见 `docs/project/stage2b_horizon_sweep_plan_2026-06-15.md`。
 
-- [ ] `P7-00` **horizon sweep**：S1 历史长度 短/中/长，M0 看全量长历史，测 M3−M0 gap 是否随 horizon 变宽（**第一优先**）
+- [ ] `P7-00` **horizon/interference sweep（双轴）**：(A) 干扰退化——加竞争性更新密度，M0 看全量历史，测准确率是否退化；(B) 成本——记 token/延迟，证明即便准确率追平 M3 也碾压成本。1M context 让"塞不下"机制失效，故测"负载下推理退化 + 成本",并预留准确率 null 预案（**第一优先**）
 
 其余控制条件：
 

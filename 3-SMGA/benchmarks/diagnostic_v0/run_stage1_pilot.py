@@ -11,7 +11,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 BASELINE_CONDITIONS = ("M0_GA", "M0_prompted")
-TREATMENT_CONDITIONS = ("M2_memory_only", "M3_placebo", "M3_actionable")
+TREATMENT_CONDITIONS = ("M2_memory_only", "M2_aff_text", "M3_placebo", "M3_actionable")
 ALL_CONDITIONS = (*BASELINE_CONDITIONS, *TREATMENT_CONDITIONS)
 
 
@@ -129,20 +129,36 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--force-prompts", action="store_true")
     parser.add_argument("--force-model", action="store_true")
     parser.add_argument("--force-judge", action="store_true")
+    parser.add_argument(
+        "--parallel", type=int, default=1,
+        help="Run this many seeds concurrently. Each seed uses up to max_concurrency "
+        "in-flight calls, so total in-flight ~= parallel * max_concurrency; keep under "
+        "the provider's measured ceiling.",
+    )
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
+    seeds = seed_ids(args.start, args.end)
     failed: list[str] = []
-    for seed_id in seed_ids(args.start, args.end):
+
+    def attempt(seed_id: str) -> str | None:
         try:
             run_seed(seed_id, args)
+            return None
         except (subprocess.CalledProcessError, OSError) as exc:
-            # One bad seed (e.g. a malformed model draft) must not abort the
-            # whole batch. Record it and continue; rerun the named seeds later.
+            # One bad seed (e.g. a malformed model draft) must not abort the batch.
             print(f"!! seed {seed_id} failed and was skipped: {exc}", flush=True)
-            failed.append(seed_id)
+            return seed_id
+
+    if args.parallel > 1:
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(max_workers=args.parallel) as ex:
+            failed = [s for s in ex.map(attempt, seeds) if s]
+    else:
+        failed = [s for s in (attempt(seed_id) for seed_id in seeds) if s]
+
     if failed:
         print(f"\nCompleted with {len(failed)} failed seed(s): {', '.join(failed)}", flush=True)
         return 1

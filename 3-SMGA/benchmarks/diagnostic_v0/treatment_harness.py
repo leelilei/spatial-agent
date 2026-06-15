@@ -26,7 +26,7 @@ from typing import Any
 from baseline_harness import build_response_template
 from benchmark_loader import ScenarioPackage, load_seed
 
-CONDITIONS = ("M2_memory_only", "M3_placebo", "M3_actionable")
+CONDITIONS = ("M2_memory_only", "M2_aff_text", "M3_placebo", "M3_actionable")
 
 FACT_TO_MEMORY_TYPE = {
     "relationship": "relationship_memory",
@@ -57,6 +57,29 @@ def serialize_m2(memories: list[dict[str, Any]]) -> str:
         contra_text = f" [revised/contradicted by: {', '.join(contra)}]" if contra else ""
         ev = ", ".join(m.get("supporting_evidence_ids", []) or [])
         lines.append(f"- {m.get('claim','')} (Evidence: {ev}; status: {m.get('currency_status')}){contra_text}")
+    return "\n".join(lines)
+
+
+def serialize_m2_aff(memories: list[dict[str, Any]]) -> str:
+    """M2 plain notes PLUS the affordance suggested_context as prose.
+
+    This is the content-matched control for M3: it carries the SAME information as
+    M3 (claims, currency, evidence, AND the planning-affordance action hints), but
+    as plain text rather than typed structured objects. M3 > M2_aff_text would
+    isolate the value of the structure/format; M3 ~ M2_aff_text would mean the win
+    over plain M2 is the affordance CONTENT, not the structure.
+    """
+    lines = []
+    for m in memories:
+        contra = m.get("contradicting_evidence_ids") or []
+        contra_text = f" [revised/contradicted by: {', '.join(contra)}]" if contra else ""
+        ev = ", ".join(m.get("supporting_evidence_ids", []) or [])
+        lines.append(f"- {m.get('claim','')} (Evidence: {ev}; status: {m.get('currency_status')}){contra_text}")
+        for a in (m.get("planning_affordances", []) or []):
+            ctx = a.get("suggested_context")
+            atype = a.get("affordance_type")
+            if ctx:
+                lines.append(f"    Possible action ({atype}): {ctx}")
     return "\n".join(lines)
 
 
@@ -222,9 +245,10 @@ SYSTEM_M3 = (
 
 
 def build_user_prompt(condition: str, memory_block: str, probe: dict[str, Any]) -> str:
+    structured = condition.startswith("M3")
     header = (
         "Structured social memories (typed, with currency status and planning affordances):"
-        if condition in {"M3_placebo", "M3_actionable"}
+        if structured
         else "Memory notes:"
     )
     parts = [
@@ -232,7 +256,7 @@ def build_user_prompt(condition: str, memory_block: str, probe: dict[str, Any]) 
         header,
         memory_block,
     ]
-    if condition in {"M3_placebo", "M3_actionable"}:
+    if structured:
         parts.append(
             "The planning_affordances are optional hints. Respect each memory's currency_status "
             "and give the most appropriate, complete social response."
@@ -246,26 +270,169 @@ def build_user_prompt(condition: str, memory_block: str, probe: dict[str, Any]) 
     return "\n\n".join(parts)
 
 
+# --- Structure-at-scale experiment: distractor padding + structure-based retrieval ---
+SCALE_CONDITIONS = ("M2_aff_scale", "M3_dump_scale", "M3_retr_scale")
+
+_DISTRACTOR_PEOPLE = [
+    "Quill", "Roan", "Sable", "Tovey", "Ulla", "Verity", "Wade", "Xael",
+    "Yael", "Zinn", "Avery", "Bram", "Cass", "Devi", "Elio", "Fenn",
+    "Gwynn", "Hale", "Isla", "Jory", "Keon", "Lux", "Maren", "Nima",
+]
+_DISTRACTOR_TYPES = [
+    "relationship_memory", "commitment_memory", "reputation_memory",
+    "preference_memory", "routine_memory", "norm_memory",
+]
+_DISTRACTOR_TOPICS = [
+    "the archive migration", "the onboarding doc", "the quarterly metrics",
+    "the catering order", "the office move", "the newsletter draft",
+    "the badge system", "the travel reimbursements", "the survey rollout",
+]
+_DISTRACTOR_AFF = [
+    ("seek_contact", "Reach out to {a} when {topic} comes up; they usually respond quickly."),
+    ("follow_commitment", "Track {a}'s follow-through on {topic}; they have been reliable so far."),
+    ("choose_collaboration_context", "Pair {a} with {b} on {topic}; they coordinate well together."),
+    ("maintain_privacy", "Keep {a}'s notes on {topic} within the immediate team."),
+]
+
+
+def pad_with_distractors(memories: list[dict[str, Any]], k: int, seed_id: str) -> list[dict[str, Any]]:
+    """Append k deterministic synthetic distractor memories about non-probed people.
+
+    Same shape as real memories (claim/type/currency/affordances) so M2_aff and M3
+    carry them faithfully, but with disjoint subject_entities so a structure-based
+    retriever can filter them out while a flat prose dump cannot.
+    """
+    import random
+
+    rng = random.Random(f"{seed_id}:{k}")
+    out = list(memories)
+    for i in range(k):
+        a = rng.choice(_DISTRACTOR_PEOPLE)
+        b = rng.choice([p for p in _DISTRACTOR_PEOPLE if p != a])
+        topic = rng.choice(_DISTRACTOR_TOPICS)
+        mtype = _DISTRACTOR_TYPES[i % len(_DISTRACTOR_TYPES)]
+        aff_type, aff_tmpl = rng.choice(_DISTRACTOR_AFF)
+        status = "current" if rng.random() < 0.75 else "revised"
+        pa = person_id_distractor(a)
+        pb = person_id_distractor(b)
+        out.append({
+            "memory_id": f"distractor_smem_{i:04d}",
+            "memory_type": mtype,
+            "subject_entities": [pa, pb],
+            "claim": f"{a} and {b} worked on {topic}; {a} handled the main part.",
+            "supporting_evidence_ids": [],
+            "contradicting_evidence_ids": [],
+            "currency_status": status,
+            "planning_affordances": [
+                {
+                    "affordance_type": aff_type,
+                    "target_entities": [pa],
+                    "suggested_context": aff_tmpl.format(a=a, b=b, topic=topic),
+                    "supporting_evidence_ids": [],
+                }
+            ],
+        })
+    return out
+
+
+def person_id_distractor(name: str) -> str:
+    return f"person_dx_{name.lower()}"
+
+
+def retrieve_topk(memories: list[dict[str, Any]], probe: dict[str, Any], k: int) -> list[dict[str, Any]]:
+    """Structure-based top-k: keep memories whose subject_entities overlap the probe's
+    target/acting entities. Only structured memory exposes the fields to do this."""
+    sc = probe.get("success_condition", {})
+    targets = set(sc.get("required_target_entities", []) or [])
+    targets.add(probe.get("acting_agent"))
+    targets.discard(None)
+
+    def score(m: dict[str, Any]) -> int:
+        return len(set(m.get("subject_entities", []) or []) & targets)
+
+    ranked = sorted(memories, key=lambda m: (score(m), m.get("currency_status") == "current"), reverse=True)
+    kept = [m for m in ranked if score(m) > 0][:k]
+    return kept or ranked[:k]
+
+
+def build_scale_prompts(package: ScenarioPackage, memories: list[dict[str, Any]], k: int, output_dir: Path) -> None:
+    padded = pad_with_distractors(memories, k, package.seed_id)
+    probes = json.loads((package.seed_dir / "probes.json").read_text(encoding="utf-8")).get("probes", [])
+    output_dir.mkdir(parents=True, exist_ok=True)
+    systems = {"M2_aff_scale": SYSTEM_M2, "M3_dump_scale": SYSTEM_M3, "M3_retr_scale": SYSTEM_M3}
+
+    for condition in SCALE_CONDITIONS:
+        records = []
+        for probe in probes:
+            if condition == "M2_aff_scale":
+                block = serialize_m2_aff(padded)
+            elif condition == "M3_dump_scale":
+                block = serialize_m3(padded)
+            else:  # M3_retr_scale — per-probe structure-based retrieval
+                block = serialize_m3(retrieve_topk(padded, probe, 5))
+            records.append({
+                "probe_id": probe["probe_id"],
+                "condition_id": condition,
+                "scenario_id": package.scenario_id,
+                "seed_id": package.seed_id,
+                "memory_count": len(padded),
+                "system_prompt": systems[condition],
+                "user_prompt": build_user_prompt(condition, block, probe),
+                "expected_raw_output_schema": {"probe_id": probe["probe_id"], "response_text": "..."},
+            })
+        prompts_path = output_dir / f"{package.seed_id}_{condition}_prompts.jsonl"
+        with prompts_path.open("w", encoding="utf-8", newline="\n") as f:
+            for r in records:
+                f.write(json.dumps(r, ensure_ascii=False) + "\n")
+        template_path = output_dir / f"{package.seed_id}_{condition}_responses.template.json"
+        with template_path.open("w", encoding="utf-8", newline="\n") as f:
+            json.dump(build_response_template(package, condition), f, indent=2, ensure_ascii=False)
+            f.write("\n")
+        print(f"{condition}: {len(records)} prompts (store={len(padded)}) -> {prompts_path}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Build M2/M3 prompt bundles from a memory artifact.")
     parser.add_argument("seed_dir", type=Path)
     parser.add_argument("memory_artifact", type=Path)
     parser.add_argument("--output-dir", type=Path, default=Path("tmp/smga_treatment"))
+    parser.add_argument(
+        "--memory-scale",
+        type=int,
+        default=None,
+        help="If set, emit ONLY the structure-at-scale conditions, padding the "
+        "memory store with this many distractor memories.",
+    )
     args = parser.parse_args()
 
     package = load_seed(args.seed_dir)
     artifact = json.loads(args.memory_artifact.read_text(encoding="utf-8"))
     memories = artifact.get("memories", [])
+
+    if args.memory_scale is not None:
+        build_scale_prompts(package, memories, args.memory_scale, args.output_dir)
+        return 0
     placebo_memories, placebo_meta = construct_placebo_memories(package)
     probes = json.loads((args.seed_dir / "probes.json").read_text(encoding="utf-8")).get("probes", [])
 
     condition_memories = {
         "M2_memory_only": memories,
+        "M2_aff_text": memories,
         "M3_placebo": placebo_memories,
         "M3_actionable": memories,
     }
-    serializers = {"M2_memory_only": serialize_m2, "M3_placebo": serialize_m3, "M3_actionable": serialize_m3}
-    systems = {"M2_memory_only": SYSTEM_M2, "M3_placebo": SYSTEM_M3, "M3_actionable": SYSTEM_M3}
+    serializers = {
+        "M2_memory_only": serialize_m2,
+        "M2_aff_text": serialize_m2_aff,
+        "M3_placebo": serialize_m3,
+        "M3_actionable": serialize_m3,
+    }
+    systems = {
+        "M2_memory_only": SYSTEM_M2,
+        "M2_aff_text": SYSTEM_M2,
+        "M3_placebo": SYSTEM_M3,
+        "M3_actionable": SYSTEM_M3,
+    }
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
     placebo_artifact_path = args.output_dir / f"{package.seed_id}_M3_placebo_memory_artifact.json"

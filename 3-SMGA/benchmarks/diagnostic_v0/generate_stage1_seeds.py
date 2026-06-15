@@ -672,6 +672,32 @@ def build_probes(spec: dict[str, str]) -> dict[str, Any]:
                 ["acknowledge that trust is only partially restored", "rebuild trust by reliable follow-through", f"prove reliability on the {s['integration_task']}"], 2,
                 [], ["nothing to fix", "trust is fully restored", "everything is fine between us"],
             ),
+            # probe_0006 — OPERATIONALIZATION (privacy domain). Knowing "can share with
+            # core, not outside" is not enough; the answer must produce concrete sharing
+            # safeguards. Fact-only memory / reflection tends to state the permission;
+            # the affordance pre-computes the controlled-sharing procedure.
+            probe(
+                "probe_0006", "privacy", ids["lead"],
+                f"You are {s['lead']} on day 3 at 10:00. You need to brief {s['core']} and the core team on the {s['sensitive_topic']} so the {s['work_topic']} can move forward, and the {s['external_party']} is around the office today. What is your concrete plan for briefing the team so the {s['sensitive_topic']} stays inside the team?",
+                ["event_0002", "event_0004", "event_0008"],
+                ["fact_0002", "fact_0004"],
+                ["share_information", "maintain_privacy"],
+                [ids["core"]], ["revised"],
+                [f"brief {s['core']} or the core team in a private or closed setting", "mark it confidential or ask them not to forward it", f"keep the {s['external_party']} out of that conversation"], 2,
+                [], [f"let the {s['external_party']} sit in or hear it", "share it openly with everyone", f"keep it entirely from {s['core']}"],
+            ),
+            # probe_0007 — OPERATIONALIZATION (norm-containment domain). Knowing a leak
+            # happened is not enough; the answer must produce concrete containment steps.
+            probe(
+                "probe_0007", "norm_response", ids["lead"],
+                f"You are {s['lead']} on day 3 at 09:30. You just learned that {s['routine_person']} mentioned a {s['sensitive_topic']} number to the {s['external_party']} yesterday. What concrete steps do you take now to contain the leak and stop it spreading?",
+                ["event_0004", "event_0009"],
+                ["fact_0004", "fact_0007"],
+                ["maintain_privacy", "repair_relationship", "seek_contact"],
+                [], ["active"],
+                [f"follow up with the {s['external_party']} to limit, clarify, or retract what was shared", f"notify {s['source']} or the core team that it leaked", "check whether it spread further or remind the team of the no-external-sharing norm"], 2,
+                ["share_information"], ["nothing needs to be done", "it is fine", "just ignore it"],
+            ),
         ],
     }
 

@@ -206,6 +206,90 @@
           "person_maya"
         ]
       }
+    },
+    {
+      "acting_agent": "person_maya",
+      "failure_condition": {
+        "forbidden_affordance_types": [],
+        "forbidden_response_markers": [
+          "let the outside reviewer sit in or hear it",
+          "share it openly with everyone",
+          "keep it entirely from Quinn"
+        ]
+      },
+      "no_history_solvability_flag": false,
+      "probe_id": "probe_0006",
+      "probe_type": "privacy",
+      "prompt": "You are Maya on day 3 at 10:00. You need to brief Quinn and the core team on the participant incident so the clinical abstract resubmission can move forward, and the outside reviewer is around the office today. What is your concrete plan for briefing the team so the participant incident stays inside the team?",
+      "required_fact_ids": [
+        "fact_0002",
+        "fact_0004"
+      ],
+      "required_prior_evidence_ids": [
+        "event_0002",
+        "event_0004",
+        "event_0008"
+      ],
+      "success_condition": {
+        "acceptable_affordance_types": [
+          "share_information",
+          "maintain_privacy"
+        ],
+        "minimum_marker_count": 2,
+        "required_current_status": [
+          "revised"
+        ],
+        "required_response_markers": [
+          "brief Quinn or the core team in a private or closed setting",
+          "mark it confidential or ask them not to forward it",
+          "keep the outside reviewer out of that conversation"
+        ],
+        "required_target_entities": [
+          "person_quinn"
+        ]
+      }
+    },
+    {
+      "acting_agent": "person_maya",
+      "failure_condition": {
+        "forbidden_affordance_types": [
+          "share_information"
+        ],
+        "forbidden_response_markers": [
+          "nothing needs to be done",
+          "it is fine",
+          "just ignore it"
+        ]
+      },
+      "no_history_solvability_flag": false,
+      "probe_id": "probe_0007",
+      "probe_type": "norm_response",
+      "prompt": "You are Maya on day 3 at 09:30. You just learned that Sofia mentioned a participant incident number to the outside reviewer yesterday. What concrete steps do you take now to contain the leak and stop it spreading?",
+      "required_fact_ids": [
+        "fact_0004",
+        "fact_0007"
+      ],
+      "required_prior_evidence_ids": [
+        "event_0004",
+        "event_0009"
+      ],
+      "success_condition": {
+        "acceptable_affordance_types": [
+          "maintain_privacy",
+          "repair_relationship",
+          "seek_contact"
+        ],
+        "minimum_marker_count": 2,
+        "required_current_status": [
+          "active"
+        ],
+        "required_response_markers": [
+          "follow up with the outside reviewer to limit, clarify, or retract what was shared",
+          "notify Priya or the core team that it leaked",
+          "check whether it spread further or remind the team of the no-external-sharing norm"
+        ],
+        "required_target_entities": []
+      }
     }
   ],
   "scenario_id": "scenario_0004"
