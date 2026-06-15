@@ -71,12 +71,63 @@ was formed by the STRONG model. The clean ~2x widening is M3 vs plain memory / r
 The full weak-agent condition (memory + reflection also formed by mini) is needed to
 test M3 vs faithful-GA fairly.
 
-## New thesis (non-cost, accuracy-based, from existing assets)
+## The capability sweep across three regimes (40 seeds, headline 4 probes)
 
-> Structured social memory is a **capability-amplification** mechanism: it lets a
-> weak/cheap planner match a strong one on social-planning decisions, while plain
-> memory degrades with model strength. The benefit grows as the model weakens —
-> which is where deployed, cost-constrained agents actually live.
+```text
+condition         strong agent   mini-planner      full-weak
+                  (5.4 all)      (strong mem,      (mini forms
+                                  mini answers)     + answers)
+M0_GA_reflect     84%            71%               49%
+M2_memory_only    79%            65%               60%
+M3_actionable     94%            91%               72%   <- best in EVERY regime
+
+M3 - faithful-GA: +10pp     ->   +20pp        ->   +23pp   (widens monotonically)
+M3 - plain M2:    +15pp     ->   +26pp        ->   +12pp
+mini retention vs strong (mini-planner regime): M3 97% | plain 82% | GA 85%
+```
+
+(A 10-seed pilot earlier showed M3 full-weak ~57% ~= GA — that was small-sample
+noise; at 40 seeds full-weak M3 is 72%, clearly above plain and reflective memory.)
+
+## Two readings, both supported at 40 seeds
+
+1. **Distillation (best case).** Strong-formed affordance memory + a cheap planner =
+   91%, near the strong agent's 94% (97% retention), vs 65% / 71% for plain /
+   reflective memory. Pay the strong model once at consolidation; decide cheaply at
+   near-frontier quality.
+
+2. **Robustness of structure under weakness (also holds).** Even when the WEAK model
+   forms the memory too (full weak agent), M3 stays best: 72% vs plain 60% vs
+   reflective 49%. Note the reversal — under weak formation, free-text reflection
+   (49%) is WORSE than just keeping the facts (60%); structured affordance memory is
+   the most robust representation.
+
+The unifying statement: **structured affordance memory is the most capability-robust
+social-memory representation, and its advantage over GA-style reflection grows
+monotonically as you weaken either formation or planning (+10 -> +20 -> +23pp).**
+
+### Thesis (final form for this investigation)
+
+> **Amortized, capability-robust social-planning memory.** Consolidating interactions
+> into affordance-rich structured memory makes downstream social-planning decisions
+> robust to model weakness: a cheap planner reusing strong-formed memory reaches
+> near-frontier quality (91% vs 94%), and even a fully weak agent keeps a clear edge
+> over GA-style reflective memory (72% vs 49%). The benefit grows as the model
+> weakens. Best deployment: form memory once with a capable model, decide cheaply.
+
+### Honest boundaries to state in the paper
+
+```text
+- The advantage over faithful GA is modest at the STRONG planner (+10pp, 40 seeds)
+  and concentrated in probe_0001 (whose affordance is double-edged: it misleads on
+  probe_0007). The gap is clearly large only in the WEAK regimes (+20 to +23pp).
+- On a frontier model with all info in context, NO structural innovation improves
+  accuracy (format, currency, retrieval all null); structure also moves cost, but
+  cost is out of scope (prior work). The contribution lives on the capability axis.
+- Adjacent memory-distillation work exists; novelty = social-planning affordance
+  content + the capability-robustness curve.
+- Only two planner tiers measured (5.4, 5.4-mini); gpt-5.2 pending (503).
+- Single judge (gpt-5.4); cross-model judge check still owed.
 
 ## Tooling added this session
 

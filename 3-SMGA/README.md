@@ -4,15 +4,20 @@ Structured Memory for Generative Agents.
 
 SMGA is an independent research project split out from SpatialAgent.
 
-**Working claim (updated 2026-06-15):** structured social memory is a
-**capability-amplification** mechanism — affordance-bearing memory lets a weak/cheap
-planner match a strong one on social-planning decisions, while plain memory degrades
-as the model weakens. Diagnostic evidence: on gpt-5.4-mini, plain memory drops to 57%
-while M3 (structured affordance memory) holds at 98%; the M3-vs-plain gap roughly
-doubles vs gpt-5.4. The original "structured format / currency improves accuracy"
-framing did NOT survive testing on a frontier model (all such effects are null on
-gpt-5.4; structure moved only cost, and cost is out of scope). See
-`docs/project/findings_capability_axis_2026-06-15.md`.
+**Working claim (updated 2026-06-15):** SMGA is **amortized / distilled
+social-planning memory**. A capable model consolidates interactions once into
+affordance-rich structured memory; cheap downstream planners then reuse it to decide
+at near-frontier quality. Diagnostic evidence (40 seeds, strong-formed memory): a
+gpt-5.4-mini planner retains 91% on M3 (structured affordance memory) vs gpt-5.4's
+94% — a 97% retention — while the same mini planner drops to 65% on plain memory and
+71% on GA-style reflective memory. M3 is the most capability-robust representation:
+its advantage over GA-style reflection grows monotonically as you weaken formation or
+planning (+10pp strong agent → +20pp weak planner → +23pp full weak agent). Best case
+is "strong formation + cheap decisions" (distillation, 91% near-frontier); even a
+fully weak agent keeps a clear edge (M3 72% vs reflective 49% vs plain 60% at 40
+seeds). Earlier framings that did NOT survive testing: "structured format/currency
+improves accuracy" (null on gpt-5.4) and cost (out of scope — prior work, and our
+inspiration). See `docs/project/findings_capability_axis_2026-06-15.md`.
 
 The implementation-oriented proposal is:
 
