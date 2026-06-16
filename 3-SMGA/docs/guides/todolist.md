@@ -1,7 +1,45 @@
 # SMGA Todo List
 
-> 更新日期：2026-06-15（晚间，能力轴转向后）
-> 当前主线：研究主轴转向"模型能力 × 结构收益"。详见 `docs/project/findings_capability_axis_2026-06-15.md`
+> 更新日期：2026-06-16（评测方向转向后）
+> 当前主线：**LLM game agent（多智能体社会模拟）框架下的两条互相成就的线**：
+>   - **评测（标尺）**：独立平行项目 `../3-SMGA-EVAL/`（长程社交一致性诊断 benchmark）
+>   - **架构（治疗）**：本项目 3-SMGA（改进版 GA-based SMGA v2 记忆，在 3-SMGA-EVAL 上验证）
+>   完整 proposal：`../3-SMGA-EVAL/docs/proposal_v0.md`
+> 历史主线（已收束为教训）：模型能力 × 结构收益，详见 `docs/project/findings_capability_axis_2026-06-15.md`
+
+---
+
+## -1. 当前真实主线（2026-06-16，回到 LLM game agent 初心）
+
+诊断式 ablation 把"SMGA=结构化记忆提准确率"逐条证伪；再读 GA/AGA/SOTOPIA/LIFELONG-SOTOPIA/ID-RAG +
+现代记忆框架（Mem0/A-Mem/ENGRAM），确认：
+- 纯做记忆 QA 丢初心，不做；成本是 AGA 做过的，不做。
+- 真正的空白（三篇都让路）：**持久多智能体社会里、grounding 在模拟涌现日志上的、可扩展自动的社交一致性诊断** → 拆成独立项目 **3-SMGA-EVAL**。
+- SMGA 不放弃（**留在本项目 3-SMGA**）：去掉预 commit 的 affordance，借鉴 persona/episodic 分离(ID-RAG)+
+  currency 可检索社交记忆(A-Mem/ENGRAM)+ 摊销形成(我们)，作为"治疗"在 3-SMGA-EVAL 上验证。
+
+项目分工：
+- **3-SMGA（当前焦点）**：SMGA v2 记忆机制 + **自建最小社会模拟 `sim/`**，证明"长程更连贯"。
+- **3-SMGA-EVAL（暂缓）**：评测 benchmark；待 3-SMGA 拿到正向信号后再回来做标尺。
+
+### 当前焦点：3-SMGA 社会模拟（`sim/`）
+
+已用诊断证明短上下文单轮 regime 排不出架构高下 → 必须在**活体多智能体社会**里测。
+
+- [x] `S0` 最小社会模拟骨架 + mock 跑通 + 扩散追踪（`sim/society.py`）
+- [x] `S1` 接 LLM 对话（对话提示对两种记忆公平相同）
+- [x] `S2` 两个记忆：`GAReflectionMemory`(基线) vs `SMGAv2Memory`(currency 解析)（`sim/memories.py`）
+- [x] `S3` 注入会更新的事实（drive 中途改 周日/社区中心）= currency 压力 + 终局 currency 访谈
+- [x] `S4a` 强模型头对头：SMGA v2 **4/4 当前** vs GA **3/4**（GA 丢 Uli 的更新）；强模型无人 stale
+- [ ] `S4b` **mini 头对头**（进行中）：弱模型上 SMGA v2 优势是否张开
+- [ ] `S5` 扩规模（更多 agent/轮）+ 多 run 取方差 + 多一致性维度（C1 承诺、C2 防幻觉）
+- [ ] `S6` 凑足正向证据后，回 3-SMGA-EVAL 把测量做严谨；写论文
+
+### （暂缓）3-SMGA-EVAL 的评测线
+- [ ] `E0` 零 API：GA 日志上的 C2 信念接地原型
+- [ ] `E1` 扩 C1/C3/C4，冻结指标，人评抽检
+
+---
 
 ---
 
@@ -38,6 +76,8 @@
 
 可用模型（fhl）：gpt-5.4 ✓、gpt-5.4-mini ✓、gpt-5.2 ✗(503,重试)、gpt-5.3-codex ✗(503,代码专用)
 已砍：horizon sweep / 成本轴（成本是别人的贡献，不做）
+并发：FHL 安全上限 ≈60（破在80，硬上限~63）；大运行用 --parallel 8（≈56在飞）；max_concurrency=10
+多样性：建了 Family B（mutual-aid，5角色+二手信息探针，seed_1001-1006）测泛化；40种子=同一骨架×名字是最大效度缺口
 
 ---
 

@@ -2,9 +2,25 @@
 
 Structured Memory for Generative Agents.
 
-SMGA is an independent research project split out from SpatialAgent.
+SMGA is an independent research project split out from SpatialAgent. North star:
+**LLM game agents** — believable multi-agent social *simulation* (Generative Agents
+lineage). Memory is the lever, not the goal.
 
-**Working claim (updated 2026-06-15):** SMGA is **amortized / distilled
+**Current focus (2026-06-16): the society simulation (`sim/`).** The short-context,
+single-shot diagnostic regime (`benchmarks/diagnostic_v0/`) cannot decisively rank
+memory architectures (proven across our experiments). The goal — show that an
+improved social memory makes a *society* of agents more coherent over a long horizon
+— requires a live multi-agent sim. `sim/society.py` is a minimal, controllable,
+pluggable-memory society. First live result on a currency-stress scenario (a mid-sim
+fact update — the repair drive moves to a new day/place): SMGA v2 kept **4/4** agents
+on the current truth vs GA reflection **3/4** on gpt-5.4, and the gap **widens sharply
+on the weak model — SMGA v2 4/4 vs GA 0/4** on gpt-5.4-mini (GA's free-text reflection
+lost the updated detail for every agent). The advantage grows as the per-agent model
+weakens — exactly the regime where memory architecture should matter. (Preliminary:
+n=1 run, 4 agents; scaling + multi-run + more coherence dimensions is next.) The
+companion eval-benchmark project lives at `../3-SMGA-EVAL`.
+
+**Earlier working claim (diagnostic, 2026-06-15):** SMGA is **amortized / distilled
 social-planning memory**. A capable model consolidates interactions once into
 affordance-rich structured memory; cheap downstream planners then reuse it to decide
 at near-frontier quality. Diagnostic evidence (40 seeds, strong-formed memory): a

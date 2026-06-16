@@ -26,7 +26,7 @@ from typing import Any
 from baseline_harness import build_response_template
 from benchmark_loader import ScenarioPackage, load_seed
 
-CONDITIONS = ("M2_memory_only", "M2_aff_text", "M3_placebo", "M3_actionable")
+CONDITIONS = ("M2_memory_only", "M2_aff_text", "M3_placebo", "M3_actionable", "M4_smga_v2")
 
 FACT_TO_MEMORY_TYPE = {
     "relationship": "relationship_memory",
@@ -244,6 +244,21 @@ SYSTEM_M3 = (
 )
 
 
+SYSTEM_SMGA_V2 = (
+    "You are answering a social-planning probe using a set of social memory notes. "
+    "Each note has a currency status: act ONLY on the current state — never on a "
+    "contradicted, superseded, or stale claim as if it were current. Before answering, "
+    "reason about what the current social state IMPLIES for this specific decision, then "
+    "give the most complete, socially appropriate response. The right move may combine "
+    "more than one action and is NOT limited to any fixed menu: depending on the "
+    "situation it could mean reaching out, verifying, repairing, sharing within bounds, "
+    "holding back, or correcting — choose what genuinely fits, including actions directed "
+    "outside the immediate frame when that is what the situation calls for. Use only these "
+    "notes; do not invent facts. Return valid JSON with exactly two keys: probe_id and "
+    "response_text."
+)
+
+
 def build_user_prompt(condition: str, memory_block: str, probe: dict[str, Any]) -> str:
     structured = condition.startswith("M3")
     header = (
@@ -420,18 +435,23 @@ def main() -> int:
         "M2_aff_text": memories,
         "M3_placebo": placebo_memories,
         "M3_actionable": memories,
+        "M4_smga_v2": memories,
     }
     serializers = {
         "M2_memory_only": serialize_m2,
         "M2_aff_text": serialize_m2_aff,
         "M3_placebo": serialize_m3,
         "M3_actionable": serialize_m3,
+        # SMGA v2: facts + currency, NO pre-committed affordances. The
+        # implication-reasoning + multi-action de-biasing lives in the system prompt.
+        "M4_smga_v2": serialize_m2,
     }
     systems = {
         "M2_memory_only": SYSTEM_M2,
         "M2_aff_text": SYSTEM_M2,
         "M3_placebo": SYSTEM_M3,
         "M3_actionable": SYSTEM_M3,
+        "M4_smga_v2": SYSTEM_SMGA_V2,
     }
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
