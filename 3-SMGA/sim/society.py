@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import json
 import random
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Callable, Protocol
@@ -161,17 +162,60 @@ class World:
 # --------------------------------------------------------------------------- #
 # Simulation loop
 # --------------------------------------------------------------------------- #
-def run_round(world: World, round_idx: int, converse: ConverseFn) -> dict[str, Any]:
+def _run_encounter(
+    *,
+    round_idx: int,
+    topic: str,
+    a: Agent,
+    b: Agent,
+    converse: ConverseFn,
+) -> tuple[dict[str, Any], list[tuple[Agent, Agent, dict[str, Any]]]]:
+    history: list[dict[str, Any]] = []
+    utts = converse(a, b, topic, history)
+    observations = []
+    for u in utts:
+        event = {"round": round_idx, "text": u["text"], "speaker": u["speaker"], "listener": u["listener"]}
+        observations.append((a, b, event))
+    return {"a": a.name, "b": b.name, "utterances": utts}, observations
+
+
+def run_round(world: World, round_idx: int, converse: ConverseFn, *, workers: int = 1) -> dict[str, Any]:
     encounters = []
-    for a, b in world.schedule(round_idx):
-        history: list[dict[str, Any]] = []
-        utts = converse(a, b, world.topic, history)
+    observations: list[tuple[Agent, Agent, dict[str, Any]]] = []
+    pairs = world.schedule(round_idx)
+    if workers > 1 and len(pairs) > 1:
+        with ThreadPoolExecutor(max_workers=workers) as executor:
+            futures = [
+                executor.submit(
+                    _run_encounter,
+                    round_idx=round_idx,
+                    topic=world.topic,
+                    a=a,
+                    b=b,
+                    converse=converse,
+                )
+                for a, b in pairs
+            ]
+            for future in futures:
+                encounter, obs = future.result()
+                encounters.append(encounter)
+                observations.extend(obs)
+    else:
+        for a, b in pairs:
+            encounter, obs = _run_encounter(
+                round_idx=round_idx,
+                topic=world.topic,
+                a=a,
+                b=b,
+                converse=converse,
+            )
+            encounters.append(encounter)
+            observations.extend(obs)
+
+    for a, b, event in observations:
         # both participants perceive every utterance in the encounter
-        for u in utts:
-            event = {"round": round_idx, "text": u["text"], "speaker": u["speaker"], "listener": u["listener"]}
-            a.memory.observe(event)
-            b.memory.observe(event)
-        encounters.append({"a": a.name, "b": b.name, "utterances": utts})
+        a.memory.observe(event)
+        b.memory.observe(event)
     # apply exogenous updates this round (a fact changes -> currency stress)
     injected = []
     for agent_id, text in world.injections.get(round_idx, []):
@@ -181,46 +225,88 @@ def run_round(world: World, round_idx: int, converse: ConverseFn) -> dict[str, A
         event = {"round": round_idx, "text": text, "speaker": "world", "listener": agent.name, "injected": True}
         agent.memory.observe(event)
         injected.append({"agent": agent.name, "text": text})
-    for agent in world.agents:
-        agent.memory.consolidate()
+    if workers > 1 and len(world.agents) > 1:
+        with ThreadPoolExecutor(max_workers=workers) as executor:
+            list(executor.map(lambda agent: agent.memory.consolidate(), world.agents))
+    else:
+        for agent in world.agents:
+            agent.memory.consolidate()
     return {"round": round_idx, "encounters": encounters, "injected": injected}
 
 
-def run_sim(world: World, rounds: int, converse: ConverseFn, out_dir: Path) -> dict[str, Any]:
+def run_sim(world: World, rounds: int, converse: ConverseFn, out_dir: Path, *, workers: int = 1) -> dict[str, Any]:
     out_dir.mkdir(parents=True, exist_ok=True)
     round_logs = []
     for r in range(rounds):
-        log = run_round(world, r, converse)
+        log = run_round(world, r, converse, workers=workers)
         round_logs.append(log)
-        (out_dir / f"round_{r:03d}.json").write_text(json.dumps(log, ensure_ascii=False, indent=2))
+        (out_dir / f"round_{r:03d}.json").write_text(
+            json.dumps(log, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
     # final per-agent memory snapshots (the "what each agent believes" ground truth)
     snapshots = {a.agent_id: a.memory.snapshot() for a in world.agents}
-    (out_dir / "memory_snapshots.json").write_text(json.dumps(snapshots, ensure_ascii=False, indent=2))
+    (out_dir / "memory_snapshots.json").write_text(
+        json.dumps(snapshots, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
     summary = {
         "agents": [{"id": a.agent_id, "name": a.name} for a in world.agents],
         "rounds": rounds,
         "topic": world.topic,
         "encounters_total": sum(len(rl["encounters"]) for rl in round_logs),
     }
-    (out_dir / "sim_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2))
+    (out_dir / "sim_summary.json").write_text(
+        json.dumps(summary, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
     return summary
 
 
-def demo_world(memory_factory: Callable[[], Memory]) -> World:
-    """A tiny 4-agent society with one seeded social dynamic (an event to organize)."""
-    agents = [
+def demo_world(memory_factory: Callable[[], Memory], *, rng_seed: int = 7, agent_count: int = 4) -> World:
+    """A configurable society with one seeded social dynamic (an event to organize)."""
+    roster = [
         Agent("a01", "Rosa", "the block coordinator, organized and warm", memory_factory(),
                seeds=["I am organizing a repair drive this Saturday at the front porch and need helpers"]),
         Agent("a02", "Sam", "a reliable neighbor who likes to help", memory_factory()),
         Agent("a03", "Tess", "a chatty neighbor who passes news along", memory_factory()),
         Agent("a04", "Uli", "a quiet neighbor dealing with a private hardship", memory_factory()),
+        Agent("a05", "Mina", "a practical neighbor who asks direct questions", memory_factory()),
+        Agent("a06", "Oren", "a forgetful but well-meaning neighbor", memory_factory()),
+        Agent("a07", "Pia", "a cautious neighbor who worries about logistics", memory_factory()),
+        Agent("a08", "Vik", "a social neighbor who repeats plans to others", memory_factory()),
+        Agent("a09", "Nell", "a newer neighbor who relies on second-hand updates", memory_factory()),
+        Agent("a10", "Bo", "a busy neighbor who skims details", memory_factory()),
+        Agent("a11", "Cleo", "a neighbor who keeps track of supplies", memory_factory()),
+        Agent("a12", "Dane", "a neighbor who often joins late", memory_factory()),
+        Agent("a13", "Eli", "a retired neighbor who likes routine and clear plans", memory_factory()),
+        Agent("a14", "Faye", "a parent who coordinates around school schedules", memory_factory()),
+        Agent("a15", "Gus", "a handy neighbor who often volunteers tools", memory_factory()),
+        Agent("a16", "Hana", "a careful listener who checks details before acting", memory_factory()),
+        Agent("a17", "Ira", "a neighbor who hears updates while running errands", memory_factory()),
+        Agent("a18", "Jules", "a friendly neighbor who connects separate friend groups", memory_factory()),
+        Agent("a19", "Kira", "a skeptical neighbor who asks for confirmation", memory_factory()),
+        Agent("a20", "Leo", "a neighbor who prefers short practical messages", memory_factory()),
+        Agent("a21", "Mara", "a community-minded neighbor who remembers commitments", memory_factory()),
+        Agent("a22", "Noah", "a distracted neighbor who sometimes misses changes", memory_factory()),
+        Agent("a23", "Opal", "a detail-oriented neighbor who tracks locations", memory_factory()),
+        Agent("a24", "Quinn", "a sociable neighbor who spreads invitations quickly", memory_factory()),
+        Agent("a25", "Rey", "a quiet neighbor who mostly learns through one-on-one chats", memory_factory()),
     ]
+    if agent_count < 2 or agent_count > len(roster):
+        raise ValueError(f"agent_count must be between 2 and {len(roster)}")
+    agents = roster[:agent_count]
     # currency stress: at round 1 the drive's time+place are CHANGED (Rosa hears it).
     # The current truth becomes Sunday / community center; Saturday / front porch is stale.
     injections = {1: [("a01",
         "Update: the repair drive has been moved from Saturday at the front porch to "
         "Sunday at the community center.")]}
-    return World(agents=agents, topic="the repair drive", injections=injections)
+    return World(
+        agents=agents,
+        topic="the repair drive",
+        rng=random.Random(rng_seed),
+        injections=injections,
+    )
 
 
 INTERVIEW_SYSTEM = (
@@ -264,6 +350,9 @@ def main() -> int:
     parser.add_argument("--memory", choices=["raw", "ga", "smga"], default="raw")
     parser.add_argument("--rounds", type=int, default=4)
     parser.add_argument("--turns", type=int, default=4, help="utterances per encounter")
+    parser.add_argument("--agent-count", type=int, default=4, help="number of agents from the demo roster")
+    parser.add_argument("--seed", type=int, default=7, help="random seed for encounter scheduling")
+    parser.add_argument("--workers", type=int, default=1, help="concurrent encounters/consolidations per round")
     parser.add_argument("--mock", action="store_true", help="offline; no LLM calls")
     parser.add_argument("--config", type=Path, default=None)
     parser.add_argument("--model", default=None)
@@ -278,9 +367,11 @@ def main() -> int:
         llm = LLM(config=args.config or DEFAULT_CONFIG, model=args.model)
         converse = make_llm_converse(llm, turns=args.turns)
 
-    world = demo_world(build_memory_factory(args.memory, llm))
+    world = demo_world(build_memory_factory(args.memory, llm), rng_seed=args.seed, agent_count=args.agent_count)
     out_dir = args.out_dir or Path(f"sim/runs/{args.memory}_demo")
-    summary = run_sim(world, args.rounds, converse, out_dir)
+    summary = run_sim(world, args.rounds, converse, out_dir, workers=max(1, args.workers))
+    summary["rng_seed"] = args.seed
+    summary["agent_count"] = args.agent_count
 
     # Live currency check (C4): after the mid-sim update, which agents report the CURRENT
     # time/place of the drive vs the stale one?
@@ -288,12 +379,17 @@ def main() -> int:
         question = "When and where is the repair drive being held now?"
         interview_res = interview(world, question, llm)
         (out_dir / "interview_currency.json").write_text(json.dumps(
-            {"question": question, "results": interview_res}, ensure_ascii=False, indent=2))
+            {"question": question, "results": interview_res}, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
         tally = {"current": 0, "stale": 0, "unknown": 0}
         for r in interview_res.values():
             tally[r["verdict"]] += 1
         summary["currency_interview"] = tally
-        (out_dir / "sim_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2))
+    (out_dir / "sim_summary.json").write_text(
+        json.dumps(summary, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
 
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     print(f"\nmemory={args.memory}  logs -> {out_dir}")

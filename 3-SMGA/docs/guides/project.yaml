@@ -99,12 +99,15 @@ phases:
   summary: 补 reviewer 可能攻击的控制；horizon sweep 优先（反驳"只是藏了信息"）。
   outputs:
   - horizon sweep (P7-00, 第一优先)
+  - society sweep runner (`sim/run_society_sweep.py`)
   - M0_plus control
   - GraphMemory_social_schema control
   - secondary comparison CI
   - 最终 claim 边界判断
   next:
-  - Run horizon sweep per docs/project/stage2b_horizon_sweep_plan_2026-06-15.md.
+  - Run multi-schedule 6-agent society sweeps over GA vs SMGA on gpt-5.4-mini.
+  - Promote unsupported_specific into an explicit C2 anti-hallucination interview.
+  - Add C1 commitment-honoring interview.
 - n: 8
   title: 分析、写作与发布
   track: write

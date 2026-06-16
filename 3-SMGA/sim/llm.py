@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import sys
+import time
 from pathlib import Path
 from typing import Any
 
@@ -29,7 +30,18 @@ class LLM:
         self.client = mcr.build_client(self.config)
 
     def complete(self, system: str, user: str) -> str:
-        return self.client.complete({"system_prompt": system, "user_prompt": user})
+        prompt = {"system_prompt": system, "user_prompt": user}
+        attempts = 0
+        retries = int(getattr(self.config, "retries", 0))
+        retry_sleep = float(getattr(self.config, "retry_sleep", 1.0))
+        while True:
+            attempts += 1
+            try:
+                return self.client.complete(prompt)
+            except Exception:
+                if attempts > retries:
+                    raise
+                time.sleep(retry_sleep)
 
     def complete_json(self, system: str, user: str) -> dict[str, Any]:
         parsed = mcr.parse_response_json(self.complete(system, user))

@@ -6,7 +6,7 @@ SMGA is an independent research project split out from SpatialAgent. North star:
 **LLM game agents** — believable multi-agent social *simulation* (Generative Agents
 lineage). Memory is the lever, not the goal.
 
-**Current focus (2026-06-16): the society simulation (`sim/`).** The short-context,
+**Current focus (2026-06-17): the society simulation (`sim/`).** The short-context,
 single-shot diagnostic regime (`benchmarks/diagnostic_v0/`) cannot decisively rank
 memory architectures (proven across our experiments). The goal — show that an
 improved social memory makes a *society* of agents more coherent over a long horizon
@@ -17,8 +17,18 @@ on the current truth vs GA reflection **3/4** on gpt-5.4, and the gap **widens s
 on the weak model — SMGA v2 4/4 vs GA 0/4** on gpt-5.4-mini (GA's free-text reflection
 lost the updated detail for every agent). The advantage grows as the per-agent model
 weakens — exactly the regime where memory architecture should matter. (Preliminary:
-n=1 run, 4 agents; scaling + multi-run + more coherence dimensions is next.) The
+n=1 run, 4 agents; `sim/run_society_sweep.py` now provides the scaling/multi-run
+harness, and this claim is now being stress-tested in 25-agent pilots.) The
 companion eval-benchmark project lives at `../3-SMGA-EVAL`.
+
+**Latest society result (2026-06-17): 25-agent longitudinal pilot.** Fixed seed 41,
+`turns=3`, `workers=4`, GA reflection vs SMGA v2 on gpt-5.4-mini. As rounds increase
+from 3 to 6 to 9, SMGA current-truth recall goes **5/25 -> 12/25 -> 13/25** while GA
+goes **4/25 -> 3/25 -> 0/25**. This is a promising baseline-scale signal: SMGA
+spreads current facts better at longer horizons. It is still diagnostic, not a final
+claim, because SMGA also shows stale/unsupported-answer failures in shorter horizons;
+the next architecture step is an evidence gate / unknown policy for retrieval and
+interview answers. See `sim/RESULTS.md`.
 
 **Earlier working claim (diagnostic, 2026-06-15):** SMGA is **amortized / distilled
 social-planning memory**. A capable model consolidates interactions once into
@@ -49,6 +59,7 @@ The current direction + investigation log (read this first) is:
 
 Supporting result/design notes from the 2026-06-15 investigation:
 
+- `docs/project/society_sweep_tooling_2026-06-16.md` (multi-run society sim tooling)
 - `docs/project/stage1_v2_final_2026-06-15.md` (clean 10-seed v2 result)
 - `docs/project/stage2_main_40seed_2026-06-15.md` (40-seed run; M0 headline superseded — uses strawman GA)
 - `docs/project/probe0001_structure_confound_audit_2026-06-15.md` (format is not the driver)

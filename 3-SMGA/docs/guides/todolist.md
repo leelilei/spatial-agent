@@ -31,8 +31,8 @@
 - [x] `S2` 两个记忆：`GAReflectionMemory`(基线) vs `SMGAv2Memory`(currency 解析)（`sim/memories.py`）
 - [x] `S3` 注入会更新的事实（drive 中途改 周日/社区中心）= currency 压力 + 终局 currency 访谈
 - [x] `S4a` 强模型头对头：SMGA v2 **4/4 当前** vs GA **3/4**（GA 丢 Uli 的更新）；强模型无人 stale
-- [ ] `S4b` **mini 头对头**（进行中）：弱模型上 SMGA v2 优势是否张开
-- [ ] `S5` 扩规模（更多 agent/轮）+ 多 run 取方差 + 多一致性维度（C1 承诺、C2 防幻觉）
+- [x] `S4b` **mini 头对头**：弱模型上 SMGA v2 优势已张开（SMGA 4/4 vs GA 0/4；见 `sim/RESULTS.md`）
+- [~] `S5` 扩规模（更多 agent/轮）+ 多 run 取方差 + 多一致性维度（C1 承诺、C2 防幻觉）：`sim/run_society_sweep.py` 已支持 agent_count/rounds/repeats/model/memory 聚合；6-agent mini smoke 已跑（C4 打平 2/6，但 C2 unsupported_specific: GA 3/6 vs SMGA 0/6）；下一步跑多 schedule + 显式 C1/C2 访谈
 - [ ] `S6` 凑足正向证据后，回 3-SMGA-EVAL 把测量做严谨；写论文
 
 ### （暂缓）3-SMGA-EVAL 的评测线
