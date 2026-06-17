@@ -40,14 +40,21 @@ n=1 run, 4 agents; `sim/run_society_sweep.py` now provides the scaling/multi-run
 harness, and this claim is now being stress-tested in 25-agent pilots.) The
 companion eval-benchmark project lives at `../3-SMGA-EVAL`.
 
-**Latest society result (2026-06-17): 25-agent longitudinal pilot.** Fixed seed 41,
-`turns=3`, `workers=4`, GA reflection vs SMGA v2 on gpt-5.4-mini. As rounds increase
-from 3 to 6 to 9, SMGA current-truth recall goes **5/25 -> 12/25 -> 13/25** while GA
-goes **4/25 -> 3/25 -> 0/25**. This is a promising baseline-scale signal: SMGA
-spreads current facts better at longer horizons. It is still diagnostic, not a final
-claim, because SMGA also shows stale/unsupported-answer failures in shorter horizons;
-the next architecture step is an evidence gate / unknown policy for retrieval and
-interview answers. See `sim/RESULTS.md`.
+**Latest society result (2026-06-17): powered 5-seed main result + low-variance
+instrument.** Stack upgraded (embedding retrieval; anchored consolidation; connectivity
+`meetings_per_round`). On the full society (25 agents, meetings=2, r5, 5 seeds, paired),
+the RAW result does **not** support Claim A: current GA 17% vs SMGA 25% (Δ+2/25, 95% CI
+includes 0), and SMGA stale (34%) is far worse than GA (9%) — a changed central fact
+strands a web of dependent side-commitments on the old value. We also found the sim is
+**chaotically stochastic** (temp-0 gives no reproducibility), so claims need replication
++ power. We built a low-variance instrument — `replay_eval.py`, which replays a FIXED
+event stream into each memory — and, crucially, conditioned the metric on agents who
+**received** the update (isolating memory coherence from diffusion). Under that correct
+metric, **SMGA v2 keeps 48% of informed agents on the current truth vs GA's 31%
+(+17pp)** — the first low-variance evidence FOR Claim A's core (GA wins only by
+forgetting: 57% unknown). An entity-centric v3 (event registry + late binding) was
+tried but is currently broken (registry clobbered by incidental mentions). Next: fix v3,
+then power the receiver-conditioned comparison. See `sim/RESULTS.md`.
 
 **Earlier working claim (diagnostic, 2026-06-15):** SMGA is **amortized / distilled
 social-planning memory**. A capable model consolidates interactions once into

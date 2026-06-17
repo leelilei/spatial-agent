@@ -268,3 +268,102 @@ remains the stronger version and the headline result (r9: SMGA 13 current / 0 st
 
 Next: (a) semantic/entity-based retrieval for SMGAv2Memory, then re-test the gate;
 (b) a more diffusion-complete schedule so currency is not drowned by "never heard it".
+
+---
+
+# Upgraded stack + powered main result (2026-06-17)
+
+Working principles (see README): aim for the big Claim A; solve problems, don't
+abandon them; no underpowered nulls. The three obstacles above were SOLVED, then the
+comparison was run with power.
+
+## Stack upgrades (committed)
+
+- **Embedding retrieval** (`memories.py`, model2vec static embeddings, CPU-only, no
+  torch). Lexical retrieval capped ~7/10 surfacing because a held current fact phrased
+  without the query's keywords scored 0. Embedding cosine (GA-faithful — Park 2023
+  retrieval IS embedding cosine) lifts it and is shared by GA + SMGA for fairness.
+  Lexical fallback retained for --mock / dependency-free envs.
+- **Anchored consolidation**: SMGA facts must be self-contained (no bare "It is
+  Sunday..."). Validated: 0 bare-pronoun claims post-fix.
+- **Connectivity** (`society.py meetings_per_round`): 1 = slow single chain; 2-3 = a
+  connected neighborhood. Raised current-fact holders 10/25 -> 17/25 at meetings=2.
+
+## Main result — 5-seed paired (25 agents, meetings=2, r5, gpt-5.4-mini)
+
+```text
+metric          GA      SMGA v2   paired Δ(SMGA-GA)        verdict
+current         17%     25%       +2.0/25  95%CI[-1.8,+5.8]  NOT sig (includes 0)
+stale            9%     34%       --                         SMGA much WORSE
+unknown         74%     41%       --
+net=cur-stale   +2.0    -2.4      -4.4     95%CI[-18,+10]    NOT sig
+```
+
+**This raw result does NOT support Claim A.** GA mostly forgets (74% unknown = "safe");
+SMGA retains and commits but converts much of it into CONFIDENT STALE answers (34%).
+Root cause: a changed central fact (drive Saturday->Sunday) strands a web of DEPENDENT
+side-commitments ("Sam brings tools Saturday") on the old value; fact-level currency
+resolution does not propagate to dependents.
+
+## Methodological finding — the sim is chaotically stochastic
+
+Same seed 41, SMGA across three runs: current {9,4,4}, stale {8,18,14}. Temperature is
+already 0, yet runs are NOT reproducible: provider temp-0 is deterministic only on
+short prompts; on real (long) sim prompts one different token cascades into divergent
+conversation paths. workers=1 does not fix it either. **Consequence: single runs cannot
+attribute an outcome to the architecture — claims need replication + power.**
+
+## C — fixed-log replay eval (low-variance instrument)
+
+`replay_eval.py` replays a FIXED per-agent event stream (from a saved snapshot) into
+fresh memories of each condition, so all conditions see IDENTICAL events; this isolates
+how each memory REPRESENTS / RESOLVES / RETRIEVES currency and removes the dominant
+behavioural-divergence noise. Variance is now tiny (e.g. smga3 stale stable at
+[15,18,17] across replays). Three-way on one fixed log (valstack SMGA snapshot, 3
+replays, 25 agents):
+
+```text
+condition   current   stale    unknown   net
+ga          23%       23%      55%       +0.0
+smga v2     35%       37%      28%       -0.7
+smga3 v3    24%       67%       9%      -10.7   (B, broken — see below)
+```
+
+## The right metric — condition on diffusion (RECEIVERS)
+
+Raw stale unfairly counts agents who never heard the update (their "Saturday" answer is
+honest, not a memory failure). Conditioning on the 18/25 agents whose fixed event stream
+contains the Sunday update isolates memory COHERENCE from diffusion:
+
+```text
+among RECEIVERS (heard Sunday)   current   stale    unknown
+ga                                31%       11%      57%
+smga v2                           48%       26%      26%      <- +17pp current over GA
+smga3 v3                          33%       59%       7%      <- broken
+```
+
+**This is the first low-variance, correctly-metricised evidence FOR Claim A's core:**
+among agents who received the update, SMGA v2 keeps 48% on the current truth vs GA's
+31% (+17pp); GA wins mostly by forgetting (57% unknown). SMGA v2's residual stale (26%)
+— informed agents who still answer Saturday — is the remaining obstacle (dependent-fact
+propagation).
+
+## B — entity-centric memory v3 (tried; broken; diagnosed)
+
+`SMGAv3Memory`: a single source of truth (EVENT REGISTRY of canonical current
+day/place/time) + dependent facts carrying `depends_on` instead of baking in the
+volatile attribute; retrieval LATE-BINDS the volatile value from the registry, so
+dependents structurally cannot go stale. Offline-validated (a "Saturday" dependent
+renders "Sunday" once the registry moves). **But live (C) it is WORSE — 59% stale even
+among receivers.** Diagnosis: the registry day/place gets clobbered back to Saturday by
+incidental weekday mentions in side-commitments ("Sam brings tools Saturday"), because
+consolidation re-derives the registry each round and `slot[k]=any non-empty v` lets an
+incidental mention overwrite the authoritative moved value.
+
+## Next
+
+- **Fix v3 clobbering**: registry day/place updates ONLY from authoritative statements
+  about the event's own schedule; once moved, no regression from incidental mentions.
+  Target: receivers get GA's low stale + v2's high current simultaneously.
+- **Power it** with the conditional (receiver) metric and enough replays, chunked to
+  <=3 replays/job (background runtime cap kills longer jobs).

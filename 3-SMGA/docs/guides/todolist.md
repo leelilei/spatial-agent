@@ -25,15 +25,27 @@
 ### 当前焦点：3-SMGA 社会模拟（`sim/`）
 
 已用诊断证明短上下文单轮 regime 排不出架构高下 → 必须在**活体多智能体社会**里测。
+**准绳（见 README "Working Principles"）：坚持大 Claim A（结构记忆让社会长程更连贯）；发现问题就解决，不抛下；不要欠功效的 null。**
 
-- [x] `S0` 最小社会模拟骨架 + mock 跑通 + 扩散追踪（`sim/society.py`）
-- [x] `S1` 接 LLM 对话（对话提示对两种记忆公平相同）
-- [x] `S2` 两个记忆：`GAReflectionMemory`(基线) vs `SMGAv2Memory`(currency 解析)（`sim/memories.py`）
-- [x] `S3` 注入会更新的事实（drive 中途改 周日/社区中心）= currency 压力 + 终局 currency 访谈
-- [x] `S4a` 强模型头对头：SMGA v2 **4/4 当前** vs GA **3/4**（GA 丢 Uli 的更新）；强模型无人 stale
-- [x] `S4b` **mini 头对头**：弱模型上 SMGA v2 优势已张开（SMGA 4/4 vs GA 0/4；见 `sim/RESULTS.md`）
-- [~] `S5` 扩规模（更多 agent/轮）+ 多 run 取方差 + 多一致性维度（C1 承诺、C2 防幻觉）：`sim/run_society_sweep.py` 已支持 agent_count/rounds/repeats/model/memory 聚合；6-agent mini smoke 已跑（C4 打平 2/6，但 C2 unsupported_specific: GA 3/6 vs SMGA 0/6）；下一步跑多 schedule + 显式 C1/C2 访谈
-- [ ] `S6` 凑足正向证据后，回 3-SMGA-EVAL 把测量做严谨；写论文
+- [x] `S0`–`S4` 骨架 / LLM 对话 / GA-reflect vs SMGA-v2 / currency 注入 + 访谈（`sim/society.py` `sim/memories.py`）
+- [x] `S5a` 检索天花板：embedding 语义检索（model2vec，忠于 Park2023）+ 锚点化 consolidation（`memories.py`）
+- [x] `S5b` 扩散：`meetings_per_round` 连通度（holder 10/25→17/25 @meetings=2）
+- [x] `S5c` **多 seed 主结果（25 agent / meetings2 / r5 / 5 seed 配对）**：raw 指标 **不支持** Claim A——
+      current GA 17% vs SMGA 25%（Δ+2/25，95%CI 含 0，不显著）；**SMGA stale 34% >> GA 9%**；net 反负。
+      根因：fact 级 currency 解析不传播到挂在旧值上的副承诺。
+- [x] `S5d` **方法论关键发现**：sim 混沌随机（temp 0 也无比特复现，一个 token 级联）→ 任何 claim 必须重复+功效。
+- [x] `S5e` **C 低方差测量台**（`replay_eval.py`）：固定事件流回放进各记忆，隔离行为发散噪声（方差极小，stale 稳定±1）。
+- [x] `S5f` **条件化指标的正向信号**：只看"收到更新"的 18 agent，**SMGA v2 current 48% vs GA 31%（+17pp）**——
+      Claim A 核心信号为真（GA 主要靠遗忘 57% unknown）。
+- [x] `S5g` **B 实体中心记忆 v3**（`SMGAv3Memory`，登记表单一真相+晚绑定）实现并离线验证；
+      但 C 三方测出 **v3 反更差**（收到更新者 stale 59%）→ 诊断：登记表被副承诺"顺带提周六"反复冲刷回 Saturday。
+- [ ] `S5h` **修 v3 登记表冲刷 bug**：day/place 只由"关于事件本身日程"的权威陈述更新，moved 后不因顺带提及回退；
+      目标：收到更新者同时拿到 GA 的低 stale + v2 的高 current（理想态）。在 C 上重测三方。
+- [ ] `S5i` **功效化**：用对的条件化指标（收到更新者 current/stale）+ 足够 replay（≤3/作业避开运行时长上限）跑出 CI。
+- [ ] `S6` 凑足正向证据后写论文；回 3-SMGA-EVAL 把测量做严谨。
+
+运行注意：后台任务有运行时长上限，长 sweep（≥10 run / ≥5 replay×3 cond）会被杀 → 切成每 seed/≤3 replay 的小作业再聚合。
+provider（fhl）偶发 522/523 outage；`replay_eval`/`run_society_sweep` 已加 per-call+per-unit 韧性。
 
 ### （暂缓）3-SMGA-EVAL 的评测线
 - [ ] `E0` 零 API：GA 日志上的 C2 信念接地原型
