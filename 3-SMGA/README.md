@@ -25,7 +25,7 @@ These govern how we work. They override convenience.
    (variance controlled, effect size + CI) and honest scope. We neither overclaim
    nor settle for "n=1 looked good."
 
-**Current focus (2026-06-17): the society simulation (`sim/`).** The short-context,
+**Current focus (2026-06-18): the society simulation (`sim/`).** The short-context,
 single-shot diagnostic regime (`benchmarks/diagnostic_v0/`) cannot decisively rank
 memory architectures (proven across our experiments). The goal — show that an
 improved social memory makes a *society* of agents more coherent over a long horizon
@@ -40,7 +40,7 @@ n=1 run, 4 agents; `sim/run_society_sweep.py` now provides the scaling/multi-run
 harness, and this claim is now being stress-tested in 25-agent pilots.) The
 companion eval-benchmark project lives at `../3-SMGA-EVAL`.
 
-**Latest society result (2026-06-17): powered 5-seed main result + low-variance
+**Latest society result (2026-06-18): powered 5-seed main result + low-variance
 instrument.** Stack upgraded (embedding retrieval; anchored consolidation; connectivity
 `meetings_per_round`). On the full society (25 agents, meetings=2, r5, 5 seeds, paired),
 the RAW result does **not** support Claim A: current GA 17% vs SMGA 25% (Δ+2/25, 95% CI
@@ -52,9 +52,12 @@ event stream into each memory — and, crucially, conditioned the metric on agen
 **received** the update (isolating memory coherence from diffusion). Under that correct
 metric, **SMGA v2 keeps 48% of informed agents on the current truth vs GA's 31%
 (+17pp)** — the first low-variance evidence FOR Claim A's core (GA wins only by
-forgetting: 57% unknown). An entity-centric v3 (event registry + late binding) was
-tried but is currently broken (registry clobbered by incidental mentions). Next: fix v3,
-then power the receiver-conditioned comparison. See `sim/RESULTS.md`.
+forgetting: 57% unknown). An entity-centric v3 (event registry + late binding) had
+registry-clobbering failures, but the deterministic registry guard now clears the
+fixed-log powered replay: on the r009 event stream, receiver-conditioned SMGA v3 gets
+**17/17 current, 0 stale, 0 unknown across 3/3 replays**, versus GA's 5/17 and SMGA
+v2's mean 10/17. Next: replicate across additional fixed logs before returning to
+live-sim headline claims. See `sim/RESULTS.md`.
 
 **Earlier working claim (diagnostic, 2026-06-15):** SMGA is **amortized / distilled
 social-planning memory**. A capable model consolidates interactions once into

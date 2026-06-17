@@ -29,6 +29,7 @@ from llm import DEFAULT_CONFIG, LLM
 from society import INTERVIEW_SYSTEM, build_memory_factory, demo_world
 
 QUESTION = "When and where is the repair drive being held now?"
+CURRENT_MARKERS = ("sunday", "community center")
 
 
 def resilient_interview(world: Any, question: str, llm: LLM) -> dict[str, Any]:
@@ -64,7 +65,7 @@ def per_agent_round_events(snapshot: dict[str, Any]) -> dict[str, dict[int, list
 
 
 def replay_once(memory_kind: str, snapshot: dict[str, Any], llm: LLM, *,
-                agent_count: int, workers: int) -> dict[str, Any]:
+                agent_count: int, workers: int) -> tuple[dict[str, Any], dict[str, Any]]:
     """Build fresh memories, replay the fixed event stream round by round, interview."""
     world = demo_world(build_memory_factory(memory_kind, llm), agent_count=agent_count)
     ev = per_agent_round_events(snapshot)
@@ -76,6 +77,7 @@ def replay_once(memory_kind: str, snapshot: dict[str, Any], llm: LLM, *,
             print(f"  consolidate failed {a.agent_id}: {exc}", flush=True)
 
     for r in rounds:
+        print(f"  {memory_kind}: replay round {r}", flush=True)
         for a in world.agents:
             for e in ev.get(a.agent_id, {}).get(r, []):
                 a.memory.observe(e)
@@ -85,7 +87,10 @@ def replay_once(memory_kind: str, snapshot: dict[str, Any], llm: LLM, *,
         else:
             for a in world.agents:
                 safe_consolidate(a)
-    return resilient_interview(world, QUESTION, llm)
+    print(f"  {memory_kind}: interview", flush=True)
+    results = resilient_interview(world, QUESTION, llm)
+    snapshots = {a.agent_id: a.memory.snapshot() for a in world.agents}
+    return results, snapshots
 
 
 def tally(results: dict[str, Any]) -> dict[str, int]:
@@ -96,10 +101,27 @@ def tally(results: dict[str, Any]) -> dict[str, int]:
     return t
 
 
+def receiver_ids(snapshot: dict[str, Any]) -> set[str]:
+    """Agents whose fixed event stream contains the current update signal."""
+    ids: set[str] = set()
+    for aid, state in snapshot.items():
+        for event in state.get("events", []):
+            text = str(event.get("text", "")).lower()
+            if any(marker in text for marker in CURRENT_MARKERS):
+                ids.add(aid)
+                break
+    return ids
+
+
+def tally_subset(results: dict[str, Any], ids: set[str]) -> dict[str, int]:
+    return tally({aid: item for aid, item in results.items() if aid in ids})
+
+
 def ci95(xs: list[float]) -> tuple[float, float, float]:
     n = len(xs)
     if n < 2:
-        return (xs[0] if xs else 0.0, 0.0, 0.0)
+        x = xs[0] if xs else 0.0
+        return (x, x, x)
     m = st.mean(xs)
     se = st.stdev(xs) / math.sqrt(n)
     t = {2: 12.71, 3: 4.30, 4: 3.18, 5: 2.78, 6: 2.57, 7: 2.45, 8: 2.36,
@@ -115,60 +137,91 @@ def main() -> int:
     p.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
     p.add_argument("--replays", type=int, default=5)
     p.add_argument("--workers", type=int, default=4)
+    p.add_argument("--save-memory-snapshots", action="store_true")
     p.add_argument("--out-dir", type=Path, default=Path("sim/runs/replay_eval/latest"))
     args = p.parse_args()
 
     memories = tuple(args.memory or ("ga", "smga"))
     snapshot = json.loads(args.snapshot.read_text(encoding="utf-8"))
     agent_count = len(snapshot)
+    receivers = receiver_ids(snapshot)
+    receiver_count = len(receivers)
     llm = LLM(config=args.config, model=args.model)
     args.out_dir.mkdir(parents=True, exist_ok=True)
 
     per_cond_tallies: dict[str, list[dict[str, int]]] = {m: [] for m in memories}
+    per_cond_receiver_tallies: dict[str, list[dict[str, int]]] = {m: [] for m in memories}
     per_replay_agent_verdicts: list[dict[str, dict[str, str]]] = []  # [{cond: {agent_id: verdict}}]
 
     for i in range(args.replays):
         replay_record: dict[str, dict[str, str]] = {}
         for m in memories:
             try:
-                res = replay_once(m, snapshot, llm, agent_count=agent_count, workers=args.workers)
+                print(f"replay {i} {m}: start", flush=True)
+                res, memory_snapshots = replay_once(
+                    m, snapshot, llm, agent_count=agent_count, workers=args.workers)
             except Exception as exc:
                 print(f"!! replay {i} {m} failed (skipped): {exc}", flush=True)
                 continue
             per_cond_tallies[m].append(tally(res))
+            per_cond_receiver_tallies[m].append(tally_subset(res, receivers))
             replay_record[m] = {aid: r["verdict"] for aid, r in res.items()}
             (args.out_dir / f"replay_{i:02d}_{m}.json").write_text(
                 json.dumps({"question": QUESTION, "results": res}, ensure_ascii=False, indent=2), encoding="utf-8")
+            if args.save_memory_snapshots:
+                (args.out_dir / f"replay_{i:02d}_{m}_memory_snapshots.json").write_text(
+                    json.dumps(memory_snapshots, ensure_ascii=False, indent=2), encoding="utf-8")
             print(f"replay {i} {m}: {tally(res)}", flush=True)
         per_replay_agent_verdicts.append(replay_record)
 
     # aggregate
     summary: dict[str, Any] = {"snapshot": str(args.snapshot), "agent_count": agent_count,
+                               "receiver_agent_count": receiver_count, "receiver_ids": sorted(receivers),
                                "replays": args.replays, "memories": list(memories), "conditions": {}}
     for m in memories:
         ts = per_cond_tallies[m]
         rates = {k: [t[k] / agent_count for t in ts] for k in ("current", "stale", "unknown")}
+        rts = per_cond_receiver_tallies[m]
+        rrates = {k: [t[k] / receiver_count for t in rts] for k in ("current", "stale", "unknown")}
         summary["conditions"][m] = {
             "mean_counts": {k: round(st.mean([t[k] for t in ts]), 2) for k in ("current", "stale", "unknown")},
             "current_rate_ci": [round(x, 3) for x in ci95(rates["current"])],
             "stale_rate_ci": [round(x, 3) for x in ci95(rates["stale"])],
             "net_rate": round(st.mean([(t["current"] - t["stale"]) / agent_count for t in ts]), 3),
+            "receiver_mean_counts": {k: round(st.mean([t[k] for t in rts]), 2)
+                                     for k in ("current", "stale", "unknown")},
+            "receiver_current_rate_ci": [round(x, 3) for x in ci95(rrates["current"])],
+            "receiver_stale_rate_ci": [round(x, 3) for x in ci95(rrates["stale"])],
+            "receiver_net_rate": round(st.mean([(t["current"] - t["stale"]) / receiver_count
+                                                for t in rts]), 3),
         }
 
-    # paired (same fixed events): per replay, current_rate diff between first two conditions
+    # paired (same fixed events): per replay, current_rate diff between conditions
     if len(memories) >= 2:
-        a, b = memories[0], memories[1]
-        n_pair = min(len(per_cond_tallies[a]), len(per_cond_tallies[b]))
-        dcur = [(per_cond_tallies[b][i]["current"] - per_cond_tallies[a][i]["current"]) / agent_count
-                for i in range(n_pair)]
-        dnet = [((per_cond_tallies[b][i]["current"] - per_cond_tallies[b][i]["stale"])
-                 - (per_cond_tallies[a][i]["current"] - per_cond_tallies[a][i]["stale"])) / agent_count
-                for i in range(n_pair)]
-        summary["paired_diff"] = {
-            "compare": f"{b} - {a}",
-            "d_current_rate_ci": [round(x, 3) for x in ci95(dcur)],
-            "d_net_rate_ci": [round(x, 3) for x in ci95(dnet)],
-        }
+        paired: dict[str, Any] = {}
+        for i_a, a in enumerate(memories):
+            for b in memories[i_a + 1:]:
+                n_pair = min(len(per_cond_tallies[a]), len(per_cond_tallies[b]))
+                dcur = [(per_cond_tallies[b][i]["current"] - per_cond_tallies[a][i]["current"]) / agent_count
+                        for i in range(n_pair)]
+                dnet = [((per_cond_tallies[b][i]["current"] - per_cond_tallies[b][i]["stale"])
+                         - (per_cond_tallies[a][i]["current"] - per_cond_tallies[a][i]["stale"])) / agent_count
+                        for i in range(n_pair)]
+                rdcur = [(per_cond_receiver_tallies[b][i]["current"] -
+                          per_cond_receiver_tallies[a][i]["current"]) / receiver_count
+                         for i in range(n_pair)]
+                rdnet = [((per_cond_receiver_tallies[b][i]["current"] -
+                           per_cond_receiver_tallies[b][i]["stale"])
+                          - (per_cond_receiver_tallies[a][i]["current"] -
+                             per_cond_receiver_tallies[a][i]["stale"])) / receiver_count
+                         for i in range(n_pair)]
+                paired[f"{b}-{a}"] = {
+                    "d_current_rate_ci": [round(x, 3) for x in ci95(dcur)],
+                    "d_net_rate_ci": [round(x, 3) for x in ci95(dnet)],
+                    "receiver_d_current_rate_ci": [round(x, 3) for x in ci95(rdcur)],
+                    "receiver_d_net_rate_ci": [round(x, 3) for x in ci95(rdnet)],
+                }
+        summary["paired_diff"] = paired
 
     (args.out_dir / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
     print("\n" + json.dumps(summary["conditions"], ensure_ascii=False, indent=2))

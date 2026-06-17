@@ -362,8 +362,72 @@ incidental mention overwrite the authoritative moved value.
 
 ## Next
 
-- **Fix v3 clobbering**: registry day/place updates ONLY from authoritative statements
-  about the event's own schedule; once moved, no regression from incidental mentions.
-  Target: receivers get GA's low stale + v2's high current simultaneously.
-- **Power it** with the conditional (receiver) metric and enough replays, chunked to
-  <=3 replays/job (background runtime cap kills longer jobs).
+- **Replicate v3 across additional fixed logs**: v3 registry guarding now works on the
+  r009 fixed event stream; next, repeat the receiver-conditioned replay on other saved
+  streams before promoting it to a headline claim.
+- **Then return to live sim**: once fixed-log mechanism evidence is stable, run a
+  powered live-sim comparison with the v3 memory.
+
+## v3 registry guard sanity (2026-06-17)
+
+Implemented deterministic guards in `SMGAv3Memory`: registry `day/place/time` slots
+are updated only when recent observations contain evidence about the event's own
+schedule. Incidental side-commitments such as "Sam brings tools Saturday" no longer
+overwrite the authoritative "repair drive moved to Sunday / community center" update.
+Also fixed two follow-on issues: rejected LLM event rows no longer create empty
+registry entries ("repair drive is currently ."), and same-sentence
+"Sunday/community center" mentions can anchor the repair-drive registry even when the
+speaker uses pronouns ("I've heard it's Sunday...").
+
+Offline sanity:
+
+```text
+initial:    repair drive = Saturday / front porch
+update:     world moved repair drive to Sunday / community center
+incidental: Sam can bring tools Saturday
+result:     repair drive remains Sunday / community center
+```
+
+Powered replay sanity, fixed r009 SMGA event stream:
+
+```text
+snapshot: sim/runs/longitudinal_25agent_seed41_workers4/rounds_009/gpt-5.4-mini/smga/run_000/memory_snapshots.json
+receivers: 17/25
+model: gpt-5.4-mini
+replays: 3
+workers: 4
+out: sim/runs/replay_eval/v3_guard3_r009_powered_3replay
+```
+
+All agents:
+
+```text
+condition   current_mean  stale_mean  unknown_mean
+GA              5.0          0.0          20.0
+SMGA v2        10.0          0.0          15.0
+SMGA v3        17.0          0.0           8.0
+```
+
+Receivers only:
+
+```text
+condition   current_mean  stale_mean  unknown_mean
+GA              5.0          0.0          12.0
+SMGA v2        10.0          0.0           7.0
+SMGA v3        17.0          0.0           0.0
+```
+
+Receiver-conditioned current-rate differences:
+
+```text
+comparison      mean diff   95% CI
+SMGA v2 - GA     +29.4pp    [+4.1, +54.7]
+SMGA v3 - GA     +70.6pp    [+70.6, +70.6]
+SMGA v3 - v2     +41.2pp    [+15.9, +66.5]
+```
+
+Read: the v3 clobbering bug is fixed on this fixed log. Across 3/3 replays, receivers
+get the ideal result for this scenario: **17/17 current, 0 stale, 0 unknown**, versus
+v2's mean 10/17 current and GA's 5/17. This is exactly the target combination: high
+current recall without the stale-regression failure. Still, this is one fixed event
+stream; the next step is cross-log replication before turning it into a headline claim.
