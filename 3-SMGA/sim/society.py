@@ -355,6 +355,9 @@ def build_memory_factory(kind: str, llm: "Any") -> Callable[[], Memory]:
     if kind == "smga":
         from memories import SMGAv2Memory
         return lambda: SMGAv2Memory(llm=llm)
+    if kind == "smga3":
+        from memories import SMGAv3Memory
+        return lambda: SMGAv3Memory(llm=llm)
     raise ValueError(f"unknown memory kind: {kind}")
 
 
