@@ -6,6 +6,25 @@ SMGA is an independent research project split out from SpatialAgent. North star:
 **LLM game agents** — believable multi-agent social *simulation* (Generative Agents
 lineage). Memory is the lever, not the goal.
 
+## Working Principles (准绳)
+
+These govern how we work. They override convenience.
+
+1. **Aim for a big claim.** The target claim is **A**: *improved structured social
+   memory (SMGA v2) makes a society of agents more coherent over a long horizon.*
+   We do not retreat to a smaller, safer claim because the big one is hard. Small
+   claims do not produce good work. If the evidence is not there yet, we build the
+   evidence — we do not shrink the claim to fit what we already have.
+2. **Solve problems; do not abandon them.** When an experiment exposes a problem
+   (high variance, a retrieval ceiling, weak diffusion, a confound), the problem is
+   an *obstacle on the path to Claim A* — something to fix — not a reason to change
+   direction or lower the bar. "Switching tracks to avoid the hard part" is failure;
+   "naming the obstacle and removing it" is the job. We may sequence problems, but
+   we do not drop them.
+3. **No underpowered nulls, no hype.** A result counts only with adequate power
+   (variance controlled, effect size + CI) and honest scope. We neither overclaim
+   nor settle for "n=1 looked good."
+
 **Current focus (2026-06-17): the society simulation (`sim/`).** The short-context,
 single-shot diagnostic regime (`benchmarks/diagnostic_v0/`) cannot decisively rank
 memory architectures (proven across our experiments). The goal — show that an

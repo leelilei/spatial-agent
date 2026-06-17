@@ -145,14 +145,27 @@ class World:
     rng: random.Random = field(default_factory=lambda: random.Random(7))
     # exogenous updates injected into specific agents at a round: {round: [(agent_id, text)]}
     injections: dict[int, list[tuple[str, str]]] = field(default_factory=dict)
+    # encounters per agent per round (connectivity). 1 = single chain (slow diffusion);
+    # 2-3 = a realistically connected neighborhood where an update can actually spread.
+    meetings_per_round: int = 1
 
     def schedule(self, round_idx: int) -> list[tuple[Agent, Agent]]:
-        """Who meets whom this round. Minimal: a random perfect-ish pairing."""
-        pool = list(self.agents)
-        self.rng.shuffle(pool)
-        pairs = []
-        for i in range(0, len(pool) - 1, 2):
-            pairs.append((pool[i], pool[i + 1]))
+        """Who meets whom this round: `meetings_per_round` independent random matchings.
+
+        Higher connectivity lets a single-source update diffuse through the society
+        instead of crawling one hop per round. Duplicate pairs within a round are
+        de-duplicated so the same two agents don't hold the same conversation twice."""
+        seen: set[frozenset[str]] = set()
+        pairs: list[tuple[Agent, Agent]] = []
+        for _ in range(max(1, self.meetings_per_round)):
+            pool = list(self.agents)
+            self.rng.shuffle(pool)
+            for i in range(0, len(pool) - 1, 2):
+                key = frozenset((pool[i].agent_id, pool[i + 1].agent_id))
+                if key in seen:
+                    continue
+                seen.add(key)
+                pairs.append((pool[i], pool[i + 1]))
         return pairs
 
     def agent_by_id(self, agent_id: str) -> Agent | None:
@@ -263,7 +276,8 @@ def run_sim(world: World, rounds: int, converse: ConverseFn, out_dir: Path, *, w
     return summary
 
 
-def demo_world(memory_factory: Callable[[], Memory], *, rng_seed: int = 7, agent_count: int = 4) -> World:
+def demo_world(memory_factory: Callable[[], Memory], *, rng_seed: int = 7, agent_count: int = 4,
+               meetings_per_round: int = 1) -> World:
     """A configurable society with one seeded social dynamic (an event to organize)."""
     roster = [
         Agent("a01", "Rosa", "the block coordinator, organized and warm", memory_factory(),
@@ -306,6 +320,7 @@ def demo_world(memory_factory: Callable[[], Memory], *, rng_seed: int = 7, agent
         topic="the repair drive",
         rng=random.Random(rng_seed),
         injections=injections,
+        meetings_per_round=meetings_per_round,
     )
 
 
@@ -351,6 +366,7 @@ def main() -> int:
     parser.add_argument("--rounds", type=int, default=4)
     parser.add_argument("--turns", type=int, default=4, help="utterances per encounter")
     parser.add_argument("--agent-count", type=int, default=4, help="number of agents from the demo roster")
+    parser.add_argument("--meetings", type=int, default=1, help="encounters per agent per round (connectivity)")
     parser.add_argument("--seed", type=int, default=7, help="random seed for encounter scheduling")
     parser.add_argument("--workers", type=int, default=1, help="concurrent encounters/consolidations per round")
     parser.add_argument("--mock", action="store_true", help="offline; no LLM calls")
@@ -367,7 +383,8 @@ def main() -> int:
         llm = LLM(config=args.config or DEFAULT_CONFIG, model=args.model)
         converse = make_llm_converse(llm, turns=args.turns)
 
-    world = demo_world(build_memory_factory(args.memory, llm), rng_seed=args.seed, agent_count=args.agent_count)
+    world = demo_world(build_memory_factory(args.memory, llm), rng_seed=args.seed,
+                       agent_count=args.agent_count, meetings_per_round=args.meetings)
     out_dir = args.out_dir or Path(f"sim/runs/{args.memory}_demo")
     summary = run_sim(world, args.rounds, converse, out_dir, workers=max(1, args.workers))
     summary["rng_seed"] = args.seed

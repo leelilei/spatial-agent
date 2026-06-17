@@ -1,0 +1,8 @@
+# Society simulation (sim/) dependencies.
+# The LLM transport is reused from benchmarks/diagnostic_v0 (model_calling_runner).
+#
+# model2vec: static distilled embeddings for GA-faithful semantic retrieval in
+# memories.py (Park 2023 retrieval is embedding cosine, not keyword). CPU-only, no
+# torch. If absent, retrieval degrades to a lexical fallback so the sim still runs.
+model2vec>=0.3
+numpy>=1.24
