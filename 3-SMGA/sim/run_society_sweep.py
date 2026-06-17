@@ -312,15 +312,22 @@ def main() -> int:
                     f"memory={memory} run={run_index} seed={schedule_seed}",
                     flush=True,
                 )
-                rows.append(run_one(
-                    memory=memory,
-                    model=model,
-                    llm=llm,
-                    run_index=run_index,
-                    schedule_seed=schedule_seed,
-                    args=args,
-                ))
+                try:
+                    rows.append(run_one(
+                        memory=memory,
+                        model=model,
+                        llm=llm,
+                        run_index=run_index,
+                        schedule_seed=schedule_seed,
+                        args=args,
+                    ))
+                except Exception as exc:  # one failed run (e.g. provider outage) must not lose the sweep
+                    print(f"!! run failed (skipped): memory={memory} run={run_index} seed={schedule_seed}: {exc}",
+                          flush=True)
 
+    if not rows:
+        print("no runs completed", flush=True)
+        return 1
     result = aggregate(rows)
     write_json(args.out_dir / "runs.json", rows)
     write_json(args.out_dir / "aggregate.json", result)

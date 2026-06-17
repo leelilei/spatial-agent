@@ -236,3 +236,35 @@ This is the strongest 25-agent pilot signal so far, but it remains a single seed
 The next clean baseline comparison should run multiple schedule seeds at the
 25-agent scale and add an explicit evidence gate / unknown policy so SMGA does not
 answer concretely unless a current fact directly supports the answer.
+
+## Evidence-gate experiment (2026-06-17) — tried and REVERTED
+
+We tried a naive evidence gate in `SMGAv2Memory.retrieve`: if no current fact's
+keywords overlap the query, return an explicit "no fact; do not invent" marker with
+NO fallback to all facts. Re-ran SMGA at 25 agents, seed 41, turns 3, rounds 3/6/9:
+
+```text
+rounds        current  stale  unknown  unsupported
+r=3  pre-gate    5       6       14       5
+     gated       2       0       23       5
+r=6  pre-gate   12       7        6       5
+     gated       4       0       21       5
+r=9  pre-gate   13       0       12       2
+     gated       8       0       17       4
+```
+
+Outcome: the gate killed `stale` (good) but **crashed `current` recall** (r9 13->8,
+r6 12->4) and did NOT reduce `unsupported`. Net negative -> reverted.
+
+Diagnosis (25-agent r9, gated): of 17 unknown answers, **3/8 sampled agents DID hold
+the "Sunday/community center" current fact** (e.g. a14: "Rey knows the repair drive is
+on Sunday at the community center") yet answered unknown — the keyword `rel` match is
+too brittle and mis-blocked them. The other ~5/8 genuinely never received the update
+(diffusion limit). So the gate concept is sound (don't dump-and-confabulate) but the
+implementation needs **semantic retrieval** so it surfaces held facts reliably before
+the no-fallback guard is safe. Reverted to `use = rel or self.facts`; pre-gate SMGA
+remains the stronger version and the headline result (r9: SMGA 13 current / 0 stale /
+2 unsupported vs GA 0 current / 14 unsupported).
+
+Next: (a) semantic/entity-based retrieval for SMGAv2Memory, then re-test the gate;
+(b) a more diffusion-complete schedule so currency is not drowned by "never heard it".

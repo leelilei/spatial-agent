@@ -81,6 +81,13 @@ class SMGAv2Memory:
         terms = {t.lower().strip(".,") for t in query.split()}
         rel = [f for f in self.facts
                if terms & {t.lower().strip(".,") for t in (str(f.get("claim", "")) + " " + " ".join(f.get("subject", []))).split()}]
+        # NOTE (2026-06-17): a naive "evidence gate" (return an explicit no-fact marker
+        # when `rel` is empty, no fallback) was tried and REVERTED. The keyword match is
+        # too brittle: it mis-blocked agents that DID hold the current fact (3/8 unknown
+        # answerers in the 25-agent r9 pilot held "Sunday/community center"), crashing
+        # current-recall (r9 13->8) without reducing unsupported. A proper gate needs
+        # SEMANTIC retrieval so it surfaces held facts reliably first. Until then, the
+        # fallback (surface current facts) is the stronger version. See sim/RESULTS.md.
         use = rel or self.facts
         return "\n".join(f"- {f.get('claim','')} (current)" for f in use[-6:])
 
