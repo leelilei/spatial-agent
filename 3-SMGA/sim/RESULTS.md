@@ -14,6 +14,7 @@
 | 06-18 | S5i | fixed-log replay, cross-log | 5 logs, receiver-cond | v3-GA +43pp 95%CI[+25,+61] SIG; v2-GA ns | done |
 | 06-18 | S5j | LIVE 3-way headline | 25a m2 r5, n=5 | v3-GA +53pp [+30,+75] SIG; v3-v2 +39pp ns | done |
 | 06-18 | S5k | anchor ablation (smga3na) | 3 logs replay | ANCHOR LOAD-BEARING: no-anchor 18%≈GA 21% (with-anchor 61%) | done |
+| 06-18 | S5kg | general regex extractor (smga3g) | 3 logs replay | INSUFFICIENT: general 29%≈GA 21% (anchor 64%) — regex too brittle | done |
 
 Detailed write-ups for each follow below / in the dated sections.
 
@@ -568,3 +569,43 @@ re-ablate; only then attempt scenario B.
 
 (smga3na to be completed on the 3rd log for the record; the 2-log signal is already
 decisive — no advantage without the anchor.)
+
+---
+
+# S5kg — general (scenario-agnostic) extractor: still insufficient (2026-06-18)
+
+S5k showed the scenario-specific anchor is load-bearing. Replaced it with a
+scenario-AGNOSTIC deterministic extractor `_extract_event_schedule` (keyed on the
+tracked event NAME from the sim topic, universal weekday vocab + "at/to the <place>"
+patterns, guards against incidental clobber / regression / garbage). Unit tests on
+move/second-hand/clobber/garbage/initial all passed. Fixed-log receiver-conditioned
+replay, 3 logs (41-43), ga vs smga3 (anchor) vs smga3g (general):
+
+```text
+condition          receiver current   stale
+GA                     21%             36%
+SMGA v3 (anchor)       64%             21%
+SMGA v3 (general)      29%             34%
+```
+
+```text
+smga3g - GA     +7pp   95% CI [-23,+37]   ns  (does NOT beat GA)
+smga3g - smga3 -37pp                          (far below the anchor)
+```
+
+Read — HONEST NEGATIVE: the scenario-agnostic regex extractor only lifts v3 to ~GA
+level (29% vs 21%), nowhere near the anchor's 64%. Diagnosis (registry dumps): on real
+logs the regex frequently (a) misses the day (gets place only), (b) gets clobbered to
+the stale day by a dependent sentence that names the event, or (c) extracts garbage. So:
+the v3 ARCHITECTURE is sound — the anchor proves the ceiling is ~64% — but the unsolved
+problem is RELIABLY POPULATING the registry from messy conversational text WITHOUT
+hard-coding the scenario's values. Regex is too brittle; the combined LLM consolidation
+buries the registry task (S5k diagnosis: empty registry for second-hand hearers).
+
+Implication: v3's S5i/S5j headline currently depends on a scenario-specific value
+detector — NOT yet a general result. Next bet: a FOCUSED per-event LLM extractor — a
+narrow dedicated call ("from these messages, what is <event>'s current day/place/time?")
+that is still general (event name from topic, no hard-coded values) but leverages the
+LLM on a tightly-scoped task where the combined consolidation failed. Test it on the
+same rig; only if it reaches ~anchor level is the general v3 real and cross-scenario
+sensible.
