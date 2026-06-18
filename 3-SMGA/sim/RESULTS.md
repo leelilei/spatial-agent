@@ -431,3 +431,43 @@ get the ideal result for this scenario: **17/17 current, 0 stale, 0 unknown**, v
 v2's mean 10/17 current and GA's 5/17. This is exactly the target combination: high
 current recall without the stale-regression failure. Still, this is one fixed event
 stream; the next step is cross-log replication before turning it into a headline claim.
+
+---
+
+# S5i — cross-log replication of the v3 advantage (2026-06-18)
+
+The single-log v3 result needed replication: is the entity-registry advantage robust
+across event streams, or a fluke of one log? Ran the receiver-conditioned three-way
+replay (`replay_eval.py`, ga vs smga vs smga3) on **5 independent fixed event logs**
+(SMGA snapshots from seeds 41-45, 25 agents, meetings=2, r5), 2 replays each.
+
+Receiver-conditioned current-rate (pooled across logs; per-log paired n=5):
+
+```text
+condition   receiver current   stale    per-log current 95% CI
+GA              25%             27%      [11%, 42%]
+SMGA v2         35%             33%      [10%, 60%]
+SMGA v3         69%             15%      [51%, 88%]
+```
+
+Paired per-log differences (n=5 logs):
+
+```text
+v3 - GA   current  +43pp   95% CI [+25, +61]   SIGNIFICANT
+v3 - v2   current  +35pp   95% CI [+11, +58]   SIGNIFICANT
+v2 - GA   current   +8pp   95% CI [-15, +31]   not significant
+```
+
+Read: the v3 advantage REPLICATES and is statistically significant across 5 independent
+event logs. Two conclusions: (1) first powered, cross-log, significant evidence for
+Claim A's core — given the update was received, v3 keeps ~69% of informed agents on the
+current truth vs GA's ~25%, with the LOWEST stale (15%); (2) the win is localized to
+v3's entity-centric single-source-of-truth registry, NOT to "structured memory" in
+general — v2 over GA is only +8pp (ns).
+
+Caveats: fixed-log replay (memory does not yet feed back into behaviour), single
+scenario (drive reschedule), mini model; significance is across schedule seeds but the
+same scenario; the v3 registry anchor still has scenario-specific logic. Next: live-sim
+headline (memory x exchange coupling) + cross-scenario + de-scenario-specific the anchor.
+
+> Concept-level narrative for these results: see `paper/narrative.md`.

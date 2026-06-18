@@ -52,12 +52,17 @@ event stream into each memory — and, crucially, conditioned the metric on agen
 **received** the update (isolating memory coherence from diffusion). Under that correct
 metric, **SMGA v2 keeps 48% of informed agents on the current truth vs GA's 31%
 (+17pp)** — the first low-variance evidence FOR Claim A's core (GA wins only by
-forgetting: 57% unknown). An entity-centric v3 (event registry + late binding) had
-registry-clobbering failures, but the deterministic registry guard now clears the
-fixed-log powered replay: on the r009 event stream, receiver-conditioned SMGA v3 gets
-**17/17 current, 0 stale, 0 unknown across 3/3 replays**, versus GA's 5/17 and SMGA
-v2's mean 10/17. Next: replicate across additional fixed logs before returning to
-live-sim headline claims. See `sim/RESULTS.md`.
+forgetting: 57% unknown). An entity-centric **v3** (event registry as single source of
+truth + late binding + a deterministic guard against incidental-mention clobbering) now
+**replicates across 5 independent fixed event logs**: receiver-conditioned current-rate
+**v3 69% vs v2 35% vs GA 25%**, with v3 also the LOWEST stale (15%). Paired per-log
+(n=5): **v3−GA +43pp (95% CI [+25,+61], significant)**, v3−v2 +35pp (significant), while
+v2−GA is only +8pp (ns) — so the win is localized to the entity-registry design, not
+"structured memory" in general. This is the first powered, cross-log, significant
+evidence for Claim A's core. Caveats: fixed-log replay (not yet live), single scenario,
+mini model, scenario-specific registry anchor. Next: live-sim headline (memory×exchange
+coupling) + cross-scenario. See `sim/RESULTS.md` (numbers) and `paper/narrative.md`
+(story). 
 
 **Earlier working claim (diagnostic, 2026-06-15):** SMGA is **amortized / distilled
 social-planning memory**. A capable model consolidates interactions once into
@@ -81,6 +86,11 @@ The implementation-oriented proposal is:
 The full defensive research blueprint is:
 
 - `docs/plans/archive/SMGA-proposal-v4.4.md`
+
+The living paper narrative / thesis (concept-level: why the claim matters, key
+distinctions like exchange-vs-retention, honest boundaries) is:
+
+- `paper/narrative.md`  ← read for the *story*; `sim/RESULTS.md` for the *numbers*
 
 The current direction + investigation log (read this first) is:
 
