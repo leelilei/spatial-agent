@@ -60,13 +60,15 @@ truth + late binding + a deterministic guard against incidental-mention clobberi
 v2−GA is only +8pp (ns) — so the win is localized to the entity-registry design, not
 "structured memory" in general. And in the **LIVE sim** (memory feeds back into
 behaviour, so a good relay re-transmits the update), the gap is even larger: v3 puts
-**68% of the whole society** on the current truth vs GA's 16% (n=3 seeds; v3−GA +52pp,
-95% CI [+6,+98]). It wins on BOTH **relay** (reaches 20.3/25 agents vs GA's 9.7 — a
-forgetful GA agent is a broken relay) and **retention** (84% of receivers stay current
-vs 41%); v2 relays no better than GA, again localizing the win to the registry. This is
-the first powered evidence for Claim A's core. Caveats: single scenario, mini model,
-scenario-specific registry anchor, live n=3 (extending). See `sim/RESULTS.md` (numbers)
-and `paper/narrative.md` (story). 
+**67% of the whole society** on the current truth vs GA's 14% (n=5 seeds; v3−GA +53pp,
+95% CI [+30,+75], significant). It wins on BOTH **relay** (reaches 19.6/25 agents vs
+GA's 9.6 — a forgetful GA agent is a broken relay) and **retention** (86% of receivers
+stay current vs 38%). This is the first powered evidence for Claim A's core: structured
+currency memory >> the GA baseline. (Honest caveat: at n=5 the live raw v3−v2 gap +39pp
+is ns due to v2 variance; the v3>v2 localization rests on the fixed-log S5i where it is
+significant, plus the consistently v3-favoring relay/receiver metrics.) Other caveats:
+single scenario, mini model, scenario-specific registry anchor. See `sim/RESULTS.md`
+(numbers) and `paper/narrative.md` (story). 
 
 **Earlier working claim (diagnostic, 2026-06-15):** SMGA is **amortized / distilled
 social-planning memory**. A capable model consolidates interactions once into
