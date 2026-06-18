@@ -55,3 +55,16 @@ Read (State 2): the 429 rate-limiting is essentially gone. mini clean to ≥64 c
 gpt-5.5 clean to ≥32 — neither ceiling reached. Operating point upgraded: single-model runs
 can use workers 32–48 (mini) / 24+ (gpt-5.5); large parallel sweeps are now throughput-bound
 by latency (~2–3s/call), not rate limits. Re-test if behaviour changes again.
+
+### State 2 ceiling (pushed until it broke)
+
+```text
+gpt-5.4-mini:  64 -> 64/64 clean ;  96 -> 63/96 (429) ;  128 -> 73/128 ;  256 -> 116/256
+gpt-5.5:       32 -> 32/32 clean ;  64 -> 61/64 (3x429) ;  96 -> 62/96 ;  128 -> 67/128
+```
+
+Ceiling: shared budget ~**64 in-flight** (mini clean to 64, 5.5 clean to ~48–64). Above
+that, 429s grow but ~half still succeed even at 256, so mild over-budget only slows down
+(retry loop absorbs it). **M1 operating point: total in-flight ≤ ~64; single mini run
+workers ~48, single strong-model run workers ~32–48; budget the sum across parallel jobs.**
+~3x State 1's ~24.
