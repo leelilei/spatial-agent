@@ -471,3 +471,44 @@ same scenario; the v3 registry anchor still has scenario-specific logic. Next: l
 headline (memory x exchange coupling) + cross-scenario + de-scenario-specific the anchor.
 
 > Concept-level narrative for these results: see `paper/narrative.md`.
+
+---
+
+# S5j — LIVE-sim headline: the memory×exchange coupling (2026-06-18)
+
+The fixed-log replay (S5i) isolated RETENTION by holding events fixed. The live sim
+lets memory feed back into behaviour: a good relay re-transmits the current value, so
+the memory architecture also shapes DIFFUSION. Ran the live three-way sweep
+(`run_society_sweep.py`, ga vs smga vs smga3), 25 agents, meetings=2, r5, turns=3,
+n=3 seeds (41-43). (Seeds 44-45 hit a provider TLS outage mid-run and were discarded;
+re-running for n=5 when the provider stabilises.)
+
+```text
+condition  raw society current  stale  relay reach (heard Sunday)  current | receivers
+GA              16% (4.0/25)     2.3        9.7/25                  41%
+SMGA v2         24% (6.0/25)     0.0        8.7/25                  69%
+SMGA v3         68% (17.0/25)    0.3       20.3/25                  84%
+```
+
+Paired per-seed (n=3):
+
+```text
+v3 - GA   raw current  +52pp   95% CI [+6, +98]   (excludes 0)   relay reach +10.7
+v3 - v2   raw current  +44pp   95% CI [+10, +78]                 relay reach +11.7
+v2 - GA   raw current   +8pp   95% CI [-9, +25]   (ns)           relay reach  -1.0
+```
+
+Read — the coupling is the headline:
+- **v3 puts 68% of the WHOLE society on the current truth vs GA's 16%** (+52pp; CI wide
+  at n=3 but excludes 0). This is LARGER than the fixed-log receiver-conditioned gap
+  (+43pp) — the live coupling adds a relay multiplier on top of retention.
+- **Decomposition**: v3 wins on BOTH (i) RELAY — it reaches 20.3/25 agents vs GA's 9.7
+  (a forgetful GA agent is a broken relay; the v3 registry surfaces an authoritative
+  "Sunday" line so v3 agents re-transmit it), and (ii) RETENTION — 84% of receivers stay
+  current vs GA's 41%.
+- **The relay benefit is UNIQUE to v3's authoritative registry**: v2 does NOT relay
+  better than GA (-1.0) and its raw-current edge is +8pp (ns). So again the win is
+  localized to the entity-centric single-source-of-truth, not "structured memory."
+
+Caveats: n=3 (extending to 5), single scenario, mini model, scenario-specific registry
+anchor. Concept narrative: `paper/narrative.md` §3 (memory-as-relay).
