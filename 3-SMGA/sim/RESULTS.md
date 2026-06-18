@@ -13,7 +13,7 @@
 | 06-17 | prop | v2 dependency-propagation prompt | seed41/43 | no measurable effect (in noise) → reverted | done |
 | 06-18 | S5i | fixed-log replay, cross-log | 5 logs, receiver-cond | v3-GA +43pp 95%CI[+25,+61] SIG; v2-GA ns | done |
 | 06-18 | S5j | LIVE 3-way headline | 25a m2 r5, n=5 | v3-GA +53pp [+30,+75] SIG; v3-v2 +39pp ns | done |
-| 06-18 | S5k | anchor ablation (smga3na) | 3 logs replay | does v3 win without scenario anchor? | RUNNING |
+| 06-18 | S5k | anchor ablation (smga3na) | 3 logs replay | ANCHOR LOAD-BEARING: no-anchor 18%≈GA 21% (with-anchor 61%) | done |
 
 Detailed write-ups for each follow below / in the dated sections.
 
@@ -532,3 +532,39 @@ Read — the coupling is the headline:
 
 Caveats: n=5 (v3-GA significant; v3-v2 ns due to v2 noise), single scenario, mini model,
 scenario-specific registry anchor. Concept narrative: `paper/narrative.md` §3 (memory-as-relay).
+
+---
+
+# S5k — anchor ablation: is v3's win general or a scenario hack? (2026-06-18)
+
+v3 (SMGAv3Memory) contains a deterministic, scenario-specific anchor
+`_extract_repair_drive_schedule` that hard-detects the repair-drive Sunday/community-
+center current truth. This is the biggest external-validity threat (a reviewer's first
+attack) and a blocker for cross-scenario work. Added a `use_anchor` toggle + condition
+`smga3na` (anchor OFF, general path only = LLM registry extraction + the
+`_event_schedule_evidence` clobbering guard). Fixed-log receiver-conditioned replay,
+3 logs (seeds 41-43); smga3na completed on 2/3 logs (41,42):
+
+```text
+condition   receiver current   stale
+GA              21%             38%
+SMGA v3 (anchor) 61%            21%
+SMGA v3 NO anchor 18% (≈GA)     38%
+```
+
+Read — HONEST NEGATIVE: **the scenario-specific anchor is load-bearing.** Without it,
+v3's general path (LLM-extracted event registry + guard) does NOT beat GA — it collapses
+to GA level (18% vs 21%). So v3's headline advantage as currently implemented is
+substantially an artifact of the hardcoded current-value detector, NOT a general
+mechanism. The S5i/S5j v3 results stand only WITH the anchor, i.e. only for this
+scenario.
+
+Implication: cross-scenario is blocked until the GENERAL registry-extraction path is
+made strong enough to win without a per-scenario value detector. The obstacle is named
+(solve, don't abandon): the LLM consolidation is not reliably populating/currency-
+resolving the registry on its own. Next: diagnose why (empty registry? stale value?
+guard over-blocking the legitimate update?) and fix the general consolidation, then
+re-ablate; only then attempt scenario B.
+
+(smga3na to be completed on the 3rd log for the record; the 2-log signal is already
+decisive — no advantage without the anchor.)
