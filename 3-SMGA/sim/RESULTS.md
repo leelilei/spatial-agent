@@ -1,5 +1,24 @@
 # Society sim — head-to-head results
 
+## Experiment ledger (RULE: every run gets a row here — even small/failed ones)
+
+| date | id | what | key config | headline result | status |
+|---|---|---|---|---|---|
+| 06-16 | HH4 | 4-agent head-to-head | r5, mini | v2 4/4 current vs GA 0/4 (mini) | done |
+| 06-16 | smoke6 | 6-agent mini smoke | r4 t3 | C4 tie 2/6; GA 3/6 unsupported vs SMGA 0/6 | done |
+| 06-17 | pilot25 | 25-agent pilots (r3/r5) | seed41 | diffusion-limited; not a clean rank | done |
+| 06-17 | long25 | 25-agent longitudinal r3/6/9 | seed41 | SMGA 13/25 current @r9 vs GA 0 | done |
+| 06-17 | gate | evidence-gate experiment | 25a r3/6/9 | net negative → REVERTED | done |
+| 06-17 | main5 | 5-seed paired main (ga/smga) | 25a m2 r5 | RAW null: Δcur +2/25 ns; SMGA stale 34%>>GA | done |
+| 06-17 | prop | v2 dependency-propagation prompt | seed41/43 | no measurable effect (in noise) → reverted | done |
+| 06-18 | S5i | fixed-log replay, cross-log | 5 logs, receiver-cond | v3-GA +43pp 95%CI[+25,+61] SIG; v2-GA ns | done |
+| 06-18 | S5j | LIVE 3-way headline | 25a m2 r5, n=5 | v3-GA +53pp [+30,+75] SIG; v3-v2 +39pp ns | done |
+| 06-18 | S5k | anchor ablation (smga3na) | 3 logs replay | does v3 win without scenario anchor? | RUNNING |
+
+Detailed write-ups for each follow below / in the dated sections.
+
+---
+
 > Date: 2026-06-16. Scenario: 4-agent neighborhood, 5 rounds, one currency stress —
 > at round 1 the repair drive moves from "Saturday / front porch" to "Sunday /
 > community center". Final probe to every agent: "When and where is the repair drive

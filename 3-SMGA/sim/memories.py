@@ -359,6 +359,10 @@ class SMGAv3Memory:
     events: list[dict[str, Any]] = field(default_factory=list)
     facts: list[dict[str, Any]] = field(default_factory=list)          # {claim, subject, depends_on}
     registry: dict[str, dict[str, str]] = field(default_factory=dict)  # event -> {day, place, time}
+    # scenario-specific deterministic anchor (repair-drive only). Toggle OFF to test
+    # whether v3's win survives on the GENERAL path (LLM extraction + schedule-evidence
+    # guard) alone — the key external-validity ablation before cross-scenario.
+    use_anchor: bool = True
 
     def observe(self, event: dict[str, Any]) -> None:
         self.events.append(event)
@@ -436,10 +440,11 @@ class SMGAv3Memory:
             if updates:
                 slot = self.registry.setdefault(name, {})
                 slot.update(updates)  # new value supersedes (currency resolution in ONE place)
-        anchored = _extract_repair_drive_schedule(recent, self.registry)
-        if anchored:
-            slot = self.registry.setdefault("repair drive", {})
-            slot.update(anchored)
+        if self.use_anchor:
+            anchored = _extract_repair_drive_schedule(recent, self.registry)
+            if anchored:
+                slot = self.registry.setdefault("repair drive", {})
+                slot.update(anchored)
         new_facts = out.get("facts")
         if isinstance(new_facts, list) and new_facts:
             self.facts = [{"claim": str(f.get("claim", "")), "subject": list(f.get("subject", []) or []),
