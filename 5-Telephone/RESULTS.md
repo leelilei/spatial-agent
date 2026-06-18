@@ -12,6 +12,8 @@
 
 | 06-19 | M1 | (capability × connectivity) phase diagram | GA, 25a r5 t3, 3×3, seeds 41-43 | CORRUPTION EVERYWHERE: current ≤28% in all cells; connectivity↑ AMPLIFIES corruption (5.4 Sat:Sun 0.9×→10.4× as meetings 1→3). Neither capability nor connectivity saves truth | done |
 
+| 06-19 | M2 | MEMORY AXIS: is corruption GA's fault or fundamental? raw / ga / smga(v2) / smga3g(v3-general) | mini, 25a m2 r5 t3, seeds 41-43 | does any honest memory restore truth, or do all corrupt (=fundamental, not GA-specific)? Also = first cut of C4 | RUNNING |
+
 Detailed write-ups follow below as runs land.
 
 ---
