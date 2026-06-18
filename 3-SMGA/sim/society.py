@@ -355,12 +355,15 @@ def build_memory_factory(kind: str, llm: "Any") -> Callable[[], Memory]:
     if kind == "smga":
         from memories import SMGAv2Memory
         return lambda: SMGAv2Memory(llm=llm)
-    if kind == "smga3":
+    if kind == "smga3":  # scenario-specific anchor (reproduces S5i/S5j)
         from memories import SMGAv3Memory
-        return lambda: SMGAv3Memory(llm=llm)
-    if kind == "smga3na":  # v3 with the scenario-specific anchor OFF (general path only)
+        return lambda: SMGAv3Memory(llm=llm, extractor="anchor")
+    if kind == "smga3g":  # scenario-AGNOSTIC general extractor (the real v3 going forward)
         from memories import SMGAv3Memory
-        return lambda: SMGAv3Memory(llm=llm, use_anchor=False)
+        return lambda: SMGAv3Memory(llm=llm, extractor="general")
+    if kind == "smga3na":  # LLM-only, no deterministic extractor
+        from memories import SMGAv3Memory
+        return lambda: SMGAv3Memory(llm=llm, extractor="none")
     raise ValueError(f"unknown memory kind: {kind}")
 
 

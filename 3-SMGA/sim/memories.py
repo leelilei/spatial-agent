@@ -300,6 +300,62 @@ def _event_schedule_evidence(name: str, slot: str, value: str, events: list[dict
     return False
 
 
+def _extract_event_schedule(event_name: str, events: list[dict[str, Any]],
+                            registry: dict[str, dict[str, str]]) -> dict[str, str]:
+    """Scenario-AGNOSTIC deterministic schedule extractor for a tracked event.
+
+    The LLM is unreliable at populating the registry for second-hand hearers (S5k
+    diagnosis: a02/a03 left the registry empty). This is the general replacement for the
+    repair-drive-only anchor: given the tracked event's NAME (from the sim topic, not its
+    values), pull day/place from sentences that (a) mention the event and (b) are about
+    its schedule — using universal weekday vocabulary and "at/to the <place>" patterns,
+    NOT hard-coded values. Skips "from <old value>" so a move does not regress.
+    """
+    attrs: dict[str, str] = {}
+    eterms = _content_terms(event_name)
+    if not eterms:
+        return attrs
+    # current known values (so a non-change mention cannot REGRESS them)
+    cur_day = cur_place = ""
+    for n, a in registry.items():
+        if eterms & _content_terms(n):
+            cur_day = cur_day or str(a.get("day", ""))
+            cur_place = cur_place or str(a.get("place", ""))
+
+    def admit(slot_cur: str, cand: str, is_change: bool) -> bool:
+        if not cand:
+            return False
+        if not slot_cur:
+            return True  # first value: any schedule mention sets it
+        if cand.lower() == slot_cur.lower():
+            return False
+        return is_change  # overriding a known value requires change evidence
+
+    for event in events:
+        low = str(event.get("text", "")).lower()
+        if not (eterms & _content_terms(low)):  # only sentences ABOUT the event (no incidental clobber)
+            continue
+        if not (event.get("speaker") == "world" or any(c in low for c in _SCHEDULE_CUES)
+                or any(c in low for c in _CHANGE_CUES)):
+            continue
+        is_change = event.get("speaker") == "world" or any(c in low for c in _CHANGE_CUES)
+        for wd in _WEEKDAYS:  # universal weekday vocab; ignore the "from <wd>" old value
+            if re.search(rf"\bfrom {wd}\b", low):
+                continue
+            if re.search(rf"\b{wd}\b", low) and admit(cur_day, wd.capitalize(), is_change):
+                cur_day = attrs["day"] = wd.capitalize()
+        for m in re.finditer(r"\b(?:to|at)\s+the\s+([a-z][a-z'\- ]{2,28}?)"
+                             r"(?=[.,;!?]|\bon\b|\bthis\b|\bnext\b|\bfor\b|$)", low):
+            place = m.group(1).strip()
+            if _content_terms(place) & eterms:           # reject garbage like place=="repair drive"
+                continue
+            if re.search(rf"\bfrom the {re.escape(place)}\b", low):
+                continue
+            if admit(cur_place, place, is_change):
+                cur_place = attrs["place"] = place
+    return attrs
+
+
 def _extract_repair_drive_schedule(events: list[dict[str, Any]],
                                    registry: dict[str, dict[str, str]]) -> dict[str, str]:
     """Scenario-specific deterministic anchor for the repair-drive schedule.
@@ -359,10 +415,12 @@ class SMGAv3Memory:
     events: list[dict[str, Any]] = field(default_factory=list)
     facts: list[dict[str, Any]] = field(default_factory=list)          # {claim, subject, depends_on}
     registry: dict[str, dict[str, str]] = field(default_factory=dict)  # event -> {day, place, time}
-    # scenario-specific deterministic anchor (repair-drive only). Toggle OFF to test
-    # whether v3's win survives on the GENERAL path (LLM extraction + schedule-evidence
-    # guard) alone — the key external-validity ablation before cross-scenario.
-    use_anchor: bool = True
+    # deterministic schedule extractor backing the LLM (which alone is unreliable for
+    # second-hand hearers, S5k). "general" = scenario-agnostic (_extract_event_schedule,
+    # keyed on tracked_event name + universal day/place vocab); "anchor" = the old
+    # repair-drive-specific cheat (kept for reproducing S5i/S5j); "none" = LLM only.
+    extractor: str = "general"
+    tracked_event: str = "repair drive"  # set from the sim topic; only the NAME, not values
 
     def observe(self, event: dict[str, Any]) -> None:
         self.events.append(event)
@@ -440,11 +498,14 @@ class SMGAv3Memory:
             if updates:
                 slot = self.registry.setdefault(name, {})
                 slot.update(updates)  # new value supersedes (currency resolution in ONE place)
-        if self.use_anchor:
+        if self.extractor == "general":
+            extracted = _extract_event_schedule(self.tracked_event, recent, self.registry)
+            if extracted:
+                self.registry.setdefault(self.tracked_event, {}).update(extracted)
+        elif self.extractor == "anchor":
             anchored = _extract_repair_drive_schedule(recent, self.registry)
             if anchored:
-                slot = self.registry.setdefault("repair drive", {})
-                slot.update(anchored)
+                self.registry.setdefault("repair drive", {}).update(anchored)
         new_facts = out.get("facts")
         if isinstance(new_facts, list) and new_facts:
             self.facts = [{"claim": str(f.get("claim", "")), "subject": list(f.get("subject", []) or []),
