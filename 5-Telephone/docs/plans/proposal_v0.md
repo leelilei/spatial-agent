@@ -1,5 +1,9 @@
 # Telephone — Research Proposal v0
 
+> **SUPERSEDED by `proposal_v1.md`** (2026-06-19) — v1 folds in the literature review
+> (attractor/phase-boundary reframe, elevated C4, diversity metric, competitive
+> positioning). Kept for history.
+
 > Status: DRAFT for discussion (2026-06-19). This is the "what are we actually writing"
 > document: the phenomenon, the sexy-but-falsifiable claim, the positioning, the target
 > venues, and what "solid" requires. Numbers go in `../../RESULTS.md`; story in

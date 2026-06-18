@@ -29,3 +29,32 @@ converge on" (collective epistemics).
 - A non-circular definition of "received the update" and "fidelity" (avoid the SMGA trap).
 - A corruption taxonomy: stale-persistence / drift / fabrication / loss.
 - The right epidemic-style summary: fidelity-decay vs hops; truth-share vs corruption-share.
+
+## 4. The attractor reframe (2026-06-19, after the lit review)
+
+The single most valuable upgrade from the literature: **corruption is not degradation-to-
+noise, it is convergence-to-an-attractor.** Iterated-learning experiments (Kirby 2008 PNAS;
+Bartlett 1932) show serial transmission contracts information toward a simpler, "more
+learnable" form. So the right object is not "the message got noisier" but **"the society
+converges to a truth attractor or a corruption attractor, separated by a phase boundary."**
+This is more elegant, more falsifiable, and rides a respected cog-sci lineage. It rewrites
+C2 (phase boundary between attractors) and adds a metric (version *diversity*, not just
+truth-share — a low-diversity, high-consensus error is its own attractor; cf. MAD,
+Alemohammad 2023). Our seed-41 evidence (18/22 confidently Saturday) is exactly a
+low-diversity corruption attractor.
+
+## 5. Where memory honestly re-enters (C4)
+
+Not "structured memory wins." C4 = "the minimal cure for a now-quantified failure," and it
+has near-isomorphic theory: Yi et al. (2025) show an external verifier halts model collapse
+but pulls the system to the verifier's knowledge center — our **authoritative re-broadcast**
+is the social-channel version; **currency-resolving memory** mirrors temporal conflict-
+resolution memory (APEX-MEM 2026); and memory can also *amplify* error (Xiong 2025). So the
+intervention is principled, not a recycled SMGA headline.
+
+## 6. Competitive clock (honest)
+Two 2026 preprints (Becker — benign-MAS misinformation; Jamshidi — hallucination cascade)
+are in our neighborhood but stop at task-correctness in debate/cascade. They do NOT do
+society-scale decay-vs-hops, version-share/diversity, the phase boundary, or a minimal
+correction. That is our wedge — but the space is filling, so M0 should plant a flag fast,
+with measurement rigor + society-scale dynamics as the moat.

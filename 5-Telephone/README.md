@@ -12,6 +12,10 @@ agents — whether the society converges on the TRUTH or on a corrupted version.
 The agent society is used as a **scientific instrument** (a microscope on a phenomenon),
 NOT as a benchmark for ranking architectures.
 
+> **Proposal: `docs/plans/proposal_v1.md`** (the current "what we're writing" doc —
+> claims, related-work positioning, target venues, rigor). `proposal_v0.md` is the
+> superseded first draft; `telephone-research.md` is the literature review behind v1.
+
 ## The gap we are attacking
 
 Generative-Agents-lineage work treats information diffusion as a **success demo**:
