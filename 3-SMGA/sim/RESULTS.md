@@ -15,6 +15,8 @@
 | 06-18 | S5j | LIVE 3-way headline | 25a m2 r5, n=5 | v3-GA +53pp [+30,+75] SIG; v3-v2 +39pp ns | done |
 | 06-18 | S5k | anchor ablation (smga3na) | 3 logs replay | ANCHOR LOAD-BEARING: no-anchor 18%≈GA 21% (with-anchor 61%) | done |
 | 06-18 | S5kg | general regex extractor (smga3g) | 3 logs replay | INSUFFICIENT: general 29%≈GA 21% (anchor 64%) — regex too brittle | done |
+| 06-18 | S5kl | focused per-event LLM extractor (smga3l) | 3 logs replay | also ≈GA: 24% vs GA 19% (anchor 69%) | done |
+| 06-19 | S5L | LIVE general v3 (smga3g) vs ga/anchor, n=5 | 25a m2 r5 | general v3 ≈ GA: +7pp ns; far below anchor (-46pp). Relay 11 vs anchor 19.6 | done |
 
 Detailed write-ups for each follow below / in the dated sections.
 
@@ -609,3 +611,41 @@ that is still general (event name from topic, no hard-coded values) but leverage
 LLM on a tightly-scoped task where the combined consolidation failed. Test it on the
 same rig; only if it reaches ~anchor level is the general v3 real and cross-scenario
 sensible.
+
+---
+
+# S5L / S5kl — general v3 ≈ GA: the v3 headline was a scenario-keyword artifact (2026-06-19)
+
+S5k/S5kg showed the scenario-specific keyword anchor is load-bearing and a general
+regex extractor only reaches GA level. Two more tests close the question:
+
+- **S5kl** (focused per-event LLM extractor, fixed-log, 3 logs): a narrow dedicated call
+  "what is <event>'s current day/place/time?" also lands at GA level — smga3l 24% vs
+  GA 19% (anchor 69%).
+- **S5L** (LIVE, n=5, reusing S5j's ga/smga3, new smga3g with workers=8):
+
+```text
+condition          raw current   relay reach   receiver-current
+GA                     14%          9.6            38%
+SMGA v3 (anchor)       67%         19.6            86%
+SMGA v3 (general)      22%         11.0            49%
+
+smga3g - GA      +7pp   95% CI [-8,+23]   ns      (general v3 does NOT beat GA)
+smga3g - smga3  -46pp   95% CI [-73,-18]  SIG     (far below the anchor)
+```
+
+CONCLUSION (honest, overturns the S5i/S5j headline): **v3's large advantage was
+substantially an artifact of the scenario-specific keyword anchor**, whose grab-any-
+"Sunday"/"community-center" logic is near-circular with the receiver definition AND
+produces the relay multiplier (reach 19.6). With ANY scenario-agnostic extractor —
+brittle regex (S5kg) or a focused LLM call (S5kl) — v3 collapses to ~GA, in BOTH the
+fixed-log and the LIVE coupling (the relay benefit evaporates too: reach 11 ≈ GA 9.6).
+
+What's actually true: the v3 ARCHITECTURE (single source of truth + late binding) has a
+high ceiling (anchor ~67%), but it is bottlenecked by RELIABLE, scenario-agnostic
+EXTRACTION of the current value from messy conversation — which the weak model (mini)
+cannot do via either regex or a focused call. So the open question becomes: is this a
+CAPABILITY bottleneck (a stronger extractor reaches the ceiling) or a deeper null?
+Next: run the general/focused extractor with a STRONG model (gpt-5.4) for the extraction
+step only, and see whether it approaches the anchor ceiling — connecting to the earlier
+"strong formation + cheap planning" distillation axis.
