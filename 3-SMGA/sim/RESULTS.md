@@ -649,3 +649,46 @@ CAPABILITY bottleneck (a stronger extractor reaches the ceiling) or a deeper nul
 Next: run the general/focused extractor with a STRONG model (gpt-5.4) for the extraction
 step only, and see whether it approaches the anchor ceiling — connecting to the earlier
 "strong formation + cheap planning" distillation axis.
+
+---
+
+# S5L-diag — the deeper cause: weak-model diffusion CORRUPTS the update (2026-06-19)
+
+Why does even a STRONG-model focused extractor fail to put a02/a03/a06 on Sunday?
+Dumped their raw event streams. The answer overturns the framing:
+
+- a02 heard the PLACE ("community center on Oak Street") but every DAY mention in its
+  stream is "Saturday morning" — it never heard "Sunday".
+- a03 heard "this Saturday by the community shed" ~10x and only one truncated "Sunday
+  details" fragment — overwhelmingly Saturday.
+- a06 heard only "this Saturday by the community shed" — zero Sunday.
+
+Quantified — of agents counted as "receivers" (stream contains sunday OR community
+center), how many are actually Sunday-dominant vs Saturday-dominant in their own stream:
+
+```text
+seed 41: 22 receivers -> Sunday-dom  2,  Saturday-dom 18,  tie 2
+seed 42: 17 receivers -> Sunday-dom  7,  Saturday-dom  6,  tie 4
+seed 43: 17 receivers -> Sunday-dom  6,  Saturday-dom 10,  tie 1
+```
+
+CONCLUSION: the mini-model society does NOT cleanly diffuse the update. Agents keep
+PROPAGATING THE STALE Saturday plan (and drift "community center" -> "community shed"),
+so most "receivers" actually heard Saturday-dominant streams. Consequences:
+1. The "receiver" definition is invalid (catches Saturday-believers who merely heard the
+   word "community center").
+2. A faithful memory (GA, principled v3) correctly reflects the Saturday-dominant input
+   -> scored stale/unknown. That is the HONEST representation of what the agent heard.
+3. The keyword anchor's high score = grabbing the rare ground-truth "Sunday" token out of
+   a Saturday-dominated stream — not memory quality.
+4. So the whole receiver-conditioned currency comparison is confounded by corrupted
+   diffusion; the bottleneck is the CONVERSATION model (weak-model stale-persistence),
+   NOT the memory architecture.
+
+This is the real, important negative/characterization finding: in weak-model multi-agent
+LLM societies, a currency update is corrupted by stale-persistence in agent dialogue,
+which dominates any memory-architecture effect. Structured memory ≈ GA once you don't
+keyword-cheat. STRATEGIC FORK (for the human): (A) raise CONVERSATION fidelity (strong
+model for dialogue) so the update propagates cleanly, then re-compare memory; (B) write
+up the honest negative + the diffusion-corruption phenomenon; (C) study the corruption
+itself (how information degrades in LLM agent societies) as the contribution.

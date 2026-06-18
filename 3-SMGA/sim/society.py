@@ -358,9 +358,17 @@ def build_memory_factory(kind: str, llm: "Any") -> Callable[[], Memory]:
     if kind == "smga3":  # scenario-specific anchor (reproduces S5i/S5j)
         from memories import SMGAv3Memory
         return lambda: SMGAv3Memory(llm=llm, extractor="anchor")
-    if kind == "smga3g":  # scenario-AGNOSTIC general extractor (the real v3 going forward)
+    if kind == "smga3g":  # scenario-AGNOSTIC general regex extractor
         from memories import SMGAv3Memory
         return lambda: SMGAv3Memory(llm=llm, extractor="general")
+    if kind == "smga3l":  # scenario-agnostic FOCUSED per-event LLM extractor (same model)
+        from memories import SMGAv3Memory
+        return lambda: SMGAv3Memory(llm=llm, extractor="llm_focused")
+    if kind == "smga3L":  # FOCUSED extractor using a STRONG model (gpt-5.4) for extraction only
+        from memories import SMGAv3Memory
+        from llm import LLM
+        strong = LLM(model="gpt-5.4")
+        return lambda: SMGAv3Memory(llm=llm, extractor="llm_focused", extract_llm=strong)
     if kind == "smga3na":  # LLM-only, no deterministic extractor
         from memories import SMGAv3Memory
         return lambda: SMGAv3Memory(llm=llm, extractor="none")

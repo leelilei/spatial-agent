@@ -421,6 +421,7 @@ class SMGAv3Memory:
     # repair-drive-specific cheat (kept for reproducing S5i/S5j); "none" = LLM only.
     extractor: str = "general"
     tracked_event: str = "repair drive"  # set from the sim topic; only the NAME, not values
+    extract_llm: Any = None  # optional STRONGER model for the focused extraction step only
 
     def observe(self, event: dict[str, Any]) -> None:
         self.events.append(event)
@@ -453,6 +454,30 @@ class SMGAv3Memory:
         for f in _rank_by_relevance(query, items, 4):
             lines.append(f"- {f.get('claim', '')}")
         return "\n".join(lines)
+
+    def _focused_schedule(self, recent: list[dict[str, Any]]) -> dict[str, str]:
+        """A narrow, dedicated LLM call for ONE event's current schedule.
+
+        The combined registry+facts consolidation buries this (S5k: empty registry for
+        second-hand hearers). This is scenario-agnostic — only the event NAME comes from
+        the sim, never its values. Mentions of the event only, to avoid drift."""
+        ev = self.tracked_event
+        eterms = _content_terms(ev)
+        lines = [str(e.get("text", "")) for e in recent if eterms & _content_terms(str(e.get("text", "")))]
+        if not lines:
+            return {}
+        known = json.dumps(self.registry.get(ev, {}), ensure_ascii=False)
+        out = (self.extract_llm or self.llm).complete_json(
+            f"Determine the CURRENT day, place, and time of the event '{ev}' from the messages. "
+            "Report only what is CURRENTLY true: if it was moved/rescheduled, use the NEW value and "
+            "ignore the old 'from X' value; if a detail is only mentioned inside an unrelated side-"
+            "commitment (not a statement about when/where the event itself is held), ignore it; if a "
+            "detail is not stated, leave it empty. Prefer the previously-known value over guessing. "
+            'Return ONLY JSON: {"day":str,"place":str,"time":str}.',
+            f"Previously known for '{ev}': {known}\n\nMessages mentioning '{ev}':\n" + "\n".join(lines),
+        )
+        return {k: str(out.get(k, "") or "").strip() for k in ("day", "place", "time")
+                if str(out.get(k, "") or "").strip()}
 
     def consolidate(self) -> None:
         recent = _recent(self.events, 10)
@@ -500,6 +525,10 @@ class SMGAv3Memory:
                 slot.update(updates)  # new value supersedes (currency resolution in ONE place)
         if self.extractor == "general":
             extracted = _extract_event_schedule(self.tracked_event, recent, self.registry)
+            if extracted:
+                self.registry.setdefault(self.tracked_event, {}).update(extracted)
+        elif self.extractor == "llm_focused":
+            extracted = self._focused_schedule(recent)
             if extracted:
                 self.registry.setdefault(self.tracked_event, {}).update(extracted)
         elif self.extractor == "anchor":
