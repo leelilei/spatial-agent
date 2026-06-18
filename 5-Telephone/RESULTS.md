@@ -12,7 +12,7 @@
 
 | 06-19 | M1 | (capability × connectivity) phase diagram | GA, 25a r5 t3, 3×3, seeds 41-43 | CORRUPTION EVERYWHERE: current ≤28% in all cells; connectivity↑ AMPLIFIES corruption (5.4 Sat:Sun 0.9×→10.4× as meetings 1→3). Neither capability nor connectivity saves truth | done |
 
-| 06-19 | M2 | MEMORY AXIS: is corruption GA's fault or fundamental? raw / ga / smga(v2) / smga3g(v3-general) | mini, 25a m2 r5 t3, seeds 41-43 | does any honest memory restore truth, or do all corrupt (=fundamental, not GA-specific)? Also = first cut of C4 | RUNNING |
+| 06-19 | M2 | MEMORY AXIS raw/ga/smga/smga3g | mini, 25a m2 r5 t3, seeds 41-43, n=3 | MEMORY MATTERS HUGELY (surprise): ga/v2 corrupt (relay stale), smga3g (currency) FLIPS society to truth — cur 56% vs ga 20%, receivers Sun-dom 19:4. Contradicts 3-SMGA; VERIFY w/ CIs | done |
 
 Detailed write-ups follow below as runs land.
 
@@ -103,3 +103,43 @@ Caveats: n=3, single scenario, GA memory, coarse 3×3; current-rate is noisy (th
 Saturday-dominance is the cleaner signal); the 5.4 meetings=3 52:5 is striking but needs
 CIs. Next: more seeds + CIs on the connectivity-amplifies-corruption result; then M2
 (corruption taxonomy) and M3 (does ANY intervention move the needle — the real test).
+
+---
+
+# M2 — MEMORY AXIS: is the corruption GA's fault, or fundamental? (2026-06-19)
+
+The human asked whether the truth-decay is a GA-reflection artifact or something deeper.
+We added MEMORY as a third axis (the others held at mini, meetings=2, r5, seeds 41-43, n=3)
+and compared raw / GA-reflection / SMGA-v2 (currency facts) / SMGA-v3-general (smga3g,
+scenario-agnostic currency extractor, NO scenario-value anchor). Cell = mean current/25,
+stale, unknown, and receiver Saturday-dom : Sunday-dom (Σ over 3 seeds — measured on the
+agents' event STREAMS, i.e. what they heard, independent of the interview metric).
+
+```text
+memory   current     stale  unknown   receiver Sat-dom : Sun-dom
+raw      3.3/25       1.0    20.7      4 : 15     (doesn't corrupt, but barely spreads)
+ga       5.0/25       3.0    17.0     17 : 13     (corrupts — relays stale)
+smga v2  7.7/25      11.7     5.7     41 : 17     (spreads stale WIDELY — worst corruption)
+smga3g  14.0/25       0.0    11.0      4 : 19     (relays the TRUTH — flips the society)
+```
+
+Finding (SURPRISING — partially overturns the M0/M1 "nothing saves truth" reading):
+**memory architecture is a powerful lever.** raw (no reflection compression) does not
+corrupt but barely propagates; GA-reflection and SMGA-v2 actively CORRUPT (their agents
+relay the stale Saturday version, v2 widest); but **smga3g (a currency-resolving memory)
+FLIPS the society from corruption-convergence to truth-convergence** — current 56% vs GA's
+20%, ZERO stale, and the society's conversations become Sunday-dominant (19 vs 4). The
+Sunday-dominance is measured on event streams (what agents said to each other), so it is a
+real **anti-entropy relay** effect, not an interview-keyword artifact.
+
+So the answer to "is it GA's fault?": substantially YES + more — reflection/free-text
+memory (ga, v2) is a corruption SOURCE; raw is inert; and a currency-resolving memory
+(smga3g) is a genuine CURE (a working C4). The decay is NOT a fundamental, memory-
+independent property of agent societies; the memory architecture largely determines
+truth- vs corruption-convergence.
+
+CAUTION (we have been burned by smga3g before): this CONTRADICTS the 3-SMGA finding that
+smga3g ≈ GA (S5kg/S5L). The difference is plausibly live-coupling + different seeds (41-43)
++ n=3 noise. Before building on it: (a) re-run with n≥6 seeds + CIs; (b) audit that smga3g
+is genuinely relaying (inspect conversations/registry), not exploiting the keyword metric;
+(c) re-interpret M0/M1 — those used GA memory, so "nothing saves truth" was GA-specific.
