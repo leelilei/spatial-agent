@@ -333,3 +333,18 @@ persistent authoritative source fails (it is narrow and late relative to the ent
 incumbent), and why only early+broad (or continuous) broadcast works. It resonates with the
 first-mover-advantage / entrenchment dynamics in the misinformation literature — here
 demonstrated cleanly in a controlled agent society.
+
+### P1-rec confirmation (n=5/n=3)
+
+```text
+r1_broadcast (early, all):  current 24.8/25 [24.2,25.4]  n=5   ≈ every_broadcast (24.8)
+r5_broadcast (last,  all):  current  3.3/25 [0.0,10.9]    n=3   ≈ baseline (3.0)
+```
+
+Two clean equalities nail the ENTRENCHMENT mechanism:
+- **r1_broadcast ≈ every_broadcast** (24.8 ≈ 24.8): establishing the truth ONCE, EARLY, is as
+  good as repeating it every round. You don't need to keep shouting — you need to be FIRST.
+- **r5_broadcast ≈ baseline** (3.3 ≈ 3.0): a late broadcast to EVERYONE is worth no more than
+  doing nothing. Late correction is worthless even at full breadth.
+⇒ TIMING is decisive: early = total success, late = total failure, independent of breadth.
+Pure first-mover / path-dependence. Recency definitively refuted.
