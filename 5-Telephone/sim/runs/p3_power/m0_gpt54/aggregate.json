@@ -1,0 +1,103 @@
+{
+  "groups": [
+    {
+      "model": "gpt-5.4",
+      "memory": "ga",
+      "runs": 5,
+      "agents_total": 125,
+      "current": 43,
+      "stale": 25,
+      "unknown": 57,
+      "unsupported_specific": 29,
+      "current_rate": 0.344,
+      "unsupported_specific_rate": 0.232,
+      "mean_run_current_rate": 0.344,
+      "mean_run_unsupported_specific_rate": 0.23200000000000004,
+      "min_run_current_rate": 0.24,
+      "max_run_current_rate": 0.44,
+      "std_run_current_rate": 0.06974238309665079
+    }
+  ],
+  "rows": [
+    {
+      "memory": "ga",
+      "model": "gpt-5.4",
+      "run_index": 0,
+      "schedule_seed": 41,
+      "agent_count": 25,
+      "rounds": 5,
+      "turns": 3,
+      "out_dir": "/Users/mac/Documents/6-Research/5-Telephone/sim/runs/p3_power/m0_gpt54/gpt-5.4/ga/run_000",
+      "currency_interview": {
+        "current": 8,
+        "stale": 0,
+        "unknown": 17
+      },
+      "unsupported_specific": 11
+    },
+    {
+      "memory": "ga",
+      "model": "gpt-5.4",
+      "run_index": 1,
+      "schedule_seed": 42,
+      "agent_count": 25,
+      "rounds": 5,
+      "turns": 3,
+      "out_dir": "/Users/mac/Documents/6-Research/5-Telephone/sim/runs/p3_power/m0_gpt54/gpt-5.4/ga/run_001",
+      "currency_interview": {
+        "current": 10,
+        "stale": 7,
+        "unknown": 8
+      },
+      "unsupported_specific": 2
+    },
+    {
+      "memory": "ga",
+      "model": "gpt-5.4",
+      "run_index": 2,
+      "schedule_seed": 43,
+      "agent_count": 25,
+      "rounds": 5,
+      "turns": 3,
+      "out_dir": "/Users/mac/Documents/6-Research/5-Telephone/sim/runs/p3_power/m0_gpt54/gpt-5.4/ga/run_002",
+      "currency_interview": {
+        "current": 11,
+        "stale": 10,
+        "unknown": 4
+      },
+      "unsupported_specific": 2
+    },
+    {
+      "memory": "ga",
+      "model": "gpt-5.4",
+      "run_index": 3,
+      "schedule_seed": 44,
+      "agent_count": 25,
+      "rounds": 5,
+      "turns": 3,
+      "out_dir": "/Users/mac/Documents/6-Research/5-Telephone/sim/runs/p3_power/m0_gpt54/gpt-5.4/ga/run_003",
+      "currency_interview": {
+        "current": 8,
+        "stale": 6,
+        "unknown": 11
+      },
+      "unsupported_specific": 7
+    },
+    {
+      "memory": "ga",
+      "model": "gpt-5.4",
+      "run_index": 4,
+      "schedule_seed": 45,
+      "agent_count": 25,
+      "rounds": 5,
+      "turns": 3,
+      "out_dir": "/Users/mac/Documents/6-Research/5-Telephone/sim/runs/p3_power/m0_gpt54/gpt-5.4/ga/run_004",
+      "currency_interview": {
+        "current": 6,
+        "stale": 2,
+        "unknown": 17
+      },
+      "unsupported_specific": 7
+    }
+  ]
+}

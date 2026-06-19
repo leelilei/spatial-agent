@@ -23,7 +23,8 @@
 | 06-19 | P1-mech | DISSOCIATION MECHANISM (P4): heard-ratio vs recency | analysis of M4+G1 (0-API) | dose-response real (held rises with heard cur-frac, →95%) BUT mean ratio similar across baseline/source/broadcast (0.64/0.72/0.73) w/ opposite outcomes → naive ratio REFUTED; points to RECENCY | done |
 | 06-19 | P1-rec | RECENCY vs ENTRENCHMENT: r1-broadcast vs r5-broadcast | repair_drive GA mini m2 r5 (n=2-5) | RECENCY REFUTED: r1_broadcast(early,all)=25/25 but r5_broadcast(last,all)=0/25. Mechanism = ENTRENCHMENT/path-dependence: truth must be established EARLY+BROAD before the incumbent stale belief entrenches; late/narrow correction fails | done |
 
-| 06-19 | P3 | POWER: M0 capability (n=8 mini / n=5 strong) + M1 connectivity (n=8 mini) with CIs | GA, 25a m2/various r5 | firm up the failed-lever claims (capability flat; connectivity worsens) at adequate n + CIs | RUNNING |
+| 06-19 | P3 | POWER: M0 capability n=8/5 + M1 connectivity n=8 (mini) with CIs | GA, 25a r5 | TEMPERS n=3 claims: M0 capability gives MODEST bump (mini 18%→strong ~32%) but recall stays ≤34% (scale doesn't solve it); M1 connectivity on MINI ~null (ratio 0.8-1.1) — the dramatic 10× was strong-model-only (n=3), confirming w/ P3b | done |
+| 06-19 | P3b | confirm M1 connectivity on gpt-5.4 (n=5) | GA 25a r5 meetings{1,3} | does connectivity amplify corruption on a STRONG model (the n=3 52:5 cell)? | RUNNING |
 
 | 06-19 | P2 | METRIC VALIDATION: LLM-judge (semantic) vs keyword on M4 | repair_drive, 375 answers | keyword↔judge agree 99-100%; judge current = keyword current exactly (baseline 3.0, source 3.8, broadcast 24.8). Metric is NOT a keyword artifact; dissociation holds under semantic judge | done |
 
@@ -375,3 +376,37 @@ judge. So the keyword current/stale metric is not a surface artifact — an inde
 semantic judge confirms it. P2 (defensible metric) cleared for the headline. (A full
 provenance-based "received" definition + multi-dimensional fidelity rubric remains for the
 camera-ready, but the core verdict metric is validated.)
+
+---
+
+# P3 — POWER: M0/M1 with CIs (tempers the n=3 claims) (2026-06-19)
+
+Re-ran the "failed lever" results at higher n with 95% CIs (GA, repair_drive, r5).
+
+M0 — capability ladder (meetings=2):
+```text
+model       current/25 [95% CI]   n
+mini        4.6  18% [3.0, 6.2]    8
+gpt-5.4     8.6  34% [6.2,11.0]    5
+gpt-5.5     7.6  30% [5.2,10.0]    5
+```
+Refinement vs the n=3 "completely flat (16→21%)": capability gives a MODEST improvement
+(mini 18% → strong ~30-34%; CIs barely overlap), but truth-recall stays LOW (≤34%) — the
+society never holds the truth. Honest claim: scaling helps a little but does NOT solve
+social truth-decay (not "completely flat", but "modest bump, still fails").
+
+M1 — connectivity (mini, meetings 1/2/3):
+```text
+meetings   current/25 [95% CI]   Sat:Sun ratio   n
+1          4.9 [3.2,6.5]         0.8             8
+2          4.6 [3.0,6.2]         0.8             8
+3          3.5 [2.6,4.4]         1.1             8
+```
+Refinement: on MINI, connectivity does NOT amplify corruption (current flat-to-slightly-
+down; Sat:Sun ratio ~0.8-1.1, nowhere near the n=3 10×). The dramatic "connectivity
+amplifies corruption" (M1, gpt-5.4 meetings=3 = 52:5) was a STRONG-MODEL, n=3 effect.
+P3b re-runs gpt-5.4 connectivity at n=5 to confirm or retract the "more communication, less
+truth" claim before it goes in the paper.
+
+Net: the SPINE (dissociation + entrenchment, M4/G1/P1-rec) is untouched and solid; P3 just
+tempers the two supporting "failed lever" claims to their honest, CI-backed form.
