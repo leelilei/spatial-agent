@@ -18,7 +18,7 @@
 
 | 06-19 | M4 | AUTHORITATIVE RE-BROADCAST (C4 closure) + dissociation | GA, mini, 25a m2 r5, n=5 | source re-broadcast FAILS (Δ+0.8 ns) though it flips what agents SAY (Sun:Sat 25:5 by r5); only brute BROADCAST (inject all/round) works (99%, +21.8 SIG) = spoon-feeding, bypasses society. DISSOCIATION proven: speech≠belief; collective belief is sticky | done |
 
-| 06-19 | G1 | GENERALITY (P1): replicate the M4 dissociation on 2 NEW scenarios | GA mini m2 r5 n=5, book_club + carpool × {baseline/source/broadcast} | does source-fails / broadcast-works / dissociation hold beyond the repair-drive scenario? | RUNNING |
+| 06-19 | G1 | GENERALITY (P1): M4 dissociation on 2 NEW scenarios | GA mini m2 r5 n=5, book_club + carpool | REPLICATES across all 3 scenarios: source FAILS (Δ ns ×3) despite flipping SAID; broadcast WORKS (Δ SIG ×3 →~25/25). Single-scenario-artifact attack DEAD | done |
 
 Detailed write-ups follow below as runs land.
 
@@ -233,3 +233,39 @@ Caveats: n=5, single scenario, GA memory, keyword metric; the said-ratio is a co
 But the source-fails / broadcast-works contrast and the speech-vs-belief gap are large and
 clean. Next (for resume): pin the dissociation mechanistically (where does belief get
 anchored?), provenance fidelity metric, ≥2 scenarios.
+
+---
+
+# G1 — GENERALITY: the dissociation replicates on 2 new scenarios (2026-06-19)
+
+P1 (the #1 publishability gap): is the M4 dissociation a one-scenario artifact? Replicated
+baseline / source-rebroadcast / broadcast on two structurally-identical but surface-different
+scenarios (GA, mini, meetings=2, r5, n=5): **book_club** (Tuesday@library → Thursday@cafe)
+and **carpool** (7am@school → 8am@church). current/25 mean [95% CI]; SAID = utterance
+current:stale counts by round.
+
+```text
+scenario       baseline cur   source cur (Δ vs base)        broadcast cur (Δ)        source SAID by round
+repair_drive*  3.0            3.8  (+0.8  ns)               24.8 (+21.8 SIG)         flips Sun, holds stale
+book_club      9.6 [7.5,11.7] 12.8 (+3.2  ns) [-0.9,+7.3]   24.8 (+15.2 SIG)         48:19→161:53 (Thu≫Tue)
+carpool        3.2 [1.2,5.2]  4.0  (+0.8  ns) [-1.2,+2.8]   25.0 (+21.8 SIG)         …→42:0 (8am only)
+```
+(* repair_drive = the M4 reference.)
+
+Finding: **the dissociation generalizes.** In all THREE scenarios:
+1. a persistent authoritative SOURCE fails to restore held belief (Δ ns everywhere) — even
+   though it visibly flips what agents SAY (book_club utterances Thursday≫Tuesday; carpool
+   agents say "8am" and essentially never "7am");
+2. only brute BROADCAST works (Δ significant everywhere, → ~25/25);
+3. so speech ≠ collective belief, robustly, beyond the original scenario.
+
+This kills the #1 reviewer attack (single-prompt artifact). Note the baseline corruption
+LEVEL varies by scenario (book_club holds more truth at baseline, 9.6/25, vs repair/carpool
+~3/25) — the absolute decay is scenario-dependent, but the INTERVENTION pattern (source-fails
+/ broadcast-works / say≠hold) is invariant. Carpool is the cleanest dissociation: agents say
+the new "8am" almost exclusively yet hold it only 4/25 (the stale value isn't even repeated —
+the failure there is non-retention, not stale-persistence, yet source still can't fix it).
+
+Toward publication (path_to_publication.md): P1 generality — DONE for the dissociation spine
+(3 scenarios). Remaining: capability(M0)/connectivity(M1) on ≥2 scenarios; provenance/judge
+metric (P2); mechanism localization of the dissociation (P4); n≥8 symmetric (P3).
