@@ -25,6 +25,8 @@
 
 | 06-19 | P3 | POWER: M0 capability (n=8 mini / n=5 strong) + M1 connectivity (n=8 mini) with CIs | GA, 25a m2/various r5 | firm up the failed-lever claims (capability flat; connectivity worsens) at adequate n + CIs | RUNNING |
 
+| 06-19 | P2 | METRIC VALIDATION: LLM-judge (semantic) vs keyword on M4 | repair_drive, 375 answers | keyword↔judge agree 99-100%; judge current = keyword current exactly (baseline 3.0, source 3.8, broadcast 24.8). Metric is NOT a keyword artifact; dissociation holds under semantic judge | done |
+
 Detailed write-ups follow below as runs land.
 
 ---
@@ -350,3 +352,26 @@ Two clean equalities nail the ENTRENCHMENT mechanism:
   doing nothing. Late correction is worthless even at full breadth.
 ⇒ TIMING is decisive: early = total success, late = total failure, independent of breadth.
 Pure first-mover / path-dependence. Recency definitively refuted.
+
+---
+
+# P2 — metric validation: semantic LLM-judge vs keyword (2026-06-19)
+
+Addresses "your current/stale metric is surface-keyword / circular." Re-scored every M4
+interview answer (repair_drive, baseline/source/broadcast, n=5, 375 answers) with an LLM
+JUDGE that classifies current/stale/unknown by MEANING vs the scenario ground truth
+(`judge_rescore.py`), and compared to the keyword verdict.
+
+```text
+condition   keyword↔judge agreement   keyword current/run   judge current/run
+baseline    124/125 = 99%             3.0                   3.0
+source      125/125 = 100%            3.8                   3.8
+broadcast   125/125 = 100%            24.8                  24.8
+```
+
+The semantic judge agrees with the keyword metric at 99-100% and yields IDENTICAL headline
+numbers. The dissociation (source 3.8 ≈ baseline; broadcast 24.8) is unchanged under the
+judge. So the keyword current/stale metric is not a surface artifact — an independent
+semantic judge confirms it. P2 (defensible metric) cleared for the headline. (A full
+provenance-based "received" definition + multi-dimensional fidelity rubric remains for the
+camera-ready, but the core verdict metric is validated.)
