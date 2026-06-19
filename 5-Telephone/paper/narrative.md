@@ -58,3 +58,60 @@ are in our neighborhood but stop at task-correctness in debate/cascade. They do 
 society-scale decay-vs-hops, version-share/diversity, the phase boundary, or a minimal
 correction. That is our wedge — but the space is filling, so M0 should plant a flag fast,
 with measurement rigor + society-scale dynamics as the moat.
+
+---
+
+# FINDINGS — what M0–M3 actually showed (2026-06-19)
+
+> Sections 0–6 above were the PLAN (pre-experiment hypotheses). This section is what we
+> actually found in the first run-batch (mini→gpt-5.5, GA/raw/v2/v3 memory, 25 agents, r5,
+> n=3–5, single "repair drive" reschedule scenario). Numbers + caveats in `../RESULTS.md`
+> (M0–M3). Read this as the honest, sober update to the plan.
+
+## The phenomenon is real and ROBUST
+A ground-truthed update ("the repair drive moved Saturday→Sunday") does NOT propagate
+faithfully through an LLM-agent society. The society converges on a **corruption attractor**
+(the stale Saturday version persists, dominates, and spreads). Truth-recall is low (≤~28%)
+in every configuration we tried. So far the headline is a strong NEGATIVE: **truth-decay in
+agent societies is hard to avoid.**
+
+## What does NOT fix it (three failed levers)
+1. **Capability (M0).** Scaling mini → gpt-5.4 → gpt-5.5 leaves truth-recall FLAT
+   (16%→20%→21%). Worse, capability shifts the FAILURE MODE: weak models forget (unknown),
+   strong models **confidently converge on the stale version** (stale 2.3→10, Sat-dominance
+   8→16). *Scaling makes the society more confidently wrong, not more right.*
+2. **Connectivity (M1).** More communication AMPLIFIES corruption, not truth. The
+   Saturday:Sunday dominance ratio explodes with connectivity for strong models (gpt-5.4
+   0.9×→10.4× as meetings 1→3). *More communication, less truth* (echo-chamber / repetition
+   reinforcement) — the opposite of redundancy-as-error-correction.
+3. **Memory architecture (M2→M3).** A currency-resolving memory (smga3g) APPEARED to flip
+   the society to truth (M2, 56%) — but that was an **n=3 outlier; it did NOT replicate**
+   (M3, n=4–5: smga3g current ≈ GA, Δ ns). Swapping memory does not robustly restore truth.
+
+## The most interesting sub-finding: a DISSOCIATION
+smga3g DOES make agents *say* "Sunday" more (event streams shift Sunday-dominant, m2 Sat:Sun
+4:28) — yet the society's *held* belief (interview truth-recall) does not improve. **Memory
+changes what agents SAY without changing what the society HOLDS.** Speech ≠ collective
+belief. This gap is worth pinning down — it suggests the corruption attractor is sustained
+by something downstream of any one agent's output (the network evidence-ratio / Bayesian
+re-weighting), not by what individuals can be made to utter.
+
+## Honest current thesis
+Truth-decay in LLM-agent societies is **robust** — capability, connectivity, AND memory
+architecture all fail to prevent it; the society reliably converges on a corrupted/stale
+consensus. The cure (C4) is NOT a memory swap. The one untested lever is an **authoritative
+re-broadcast** (a source repeatedly re-injecting the truth — the social analog of Yi 2025's
+verifier); whether even that restores truth is open.
+
+## Caveats (do not over-read yet)
+n=3–5, single scenario, single update, keyword-based current/stale metric (the receiver
+Sat/Sun-dominance provenance signal agrees, which is reassuring), runtime-cap losses made
+some M3 cells unequal-n. To make any of this publishable: provenance fidelity metric, n≥8
++ CIs, ≥2–3 scenarios. But the qualitative chain (robust decay; capability/connectivity/
+memory don't fix it; the dissociation) is consistent across M0–M3 and with the 3-SMGA prior.
+
+## Open threads (for when we resume)
+- **C4 closure**: test authoritative re-broadcast (the stronger, untested intervention).
+- **Pin the dissociation** (speech vs collective belief) — possibly the paper's sharpest idea.
+- **Rigor**: provenance fidelity metric; n≥8 + CIs; ≥2 non-Chinese scenarios; firm up the
+  M1 "connectivity amplifies corruption" cell (gpt-5.4 m3 52:5 needs CIs).
