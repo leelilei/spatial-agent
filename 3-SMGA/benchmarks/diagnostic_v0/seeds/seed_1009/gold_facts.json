@@ -1,0 +1,229 @@
+{
+  "gold_facts": [
+    {
+      "claim": "Lev and Mona have a productive mutual-aid partnership on the tutoring rota.",
+      "contradicting_evidence_ids": [
+        "event_0010"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0001",
+      "fact_type": "relationship",
+      "subject_entities": [
+        "person_lev",
+        "person_mona"
+      ],
+      "supporting_evidence_ids": [
+        "event_0001"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_porch",
+          "topic_tutoring_rota"
+        ],
+        "time_window": "day_1_to_day_2",
+        "valid_until_event_id": "event_0010"
+      }
+    },
+    {
+      "claim": "Oona's custody dispute was shared privately with Lev and was initially not to be told to anyone.",
+      "contradicting_evidence_ids": [
+        "event_0008"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0002",
+      "fact_type": "secret_or_privacy",
+      "subject_entities": [
+        "person_oona",
+        "person_lev",
+        "info_custody_dispute_detail"
+      ],
+      "supporting_evidence_ids": [
+        "event_0002"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_lane",
+          "topic_custody_dispute"
+        ],
+        "time_window": "day_1_to_day_2",
+        "valid_until_event_id": "event_0008"
+      }
+    },
+    {
+      "claim": "Mona promised Lev to cover the tutoring rota shift on day 1.",
+      "contradicting_evidence_ids": [
+        "event_0007"
+      ],
+      "current_status": "contradicted",
+      "fact_id": "fact_0003",
+      "fact_type": "commitment",
+      "subject_entities": [
+        "person_mona",
+        "person_lev"
+      ],
+      "supporting_evidence_ids": [
+        "event_0003"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_porch",
+          "topic_tutoring_rota"
+        ],
+        "time_window": "day_1_to_day_2",
+        "valid_until_event_id": "event_0007"
+      }
+    },
+    {
+      "claim": "The block norm is not to share a neighbor's custody dispute with anyone outside the block.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0004",
+      "fact_type": "norm",
+      "subject_entities": [
+        "norm_no_external_custody_dispute_sharing"
+      ],
+      "supporting_evidence_ids": [
+        "event_0004"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "topic_custody_dispute",
+          "norm_no_external_custody_dispute_sharing"
+        ],
+        "time_window": "day_1_onward"
+      }
+    },
+    {
+      "claim": "Mona usually helped from the front porch in the mornings on days 1-2.",
+      "contradicting_evidence_ids": [
+        "event_0013"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0005",
+      "fact_type": "routine",
+      "subject_entities": [
+        "person_mona"
+      ],
+      "supporting_evidence_ids": [
+        "event_0006"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_porch",
+          "activity_tutoring_rota"
+        ],
+        "time_window": "day_1_to_day_2",
+        "valid_until_event_id": "event_0013"
+      }
+    },
+    {
+      "claim": "Nils relayed second-hand that Mona is totally dependable and free all week.",
+      "contradicting_evidence_ids": [
+        "event_0007"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0006",
+      "fact_type": "reputation",
+      "subject_entities": [
+        "person_mona"
+      ],
+      "supporting_evidence_ids": [
+        "event_0005"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "topic_tutoring_rota"
+        ],
+        "time_window": "day_1_to_day_2",
+        "valid_until_event_id": "event_0007"
+      }
+    },
+    {
+      "claim": "Nils violated the block norm by mentioning Oona's custody dispute to a school officer.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0007",
+      "fact_type": "norm",
+      "subject_entities": [
+        "person_nils",
+        "norm_no_external_custody_dispute_sharing"
+      ],
+      "supporting_evidence_ids": [
+        "event_0009"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_block",
+          "topic_custody_dispute"
+        ],
+        "time_window": "day_2_onward"
+      }
+    },
+    {
+      "claim": "Mona's missed shift reduced Lev's confidence in counting on them for tonight's tutoring rota.",
+      "contradicting_evidence_ids": [
+        "event_0011"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0008",
+      "fact_type": "conflict_or_repair",
+      "subject_entities": [
+        "person_lev",
+        "person_mona"
+      ],
+      "supporting_evidence_ids": [
+        "event_0010"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_porch",
+          "topic_tutoring_rota"
+        ],
+        "time_window": "day_2_14:00_to_15:00",
+        "valid_until_event_id": "event_0011"
+      }
+    },
+    {
+      "claim": "Mona apologized, covered a make-up shift, and offered tonight's run; Lev's trust is only partly restored.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0009",
+      "fact_type": "conflict_or_repair",
+      "subject_entities": [
+        "person_mona",
+        "person_lev"
+      ],
+      "supporting_evidence_ids": [
+        "event_0011"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_porch",
+          "topic_tutoring_rota"
+        ],
+        "time_window": "day_2_15:00_onward"
+      }
+    },
+    {
+      "claim": "Starting day 3, Mona can only help from the community center, not the front porch.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0010",
+      "fact_type": "routine",
+      "subject_entities": [
+        "person_mona"
+      ],
+      "supporting_evidence_ids": [
+        "event_0013"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_center",
+          "activity_tutoring_rota"
+        ],
+        "time_window": "day_3_onward"
+      }
+    }
+  ],
+  "scenario_id": "scenario_1009"
+}

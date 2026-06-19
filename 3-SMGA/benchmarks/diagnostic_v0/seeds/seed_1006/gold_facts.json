@@ -1,0 +1,229 @@
+{
+  "gold_facts": [
+    {
+      "claim": "Goro and Hue have a productive mutual-aid partnership on the move-out help.",
+      "contradicting_evidence_ids": [
+        "event_0010"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0001",
+      "fact_type": "relationship",
+      "subject_entities": [
+        "person_goro",
+        "person_hue"
+      ],
+      "supporting_evidence_ids": [
+        "event_0001"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_porch",
+          "topic_move_out_help"
+        ],
+        "time_window": "day_1_to_day_2",
+        "valid_until_event_id": "event_0010"
+      }
+    },
+    {
+      "claim": "Jad's benefits denial was shared privately with Goro and was initially not to be told to anyone.",
+      "contradicting_evidence_ids": [
+        "event_0008"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0002",
+      "fact_type": "secret_or_privacy",
+      "subject_entities": [
+        "person_jad",
+        "person_goro",
+        "info_benefits_denial_detail"
+      ],
+      "supporting_evidence_ids": [
+        "event_0002"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_lane",
+          "topic_benefits_denial"
+        ],
+        "time_window": "day_1_to_day_2",
+        "valid_until_event_id": "event_0008"
+      }
+    },
+    {
+      "claim": "Hue promised Goro to cover the move-out help shift on day 1.",
+      "contradicting_evidence_ids": [
+        "event_0007"
+      ],
+      "current_status": "contradicted",
+      "fact_id": "fact_0003",
+      "fact_type": "commitment",
+      "subject_entities": [
+        "person_hue",
+        "person_goro"
+      ],
+      "supporting_evidence_ids": [
+        "event_0003"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_porch",
+          "topic_move_out_help"
+        ],
+        "time_window": "day_1_to_day_2",
+        "valid_until_event_id": "event_0007"
+      }
+    },
+    {
+      "claim": "The block norm is not to share a neighbor's benefits denial with anyone outside the block.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0004",
+      "fact_type": "norm",
+      "subject_entities": [
+        "norm_no_external_benefits_denial_sharing"
+      ],
+      "supporting_evidence_ids": [
+        "event_0004"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "topic_benefits_denial",
+          "norm_no_external_benefits_denial_sharing"
+        ],
+        "time_window": "day_1_onward"
+      }
+    },
+    {
+      "claim": "Hue usually helped from the front porch in the mornings on days 1-2.",
+      "contradicting_evidence_ids": [
+        "event_0013"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0005",
+      "fact_type": "routine",
+      "subject_entities": [
+        "person_hue"
+      ],
+      "supporting_evidence_ids": [
+        "event_0006"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_porch",
+          "activity_move_out_help"
+        ],
+        "time_window": "day_1_to_day_2",
+        "valid_until_event_id": "event_0013"
+      }
+    },
+    {
+      "claim": "Isa relayed second-hand that Hue is totally dependable and free all week.",
+      "contradicting_evidence_ids": [
+        "event_0007"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0006",
+      "fact_type": "reputation",
+      "subject_entities": [
+        "person_hue"
+      ],
+      "supporting_evidence_ids": [
+        "event_0005"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "topic_move_out_help"
+        ],
+        "time_window": "day_1_to_day_2",
+        "valid_until_event_id": "event_0007"
+      }
+    },
+    {
+      "claim": "Isa violated the block norm by mentioning Jad's benefits denial to a agency officer.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0007",
+      "fact_type": "norm",
+      "subject_entities": [
+        "person_isa",
+        "norm_no_external_benefits_denial_sharing"
+      ],
+      "supporting_evidence_ids": [
+        "event_0009"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_block",
+          "topic_benefits_denial"
+        ],
+        "time_window": "day_2_onward"
+      }
+    },
+    {
+      "claim": "Hue's missed shift reduced Goro's confidence in counting on them for tonight's move-out help.",
+      "contradicting_evidence_ids": [
+        "event_0011"
+      ],
+      "current_status": "revised",
+      "fact_id": "fact_0008",
+      "fact_type": "conflict_or_repair",
+      "subject_entities": [
+        "person_goro",
+        "person_hue"
+      ],
+      "supporting_evidence_ids": [
+        "event_0010"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_porch",
+          "topic_move_out_help"
+        ],
+        "time_window": "day_2_14:00_to_15:00",
+        "valid_until_event_id": "event_0011"
+      }
+    },
+    {
+      "claim": "Hue apologized, covered a make-up shift, and offered tonight's run; Goro's trust is only partly restored.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0009",
+      "fact_type": "conflict_or_repair",
+      "subject_entities": [
+        "person_hue",
+        "person_goro"
+      ],
+      "supporting_evidence_ids": [
+        "event_0011"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_porch",
+          "topic_move_out_help"
+        ],
+        "time_window": "day_2_15:00_onward"
+      }
+    },
+    {
+      "claim": "Starting day 3, Hue can only help from the community center, not the front porch.",
+      "contradicting_evidence_ids": [],
+      "current_status": "active",
+      "fact_id": "fact_0010",
+      "fact_type": "routine",
+      "subject_entities": [
+        "person_hue"
+      ],
+      "supporting_evidence_ids": [
+        "event_0013"
+      ],
+      "validity_scope": {
+        "contexts": [
+          "place_center",
+          "activity_move_out_help"
+        ],
+        "time_window": "day_3_onward"
+      }
+    }
+  ],
+  "scenario_id": "scenario_1006"
+}

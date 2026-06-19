@@ -1,0 +1,117 @@
+{
+  "entities": [
+    {
+      "aliases": [],
+      "description": "Block coordinator organizing mutual aid.",
+      "display_name": "Lev",
+      "entity_id": "person_lev",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A neighbor who agreed to help with the tutoring rota.",
+      "display_name": "Mona",
+      "entity_id": "person_mona",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A neighbor who passes along second-hand news about others.",
+      "display_name": "Nils",
+      "entity_id": "person_nils",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A neighbor dealing privately with a custody dispute.",
+      "display_name": "Oona",
+      "entity_id": "person_oona",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A long-time resident who states the block's norms.",
+      "display_name": "Pia",
+      "entity_id": "person_pia",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "Shared neighborhood street.",
+      "display_name": "The block",
+      "entity_id": "place_block",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "Where coordination usually happens.",
+      "display_name": "Front porch",
+      "entity_id": "place_porch",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "Indoor space for larger coordination.",
+      "display_name": "Community center",
+      "entity_id": "place_center",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "Quiet spot for private conversations.",
+      "display_name": "Back lane",
+      "entity_id": "place_lane",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "The mutual-aid task: tutoring rota.",
+      "display_name": "Tutoring Rota",
+      "entity_id": "topic_tutoring_rota",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "Sensitive personal matter: custody dispute.",
+      "display_name": "Custody Dispute",
+      "entity_id": "topic_custody_dispute",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "A distractor topic: block party.",
+      "display_name": "Block Party",
+      "entity_id": "topic_block_party",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "Block norm: do not share a neighbor's hardship outside the block.",
+      "display_name": "No outside custody dispute sharing",
+      "entity_id": "norm_no_external_custody_dispute_sharing",
+      "entity_type": "norm"
+    },
+    {
+      "aliases": [],
+      "description": "The specific custody dispute detail Oona controls.",
+      "display_name": "Custody Dispute detail",
+      "entity_id": "info_custody_dispute_detail",
+      "entity_type": "information_item"
+    },
+    {
+      "aliases": [],
+      "description": "Recurring tutoring rota effort.",
+      "display_name": "Tutoring Rota",
+      "entity_id": "activity_tutoring_rota",
+      "entity_type": "activity"
+    },
+    {
+      "aliases": [],
+      "description": "Dyadic mutual-aid relationship between Lev and Mona.",
+      "display_name": "Lev-Mona relationship",
+      "entity_id": "rel_person_lev__person_mona",
+      "entity_type": "relationship"
+    }
+  ],
+  "scenario_id": "scenario_1009"
+}

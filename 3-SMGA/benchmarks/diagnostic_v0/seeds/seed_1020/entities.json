@@ -1,0 +1,117 @@
+{
+  "entities": [
+    {
+      "aliases": [],
+      "description": "Block coordinator organizing mutual aid.",
+      "display_name": "Ira",
+      "entity_id": "person_ira",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A neighbor who agreed to help with the food run.",
+      "display_name": "Juno",
+      "entity_id": "person_juno",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A neighbor who passes along second-hand news about others.",
+      "display_name": "Kira",
+      "entity_id": "person_kira",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A neighbor dealing privately with a medical debt.",
+      "display_name": "Lev",
+      "entity_id": "person_lev",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A long-time resident who states the block's norms.",
+      "display_name": "Mona",
+      "entity_id": "person_mona",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "Shared neighborhood street.",
+      "display_name": "The block",
+      "entity_id": "place_block",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "Where coordination usually happens.",
+      "display_name": "Front porch",
+      "entity_id": "place_porch",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "Indoor space for larger coordination.",
+      "display_name": "Community center",
+      "entity_id": "place_center",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "Quiet spot for private conversations.",
+      "display_name": "Back lane",
+      "entity_id": "place_lane",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "The mutual-aid task: food run.",
+      "display_name": "Food Run",
+      "entity_id": "topic_food_run",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "Sensitive personal matter: medical debt.",
+      "display_name": "Medical Debt",
+      "entity_id": "topic_medical_debt",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "A distractor topic: yard cleanup.",
+      "display_name": "Yard Cleanup",
+      "entity_id": "topic_yard_cleanup",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "Block norm: do not share a neighbor's hardship outside the block.",
+      "display_name": "No outside medical debt sharing",
+      "entity_id": "norm_no_external_medical_debt_sharing",
+      "entity_type": "norm"
+    },
+    {
+      "aliases": [],
+      "description": "The specific medical debt detail Lev controls.",
+      "display_name": "Medical Debt detail",
+      "entity_id": "info_medical_debt_detail",
+      "entity_type": "information_item"
+    },
+    {
+      "aliases": [],
+      "description": "Recurring food run effort.",
+      "display_name": "Food Run",
+      "entity_id": "activity_food_run",
+      "entity_type": "activity"
+    },
+    {
+      "aliases": [],
+      "description": "Dyadic mutual-aid relationship between Ira and Juno.",
+      "display_name": "Ira-Juno relationship",
+      "entity_id": "rel_person_ira__person_juno",
+      "entity_type": "relationship"
+    }
+  ],
+  "scenario_id": "scenario_1020"
+}

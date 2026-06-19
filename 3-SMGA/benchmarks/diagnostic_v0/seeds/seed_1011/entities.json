@@ -1,0 +1,117 @@
+{
+  "entities": [
+    {
+      "aliases": [],
+      "description": "Block coordinator organizing mutual aid.",
+      "display_name": "Bo",
+      "entity_id": "person_bo",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A neighbor who agreed to help with the elder check-ins.",
+      "display_name": "Cyra",
+      "entity_id": "person_cyra",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A neighbor who passes along second-hand news about others.",
+      "display_name": "Dev",
+      "entity_id": "person_dev",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A neighbor dealing privately with a health scare.",
+      "display_name": "Eun",
+      "entity_id": "person_eun",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "A long-time resident who states the block's norms.",
+      "display_name": "Fia",
+      "entity_id": "person_fia",
+      "entity_type": "person"
+    },
+    {
+      "aliases": [],
+      "description": "Shared neighborhood street.",
+      "display_name": "The block",
+      "entity_id": "place_block",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "Where coordination usually happens.",
+      "display_name": "Front porch",
+      "entity_id": "place_porch",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "Indoor space for larger coordination.",
+      "display_name": "Community center",
+      "entity_id": "place_center",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "Quiet spot for private conversations.",
+      "display_name": "Back lane",
+      "entity_id": "place_lane",
+      "entity_type": "place"
+    },
+    {
+      "aliases": [],
+      "description": "The mutual-aid task: elder check-ins.",
+      "display_name": "Elder Check-Ins",
+      "entity_id": "topic_elder_checkins",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "Sensitive personal matter: health scare.",
+      "display_name": "Health Scare",
+      "entity_id": "topic_health_scare",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "A distractor topic: garden plots.",
+      "display_name": "Garden Plots",
+      "entity_id": "topic_garden_plots",
+      "entity_type": "topic"
+    },
+    {
+      "aliases": [],
+      "description": "Block norm: do not share a neighbor's hardship outside the block.",
+      "display_name": "No outside health scare sharing",
+      "entity_id": "norm_no_external_health_scare_sharing",
+      "entity_type": "norm"
+    },
+    {
+      "aliases": [],
+      "description": "The specific health scare detail Eun controls.",
+      "display_name": "Health Scare detail",
+      "entity_id": "info_health_scare_detail",
+      "entity_type": "information_item"
+    },
+    {
+      "aliases": [],
+      "description": "Recurring elder check-ins effort.",
+      "display_name": "Elder Check-Ins",
+      "entity_id": "activity_elder_checkins",
+      "entity_type": "activity"
+    },
+    {
+      "aliases": [],
+      "description": "Dyadic mutual-aid relationship between Bo and Cyra.",
+      "display_name": "Bo-Cyra relationship",
+      "entity_id": "rel_person_bo__person_cyra",
+      "entity_type": "relationship"
+    }
+  ],
+  "scenario_id": "scenario_1011"
+}

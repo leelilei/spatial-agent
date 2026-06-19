@@ -148,6 +148,10 @@ class World:
     # encounters per agent per round (connectivity). 1 = single chain (slow diffusion);
     # 2-3 = a realistically connected neighborhood where an update can actually spread.
     meetings_per_round: int = 1
+    # scenario-specific probe + verdict markers (set by demo_world from SCENARIOS)
+    question: str = "When and where is the repair drive being held now?"
+    current_markers: tuple[str, ...] = ("sunday", "community center")
+    stale_markers: tuple[str, ...] = ("saturday", "front porch", "porch")
 
     def schedule(self, round_idx: int) -> list[tuple[Agent, Agent]]:
         """Who meets whom this round: `meetings_per_round` independent random matchings.
@@ -276,9 +280,42 @@ def run_sim(world: World, rounds: int, converse: ConverseFn, out_dir: Path, *, w
     return summary
 
 
+# Parametrized scenarios (P1 generality): same STRUCTURE (an event reschedule: day+place
+# move), different surface content. Used to test that truth-decay is not a one-prompt artifact.
+SCENARIOS: dict[str, dict[str, Any]] = {
+    "repair_drive": {
+        "event": "the repair drive",
+        "seed": "I am organizing a repair drive this Saturday at the front porch and need helpers",
+        "update": ("Update: the repair drive has been moved from Saturday at the front porch "
+                   "to Sunday at the community center."),
+        "question": "When and where is the repair drive being held now?",
+        "current_markers": ("sunday", "community center"),
+        "stale_markers": ("saturday", "front porch", "porch"),
+    },
+    "book_club": {
+        "event": "the book club",
+        "seed": "I am organizing the book club this Tuesday at the library and need people to come",
+        "update": ("Update: the book club has been moved from Tuesday at the library to "
+                   "Thursday at the cafe."),
+        "question": "When and where is the book club meeting now?",
+        "current_markers": ("thursday", "cafe"),
+        "stale_markers": ("tuesday", "library"),
+    },
+    "carpool": {
+        "event": "the carpool",
+        "seed": "I am arranging the morning carpool to leave at 7am from the school lot",
+        "update": ("Update: the morning carpool now leaves at 8am from the church parking lot, "
+                   "not 7am from the school lot."),
+        "question": "When and where does the morning carpool leave now?",
+        "current_markers": ("8am", "church"),
+        "stale_markers": ("7am", "school lot"),
+    },
+}
+
+
 def demo_world(memory_factory: Callable[[], Memory], *, rng_seed: int = 7, agent_count: int = 4,
                meetings_per_round: int = 1, rebroadcast_every: int = 0,
-               rebroadcast_scope: str = "source") -> World:
+               rebroadcast_scope: str = "source", scenario: str = "repair_drive") -> World:
     """A configurable society with one seeded social dynamic (an event to organize).
 
     Authoritative re-broadcast (the C4 intervention): rebroadcast_every>0 re-announces the
@@ -286,9 +323,10 @@ def demo_world(memory_factory: Callable[[], Memory], *, rng_seed: int = 7, agent
     (a01, who must then re-propagate); scope="broadcast" injects into EVERY agent (a town
     announcement — the strongest intervention). rebroadcast_every=0 is the baseline (one-time
     injection at round 1)."""
+    sc = SCENARIOS[scenario]
     roster = [
         Agent("a01", "Rosa", "the block coordinator, organized and warm", memory_factory(),
-               seeds=["I am organizing a repair drive this Saturday at the front porch and need helpers"]),
+               seeds=[sc["seed"]]),
         Agent("a02", "Sam", "a reliable neighbor who likes to help", memory_factory()),
         Agent("a03", "Tess", "a chatty neighbor who passes news along", memory_factory()),
         Agent("a04", "Uli", "a quiet neighbor dealing with a private hardship", memory_factory()),
