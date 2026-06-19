@@ -96,12 +96,22 @@ belief. This gap is worth pinning down — it suggests the corruption attractor 
 by something downstream of any one agent's output (the network evidence-ratio / Bayesian
 re-weighting), not by what individuals can be made to utter.
 
-## Honest current thesis
-Truth-decay in LLM-agent societies is **robust** — capability, connectivity, AND memory
-architecture all fail to prevent it; the society reliably converges on a corrupted/stale
-consensus. The cure (C4) is NOT a memory swap. The one untested lever is an **authoritative
-re-broadcast** (a source repeatedly re-injecting the truth — the social analog of Yi 2025's
-verifier); whether even that restores truth is open.
+## Honest current thesis (updated after M4)
+Truth-decay in LLM-agent societies is **robust** — it resists EVERY realistic lever:
+capability (M0), connectivity (M1, which makes it worse), memory architecture (M2/M3), AND
+a persistent authoritative source (M4-source re-broadcast, Δ ns). The society reliably
+converges on a corrupted/stale consensus. **Only brute-force BROADCAST** — injecting the
+truth into every agent every round, i.e. bypassing the social dynamics by overwriting each
+memory — restores it (M4-broadcast, 99%); that is spoon-feeding, not an emergent cure.
+
+## The mechanism (M4): a DISSOCIATION — speech ≠ collective belief
+This is the project's sharpest claim, now demonstrated with tight CIs. Interventions readily
+change what agents SAY but not what the society HOLDS. In M4-source, a persistent authoritative
+source flips the society's utterances to Sunday-dominant (said Sun:Sat 25:5 by round 5) yet
+the HELD belief stays stale/unknown (current 3.8/25, unchanged from baseline). The collective
+belief is **sticky** — anchored by the network evidence-ratio (the entrenched stale version),
+not by what any source can be made to utter. You can make the society parrot the truth; you
+cannot (short of overwriting every memory) make it BELIEVE the truth.
 
 ## Caveats (do not over-read yet)
 n=3–5, single scenario, single update, keyword-based current/stale metric (the receiver
