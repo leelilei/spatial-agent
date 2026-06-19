@@ -315,7 +315,8 @@ SCENARIOS: dict[str, dict[str, Any]] = {
 
 def demo_world(memory_factory: Callable[[], Memory], *, rng_seed: int = 7, agent_count: int = 4,
                meetings_per_round: int = 1, rebroadcast_every: int = 0,
-               rebroadcast_scope: str = "source", scenario: str = "repair_drive") -> World:
+               rebroadcast_scope: str = "source", scenario: str = "repair_drive",
+               rebroadcast_rounds: str = "") -> World:
     """A configurable society with one seeded social dynamic (an event to organize).
 
     Authoritative re-broadcast (the C4 intervention): rebroadcast_every>0 re-announces the
@@ -357,12 +358,15 @@ def demo_world(memory_factory: Callable[[], Memory], *, rng_seed: int = 7, agent
     agents = roster[:agent_count]
     # currency stress: at round 1 the event's time+place are CHANGED (Rosa hears it).
     update = sc["update"]
-    inject_rounds = [1]
-    if rebroadcast_every and rebroadcast_every > 0:
-        r = 1 + rebroadcast_every
-        while r <= 40:  # populate generously; run_sim only uses up to its `rounds`
-            inject_rounds.append(r)
-            r += rebroadcast_every
+    if rebroadcast_rounds.strip():  # explicit rounds override (e.g. recency test: inject only late)
+        inject_rounds = [int(x) for x in rebroadcast_rounds.split(",") if x.strip()]
+    else:
+        inject_rounds = [1]
+        if rebroadcast_every and rebroadcast_every > 0:
+            r = 1 + rebroadcast_every
+            while r <= 40:  # populate generously; run_sim only uses up to its `rounds`
+                inject_rounds.append(r)
+                r += rebroadcast_every
     targets = [a.agent_id for a in agents] if rebroadcast_scope == "broadcast" else ["a01"]
     injections = {rnd: [(aid, update) for aid in targets] for rnd in inject_rounds}
     return World(

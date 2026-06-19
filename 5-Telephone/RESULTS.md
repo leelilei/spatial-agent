@@ -20,6 +20,9 @@
 
 | 06-19 | G1 | GENERALITY (P1): M4 dissociation on 2 NEW scenarios | GA mini m2 r5 n=5, book_club + carpool | REPLICATES across all 3 scenarios: source FAILS (Δ ns ×3) despite flipping SAID; broadcast WORKS (Δ SIG ×3 →~25/25). Single-scenario-artifact attack DEAD | done |
 
+| 06-19 | P1-mech | DISSOCIATION MECHANISM (P4): heard-ratio vs recency | analysis of M4+G1 (0-API) | dose-response real (held rises with heard cur-frac, →95%) BUT mean ratio similar across baseline/source/broadcast (0.64/0.72/0.73) w/ opposite outcomes → naive ratio REFUTED; points to RECENCY | done |
+| 06-19 | P1-rec | RECENCY test: broadcast at LAST round only vs baseline vs every-round | repair_drive GA mini m2 r5 n=5 | does a single fresh broadcast right before the probe suffice (=recency) or not? | RUNNING |
+
 Detailed write-ups follow below as runs land.
 
 ---
@@ -269,3 +272,26 @@ the failure there is non-retention, not stale-persistence, yet source still can'
 Toward publication (path_to_publication.md): P1 generality — DONE for the dissociation spine
 (3 scenarios). Remaining: capability(M0)/connectivity(M1) on ≥2 scenarios; provenance/judge
 metric (P2); mechanism localization of the dissociation (P4); n≥8 symmetric (P3).
+
+---
+
+# P1-mech (P4 first cut) — mechanism of the dissociation: ratio vs RECENCY (2026-06-19)
+
+Zero-API analysis of M4+G1 data (repair_drive/book_club/carpool × baseline/source/broadcast).
+For each agent: HEARD current:stale fraction (from its event stream) vs HELD verdict.
+
+Dose-response (pooled): held-current rises with the agent's heard-current fraction —
+[0,0.2)→0% · [0.2,0.4)→11% · [0.4,0.6)→40% · [0.6,0.8)→95%. So at the INDIVIDUAL level the
+heard evidence ratio matters.
+
+BUT the naive "held = f(mean heard ratio)" hypothesis is REFUTED at the population level:
+mean heard-current-fraction is similar across baseline (0.64), source (0.72), broadcast
+(0.73) — yet held-current is low/low/99%. Similar ratio, opposite outcome ⇒ the MEAN ratio
+does not explain why source fails and broadcast works.
+
+Refined hypothesis → RECENCY: broadcast re-injects the truth every round INCLUDING the last
+(right before the probe), so the truth is what agents heard most RECENTLY, and GA retrieval
+is recency-weighted. The dissociation may be governed by the recency/freshness of the last
+authoritative mention, not the cumulative ratio. Discriminating test (P1-rec, launched): a
+SINGLE broadcast at the LAST round vs baseline (single broadcast at round 1) vs every-round.
+If last-round-only ≈ every-round ⇒ RECENCY; if last-round-only fails ⇒ cumulative/threshold.
