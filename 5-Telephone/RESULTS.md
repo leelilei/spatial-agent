@@ -16,6 +16,8 @@
 
 | 06-19 | M3 | VERIFY smga3g flip: ga vs smga3g × meetings{2,3} | mini, 25a r5 t3, n≈4-5 | M2 FLIP DID NOT REPLICATE: smga3g current ≈ ga (Δ -1.0 @m2, +3.7 @m3, both ns). Dissociation: smga3g relays Sunday in streams (m2 Sat:Sun 4:28) but truth-recall unchanged. Memory does NOT robustly fix corruption | done |
 
+| 06-19 | M4 | AUTHORITATIVE RE-BROADCAST (C4 closure) + dissociation: baseline / source-rebroadcast / broadcast | GA, mini, 25a m2 r5, n=5 | does periodically re-injecting the truth (esp. broadcast to all every round) restore HELD belief, or does the society still hold stale despite hearing the truth? | RUNNING |
+
 Detailed write-ups follow below as runs land.
 
 ---

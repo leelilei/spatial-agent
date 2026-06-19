@@ -182,6 +182,8 @@ def run_one(
         rng_seed=schedule_seed,
         agent_count=args.agent_count,
         meetings_per_round=args.meetings,
+        rebroadcast_every=args.rebroadcast_every,
+        rebroadcast_scope=args.rebroadcast_scope,
     )
     label = model_label(model, llm, mock=args.mock)
     run_dir = args.out_dir / label / memory / f"run_{run_index:03d}"
@@ -284,6 +286,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--seed", type=int, default=7, help="base random seed")
     parser.add_argument("--agent-count", type=int, default=4)
     parser.add_argument("--meetings", type=int, default=1, help="encounters per agent per round (connectivity)")
+    parser.add_argument("--rebroadcast-every", type=int, default=0, help="re-announce the truth every k rounds (0=once)")
+    parser.add_argument("--rebroadcast-scope", default="source", choices=["source", "broadcast"], help="re-broadcast target")
     parser.add_argument("--rounds", type=int, default=5)
     parser.add_argument("--turns", type=int, default=4)
     parser.add_argument("--workers", type=int, default=1, help="concurrent encounters/consolidations per round")

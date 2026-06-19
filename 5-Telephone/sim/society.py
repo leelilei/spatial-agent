@@ -277,8 +277,15 @@ def run_sim(world: World, rounds: int, converse: ConverseFn, out_dir: Path, *, w
 
 
 def demo_world(memory_factory: Callable[[], Memory], *, rng_seed: int = 7, agent_count: int = 4,
-               meetings_per_round: int = 1) -> World:
-    """A configurable society with one seeded social dynamic (an event to organize)."""
+               meetings_per_round: int = 1, rebroadcast_every: int = 0,
+               rebroadcast_scope: str = "source") -> World:
+    """A configurable society with one seeded social dynamic (an event to organize).
+
+    Authoritative re-broadcast (the C4 intervention): rebroadcast_every>0 re-announces the
+    update at rounds 1, 1+k, 1+2k, ...  scope="source" re-injects only into the source agent
+    (a01, who must then re-propagate); scope="broadcast" injects into EVERY agent (a town
+    announcement — the strongest intervention). rebroadcast_every=0 is the baseline (one-time
+    injection at round 1)."""
     roster = [
         Agent("a01", "Rosa", "the block coordinator, organized and warm", memory_factory(),
                seeds=["I am organizing a repair drive this Saturday at the front porch and need helpers"]),
@@ -312,9 +319,16 @@ def demo_world(memory_factory: Callable[[], Memory], *, rng_seed: int = 7, agent
     agents = roster[:agent_count]
     # currency stress: at round 1 the drive's time+place are CHANGED (Rosa hears it).
     # The current truth becomes Sunday / community center; Saturday / front porch is stale.
-    injections = {1: [("a01",
-        "Update: the repair drive has been moved from Saturday at the front porch to "
-        "Sunday at the community center.")]}
+    update = ("Update: the repair drive has been moved from Saturday at the front porch to "
+              "Sunday at the community center.")
+    inject_rounds = [1]
+    if rebroadcast_every and rebroadcast_every > 0:
+        r = 1 + rebroadcast_every
+        while r <= 40:  # populate generously; run_sim only uses up to its `rounds`
+            inject_rounds.append(r)
+            r += rebroadcast_every
+    targets = [a.agent_id for a in agents] if rebroadcast_scope == "broadcast" else ["a01"]
+    injections = {rnd: [(aid, update) for aid in targets] for rnd in inject_rounds}
     return World(
         agents=agents,
         topic="the repair drive",
