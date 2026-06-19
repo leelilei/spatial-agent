@@ -355,10 +355,8 @@ def demo_world(memory_factory: Callable[[], Memory], *, rng_seed: int = 7, agent
     if agent_count < 2 or agent_count > len(roster):
         raise ValueError(f"agent_count must be between 2 and {len(roster)}")
     agents = roster[:agent_count]
-    # currency stress: at round 1 the drive's time+place are CHANGED (Rosa hears it).
-    # The current truth becomes Sunday / community center; Saturday / front porch is stale.
-    update = ("Update: the repair drive has been moved from Saturday at the front porch to "
-              "Sunday at the community center.")
+    # currency stress: at round 1 the event's time+place are CHANGED (Rosa hears it).
+    update = sc["update"]
     inject_rounds = [1]
     if rebroadcast_every and rebroadcast_every > 0:
         r = 1 + rebroadcast_every
@@ -369,10 +367,13 @@ def demo_world(memory_factory: Callable[[], Memory], *, rng_seed: int = 7, agent
     injections = {rnd: [(aid, update) for aid in targets] for rnd in inject_rounds}
     return World(
         agents=agents,
-        topic="the repair drive",
+        topic=sc["event"],
         rng=random.Random(rng_seed),
         injections=injections,
         meetings_per_round=meetings_per_round,
+        question=sc["question"],
+        current_markers=sc["current_markers"],
+        stale_markers=sc["stale_markers"],
     )
 
 
@@ -383,9 +384,11 @@ INTERVIEW_SYSTEM = (
 
 
 def interview(world: World, question: str, llm: "Any") -> dict[str, Any]:
-    """Ask every agent a probe and score current-vs-stale (a live currency / C4 check)."""
-    current_markers = ("sunday", "community center")
-    stale_markers = ("saturday", "front porch", "porch")
+    """Ask every agent a probe and score current-vs-stale (a live currency / C4 check).
+
+    Markers come from the world's scenario (parametrized), not hard-coded."""
+    current_markers = world.current_markers
+    stale_markers = world.stale_markers
     results = {}
     for a in world.agents:
         ctx = a.memory.retrieve(question)

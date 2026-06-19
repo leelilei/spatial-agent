@@ -184,7 +184,9 @@ def run_one(
         meetings_per_round=args.meetings,
         rebroadcast_every=args.rebroadcast_every,
         rebroadcast_scope=args.rebroadcast_scope,
+        scenario=args.scenario,
     )
+    question = world.question  # scenario-correct probe (overrides the default)
     label = model_label(model, llm, mock=args.mock)
     run_dir = args.out_dir / label / memory / f"run_{run_index:03d}"
     summary = run_sim(world, args.rounds, converse, run_dir, workers=max(1, args.workers))
@@ -197,12 +199,12 @@ def run_one(
     })
 
     if args.mock:
-        interview_results = mechanical_interview(world, args.question)
+        interview_results = mechanical_interview(world, question)
     else:
         assert llm is not None
-        interview_results = interview(world, args.question, llm)
+        interview_results = interview(world, question, llm)
     write_json(run_dir / "interview_currency.json", {
-        "question": args.question,
+        "question": question,
         "results": interview_results,
         "mode": "mechanical" if args.mock else "llm",
     })
@@ -288,6 +290,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--meetings", type=int, default=1, help="encounters per agent per round (connectivity)")
     parser.add_argument("--rebroadcast-every", type=int, default=0, help="re-announce the truth every k rounds (0=once)")
     parser.add_argument("--rebroadcast-scope", default="source", choices=["source", "broadcast"], help="re-broadcast target")
+    parser.add_argument("--scenario", default="repair_drive", help="scenario key (repair_drive, book_club, carpool)")
     parser.add_argument("--rounds", type=int, default=5)
     parser.add_argument("--turns", type=int, default=4)
     parser.add_argument("--workers", type=int, default=1, help="concurrent encounters/consolidations per round")

@@ -18,6 +18,8 @@
 
 | 06-19 | M4 | AUTHORITATIVE RE-BROADCAST (C4 closure) + dissociation | GA, mini, 25a m2 r5, n=5 | source re-broadcast FAILS (Δ+0.8 ns) though it flips what agents SAY (Sun:Sat 25:5 by r5); only brute BROADCAST (inject all/round) works (99%, +21.8 SIG) = spoon-feeding, bypasses society. DISSOCIATION proven: speech≠belief; collective belief is sticky | done |
 
+| 06-19 | G1 | GENERALITY (P1): replicate the M4 dissociation on 2 NEW scenarios | GA mini m2 r5 n=5, book_club + carpool × {baseline/source/broadcast} | does source-fails / broadcast-works / dissociation hold beyond the repair-drive scenario? | RUNNING |
+
 Detailed write-ups follow below as runs land.
 
 ---
