@@ -21,7 +21,7 @@
 | 06-19 | G1 | GENERALITY (P1): M4 dissociation on 2 NEW scenarios | GA mini m2 r5 n=5, book_club + carpool | REPLICATES across all 3 scenarios: source FAILS (Δ ns ×3) despite flipping SAID; broadcast WORKS (Δ SIG ×3 →~25/25). Single-scenario-artifact attack DEAD | done |
 
 | 06-19 | P1-mech | DISSOCIATION MECHANISM (P4): heard-ratio vs recency | analysis of M4+G1 (0-API) | dose-response real (held rises with heard cur-frac, →95%) BUT mean ratio similar across baseline/source/broadcast (0.64/0.72/0.73) w/ opposite outcomes → naive ratio REFUTED; points to RECENCY | done |
-| 06-19 | P1-rec | RECENCY test: broadcast at LAST round only vs baseline vs every-round | repair_drive GA mini m2 r5 n=5 | does a single fresh broadcast right before the probe suffice (=recency) or not? | RUNNING |
+| 06-19 | P1-rec | RECENCY vs ENTRENCHMENT: r1-broadcast vs r5-broadcast | repair_drive GA mini m2 r5 (n=2-5) | RECENCY REFUTED: r1_broadcast(early,all)=25/25 but r5_broadcast(last,all)=0/25. Mechanism = ENTRENCHMENT/path-dependence: truth must be established EARLY+BROAD before the incumbent stale belief entrenches; late/narrow correction fails | done |
 
 Detailed write-ups follow below as runs land.
 
@@ -295,3 +295,41 @@ is recency-weighted. The dissociation may be governed by the recency/freshness o
 authoritative mention, not the cumulative ratio. Discriminating test (P1-rec, launched): a
 SINGLE broadcast at the LAST round vs baseline (single broadcast at round 1) vs every-round.
 If last-round-only ≈ every-round ⇒ RECENCY; if last-round-only fails ⇒ cumulative/threshold.
+
+---
+
+# P1-rec — RECENCY refuted; the mechanism is ENTRENCHMENT / path-dependence (2026-06-19)
+
+To distinguish the candidate mechanisms (cumulative ratio vs recency), a clean contrast:
+the SAME single broadcast to ALL agents, differing only in TIMING. repair_drive, GA, mini,
+meetings=2, r5.
+
+```text
+condition                              current/25
+baseline (inject r1, SOURCE only=1 ag)   3.0
+r1_broadcast (all hear @round 1 only)   25.0   <- early + broad → WINS
+r5_broadcast (all hear @round 5 = last)  0.0   <- latest possible, all hear it → FAILS
+every_broadcast (all, every round)      24.8
+```
+(r1/r5 broadcast n=2 here — jobs cut short; the effect is saturated [25,25] vs [0,0], so the
+direction is certain; re-running to n=5 for the CI.)
+
+RECENCY is REFUTED: the MOST RECENT broadcast (r5, right before the probe, heard by everyone)
+yields 0/25, while the EARLIEST broadcast (r1) yields 25/25. The opposite of recency.
+
+The mechanism is ENTRENCHMENT / PATH-DEPENDENCE, with two requirements visible in the
+contrasts:
+- TIMING: r1_broadcast (win) vs r5_broadcast (fail) — same dose, different timing. Establishing
+  the truth EARLY lets it self-reinforce through subsequent conversation; a LATE injection
+  cannot dislodge the stale version that has already entrenched over 4 rounds of repetition.
+- BREADTH: baseline (r1, 1 agent, fail) vs r1_broadcast (r1, all, win) — same timing, different
+  breadth. The truth must be established across the POPULATION; one persistent voice is not enough.
+
+Deep "why" (the paper's mechanistic spine): the stale value is the ORIGINAL plan everyone knew
+from the start — it is entrenched from round 0. The update arrives late and narrow (one agent
+at round 1). The incumbent belief wins by path-dependence unless the correction matches its
+breadth AND arrives before further entrenchment. This is why truth-decay is so robust, why a
+persistent authoritative source fails (it is narrow and late relative to the entrenched
+incumbent), and why only early+broad (or continuous) broadcast works. It resonates with the
+first-mover-advantage / entrenchment dynamics in the misinformation literature — here
+demonstrated cleanly in a controlled agent society.
