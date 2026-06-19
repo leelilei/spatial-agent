@@ -23,6 +23,8 @@
 | 06-19 | P1-mech | DISSOCIATION MECHANISM (P4): heard-ratio vs recency | analysis of M4+G1 (0-API) | dose-response real (held rises with heard cur-frac, →95%) BUT mean ratio similar across baseline/source/broadcast (0.64/0.72/0.73) w/ opposite outcomes → naive ratio REFUTED; points to RECENCY | done |
 | 06-19 | P1-rec | RECENCY vs ENTRENCHMENT: r1-broadcast vs r5-broadcast | repair_drive GA mini m2 r5 (n=2-5) | RECENCY REFUTED: r1_broadcast(early,all)=25/25 but r5_broadcast(last,all)=0/25. Mechanism = ENTRENCHMENT/path-dependence: truth must be established EARLY+BROAD before the incumbent stale belief entrenches; late/narrow correction fails | done |
 
+| 06-19 | P3 | POWER: M0 capability (n=8 mini / n=5 strong) + M1 connectivity (n=8 mini) with CIs | GA, 25a m2/various r5 | firm up the failed-lever claims (capability flat; connectivity worsens) at adequate n + CIs | RUNNING |
+
 Detailed write-ups follow below as runs land.
 
 ---
