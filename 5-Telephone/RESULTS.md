@@ -12,7 +12,9 @@
 
 | 06-19 | M1 | (capability × connectivity) phase diagram | GA, 25a r5 t3, 3×3, seeds 41-43 | CORRUPTION EVERYWHERE: current ≤28% in all cells; connectivity↑ AMPLIFIES corruption (5.4 Sat:Sun 0.9×→10.4× as meetings 1→3). Neither capability nor connectivity saves truth | done |
 
-| 06-19 | M2 | MEMORY AXIS raw/ga/smga/smga3g | mini, 25a m2 r5 t3, seeds 41-43, n=3 | MEMORY MATTERS HUGELY (surprise): ga/v2 corrupt (relay stale), smga3g (currency) FLIPS society to truth — cur 56% vs ga 20%, receivers Sun-dom 19:4. Contradicts 3-SMGA; VERIFY w/ CIs | done |
+| 06-19 | M2 | MEMORY AXIS raw/ga/smga/smga3g | mini, 25a m2 r5 t3, n=3 | smga3g cur 56% — **NOT REPLICATED** (see M3, was n=3 outlier). Real signal: smga3g relays Sunday more in conversations, but it does NOT lift truth-recall | done(superseded) |
+
+| 06-19 | M3 | VERIFY smga3g flip: ga vs smga3g × meetings{2,3} | mini, 25a r5 t3, n≈4-5 | M2 FLIP DID NOT REPLICATE: smga3g current ≈ ga (Δ -1.0 @m2, +3.7 @m3, both ns). Dissociation: smga3g relays Sunday in streams (m2 Sat:Sun 4:28) but truth-recall unchanged. Memory does NOT robustly fix corruption | done |
 
 Detailed write-ups follow below as runs land.
 
@@ -143,3 +145,41 @@ smga3g ≈ GA (S5kg/S5L). The difference is plausibly live-coupling + different 
 + n=3 noise. Before building on it: (a) re-run with n≥6 seeds + CIs; (b) audit that smga3g
 is genuinely relaying (inspect conversations/registry), not exploiting the keyword metric;
 (c) re-interpret M0/M1 — those used GA memory, so "nothing saves truth" was GA-specific.
+
+---
+
+# M3 — VERIFY the smga3g flip (and it does NOT replicate) (2026-06-19)
+
+M2 (n=3) showed a dramatic smga3g flip (current 56% vs ga 20%). We were rightly skeptical
+(smga3g has fooled us before). Verification: ga vs smga3g × meetings{2,3}, mini, n≈4-5
+(some runs lost to the runtime cap; n unequal). current/25 mean [95% CI], receiver Sat:Sun:
+
+```text
+meetings=2   ga      current 4.2/25 [1.5,6.9]   receivers 58:  Sat 22 / Sun 23   (n=5)
+             smga3g  current 4.0/25 [1.1,6.9]   receivers 38:  Sat  4 / Sun 28   (n=4)
+             Δ(smga3g-ga) = -1.0/25  95% CI [-4.9,+2.9]  ns
+meetings=3   ga      current 3.0/25             receivers 32:  Sat 17 / Sun 12   (n=3)
+             smga3g  current 6.0/25 [0.3,11.7]  receivers 81:  Sat 35 / Sun 36   (n=4)
+             Δ(smga3g-ga) = +3.7/25  95% CI [-10.5,+17.8]  ns
+```
+
+Findings:
+1. **The M2 smga3g flip (56%) did NOT replicate.** At n=4-5, smga3g current ≈ ga (~16%),
+   Δ not significant at either connectivity. The M2 14/25 was an n=3 lucky draw. (The
+   discipline — verify a surprising result before building on it — paid off; smga3g fooled
+   us again, and we caught it.)
+2. **Real but weaker signal — a DISSOCIATION.** smga3g does make the conversation streams
+   more Sunday-dominant at meetings=2 (Sat:Sun 4:28 vs ga 22:23) — agents DO relay "Sunday"
+   more. But this does NOT translate into higher interview truth-recall (current unchanged).
+   Memory changes what agents SAY without changing what the society HOLDS.
+3. So memory architecture does NOT robustly restore truth. The pendulum swings back toward
+   the M0/M1 reading: the corruption is substantially fundamental (transmission bottleneck +
+   network evidence dynamics), not fixable by a memory swap. Consistent with 3-SMGA's prior
+   (smga3g ≈ GA).
+
+Implication: retract M2's "memory fixes it / C4 works" narrative. Honest current thesis:
+truth-decay in agent societies is robust — scaling capability doesn't fix it (M0), more
+connectivity worsens it (M1), and swapping the memory architecture doesn't fix it either
+(M3). The dissociation (memory shifts speech but not collective belief) is itself an
+interesting sub-finding worth pinning down. Caveat: M3 n is small/unequal (runtime-cap
+losses); a clean n≥8 rerun would tighten it, but the non-replication is already clear.
