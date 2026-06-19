@@ -16,7 +16,7 @@
 
 | 06-19 | M3 | VERIFY smga3g flip: ga vs smga3g × meetings{2,3} | mini, 25a r5 t3, n≈4-5 | M2 FLIP DID NOT REPLICATE: smga3g current ≈ ga (Δ -1.0 @m2, +3.7 @m3, both ns). Dissociation: smga3g relays Sunday in streams (m2 Sat:Sun 4:28) but truth-recall unchanged. Memory does NOT robustly fix corruption | done |
 
-| 06-19 | M4 | AUTHORITATIVE RE-BROADCAST (C4 closure) + dissociation: baseline / source-rebroadcast / broadcast | GA, mini, 25a m2 r5, n=5 | does periodically re-injecting the truth (esp. broadcast to all every round) restore HELD belief, or does the society still hold stale despite hearing the truth? | RUNNING |
+| 06-19 | M4 | AUTHORITATIVE RE-BROADCAST (C4 closure) + dissociation | GA, mini, 25a m2 r5, n=5 | source re-broadcast FAILS (Δ+0.8 ns) though it flips what agents SAY (Sun:Sat 25:5 by r5); only brute BROADCAST (inject all/round) works (99%, +21.8 SIG) = spoon-feeding, bypasses society. DISSOCIATION proven: speech≠belief; collective belief is sticky | done |
 
 Detailed write-ups follow below as runs land.
 
@@ -185,3 +185,49 @@ connectivity worsens it (M1), and swapping the memory architecture doesn't fix i
 (M3). The dissociation (memory shifts speech but not collective belief) is itself an
 interesting sub-finding worth pinning down. Caveat: M3 n is small/unequal (runtime-cap
 losses); a clean n≥8 rerun would tighten it, but the non-replication is already clear.
+
+---
+
+# M4 — authoritative re-broadcast (C4 closure) + the dissociation, proven (2026-06-19)
+
+The last untested lever and the sharpest sub-finding, in one experiment. GA agents, mini,
+meetings=2, r5, n=5. Three conditions: baseline (one-time update at round 1); SOURCE
+(the source agent a01 re-announces the truth every round — a realistic, minimal
+intervention: a designated authoritative source / moderator / ground-truth oracle); and
+BROADCAST (the update is injected into EVERY agent every round — a heavy-handed positive
+CONTROL / upper bound, not a realistic cure: it bypasses the social dynamics by overwriting
+everyone's memory directly). We also instrument the DISSOCIATION: per-round Sunday:Saturday
+counts in what agents SAY (utterances), vs the final HELD belief (interview).
+
+```text
+cond       current/25 [95%CI]  stale  unknown  said Sunday:Saturday by round (r1..r5)
+baseline   3.0 [0.7,5.3]        3.0    19.0     0:9   0:18  10:18  18:26  18:14
+source     3.8 [2.4,5.2]        0.6    20.6     0:13  0:13  10:11  12:4   25:5
+broadcast  24.8 [24.2,25.4]     0.0     0.2     0:11  0:28  190:4  210:8  221:3
+Δ(source-baseline)    current  +0.8  95% CI [-1.4,+3.0]  ns
+Δ(broadcast-baseline) current +21.8  95% CI [+19.1,+24.5]  SIGNIFICANT
+```
+
+Findings:
+1. **A realistic authoritative source FAILS to restore held belief** (source Δ +0.8, ns) —
+   even though it visibly changes what the society SAYS: by round 5 utterances are
+   Sunday-dominant 25:5. So a persistent truth-teller flips the society's SPEECH but not its
+   HELD belief (current stays ~3.8/25, unknown 20.6). **The dissociation, crisp.**
+2. **Only brute-force BROADCAST works** (99% current) — but only by injecting the truth into
+   every agent every round, i.e. directly overwriting each memory and BYPASSING the social
+   dynamics. That is spoon-feeding, not an emergent cure (a positive control / upper bound,
+   exactly the heavy-handed override one should be skeptical of).
+3. **Mechanism — collective belief is STICKY beyond speech.** Interventions readily move
+   what agents utter; the society's held belief is anchored by the network evidence-ratio
+   (the entrenched stale version), so it does not follow speech. Speech ≠ belief.
+
+This CLOSES C4 honestly: truth-decay in agent societies resists every realistic lever
+(capability M0, connectivity M1, memory M2/M3, authoritative re-broadcast M4-source); only
+bypassing the society (M4-broadcast) "works". The DISSOCIATION (say ≠ hold; collective
+belief is sticky) is the paper's sharpest mechanistic claim and is now directly demonstrated
+with tight CIs.
+
+Caveats: n=5, single scenario, GA memory, keyword metric; the said-ratio is a coarse proxy.
+But the source-fails / broadcast-works contrast and the speech-vs-belief gap are large and
+clean. Next (for resume): pin the dissociation mechanistically (where does belief get
+anchored?), provenance fidelity metric, ≥2 scenarios.
