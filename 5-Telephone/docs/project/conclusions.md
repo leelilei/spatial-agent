@@ -50,10 +50,27 @@ be made to utter.
   has a feature training-time collapse does not foreground — the **dissociation**: the
   surface signal (speech) can be corrected while the latent consensus (belief) stays
   collapsed.
-- **For collective epistemics.** The society's held belief behaves like a sticky attractor
-  governed by the *evidence ratio in the network*, decoupled from individual outputs. Truth
-  has to win the *aggregate* competition, not just be *uttered*; an authority that speaks the
-  truth but is outnumbered by stale repetition loses.
+- **For collective epistemics.** The society's held belief is a **path-dependent
+  entrenchment attractor**: the version established FIRST and BROADLY wins, and the held
+  belief is decoupled from individual outputs (speech). The stale value is the original plan
+  everyone knew from round 0, so it is entrenched from the start; the update arrives late and
+  narrow and loses by path-dependence. Truth has to win the *aggregate* competition, not just
+  be *uttered* — an authority that speaks the truth but is outnumbered by entrenched stale
+  repetition loses.
+
+## The mechanism, nailed down (P1-rec): TIMING, not recency
+
+A clean timing contrast (same single broadcast to all agents, different round) refutes
+recency and isolates entrenchment:
+- **early broadcast (round 1, all) → 24.8/25** — and this *equals* broadcasting every round
+  (24.8): you don't need to keep shouting, you need to be **first**.
+- **late broadcast (round 5 = right before the probe, all) → 3.3/25** — and this *equals*
+  doing nothing (baseline 3.0): a late correction at full breadth is worthless.
+So WHEN the truth is established is decisive — early = total success, late = total failure,
+independent of breadth and contrary to recency. The collective belief is locked in by
+**first-mover / path-dependence**, which is *why* the decay is so robust and why every
+realistic (late, narrow) intervention fails. This resonates with first-mover-advantage and
+entrenchment in the misinformation literature — demonstrated here in a controlled society.
 
 ## The sharpest, most novel claim
 
