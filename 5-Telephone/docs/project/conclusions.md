@@ -25,9 +25,11 @@ be made to utter.
 2. **Capability does not fix it** (M0). mini→gpt-5.4→gpt-5.5: recall flat (16→21%). Worse,
    capability shifts the failure mode — weak models *forget*, strong models *confidently
    converge on the stale version*. **Scaling makes the society more confidently wrong.**
-3. **Connectivity makes it worse** (M1). More agent-to-agent communication amplifies the
-   stale version (Sat:Sun dominance ratio up to ~10× at high connectivity). **More
-   communication, less truth** — the opposite of redundancy-as-error-correction.
+3. **Connectivity does not fix it either** (M1, tempered by P3b). More agent-to-agent
+   communication does NOT restore truth (recall stays low at every connectivity). The
+   earlier "connectivity AMPLIFIES corruption / more communication, less truth" headline was
+   an n=3 outlier (one dramatic 10× cell) that did NOT replicate (P3b, n=3-4: ratio ~1.0 at
+   all connectivities) — connectivity is roughly NEUTRAL, not an amplifier. RETRACTED.
 4. **No realistic intervention restores it** (M2/M3 memory; M4-source authority). A
    currency-resolving memory looked like a cure (M2, n=3) but did not replicate (M3). A
    persistent authoritative re-broadcaster fails (M4-source, Δ ns). Only brute broadcast —
