@@ -30,6 +30,8 @@
 
 | 06-20 | G2 | PERSONA-DEPTH robustness (vs Park 2024): thick personas | repair_drive GA mini m2 r5 n=5, baseline/source/broadcast | YES, IDENTICAL to thin: baseline 14% (vs 12%), source 12% (vs 15%, still ≈baseline = dissociation holds), broadcast 98% (vs 99%). Persona depth is NOT a lever; 'thin-persona artifact' critique DEAD; mechanism confirmed structural | done |
 
+| 06-20 | M5 | LONG-HORIZON decay trajectory (Fig 2): per-round interview, r30 | repair_drive GA mini m2, baseline n=2 / source n=1 / broadcast n=1 | truth RISES to peak ~28% @ r6 then DECAYS to ~6% by r30; authoritative SOURCE also decays (36%→4%, converges to baseline); only BROADCAST sustains (~97%). r5 was a near-PEAK transient → r5 snapshots slightly OVER-state steady-state truth | done |
+
 Detailed write-ups follow below as runs land.
 
 ---
@@ -476,3 +478,46 @@ PREDICTED this (persona depth is not among timing/breadth, the decisive variable
 2-hour interview transcript per agent; a maximally rich self-report grounding is untested
 (but the direction — more persona content, identical outcome — makes a reversal unlikely).
 n=5, single scenario (repair_drive), mini, GA memory.
+
+---
+
+# M5 — long-horizon decay trajectory (Fig 2) (2026-06-20)
+
+**Motivation (raised by the human).** All prior experiments interview only at the END of a
+short run (r5). Is r5 the steady state, or a transient? For a real *decay curve* we added a
+per-round interview hook (`--interview-every-round`; verified read-only — `interview()` only
+calls `memory.retrieve`, so it does NOT contaminate the run) and ran to r30. Per-round
+interviewing over 30 rounds is heavy (~2-3 min/round late, GA context grows), so: baseline
+n=2, source n=1, broadcast n=1 (the trajectory needs SHAPE; end-state CIs already exist at
+n=5 from M4/G2). Figure: `paper/figures/fig2_decay.png`; data: `paper/figures/fig2_trajectory.csv`.
+
+```text
+held CURRENT-truth %      r4    r5    r6(peak)   r15    r29
+baseline (n=2)            14    20    28         16     6
+authoritative source(n=1) 24    36    36(r5/9)   32     4
+broadcast (n=1)          100   100    96        100    92
+```
+
+**Findings.**
+1. **Truth rises then DECAYS — a real telephone curve.** Baseline climbs to a peak (~28% @
+   r6) as the update diffuses, then erodes monotonically to ~6% by r30. The long-horizon
+   attractor is LOW-truth and **unknown-dominated** (~85-90% unknown): over many rounds the
+   update washes OUT of retrievable GA memory (buried under accumulating reflections) rather
+   than being overwritten by the stale version — failure mode = LOSS, not stale-corruption.
+2. **r5 was a near-PEAK transient.** Our earlier r5 snapshots caught the society on the rising
+   edge / at peak, so they slightly OVER-state steady-state truth. The corrected steady state
+   is LOWER (~5-6%) — this STRENGTHENS the decay claim, and is why running to r30 mattered
+   (a single run, run_000, even froze at a fake-looking flat plateau; n=2 revealed continued
+   slow decay).
+3. **The authoritative source also collapses.** A persistent source re-broadcasting every
+   round lifts truth higher and longer early (transient), but by r30 it ALSO decays to ~4%,
+   converging to baseline. Persistent authority DELAYS but does not PREVENT entrenchment/decay.
+4. **Only brute broadcast sustains truth.** Injecting truth into every agent every round holds
+   ~97% throughout (slight drift 100→92). Consistent with M4: sustaining truth requires
+   bypassing the social dynamics, not seeding them.
+
+**Caveats (honest).** source/broadcast are n=1 (single seed 41); the source EARLY-peak (36%)
+is seed-specific noise — the robust signal is the long-horizon DECAY toward baseline, not the
+early lift. baseline n=2 (run_000 froze ~8%, run_001 kept drifting down). r30 is near- but not
+perfectly-settled (still drifting at r29). Single scenario, mini, GA. The qualitative chain —
+rise→peak→decay; source converges to baseline; only broadcast sustains — is unambiguous.

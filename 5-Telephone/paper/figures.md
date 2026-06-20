@@ -18,7 +18,7 @@
 - **Why:** establishes the two distinct measurements the whole paper hinges on — what agents
   SAY in meetings vs what the society HOLDS at interview.
 
-### Fig 2 — The phenomenon: the society converges on the corruption attractor  ✅/🟡
+### Fig 2 — The phenomenon: fidelity decay over a long horizon (DECAY CURVE)  ✅  [rendered: figures/fig2_decay.png]
 - **Message:** a true update does NOT survive propagation; the stale version wins.
 - **Encoding:** stacked bar (or area) of held-belief composition {current, stale, unknown}
   for the baseline condition; truth (current) is a thin sliver (~12–14%), stale/unknown
