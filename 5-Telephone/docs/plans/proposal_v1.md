@@ -1,5 +1,7 @@
 # Telephone — Research Proposal v1
 
+> **Working title:** *Speech is not belief: Fidelity decay in LLM agent societies*
+
 > Supersedes `proposal_v0.md` (kept for history). v1 folds in the literature review
 > (`../../telephone-research.md`): the **attractor / phase-boundary** reframe (iterated
 > learning), an **elevated C4** (social analog of verifier-guided collapse-escape), a

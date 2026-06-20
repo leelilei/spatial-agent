@@ -1,5 +1,7 @@
 # Telephone — paper narrative / 论文思路（活文档）
 
+> **Working title:** *Speech is not belief: Fidelity decay in LLM agent societies*
+
 > Concept-level story; numbers live in `../RESULTS.md`. Append a section whenever a
 > CONCEPTUAL (not just numeric) step lands. Started 2026-06-19.
 
