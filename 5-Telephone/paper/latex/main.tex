@@ -1,0 +1,222 @@
+%File: main.tex  (Telephone paper, AAAI 2026 format)
+%
+% To produce the ANONYMOUS submission version, uncomment the next line:
+% \def\aaaianonymous{true}
+%
+\documentclass[letterpaper]{article} % DO NOT CHANGE THIS
+
+\ifdefined\aaaianonymous
+    \usepackage[submission]{aaai2026}
+\else
+    \usepackage{aaai2026}
+\fi
+
+\usepackage{times}  % DO NOT CHANGE THIS
+\usepackage{helvet}  % DO NOT CHANGE THIS
+\usepackage{courier}  % DO NOT CHANGE THIS
+\usepackage[hyphens]{url}  % DO NOT CHANGE THIS
+\usepackage{graphicx} % DO NOT CHANGE THIS
+\urlstyle{rm} % DO NOT CHANGE THIS
+\def\UrlFont{\rm}  % DO NOT CHANGE THIS
+\usepackage{natbib}  % DO NOT CHANGE THIS AND DO NOT ADD ANY OPTIONS TO IT
+\usepackage{caption} % DO NOT CHANGE THIS AND DO NOT ADD ANY OPTIONS TO IT
+\usepackage{booktabs} % for tables
+\frenchspacing  % DO NOT CHANGE THIS
+\setlength{\pdfpagewidth}{8.5in} % DO NOT CHANGE THIS
+\setlength{\pdfpageheight}{11in} % DO NOT CHANGE THIS
+
+\pdfinfo{
+/TemplateVersion (2026.1)
+}
+
+\setcounter{secnumdepth}{0} % AAAI: no section numbers
+
+% ---- Title (Title Case, per AAAI) ----
+\title{Speech Is Not Belief: Fidelity Decay in LLM Agent Societies}
+
+\author{
+    Gwyneth Sanford \\ % PLACEHOLDER author list --- TBD
+}
+\affiliations{
+    Affiliation TBD \\
+    author@example.com
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Generative-agent work shows that information can \emph{spread} through a simulated
+society, but not whether the spread is \emph{faithful}. We introduce \textsc{Telephone},
+an instrument that injects a single ground-truthed update into an LLM-agent society,
+lets the agents relay it through rounds of pairwise conversation, and then interviews
+every agent to measure what the society \emph{holds}. Across capability, connectivity,
+memory architecture, and a persistent authoritative source, natural levers fail to
+restore held truth; only directly overwriting every agent's memory does. The sharpest
+result is a dissociation: an authoritative source makes agents increasingly \emph{say}
+the current value while the society's \emph{held} belief stays near baseline---speech
+moves without belief. We trace the mechanism to path-dependent entrenchment: the version
+established early and broadly wins, and late or narrow correction can be uttered without
+being adopted. The effect survives a long horizon (truth peaks early then decays), three
+scenarios, thicker personas, and a semantic-judge validation of the metric.
+\end{abstract}
+
+% ============================================================
+\section{Introduction}
+% TODO: tighten. Frame: reach vs fidelity; individual vs collective fidelity.
+Large language model (LLM) agents increasingly talk to one another: they coordinate,
+remember, and simulate social environments \citep{park2023generative}. A separate line of
+work shows that a single agent can be made remarkably faithful to a real individual
+\citep{park2024thousand}. Neither line asks the question we study here: when a society of
+such agents passes a \emph{changing} fact through conversation, does the society end up
+\emph{holding} the truth, or merely repeating it?
+
+This is the gap between \emph{reach} and \emph{fidelity}. Misinformation research has long
+separated how far content spreads from whether it is believed
+\citep{lazer2018science,vosoughi2018spread}. We bring that distinction inside an LLM-agent
+society and make it measurable. Our contributions are: (i) a measurement shift from
+information reach to information fidelity; (ii) a robust phenomenon of social fidelity
+decay; (iii) an empirical spine showing natural repair levers fail; (iv) a speech--belief
+dissociation with a path-dependent entrenchment mechanism; and (v) a rigor story of powered
+reruns, semantic-judge validation, multiple scenarios, and explicit retractions of early
+non-replicated claims.
+
+% ============================================================
+\section{The Telephone Instrument}
+\label{sec:method}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig1_setup.png}
+\caption{The \textsc{Telephone} instrument. A ground-truthed update is injected at one
+source; agents relay it over $K$ rounds of pairwise meetings using generative-agent
+reflection memory; every agent is then interviewed and scored as holding the
+\emph{current}, \emph{stale}, or \emph{unknown} value. The paper hinges on two distinct
+measurements: what agents \emph{say} in meetings versus what the society \emph{holds} at
+interview.}
+\label{fig:setup}
+\end{figure*}
+
+A society of $N{=}25$ LLM agents is seeded so that one source carries a ground-truthed
+update (e.g., a community repair drive moved from Saturday to Sunday). Agents meet in
+pairs over several rounds; each agent reads and relays through generative-agent reflection
+memory \citep{park2023generative,shinn2023reflexion}. At the end we interview every agent
+with a probe (``when/where is it now?'') and score the answer as \emph{current},
+\emph{stale}, or \emph{unknown} (Figure~\ref{fig:setup}). We separate \emph{speech}
+(current-value utterances in meetings) from \emph{held belief} (the interview answer).
+% TODO: graph/contact model details, models used, reflection memory specifics, scoring.
+
+% ============================================================
+\section{Results}
+
+\subsection{The society does not preserve a ground-truthed update}
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig2_decay.png}
+\caption{Long-horizon fidelity decay. Held current-truth rises early (peak near round~6)
+then erodes toward a low steady state; an authoritative source decays too, converging to
+baseline, while only continuous broadcast sustains truth. A short-horizon snapshot at
+round~5 therefore slightly overstates long-run retention.}
+\label{fig:decay}
+\end{figure}
+The current value reaches the conversation stream but does not reliably become the
+society's held answer. Over a long horizon (Figure~\ref{fig:decay}) truth can rise
+transiently---peaking near round~6---then decays toward a low steady state by round~30.
+The important object is the trajectory: truth can appear and still lose.
+
+\subsection{Natural levers do not solve the failure}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/fig3_failed_levers.png}
+\caption{Failed levers. Capability gives only a modest bump and stays far below the
+broadcast cure (99\%); connectivity is roughly neutral; swapping in a currency-resolving
+memory is not significant. Error bars are SEM.}
+\label{fig:levers}
+\end{figure*}
+Each lever is an intuitive repair story, and each fails (Figure~\ref{fig:levers}).
+Capability helps modestly but leaves most agents off the current truth; connectivity is
+roughly neutral; a currency-resolving memory does not reliably rescue truth; a persistent
+authoritative source changes speech but not held belief; only broadcasting the truth to
+every agent every round works---an overwrite-style positive control, not a social cure.
+The claim is not that agents cannot output the truth; they can. Ordinary social
+communication does not install it as later held belief.
+
+\subsection{Speech and belief dissociate}
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig4_dissociation.png}
+\caption{Speech $\neq$ belief. A persistent authoritative source raises what agents
+\emph{say} (final-round current utterances, 54$\to$75\%) while what the society
+\emph{holds} stays near baseline (12$\to$15\%). Broadcast moves both.}
+\label{fig:dissoc}
+\end{figure}
+This is the centerpiece (Figure~\ref{fig:dissoc}). Under a persistent source, agents
+increasingly utter the current value, yet final interviews remain near baseline; broadcast
+to all moves both speech and belief. We describe ``held belief'' operationally: the answer
+an agent gives when later probed---we make no claim about literal mental states.
+
+\subsection{The mechanism is entrenchment, not recency}
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig5_mechanism.png}
+\caption{Entrenchment, not recency. A single \emph{early} all-agent broadcast succeeds
+(100\%); a \emph{late} broadcast immediately before the probe fails (9\%). What governs
+held belief is whether the truth becomes the early, broad version that later conversation
+reinforces.}
+\label{fig:mech}
+\end{figure}
+If recency drove belief, a late all-agent broadcast just before the probe should work; if
+repetition drove it, a single early broadcast should fail. The opposite happens
+(Figure~\ref{fig:mech}): early succeeds, late fails. The stale value begins with incumbent
+advantage; narrow or late correction can be uttered without taking over the society's held
+state \citep{thorson2016belief,kirby2008cumulative}.
+
+\subsection{Generality and measurement checks}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/figS1_generality.png}
+\caption{Robustness. The baseline/source/broadcast pattern holds across three scenarios and
+under thicker, self-report-style personas: broadcast restores truth ($\sim$99\%) while the
+authoritative source never approaches the cure.}
+\label{fig:general}
+\end{figure*}
+The pattern replicates across \textsc{repair\_drive}, \textsc{book\_club}, and
+\textsc{carpool}, and persists under thicker personas (Figure~\ref{fig:general}),
+addressing the concern that the effect is a thin-persona artifact
+\citep{park2024thousand}. A semantic LLM judge agrees with the keyword metric on the
+headline (99--100\%), so the current/stale verdict is not a keyword artifact.
+
+% ============================================================
+\section{Related Work}
+% TODO: expand into 4 paragraphs (setting; misinformation/reach-vs-fidelity;
+% factuality/measurement; memory/correction/recursive degradation).
+Generative-agent and communicative-agent systems establish the setting in which agents
+talk, remember, and coordinate \citep{park2023generative,park2024thousand}. Misinformation
+research separates spread from belief \citep{lazer2018science,vosoughi2018spread}; we
+operationalize that distinction inside an agent society. Factuality evaluation treats truth
+as a semantic target rather than fluency \citep{lin2022truthfulqa}. Debate work is the
+optimistic counterpoint---structured discussion can improve judged answers
+\citep{du2023improving}---but we find the correct statement can win conversational space
+without becoming held belief. Finally, model-collapse work offers a training-time analogy
+for recursive degradation \citep{shumailov2023curse}; \textsc{Telephone} studies a
+communication-time analogue without retraining.
+
+% ============================================================
+\section{Discussion and Limitations}
+% TODO. Honest boundaries.
+We do not claim a connectivity/capability phase boundary, that connectivity amplifies
+corruption (an early underpowered cell did not replicate), or that memory is a cure. We
+claim that ordinary social transmission does not reliably install a changing fact as held
+belief, and that the governing factor is early/broad entrenchment. Limitations include the
+single base task family, the scale of the society, and the operational definition of held
+belief.
+
+% ============================================================
+\section{Conclusion}
+In LLM-agent societies, a society can learn to \emph{say} the truth without coming to
+\emph{hold} it. The dissociation is driven by path-dependent entrenchment, survives a long
+horizon and several robustness checks, and resists every natural repair lever short of
+overwriting memory directly.
+
+\bibliography{references}
+
+\end{document}
