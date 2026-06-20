@@ -28,7 +28,7 @@
 
 | 06-19 | P2 | METRIC VALIDATION: LLM-judge (semantic) vs keyword on M4 | repair_drive, 375 answers | keyword↔judge agree 99-100%; judge current = keyword current exactly (baseline 3.0, source 3.8, broadcast 24.8). Metric is NOT a keyword artifact; dissociation holds under semantic judge | done |
 
-| 06-20 | G2 | PERSONA-DEPTH robustness (vs Park 2024): thick personas | repair_drive GA mini m2 r5 n=5, baseline/source/broadcast | does truth-decay + the dissociation persist with RICH personas (not thin one-liners)? | RUNNING |
+| 06-20 | G2 | PERSONA-DEPTH robustness (vs Park 2024): thick personas | repair_drive GA mini m2 r5 n=5, baseline/source/broadcast | YES, IDENTICAL to thin: baseline 14% (vs 12%), source 12% (vs 15%, still ≈baseline = dissociation holds), broadcast 98% (vs 99%). Persona depth is NOT a lever; 'thin-persona artifact' critique DEAD; mechanism confirmed structural | done |
 
 Detailed write-ups follow below as runs land.
 
@@ -101,7 +101,10 @@ Findings:
 1. **No truth-winning regime.** current-rate is 11%–28% across the ENTIRE grid (best 7/25).
    In no tested (capability × connectivity) does the society hold the truth. This is starker
    than a "phase boundary": the corruption regime fills the whole tested space.
-2. **Connectivity AMPLIFIES corruption** (hypothesis B, not the redundancy-as-error-
+2. **Connectivity AMPLIFIES corruption** — ⚠ **RETRACTED (see P3b below): did NOT replicate
+   at n=3-4 (Sat:Sun ratio ~1.0 at every connectivity); the 10.4× was an n=3 outlier.
+   Connectivity is NEUTRAL, not an amplifier. Original text kept below for provenance.**
+   (hypothesis B, not the redundancy-as-error-
    correction hypothesis A). The Saturday:Sunday dominance ratio EXPLODES with connectivity
    for strong models (gpt-5.4: 0.9× → 1.8× → 10.4× as meetings 1→3; gpt-5.5: → 4.7×). More
    communication spreads the STALE version wider, not the truth. "More communication, less
@@ -433,3 +436,43 @@ connectivity does NOT fix truth-decay — but it is roughly NEUTRAL on the corru
 not an amplifier. (Third n=3 over-claim caught by the verify-before-build discipline, after
 M2-smga3g and the M0 confident-corruption magnitude.) The paper's spine (dissociation +
 entrenchment) is unaffected; M1 downgrades from "amplifies" to "does not help (neutral)."
+
+---
+
+# G2 — persona-depth robustness: does richer (Park-2024-style) persona change the decay? (2026-06-20)
+
+**Motivation.** Park et al. 2024 ("1,000 People", arXiv:2411.10109) get high INDIVIDUAL
+fidelity from rich, self-report-grounded personas. The obvious reviewer attack on us: our
+agents have THIN one-line personas + GA-reflection, so maybe the truth-decay is a shallow-
+agent artifact and richer agents would propagate faithfully. We added a `--persona-depth
+thick` switch (25 scenario-agnostic, individuating 2-3-sentence personas: background +
+temperament + how the person handles news + social role) and re-ran the M4 dissociation
+triple (baseline / authoritative source re-broadcast / brute broadcast), repair_drive, GA,
+mini, 25a, meetings=2, r5, n=5 — identical to M4 except persona depth.
+
+```text
+condition        thin persona (M4)     thick persona (G2)
+baseline         3.0/25  (12%)         3.6/25  (14%)
+source           3.8/25  (15%)         3.0/25  (12%)      <- still ≈ baseline (Δ ns)
+broadcast       24.8/25  (99%)        24.6/25  (98%)
+```
+
+**Result: a clean null — persona depth changes nothing.** All three conditions land within
+noise of their thin counterparts. (1) Decay persists: baseline truth-recall stays ~14%.
+(2) The DISSOCIATION persists: a persistent authoritative source still fails to lift held
+belief (source 12% ≈ baseline 14%), exactly as with thin personas — it flips what agents
+SAY, not what the society HOLDS. (3) The broadcast control still works (~98%), so the
+machinery is intact; only spoon-feeding every agent restores truth.
+
+**Interpretation.** This kills the "thin-persona artifact" critique and, more importantly,
+POSITIVELY confirms the mechanism is STRUCTURAL: truth-decay + the speech-belief dissociation
+are properties of the collective propagation dynamics (path-dependent entrenchment / network
+evidence-ratio), not of how rich any individual agent is. Individual fidelity (Park 2024) and
+collective fidelity (ours) are genuinely orthogonal axes — making each agent a richer person
+does not make the society a more faithful carrier of a fact-update. The entrenchment account
+PREDICTED this (persona depth is not among timing/breadth, the decisive variables).
+
+**Caveats.** "Thick" here = individuating multi-sentence personas, not a full Park-style
+2-hour interview transcript per agent; a maximally rich self-report grounding is untested
+(but the direction — more persona content, identical outcome — makes a reversal unlikely).
+n=5, single scenario (repair_drive), mini, GA memory.

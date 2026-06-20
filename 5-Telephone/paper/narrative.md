@@ -126,8 +126,8 @@ memory don't fix it; the dissociation) is consistent across M0–M3 and with the
 ## Open threads (for when we resume)
 - **C4 closure**: test authoritative re-broadcast (the stronger, untested intervention).
 - **Pin the dissociation** (speech vs collective belief) — possibly the paper's sharpest idea.
-- **Rigor**: provenance fidelity metric; n≥8 + CIs; ≥2 non-Chinese scenarios; firm up the
-  M1 "connectivity amplifies corruption" cell (gpt-5.4 m3 52:5 needs CIs).
+- **Rigor**: provenance fidelity metric; n≥8 + CIs; ≥2 non-Chinese scenarios. (The M1
+  "connectivity amplifies" cell was followed up — P3b RETRACTED it, connectivity is neutral.)
 
 ## 7. Positioning vs Park et al. 2024 ("1,000 People") + the persona-depth limitation
 
@@ -141,10 +141,14 @@ threatens, our claim, and gives a clean three-step intro:
 - **Ours: a SOCIETY of those agents is NOT faithful in propagating a fact-update —
   individual fidelity ≠ collective fidelity.**
 
-Limitation it raises (must address): our agents use THIN one-line personas + GA-reflection,
-whereas their fidelity came from RICH self-report grounding. A reviewer will ask whether the
-decay is an artifact of shallow agents. Partial defenses already in hand: M0 (the strongest
-model still fails) and M2 (raw/currency memory don't fix it) → it is not just "dumb agent"
-or "bad memory." But persona DEPTH is an untested axis. Planned: a cheap robustness check —
-re-run the dissociation/decay with richer (multi-sentence / self-report-style) personas; if
-decay + speech≠belief persist, the "thin persona" critique dies.
+Limitation it raises — now CLOSED (G2, 2026-06-20). The obvious reviewer attack: our agents
+use THIN one-line personas + GA-reflection, whereas their fidelity came from RICH self-report
+grounding, so maybe the decay is a shallow-agent artifact. We tested it directly: re-ran the
+M4 dissociation triple with THICK (individuating, multi-sentence, self-report-style) personas.
+**Result is a clean null — persona depth changes nothing** (baseline 14% vs 12%; source still
+≈ baseline = dissociation holds; broadcast still ~98%). This kills the thin-persona critique
+AND positively confirms the mechanism is STRUCTURAL: individual fidelity (Park 2024) and
+collective fidelity (ours) are orthogonal — a richer person does not make the society a more
+faithful carrier of a fact. (Plus prior defenses: M0 strongest model still fails; M2 memory
+doesn't fix it.) Remaining gap: "thick" ≠ a full 2-hour interview transcript per agent — but
+"more persona content, identical outcome" makes a reversal unlikely. See RESULTS.md → G2.
