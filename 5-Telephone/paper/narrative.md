@@ -82,10 +82,11 @@ agent societies is hard to avoid.**
    (16%→20%→21%). Worse, capability shifts the FAILURE MODE: weak models forget (unknown),
    strong models **confidently converge on the stale version** (stale 2.3→10, Sat-dominance
    8→16). *Scaling makes the society more confidently wrong, not more right.*
-2. **Connectivity (M1).** More communication AMPLIFIES corruption, not truth. The
-   Saturday:Sunday dominance ratio explodes with connectivity for strong models (gpt-5.4
-   0.9×→10.4× as meetings 1→3). *More communication, less truth* (echo-chamber / repetition
-   reinforcement) — the opposite of redundancy-as-error-correction.
+2. **Connectivity (M1, tempered by P3b).** More communication does NOT fix it (recall stays
+   low at every connectivity). The earlier "connectivity AMPLIFIES corruption / more
+   communication, less truth" headline was an n=3 outlier (one 10× cell) that did NOT
+   replicate (P3b, n=3–4: Sat:Sun ratio ~1.0 at all connectivities) — **RETRACTED**.
+   Connectivity is roughly NEUTRAL, not an amplifier.
 3. **Memory architecture (M2→M3).** A currency-resolving memory (smga3g) APPEARED to flip
    the society to truth (M2, 56%) — but that was an **n=3 outlier; it did NOT replicate**
    (M3, n=4–5: smga3g current ≈ GA, Δ ns). Swapping memory does not robustly restore truth.
