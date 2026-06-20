@@ -127,3 +127,23 @@ memory don't fix it; the dissociation) is consistent across M0–M3 and with the
 - **Pin the dissociation** (speech vs collective belief) — possibly the paper's sharpest idea.
 - **Rigor**: provenance fidelity metric; n≥8 + CIs; ≥2 non-Chinese scenarios; firm up the
   M1 "connectivity amplifies corruption" cell (gpt-5.4 m3 52:5 needs CIs).
+
+## 7. Positioning vs Park et al. 2024 ("1,000 People") + the persona-depth limitation
+
+The GA authors' follow-up (Park et al. 2024, arXiv:2411.10109; PDF in `assets/papers/`)
+builds INDIVIDUAL agents from 2-hour self-report interviews and predicts a real person's
+held-out GSS answers at 83–86% of two-week test-retest consistency. Crucially, those agents
+do NOT interact — it is an individual-level predictive-fidelity result. This sharpens, not
+threatens, our claim, and gives a clean three-step intro:
+- Park 2023 (GA): information SPREADS through an agent society (a success demo);
+- Park 2024 (1,000 People): a single agent can be made FAITHFUL to a real individual;
+- **Ours: a SOCIETY of those agents is NOT faithful in propagating a fact-update —
+  individual fidelity ≠ collective fidelity.**
+
+Limitation it raises (must address): our agents use THIN one-line personas + GA-reflection,
+whereas their fidelity came from RICH self-report grounding. A reviewer will ask whether the
+decay is an artifact of shallow agents. Partial defenses already in hand: M0 (the strongest
+model still fails) and M2 (raw/currency memory don't fix it) → it is not just "dumb agent"
+or "bad memory." But persona DEPTH is an untested axis. Planned: a cheap robustness check —
+re-run the dissociation/decay with richer (multi-sentence / self-report-style) personas; if
+decay + speech≠belief persist, the "thin persona" critique dies.

@@ -14,6 +14,17 @@
   (2023). Generative Agents: Interactive Simulacra of Human Behavior. UIST 2023.**
   → The canonical agent-society architecture + the famous info-diffusion success demo
   (Isabella's party spreads). *We measure FIDELITY of what spreads, the axis they skip.*
+- ★ **Park, J. S., Zou, C. Q., Kamphorst, J., Egan, N., Shaw, A., Hill, B. M., Cai, C., Morris,
+  M. R., Liang, P., Willer, R., & Bernstein, M. S. (2024). Generative Agent Simulations of
+  1,000 People. arXiv:2411.10109.** (v2, 2026, retitled "LLM Agents Grounded in Self-Reports
+  Enable General-Purpose Simulation of Individuals".) PDF: `assets/papers/2411.10109_*.pdf`.
+  → 1,052 Americans; 2-hour interviews + GSS/Big-Five; held-out GSS accuracy **83% (interview)
+  / 82% (survey) / 86% (combined)** of 2-week test-retest consistency vs **74% demographics-only**.
+  *INDIVIDUAL-level predictive fidelity — agents do NOT interact or propagate. This is the
+  GA authors' own follow-up and a KEY framing neighbor: it shows a single agent can be made
+  faithful to a real PERSON; we show that a SOCIETY of agents is NOT faithful in propagating a
+  fact — **individual fidelity ≠ collective fidelity**. Also flags the "thick (self-report-
+  grounded) persona" axis our thin one-line personas do not test (→ a robustness check / limitation).*
 - **Vezhnevets, A. S., Agapiou, J. P., et al. (2023). Generative agent-based modeling with
   actions grounded in physical/social/digital space using Concordia. arXiv.**
   → Configurable social-simulation infrastructure. *We add a fidelity axis to this lineage.*
