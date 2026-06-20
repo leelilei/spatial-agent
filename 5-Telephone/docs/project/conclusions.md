@@ -1,91 +1,86 @@
-# Telephone — Deep Conclusions (archival synthesis)
+# Telephone - Deep Conclusions
 
-> Archive of the core result and its deep interpretation, after the M0–M4 run-batch
-> (2026-06-19). Numbers: `../../RESULTS.md`. Living narrative: `../../paper/narrative.md`.
-> This file is the stable, citable statement of what we concluded.
+> Stable synthesis after the current M0-M5 / G1-G2 / P1-P3b result set.
+> Numbers live in `../../RESULTS.md`; paper writing spine lives in
+> `../../paper/narrative.md`.
 
-## The result in one paragraph
+## The Result In One Paragraph
 
-In a simulated society of LLM agents, we inject one ground-truthed update (an event's
-day/place changes) and let it propagate through agent-to-agent conversation. The society
-does **not** converge on the truth. It converges on a **corrupted/stale consensus** — the
-superseded value persists, dominates, and spreads. This truth-decay is **robust**: it is
-not fixed by scaling the model, is made *worse* by more connectivity, is not fixed by
-changing the memory architecture, and is not fixed by a persistent authoritative source.
-Only **directly overwriting every agent's memory every round** (a brute-force broadcast that
-bypasses the social dynamics) restores the truth. The mechanism is a **dissociation between
-speech and belief**: interventions readily change what agents *say*, but the society's
-*held* belief is sticky — anchored by the network evidence-ratio, not by what any source can
-be made to utter.
+In a simulated society of LLM agents, we inject a ground-truthed update and let
+it propagate through agent-to-agent conversation. The society does not reliably
+converge on the current truth. The current value can enter the conversation
+stream, and under an authoritative source agents can increasingly *say* it, but
+the society's later probed answer often remains stale or unknown. The failure is
+not solved by model scaling, increased connectivity, tested memory swaps, richer
+personas, or a persistent source. Only direct broadcast to every agent succeeds,
+which is best interpreted as an overwrite-style positive control rather than a
+realistic social cure. The mechanism is path-dependent entrenchment: the version
+established early and broadly wins.
 
-## The five load-bearing findings
+## Load-Bearing Findings
 
-1. **Truth-decay exists and is robust** (M0–M4). Truth-recall ≤ ~28% in every natural
-   configuration; the society reliably reaches a corruption attractor.
-2. **Capability does not fix it** (M0). mini→gpt-5.4→gpt-5.5: recall flat (16→21%). Worse,
-   capability shifts the failure mode — weak models *forget*, strong models *confidently
-   converge on the stale version*. **Scaling makes the society more confidently wrong.**
-3. **Connectivity does not fix it either** (M1, tempered by P3b). More agent-to-agent
-   communication does NOT restore truth (recall stays low at every connectivity). The
-   earlier "connectivity AMPLIFIES corruption / more communication, less truth" headline was
-   an n=3 outlier (one dramatic 10× cell) that did NOT replicate (P3b, n=3-4: ratio ~1.0 at
-   all connectivities) — connectivity is roughly NEUTRAL, not an amplifier. RETRACTED.
-4. **No realistic intervention restores it** (M2/M3 memory; M4-source authority). A
-   currency-resolving memory looked like a cure (M2, n=3) but did not replicate (M3). A
-   persistent authoritative re-broadcaster fails (M4-source, Δ ns). Only brute broadcast —
-   bypassing the society — works (M4-broadcast, 99%).
-5. **The mechanism is a SPEECH–BELIEF DISSOCIATION** (M4). The clean, tight-CI demonstration:
-   under a persistent authoritative source the society *says* the truth (utterances Sun:Sat
-   25:5 by round 5) yet *holds* the stale version (recall 3.8/25, unchanged). You can make
-   the society parrot the truth; you cannot make it believe the truth without overwriting
-   every memory.
+1. **Fidelity decay exists.** Agent societies can transmit a changing fact in
+   conversation without preserving it as later held belief.
+2. **Capability is not a cure.** Stronger models improve current recall
+   modestly in powered reruns, but most agents still fail to hold the current
+   truth.
+3. **Connectivity is not a cure.** The earlier "connectivity amplifies
+   corruption" claim was an underpowered outlier and is retracted. P3b supports
+   the quieter claim: connectivity is roughly neutral and does not restore truth.
+4. **Memory architecture is not a robust cure.** The M2 smga3g apparent rescue
+   did not replicate in M3. Memory can change what agents say without reliably
+   changing what they later hold.
+5. **Authoritative source fails as a held-belief repair.** A persistent source
+   can flip utterances toward the current truth while final held belief stays
+   near baseline.
+6. **Broadcast works as a positive control.** Injecting the current truth into
+   every agent succeeds because it bypasses ordinary social transmission.
+7. **The mechanism is entrenchment, not recency.** Early all-agent broadcast
+   succeeds; late all-agent broadcast fails. Truth must win the early population
+   competition, not merely appear later.
 
-## Why it matters (the deep interpretation)
+## Why It Matters
 
-- **For multi-agent LLM systems (engineering).** Agent-to-agent communication is a *lossy,
-  corrupting channel for time-sensitive facts*, and the corruption is **not** an alignment
-  or capability problem you can scale away, nor a reachability problem you can fix by adding
-  an authoritative announcer. Any pipeline that relies on LLMs relaying state to each other
-  is exposed to a silent, self-reinforcing drift toward stale/corrupted consensus.
-- **For the "model collapse" lineage.** This is the *inference-time, social* analog of
-  model collapse: degradation through communication rather than recursive training. And it
-  has a feature training-time collapse does not foreground — the **dissociation**: the
-  surface signal (speech) can be corrected while the latent consensus (belief) stays
-  collapsed.
-- **For collective epistemics.** The society's held belief is a **path-dependent
-  entrenchment attractor**: the version established FIRST and BROADLY wins, and the held
-  belief is decoupled from individual outputs (speech). The stale value is the original plan
-  everyone knew from round 0, so it is entrenched from the start; the update arrives late and
-  narrow and loses by path-dependence. Truth has to win the *aggregate* competition, not just
-  be *uttered* — an authority that speaks the truth but is outnumbered by entrenched stale
-  repetition loses.
+For multi-agent LLM systems, agent-to-agent communication is a reliability risk
+for time-sensitive facts. A fact can be visible in logs while still failing as
+state. Systems that rely on agents to relay updates need probes for what agents
+later hold, not only what they utter during interaction.
 
-## The mechanism, nailed down (P1-rec): TIMING, not recency
+For misinformation and collective epistemics, the contribution is a controlled
+machine analogue of a familiar social problem: reach is not belief, correction
+is not repair, and early entrenched versions can dominate later evidence.
 
-A clean timing contrast (same single broadcast to all agents, different round) refutes
-recency and isolates entrenchment:
-- **early broadcast (round 1, all) → 24.8/25** — and this *equals* broadcasting every round
-  (24.8): you don't need to keep shouting, you need to be **first**.
-- **late broadcast (round 5 = right before the probe, all) → 3.3/25** — and this *equals*
-  doing nothing (baseline 3.0): a late correction at full breadth is worthless.
-So WHEN the truth is established is decisive — early = total success, late = total failure,
-independent of breadth and contrary to recency. The collective belief is locked in by
-**first-mover / path-dependence**, which is *why* the decay is so robust and why every
-realistic (late, narrow) intervention fails. This resonates with first-mover-advantage and
-entrenchment in the misinformation literature — demonstrated here in a controlled society.
+For the model-collapse lineage, Telephone is an analogy rather than an identity.
+Training-time collapse concerns recursive generated data degrading model
+distributions. Telephone concerns communication-time recursive reuse degrading
+social factual fidelity. The shared lesson is that fresh grounding matters; the
+mechanism here is social entrenchment and speech-belief dissociation.
 
-## The sharpest, most novel claim
+## Claim Boundaries
 
-**Speech ≠ belief in agent societies.** Standard interventions (a louder/persistent truth
-source) move what agents *output* without moving the *collective belief*. This dissociation
-— directly measured (say-ratio vs held-recall) with tight CIs — is the paper's spine and is,
-as far as we know, unreported.
+- Do not use the old wording that connectivity makes corruption worse as a
+  stable conclusion. The current conclusion is neutral/non-curative.
+- Do not describe broadcast as a practical social repair. It is the upper bound.
+- Do not describe source failure as lack of exposure. Source failure is sharper:
+  agents can hear/say the truth without later holding it.
+- Do not claim literal access to internal belief. "Held belief" is the
+  operational interview answer after social transmission.
+- Do not present the work as a broad social simulation claim about humans. It is
+  a controlled LLM-agent phenomenon paper with human communication analogues.
 
-## Honest boundaries (what must still be done — see `../plans/path_to_publication.md`)
+## Submission-Relevant Strengths
 
-Single scenario ("repair drive" reschedule); keyword-based current/stale metric (the
-provenance Sat/Sun-dominance signal agrees, which is reassuring); n=3–5 on M0–M3 (M4 is
-n=5 with tight CIs); the say-ratio is a coarse dissociation proxy. None of these change the
-qualitative chain, which is internally consistent and consistent with the 3-SMGA prior — but
-generality (≥2 scenarios), a provenance fidelity metric, n≥8 + CIs, and a deeper
-mechanistic probe of the dissociation are required before submission.
+- Three-scenario generality check via G1.
+- Persona-depth robustness via G2.
+- Semantic judge validation via P2.
+- Powered retractions of early overclaims via P3/P3b.
+- Long-horizon decay trajectory via M5.
+
+## Remaining Work
+
+- Promote verified references into the paper draft and `.bib`.
+- Write the Results section around Fig 1-5.
+- Add the headline results table and HEARD -> SAID -> HELD mechanism table to
+  the paper materials.
+- Decide whether one additional scenario or broader judge validation is worth
+  running for reviewer defense.

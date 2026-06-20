@@ -1,154 +1,168 @@
-# Telephone — paper narrative / 论文思路（活文档）
+# Telephone - Paper Narrative
 
-> **Working title:** *Speech is not belief: Fidelity decay in LLM agent societies*
+> Working title: *Speech is not belief: Fidelity decay in LLM agent societies*.
+> This is the current writing spine. Numbers live in `../RESULTS.md`; the
+> figure plan lives in `figures.md`; citation triage lives in `references.md`.
 
-> Concept-level story; numbers live in `../RESULTS.md`. Append a section whenever a
-> CONCEPTUAL (not just numeric) step lands. Started 2026-06-19.
+## One-Sentence Thesis
 
-## 0. The one-sentence thesis
+When LLM agents pass a ground-truthed update through conversation, the society
+can learn to *say* the truth without coming to *hold* the truth. This
+speech-belief dissociation is driven by path-dependent entrenchment: the version
+established early and broadly wins.
 
-In LLM-agent societies, a ground-truthed update degrades predictably as it propagates (a
-"telephone" effect); we characterize this fidelity-decay, identify what governs it, and
-ask whether better agent memory acts as error-correction.
+## What Changed From The Original Plan
 
-## 1. Why this is worth doing (the reframe from 3-SMGA)
+The project started as a search for a clean phase boundary and a minimal repair
+mechanism. The current evidence changes that framing.
 
-3-SMGA tried to use the society sim to RANK memory architectures and kept failing under
-rigor — the apparent wins were artifacts (keyword circularity, chaotic variance), and the
-real bottleneck turned out to be **conversation/diffusion fidelity**, not memory. The
-honest discovery hiding in those "failures": **the society does not faithfully propagate
-an update — it plays telephone.** That phenomenon, not the memory ranking, is the prize.
-The same noise/sensitivity that defeated the SMGA framing is, here, the OBJECT of study.
+- We no longer claim a connectivity/capability phase boundary. Capability helps
+  modestly but does not solve the failure; connectivity is roughly neutral.
+- We no longer claim connectivity amplifies corruption. The dramatic early cell
+  was an underpowered outlier and did not replicate in P3b.
+- We no longer claim memory is a cure. The M2 smga3g rescue did not replicate.
+- We no longer claim an authoritative source repairs the society. M4 shows that
+  a persistent source changes speech but not held belief.
+- We now center the paper on a sharper result: speech and belief dissociate in
+  LLM-agent societies, and the mechanism is early/broad entrenchment.
 
-## 2. What's genuinely new
+## Why This Is Worth Doing
 
-GA-lineage work shows information *spreads* (Isabella's party) and treats that as success.
-Nobody asks if the spread is *faithful*. We measure the fidelity, not just the reach —
-moving from "did agent X remember" (individual, benchmark view) to "what does the SOCIETY
-converge on" (collective epistemics).
+Generative-agent work shows that information can spread through an agent
+society. That is not the same as showing that the spread is faithful. A rumor,
+correction, schedule change, policy update, or evidence item can reach the
+conversation stream while failing to become the society's later answer.
 
-## 3. Open design questions (resolve before first real run)
-- A non-circular definition of "received the update" and "fidelity" (avoid the SMGA trap).
-- A corruption taxonomy: stale-persistence / drift / fabrication / loss.
-- The right epidemic-style summary: fidelity-decay vs hops; truth-share vs corruption-share.
+Telephone therefore moves the unit of evaluation from an individual model's
+answer to a social process: what happens when agents repeatedly hear, relay,
+compress, and retrieve a changing fact?
 
-## 4. The attractor reframe (2026-06-19, after the lit review)
+## Core Contributions
 
-The single most valuable upgrade from the literature: **corruption is not degradation-to-
-noise, it is convergence-to-an-attractor.** Iterated-learning experiments (Kirby 2008 PNAS;
-Bartlett 1932) show serial transmission contracts information toward a simpler, "more
-learnable" form. So the right object is not "the message got noisier" but **"the society
-converges to a truth attractor or a corruption attractor, separated by a phase boundary."**
-This is more elegant, more falsifiable, and rides a respected cog-sci lineage. It rewrites
-C2 (phase boundary between attractors) and adds a metric (version *diversity*, not just
-truth-share — a low-diversity, high-consensus error is its own attractor; cf. MAD,
-Alemohammad 2023). Our seed-41 evidence (18/22 confidently Saturday) is exactly a
-low-diversity corruption attractor.
+1. **Measurement shift:** from information reach to information fidelity in
+   LLM-agent societies.
+2. **Phenomenon:** social fidelity decay over communication time.
+3. **Main empirical spine:** natural levers fail to restore held truth.
+4. **Mechanism:** speech-belief dissociation caused by path-dependent
+   entrenchment.
+5. **Rigor story:** powered reruns, semantic judge validation, three scenarios,
+   persona-depth robustness, and explicit retractions of early non-replicated
+   claims.
 
-## 5. Where memory honestly re-enters (C4)
+## Result Spine
 
-Not "structured memory wins." C4 = "the minimal cure for a now-quantified failure," and it
-has near-isomorphic theory: Yi et al. (2025) show an external verifier halts model collapse
-but pulls the system to the verifier's knowledge center — our **authoritative re-broadcast**
-is the social-channel version; **currency-resolving memory** mirrors temporal conflict-
-resolution memory (APEX-MEM 2026); and memory can also *amplify* error (Xiong 2025). So the
-intervention is principled, not a recycled SMGA headline.
+### R1. The society does not preserve a ground-truthed update
 
-## 6. Competitive clock (honest)
-Two 2026 preprints (Becker — benign-MAS misinformation; Jamshidi — hallucination cascade)
-are in our neighborhood but stop at task-correctness in debate/cascade. They do NOT do
-society-scale decay-vs-hops, version-share/diversity, the phase boundary, or a minimal
-correction. That is our wedge — but the space is filling, so M0 should plant a flag fast,
-with measurement rigor + society-scale dynamics as the moat.
+In the core task, an event changes from a stale value to a current value. Agents
+then meet over several rounds and are interviewed at the end. The basic failure
+is that the current value reaches the conversation stream but does not reliably
+become the society's held answer.
 
----
+M5 sharpened this into a long-horizon story. In baseline runs, current truth can
+rise early, peaking near round 6, then decays toward a low steady state by round
+30. The r5 snapshot therefore slightly overstates long-run truth retention. The
+important object is not just end-state corruption but the trajectory: truth can
+appear transiently and still lose.
 
-# FINDINGS — what M0–M3 actually showed (2026-06-19)
+### R2. Natural levers do not solve the failure
 
-> Sections 0–6 above were the PLAN (pre-experiment hypotheses). This section is what we
-> actually found in the first run-batch (mini→gpt-5.5, GA/raw/v2/v3 memory, 25 agents, r5,
-> n=3–5, single "repair drive" reschedule scenario). Numbers + caveats in `../RESULTS.md`
-> (M0–M3). Read this as the honest, sober update to the plan.
+The negative result is now more precise than the original plan:
 
-## The phenomenon is real and ROBUST
-A ground-truthed update ("the repair drive moved Saturday→Sunday") does NOT propagate
-faithfully through an LLM-agent society. The society converges on a **corruption attractor**
-(the stale Saturday version persists, dominates, and spreads). Truth-recall is low (≤~28%)
-in every configuration we tried. So far the headline is a strong NEGATIVE: **truth-decay in
-agent societies is hard to avoid.**
+| Lever | Current conclusion | Paper wording |
+|---|---|---|
+| Capability | Helps modestly but leaves most agents off the current truth | Scaling is not a cure |
+| Connectivity | Roughly neutral after P3b; does not restore truth | More communication is not repair |
+| Memory | smga3g rescue did not replicate | Memory architecture is not a robust cure |
+| Authoritative source | Changes speech but not held belief | Authority can make agents say truth without making them hold it |
+| Broadcast to all | Works | Positive control / overwrite, not a social cure |
 
-## What does NOT fix it (three failed levers)
-1. **Capability (M0).** Scaling mini → gpt-5.4 → gpt-5.5 leaves truth-recall FLAT
-   (16%→20%→21%). Worse, capability shifts the FAILURE MODE: weak models forget (unknown),
-   strong models **confidently converge on the stale version** (stale 2.3→10, Sat-dominance
-   8→16). *Scaling makes the society more confidently wrong, not more right.*
-2. **Connectivity (M1, tempered by P3b).** More communication does NOT fix it (recall stays
-   low at every connectivity). The earlier "connectivity AMPLIFIES corruption / more
-   communication, less truth" headline was an n=3 outlier (one 10× cell) that did NOT
-   replicate (P3b, n=3–4: Sat:Sun ratio ~1.0 at all connectivities) — **RETRACTED**.
-   Connectivity is roughly NEUTRAL, not an amplifier.
-3. **Memory architecture (M2→M3).** A currency-resolving memory (smga3g) APPEARED to flip
-   the society to truth (M2, 56%) — but that was an **n=3 outlier; it did NOT replicate**
-   (M3, n=4–5: smga3g current ≈ GA, Δ ns). Swapping memory does not robustly restore truth.
+This matters because each lever is an intuitive repair story. The paper's claim
+is not that agents are incapable of outputting the truth. They can. The problem
+is that normal social communication does not reliably install the truth as later
+held belief.
 
-## The most interesting sub-finding: a DISSOCIATION
-smga3g DOES make agents *say* "Sunday" more (event streams shift Sunday-dominant, m2 Sat:Sun
-4:28) — yet the society's *held* belief (interview truth-recall) does not improve. **Memory
-changes what agents SAY without changing what the society HOLDS.** Speech ≠ collective
-belief. This gap is worth pinning down — it suggests the corruption attractor is sustained
-by something downstream of any one agent's output (the network evidence-ratio / Bayesian
-re-weighting), not by what individuals can be made to utter.
+### R3. Speech and belief dissociate
 
-## Honest current thesis (updated after M4)
-Truth-decay in LLM-agent societies is **robust** — it resists EVERY realistic lever:
-capability (M0), connectivity (M1, which makes it worse), memory architecture (M2/M3), AND
-a persistent authoritative source (M4-source re-broadcast, Δ ns). The society reliably
-converges on a corrupted/stale consensus. **Only brute-force BROADCAST** — injecting the
-truth into every agent every round, i.e. bypassing the social dynamics by overwriting each
-memory — restores it (M4-broadcast, 99%); that is spoon-feeding, not an emergent cure.
+M4 is the centerpiece. Under a persistent authoritative source, agents increasingly
+utter the current value, but final interviews remain near baseline. Broadcast to
+every agent every round makes both speech and held belief current.
 
-## The mechanism (M4): a DISSOCIATION — speech ≠ collective belief
-This is the project's sharpest claim, now demonstrated with tight CIs. Interventions readily
-change what agents SAY but not what the society HOLDS. In M4-source, a persistent authoritative
-source flips the society's utterances to Sunday-dominant (said Sun:Sat 25:5 by round 5) yet
-the HELD belief stays stale/unknown (current 3.8/25, unchanged from baseline). The collective
-belief is **sticky** — anchored by the network evidence-ratio (the entrenched stale version),
-not by what any source can be made to utter. You can make the society parrot the truth; you
-cannot (short of overwriting every memory) make it BELIEVE the truth.
+This creates the paper's clean contrast:
 
-## Caveats (do not over-read yet)
-n=3–5, single scenario, single update, keyword-based current/stale metric (the receiver
-Sat/Sun-dominance provenance signal agrees, which is reassuring), runtime-cap losses made
-some M3 cells unequal-n. To make any of this publishable: provenance fidelity metric, n≥8
-+ CIs, ≥2–3 scenarios. But the qualitative chain (robust decay; capability/connectivity/
-memory don't fix it; the dissociation) is consistent across M0–M3 and with the 3-SMGA prior.
+| Condition | What agents hear / say | What agents hold | Interpretation |
+|---|---|---|---|
+| Baseline | Current update appears but competes with stale history | Low current belief | Ordinary social transmission loses fidelity |
+| Source | Current truth is repeatedly uttered by authority | Still low current belief | Speech moves without belief repair |
+| Broadcast | Every agent receives the current truth directly | High current belief | Overwrite-style positive control |
 
-## Open threads (for when we resume)
-- **C4 closure**: test authoritative re-broadcast (the stronger, untested intervention).
-- **Pin the dissociation** (speech vs collective belief) — possibly the paper's sharpest idea.
-- **Rigor**: provenance fidelity metric; n≥8 + CIs; ≥2 non-Chinese scenarios. (The M1
-  "connectivity amplifies" cell was followed up — P3b RETRACTED it, connectivity is neutral.)
+The result should be described operationally. We do not claim access to literal
+mental states. "Held belief" means the answer an agent gives when later probed
+about the current fact.
 
-## 7. Positioning vs Park et al. 2024 ("1,000 People") + the persona-depth limitation
+### R4. The mechanism is entrenchment, not recency
 
-The GA authors' follow-up (Park et al. 2024, arXiv:2411.10109; PDF in `assets/papers/`)
-builds INDIVIDUAL agents from 2-hour self-report interviews and predicts a real person's
-held-out GSS answers at 83–86% of two-week test-retest consistency. Crucially, those agents
-do NOT interact — it is an individual-level predictive-fidelity result. This sharpens, not
-threatens, our claim, and gives a clean three-step intro:
-- Park 2023 (GA): information SPREADS through an agent society (a success demo);
-- Park 2024 (1,000 People): a single agent can be made FAITHFUL to a real individual;
-- **Ours: a SOCIETY of those agents is NOT faithful in propagating a fact-update —
-  individual fidelity ≠ collective fidelity.**
+P1-rec distinguishes two stories:
 
-Limitation it raises — now CLOSED (G2, 2026-06-20). The obvious reviewer attack: our agents
-use THIN one-line personas + GA-reflection, whereas their fidelity came from RICH self-report
-grounding, so maybe the decay is a shallow-agent artifact. We tested it directly: re-ran the
-M4 dissociation triple with THICK (individuating, multi-sentence, self-report-style) personas.
-**Result is a clean null — persona depth changes nothing** (baseline 14% vs 12%; source still
-≈ baseline = dissociation holds; broadcast still ~98%). This kills the thin-persona critique
-AND positively confirms the mechanism is STRUCTURAL: individual fidelity (Park 2024) and
-collective fidelity (ours) are orthogonal — a richer person does not make the society a more
-faithful carrier of a fact. (Plus prior defenses: M0 strongest model still fails; M2 memory
-doesn't fix it.) Remaining gap: "thick" ≠ a full 2-hour interview transcript per agent — but
-"more persona content, identical outcome" makes a reversal unlikely. See RESULTS.md → G2.
+- If recency drove belief, a late all-agent broadcast immediately before the
+  probe should work.
+- If repetition drove belief, a single early all-agent broadcast should fail.
+
+The opposite happens. A single early broadcast succeeds; a late broadcast fails.
+So the governing factor is whether the truth becomes the early, broad version
+that later conversation reinforces. The stale value begins with incumbent
+advantage; narrow or late correction can be uttered without taking over the
+society's held state.
+
+### R5. Generality and measurement checks are in place
+
+G1 replicates the baseline/source/broadcast pattern across repair_drive,
+book_club, and carpool. G2 shows that thicker personas do not remove the
+dissociation. P2 shows that the headline current/stale verdict is not a keyword
+artifact: semantic judge and keyword scoring agree on the M4 headline.
+
+## Related Work Spine
+
+The related work should not become a broad survey. It should serve four
+paragraphs.
+
+1. **Agent societies and communicative agents.** Generative Agents, CAMEL,
+   AutoGen, SOTOPIA, and related systems establish the setting: agents talk,
+   remember, coordinate, and simulate social environments. Telephone asks a
+   missing reliability question inside that setting.
+2. **Misinformation, rumor, and reach vs fidelity.** Rumor and fake-news work
+   distinguishes spread from truth. LLM-agent rumor simulations are close
+   neighbors, but they typically measure propagation or vulnerability; Telephone
+   measures held-fact fidelity after a truth change.
+3. **Factuality, hallucination, and measurement.** TruthfulQA, SelfCheckGPT,
+   semantic entropy, RAGTruth, calibration, and internal-state work justify
+   treating truthfulness as a semantic behavioral target rather than surface
+   fluency.
+4. **Memory, correction, and recursive degradation.** Memory systems explain why
+   exposure is not retention; correction and belief-echo work explain why stale
+   information can persist; model-collapse work provides an analogy for
+   recursive degradation, but we must state that Telephone is communication-time
+   degradation, not training-time collapse.
+
+## Claim Boundaries
+
+- Do not say "more connectivity worsens corruption" as a stable result. Say it
+  does not repair truth and appears roughly neutral in the powered rerun.
+- Do not say "source correction fails because agents never hear it." M4 shows
+  the opposite: source changes what agents say.
+- Do not say "memory never matters." Say the tested memory swap does not
+  robustly restore held truth; memory can affect speech and remains a possible
+  mitigation direction.
+- Do not say "broadcast is a practical cure." It is an upper bound and positive
+  control because it bypasses the social channel.
+- Do not treat the model-collapse analogy as identity. The shared structure is
+  recursive reuse degrading fidelity; the mechanism is different.
+
+## Draft Order
+
+1. Abstract from the one-sentence thesis.
+2. Introduction around the missing axis: spread is not fidelity.
+3. Related work using `references.md`.
+4. Methods around Inject -> Propagate -> Measure; SAY vs HOLD.
+5. Results around Fig 1-5 and S1/S2.
+6. Discussion around engineering implications, memory/correction limits, and
+   communication-time collapse as analogy.

@@ -1,89 +1,125 @@
-# Telephone — Figure plan (figure-first Results)
+# Telephone - Figure Plan
 
 > Working title: *Speech is not belief: Fidelity decay in LLM agent societies*.
-> Lock this list BEFORE drafting Results prose; each Results paragraph = caption for one figure.
-> Status legend: ✅ data in hand · 🟡 needs a small re-extraction from existing run logs ·
-> 🔴 needs a (small) new run. Numbers live in `../RESULTS.md`.
+> Figure-first Results plan. Each Results subsection should map to one figure or
+> one table. Numbers live in `../RESULTS.md`.
 
----
+## Main Figures
 
-## Main figures (target: 4 main + 1–2 supp)
+### Fig 1 - Setup / Method Schematic
 
-### Fig 1 — Setup / method schematic  ✅ [rendered: figures/fig1_setup.png]
-- **Message:** how the instrument works, in one picture.
-- **Content:** N=25 agents on a contact graph → a ground-truthed update is injected at one
-  source ("repair drive moved Saturday→Sunday") → K rounds of pairwise meetings (each agent
-  reads/relays via GA-reflection memory) → at the end we *interview* every agent ("when/where
-  is it now?") and score held belief = current / stale / unknown.
-- **Why:** establishes the two distinct measurements the whole paper hinges on — what agents
-  SAY in meetings vs what the society HOLDS at interview.
+Rendered: `figures/fig1_setup.png`
 
-### Fig 2 — The phenomenon: fidelity decay over a long horizon (DECAY CURVE)  ✅  [rendered: figures/fig2_decay.png]
-- **Message:** a true update does NOT survive propagation; the stale version wins.
-- **Encoding:** stacked bar (or area) of held-belief composition {current, stale, unknown}
-  for the baseline condition; truth (current) is a thin sliver (~12–14%), stale/unknown
-  dominate. Optionally overlay the receiver Sat:Sun provenance split as a second bar.
-- **Data:** baseline interviews (M4 thin + G2 thick agree). ✅ for final-state.
-- **NOTE / honesty:** we interview only at the END (r5), so this is a *final-state* bar, not a
-  decay-vs-round *trajectory*. A trajectory (current-rate vs round) would be more striking →
-  see "Gap" below (Fig 2-alt, 🔴 small re-run with per-round interviews).
+**Message:** Telephone separates three objects that are usually conflated:
+what agents hear, what agents say, and what agents later hold.
 
-### Fig 3 — Failed levers  ✅ [rendered: figures/fig3_failed_levers.png]
-- **DATA NOTE:** capability gives a MODEST bump (mini 19% → gpt-5.4 35% → gpt-5.5 30%, error bars separated) but stays ≤35% ≪ broadcast cure 99%; connectivity flat/n.s. (20/19/14); memory n.s. (ga 17% vs smga3g 24%, smga3g std huge — the M2 56% outlier). Dashed line = broadcast cure (99%).
-- **Message:** capability, connectivity, and memory all FAIL to restore truth.
-- **Encoding:** 3 small panels (or one grouped bar), y = held current-rate with 95% CI,
-  baseline reference line:
-  - (a) **Capability** (M0/P3): mini → gpt-5.4 → gpt-5.5, flat ~16→20→21%.
-  - (b) **Connectivity** (M1/P3b): meetings 1/2/3, flat (~neutral; the retracted 10× is gone).
-  - (c) **Memory** (M2/M3): ga vs smga3g, Δ ns.
-- **Data:** M0/P3, P3b, M3 aggregates. ✅ (CIs from per-run rates).
+**Content:** 25 agents on a contact graph; one ground-truthed update is injected
+at a source; agents meet over rounds; logs measure SAY; final or per-round
+interviews measure HOLD as current / stale / unknown.
 
-### Fig 4 — ★ The dissociation: speech ≠ belief (money figure)  ✅ [rendered: figures/fig4_dissociation.png]
-- **DATA NOTE:** SAID = FINAL-round current-utterance % (not cumulative). source SAY 54→75% but HELD 12→15% (the gap); broadcast 99/99 (no gap).
-- **Message:** interventions change what agents SAY, not what the society HOLDS.
-- **Encoding:** for each condition {baseline, authoritative source, broadcast}, two paired
-  bars: (i) SAID-current ratio (from meeting event streams) vs (ii) HELD-current rate (from
-  interview). Source: SAID jumps (Sun:Sat ~25:5) while HELD stays flat ≈ baseline. Broadcast:
-  both high. Baseline: both low.
-- **Data:** M4 + G1 (3 scenarios) + G2 (thick). ✅ This is the paper's centerpiece.
+**Caption direction:** The method instruments a social transmission channel
+rather than a single-agent QA task.
 
-### Fig 5 — The mechanism: entrenchment / timing  ✅ [rendered: figures/fig5_mechanism.png]
-- **DATA NOTE:** baseline 12% / source 15% / broadcast-LATE(r5) 9% / broadcast-EARLY(r1) 100%. Late or narrow fails; only early+broad wins (recency refuted).
-- **Message:** WHEN+HOW BROAD the truth lands decides everything; recency does NOT.
-- **Encoding:** held current-rate vs injection timing — r1-broadcast (early, all) = 25/25 vs
-  r5-broadcast (late, all) = 0/25; contrast with source (every round, narrow) ≈ baseline. A
-  small "phase" cartoon: early+broad → truth attractor; late or narrow → corruption attractor.
-- **Data:** P1-rec + M4. ✅
+### Fig 2 - Long-Horizon Fidelity Decay
 
-## Supplementary / robustness
+Rendered: `figures/fig2_decay.png` and data in `figures/fig2_trajectory.csv`.
 
-### Fig S1 — Generality across scenarios + persona depth  ✅ [rendered: figures/figS1_generality.png]
-- **DATA NOTE:** broadcast ~99% everywhere; source never approaches the cure. (book_club baseline/source are higher — 38/51% — but still ≪ broadcast; pattern qualitatively holds.)
-- **Message:** the dissociation is not a single-scenario or thin-persona artifact.
-- **Encoding:** small-multiples of Fig 4's source-vs-baseline contrast across
-  {repair_drive, book_club, carpool} (G1) and {thin, thick} persona (G2): source ≈ baseline,
-  broadcast ≫, everywhere.
-- **Data:** G1 + G2. ✅
+**Message:** Truth can appear transiently and still lose. In baseline, held
+current truth rises early, peaks around round 6, and then decays toward a low
+steady state by round 30. A persistent source also decays/converges toward
+baseline; only broadcast sustains current belief.
 
-### Fig/Table S2 — Metric validation  ✅
-- **Message:** the current/stale verdict is not a keyword artifact.
-- **Content:** keyword vs LLM-judge agreement (99–100%); judge current-rate = keyword exactly.
-- **Data:** P2. ✅ (likely a TABLE, not a figure.)
+**Encoding:** trajectory line plot over rounds for baseline, source, and
+broadcast. Y axis = held-current percentage. Use this as the phenomenon figure,
+not the older final-state-only bar.
 
-### Tables (appendix)
-- **T1:** full lever sweep numbers (M0/M1 grid) with n and CIs.
-- **T2:** per-condition/per-scenario current/stale/unknown counts (M4/G1/G2).
+**Caption direction:** The r5 result is not the whole story; it is near an early
+transient peak. Long-run social transmission continues to erode held truth.
 
----
+### Fig 3 - Failed Natural Levers
 
-## The one gap worth a decision
-**Decay trajectory (Fig 2-alt):** we currently interview only at r5, so we can show the
-end-state corruption attractor but not a *current-rate-vs-round* decay curve. A decay curve
-would be a stronger Fig 2 / possible hero. Cost: one small re-run (baseline, n=5) that
-interviews after every round. **Decision: add per-round interview + run Fig-2 trajectory, or
-ship final-state bars?** (Recommend: yes, cheap and it's the most intuitive "telephone" image.)
+Rendered: `figures/fig3_failed_levers.png`.
 
-## Draft order for Results prose (around these figures)
-1. Setup (Fig 1) → 2. Phenomenon/decay (Fig 2) → 3. Failed levers (Fig 3) →
-4. ★ Dissociation (Fig 4) → 5. Mechanism/entrenchment (Fig 5) → 6. Robustness (S1) +
-metric validation (S2).
+**Message:** Capability, connectivity, and memory architecture do not restore
+held truth.
+
+**Encoding:** small multiples or grouped bars with 95% CIs:
+
+- Capability: mini -> gpt-5.4 -> gpt-5.5. Claim: modest improvement, not cure.
+- Connectivity: meetings 1/2/3. Claim: roughly neutral, not repair.
+- Memory: GA vs smga3g. Claim: no robust rescue; M2 was an outlier.
+
+**Caption direction:** The figure should avoid the old "connectivity amplifies"
+language. The result is negative but sober: intuitive levers fail to make held
+truth dominate.
+
+### Fig 4 - Speech Is Not Belief
+
+Rendered: `figures/fig4_dissociation.png`.
+
+**Message:** Source intervention changes SAY without repairing HOLD.
+
+**Encoding:** paired bars for baseline, source, broadcast:
+
+- SAY-current ratio from meeting streams.
+- HOLD-current rate from interviews.
+
+Source should show the gap: utterances move toward current truth while held
+belief stays near baseline. Broadcast should show both SAY and HOLD high.
+
+**Caption direction:** This is the money figure. It establishes the operational
+speech-belief dissociation.
+
+### Fig 5 - Entrenchment, Not Recency
+
+Rendered: `figures/fig5_mechanism.png`.
+
+**Message:** Timing and breadth decide whether truth becomes entrenched.
+
+**Encoding:** held-current rate for baseline, source, late all-agent broadcast,
+early all-agent broadcast, and every-round broadcast.
+
+**Caption direction:** A late all-agent broadcast fails, while a single early
+all-agent broadcast succeeds. This refutes a simple recency account and supports
+path-dependent entrenchment.
+
+## Supplementary Figures And Tables
+
+### Fig S1 - Generality And Persona Depth
+
+Rendered: `figures/figS1_generality.png`.
+
+**Message:** The dissociation is not a single-scenario or thin-persona artifact.
+
+**Encoding:** replicate the baseline/source/broadcast contrast across
+repair_drive, book_club, carpool, and thick-persona variants.
+
+### Table S2 - Metric Validation
+
+**Message:** The current/stale verdict is not a keyword artifact.
+
+**Content:** keyword vs semantic judge agreement on M4. Highlight that the
+headline current counts are reproduced under semantic judging.
+
+### Table S3 - Headline Results Ledger
+
+Drafted in `results_tables.md`.
+
+**Message:** One compact table should carry the full evidence chain:
+M4/G1/P1-rec/P2/P3/P3b/M5.
+
+### Table S4 - HEARD -> SAID -> HELD Mechanism
+
+Drafted in `results_tables.md`.
+
+**Message:** The mechanism is not that agents never hear the correction. The
+important gap is between social utterance and later held answer.
+
+## Results Draft Order
+
+1. Fig 1: instrument and measurements.
+2. Fig 2: long-horizon decay.
+3. Fig 3: failed levers.
+4. Fig 4: speech-belief dissociation.
+5. Fig 5: entrenchment mechanism.
+6. Fig S1 / Table S2: robustness and measurement validation.
