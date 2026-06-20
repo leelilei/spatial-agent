@@ -46,15 +46,15 @@
 \maketitle
 
 \begin{abstract}
-Generative-agent work shows that information can \emph{spread} through a simulated
-society, but not whether the spread is \emph{faithful}. We introduce \textsc{Telephone},
+Generative-agent work shows that information can spread through a simulated
+society, but not whether the spread is faithful. We introduce \textsc{Telephone},
 an instrument that injects a single ground-truthed update into an LLM-agent society,
 lets the agents relay it through rounds of pairwise conversation, and then interviews
-every agent to measure what the society \emph{holds}. Across capability, connectivity,
+every agent to measure what the society holds. Across capability, connectivity,
 memory architecture, and a persistent authoritative source, natural levers fail to
 restore held truth; only directly overwriting every agent's memory does. The sharpest
-result is a dissociation: an authoritative source makes agents increasingly \emph{say}
-the current value while the society's \emph{held} belief stays near baseline---speech
+result is a dissociation: an authoritative source makes agents increasingly say
+the current value while the society's held belief stays near baseline---speech
 moves without belief. We trace the mechanism to path-dependent entrenchment: the version
 established early and broadly wins, and late or narrow correction can be uttered without
 being adopted. The effect survives a long horizon (truth peaks early then decays), three
@@ -65,41 +65,41 @@ scenarios, thicker personas, and a semantic-judge validation of the metric.
 \section{Introduction}
 Large language model (LLM) agents increasingly form societies that talk, remember, and
 coordinate \citep{park2023generative,li2023camel,wu2023autogen}. A celebrated demonstration
-is that information \emph{spreads} through such a society, and a separate advance shows that a
-\emph{single} agent can be made remarkably faithful to a real person
+is that information spreads through such a society, and a separate advance shows that a
+single agent can be made remarkably faithful to a real person
 \citep{park2024thousand}. Between ``information spreads'' and ``an agent is individually
-faithful'' lies a question neither line answers: when a society passes a \emph{changing} fact
+faithful'' lies a question neither line answers: when a society passes a changing fact
 through conversation, does it come to \emph{hold} the truth, or merely \emph{repeat} it?
 
 This is the distinction between \emph{reach} and \emph{fidelity}, long drawn in
 misinformation research \citep{lazer2018science,vosoughi2018spread}. It matters now because
 agent societies are themselves used as instruments---to simulate opinion, deliberate, or
 aggregate judgments---and their collective outputs are read as if they were the society's
-beliefs. If a society can be made to \emph{say} something it does not \emph{hold}, such
+beliefs. If a society can be made to say something it does not hold, such
 readings are unsafe. Individual fidelity does not imply collective fidelity.
 
 We introduce \textsc{Telephone}, a controlled instrument for this question
 (Figure~\ref{fig:setup}). We inject a single ground-truthed update at one source, let $N{=}25$
 agents relay it through rounds of pairwise conversation using generative-agent reflection
-memory, and then interview every agent to measure what the society \emph{holds}. We separate
-what agents \emph{say} in meetings from what they \emph{hold} at interview, and we test the
+memory, and then interview every agent to measure what the society holds. We separate
+what agents say in meetings from what they hold at interview, and we test the
 natural repair levers---model capability, connectivity, memory architecture, and a persistent
 authoritative source---against a positive control that overwrites every agent.
 
 The society does not preserve the update. Truth rises early then decays to a low,
 unknown-dominated steady state (Figure~\ref{fig:decay}), and no natural lever restores it
 (Figure~\ref{fig:levers}). The sharpest result is a dissociation (Figure~\ref{fig:dissoc}): a
-persistent authoritative source makes agents increasingly \emph{say} the current value while
-what the society \emph{holds} stays near baseline---speech moves without belief. The mechanism
-is path-dependent entrenchment, not recency (Figure~\ref{fig:mech}): a single \emph{early},
-broad correction succeeds where a \emph{late} one fails. Only overwriting every agent works,
+persistent authoritative source makes agents increasingly say the current value while
+what the society holds stays near baseline---speech moves without belief. The mechanism
+is path-dependent entrenchment, not recency (Figure~\ref{fig:mech}): a single early,
+broad correction succeeds where a late one fails. Only overwriting every agent works,
 which is spoon-feeding rather than a social cure. The pattern replicates across three
 scenarios and under richer personas (Figure~\ref{fig:general}).
 
 \noindent Our contributions are:
 \begin{itemize}
 \item a \textbf{measurement shift} from information reach to held-belief fidelity in
-  LLM-agent societies, with what agents \emph{say} separated from what they \emph{hold};
+  LLM-agent societies, with what agents say separated from what they hold;
 \item a robust phenomenon of \textbf{social fidelity decay}, characterized over a long horizon;
 \item an empirical spine showing that \textbf{natural repair levers fail}---capability,
   connectivity, memory, and authority---while only overwriting works;
@@ -119,8 +119,8 @@ scenarios and under richer personas (Figure~\ref{fig:general}).
 \caption{The \textsc{Telephone} instrument. A ground-truthed update is injected at one
 source; agents relay it over $K$ rounds of pairwise meetings using generative-agent
 reflection memory; every agent is then interviewed and scored as holding the
-\emph{current}, \emph{stale}, or \emph{unknown} value. The paper hinges on two distinct
-measurements: what agents \emph{say} in meetings versus what the society \emph{holds} at
+current, stale, or unknown value. The paper hinges on two distinct
+measurements: what agents say in meetings versus what the society holds at
 interview.}
 \label{fig:setup}
 \end{figure*}
@@ -131,15 +131,15 @@ inject one ground-truthed change, and measure what survives transmission
 
 \paragraph{Society and contact model.}
 The society is $N{=}25$ LLM agents, each with a short persona describing a member of a
-neighborhood, and one designated \emph{source}. In each round we draw $m$ independent
+neighborhood, and one designated source. In each round we draw $m$ independent
 random matchings over the agents (duplicate pairs removed), so every agent holds about $m$
 pairwise conversations per round; we use $m{=}2$ unless noted, and vary $m\in\{1,2,3\}$ to
 test connectivity. Each meeting is a short exchange of $T$ alternating turns ($T{=}3$), and
 both participants observe every utterance.
 
 \paragraph{The ground-truthed update.}
-The society is organizing an event with a known time and place---the \emph{stale} value. At
-round~1 an authoritative update changes the event's day and place to the \emph{current}
+The society is organizing an event with a known time and place---the stale value. At
+round~1 an authoritative update changes the event's day and place to the current
 value, observed by the source. To guard against scenario-specific artifacts we use three
 structurally identical scenarios: \textsc{repair\_drive} (Saturday, porch $\rightarrow$
 Sunday, community center), \textsc{book\_club} (Tuesday, library $\rightarrow$ Thursday,
@@ -155,18 +155,18 @@ generative-agent baseline; we additionally test a currency-resolving memory vari
 prioritizes the most recent value of a changing fact.
 
 \paragraph{Interventions.}
-The baseline injects the update once (round~1, into the source). An \emph{authoritative
-re-broadcast} re-injects the update every round, either to the source only (which must then
-re-propagate it) or to \emph{every} agent---a town-announcement / overwrite control. For the
-mechanism test we vary the timing of a single all-agent broadcast: \emph{early} (round~1)
-versus \emph{late} (immediately before the probe).
+The baseline injects the update once (round~1, into the source). An authoritative
+re-broadcast re-injects the update every round, either to the source only (which must then
+re-propagate it) or to every agent---a town-announcement / overwrite control. For the
+mechanism test we vary the timing of a single all-agent broadcast: early (round~1)
+versus late (immediately before the probe).
 
 \paragraph{Measurement: speech versus held belief.}
 We separate two quantities. \textsc{Say} is the fraction of meeting utterances carrying the
 current value (rather than the stale value). \textsc{Hold} is measured by interviewing every
 agent after the run, instructing it to answer the probe (``when/where is it now?'') using
-only its own memory notes, and scoring the answer \emph{current}, \emph{stale}, or
-\emph{unknown} by the scenario's value markers. ``Held belief'' is operational---the answer
+only its own memory notes, and scoring the answer current, stale, or
+unknown by the scenario's value markers. ``Held belief'' is operational---the answer
 an agent later gives when probed---and implies no claim about mental states.
 
 \paragraph{Models, replicates, and validation.}
@@ -217,8 +217,8 @@ communication does not install it as later held belief.
 \centering
 \includegraphics[width=\columnwidth]{figures/fig4_dissociation.png}
 \caption{Speech $\neq$ belief. A persistent authoritative source raises what agents
-\emph{say} (final-round current utterances, 54$\to$75\%) while what the society
-\emph{holds} stays near baseline (12$\to$15\%). Broadcast moves both.}
+say (final-round current utterances, 54$\to$75\%) while what the society
+holds stays near baseline (12$\to$15\%). Broadcast moves both.}
 \label{fig:dissoc}
 \end{figure}
 This is the centerpiece (Figure~\ref{fig:dissoc}). Under a persistent source, agents
@@ -230,8 +230,8 @@ an agent gives when later probed---we make no claim about literal mental states.
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/fig5_mechanism.png}
-\caption{Entrenchment, not recency. A single \emph{early} all-agent broadcast succeeds
-(100\%); a \emph{late} broadcast immediately before the probe fails (9\%). What governs
+\caption{Entrenchment, not recency. A single early all-agent broadcast succeeds
+(100\%); a late broadcast immediately before the probe fails (9\%). What governs
 held belief is whether the truth becomes the early, broad version that later conversation
 reinforces.}
 \label{fig:mech}
@@ -265,10 +265,10 @@ Generative agents establish a setting in which LLM agents talk, remember, and co
 in a believable social world \citep{park2023generative}, and communicative-agent systems
 make agent-to-agent dialogue a standard application substrate
 \citep{li2023camel,wu2023autogen}. Social-evaluation environments broaden assessment beyond
-isolated question answering \citep{zhou2024sotopia}, and recent work shows a \emph{single}
+isolated question answering \citep{zhou2024sotopia}, and recent work shows a single
 agent can be made faithful to a real individual \citep{park2024thousand}. We use this
 substrate to ask a narrower reliability question that these systems do not: whether a
-\emph{changing} fact remains current after social transmission---collective rather than
+changing fact remains current after social transmission---collective rather than
 individual fidelity.
 
 \paragraph{Reach versus fidelity in (mis)information.}
@@ -276,7 +276,7 @@ Misinformation research separates how far content spreads from whether it is bel
 acted upon \citep{lazer2018science,vosoughi2018spread,friggeri2014rumor}. LLM-agent
 simulations now reproduce misinformation propagation through social networks
 \citep{maurya2025simulating}, but they measure propagation or vulnerability. \textsc{Telephone}
-shifts the endpoint from \emph{reach} to \emph{held-belief fidelity} after a ground-truthed
+shifts the endpoint from reach to held-belief fidelity after a ground-truthed
 change, asking what the society later answers rather than how far a message travels.
 
 \paragraph{Factuality, debate, and the speech--belief gap.}
@@ -302,8 +302,8 @@ communication-time analogue that arises without any retraining.
 \section{Discussion and Limitations}
 
 \paragraph{Implications.}
-The central finding is a dissociation: in an LLM-agent society, what agents \emph{say} and
-what the society \emph{holds} can be moved independently. This cautions a growing practice of
+The central finding is a dissociation: in an LLM-agent society, what agents say and
+what the society holds can be moved independently. This cautions a growing practice of
 reading collective behavior off agent societies---deliberation, opinion simulation, ``wisdom
 of agents.'' An intervention (or a measurement) that changes utterances need not have changed
 what the society would later answer; conversely, a society can be made to recite a correction
@@ -318,17 +318,17 @@ reuse, with no retraining.
 The mechanism is path-dependent entrenchment: the value established early and broadly is the
 one later conversation reinforces, so a late or narrow correction can be uttered without
 being adopted. This explains why each natural lever fails---more capable agents, more
-communication, or a different memory do not change \emph{which} value arrived first---and why
+communication, or a different memory do not change which value arrived first---and why
 only overwriting every agent works. The constructive reading is that effective corrections
 must be early and broad by construction, and that memory architectures aimed at this failure
 must privilege the current value over the entrenched majority, not merely store more.
 
 \paragraph{Claim boundaries.}
-We are deliberately conservative. We do \emph{not} claim a capability or connectivity phase
+We are deliberately conservative. We do not claim a capability or connectivity phase
 boundary; capability helps modestly and connectivity is roughly neutral in powered reruns (an
 early ``connectivity amplifies corruption'' cell was an underpowered outlier and did not
-replicate). We do \emph{not} claim correction fails because agents never hear it---the source
-condition shows the opposite. And we do \emph{not} claim memory never matters---only that the
+replicate). We do not claim correction fails because agents never hear it---the source
+condition shows the opposite. And we do not claim memory never matters---only that the
 tested currency-resolving swap did not robustly restore held truth. Our negative results are
 best read as ``no effect detectable at this power,'' not proof of zero effect.
 
@@ -347,8 +347,8 @@ conditions use modest $n$.
 
 % ============================================================
 \section{Conclusion}
-In LLM-agent societies, a society can learn to \emph{say} the truth without coming to
-\emph{hold} it. The dissociation is driven by path-dependent entrenchment, survives a long
+In LLM-agent societies, a society can learn to say the truth without coming to
+hold it. The dissociation is driven by path-dependent entrenchment, survives a long
 horizon and several robustness checks, and resists every natural repair lever short of
 overwriting memory directly.
 
