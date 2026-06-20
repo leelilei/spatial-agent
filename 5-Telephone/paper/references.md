@@ -1,4 +1,4 @@
-# Telephone - Reference Spine
+# Social Fidelity Probe - Reference Spine
 
 > Built from `assets/papers/notes/INDEX.md` and the 54 canonical deep-read
 > notes. This file is for paper drafting. Final `.bib` entries still need venue,
@@ -20,10 +20,10 @@
 
 **Generative Agents: Interactive Simulacra of Human Behavior**  
 Role: canonical agent-society setting.  
-Use: Generative Agents shows believable social diffusion; Telephone asks whether
+Use: Generative Agents shows believable social diffusion; this work asks whether
 what diffuses remains faithful.  
 Draft sentence: Prior work on generative agents demonstrates that information can
-spread through simulated societies; Telephone studies the missing axis, whether a
+spread through simulated societies; this study targets the missing axis, whether a
 ground-truthed update remains faithful after that spread.
 
 ### Closest Misinformation Neighbor
@@ -33,7 +33,7 @@ Role: close neighbor for LLM-agent misinformation diffusion.
 Use: Cite to show that LLM-agent societies are already used to simulate
 misinformation propagation.  
 Draft sentence: LLM-agent misinformation simulations model how misleading
-content propagates through social networks; Telephone shifts the endpoint from
+content propagates through social networks; this work shifts the endpoint from
 propagation to held-belief fidelity after a truth change.
 
 ### Factuality Metric Anchor
@@ -43,7 +43,7 @@ Role: truthfulness benchmark / metric anchor.
 Use: Cite for the distinction between fluent plausible answers and truthful
 answers.  
 Draft sentence: TruthfulQA shows that models can reproduce human falsehoods in
-plausible language; Telephone extends factuality evaluation from isolated QA to
+plausible language; this study extends factuality evaluation from isolated QA to
 social transmission.
 
 ### Misinformation Framing
@@ -52,8 +52,8 @@ social transmission.
 Role: canonical misinformation framing.  
 Use: Cite for separating reach, correction, belief, and social consequences.  
 Draft sentence: Misinformation research distinguishes the spread of content from
-its belief-level consequences; Telephone operationalizes that distinction in an
-LLM-agent society.
+its belief-level consequences; the social fidelity probe operationalizes that
+distinction in an LLM-agent society.
 
 ### Correction Persistence
 
@@ -63,7 +63,7 @@ attitudes.
 Use: Cite for the idea that correction can be accepted yet fail to eliminate the
 effect of prior misinformation.  
 Draft sentence: Human belief-echo work shows that corrected misinformation can
-continue to shape attitudes; Telephone finds an LLM-agent analogue in which
+continue to shape attitudes; this work finds an LLM-agent analogue in which
 corrected speech does not reliably become held truth.
 
 ### Model-Collapse Analogy
@@ -72,7 +72,7 @@ corrected speech does not reliably become held truth.
 Role: training-time recursive degradation analogy.  
 Use: Cite carefully as an analogy, not as the same mechanism.  
 Draft sentence: Recursive training can collapse model distributions when
-generated data feeds back into training; Telephone studies a communication-time
+generated data feeds back into training; this work studies a communication-time
 analogue in which repeated social reuse degrades factual fidelity without model
 retraining.
 
@@ -92,7 +92,7 @@ retraining.
 Draft paragraph: Communicative-agent systems such as CAMEL and AutoGen make
 agent-to-agent dialogue a standard substrate for LLM applications, while social
 evaluation environments such as SOTOPIA broaden evaluation beyond isolated QA.
-Telephone uses this substrate to ask a narrower reliability question: whether a
+This work uses this substrate to ask a narrower reliability question: whether a
 changing fact remains current after social transmission.
 
 ### Debate, Deliberation, And Speech-Belief Separation
@@ -109,7 +109,7 @@ changing fact remains current after social transmission.
   Use: stance/utterance can be role-imposed rather than held belief.
 
 Draft paragraph: Debate work provides the optimistic counterpoint: structured
-multi-agent conversation can improve judged answers. Telephone identifies a
+multi-agent conversation can improve judged answers. This work identifies a
 different failure mode. The correct statement can win space in conversation
 without becoming the answer agents later hold.
 
@@ -132,7 +132,7 @@ without becoming the answer agents later hold.
 - **Large Language Models Cannot Self-Correct Reasoning Yet**  
   Use: correction without reliable grounding may fail.
 
-Draft paragraph: Telephone follows factuality evaluation work in treating truth
+Draft paragraph: This study follows factuality evaluation work in treating truth
 as a semantic behavioral target, not a fluency property. It differs by placing
 the target in a social process: the ground truth changes, agents communicate,
 and the final metric asks what they later answer.
@@ -151,7 +151,7 @@ and the final metric asks what they later answer.
   Use: future mitigation via adaptive memory organization.
 
 Draft paragraph: Agent-memory work makes clear that durable state must be
-engineered. Telephone supplies a stress test for such systems: hearing or
+engineered. The social fidelity probe supplies a stress test for such systems: hearing or
 uttering a correction is not sufficient unless the update becomes the state
 later answers draw on.
 
@@ -178,7 +178,7 @@ framing, and prior belief, then feed back into memory and judgment.
   Use: communication fidelity as a trustworthiness requirement.
 
 Draft paragraph: Model-collapse work motivates the analogy to recursive
-degradation, but Telephone's mechanism is social rather than training-time.
+degradation, but the mechanism here is social rather than training-time.
 The relevant shared concern is that repeated reuse without fresh grounding can
 degrade fidelity.
 
@@ -226,5 +226,5 @@ Use only if a draft paragraph needs them:
 3. Misinformation and factuality work show why truth requires semantic
    measurement, not fluency or reach.
 4. Memory and correction work show why exposure is not durable state.
-5. Telephone's contribution: controlled social transmission with separate
+5. Contribution: controlled social transmission with separate
    HEARD, SAID, and HELD measurements.

@@ -18,7 +18,26 @@ later answer. We therefore evaluate social fidelity, not merely reach.
 
 Figure 1 summarizes the instrument.
 
-## 2. Current Truth Appears Transiently And Then Decays
+## 2. Speech And Belief Dissociate
+
+The central experiment compares three conditions: baseline, persistent source,
+and broadcast. In baseline, agents receive the update through ordinary social
+transmission. In source, the original source repeatedly re-announces the current
+truth. In broadcast, every agent receives the current truth every round.
+
+The source intervention is the crucial test. It makes the current truth much
+more prominent in what agents say, but final held-current belief remains near
+baseline: 3.0/25 in baseline and 3.8/25 under source, a non-significant
+difference. Broadcast, by contrast, raises held-current belief to 24.8/25.
+
+This demonstrates an operational speech-belief dissociation. The issue is not
+that agents never encounter or utter the correction. They can say it. The
+failure is that the uttered truth does not become the answer agents later give
+when probed.
+
+Figure 2 visualizes the SAY/HOLD gap.
+
+## 3. Current Truth Appears Transiently And Then Decays
 
 In the baseline condition, the current update does not become a stable collective
 belief. The long-horizon M5 run shows that held-current truth can rise early,
@@ -29,13 +48,13 @@ truth-preserving state.
 A persistent authoritative source delays the decay but does not prevent it:
 source runs peak near 36% and fall to about 4% by the end of the long horizon.
 By contrast, direct broadcast to every agent keeps held-current belief near
-ceiling, remaining around 92% at the final round. This establishes the core
-phenomenon: ordinary social transmission can make truth visible without making
-it durable.
+ceiling, remaining around 92% at the final round. This establishes the broader
+phenomenon around the main dissociation: ordinary social transmission can make
+truth visible without making it durable.
 
-Figure 2 shows this trajectory.
+Figure 3 shows this trajectory.
 
-## 3. Intuitive Natural Levers Do Not Repair Held Truth
+## 4. Intuitive Natural Levers Do Not Repair Held Truth
 
 We next tested whether the failure is removed by obvious improvements to the
 agent society.
@@ -55,26 +74,7 @@ memory variant appeared promising in an underpowered run, but the rescue did not
 replicate. Memory can affect what agents say, but in our tested setting it does
 not reliably make the society hold the updated fact.
 
-Figure 3 summarizes these failed natural levers.
-
-## 4. Speech And Belief Dissociate
-
-The central experiment compares three conditions: baseline, persistent source,
-and broadcast. In baseline, agents receive the update through ordinary social
-transmission. In source, the original source repeatedly re-announces the current
-truth. In broadcast, every agent receives the current truth every round.
-
-The source intervention is the crucial test. It makes the current truth much
-more prominent in what agents say, but final held-current belief remains near
-baseline: 3.0/25 in baseline and 3.8/25 under source, a non-significant
-difference. Broadcast, by contrast, raises held-current belief to 24.8/25.
-
-This demonstrates an operational speech-belief dissociation. The issue is not
-that agents never encounter or utter the correction. They can say it. The
-failure is that the uttered truth does not become the answer agents later give
-when probed.
-
-Figure 4 visualizes the SAY/HOLD gap.
+Figure 4 summarizes these failed natural levers.
 
 ## 5. The Mechanism Is Entrenchment, Not Recency
 

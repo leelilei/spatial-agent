@@ -1,4 +1,4 @@
-# Telephone - Results Tables
+# Social Fidelity Probe - Results Tables
 
 > Draft tables for Results writing. Keep this file close to `RESULTS.md`; use it
 > to avoid re-litigating the evidence chain while drafting.
@@ -31,7 +31,7 @@
 | Paper claim | Primary citation spine | Why it belongs |
 |---|---|---|
 | Agent societies make communication a real substrate | Generative Agents; CAMEL; AutoGen; SOTOPIA | Establishes the setting and why social information flow matters |
-| Spread is not fidelity | Generative Agents; rumor / misinformation work; LLM-agent rumor simulations | Prior work measures reach or plausibility; Telephone measures held-current truth |
+| Spread is not fidelity | Generative Agents; rumor / misinformation work; LLM-agent rumor simulations | Prior work measures reach or plausibility; this work measures held-current truth |
 | Output truth is not held belief | Multi-agent debate; stance-based faithfulness debate; internal-state truthfulness; calibration | Supports separating utterance, role, confidence, and later answer |
 | Correction can leave stale belief | Belief Echoes; fake-news science; LLM self-correction limits | Supports persistence after correction and failed natural repairs |
 | Memory is a possible mechanism but not a guaranteed cure | MemoryBank; MemGPT; Reflexion; A-MEM; Voyager | Explains exposure vs durable state and future mitigation directions |
