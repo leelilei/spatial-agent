@@ -10,7 +10,7 @@
 > `../3-SMGA/sim/RESULTS.md` → **S5L-diag** (weak-model diffusion corrupts a fact-update;
 > seed 41: 18/22 "receivers" were Saturday-dominant — stale-persistence + detail drift).
 
-| 06-19 | M1 | (capability × connectivity) phase diagram | GA, 25a r5 t3, 3×3, seeds 41-43 | CORRUPTION EVERYWHERE: current ≤28% in all cells; connectivity↑ AMPLIFIES corruption (5.4 Sat:Sun 0.9×→10.4× as meetings 1→3). Neither capability nor connectivity saves truth | done |
+| 06-19 | M1 | (capability × connectivity) phase diagram | GA, 25a r5 t3, 3×3, seeds 41-43 | corruption everywhere (current ≤28%); 'connectivity AMPLIFIES corruption' (10.4×) **NOT REPLICATED** (P3b: ratio ~1.0 at n=3-4) → connectivity is NEUTRAL, not amplifier. Neither capability nor connectivity SAVES truth | done(tempered) |
 
 | 06-19 | M2 | MEMORY AXIS raw/ga/smga/smga3g | mini, 25a m2 r5 t3, n=3 | smga3g cur 56% — **NOT REPLICATED** (see M3, was n=3 outlier). Real signal: smga3g relays Sunday more in conversations, but it does NOT lift truth-recall | done(superseded) |
 
@@ -410,3 +410,24 @@ truth" claim before it goes in the paper.
 
 Net: the SPINE (dissociation + entrenchment, M4/G1/P1-rec) is untouched and solid; P3 just
 tempers the two supporting "failed lever" claims to their honest, CI-backed form.
+
+---
+
+# P3b — connectivity-amplifies-corruption does NOT replicate (M1 tempered) (2026-06-19)
+
+The M1 (n=3) headline "more communication, less truth" rested on one dramatic cell: gpt-5.4
+meetings=3 Sat:Sun = 52:5 (ratio 10.4). Re-ran gpt-5.4 connectivity with more seeds:
+
+```text
+gpt-5.4   meetings=1: current 5.8/25  Sat:Sun 14:16 (ratio 0.9)  n=4
+          meetings=3: current 6.7/25  Sat:Sun 25:24 (ratio 1.0)  n=3
+```
+
+The amplification DOES NOT REPLICATE: at n=3-4 the Sat:Sun ratio is ~1.0 at BOTH
+connectivities; the 10.4× was an n=3 outlier (one seed with extreme stale-dominance).
+**RETRACT the "connectivity amplifies corruption / more communication, less truth" claim.**
+What survives: current-rate stays LOW at every connectivity (5.8-6.7/25 ≈ 23-27%), so
+connectivity does NOT fix truth-decay — but it is roughly NEUTRAL on the corruption level,
+not an amplifier. (Third n=3 over-claim caught by the verify-before-build discipline, after
+M2-smga3g and the M0 confident-corruption magnitude.) The paper's spine (dissociation +
+entrenchment) is unaffected; M1 downgrades from "amplifies" to "does not help (neutral)."
