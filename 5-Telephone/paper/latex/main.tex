@@ -63,23 +63,52 @@ scenarios, thicker personas, and a semantic-judge validation of the metric.
 
 % ============================================================
 \section{Introduction}
-% TODO: tighten. Frame: reach vs fidelity; individual vs collective fidelity.
-Large language model (LLM) agents increasingly talk to one another: they coordinate,
-remember, and simulate social environments \citep{park2023generative}. A separate line of
-work shows that a single agent can be made remarkably faithful to a real individual
-\citep{park2024thousand}. Neither line asks the question we study here: when a society of
-such agents passes a \emph{changing} fact through conversation, does the society end up
-\emph{holding} the truth, or merely repeating it?
+Large language model (LLM) agents increasingly form societies that talk, remember, and
+coordinate \citep{park2023generative,li2023camel,wu2023autogen}. A celebrated demonstration
+is that information \emph{spreads} through such a society, and a separate advance shows that a
+\emph{single} agent can be made remarkably faithful to a real person
+\citep{park2024thousand}. Between ``information spreads'' and ``an agent is individually
+faithful'' lies a question neither line answers: when a society passes a \emph{changing} fact
+through conversation, does it come to \emph{hold} the truth, or merely \emph{repeat} it?
 
-This is the gap between \emph{reach} and \emph{fidelity}. Misinformation research has long
-separated how far content spreads from whether it is believed
-\citep{lazer2018science,vosoughi2018spread}. We bring that distinction inside an LLM-agent
-society and make it measurable. Our contributions are: (i) a measurement shift from
-information reach to information fidelity; (ii) a robust phenomenon of social fidelity
-decay; (iii) an empirical spine showing natural repair levers fail; (iv) a speech--belief
-dissociation with a path-dependent entrenchment mechanism; and (v) a rigor story of powered
-reruns, semantic-judge validation, multiple scenarios, and explicit retractions of early
-non-replicated claims.
+This is the distinction between \emph{reach} and \emph{fidelity}, long drawn in
+misinformation research \citep{lazer2018science,vosoughi2018spread}. It matters now because
+agent societies are themselves used as instruments---to simulate opinion, deliberate, or
+aggregate judgments---and their collective outputs are read as if they were the society's
+beliefs. If a society can be made to \emph{say} something it does not \emph{hold}, such
+readings are unsafe. Individual fidelity does not imply collective fidelity.
+
+We introduce \textsc{Telephone}, a controlled instrument for this question
+(Figure~\ref{fig:setup}). We inject a single ground-truthed update at one source, let $N{=}25$
+agents relay it through rounds of pairwise conversation using generative-agent reflection
+memory, and then interview every agent to measure what the society \emph{holds}. We separate
+what agents \emph{say} in meetings from what they \emph{hold} at interview, and we test the
+natural repair levers---model capability, connectivity, memory architecture, and a persistent
+authoritative source---against a positive control that overwrites every agent.
+
+The society does not preserve the update. Truth rises early then decays to a low,
+unknown-dominated steady state (Figure~\ref{fig:decay}), and no natural lever restores it
+(Figure~\ref{fig:levers}). The sharpest result is a dissociation (Figure~\ref{fig:dissoc}): a
+persistent authoritative source makes agents increasingly \emph{say} the current value while
+what the society \emph{holds} stays near baseline---speech moves without belief. The mechanism
+is path-dependent entrenchment, not recency (Figure~\ref{fig:mech}): a single \emph{early},
+broad correction succeeds where a \emph{late} one fails. Only overwriting every agent works,
+which is spoon-feeding rather than a social cure. The pattern replicates across three
+scenarios and under richer personas (Figure~\ref{fig:general}).
+
+\noindent Our contributions are:
+\begin{itemize}
+\item a \textbf{measurement shift} from information reach to held-belief fidelity in
+  LLM-agent societies, with what agents \emph{say} separated from what they \emph{hold};
+\item a robust phenomenon of \textbf{social fidelity decay}, characterized over a long horizon;
+\item an empirical spine showing that \textbf{natural repair levers fail}---capability,
+  connectivity, memory, and authority---while only overwriting works;
+\item the \textbf{speech--belief dissociation} and a \textbf{path-dependent entrenchment}
+  mechanism (early/broad wins; recency refuted); and
+\item a \textbf{rigor story}: powered reruns with confidence intervals, semantic-judge
+  validation of the metric, three scenarios, a persona-depth robustness check, and explicit
+  retractions of early non-replicated claims.
+\end{itemize}
 
 % ============================================================
 \section{The Telephone Instrument}
