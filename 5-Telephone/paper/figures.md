@@ -9,7 +9,7 @@
 
 ## Main figures (target: 4 main + 1–2 supp)
 
-### Fig 1 — Setup / method schematic  ✅ (draw, no data)
+### Fig 1 — Setup / method schematic  ✅ [rendered: figures/fig1_setup.png]
 - **Message:** how the instrument works, in one picture.
 - **Content:** N=25 agents on a contact graph → a ground-truthed update is injected at one
   source ("repair drive moved Saturday→Sunday") → K rounds of pairwise meetings (each agent
