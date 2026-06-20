@@ -12,9 +12,13 @@ agents — whether the society converges on the TRUTH or on a corrupted version.
 The agent society is used as a **scientific instrument** (a microscope on a phenomenon),
 NOT as a benchmark for ranking architectures.
 
-> **Proposal: `docs/plans/proposal_v1.md`** (the current "what we're writing" doc —
-> claims, related-work positioning, target venues, rigor). `proposal_v0.md` is the
-> superseded first draft; `telephone-research.md` is the literature review behind v1.
+> **Proposal: `docs/plans/proposal.md`** (the current result-aware "what we're writing"
+> doc — claims, related-work positioning, target venues, rigor). Historical proposal drafts
+> live in `docs/plans/archive/`; `telephone-research.md` is the literature review behind v1.
+>
+> **Project controls:** `docs/guides/todolist.md` tracks active work; `docs/guides/project.yaml`
+> tracks milestones, phases, and paper-readiness; `docs/project/reference_sources.md` indexes
+> the reference workflow.
 
 ## The gap we are attacking
 
@@ -81,16 +85,21 @@ of the answer keyword, to prevent the circularity that confounded the SMGA metri
 
 ```text
 .
-├── README.md            # this file — the thesis
-├── RESULTS.md           # experiment ledger + per-run results (every run gets a row)
-├── docs/
-│   ├── plans/           # design, metric definitions, frozen protocols
-│   └── project/         # notes, decisions, kickoff
-├── paper/
-│   └── narrative.md     # living concept narrative (the story, not the numbers)
-└── sim/                 # experimental instrument (engine reused from ../3-SMGA/sim)
+|-- README.md            # this file - the thesis
+|-- RESULTS.md           # experiment ledger + per-run results
+|-- assets/
+|   `-- papers/          # reference reports, PDFs, and reading notes
+|-- docs/
+|   |-- guides/          # execution guides and collection workflows
+|   |-- plans/           # proposals, metric definitions, frozen protocols
+|   `-- project/         # notes, decisions, conclusions, reference index
+|-- experiments/         # orchestration scripts / analysis notebooks above sim/
+|-- paper/
+|   |-- narrative.md     # living concept narrative
+|   `-- references.md    # curated working reference library
+|-- results/             # derived tables / figure-ready artifacts
+`-- sim/                 # experimental instrument reused from ../3-SMGA/sim
 ```
-
 ## Relation to 3-SMGA
 
 3-SMGA (structured memory for generative agents) is the parent. Its enduring assets we

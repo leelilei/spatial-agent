@@ -29,6 +29,9 @@ COMMON_DIRS = [
     "docs/experiments",
     "docs/reviews",
     "assets/papers",
+    "assets/papers/metadata",
+    "assets/papers/pdf",
+    "assets/papers/notes",
 ]
 
 # (template_filename, destination_relative_path)

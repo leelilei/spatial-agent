@@ -53,7 +53,10 @@
 │   └── tests/                     #      测试
 ├── benchmarks/  |  annotation/     # [—] 实验数据集（按项目需要）
 ├── paper/                          # [L3] 论文手稿
-└── assets/papers/                  # [—] 参考文献 PDF
+└── assets/papers/                  # [—] reference PDFs and literature metadata
+    ├── metadata/                   # generated reports, manifests, citation tables, scripts
+    ├── pdf/                        # local PDFs; optional one-level topic categories
+    └── notes/                      # reading notes for papers we expect to cite
 ```
 
 方括号标注的是该文件/目录所属的**合规层级**（见第 3 节）。`[—]` 表示完全可选、不计入分级。
@@ -161,6 +164,23 @@
 ### 2.9 `paper/` — 论文手稿 〔L3 推荐〕
 
 - **用途**：手稿正文与图表。论文准备度（project_map 的 `paper.sections`）应与此对应。
+
+### 2.10 `assets/papers/` — 本地文献资产
+
+- **用途**：集中保存论文 PDF、文献检索报告、引用源校准表、下载清单与阅读笔记。
+- **标准布局**：
+  ```text
+  assets/papers/
+  ├── metadata/   # generated reports, manifests, citation tables, helper scripts
+  ├── pdf/        # local PDFs
+  └── notes/      # reading notes for papers we expect to cite
+  ```
+- **PDF 分类规则**：`pdf/` 下最多增加一层主题分类，例如
+  `pdf/01_agent_societies/<paper>.pdf`。不要使用
+  `pdfs/report_downloads/` 这类“下载批次目录”；下载来源、失败原因、引用源校准应放在
+  `metadata/`。
+- **引用源规则**：PDF 的下载来源不等于论文引用来源。需要严肃写作时，应在
+  `metadata/citation_sources.*` 中记录优先引用的期刊 / 会议 / DOI 版本。
 
 ---
 

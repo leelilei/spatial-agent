@@ -1,0 +1,185 @@
+﻿version: 1
+project: 5-Telephone
+title: "Speech is not belief: Fidelity decay in LLM agent societies"
+currentFocus: "Phase 1 - reference collection and paper-structure hygiene"
+researchQuestion: "How does truthful information decay as it propagates through LLM-agent societies, and why can agents say the truth without collectively holding it?"
+
+tracks:
+  - id: design
+    name: Design
+    accent: "#0071e3"
+    order: 1
+  - id: build
+    name: Build
+    accent: "#ff9500"
+    order: 2
+  - id: experiment
+    name: Experiment
+    accent: "#34c759"
+    order: 3
+  - id: write
+    name: Write
+    accent: "#af52de"
+    order: 4
+
+phases:
+  - number: 1
+    title: "Project structure and references"
+    track: design
+    status: current
+    summary: "Normalize the project, collect the citation base, and make the current proposal result-aware."
+    outputs:
+      - "docs/plans/proposal.md"
+      - "docs/project/reference_sources.md"
+      - "docs/guides/reference_collection.md"
+      - "assets/papers/metadata/reference-report.md"
+  - number: 2
+    title: "Results and claim hygiene"
+    track: write
+    status: planned
+    summary: "Bring narrative, conclusions, and result tables into alignment with P1/P2/P3/P3b."
+    outputs:
+      - "paper/narrative.md"
+      - "docs/project/conclusions.md"
+  - number: 3
+    title: "Mechanism evidence"
+    track: experiment
+    status: planned
+    summary: "Materialize HEARD->SAID->HELD evidence and figure-ready mechanism data."
+    outputs:
+      - "results/"
+  - number: 4
+    title: "Paper draft"
+    track: write
+    status: planned
+    summary: "Turn the result-aware proposal, reference base, and figures into a paper draft."
+    outputs:
+      - "paper/"
+
+milestones:
+  - id: m4-dissociation
+    title: "M4 speech-belief dissociation"
+    status: done
+    phase: 2
+    date: 2026-06-19
+    summary: "Persistent source changes speech but not held belief; broadcast-to-all works as positive control."
+    outputs:
+      - { path: "RESULTS.md", label: "M4 result" }
+  - id: g1-generality
+    title: "Generality across scenarios"
+    status: done
+    phase: 2
+    date: 2026-06-19
+    summary: "The dissociation pattern replicated across repair_drive, book_club, and carpool."
+    outputs:
+      - { path: "RESULTS.md", label: "G1 result" }
+  - id: p1-rec-entrenchment
+    title: "Recency refuted"
+    status: done
+    phase: 2
+    date: 2026-06-19
+    summary: "Early broadcast succeeds; late broadcast fails, supporting path-dependent entrenchment."
+    outputs:
+      - { path: "RESULTS.md", label: "P1-rec result" }
+  - id: p2-judge-validation
+    title: "Semantic judge validation"
+    status: done
+    phase: 2
+    date: 2026-06-19
+    summary: "LLM judge agrees 99-100% with the headline keyword metric on M4."
+    outputs:
+      - { path: "RESULTS.md", label: "P2 result" }
+  - id: p3b-connectivity-tempered
+    title: "Connectivity amplification retracted"
+    status: done
+    phase: 2
+    date: 2026-06-20
+    summary: "The gpt-5.4 connectivity-amplifies-corruption result did not replicate; connectivity is neutral, not curative."
+    outputs:
+      - { path: "RESULTS.md", label: "P3b result" }
+
+mapNodes:
+  - id: references
+    title: "Reference collection"
+    lane: now
+    status: current
+    phase: 1
+    dependsOn: []
+    outputs:
+      - "assets/papers/metadata/reference-report.md"
+      - "paper/references.md"
+    nextActions:
+      - "Prioritize the reference report into must-cite / close-neighbor / mechanism / metric / optional."
+      - "Write reading notes for the top 10-15 papers."
+  - id: claim-hygiene
+    title: "Claim hygiene"
+    lane: next
+    status: planned
+    phase: 2
+    dependsOn:
+      - references
+    outputs:
+      - "paper/narrative.md"
+      - "docs/project/conclusions.md"
+    nextActions:
+      - "Remove outdated phase-boundary and connectivity-amplification language."
+  - id: mechanism-figure
+    title: "HEARD -> SAID -> HELD mechanism figure"
+    lane: next
+    status: planned
+    phase: 3
+    dependsOn:
+      - claim-hygiene
+    outputs:
+      - "results/"
+    nextActions:
+      - "Extract per-agent heard/said/held summaries from run outputs."
+
+paper:
+  sections:
+    - id: abstract
+      title: Abstract
+      status: planned
+      assets:
+        - "docs/plans/proposal.md"
+      blockers:
+        - "Need final headline table."
+      nextActions:
+        - "Draft from proposal abstract sketch."
+    - id: introduction
+      title: Introduction
+      status: planned
+      assets:
+        - "paper/references.md"
+      blockers:
+        - "Need reference prioritization."
+      nextActions:
+        - "Use fidelity-not-reach and speech-not-belief hook."
+    - id: related_work
+      title: Related Work
+      status: planned
+      assets:
+        - "paper/references.md"
+        - "assets/papers/metadata/reference-report.md"
+      blockers:
+        - "Need reading notes."
+      nextActions:
+        - "Cluster references around setting, closest neighbors, mechanism, metrics."
+    - id: results
+      title: Results
+      status: planned
+      assets:
+        - "RESULTS.md"
+      blockers:
+        - "Need compact result table and figure-ready data."
+      nextActions:
+        - "Write M4/G1/P1-rec/P2/P3/P3b narrative."
+    - id: discussion
+      title: Discussion
+      status: planned
+      assets:
+        - "docs/project/conclusions.md"
+      blockers: []
+      nextActions:
+        - "Frame implications for multi-agent systems and social model collapse."
+
