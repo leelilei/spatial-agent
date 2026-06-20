@@ -96,14 +96,57 @@ interview.}
 \label{fig:setup}
 \end{figure*}
 
-A society of $N{=}25$ LLM agents is seeded so that one source carries a ground-truthed
-update (e.g., a community repair drive moved from Saturday to Sunday). Agents meet in
-pairs over several rounds; each agent reads and relays through generative-agent reflection
-memory \citep{park2023generative,shinn2023reflexion}. At the end we interview every agent
-with a probe (``when/where is it now?'') and score the answer as \emph{current},
-\emph{stale}, or \emph{unknown} (Figure~\ref{fig:setup}). We separate \emph{speech}
-(current-value utterances in meetings) from \emph{held belief} (the interview answer).
-% TODO: graph/contact model details, models used, reflection memory specifics, scoring.
+\textsc{Telephone} is a controlled instrument, not a benchmark: we hold a society fixed,
+inject one ground-truthed change, and measure what survives transmission
+(Figure~\ref{fig:setup}).
+
+\paragraph{Society and contact model.}
+The society is $N{=}25$ LLM agents, each with a short persona describing a member of a
+neighborhood, and one designated \emph{source}. In each round we draw $m$ independent
+random matchings over the agents (duplicate pairs removed), so every agent holds about $m$
+pairwise conversations per round; we use $m{=}2$ unless noted, and vary $m\in\{1,2,3\}$ to
+test connectivity. Each meeting is a short exchange of $T$ alternating turns ($T{=}3$), and
+both participants observe every utterance.
+
+\paragraph{The ground-truthed update.}
+The society is organizing an event with a known time and place---the \emph{stale} value. At
+round~1 an authoritative update changes the event's day and place to the \emph{current}
+value, observed by the source. To guard against scenario-specific artifacts we use three
+structurally identical scenarios: \textsc{repair\_drive} (Saturday, porch $\rightarrow$
+Sunday, community center), \textsc{book\_club} (Tuesday, library $\rightarrow$ Thursday,
+cafe), and \textsc{carpool} (7\,am, school lot $\rightarrow$ 8\,am, church lot).
+
+\paragraph{Propagation via reflection memory.}
+Agents relay through generative-agent reflection memory
+\citep{park2023generative,shinn2023reflexion}: an append-only stream of observed utterances
+plus periodic free-text reflections. Retrieval ranks the most relevant events and
+reflections (semantic embedding ranking with a lexical fallback) into the context each agent
+speaks and answers from, and agents consolidate (reflect) every round. This is the standard
+generative-agent baseline; we additionally test a currency-resolving memory variant that
+prioritizes the most recent value of a changing fact.
+
+\paragraph{Interventions.}
+The baseline injects the update once (round~1, into the source). An \emph{authoritative
+re-broadcast} re-injects the update every round, either to the source only (which must then
+re-propagate it) or to \emph{every} agent---a town-announcement / overwrite control. For the
+mechanism test we vary the timing of a single all-agent broadcast: \emph{early} (round~1)
+versus \emph{late} (immediately before the probe).
+
+\paragraph{Measurement: speech versus held belief.}
+We separate two quantities. \textsc{Say} is the fraction of meeting utterances carrying the
+current value (rather than the stale value). \textsc{Hold} is measured by interviewing every
+agent after the run, instructing it to answer the probe (``when/where is it now?'') using
+only its own memory notes, and scoring the answer \emph{current}, \emph{stale}, or
+\emph{unknown} by the scenario's value markers. ``Held belief'' is operational---the answer
+an agent later gives when probed---and implies no claim about mental states.
+
+\paragraph{Models, replicates, and validation.}
+The default agent model is gpt-5.4-mini at temperature~0; the capability ladder
+adds gpt-5.4 and gpt-5.5. Each condition is repeated over $n$ random seeds
+that control the meeting schedule ($n$ up to~8). Because temperature~0 LLM societies are
+still chaotic (a single divergent token cascades), we report per-seed variation rather than
+treat any single run as canonical, and we validate the keyword verdict against an independent
+LLM judge that re-scores answers semantically (below).
 
 % ============================================================
 \section{Results}
