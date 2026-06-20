@@ -28,7 +28,8 @@
   decay-vs-round *trajectory*. A trajectory (current-rate vs round) would be more striking →
   see "Gap" below (Fig 2-alt, 🔴 small re-run with per-round interviews).
 
-### Fig 3 — Failed levers: nothing moves the truth-rate  ✅ (hero of the negative result)
+### Fig 3 — Failed levers  ✅ [rendered: figures/fig3_failed_levers.png]
+- **DATA NOTE:** capability gives a MODEST bump (mini 19% → gpt-5.4 35% → gpt-5.5 30%, error bars separated) but stays ≤35% ≪ broadcast cure 99%; connectivity flat/n.s. (20/19/14); memory n.s. (ga 17% vs smga3g 24%, smga3g std huge — the M2 56% outlier). Dashed line = broadcast cure (99%).
 - **Message:** capability, connectivity, and memory all FAIL to restore truth.
 - **Encoding:** 3 small panels (or one grouped bar), y = held current-rate with 95% CI,
   baseline reference line:
@@ -37,7 +38,8 @@
   - (c) **Memory** (M2/M3): ga vs smga3g, Δ ns.
 - **Data:** M0/P3, P3b, M3 aggregates. ✅ (CIs from per-run rates).
 
-### Fig 4 — ★ The dissociation: speech ≠ belief (the money figure)  ✅
+### Fig 4 — ★ The dissociation: speech ≠ belief (money figure)  ✅ [rendered: figures/fig4_dissociation.png]
+- **DATA NOTE:** SAID = FINAL-round current-utterance % (not cumulative). source SAY 54→75% but HELD 12→15% (the gap); broadcast 99/99 (no gap).
 - **Message:** interventions change what agents SAY, not what the society HOLDS.
 - **Encoding:** for each condition {baseline, authoritative source, broadcast}, two paired
   bars: (i) SAID-current ratio (from meeting event streams) vs (ii) HELD-current rate (from
@@ -45,7 +47,8 @@
   both high. Baseline: both low.
 - **Data:** M4 + G1 (3 scenarios) + G2 (thick). ✅ This is the paper's centerpiece.
 
-### Fig 5 — The mechanism: entrenchment / timing (path-dependence)  ✅
+### Fig 5 — The mechanism: entrenchment / timing  ✅ [rendered: figures/fig5_mechanism.png]
+- **DATA NOTE:** baseline 12% / source 15% / broadcast-LATE(r5) 9% / broadcast-EARLY(r1) 100%. Late or narrow fails; only early+broad wins (recency refuted).
 - **Message:** WHEN+HOW BROAD the truth lands decides everything; recency does NOT.
 - **Encoding:** held current-rate vs injection timing — r1-broadcast (early, all) = 25/25 vs
   r5-broadcast (late, all) = 0/25; contrast with source (every round, narrow) ≈ baseline. A
@@ -54,7 +57,8 @@
 
 ## Supplementary / robustness
 
-### Fig S1 — Generality across scenarios + persona depth  ✅
+### Fig S1 — Generality across scenarios + persona depth  ✅ [rendered: figures/figS1_generality.png]
+- **DATA NOTE:** broadcast ~99% everywhere; source never approaches the cure. (book_club baseline/source are higher — 38/51% — but still ≪ broadcast; pattern qualitatively holds.)
 - **Message:** the dissociation is not a single-scenario or thin-persona artifact.
 - **Encoding:** small-multiples of Fig 4's source-vs-baseline contrast across
   {repair_drive, book_club, carpool} (G1) and {thin, thick} persona (G2): source ≈ baseline,
