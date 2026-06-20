@@ -1,0 +1,91 @@
+{
+  "source_pdf": "D:\\0-Research\\5-Telephone\\assets\\papers\\pdf\\04_memory_state_agents\\42_memorybank.pdf",
+  "extractor_backend": "pdfplumber",
+  "extract_time": "2026-06-20T12:43:38+00:00",
+  "title": "1 Introduction",
+  "author": "",
+  "doi": "",
+  "keywords": [],
+  "subject": "",
+  "page_count": 11,
+  "outline": [
+    {
+      "title": "1 Introduction",
+      "level": 0,
+      "page_number": 1
+    },
+    {
+      "title": "2 MemoryBank: A Novel Memory Mechanism Tailored for LLMs",
+      "level": 0,
+      "page_number": 3
+    },
+    {
+      "title": "2.1 Memory Storage: The Warehouse of MemoryBank",
+      "level": 1,
+      "page_number": 3
+    },
+    {
+      "title": "2.2 Memory Retrieval",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "2.3 Memory Updating Mechanism",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "3 SiliconFriend: An AI Chatbot Companion Powered by MemoryBank",
+      "level": 0,
+      "page_number": 4
+    },
+    {
+      "title": "4 Experiments",
+      "level": 0,
+      "page_number": 6
+    },
+    {
+      "title": "4.1 Qualitative Analysis",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "4.2 Quantitative Analysis",
+      "level": 1,
+      "page_number": 7
+    },
+    {
+      "title": "5 Related Works",
+      "level": 0,
+      "page_number": 9
+    },
+    {
+      "title": "6 Conclusion",
+      "level": 0,
+      "page_number": 9
+    }
+  ],
+  "text_char_count": 45445,
+  "status": "ok",
+  "warnings": [],
+  "telephone_index": 42,
+  "telephone_title": "MemoryBank",
+  "telephone_category": "04_memory_state_agents",
+  "telephone_citation": {
+    "index": 42,
+    "title": "MemoryBank",
+    "download_status": "downloaded",
+    "pdf_path": "assets\\papers\\pdf\\04_memory_state_agents\\42_memorybank.pdf",
+    "pdf_source": "existing",
+    "arxiv_id": "2305.10250",
+    "source": "openalex",
+    "doi": "10.1609/aaai.v38i17.29946",
+    "venue": "Proceedings of the AAAI Conference on Artificial Intelligence",
+    "preferred_source_type": "article",
+    "publisher_url": "https://doi.org/10.1609/aaai.v38i17.29946",
+    "year": 2024,
+    "confidence": "api"
+  },
+  "telephone_abstract": "Revolutionary advancements in Large Language Models (LLMs) have drastically reshaped our interactions with artificial intelligence (AI) systems, showcasing impressive performance across an extensive array of tasks. Despite this, a notable hindrance remains—the deficiency of a long-term memory mechanism within these models. This shortfall becomes increasingly evident in situations demanding sustained interaction, such as personal companion systems, psychological counseling, and secretarial assistance. Recognizing the necessity for long-term memory, we propose MemoryBank, a novel memory mechanism tailored for LLMs. MemoryBank enables the models to summon relevant memories, continually evolve through continuous memory updates, comprehend, and adapt to a user’s personality over time by synthesizing information from previous interactions. To mimic anthropomorphic behaviors and selectively preserve memory, MemoryBank incorporates a memory updating mechanism, inspired by the Ebbinghaus Forgetting Curve theory. This mechanism permits the AI to forget and reinforce memory based on time elapsed and the relative significance of the memory, thereby offering a more human-like memory mechanism and enriched user experience. MemoryBank is versatile in accommodating both closed-source models like ChatGPT and opensource models such as ChatGLM. To validate MemoryBank’s effectiveness, we exemplify its application through the creation of an LLM-based chatbot named SiliconFriend in a long-term AI Companion scenario. Further tuned with psychological dialog data, SiliconFriend displays heightened empathy and discernment in its interactions. Experiment involves both qualitative analysis with real-world user dialogs and quantitative analysis with simulated dialogs. In the latter, ChatGPT acts as multiple users with diverse characteristics and generates long-term dialog contexts covering a wide array of topics. The results of our analysis reveal that SiliconFriend, equipped with MemoryBank, exhibits a strong capability for long-term companionship as it can provide emphatic response, recall relevant memories and understand user personality. This underscores the effectiveness of MemoryBank1.",
+  "telephone_quality_flags": []
+}

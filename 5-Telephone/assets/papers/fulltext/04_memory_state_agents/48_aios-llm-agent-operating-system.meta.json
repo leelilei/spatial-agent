@@ -1,0 +1,272 @@
+{
+  "source_pdf": "D:\\0-Research\\5-Telephone\\assets\\papers\\pdf\\04_memory_state_agents\\48_aios-llm-agent-operating-system.pdf",
+  "extractor_backend": "pdfplumber",
+  "extract_time": "2026-06-20T12:44:30+00:00",
+  "title": "AIOS: LLM Agent Operating System",
+  "author": "Kai Mei; Xi Zhu; Wujiang Xu; Wenyue Hua; Mingyu Jin; Zelong Li; Shuyuan Xu; Ruosong Ye; Yingqiang Ge; Yongfeng Zhang",
+  "doi": "",
+  "keywords": [],
+  "subject": "",
+  "page_count": 34,
+  "outline": [
+    {
+      "title": "Introduction",
+      "level": 0,
+      "page_number": 1
+    },
+    {
+      "title": "The Architecture of AIOS",
+      "level": 0,
+      "page_number": 2
+    },
+    {
+      "title": "AIOS Kernel",
+      "level": 0,
+      "page_number": 3
+    },
+    {
+      "title": "Relationship and Connection between Modules",
+      "level": 1,
+      "page_number": 3
+    },
+    {
+      "title": "LLM Core",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "Scheduler",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "Context Manager",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "Memory Manager",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "Storage Manager",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "Tool Manager",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "Access Manager",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "AIOS SDK",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Evaluation",
+      "level": 0,
+      "page_number": 7
+    },
+    {
+      "title": "Setup",
+      "level": 1,
+      "page_number": 7
+    },
+    {
+      "title": "Agent Performance (RQ1)",
+      "level": 1,
+      "page_number": 7
+    },
+    {
+      "title": "Efficiency Analysis (RQ2)",
+      "level": 1,
+      "page_number": 8
+    },
+    {
+      "title": "Scalability Analysis (RQ3)",
+      "level": 1,
+      "page_number": 8
+    },
+    {
+      "title": "Related Work",
+      "level": 0,
+      "page_number": 9
+    },
+    {
+      "title": "Conclusion and Future Work",
+      "level": 0,
+      "page_number": 9
+    },
+    {
+      "title": "Acknowledgement",
+      "level": 0,
+      "page_number": 10
+    },
+    {
+      "title": "AIOS Kernel Implementation Details",
+      "level": 0,
+      "page_number": 15
+    },
+    {
+      "title": "AIOS System Call",
+      "level": 1,
+      "page_number": 15
+    },
+    {
+      "title": "LLM Core",
+      "level": 1,
+      "page_number": 15
+    },
+    {
+      "title": "Scheduler",
+      "level": 1,
+      "page_number": 17
+    },
+    {
+      "title": "Context Manager",
+      "level": 1,
+      "page_number": 17
+    },
+    {
+      "title": "Memory Manager",
+      "level": 1,
+      "page_number": 19
+    },
+    {
+      "title": "Storage Manager",
+      "level": 1,
+      "page_number": 19
+    },
+    {
+      "title": "Tool Manager",
+      "level": 1,
+      "page_number": 21
+    },
+    {
+      "title": "Access Manager",
+      "level": 1,
+      "page_number": 21
+    },
+    {
+      "title": "Module Hooks",
+      "level": 1,
+      "page_number": 21
+    },
+    {
+      "title": "AIOS SDK",
+      "level": 0,
+      "page_number": 22
+    },
+    {
+      "title": "Query and Response",
+      "level": 1,
+      "page_number": 22
+    },
+    {
+      "title": "AIOS SDK APIs",
+      "level": 1,
+      "page_number": 25
+    },
+    {
+      "title": "Supported Tools.",
+      "level": 1,
+      "page_number": 25
+    },
+    {
+      "title": "Agent Examples",
+      "level": 1,
+      "page_number": 25
+    },
+    {
+      "title": "Support of Agent Frameworks",
+      "level": 1,
+      "page_number": 28
+    },
+    {
+      "title": "Details of Agent Benchmarks",
+      "level": 0,
+      "page_number": 30
+    },
+    {
+      "title": "HumanEval",
+      "level": 1,
+      "page_number": 30
+    },
+    {
+      "title": "MINT",
+      "level": 1,
+      "page_number": 30
+    },
+    {
+      "title": "GAIA",
+      "level": 1,
+      "page_number": 30
+    },
+    {
+      "title": "SWEBench-Lite",
+      "level": 1,
+      "page_number": 30
+    },
+    {
+      "title": "Additional Experimental Results",
+      "level": 0,
+      "page_number": 31
+    },
+    {
+      "title": "Efficiency analysis.",
+      "level": 1,
+      "page_number": 31
+    },
+    {
+      "title": "Correctness of context switch.",
+      "level": 1,
+      "page_number": 31
+    },
+    {
+      "title": "Discussion",
+      "level": 0,
+      "page_number": 31
+    },
+    {
+      "title": "Ethical Consideration",
+      "level": 1,
+      "page_number": 31
+    },
+    {
+      "title": "Future Directions",
+      "level": 1,
+      "page_number": 33
+    }
+  ],
+  "text_char_count": 102264,
+  "status": "ok",
+  "warnings": [],
+  "telephone_index": 48,
+  "telephone_title": "AIOS: LLM Agent Operating System",
+  "telephone_category": "04_memory_state_agents",
+  "telephone_citation": {
+    "index": 48,
+    "title": "AIOS: LLM Agent Operating System",
+    "download_status": "downloaded",
+    "pdf_path": "assets\\papers\\pdf\\04_memory_state_agents\\48_aios-llm-agent-operating-system.pdf",
+    "pdf_source": "existing",
+    "arxiv_id": "2403.16971",
+    "source": "semantic_scholar",
+    "matched_title": "AIOS: LLM Agent Operating System",
+    "doi": null,
+    "venue": "arXiv",
+    "preferred_source_type": "preprint_or_unresolved",
+    "publisher_url": "https://arxiv.org/abs/2403.16971",
+    "year": 2024,
+    "confidence": "manual"
+  },
+  "telephone_abstract": "LLM-based intelligent agents face significant deployment challenges, particularly related to resource management. Allowing unrestricted access to LLM or tool resources can lead to inefficient or even potentially harmful resource allocation and utilization for agents. Furthermore, the absence of proper scheduling and resource management mechanisms in current agent designs hinders concurrent processing and limits overall system efficiency. To address these challenges, this paper proposes the architecture of AIOS (LLM-based AI Agent Operating System) under the context of managing LLM-based agents. It introduces a novel architecture for serving LLMbased agents by isolating resources and LLM-specific services from agent applications into an AIOS kernel. This AIOS kernel provides fundamental services (e.g., scheduling, context management, memory management, storage management, access control) for runtime agents. To enhance usability, AIOS also includes an AIOS SDK, a comprehensive suite of APIs designed for utilizing functionalities provided by the AIOS kernel. Experimental results demonstrate that using AIOS can achieve up to 2.1× faster execution for serving agents built by various agent frameworks. The source code is available at https://github.com/agiresearch/AIOS.",
+  "telephone_quality_flags": []
+}

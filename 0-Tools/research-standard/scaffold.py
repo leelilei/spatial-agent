@@ -31,6 +31,7 @@ COMMON_DIRS = [
     "assets/papers",
     "assets/papers/metadata",
     "assets/papers/pdf",
+    "assets/papers/fulltext",
     "assets/papers/notes",
 ]
 

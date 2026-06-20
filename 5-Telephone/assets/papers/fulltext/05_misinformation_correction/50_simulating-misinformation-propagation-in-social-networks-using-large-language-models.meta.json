@@ -1,0 +1,144 @@
+{
+  "source_pdf": "D:\\0-Research\\5-Telephone\\assets\\papers\\pdf\\05_misinformation_correction\\50_simulating-misinformation-propagation-in-social-networks-using-large-language-models.pdf",
+  "extractor_backend": "pdfplumber",
+  "extract_time": "2026-06-20T12:44:46+00:00",
+  "title": "Simulating Misinformation Propagation in Social Networks using Large Language Models",
+  "author": "Raj Gaurav Maurya; Vaibhav Shukla; Raj Abhijit Dandekar; Rajat Dandekar; Sreedath Panat",
+  "doi": "",
+  "keywords": [
+    "large language models",
+    "social simulation",
+    "social networks",
+    "misinformation",
+    "fake news",
+    "propaganda",
+    "persona",
+    "agents",
+    "QA",
+    "auditor",
+    "node"
+  ],
+  "subject": "-  Computing methodologies  ->  Natural language processing.Multi-agent systems.-  Human-centered computing  ->  Collaborative and social computing theory, concepts and paradigms.-  Information systems  ->  Data mining.-  Security and privacy  ->  Human and societal aspects of security and privacy.-  Applied computing  ->  Psychology.Sociology.",
+  "page_count": 15,
+  "outline": [
+    {
+      "title": "Abstract",
+      "level": 0,
+      "page_number": 1
+    },
+    {
+      "title": "1 Introduction",
+      "level": 0,
+      "page_number": 2
+    },
+    {
+      "title": "2 Methodology",
+      "level": 0,
+      "page_number": 2
+    },
+    {
+      "title": "2.1 Simulation Framework",
+      "level": 1,
+      "page_number": 2
+    },
+    {
+      "title": "2.2 Evaluation Metrics",
+      "level": 1,
+      "page_number": 3
+    },
+    {
+      "title": "3 Results",
+      "level": 0,
+      "page_number": 4
+    },
+    {
+      "title": "3.1 Homogeneous Branch",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "3.2 Heterogeneous Branch",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "4 Discussion",
+      "level": 0,
+      "page_number": 7
+    },
+    {
+      "title": "4.1 Summary",
+      "level": 1,
+      "page_number": 7
+    },
+    {
+      "title": "4.2 Implications",
+      "level": 1,
+      "page_number": 7
+    },
+    {
+      "title": "4.3 Limitations and Outlook",
+      "level": 1,
+      "page_number": 8
+    },
+    {
+      "title": "5 GenAI Disclosure",
+      "level": 0,
+      "page_number": 8
+    },
+    {
+      "title": "Acknowledgments",
+      "level": 0,
+      "page_number": 8
+    },
+    {
+      "title": "References",
+      "level": 0,
+      "page_number": 8
+    },
+    {
+      "title": "A Appendix",
+      "level": 0,
+      "page_number": 9
+    },
+    {
+      "title": "A.1 LLM Agents",
+      "level": 1,
+      "page_number": 9
+    },
+    {
+      "title": "A.2 News Domains",
+      "level": 1,
+      "page_number": 11
+    },
+    {
+      "title": "A.3 Auditor's Domain Questions",
+      "level": 1,
+      "page_number": 13
+    }
+  ],
+  "text_char_count": 82967,
+  "status": "ok",
+  "warnings": [],
+  "telephone_index": 50,
+  "telephone_title": "Simulating Misinformation Propagation in Social Networks using Large Language Models",
+  "telephone_category": "05_misinformation_correction",
+  "telephone_citation": {
+    "index": 50,
+    "title": "Simulating Misinformation Propagation in Social Networks using Large Language Models",
+    "download_status": "downloaded",
+    "pdf_path": "assets\\papers\\pdf\\05_misinformation_correction\\50_simulating-misinformation-propagation-in-social-networks-using-large-language-models.pdf",
+    "pdf_source": "existing",
+    "arxiv_id": "2511.10384",
+    "source": "semantic_scholar",
+    "matched_title": "Simulating Misinformation Propagation in Social Networks using Large Language Models",
+    "doi": null,
+    "venue": "arXiv",
+    "preferred_source_type": "preprint_or_unresolved",
+    "publisher_url": "https://arxiv.org/abs/2511.10384",
+    "year": 2025,
+    "confidence": "manual"
+  },
+  "telephone_abstract": "Misinformation on social media thrives on surprise, emotion, and identity-driven reasoning, often amplified through human cognitive biases. To investigate these mechanisms, we model large language model (LLM) personas as synthetic agents that mimic user-level biases, ideological alignments, and trust heuristics. Within this setup, we introduce an auditor–node framework to simulate and analyze how misinformation evolves as it circulates through networks of such agents. News articles are propagated across networks of persona-conditioned LLM nodes, each rewriting received content. A question–answering (QA)-based auditor then measures factual fidelity at every step, offering interpretable, claim-level tracking of misinformation drift. We formalize a misinformation index (MI) and a misinformation propagation rate (MPR) to quantify factual degradation across homogeneous and heterogeneous branches of up to 30 sequential rewrites. Experiments with 21 personas across 10 domains reveal that identity- and ideology-based personas (e.g., religious leaders, lifestyle influencers, politically aligned individuals) act as misinformation accelerators, especially in politics, marketing, and technology. By contrast, expert-driven personas (e.g., medical professionals, investigative journalists) preserve factual stability. Controlled-random branch simulations further show that ∗Corresponding author 8301.1152:viXra once early distortions emerge, heterogeneous persona interactions rapidly escalate misinformation to propaganda-level distortion. Our taxonomy of misinformation severity—spanning factual errors, lies, and propaganda—connects observed drift to established theories in misinformation studies. These findings demonstrate the dual role of LLMs as both proxies for human-like biases and as auditors capable of tracing information fidelity. The proposed framework provides an interpretable, empirically grounded approach for studying, simulating, and mitigating misinformation diffusion in digital ecosystems.",
+  "telephone_quality_flags": []
+}

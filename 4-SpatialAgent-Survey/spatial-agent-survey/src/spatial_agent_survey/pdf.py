@@ -26,6 +26,7 @@ except ModuleNotFoundError:  # pragma: no cover - optional runtime dependency
 DEFAULT_TEXT_EXTRACTION_BACKEND = "pdfplumber"
 MARKDOWN_SUFFIX = ".fulltext.md"
 META_SUFFIX = ".meta.json"
+PDFPLUMBER_TEXT_KWARGS = {"x_tolerance": 1, "y_tolerance": 3}
 
 
 @dataclass
@@ -78,9 +79,41 @@ class PdfExtractionResult:
 
 def _normalize_text(text: str) -> str:
     normalized = text.replace("\r\n", "\n").replace("\r", "\n")
+    normalized = _strip_pdf_boilerplate(normalized)
+    normalized = re.sub(r"(?<=\w)-\n(?=\w)", "", normalized)
     normalized = re.sub(r"[ \t]+\n", "\n", normalized)
     normalized = re.sub(r"\n{3,}", "\n\n", normalized)
     return normalized.strip()
+
+
+def _strip_pdf_boilerplate(text: str) -> str:
+    """Remove common publisher permission footers that pollute extracted text."""
+
+    cleaned_lines: list[str] = []
+    skipping_permission_block = False
+    for line in text.splitlines():
+        stripped = line.strip()
+        lower = stripped.lower()
+        starts_permission_block = lower.startswith("permission to make digital")
+        standalone_boilerplate = (
+            lower.startswith("for all other uses")
+            or lower.startswith("acm isbn")
+            or lower.startswith("https://doi.org/")
+            or lower.startswith("http://dx.doi.org/")
+            or "copyright held by" in lower
+        )
+
+        if starts_permission_block:
+            skipping_permission_block = True
+            continue
+        if skipping_permission_block:
+            if not stripped:
+                skipping_permission_block = False
+            continue
+        if standalone_boilerplate:
+            continue
+        cleaned_lines.append(line)
+    return "\n".join(cleaned_lines)
 
 
 def flatten_text(text: str) -> str:
@@ -144,7 +177,7 @@ def _extract_text_with_pdfplumber(pdf_path: Path, max_pages: int | None = None) 
         pages = pdf.pages if max_pages is None else pdf.pages[:max_pages]
         for index, page in enumerate(pages, start=1):
             try:
-                page_text = page.extract_text() or ""
+                page_text = _extract_pdfplumber_page_text(page)
             except Exception as exc:
                 warnings.append(f"page {index}: pdfplumber extraction failed: {exc}")
                 page_text = ""
@@ -153,6 +186,91 @@ def _extract_text_with_pdfplumber(pdf_path: Path, max_pages: int | None = None) 
                 page_texts.append(page_text)
 
     return "\n\n".join(page_texts).strip(), warnings
+
+
+def _extract_pdfplumber_page_text(page: Any) -> str:
+    """Extract one page, preserving left-column then right-column order when detected."""
+
+    if _looks_like_two_column_page(page):
+        return _extract_two_column_page_text(page)
+    return page.extract_text(**PDFPLUMBER_TEXT_KWARGS) or ""
+
+
+def _looks_like_two_column_page(page: Any) -> bool:
+    try:
+        words = page.extract_words(**PDFPLUMBER_TEXT_KWARGS) or []
+    except Exception:
+        return False
+    if len(words) < 120:
+        return False
+
+    width = float(page.width)
+    height = float(page.height)
+    mid_x = width / 2
+    gutter_width = max(36.0, width * 0.06)
+    top_cutoff = height * 0.12
+    bottom_cutoff = height * 0.92
+    left_words = right_words = gutter_words = 0
+
+    for word in words:
+        top = float(word["top"])
+        if top < top_cutoff or top > bottom_cutoff:
+            continue
+        center_x = (float(word["x0"]) + float(word["x1"])) / 2
+        if center_x < mid_x - gutter_width / 2:
+            left_words += 1
+        elif center_x > mid_x + gutter_width / 2:
+            right_words += 1
+        else:
+            gutter_words += 1
+
+    body_words = left_words + right_words + gutter_words
+    if body_words < 100:
+        return False
+    if min(left_words, right_words) < body_words * 0.25:
+        return False
+    return gutter_words / body_words < 0.08
+
+
+def _extract_two_column_page_text(page: Any) -> str:
+    width = float(page.width)
+    height = float(page.height)
+    mid_x = width / 2
+    gutter_width = max(18.0, width * 0.03)
+    column_start_y = _first_page_column_start_y(page)
+    page_texts: list[str] = []
+    if column_start_y > 0:
+        top_text = page.crop((0, 0, width, column_start_y)).extract_text(**PDFPLUMBER_TEXT_KWARGS) or ""
+        top_text = _normalize_text(top_text)
+        if top_text:
+            page_texts.append(top_text)
+
+    bboxes = [
+        (0, column_start_y, mid_x - gutter_width / 2, height),
+        (mid_x + gutter_width / 2, column_start_y, width, height),
+    ]
+    column_texts: list[str] = []
+    for bbox in bboxes:
+        text = page.crop(bbox).extract_text(**PDFPLUMBER_TEXT_KWARGS) or ""
+        text = _normalize_text(text)
+        if text:
+            column_texts.append(text)
+    if column_texts:
+        page_texts.append("\n\n".join(column_texts))
+    return "\n\n".join(page_texts)
+
+
+def _first_page_column_start_y(page: Any) -> float:
+    if getattr(page, "page_number", None) != 1:
+        return 0.0
+    try:
+        words = page.extract_words(**PDFPLUMBER_TEXT_KWARGS) or []
+    except Exception:
+        return 0.0
+    for word in words:
+        if str(word.get("text", "")).strip().lower().rstrip(":") == "abstract":
+            return max(0.0, float(word["top"]) - 2.0)
+    return 0.0
 
 
 def _extract_text_with_pypdf(pdf_path: Path, max_pages: int | None = None) -> tuple[str, list[str]]:

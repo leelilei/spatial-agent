@@ -1,0 +1,91 @@
+{
+  "source_pdf": "D:\\0-Research\\5-Telephone\\assets\\papers\\pdf\\03_hallucination_factuality\\31_language-models-mostly-know-what-they-know.pdf",
+  "extractor_backend": "pdfplumber",
+  "extract_time": "2026-06-20T12:42:26+00:00",
+  "title": "1 Introduction",
+  "author": "",
+  "doi": "",
+  "keywords": [],
+  "subject": "",
+  "page_count": 43,
+  "outline": [
+    {
+      "title": "1 Introduction",
+      "level": 0,
+      "page_number": 3
+    },
+    {
+      "title": "2 Larger Models are Calibrated on Diverse Multiple Choice Questions",
+      "level": 0,
+      "page_number": 7
+    },
+    {
+      "title": "3 From Calibration to Knowing What You Know",
+      "level": 0,
+      "page_number": 8
+    },
+    {
+      "title": "4 Ask the AI: Is your proposed answer True or False?",
+      "level": 0,
+      "page_number": 11
+    },
+    {
+      "title": "5 Training Models to Predict Whether They Can Answer Questions Correctly",
+      "level": 0,
+      "page_number": 14
+    },
+    {
+      "title": "6 Discussion",
+      "level": 0,
+      "page_number": 22
+    },
+    {
+      "title": "7 Contribution Statement",
+      "level": 0,
+      "page_number": 23
+    },
+    {
+      "title": "A Metrics, Formatting Details, and P(IK) Training",
+      "level": 0,
+      "page_number": 24
+    },
+    {
+      "title": "B Discriminating What Models Know with Entropy or Loss",
+      "level": 0,
+      "page_number": 28
+    },
+    {
+      "title": "C More P(True) Evaluation Results and Details",
+      "level": 0,
+      "page_number": 30
+    },
+    {
+      "title": "D Mixed-Arithmetic and Function Synthesis Dataset Descriptions",
+      "level": 0,
+      "page_number": 30
+    }
+  ],
+  "text_char_count": 114998,
+  "status": "ok",
+  "warnings": [],
+  "telephone_index": 31,
+  "telephone_title": "Language Models (Mostly) Know What They Know",
+  "telephone_category": "03_hallucination_factuality",
+  "telephone_citation": {
+    "index": 31,
+    "title": "Language Models (Mostly) Know What They Know",
+    "download_status": "downloaded",
+    "pdf_path": "assets\\papers\\pdf\\03_hallucination_factuality\\31_language-models-mostly-know-what-they-know.pdf",
+    "pdf_source": "existing",
+    "arxiv_id": "2207.05221",
+    "source": "openalex",
+    "doi": null,
+    "venue": "arXiv",
+    "preferred_source_type": "preprint_or_unresolved",
+    "publisher_url": "https://arxiv.org/abs/2207.05221",
+    "year": 2022,
+    "confidence": "manual"
+  },
+  "telephone_abstract": "We study whether language models can evaluate the validity of their own claims and predict which questions they will be able to answer correctly. We first show that larger models are well-calibrated on diverse multiple choice and true/false questions when they are provided in the right format. Thus we can approach self-evaluation on open-ended sampling tasks by asking models to first propose answers, and then to evaluate the probability \"P(True)\" that their answers are correct. We find encouraging performance, calibration, and scaling for P(True) on a diverse array of tasks. Performance at self-evaluation further improves when we allow models to consider many of their own samples before predicting the validity of one specific possibility. Next, we investigate whether models can be trained to predict \"P(IK)\", the probability that \"I know\" the answer to a question, without reference to any particular proposed answer. Models perform well at predicting P(IK) and partially generalize across tasks, though they struggle with calibration of P(IK) on new tasks. The predicted P(IK) probabilities also increase appropriately in the presence of relevant source materials in the context, and in the presence of hints towards the solution of mathematical word problems. We hope these observations lay the groundwork for training more honest models, and for investigating how honesty generalizes to cases where models are trained on objectives other than the imitation of human writing. ∗Correspondence to: {saurav, jared}@anthropic.com Author contributions are listed at the end of the paper. 2202 voN 12 ]LC.sc[ 4v12250.7022:viXra Contents",
+  "telephone_quality_flags": []
+}

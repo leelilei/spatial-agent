@@ -1,0 +1,146 @@
+{
+  "source_pdf": "D:\\0-Research\\5-Telephone\\assets\\papers\\pdf\\02_debate_consensus\\28_selene.pdf",
+  "extractor_backend": "pdfplumber",
+  "extract_time": "2026-06-20T12:42:12+00:00",
+  "title": "Introduction",
+  "author": "",
+  "doi": "",
+  "keywords": [],
+  "subject": "",
+  "page_count": 14,
+  "outline": [
+    {
+      "title": "Introduction",
+      "level": 0,
+      "page_number": 1
+    },
+    {
+      "title": "Related Work",
+      "level": 0,
+      "page_number": 3
+    },
+    {
+      "title": "Automated Theorem Proving by LLM",
+      "level": 1,
+      "page_number": 3
+    },
+    {
+      "title": "Automated Software Verification",
+      "level": 1,
+      "page_number": 3
+    },
+    {
+      "title": "Selene",
+      "level": 0,
+      "page_number": 3
+    },
+    {
+      "title": "Preliminary of SeL4",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "Lemma Isolation in Selene",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "Key Know-how about Selene",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "Evaluation",
+      "level": 0,
+      "page_number": 6
+    },
+    {
+      "title": "Evaluation Pipeline",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Evaluation Setup",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Evaluation Result",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Augmentation",
+      "level": 0,
+      "page_number": 7
+    },
+    {
+      "title": "Augmentation to Evaluation Pipeline",
+      "level": 1,
+      "page_number": 7
+    },
+    {
+      "title": "Augmentation Result",
+      "level": 1,
+      "page_number": 8
+    },
+    {
+      "title": "Conclusion",
+      "level": 0,
+      "page_number": 9
+    },
+    {
+      "title": "Limitation",
+      "level": 0,
+      "page_number": 9
+    },
+    {
+      "title": "Procedural Vs@汥瑀瑯步渠. Declarative Style",
+      "level": 0,
+      "page_number": 11
+    },
+    {
+      "title": "ROOT File",
+      "level": 0,
+      "page_number": 12
+    },
+    {
+      "title": "Verification Time",
+      "level": 0,
+      "page_number": 12
+    },
+    {
+      "title": "Prompt",
+      "level": 0,
+      "page_number": 12
+    },
+    {
+      "title": "Generated Cases",
+      "level": 0,
+      "page_number": 13
+    }
+  ],
+  "text_char_count": 58294,
+  "status": "ok",
+  "warnings": [],
+  "telephone_index": 28,
+  "telephone_title": "SELENE",
+  "telephone_category": "02_debate_consensus",
+  "telephone_citation": {
+    "index": 28,
+    "title": "SELENE",
+    "download_status": "downloaded",
+    "pdf_path": "assets\\papers\\pdf\\02_debate_consensus\\28_selene.pdf",
+    "pdf_source": "existing",
+    "arxiv_id": "2401.07663",
+    "source": "openalex",
+    "doi": null,
+    "venue": "arXiv",
+    "preferred_source_type": "preprint_or_unresolved",
+    "publisher_url": "https://arxiv.org/abs/2401.07663",
+    "year": 2024,
+    "confidence": "manual"
+  },
+  "telephone_abstract": "Ensuring correctness is a pivotal aspect of software engineering. Among various strategies available, software verification offers a definitive assurance of correctness. Nevertheless, writing verification proofs is resource-intensive and manpower-consuming, and there is a great need to automate this process. We introduce Selene in this paper, which is the first projectlevel automated proof benchmark constructed based on the real-world industrial-level operating system microkernel, seL4. Selene provides a comprehensive framework for end-toend proof generation and a lightweight verification environment. Our experimental results with advanced large language models (LLMs), such as GPT-3.5-turbo and GPT-4, highlight the capabilities of LLMs in the domain of automated proof generation. Additionally, our further proposed augmentations indicate that the challenges presented by Selene can be mitigated in future research endeavors. “Program testing can be used to show the presence of bugs, but never to show their absence.” – Dahl et al.’s (1972)",
+  "telephone_quality_flags": []
+}

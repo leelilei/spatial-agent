@@ -56,6 +56,7 @@
 └── assets/papers/                  # [—] reference PDFs and literature metadata
     ├── metadata/                   # generated reports, manifests, citation tables, scripts
     ├── pdf/                        # local PDFs; optional one-level topic categories
+    ├── fulltext/                   # extracted Markdown full text; mirrors pdf/ categories when useful
     └── notes/                      # reading notes for papers we expect to cite
 ```
 
@@ -173,12 +174,17 @@
   assets/papers/
   ├── metadata/   # generated reports, manifests, citation tables, helper scripts
   ├── pdf/        # local PDFs
+  ├── fulltext/   # Markdown full text extracted from PDFs
   └── notes/      # reading notes for papers we expect to cite
   ```
 - **PDF 分类规则**：`pdf/` 下最多增加一层主题分类，例如
   `pdf/01_agent_societies/<paper>.pdf`。不要使用
   `pdfs/report_downloads/` 这类“下载批次目录”；下载来源、失败原因、引用源校准应放在
   `metadata/`。
+- **全文转换规则**：若需要让 Codex / LLM 辅助精读、检索和主题归纳，优先把 PDF 转成
+  `fulltext/` 下的 Markdown。`fulltext/` 可镜像 `pdf/` 的一层主题分类，例如
+  `fulltext/01_agent_societies/<paper>.fulltext.md`；转换清单、质量标记和失败原因放在
+  `metadata/`，不要混入正文目录。
 - **引用源规则**：PDF 的下载来源不等于论文引用来源。需要严肃写作时，应在
   `metadata/citation_sources.*` 中记录优先引用的期刊 / 会议 / DOI 版本。
 

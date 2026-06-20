@@ -1,0 +1,271 @@
+{
+  "source_pdf": "D:\\0-Research\\5-Telephone\\assets\\papers\\pdf\\03_hallucination_factuality\\41_delusions-of-large-language-models.pdf",
+  "extractor_backend": "pdfplumber",
+  "extract_time": "2026-06-20T12:43:34+00:00",
+  "title": "Introduction",
+  "author": "",
+  "doi": "",
+  "keywords": [],
+  "subject": "",
+  "page_count": 18,
+  "outline": [
+    {
+      "title": "Introduction",
+      "level": 0,
+      "page_number": 1
+    },
+    {
+      "title": "Related Works",
+      "level": 0,
+      "page_number": 2
+    },
+    {
+      "title": "Delusion",
+      "level": 1,
+      "page_number": 2
+    },
+    {
+      "title": "Uncertainty Estimation",
+      "level": 1,
+      "page_number": 2
+    },
+    {
+      "title": "LLM Hallucination",
+      "level": 1,
+      "page_number": 3
+    },
+    {
+      "title": "Delusion in Large Language Models",
+      "level": 0,
+      "page_number": 3
+    },
+    {
+      "title": "Definition of Delusion",
+      "level": 1,
+      "page_number": 3
+    },
+    {
+      "title": "Uncertainty as LLM Belief",
+      "level": 2,
+      "page_number": 3
+    },
+    {
+      "title": "Belief Threshold of Delusion",
+      "level": 2,
+      "page_number": 4
+    },
+    {
+      "title": "Delusion vs. Hallucination",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "Empirical Study of Delusion",
+      "level": 0,
+      "page_number": 4
+    },
+    {
+      "title": "Distribution of Delusion",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "Can Belief Ensemble Eliminate Delusions?",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "Differences between Delusions and Hallucinations",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "LLMs Show Less Honesty with Delusions",
+      "level": 2,
+      "page_number": 5
+    },
+    {
+      "title": "LLMs Struggle More to Reject Delusions",
+      "level": 2,
+      "page_number": 6
+    },
+    {
+      "title": "Delusions Are Harder to Reflect Upon than Hallucinations",
+      "level": 2,
+      "page_number": 6
+    },
+    {
+      "title": "Causes and Influence Factors",
+      "level": 0,
+      "page_number": 6
+    },
+    {
+      "title": "The Effect of Data Noise on Delusions",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "How Training Affects Delusions?",
+      "level": 1,
+      "page_number": 7
+    },
+    {
+      "title": "Mitigating Delusions via External Verification",
+      "level": 0,
+      "page_number": 8
+    },
+    {
+      "title": "Mitigating Delusions through Multi-agent Debating",
+      "level": 1,
+      "page_number": 8
+    },
+    {
+      "title": "Mitigating Delusions through RAG",
+      "level": 1,
+      "page_number": 8
+    },
+    {
+      "title": "Conclusion",
+      "level": 0,
+      "page_number": 8
+    },
+    {
+      "title": "Uncertainty Estimation Methods",
+      "level": 0,
+      "page_number": 12
+    },
+    {
+      "title": "Experimental Setup",
+      "level": 0,
+      "page_number": 12
+    },
+    {
+      "title": "Empirical Study of Delusion",
+      "level": 1,
+      "page_number": 12
+    },
+    {
+      "title": "Distribution of Delusion",
+      "level": 2,
+      "page_number": 12
+    },
+    {
+      "title": "Can Belief Ensemble Eliminate Delusions?",
+      "level": 2,
+      "page_number": 12
+    },
+    {
+      "title": "Delusion vs. Hallucination",
+      "level": 1,
+      "page_number": 12
+    },
+    {
+      "title": "LLMs Show Less Honesty with Delusions",
+      "level": 2,
+      "page_number": 12
+    },
+    {
+      "title": "LLMs Struggle More to Reject Delusions",
+      "level": 2,
+      "page_number": 12
+    },
+    {
+      "title": "Delusions Are Harder to Reflect Upon than Hallucinations",
+      "level": 2,
+      "page_number": 12
+    },
+    {
+      "title": "Formation and Dynamics of Delusion",
+      "level": 1,
+      "page_number": 13
+    },
+    {
+      "title": "The Effect of Data Noise on Delusions",
+      "level": 2,
+      "page_number": 13
+    },
+    {
+      "title": "How Training Affects Delusions",
+      "level": 2,
+      "page_number": 13
+    },
+    {
+      "title": "Mitigating Delusions via External Verification",
+      "level": 1,
+      "page_number": 13
+    },
+    {
+      "title": "Mitigating Delusions through Multi-agent Debating",
+      "level": 2,
+      "page_number": 13
+    },
+    {
+      "title": "Mitigating Delusions through RAG",
+      "level": 2,
+      "page_number": 14
+    },
+    {
+      "title": "Complete Experiment Results",
+      "level": 0,
+      "page_number": 14
+    },
+    {
+      "title": "Refuse Rate Comparison with Prompts of Different Honesty Levels",
+      "level": 1,
+      "page_number": 14
+    },
+    {
+      "title": "Refuse Rate Comparison with Different SFT Refuse Data Ratio",
+      "level": 1,
+      "page_number": 14
+    },
+    {
+      "title": "Prompts Used in Experiments",
+      "level": 0,
+      "page_number": 14
+    },
+    {
+      "title": "Prompts Used in Different Belief Estimation Methods",
+      "level": 1,
+      "page_number": 14
+    },
+    {
+      "title": "Prompts of Different Honesty Levels",
+      "level": 1,
+      "page_number": 14
+    },
+    {
+      "title": "Prompts of Reflection",
+      "level": 1,
+      "page_number": 14
+    },
+    {
+      "title": "Prompts of Retrieval-augmented Generation",
+      "level": 1,
+      "page_number": 14
+    }
+  ],
+  "text_char_count": 64411,
+  "status": "ok",
+  "warnings": [],
+  "telephone_index": 41,
+  "telephone_title": "Delusions of Large Language Models",
+  "telephone_category": "03_hallucination_factuality",
+  "telephone_citation": {
+    "index": 41,
+    "title": "Delusions of Large Language Models",
+    "download_status": "downloaded",
+    "pdf_path": "assets\\papers\\pdf\\03_hallucination_factuality\\41_delusions-of-large-language-models.pdf",
+    "pdf_source": "existing",
+    "arxiv_id": "2503.06709",
+    "source": "crossref",
+    "doi": null,
+    "venue": "arXiv",
+    "preferred_source_type": "preprint_or_unresolved",
+    "publisher_url": "https://arxiv.org/abs/2503.06709",
+    "year": 2025,
+    "confidence": "manual"
+  },
+  "telephone_abstract": "Large Language Models (LLMs) often generate factually incorrect but plausible outputs, known as hallucinations. We identify a more insidious phenomenon, LLM delusion, defined as high-belief hallucinations—incorrect outputs with abnormally high confidence, making them harder to detect and mitigate. Unlike ordinary hallucinations, delusions persist with low uncertainty, posing significant challenges to model reliability. Through empirical analysis across different model families and sizes on several Question-Answering tasks, we show that delusions are prevalent and distinct from hallucinations. LLMs exhibit lower honesty with delusions, which are harder to override via fine-tuning or self-reflection. We link delusion formation with training dynamics and dataset noise and explore mitigation strategies such as retrieval-augmented generation and multi-agent debating to mitigate delusions. By systematically investigating the nature, prevalence, and mitigation of LLM delusions, our study provides insights into the underlying causes of this phenomenon and outlines future directions for improving model reliability.",
+  "telephone_quality_flags": []
+}

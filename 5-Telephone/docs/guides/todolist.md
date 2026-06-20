@@ -9,9 +9,11 @@
 - [x] Normalize project layout under the research project standard.
 - [x] Move the generated reference report into `assets/papers/metadata/`.
 - [x] Add reference source index and reference collection guide.
+- [x] Define the reading-notes pipeline and note template.
 - [ ] Convert `assets/papers/metadata/reference-report.md` into a clean priority table:
   `must-cite / close-neighbor / mechanism / metric / optional`.
-- [ ] Create reading notes for the top 10-15 must-cite and close-neighbor papers.
+- [x] Create deep-reading notes for all 58 local PDFs:
+  54 canonical deep-read project notes plus 4 duplicate / alias notes.
 - [ ] Promote verified, paper-useful entries into `paper/references.md`.
 
 ## Phase 2 鈥?Results And Claim Hygiene

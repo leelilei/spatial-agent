@@ -1,19 +1,15 @@
 # Reading Notes
 
-Use one short Markdown note per paper we expect to cite.
+Use one short Markdown note per paper we expect to cite. These are not generic
+paper summaries; they are citation-decision records for the Telephone paper.
 
-Recommended note shape:
+Start here:
 
-```text
-# Paper Title
+- `NOTE_PIPELINE.md`: purpose, workflow, outputs, and quality gates.
+- `NOTE_TEMPLATE.md`: copy this structure for each paper note.
+- `INDEX.md`: reading queue, priority batches, and contribution mapping.
 
-## Citation
+Each note should answer one question clearly:
 
-## One-Sentence Use
-
-## Key Result
-
-## How It Supports Telephone
-
-## Caveats / Not Our Claim
-```
+> What sentence, claim, method choice, or limitation in our paper does this
+> reference make stronger?
