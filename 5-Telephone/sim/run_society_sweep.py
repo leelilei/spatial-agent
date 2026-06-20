@@ -191,7 +191,20 @@ def run_one(
     question = world.question  # scenario-correct probe (overrides the default)
     label = model_label(model, llm, mock=args.mock)
     run_dir = args.out_dir / label / memory / f"run_{run_index:03d}"
-    summary = run_sim(world, args.rounds, converse, run_dir, workers=max(1, args.workers))
+
+    trajectory: list[dict[str, Any]] = []
+    round_hook = None
+    if args.interview_every_round and not args.mock:
+        assert llm is not None
+
+        def round_hook(w: Any, r: int) -> None:  # per-round held-belief snapshot (decay curve)
+            res = interview(w, question, llm)
+            trajectory.append({"round": r, "tally": tally_currency(res)})
+
+    summary = run_sim(world, args.rounds, converse, run_dir, workers=max(1, args.workers),
+                      round_hook=round_hook)
+    if trajectory:
+        write_json(run_dir / "trajectory.json", {"question": question, "trajectory": trajectory})
     summary.update({
         "memory": memory,
         "model": label,
@@ -295,6 +308,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--scenario", default="repair_drive", help="scenario key (repair_drive, book_club, carpool)")
     parser.add_argument("--rebroadcast-rounds", default="", help="explicit inject rounds, comma-sep (overrides --rebroadcast-every; for recency tests)")
     parser.add_argument("--persona-depth", default="thin", choices=["thin", "thick"], help="thin one-liner vs rich Park-2024-style personas")
+    parser.add_argument("--interview-every-round", action="store_true", help="interview after every round (held-belief decay trajectory)")
     parser.add_argument("--rounds", type=int, default=5)
     parser.add_argument("--turns", type=int, default=4)
     parser.add_argument("--workers", type=int, default=1, help="concurrent encounters/consolidations per round")

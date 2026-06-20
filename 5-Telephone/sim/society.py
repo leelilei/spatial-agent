@@ -251,7 +251,8 @@ def run_round(world: World, round_idx: int, converse: ConverseFn, *, workers: in
     return {"round": round_idx, "encounters": encounters, "injected": injected}
 
 
-def run_sim(world: World, rounds: int, converse: ConverseFn, out_dir: Path, *, workers: int = 1) -> dict[str, Any]:
+def run_sim(world: World, rounds: int, converse: ConverseFn, out_dir: Path, *, workers: int = 1,
+            round_hook: "Any" = None) -> dict[str, Any]:
     out_dir.mkdir(parents=True, exist_ok=True)
     round_logs = []
     for r in range(rounds):
@@ -261,6 +262,8 @@ def run_sim(world: World, rounds: int, converse: ConverseFn, out_dir: Path, *, w
             json.dumps(log, ensure_ascii=False, indent=2),
             encoding="utf-8",
         )
+        if round_hook is not None:  # e.g. per-round interview for a decay trajectory
+            round_hook(world, r)
     # final per-agent memory snapshots (the "what each agent believes" ground truth)
     snapshots = {a.agent_id: a.memory.snapshot() for a in world.agents}
     (out_dir / "memory_snapshots.json").write_text(
