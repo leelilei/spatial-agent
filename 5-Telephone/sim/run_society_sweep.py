@@ -186,6 +186,7 @@ def run_one(
         rebroadcast_scope=args.rebroadcast_scope,
         scenario=args.scenario,
         rebroadcast_rounds=args.rebroadcast_rounds,
+        persona_depth=args.persona_depth,
     )
     question = world.question  # scenario-correct probe (overrides the default)
     label = model_label(model, llm, mock=args.mock)
@@ -293,6 +294,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--rebroadcast-scope", default="source", choices=["source", "broadcast"], help="re-broadcast target")
     parser.add_argument("--scenario", default="repair_drive", help="scenario key (repair_drive, book_club, carpool)")
     parser.add_argument("--rebroadcast-rounds", default="", help="explicit inject rounds, comma-sep (overrides --rebroadcast-every; for recency tests)")
+    parser.add_argument("--persona-depth", default="thin", choices=["thin", "thick"], help="thin one-liner vs rich Park-2024-style personas")
     parser.add_argument("--rounds", type=int, default=5)
     parser.add_argument("--turns", type=int, default=4)
     parser.add_argument("--workers", type=int, default=1, help="concurrent encounters/consolidations per round")

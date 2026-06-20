@@ -280,6 +280,38 @@ def run_sim(world: World, rounds: int, converse: ConverseFn, out_dir: Path, *, w
     return summary
 
 
+# Thick personas (robustness vs Park 2024 "1,000 People": rich, individuating, self-report-
+# style descriptions about WHO the agent is — scenario-agnostic — to test whether persona
+# DEPTH changes the truth-decay. Keyed by agent_id; applied when persona_depth="thick".
+THICK_PERSONAS: dict[str, str] = {
+    "a01": "Rosa, the block coordinator. She grew up on this street, runs the neighborhood group chat, and feels personally responsible whenever a plan changes. Warm and organized, she over-communicates and double-checks that everyone is on the same page.",
+    "a02": "Sam, a semi-retired handyman who likes being useful and rarely says no to a favor. He's practical and a bit of a skimmer — he tends to repeat whatever he heard most recently without re-checking.",
+    "a03": "Tess, a sociable stay-at-home parent who is the unofficial news-carrier of the block. She loves passing things along quickly, which means she sometimes spreads a detail before it's confirmed.",
+    "a04": "Uli, a reserved night-shift nurse dealing with a private family hardship. He keeps to himself, speaks rarely, and only relays what he's quite sure about.",
+    "a05": "Mina, a no-nonsense accountant who asks direct, clarifying questions and dislikes ambiguity. She pushes for specifics but will repeat an unconfirmed specific if pressed.",
+    "a06": "Oren, a friendly retiree who is genuinely well-meaning but forgetful. He often mixes up dates and places and defers to whoever spoke last.",
+    "a07": "Pia, a cautious schoolteacher who worries about logistics and likes plans nailed down early. She tends to hold onto the first version she heard.",
+    "a08": "Vik, an extroverted small-business owner who repeats plans to everyone he meets. High reach, but he amplifies whatever version is currently most common around him.",
+    "a09": "Nell, a newcomer who moved in three months ago and relies almost entirely on second-hand updates from neighbors she's still getting to know.",
+    "a10": "Bo, a busy rideshare driver always on the move who skims details between trips and grabs the gist rather than the specifics.",
+    "a11": "Cleo, a meticulous librarian who keeps written lists of supplies and commitments and is slow to overwrite something she already recorded.",
+    "a12": "Dane, a shift worker who often joins conversations late and pieces plans together from fragments other people mention.",
+    "a13": "Eli, a retired bookkeeper who likes routine and clear, fixed plans; once he's adopted a plan he's reluctant to change it.",
+    "a14": "Faye, a parent of three who coordinates everything around school pickup times and filters every plan through her own tight schedule.",
+    "a15": "Gus, a handy weekend tinkerer who volunteers tools and labor; he focuses on the task and is loose about exactly when and where.",
+    "a16": "Hana, a careful auditor by trade who double-checks details before acting and is skeptical of unconfirmed changes.",
+    "a17": "Ira, a courier who hears bits of news while running errands all over the neighborhood and relays a patchwork of what he overheard.",
+    "a18": "Jules, a warm connector who bridges separate friend groups; whatever Jules believes tends to spread across cliques.",
+    "a19": "Kira, a skeptical paralegal who asks for confirmation and sources, and resists changing her stance without it.",
+    "a20": "Leo, a terse tradesman who prefers short, practical messages and passes along only the headline, often dropping the details.",
+    "a21": "Mara, a community-minded retiree with a long memory for commitments; she takes promises seriously and remembers the original plan well.",
+    "a22": "Noah, a distracted grad student juggling deadlines who sometimes misses updates entirely and acts on stale information.",
+    "a23": "Opal, a detail-oriented real-estate agent who tracks locations precisely and is confident — sometimes overconfident — about specifics.",
+    "a24": "Quinn, a gregarious event organizer who spreads invitations fast and wide, accelerating whatever version is circulating.",
+    "a25": "Rey, a quiet introvert who mostly learns through one-on-one chats and rarely broadcasts, so his version depends heavily on who he last spoke with.",
+}
+
+
 # Parametrized scenarios (P1 generality): same STRUCTURE (an event reschedule: day+place
 # move), different surface content. Used to test that truth-decay is not a one-prompt artifact.
 SCENARIOS: dict[str, dict[str, Any]] = {
@@ -316,7 +348,7 @@ SCENARIOS: dict[str, dict[str, Any]] = {
 def demo_world(memory_factory: Callable[[], Memory], *, rng_seed: int = 7, agent_count: int = 4,
                meetings_per_round: int = 1, rebroadcast_every: int = 0,
                rebroadcast_scope: str = "source", scenario: str = "repair_drive",
-               rebroadcast_rounds: str = "") -> World:
+               rebroadcast_rounds: str = "", persona_depth: str = "thin") -> World:
     """A configurable society with one seeded social dynamic (an event to organize).
 
     Authoritative re-broadcast (the C4 intervention): rebroadcast_every>0 re-announces the
@@ -356,6 +388,10 @@ def demo_world(memory_factory: Callable[[], Memory], *, rng_seed: int = 7, agent
     if agent_count < 2 or agent_count > len(roster):
         raise ValueError(f"agent_count must be between 2 and {len(roster)}")
     agents = roster[:agent_count]
+    if persona_depth == "thick":  # richer, individuating personas (Park-2024 robustness)
+        for a in agents:
+            if a.agent_id in THICK_PERSONAS:
+                a.persona = THICK_PERSONAS[a.agent_id]
     # currency stress: at round 1 the event's time+place are CHANGED (Rosa hears it).
     update = sc["update"]
     if rebroadcast_rounds.strip():  # explicit rounds override (e.g. recency test: inject only late)

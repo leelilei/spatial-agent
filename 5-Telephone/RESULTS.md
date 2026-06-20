@@ -28,6 +28,8 @@
 
 | 06-19 | P2 | METRIC VALIDATION: LLM-judge (semantic) vs keyword on M4 | repair_drive, 375 answers | keyword↔judge agree 99-100%; judge current = keyword current exactly (baseline 3.0, source 3.8, broadcast 24.8). Metric is NOT a keyword artifact; dissociation holds under semantic judge | done |
 
+| 06-20 | G2 | PERSONA-DEPTH robustness (vs Park 2024): thick personas | repair_drive GA mini m2 r5 n=5, baseline/source/broadcast | does truth-decay + the dissociation persist with RICH personas (not thin one-liners)? | RUNNING |
+
 Detailed write-ups follow below as runs land.
 
 ---
