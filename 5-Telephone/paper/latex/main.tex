@@ -187,18 +187,44 @@ headline (99--100\%), so the current/stale verdict is not a keyword artifact.
 
 % ============================================================
 \section{Related Work}
-% TODO: expand into 4 paragraphs (setting; misinformation/reach-vs-fidelity;
-% factuality/measurement; memory/correction/recursive degradation).
-Generative-agent and communicative-agent systems establish the setting in which agents
-talk, remember, and coordinate \citep{park2023generative,park2024thousand}. Misinformation
-research separates spread from belief \citep{lazer2018science,vosoughi2018spread}; we
-operationalize that distinction inside an agent society. Factuality evaluation treats truth
-as a semantic target rather than fluency \citep{lin2022truthfulqa}. Debate work is the
-optimistic counterpoint---structured discussion can improve judged answers
-\citep{du2023improving}---but we find the correct statement can win conversational space
-without becoming held belief. Finally, model-collapse work offers a training-time analogy
-for recursive degradation \citep{shumailov2023curse}; \textsc{Telephone} studies a
-communication-time analogue without retraining.
+
+\paragraph{Agent societies and communicative agents.}
+Generative agents establish a setting in which LLM agents talk, remember, and coordinate
+in a believable social world \citep{park2023generative}, and communicative-agent systems
+make agent-to-agent dialogue a standard application substrate
+\citep{li2023camel,wu2023autogen}. Social-evaluation environments broaden assessment beyond
+isolated question answering \citep{zhou2024sotopia}, and recent work shows a \emph{single}
+agent can be made faithful to a real individual \citep{park2024thousand}. We use this
+substrate to ask a narrower reliability question that these systems do not: whether a
+\emph{changing} fact remains current after social transmission---collective rather than
+individual fidelity.
+
+\paragraph{Reach versus fidelity in (mis)information.}
+Misinformation research separates how far content spreads from whether it is believed and
+acted upon \citep{lazer2018science,vosoughi2018spread,friggeri2014rumor}. LLM-agent
+simulations now reproduce misinformation propagation through social networks
+\citep{maurya2025simulating}, but they measure propagation or vulnerability. \textsc{Telephone}
+shifts the endpoint from \emph{reach} to \emph{held-belief fidelity} after a ground-truthed
+change, asking what the society later answers rather than how far a message travels.
+
+\paragraph{Factuality, debate, and the speech--belief gap.}
+Factuality evaluation treats truth as a semantic behavioral target rather than fluency
+\citep{lin2022truthfulqa,manakul2023selfcheckgpt}. Multi-agent debate is the optimistic
+counterpoint---structured discussion can improve judged answers
+\citep{du2023improving}---yet explicit correction can fail without reliable grounding
+\citep{huang2024selfcorrect}. We identify a complementary, society-level failure: the
+correct statement can win space in the conversation without becoming the answer agents
+later hold.
+
+\paragraph{Memory, persistence, and recursive degradation.}
+Agent-memory and reflection methods show that durable state must be engineered---exposure
+in context is not the same as retrievable belief \citep{shinn2023reflexion}. On the human
+side, corrected misinformation continues to shape attitudes \citep{thorson2016belief}, and
+iterated-learning experiments show that serial transmission converges toward attractors
+\citep{kirby2008cumulative}---precedents for our entrenchment account. Finally,
+model-collapse work provides a training-time analogy for recursive degradation
+\citep{shumailov2023curse,alemohammad2024selfconsuming}; \textsc{Telephone} studies a
+communication-time analogue that arises without any retraining.
 
 % ============================================================
 \section{Discussion and Limitations}
