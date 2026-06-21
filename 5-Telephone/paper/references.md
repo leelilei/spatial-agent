@@ -240,3 +240,26 @@ Use only if a draft paragraph needs them:
 4. Memory and correction work show why exposure is not durable state.
 5. Contribution: controlled social transmission with separate
    HEARD, SAID, and HELD measurements.
+
+## Added 2026-06-21 — Metric grounding & the provenance cure
+
+These were added to support the measurement justification and the PROV cure. Full entries in
+`latex/references.bib`; rationale in `measurement_grounding.md`.
+
+**Metric grounding (current/stale/unknown):**
+- **FEVER** (Thorne et al., NAACL 2018) — `thorne2018fever`. 3-way claim verdict
+  SUPPORTED/REFUTED/NOT-ENOUGH-INFO; the public analog of current/stale/unknown.
+- **ROME** (Meng et al., NeurIPS 2022) — `meng2022rome`. Knowledge editing; efficacy vs
+  specificity/locality = our current vs stale-persistence.
+- **MEMIT** (Meng et al., ICLR 2023) — `meng2023memit`. Mass knowledge editing; efficacy /
+  generalization / specificity metrics we map onto.
+- **Lewandowsky et al. 2012** — `lewandowsky2012misinformation`. Continued-influence effect:
+  corrected/superseded facts still believed = our "stale" category (with `thorson2016belief`).
+
+**Provenance cure grounding (PROV):**
+- **AGM belief revision** (Alchourrón, Gärdenfors, Makinson 1985) — `alchourron1985logic`.
+  Principled belief change; justification for revising by source, not frequency.
+- **Truth Maintenance Systems** (Doyle 1979) — `doyle1979truth`. Track justification/provenance
+  of beliefs to revise correctly — the classic basis of PROV.
+- **DeGroot 1974, Reaching a Consensus** — `degroot1974reaching`. Opinion dynamics; naive
+  averaging vs source-credibility weighting (PROV is the source-weighted instance).

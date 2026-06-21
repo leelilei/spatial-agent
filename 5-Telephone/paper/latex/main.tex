@@ -219,6 +219,21 @@ answer an agent later gives when probed---and implies no claim about mental stat
 operationalization is deliberately conservative: an agent that merely repeats the source in
 conversation receives no credit unless it later answers with the current value.
 
+\paragraph{Why a current/stale/unknown verdict.}
+The three-way verdict is not ad hoc; it mirrors recognized evaluation structures for a fact
+whose truth value has changed. It parallels the supported / refuted / not-enough-info labels
+of fact verification \citep{thorne2018fever}, and it separates the two outcomes that
+knowledge-editing evaluations keep distinct: whether the new value takes hold (edit
+\emph{efficacy}) and whether the old value is displaced rather than persisting
+(\emph{specificity}/\emph{locality}) \citep{meng2022rome,meng2023memit}. The stale category
+in particular operationalizes the \emph{continued-influence effect} from misinformation
+research---a corrected, superseded fact that is nonetheless still believed and acted upon
+\citep{lewandowsky2012misinformation,thorson2016belief}. Crucially, distinguishing
+stale (active corruption) from unknown (information loss) is load-bearing: the two respond
+differently to interventions---for example, capability converts loss into confident
+corruption---a distinction a binary correct/incorrect score would hide. A semantic LLM judge
+reproduces the verdict (below), so the categories are not a keyword artifact.
+
 \paragraph{Models, replicates, and validation.}
 The default agent model is gpt-5.4-mini at temperature~0; the capability ladder
 adds gpt-5.4 and gpt-5.5. Each condition is repeated over $n$ random seeds
