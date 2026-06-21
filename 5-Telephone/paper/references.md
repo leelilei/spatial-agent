@@ -9,10 +9,22 @@
 | Tier | Count | Use |
 |---|---:|---|
 | must-cite | 6 | Core spine for the paper's setting, metric, close neighbor, mechanism, and analogy |
-| cite | 30 | Supporting related-work and methods references |
-| background | 10 | Keep available but do not crowd the main text |
+| main-text cite | 40 | References currently intended for the AAAI main text |
+| background | remaining | Keep available but do not crowd the main text |
 | maybe | 7 | Use only if a paragraph needs them |
 | replace | 5 | Duplicate records or source problems; do not cite as independent papers |
+
+## Main-Text Placement Plan
+
+| Placement | References | Purpose |
+|---|---|---|
+| Introduction / setting | Generative Agents, CAMEL, AutoGen, AgentVerse, MetaGPT, ChatDev, AgentScope, ReAct, 1,000 People | Establish LLM-agent societies and why collective reliability matters |
+| Method / memory | Generative Agents, Reflexion, MemoryBank, MemGPT, Voyager, A-MEM | Justify event-stream/reflection memory and persistent-state framing |
+| Method / measurement | TruthfulQA, SelfCheckGPT, Semantic Entropy, HaluEval, RAGTruth, Internal State/Lying, Just Ask for Calibration | Position current/stale/unknown scoring as behavioral factuality evaluation |
+| Results / failed levers | Multiagent Debate, Debate Helps, Divergent Debate, Persuasive Debate | Contrast structured debate optimism with ordinary social relay failure |
+| Results / mechanism | Belief Echoes, Cumulative Cultural Evolution, How Stereotypes Are Shared, Audience-Tuning | Support path dependence and persistence after correction |
+| Related Work | SOTOPIA, Theory of Mind, misinformation propagation, model collapse papers, How Bad is Synthetic Data | Situate the contribution and draw boundaries |
+| Appendix only | AIOS, Agent Hospital, debate variants, Chinese hallucination benchmarks | Useful background but not needed for main claims |
 
 ## Must-Cite Spine
 

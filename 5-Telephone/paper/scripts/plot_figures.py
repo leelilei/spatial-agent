@@ -246,7 +246,7 @@ def fig2_dissociation(summary_rows: list[dict]):
     style_axes(ax, "current-valued speech (%)")
     ax.set_xticks([1, 2, 3, 4, 5])
     ax.set_xlabel("round", fontsize=9)
-    ax.set_title("A. The source moves speech", fontsize=9, loc="left", fontweight="bold")
+    ax.set_title("A. Speech moves", fontsize=9, loc="left", fontweight="bold")
     ax.legend(frameon=False, fontsize=7, loc="lower right")
 
     ax = axes[1]
@@ -272,9 +272,9 @@ def fig2_dissociation(summary_rows: list[dict]):
     style_axes(ax, "current truth (%)")
     ax.set_xticks(x)
     ax.set_xticklabels(labels, fontsize=8)
-    ax.set_title("B. But held belief stays low", fontsize=9, loc="left", fontweight="bold")
+    ax.set_title("B. Belief stays low", fontsize=9, loc="left", fontweight="bold")
     ax.legend(frameon=False, fontsize=7, loc="upper left")
-    fig.suptitle("Speech can move without belief", fontsize=11, fontweight="bold", y=1.04)
+    fig.suptitle("Speech vs. belief", fontsize=11, fontweight="bold", y=1.04)
     fig.tight_layout()
     save(fig, "fig2_speech_belief.png")
 
@@ -316,7 +316,7 @@ def fig3_decay(summary_rows: list[dict]):
     ax.text(5.2, 89, "r5 snapshot", fontsize=7, color="#687386")
     style_axes(ax, "held current (%)")
     ax.set_xlabel("round", fontsize=9)
-    ax.set_title("A. Truth peaks early, then erodes", fontsize=9, loc="left", fontweight="bold")
+    ax.set_title("A. Early peak", fontsize=9, loc="left", fontweight="bold")
     ax.legend(frameon=False, fontsize=7, loc="center right")
 
     ax = axes[1]
@@ -336,7 +336,7 @@ def fig3_decay(summary_rows: list[dict]):
     ax.set_xticks(x)
     ax.set_xticklabels(["Base", "Source", "Broad."], fontsize=8)
     style_axes(ax, "final composition (%)")
-    ax.set_title("B. The long-run state is mostly unknown", fontsize=9, loc="left", fontweight="bold")
+    ax.set_title("B. Unknown dominates", fontsize=9, loc="left", fontweight="bold")
     ax.legend(frameon=False, fontsize=7, loc="lower right")
     fig.tight_layout()
     save(fig, "fig3_decay.png")
@@ -391,7 +391,7 @@ def fig4_failed_levers(summary_rows: list[dict]):
         ax.set_title(title, fontsize=9, loc="left", fontweight="bold")
         for i, m in enumerate(means):
             ax.text(i, m + cis[i] + 3, f"{m:.0f}", ha="center", fontsize=7)
-    fig.suptitle("Natural repair levers do not restore held truth", fontsize=11, fontweight="bold", y=1.02)
+    fig.suptitle("Natural levers fail", fontsize=11, fontweight="bold", y=1.02)
     fig.tight_layout()
     save(fig, "fig4_failed_levers.png")
 
@@ -431,7 +431,7 @@ def fig5_mechanism(summary_rows: list[dict]):
     ax.tick_params(labelsize=8)
     ax.set_yticks(y)
     ax.set_yticklabels([i[0] for i in items], fontsize=7.2)
-    ax.set_title("A. Timing beats recency", fontsize=9, loc="left", fontweight="bold")
+    ax.set_title("A. Timing", fontsize=9, loc="left", fontweight="bold")
     for yi, m, ci in zip(y, means, cis):
         ax.text(min(m + ci + 3, 102), yi, f"{m:.0f}", va="center", fontsize=7)
 
@@ -510,7 +510,7 @@ def fig6_robustness(summary_rows: list[dict]):
     style_axes(ax, "held current (%)")
     ax.set_xticks(x)
     ax.set_xticklabels([s[0] for s in scenario_items], fontsize=7.4)
-    ax.set_title("A. Pattern generalizes", fontsize=9, loc="left", fontweight="bold")
+    ax.set_title("A. Generality", fontsize=9, loc="left", fontweight="bold")
     ax.legend(frameon=False, fontsize=6.1, loc="upper center", ncol=3,
               bbox_to_anchor=(0.50, 1.00), columnspacing=0.7, handlelength=1.1)
 
@@ -533,7 +533,7 @@ def fig6_robustness(summary_rows: list[dict]):
     style_axes(ax, "source - baseline (pp)", ylim=(-25, 30))
     ax.set_xticks(np.arange(len(labels)))
     ax.set_xticklabels(labels, fontsize=7.2)
-    ax.set_title("B. Source is not a repair", fontsize=9, loc="left", fontweight="bold")
+    ax.set_title("B. Source gap", fontsize=9, loc="left", fontweight="bold")
 
     ax = axes[2]
     agreement = [99, 100, 100]
@@ -544,7 +544,7 @@ def fig6_robustness(summary_rows: list[dict]):
     style_axes(ax, "%")
     ax.set_xticks(x)
     ax.set_xticklabels(["base", "source", "broad."], fontsize=7)
-    ax.set_title("C. Semantic judge validates metric", fontsize=9, loc="left", fontweight="bold")
+    ax.set_title("C. Judge check", fontsize=9, loc="left", fontweight="bold")
     ax.legend(frameon=False, fontsize=5.7, loc="upper center",
               bbox_to_anchor=(0.54, -0.18), ncol=1, handlelength=1.1)
 
