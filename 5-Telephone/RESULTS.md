@@ -34,7 +34,7 @@
 
 | 06-21 | C1 | CURE de-risk: PROVENANCE-aware integration vs GA | repair_drive mini m2 r5 n=5, prov vs ga | PROV **HOLD 18%->58%** (~3.2x), unknown 91->18/125; first NON-OVERWRITE lever that works (broadcast=99% upper bound). Strong but variant (seed42 no move). Provenance integration breaks entrenchment | de-risk PASS |
 
-| 06-21 | C2 | CURE validation: PROV vs GA, power n=8 + source + r30 | repair_drive mini m2, n=8 (r5) / n=1 (r30) | PROV ~2x GA: baseline 40%[28-53] vs 22%[13-30]; **closes dissociation**: source GA 21 (dead) vs PROV 51[37-65]; unknown 68%->28%; **r30: PROV sustains ~55% (flat, no decay) while GA decays to 6%**. PROV=first non-overwrite cure | done |
+| 06-21 | C2 | CURE validation: PROV vs GA, power n=8 + source + r30 | repair_drive mini m2, n=8 (r5) / n=3 (r30) | PROV ~2x GA: baseline 40%[28-53] vs 22%[13-30]; **closes dissociation**: source GA 21 (dead) vs PROV 51[37-65]; unknown 68%->28%; **r30: PROV sustains ~55% (flat, no decay) while GA decays to 6%**. PROV=first non-overwrite cure | done |
 
 Detailed write-ups follow below as runs land.
 
