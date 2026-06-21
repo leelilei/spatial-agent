@@ -78,3 +78,46 @@ improvement → hard to publish), and pushed for a real architecture-level fix.
   Since experiments are still evolving, write/iterate each paper section in `paper/*.md` and
   assemble into LaTeX once experiments are done. (A metric-grounding paragraph + the new bib
   entries were already added to `latex/main.tex`/`references.bib`; left in place, harmless.)
+
+---
+
+## 2026-06-22 — Novelty/competition check + experiment-coverage decision
+
+**Trigger.** Lit search for related architectures + prior work. Found the closest concurrent
+neighbor and reassessed whether our experimental coverage is sufficient.
+
+- **D1 — Closest neighbor = "From Spark to Fire" (arXiv:2603.04474, 2026).** Has a
+  Lineage-Graph **provenance cure**, "Propagation as Adoption" (adoption≠repetition), and
+  "consensus inertia" (=our entrenchment). **Decision: cite prominently + differentiate; do
+  NOT add as a comparison-table row** (it is a CENTRALIZED governance plugin + external
+  verifier, not a per-agent memory architecture; giving it the ground truth = broadcast/
+  unfair, withholding it ≈ PROV). Its two mechanisms are already covered by us: provenance =
+  PROV (decentralized), external-authority = our M4 source (failed) + broadcast (ceiling).
+  Note + 4-point differentiation: `assets/papers/neighbors/NOTE_spark_to_fire.md`. Lead our
+  contribution on: correction-fails-to-install direction, SAY/HOLD separate elicitation, PROV
+  as decentralized memory architecture + head-to-head table — NOT "we invented agent
+  provenance." refs.bib += xie2026spark, chhikara2025mem0.
+
+- **D2 — Paper type: we are a SCIENCE paper (depth), not a SYSTEMS paper (breadth).**
+  Spark-to-Fire runs a 6-framework × 3-topology × 3-attack × multi-defense × 3-dataset matrix
+  (LangChain/MetaGPT/AutoGen/CAMEL/CrewAI/LangGraph; MATH/MMLU/UCI). **We will NOT try to match
+  that matrix.** Our edge is a sharp mechanism + measurement + cure, with a head-to-head memory
+  architecture comparison they do not have.
+
+- **D3 — But our external validity is currently thin; close these gaps (priority order):**
+  1. **Architecture table across all 3 scenarios** (repair_drive done; add book_club, carpool)
+     — confirm PROV's win generalizes. (In progress.)
+  2. **Topology robustness** — we use ONE contact model (random matching). Add chain / star(hub)
+     / small-world structures and re-run GA-vs-PROV (or the table). Directly answers the
+     "single-topology artifact" attack and parallels their 3-topology coverage. (Needs a
+     scheduler topology option.)
+  3. **Capability check on the table** — re-run key rows (GA, PROV, +1-2 baselines) at gpt-5.4
+     to show PROV's win is not mini-specific. (Cheap.)
+  4. **Cross-framework replication (DEFERRED)** — reproduce the dissociation on AutoGen or
+     Concordia (NOT SOTOPIA). Gold-standard external validity but heavy; do only if targeting a
+     top venue / if reviewers demand it.
+
+- **D4 — Sufficiency call:** core claims (dissociation, entrenchment, PROV cure) are near-solid
+  (n=8, CIs, judge, capability ladder, 7-architecture table). Breadth is the gap. Prioritize
+  D3.1–D3.3 (all cheap-ish) to neutralize the "single-harness/single-topology artifact"
+  critique before investing in D3.4.

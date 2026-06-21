@@ -56,3 +56,17 @@ verification), preventing "final infection" in ≥89% of runs.
 - "You Can't Fool Us" (2605.17353): community **resilience** to misinformation, stance-level,
   source-warnings weak. Neighbor on the misinformation-community axis (not say/hold).
 - Debate lit "majority herding / overconfident consensus" — supports our frequency-entrenchment.
+
+## Their experiment scope (for our coverage comparison)
+- **Tasks (3):** QUANT (UCI data analysis), RIGID (MATH), MMLU (retrieval QA).
+- **6 frameworks × 3 topologies:** chain (LangChain, MetaGPT), mesh (AutoGen, CAMEL),
+  star (CrewAI, LangGraph).
+- **3 attack policies** (BASELINE / COMPLIANCE / SECURITY-FUD) × multiple defense configs
+  (Strict/Balanced/Speed/Reflection).
+- **Metrics:** ASR, BICR, Safe Completion, Token/Safe, Latency/Safe; per-round S(t) trajectory.
+- Models: GPT-4o-mini + DeBERTa-v3 NLI. → broad SYSTEMS/security eval.
+
+**Our coverage vs theirs:** broader-than-us on frameworks/topologies/datasets; we are deeper
+on mechanism + a 7-architecture memory comparison + capability ladder + n=8/CI/judge. We are a
+science (depth) paper; close external-validity gaps via 3-scenario table + topology robustness +
+capability check (see decisions 2026-06-22 D3), not by matching their matrix.
