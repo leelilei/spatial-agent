@@ -21,6 +21,7 @@ and goal completion rather than by demo plausibility alone.
 
 - `docs/project/citysim-agent-projects.md`: comparison table for related projects.
 - `docs/plans/proposal.md`: current CityIntent proposal.
+- `docs/project/cityintent_agent_eval_plan.md`: candidate agent architectures for CityIntent evaluation.
 - `docs/project/sotopia-style-city-benchmark.md`: SOTOPIA-style benchmark design sketch.
 - `docs/project/urban-benchmark-literature.md`: urban benchmark literature scan.
 - `assets/papers/metadata/reference_index.md`: curated reference index and archive map.
