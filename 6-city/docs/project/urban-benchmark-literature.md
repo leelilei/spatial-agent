@@ -140,11 +140,11 @@ The niche is:
 
 Working title:
 
-**SOTOPIA-City: Interactive Evaluation for Spatially Grounded Generative Agents**
+**CityIntent: Evaluating Intention-Driven Agents in Verifiable Urban Spaces**
 
 Positioning sentence:
 
-> Existing urban LLM benchmarks evaluate city knowledge, spatiotemporal reasoning, planning expertise, multimodal perception, or aggregate urban activity realism. SOTOPIA-City instead evaluates whether generative agents with private intentions can produce feasible, consistent, and spatially sensitive behavior in controlled urban environments.
+> Existing urban LLM benchmarks evaluate city knowledge, spatiotemporal reasoning, planning expertise, multimodal perception, or aggregate urban activity realism. CityIntent instead evaluates whether generative agents with private intentions can produce feasible, consistent, and spatially sensitive behavior in controlled urban environments.
 
 ## Key Differentiators
 

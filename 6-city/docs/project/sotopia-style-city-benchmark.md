@@ -2,7 +2,12 @@
 
 Date: 2026-06-22
 
-Working name: **SOTOPIA-City** or **Spatial Agency Benchmark**.
+Working name: **CityIntent**.
+
+Earlier shorthand used a SOTOPIA-derived name because the benchmark borrows
+SOTOPIA's private-goal interactive evaluation pattern. We should not use that as
+the final name: it makes the contribution sound like a SOTOPIA extension rather
+than an independent benchmark for intention-driven urban agency.
 
 ## Why SOTOPIA Is the Right Analogy
 
@@ -231,7 +236,7 @@ CitySim asks:
 
 > Can we simulate realistic urban behavior at scale?
 
-This benchmark asks:
+CityIntent asks:
 
 > Under controlled spatial perturbations, can different agent policies produce stable, explainable, feasible urban behavior?
 

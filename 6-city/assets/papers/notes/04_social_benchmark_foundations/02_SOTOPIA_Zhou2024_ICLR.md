@@ -32,7 +32,7 @@ using goal-driven social scenarios and evaluators.
 
 - What it already measures: social intelligence through interactive episodes and evaluator judgments.
 - What it does not measure: a spatial/city benchmark, because its constraints are social rather than urban-geometric.
-- How it informs our SOTOPIA-style city benchmark: Use its episode structure as the direct template for a SOTOPIA-City benchmark.
+- How it informs our SOTOPIA-style city benchmark: Use its episode structure as the direct template for CityIntent.
 
 ## What We Add Beyond This Paper
 
