@@ -34,7 +34,7 @@
 
 | 06-21 | C1 | CURE de-risk: PROVENANCE-aware integration vs GA | repair_drive mini m2 r5 n=5, prov vs ga | PROV **HOLD 18%->58%** (~3.2x), unknown 91->18/125; first NON-OVERWRITE lever that works (broadcast=99% upper bound). Strong but variant (seed42 no move). Provenance integration breaks entrenchment | de-risk PASS |
 
-| 06-21 | C2 | CURE validation: PROV vs GA, power n=8 + source + r30 | repair_drive mini m2, n=8 (r5) / n=1 (r30) | PROV ~2x GA: baseline 40%[28-53] vs 22%[13-30]; **closes dissociation**: source GA 21 (dead) vs PROV 51[37-65]; unknown 68%->28%; **r30: PROV sustains ~90% while GA decays to 6%**. PROV=first non-overwrite cure | done (r30 n=1 prelim) |
+| 06-21 | C2 | CURE validation: PROV vs GA, power n=8 + source + r30 | repair_drive mini m2, n=8 (r5) / n=1 (r30) | PROV ~2x GA: baseline 40%[28-53] vs 22%[13-30]; **closes dissociation**: source GA 21 (dead) vs PROV 51[37-65]; unknown 68%->28%; **r30: PROV sustains ~55% (flat, no decay) while GA decays to 6%**. PROV=first non-overwrite cure | done |
 
 Detailed write-ups follow below as runs land.
 
@@ -582,7 +582,7 @@ PROV baseline     40    [28-53]     57 (28%)
 GA   source       21    [16-26]    136 (68%)   <- authority does NOT lift GA (dissociation)
 PROV source       51    [37-65]     50 (25%)   <- authority DOES lift PROV
 broadcast        ~99    (overwrite ceiling)
-long horizon r30:  GA peaks 28% @r6 -> decays to 6% ;  PROV climbs to ~90% and SUSTAINS (n=1 prelim)
+long horizon r30:  GA peaks 28% @r6 -> decays to 6% ;  PROV climbs to ~55% and SUSTAINS flat to r30 (n=3)
 ```
 
 **Findings.**
@@ -593,8 +593,8 @@ long horizon r30:  GA peaks 28% @r6 -> decays to 6% ;  PROV climbs to ~90% and S
    speech-belief dissociation** -- under an authoritative source GA stays at 21% (= its baseline:
    authority moves speech, not belief) while PROV rises to 51% (CIs cleanly separated). PROV is the
    lever that makes the society RESPOND to authoritative correction.
-3. **PROV resists long-horizon decay (r30):** GA peaks ~28% then erodes to ~6%; PROV climbs to ~90%
-   and holds flat through round 30 (n=1 preliminary; powering to n=3).
+3. **PROV resists long-horizon decay (r30):** GA peaks ~28% then erodes to ~6%; PROV climbs to ~55%
+   and holds flat through round 30 (n=3) -- ~9x GA's steady state, with no decay.
 
 **Interpretation.** Swapping ONLY the social integration rule (frequency -> provenance), holding
 society/model/contact-model fixed, (a) propagates the fact, (b) restores responsiveness to authority,
@@ -602,6 +602,6 @@ and (c) prevents long-run decay -- causal evidence that frequency-based integrat
 the decay, and that provenance-aware integration is a genuine, non-overwrite cure.
 
 **Caveats / next.** Provenance is encoded via scenario value-markers (paper version must generalize to
-per-claim origin/version tags). r30 PROV is n=1 (finishing n=3). Next: generalize across
+per-claim origin/version tags). Next: generalize across
 book_club/carpool; build the comparison table vs recognized non-overwrite baselines (RAG, MemoryBank,
 MemGPT, A-MEM, currency/smga3g, multi-agent debate); generalize the provenance encoding.
