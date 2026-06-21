@@ -444,7 +444,12 @@ def interview(world: World, question: str, llm: "Any") -> dict[str, Any]:
     return results
 
 
-def build_memory_factory(kind: str, llm: "Any") -> Callable[[], Memory]:
+def build_memory_factory(kind: str, llm: "Any", scenario: str = "repair_drive") -> Callable[[], Memory]:
+    if kind == "prov":  # provenance-aware integration (the cure candidate)
+        from memories import PROVMemory
+        sc = SCENARIOS.get(scenario, SCENARIOS["repair_drive"])
+        cur, sta = sc["current_markers"], sc["stale_markers"]
+        return lambda: PROVMemory(llm=llm, current_markers=cur, stale_markers=sta)
     if kind == "raw":
         return lambda: RawStreamMemory()
     if kind == "ga":

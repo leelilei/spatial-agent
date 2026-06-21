@@ -32,6 +32,8 @@
 
 | 06-20 | M5 | LONG-HORIZON decay trajectory (Fig 2): per-round interview, r30 | repair_drive GA mini m2, baseline n=2 / source n=1 / broadcast n=1 | truth RISES to peak ~28% @ r6 then DECAYS to ~6% by r30; authoritative SOURCE also decays (36%→4%, converges to baseline); only BROADCAST sustains (~97%). r5 was a near-PEAK transient → r5 snapshots slightly OVER-state steady-state truth | done |
 
+| 06-21 | C1 | CURE de-risk: PROVENANCE-aware integration vs GA | repair_drive mini m2 r5 n=5, prov vs ga | PROV **HOLD 18%->58%** (~3.2x), unknown 91->18/125; first NON-OVERWRITE lever that works (broadcast=99% upper bound). Strong but variant (seed42 no move). Provenance integration breaks entrenchment | de-risk PASS |
+
 Detailed write-ups follow below as runs land.
 
 ---
@@ -521,3 +523,45 @@ is seed-specific noise — the robust signal is the long-horizon DECAY toward ba
 early lift. baseline n=2 (run_000 froze ~8%, run_001 kept drifting down). r30 is near- but not
 perfectly-settled (still drifting at r29). Single scenario, mini, GA. The qualitative chain —
 rise→peak→decay; source converges to baseline; only broadcast sustains — is unambiguous.
+
+---
+
+# C1 — CURE de-risk: provenance-aware integration (PROV) vs GA (2026-06-21)
+
+**The cure hypothesis.** Decay is driven by entrenchment: GA integrates heard claims by
+frequency/recency, so the stale incumbent (majority) wins. smga3g resolved currency in memory
+but moved SAY without HOLD -- because the LISTENER side still integrated by frequency. PROV
+adds the missing lever: provenance-based integration -- an explicit authoritative-LATEST value
+supersedes the frequent older one, is held STICKILY (a later stale majority cannot revert it),
+and is FOREGROUNDED when the agent speaks so it propagates. NOT an overwrite: the current value
+must still be HEARD via conversation; an agent that never hears it stays stale/unknown.
+
+```text
+            HOLD-current     unknown    n
+GA            18% (23/125)    91/125     5
+PROV          58% (73/125)    18/125     5     <- ~3.2x GA, unknown collapses
+broadcast    ~99%            (overwrite upper bound, not a fair social cure)
+per-seed GA->PROV:  41:40->68  42:20->20  43:12->92  44:12->88  45:8->24
+```
+
+**Findings.** (1) PROV ~3.2x GA held-truth (18->58%); the dramatic shift is in UNKNOWN
+(91->18/125): provenance-sticky belief + active relay actually PROPAGATES the current value
+through the society instead of letting it wash out. (2) PROV is the FIRST non-overwrite
+intervention that substantially restores held truth (capability/connectivity/memory/source all
+failed; only god-mode broadcast worked before). It recovers ~half the gap to the overwrite
+ceiling. (3) Honest variance: 3/5 seeds jump hugely, 1 modest, seed 42 unchanged -- PROV is
+powerful but not guaranteed; the win likely depends on the update reaching a well-connected
+agent early enough to lock+relay.
+
+**Interpretation (mechanism, causal).** Swapping ONLY the integration rule (frequency ->
+provenance), holding the society/contact model/model fixed, lifts held truth 3x. This is causal
+evidence that the decay is produced by frequency-based social integration, not an inherent
+limit -- so PROV is both a cure candidate and a mechanism proof.
+
+**Caveats / next.** n=5, single scenario (repair_drive), mini, baseline condition only.
+Provenance here is encoded via scenario value-markers (current supersedes stale); the paper
+version must generalize to origin-round/version tags carried per claim. To make this Claim A:
+(i) power to n>=8 with CIs; (ii) generalize across book_club/carpool; (iii) test PROV under the
+SOURCE condition (does it also close the say-hold dissociation?) and over the long horizon r30
+(does it resist decay?); (iv) build the comparison table vs recognized non-overwrite baselines
+(RAG, MemoryBank, MemGPT, A-MEM, currency/smga3g, multi-agent debate).

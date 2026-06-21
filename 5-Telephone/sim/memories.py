@@ -147,6 +147,65 @@ class GAReflectionMemory:
 
 
 @dataclass
+class PROVMemory:
+    """Provenance-aware social integration (the cure candidate).
+
+    Mechanism vs GA: GA integrates heard claims by frequency/recency, so the stale
+    incumbent (the majority) wins -> entrenchment. PROV instead does provenance-based
+    integration: an explicit authoritative-LATEST version of a changing fact supersedes
+    the frequent older version, is held STICKILY (a later stale-majority cannot revert
+    it), and is FOREGROUNDED when the agent speaks/answers so it propagates. This is the
+    listener-side lever smga3g lacked (smga3g moved SAY but not HELD belief).
+
+    Crucially NOT an overwrite: the current value must still be HEARD through conversation
+    (only the source starts with it); an agent that never hears it stays stale/unknown.
+    Provenance is encoded here via the scenario's value markers (current supersedes stale);
+    the paper version generalizes this to origin-round/version tags carried per claim."""
+    llm: Any
+    current_markers: tuple[str, ...] = ()
+    stale_markers: tuple[str, ...] = ()
+    events: list[dict[str, Any]] = field(default_factory=list)
+    _version: int = 0          # 0 none / 1 stale / 2 current (provenance order)
+    _current_text: str = ""    # the authoritative latest statement (relayed)
+    _stale_text: str = ""
+
+    def _asserts(self, text: str) -> int:
+        low = text.lower()
+        if any(m in low for m in self.current_markers):
+            return 2
+        if any(m in low for m in self.stale_markers):
+            return 1
+        return 0
+
+    def observe(self, event: dict[str, Any]) -> None:
+        self.events.append(event)
+        v = self._asserts(str(event.get("text", "")))
+        if v == 2 and self._version < 2:               # latest version wins, sticky
+            self._version = 2
+            self._current_text = str(event.get("text", ""))
+        elif v == 1 and self._version == 0:
+            self._version = 1
+            self._stale_text = str(event.get("text", ""))
+
+    def retrieve(self, query: str) -> str:
+        ev = _rank_by_relevance(query, [(str(e.get("text", "")), e) for e in self.events], 4)
+        lines: list[str] = []
+        if self._version == 2:
+            lines.append(f"- (latest authoritative update) {self._current_text}")
+        elif self._version == 1:
+            lines.append(f"- {self._stale_text}")
+        lines += [f"- {e.get('text','')}" for e in ev]
+        return "\n".join(lines)
+
+    def consolidate(self) -> None:  # provenance integration needs no reflection pass
+        return
+
+    def snapshot(self) -> dict[str, Any]:
+        return {"kind": "prov", "version": self._version,
+                "current_text": self._current_text, "n_events": len(self.events)}
+
+
+@dataclass
 class SMGAv2Memory:
     llm: LLM
     events: list[dict[str, Any]] = field(default_factory=list)

@@ -178,7 +178,7 @@ def run_one(
         converse = make_llm_converse(llm, turns=args.turns)
 
     world = demo_world(
-        build_memory_factory(memory, llm),
+        build_memory_factory(memory, llm, scenario=args.scenario),
         rng_seed=schedule_seed,
         agent_count=args.agent_count,
         meetings_per_round=args.meetings,
