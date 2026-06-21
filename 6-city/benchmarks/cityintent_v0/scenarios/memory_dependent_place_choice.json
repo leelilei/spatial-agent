@@ -1,0 +1,64 @@
+{
+  "scenario_id": "memory_dependent_place_choice",
+  "title": "Memory-Dependent Place Choice",
+  "world_id": "micro_city_v0",
+  "family": "memory",
+  "episode": {
+    "start_time": "10:00",
+    "end_time": "12:00",
+    "max_steps": 7
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Freelancer choosing a morning work spot before meeting Ben.",
+      "start_location": "library",
+      "budget": 14,
+      "private_intention": "Choose a work spot with Wi-Fi and vegan food, then meet Ben without choosing a noisy location.",
+      "known_locations": ["library", "quiet_cafe", "cafe_central", "bookstore"],
+      "memory_seeds": ["Quiet Corner Cafe has vegan food, Wi-Fi, and low noise.", "Central Cafe is closer to the office but often noisy."]
+    },
+    {
+      "agent_id": "ben",
+      "persona": "Friend who wants a quick quiet coffee.",
+      "start_location": "home_ben",
+      "budget": 16,
+      "private_intention": "Meet Aria somewhere quiet.",
+      "known_locations": ["home_ben", "quiet_cafe", "cafe_central"],
+      "memory_seeds": ["Aria usually prefers quiet work spaces."]
+    }
+  ],
+  "public_context": "Both cafes are open. The benchmark checks whether private memory changes place choice.",
+  "events": [],
+  "critical_locations": ["library", "quiet_cafe", "cafe_central", "bookstore"],
+  "success_conditions": [
+    {
+      "id": "choose_memory_matched_place",
+      "type": "visit_location",
+      "location": "quiet_cafe",
+      "weight": 0.4
+    },
+    {
+      "id": "meet_ben_quietly",
+      "type": "co_presence",
+      "agents": ["aria", "ben"],
+      "location_any_of": ["quiet_cafe"],
+      "time_window": ["10:30", "11:45"],
+      "weight": 0.35
+    },
+    {
+      "id": "avoid_noisy_cafe",
+      "type": "avoid_when_possible",
+      "avoid_locations": ["cafe_central"],
+      "weight": 0.25
+    }
+  ],
+  "scoring_metrics": ["goal_completion", "feasibility_violation", "travel_efficiency", "budget_consistency", "intention_consistency", "social_appropriateness"],
+  "architecture_probes": {
+    "utility_planner": "May choose the nearest or cheapest place and miss the memory-based vegan/noise preference.",
+    "llm_direct_actor": "May pick the more salient Central Cafe unless memory is explicitly used.",
+    "reactive_replanner": "Can satisfy the meeting but may not show memory-sensitive place choice.",
+    "memory_reflection": "Should retrieve the vegan Wi-Fi quiet memory and choose Quiet Corner Cafe."
+  }
+}

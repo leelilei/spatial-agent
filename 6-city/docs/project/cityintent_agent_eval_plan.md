@@ -194,7 +194,12 @@ go one step further by comparing the architectures that make agency possible.
 
 ## Immediate Next Step
 
-Implement the P0 agent interface and run one toy world with 5-8 scenarios:
+The first benchmark smoke package now lives at
+`benchmarks/cityintent_v0/`. It defines the toy world, scenario package format,
+eight seed scenarios, and a dependency-free validator.
+
+The next implementation step is to implement the P0 agent interface and run the
+toy world with these scenarios:
 
 1. lunch meeting under time pressure
 2. commute disruption

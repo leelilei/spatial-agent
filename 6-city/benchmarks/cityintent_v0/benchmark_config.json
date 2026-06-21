@@ -1,0 +1,98 @@
+{
+  "benchmark_id": "cityintent_v0",
+  "version": "0.1",
+  "status": "smoke_test",
+  "worlds": [
+    "worlds/micro_city.json"
+  ],
+  "scenario_dir": "scenarios",
+  "agents_under_test": [
+    {
+      "id": "utility_planner",
+      "name": "UtilityPlannerAgent",
+      "priority": "P0",
+      "requires_llm": false,
+      "role": "Deterministic non-LLM baseline using time, distance, cost, need, and relationship weights."
+    },
+    {
+      "id": "llm_direct_actor",
+      "name": "LLMDirectActor",
+      "priority": "P0",
+      "requires_llm": true,
+      "role": "SOTOPIA-like policy that maps the current observation directly to the next typed action."
+    },
+    {
+      "id": "reactive_replanner",
+      "name": "ReactiveReplannerAgent",
+      "priority": "P0",
+      "requires_llm": true,
+      "role": "Observe-update-act agent that replans when travel, POI, or social conditions change."
+    },
+    {
+      "id": "memory_reflection",
+      "name": "MemoryReflectionAgent",
+      "priority": "P0",
+      "requires_llm": true,
+      "role": "Generative-agent-style memory, reflection, planning, and intention maintenance."
+    }
+  ],
+  "metrics": [
+    {
+      "id": "goal_completion",
+      "kind": "deterministic",
+      "range": [0, 1],
+      "description": "Whether explicit private-intention success conditions are satisfied."
+    },
+    {
+      "id": "feasibility_violation",
+      "kind": "deterministic",
+      "range": [0, 1],
+      "description": "Rate of impossible moves, closed-POI use, budget violations, or invalid co-presence claims."
+    },
+    {
+      "id": "replanning_success",
+      "kind": "deterministic",
+      "range": [0, 1],
+      "description": "Whether the agent recovers after a disruption without hallucinating success."
+    },
+    {
+      "id": "travel_efficiency",
+      "kind": "deterministic",
+      "range": [0, 1],
+      "description": "How close the realized route is to the shortest feasible route under constraints."
+    },
+    {
+      "id": "budget_consistency",
+      "kind": "deterministic",
+      "range": [0, 1],
+      "description": "Whether spending remains within the scenario budget."
+    },
+    {
+      "id": "intention_consistency",
+      "kind": "rubric",
+      "range": [0, 1],
+      "description": "Whether actions remain aligned with the private intention across the episode."
+    },
+    {
+      "id": "social_appropriateness",
+      "kind": "rubric",
+      "range": [0, 1],
+      "description": "Whether relationship-aware actions are socially coherent."
+    }
+  ],
+  "validation": {
+    "min_scenarios": 6,
+    "required_metric_ids": [
+      "goal_completion",
+      "feasibility_violation",
+      "replanning_success",
+      "intention_consistency"
+    ],
+    "required_agent_ids": [
+      "utility_planner",
+      "llm_direct_actor",
+      "reactive_replanner",
+      "memory_reflection"
+    ]
+  }
+}

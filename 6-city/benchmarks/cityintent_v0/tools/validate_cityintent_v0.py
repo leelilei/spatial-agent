@@ -1,0 +1,316 @@
+"""Validate the CityIntent v0 benchmark package.
+
+This is a dependency-free smoke validator. It checks structural consistency,
+world graph reachability, metric coverage, and whether every scenario probes the
+first four agent architectures.
+"""
+
+from __future__ import annotations
+
+import heapq
+import json
+import sys
+from collections import Counter, defaultdict, deque
+from pathlib import Path
+from typing import Any
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def load_json(path: Path) -> dict[str, Any]:
+    with path.open("r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def parse_time(value: str) -> int:
+    try:
+        hour_text, minute_text = value.split(":", 1)
+        hour = int(hour_text)
+        minute = int(minute_text)
+    except ValueError as exc:
+        raise ValueError(f"invalid time {value!r}") from exc
+    if not (0 <= hour <= 23 and 0 <= minute <= 59):
+        raise ValueError(f"invalid time {value!r}")
+    return hour * 60 + minute
+
+
+def build_graph(world: dict[str, Any]) -> dict[str, list[tuple[str, float]]]:
+    graph: dict[str, list[tuple[str, float]]] = defaultdict(list)
+    for edge in world.get("edges", []):
+        a = edge["from"]
+        b = edge["to"]
+        minutes = float(edge["minutes"])
+        graph[a].append((b, minutes))
+        graph[b].append((a, minutes))
+    return graph
+
+
+def dijkstra(graph: dict[str, list[tuple[str, float]]], start: str) -> dict[str, float]:
+    distances: dict[str, float] = {start: 0.0}
+    heap: list[tuple[float, str]] = [(0.0, start)]
+    while heap:
+        current_distance, node = heapq.heappop(heap)
+        if current_distance != distances[node]:
+            continue
+        for neighbor, weight in graph.get(node, []):
+            next_distance = current_distance + weight
+            if next_distance < distances.get(neighbor, float("inf")):
+                distances[neighbor] = next_distance
+                heapq.heappush(heap, (next_distance, neighbor))
+    return distances
+
+
+def connected_component(graph: dict[str, list[tuple[str, float]]], start: str) -> set[str]:
+    seen = {start}
+    queue: deque[str] = deque([start])
+    while queue:
+        node = queue.popleft()
+        for neighbor, _ in graph.get(node, []):
+            if neighbor not in seen:
+                seen.add(neighbor)
+                queue.append(neighbor)
+    return seen
+
+
+def collect_location_refs(condition: dict[str, Any]) -> list[str]:
+    refs: list[str] = []
+    for key in ("location",):
+        if isinstance(condition.get(key), str):
+            refs.append(condition[key])
+    for key in ("location_any_of", "avoid_locations"):
+        value = condition.get(key)
+        if isinstance(value, list):
+            refs.extend(item for item in value if isinstance(item, str))
+    edge = condition.get("edge")
+    if isinstance(edge, list):
+        refs.extend(item for item in edge if isinstance(item, str))
+    return refs
+
+
+def main() -> int:
+    errors: list[str] = []
+    warnings: list[str] = []
+
+    config_path = ROOT / "benchmark_config.json"
+    config = load_json(config_path)
+    metric_ids = {metric["id"] for metric in config.get("metrics", [])}
+    required_metric_ids = set(config.get("validation", {}).get("required_metric_ids", []))
+    required_agent_ids = set(config.get("validation", {}).get("required_agent_ids", []))
+    configured_agent_ids = {agent["id"] for agent in config.get("agents_under_test", [])}
+
+    if not required_metric_ids <= metric_ids:
+        errors.append("benchmark_config validation.required_metric_ids contains unknown metrics")
+    if required_agent_ids != configured_agent_ids:
+        errors.append("benchmark_config required_agent_ids must match agents_under_test ids")
+
+    worlds_by_id: dict[str, dict[str, Any]] = {}
+    graphs_by_world_id: dict[str, dict[str, list[tuple[str, float]]]] = {}
+    location_ids_by_world_id: dict[str, set[str]] = {}
+
+    for world_ref in config.get("worlds", []):
+        world_path = ROOT / world_ref
+        if not world_path.exists():
+            errors.append(f"missing world file: {world_ref}")
+            continue
+        world = load_json(world_path)
+        world_id = world.get("world_id")
+        if not isinstance(world_id, str):
+            errors.append(f"{world_ref}: missing world_id")
+            continue
+        locations = world.get("locations", [])
+        location_ids = [loc.get("id") for loc in locations]
+        duplicates = [loc_id for loc_id, count in Counter(location_ids).items() if count > 1]
+        if duplicates:
+            errors.append(f"{world_ref}: duplicate location ids {duplicates}")
+        location_id_set = {loc_id for loc_id in location_ids if isinstance(loc_id, str)}
+
+        for loc in locations:
+            open_window = loc.get("open")
+            if isinstance(open_window, list) and len(open_window) == 2:
+                try:
+                    parse_time(open_window[0])
+                    parse_time(open_window[1])
+                except ValueError as exc:
+                    errors.append(f"{world_ref}: {loc.get('id')}: {exc}")
+
+        for edge in world.get("edges", []):
+            a = edge.get("from")
+            b = edge.get("to")
+            minutes = edge.get("minutes")
+            if a not in location_id_set or b not in location_id_set:
+                errors.append(f"{world_ref}: edge references unknown location {a!r}->{b!r}")
+            if not isinstance(minutes, (int, float)) or minutes <= 0:
+                errors.append(f"{world_ref}: edge {a!r}->{b!r} has invalid minutes")
+
+        graph = build_graph(world)
+        if location_id_set:
+            reached = connected_component(graph, next(iter(location_id_set)))
+            missing = sorted(location_id_set - reached)
+            if missing:
+                errors.append(f"{world_ref}: disconnected locations {missing}")
+
+        worlds_by_id[world_id] = world
+        graphs_by_world_id[world_id] = graph
+        location_ids_by_world_id[world_id] = location_id_set
+
+    scenario_dir = ROOT / config.get("scenario_dir", "scenarios")
+    scenario_paths = sorted(scenario_dir.glob("*.json"))
+    min_scenarios = int(config.get("validation", {}).get("min_scenarios", 0))
+    if len(scenario_paths) < min_scenarios:
+        errors.append(f"expected at least {min_scenarios} scenarios, found {len(scenario_paths)}")
+
+    seen_scenario_ids: set[str] = set()
+    family_counts: Counter[str] = Counter()
+    metric_coverage: set[str] = set()
+    reachability_checks = 0
+
+    for path in scenario_paths:
+        rel = path.relative_to(ROOT)
+        scenario = load_json(path)
+        scenario_id = scenario.get("scenario_id")
+        if not isinstance(scenario_id, str):
+            errors.append(f"{rel}: missing scenario_id")
+            continue
+        if scenario_id in seen_scenario_ids:
+            errors.append(f"{rel}: duplicate scenario_id {scenario_id}")
+        seen_scenario_ids.add(scenario_id)
+
+        world_id = scenario.get("world_id")
+        if world_id not in worlds_by_id:
+            errors.append(f"{rel}: unknown world_id {world_id!r}")
+            continue
+        graph = graphs_by_world_id[world_id]
+        location_ids = location_ids_by_world_id[world_id]
+
+        episode = scenario.get("episode", {})
+        try:
+            start_time = parse_time(episode.get("start_time", ""))
+            end_time = parse_time(episode.get("end_time", ""))
+            if end_time <= start_time:
+                errors.append(f"{rel}: episode end_time must be after start_time")
+        except ValueError as exc:
+            errors.append(f"{rel}: {exc}")
+            start_time = 0
+            end_time = 0
+        duration = max(0, end_time - start_time)
+
+        agents = scenario.get("agents", [])
+        agent_ids = [agent.get("agent_id") for agent in agents]
+        agent_id_set = {agent_id for agent_id in agent_ids if isinstance(agent_id, str)}
+        if len(agent_id_set) != len(agent_ids):
+            errors.append(f"{rel}: duplicate or invalid agent ids")
+        primary_agent = scenario.get("primary_agent")
+        if primary_agent not in agent_id_set:
+            errors.append(f"{rel}: primary_agent {primary_agent!r} is not in agents")
+
+        primary_start = None
+        for agent in agents:
+            start_location = agent.get("start_location")
+            if start_location not in location_ids:
+                errors.append(f"{rel}: agent {agent.get('agent_id')} starts at unknown location {start_location!r}")
+            if agent.get("agent_id") == primary_agent:
+                primary_start = start_location
+            for known_location in agent.get("known_locations", []):
+                if known_location not in location_ids:
+                    errors.append(f"{rel}: agent {agent.get('agent_id')} knows unknown location {known_location!r}")
+
+        for event in scenario.get("events", []):
+            event_location = event.get("location")
+            if event_location is not None and event_location not in location_ids:
+                errors.append(f"{rel}: event {event.get('type')} references unknown location {event_location!r}")
+            effect = event.get("effect", {})
+            for affected_location in effect.get("affected_locations", []):
+                if affected_location not in location_ids:
+                    errors.append(f"{rel}: event {event.get('type')} affects unknown location {affected_location!r}")
+            blocked_edge = effect.get("blocked_edge")
+            if isinstance(blocked_edge, list):
+                for node in blocked_edge:
+                    if node not in location_ids:
+                        errors.append(f"{rel}: blocked_edge references unknown location {node!r}")
+
+        critical_locations = scenario.get("critical_locations", [])
+        for loc in critical_locations:
+            if loc not in location_ids:
+                errors.append(f"{rel}: unknown critical location {loc!r}")
+
+        weight_sum = 0.0
+        for condition in scenario.get("success_conditions", []):
+            weight = condition.get("weight")
+            if not isinstance(weight, (int, float)) or weight <= 0:
+                errors.append(f"{rel}: condition {condition.get('id')} has invalid weight")
+            else:
+                weight_sum += float(weight)
+            for loc in collect_location_refs(condition):
+                if loc not in location_ids:
+                    errors.append(f"{rel}: condition {condition.get('id')} references unknown location {loc!r}")
+            for agent_key in ("agent", "to", "with"):
+                value = condition.get(agent_key)
+                if isinstance(value, str) and value not in agent_id_set:
+                    errors.append(f"{rel}: condition {condition.get('id')} references unknown agent {value!r}")
+            for agent in condition.get("agents", []):
+                if agent not in agent_id_set:
+                    errors.append(f"{rel}: condition {condition.get('id')} references unknown agent {agent!r}")
+        if scenario.get("success_conditions") and abs(weight_sum - 1.0) > 0.01:
+            warnings.append(f"{rel}: success condition weights sum to {weight_sum:.2f}, not 1.00")
+
+        scenario_metrics = set(scenario.get("scoring_metrics", []))
+        unknown_metrics = sorted(scenario_metrics - metric_ids)
+        if unknown_metrics:
+            errors.append(f"{rel}: unknown scoring metrics {unknown_metrics}")
+        if len(scenario_metrics) < 4:
+            warnings.append(f"{rel}: fewer than four scoring metrics")
+        metric_coverage.update(scenario_metrics)
+
+        architecture_probes = scenario.get("architecture_probes", {})
+        probe_ids = set(architecture_probes.keys())
+        if probe_ids != required_agent_ids:
+            errors.append(
+                f"{rel}: architecture_probes must cover {sorted(required_agent_ids)}, found {sorted(probe_ids)}"
+            )
+
+        if isinstance(scenario.get("family"), str):
+            family_counts[scenario["family"]] += 1
+
+        if primary_start in location_ids:
+            distances = dijkstra(graph, primary_start)
+            for loc in critical_locations:
+                reachability_checks += 1
+                if distances.get(loc, float("inf")) == float("inf"):
+                    errors.append(f"{rel}: {primary_start!r} cannot reach critical location {loc!r}")
+                elif duration and distances[loc] > duration:
+                    warnings.append(
+                        f"{rel}: shortest path from {primary_start} to {loc} is {distances[loc]:.0f} min, "
+                        f"longer than episode duration {duration} min"
+                    )
+
+    missing_global_metrics = sorted(required_metric_ids - metric_coverage)
+    if missing_global_metrics:
+        errors.append(f"scenario set does not cover required metrics {missing_global_metrics}")
+
+    if errors:
+        print("CityIntent v0 validation failed:\n")
+        for error in errors:
+            print(f"ERROR: {error}")
+        if warnings:
+            print("\nWarnings:")
+            for warning in warnings:
+                print(f"WARNING: {warning}")
+        return 1
+
+    print("CityIntent v0 validation passed.")
+    print(f"- worlds: {len(worlds_by_id)}")
+    print(f"- scenarios: {len(scenario_paths)}")
+    print(f"- scenario families: {dict(sorted(family_counts.items()))}")
+    print(f"- agent architectures: {', '.join(sorted(required_agent_ids))}")
+    print(f"- metric coverage: {', '.join(sorted(metric_coverage))}")
+    print(f"- reachability checks: {reachability_checks}")
+    if warnings:
+        print("\nWarnings:")
+        for warning in warnings:
+            print(f"WARNING: {warning}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

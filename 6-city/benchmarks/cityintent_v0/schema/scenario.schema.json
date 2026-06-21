@@ -1,0 +1,126 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CityIntent v0 Scenario Package",
+  "type": "object",
+  "required": [
+    "scenario_id",
+    "title",
+    "world_id",
+    "family",
+    "episode",
+    "primary_agent",
+    "agents",
+    "public_context",
+    "events",
+    "critical_locations",
+    "success_conditions",
+    "scoring_metrics",
+    "architecture_probes"
+  ],
+  "properties": {
+    "scenario_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$"
+    },
+    "title": {
+      "type": "string"
+    },
+    "world_id": {
+      "type": "string"
+    },
+    "family": {
+      "type": "string"
+    },
+    "episode": {
+      "type": "object",
+      "required": ["start_time", "end_time", "max_steps"],
+      "properties": {
+        "start_time": {"type": "string", "pattern": "^[0-2][0-9]:[0-5][0-9]$"},
+        "end_time": {"type": "string", "pattern": "^[0-2][0-9]:[0-5][0-9]$"},
+        "max_steps": {"type": "integer", "minimum": 1}
+      }
+    },
+    "primary_agent": {
+      "type": "string"
+    },
+    "agents": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "agent_id",
+          "persona",
+          "start_location",
+          "budget",
+          "private_intention",
+          "known_locations",
+          "memory_seeds"
+        ],
+        "properties": {
+          "agent_id": {"type": "string"},
+          "persona": {"type": "string"},
+          "start_location": {"type": "string"},
+          "budget": {"type": "number"},
+          "private_intention": {"type": "string"},
+          "known_locations": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "memory_seeds": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        }
+      }
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["time", "type", "visibility"],
+        "properties": {
+          "time": {"type": "string"},
+          "type": {"type": "string"},
+          "location": {"type": "string"},
+          "visibility": {"type": "string"},
+          "effect": {"type": "object"}
+        }
+      }
+    },
+    "critical_locations": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "success_conditions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "weight"],
+        "properties": {
+          "id": {"type": "string"},
+          "type": {"type": "string"},
+          "weight": {"type": "number"},
+          "location": {"type": "string"},
+          "location_any_of": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "avoid_locations": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        }
+      }
+    },
+    "scoring_metrics": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "architecture_probes": {
+      "type": "object",
+      "additionalProperties": {"type": "string"}
+    }
+  }
+}
