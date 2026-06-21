@@ -38,6 +38,8 @@
 
 | 06-21 | C3 | FAIR (generalized) PROV: origin/version metadata propagation vs GA | repair_drive mini m2 r5 n=8 | **fair-PROV 57% [49-65] vs GA 22% [13-30]** (~2.6x, CIs DISJOINT); unknown 68%->40%; **8/8 seeds improve**; provenance carried as event metadata, NOT hardcoded answer. CURE survives fair impl (stronger+cleaner than marker version's 40%) | done |
 
+| 06-22 | C5 | ARCHITECTURE TABLE (repair_drive) + PROV HORIZON climb | mini m2, 7 memories n=8 + PROV r5/r10/r20 | **All recognized memories fail** (Raw14 Mem0-18 A-MEM19 GA22 GA-curr25 MemBank25); **PROV 57 alone**. **PROV climbs with propagation time: r5 57 -> r10 93 -> r20 100%** (unk 40->7->0); GA stays ~20/decays. Cure CLOSES the gap to overwrite ceiling, decentralized, no verifier | done |
+
 Detailed write-ups follow below as runs land.
 
 ---
@@ -639,3 +641,41 @@ r30 conditions and the cure figure still reflect marker-PROV (C2) -- re-run with
 before final. Next: BUILD THE ARCHITECTURE TABLE -- fair-PROV vs recognized non-overwrite
 baselines {raw/RAG, GA, currency/smga3g, A-MEM, MemoryBank, debate} x {repair_drive, book_club,
 carpool}.
+
+---
+
+# C5 — architecture comparison table + PROV horizon climb (2026-06-22)
+
+Two results that together make PROV a strong (not marginal) cure. Fig: `paper/figures/fig_cure_table_horizon.png`.
+
+**(a) Head-to-head vs recognized non-overwrite memory architectures (repair_drive, mini, r5, n=8):**
+```text
+Raw (RAG)        14 [6-23]      A-MEM           19 [12-26]
+Mem0             18 [14-23]     GA reflection   22 [13-30]
+GA-currency      25 [15-35]     MemoryBank      25 [19-31]
+PROV (ours)      57 [49-65]                     Broadcast (ceiling) 99
+```
+Every recognized memory that tracks the current value INDIVIDUALLY (Mem0 extract/update,
+A-MEM note-evolution, GA-currency, MemoryBank recency) still fails (14-25%) because none
+PROPAGATE provenance to listeners. PROV (decentralized provenance propagation) alone lifts
+held truth (57%), with cleanly disjoint CI.
+
+**(b) PROV closes the gap given propagation time** (the 57% was reach-limited — only ~3
+propagation rounds from 1 seed by r5; diagnosis: 59% of agents had received the versioned
+update, interview faithfully matched at 57%, measurement gap ~2pts):
+```text
+horizon:   r5      r10      r20
+PROV:      57%     93%      100%     (unknown 40% -> 7% -> 0%)
+GA:        ~20%    ~22%     ~14% (decays; M5: ->6% by r30)
+```
+PROV monotonically reaches ~100% (the overwrite ceiling) PURELY via decentralized provenance
+propagation, no overwrite/verifier; GA stays low and decays, so the gap WIDENS with time.
+
+**Interpretation.** This upgrades the cure from "~2.6x GA" to "**fully restores social truth
+fidelity given propagation time, decentralized, without overwriting**." It also sharpens the
+contrast with the closest neighbor (Spark-to-Fire suppresses error spread to 89% via a
+centralized governance+verifier; we propagate a correction to ~100% via per-agent provenance).
+
+**Caveats / next.** Single scenario (repair_drive), mini. Next per decisions 2026-06-22 D3:
+(1) extend table + horizon to book_club/carpool; (2) topology robustness (chain/star/small-world);
+(3) capability check (gpt-5.4). PROV's value blob = update text; fairness via origin-round metadata.
