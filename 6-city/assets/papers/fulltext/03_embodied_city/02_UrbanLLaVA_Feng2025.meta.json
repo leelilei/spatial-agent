@@ -1,0 +1,166 @@
+{
+  "source_pdf": "D:\\0-Research\\6-city\\assets\\papers\\pdf\\03_embodied_city\\02_UrbanLLaVA_Feng2025.pdf",
+  "extractor_backend": "pdfplumber",
+  "extract_time": "2026-06-21T17:32:34+00:00",
+  "title": "UrbanLLaVA: A Multi-modal Large Language Model for Urban Intelligence with Spatial Reasoning and Understanding",
+  "author": "Jie Feng; Shengyuan Wang; Tianhui Liu; Yanxin Xi; Yong Li",
+  "doi": "",
+  "keywords": [],
+  "subject": "",
+  "page_count": 29,
+  "outline": [
+    {
+      "title": "Introduction",
+      "level": 0,
+      "page_number": 1
+    },
+    {
+      "title": "Methods",
+      "level": 0,
+      "page_number": 3
+    },
+    {
+      "title": "UData: Constructing Urban Instruction Data from a Multi-View Perspective of Urban Space",
+      "level": 1,
+      "page_number": 3
+    },
+    {
+      "title": "Location View Data",
+      "level": 2,
+      "page_number": 3
+    },
+    {
+      "title": "Trajectory View Data",
+      "level": 2,
+      "page_number": 3
+    },
+    {
+      "title": "Global View Data",
+      "level": 2,
+      "page_number": 4
+    },
+    {
+      "title": "UTrain: A Multi-Stage Training Pipeline for Decoupling Reasoning and Knowledge Learning",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "UBench: An Enhanced Multimodal Benchmark for Urban Intelligence Tasks",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "Experiments",
+      "level": 0,
+      "page_number": 5
+    },
+    {
+      "title": "Settings",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "Main Results",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "Effects of Training Strategies",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Model Generalization Study",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Data Ablation Study",
+      "level": 1,
+      "page_number": 7
+    },
+    {
+      "title": "Case Study",
+      "level": 1,
+      "page_number": 7
+    },
+    {
+      "title": "Related Work",
+      "level": 0,
+      "page_number": 8
+    },
+    {
+      "title": "Multi-modal Large Language Model",
+      "level": 1,
+      "page_number": 8
+    },
+    {
+      "title": "Multi-modal Model for Urban Study",
+      "level": 1,
+      "page_number": 9
+    },
+    {
+      "title": "Conclusion",
+      "level": 0,
+      "page_number": 9
+    },
+    {
+      "title": "Limitation and Future Work",
+      "level": 0,
+      "page_number": 9
+    },
+    {
+      "title": "Data Example for Three Stages",
+      "level": 0,
+      "page_number": 12
+    },
+    {
+      "title": "Comparing with models for single-modality urban tasks",
+      "level": 0,
+      "page_number": 12
+    },
+    {
+      "title": "Additional Detailed Results of Three Cities",
+      "level": 0,
+      "page_number": 12
+    },
+    {
+      "title": "Additional Results for Training Strategies",
+      "level": 0,
+      "page_number": 12
+    },
+    {
+      "title": "Effects of Training Data Size",
+      "level": 0,
+      "page_number": 12
+    },
+    {
+      "title": "Effects of Base Model",
+      "level": 0,
+      "page_number": 12
+    },
+    {
+      "title": "Effects of Model Size",
+      "level": 0,
+      "page_number": 12
+    },
+    {
+      "title": "Additional Case Study",
+      "level": 0,
+      "page_number": 13
+    },
+    {
+      "title": "Urban Instruction Data",
+      "level": 0,
+      "page_number": 14
+    }
+  ],
+  "text_char_count": 94653,
+  "status": "ok",
+  "warnings": [],
+  "project_root": "D:\\0-Research\\6-city",
+  "relative_pdf": "03_embodied_city\\02_UrbanLLaVA_Feng2025.pdf",
+  "fulltext_path": "assets\\papers\\fulltext\\03_embodied_city\\02_UrbanLLaVA_Feng2025.fulltext.md",
+  "quality_flags": [],
+  "abstract": "Urban research involves a wide range of scenarios and Satellite Image Street View Image tasks that require the understanding of multi-modal data. Current methods often focus on specific data types and lack a unified framework in urban field for processing them comprehensively. The recent success of multi-modal large language models (MLLMs) presents a promising opportunity to overcome this limitation. In this paper, we introduce UrbanGeLoLSpaaVtiAal, Daatamulti-modal largeTrlaajencgtourya gDeatamodel designed to process these four types of data simultaneously and achieve strong performance across diverse urban tasks compared with general MLLMs. In UrbanLLaVA, we first curate a diverse urban instruction dataset encompassing both singlemodal and cross-modal urban data, spanning from location view to global view of urban environment. Additionally, we propose a multi-stage training framework that decouples spatial reasoning enhancement from domain knowledge learning, thereby improving the compatibility and downstream performance of UrbanLLaVA across diverse urban tasks. Finally, we also extend existing benchmark for urban research to assess the performance of MLLMs across a wide range of urban tasks. Experimental results from three cities demonstrate that UrbanLLaVA outperforms open-source and proprietary MLLMs in both singlemodal tasks and complex cross-modal tasks and shows robust generalization abilities across cities. Source codes and data are openly accessible to the research community via https://github.com/tsinghua- fiblab/UrbanLLaVA."
+}

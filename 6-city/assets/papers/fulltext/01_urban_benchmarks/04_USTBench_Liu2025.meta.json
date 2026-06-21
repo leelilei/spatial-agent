@@ -1,0 +1,241 @@
+{
+  "source_pdf": "D:\\0-Research\\6-city\\assets\\papers\\pdf\\01_urban_benchmarks\\04_USTBench_Liu2025.pdf",
+  "extractor_backend": "pdfplumber",
+  "extract_time": "2026-06-21T17:31:18+00:00",
+  "title": "USTBench: Benchmarking and Dissecting Spatiotemporal Reasoning of LLMs as Urban Agents",
+  "author": "Siqi Lai; Yansong Ning; Zirui Yuan; Zhixi Chen; Hao Liu",
+  "doi": "",
+  "keywords": [],
+  "subject": "",
+  "page_count": 44,
+  "outline": [
+    {
+      "title": "Introduction",
+      "level": 0,
+      "page_number": 1
+    },
+    {
+      "title": "Preliminary",
+      "level": 0,
+      "page_number": 3
+    },
+    {
+      "title": "UAgentEnv: Interactive City Environment",
+      "level": 0,
+      "page_number": 3
+    },
+    {
+      "title": "Urban Task Suite and Data Sources",
+      "level": 1,
+      "page_number": 3
+    },
+    {
+      "title": "Unified Urban Agent Framework",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "USTBench: Urban Spatiotemporal Reasoning Benchmark",
+      "level": 0,
+      "page_number": 4
+    },
+    {
+      "title": "Process-based Spatiotemporal Reasoning Evaluation",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "Observation Construction",
+      "level": 2,
+      "page_number": 5
+    },
+    {
+      "title": "Spatiotemporal Understanding QA",
+      "level": 2,
+      "page_number": 5
+    },
+    {
+      "title": "Forecasting QA",
+      "level": 2,
+      "page_number": 5
+    },
+    {
+      "title": "Planning QA",
+      "level": 2,
+      "page_number": 5
+    },
+    {
+      "title": "Reflection with Feedback QA",
+      "level": 2,
+      "page_number": 6
+    },
+    {
+      "title": "End-to-End Downstream Task Evaluation",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Experiment",
+      "level": 0,
+      "page_number": 6
+    },
+    {
+      "title": "Baseline Models",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Spatiotemporal Reasoning QA Evaluation",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Spatiotemporal Understanding",
+      "level": 2,
+      "page_number": 6
+    },
+    {
+      "title": "Forecasting and Planning",
+      "level": 2,
+      "page_number": 7
+    },
+    {
+      "title": "Reflection with Feedback",
+      "level": 2,
+      "page_number": 8
+    },
+    {
+      "title": "Downstream Task Evaluation",
+      "level": 1,
+      "page_number": 8
+    },
+    {
+      "title": "Related Work",
+      "level": 0,
+      "page_number": 8
+    },
+    {
+      "title": "Conclusion and Limitations",
+      "level": 0,
+      "page_number": 9
+    },
+    {
+      "title": "Limitations",
+      "level": 0,
+      "page_number": 15
+    },
+    {
+      "title": "Confidence Interval of Evaluation",
+      "level": 0,
+      "page_number": 15
+    },
+    {
+      "title": "Runtime Estimation",
+      "level": 0,
+      "page_number": 15
+    },
+    {
+      "title": "Ethics and Societal Impact",
+      "level": 0,
+      "page_number": 15
+    },
+    {
+      "title": "Details of Environments",
+      "level": 0,
+      "page_number": 16
+    },
+    {
+      "title": "Urban Task Suite and Environment Platform",
+      "level": 1,
+      "page_number": 16
+    },
+    {
+      "title": "Environment Configuration",
+      "level": 1,
+      "page_number": 16
+    },
+    {
+      "title": "Agent Prompt",
+      "level": 1,
+      "page_number": 16
+    },
+    {
+      "title": "LLM Post-Training",
+      "level": 0,
+      "page_number": 17
+    },
+    {
+      "title": "Instruction Construction",
+      "level": 1,
+      "page_number": 17
+    },
+    {
+      "title": "Supervised Distillation Fine-Tuning",
+      "level": 1,
+      "page_number": 17
+    },
+    {
+      "title": "Detailed Evaluations",
+      "level": 0,
+      "page_number": 17
+    },
+    {
+      "title": "Downstream Task Evaluation Metrics",
+      "level": 1,
+      "page_number": 17
+    },
+    {
+      "title": "Baseline Configuration",
+      "level": 1,
+      "page_number": 17
+    },
+    {
+      "title": "Downstream Task Performance",
+      "level": 1,
+      "page_number": 18
+    },
+    {
+      "title": "Reasoning Behavior Analysis",
+      "level": 1,
+      "page_number": 18
+    },
+    {
+      "title": "Cost-Effectiveness Analysis",
+      "level": 2,
+      "page_number": 18
+    },
+    {
+      "title": "Repetition Issues",
+      "level": 2,
+      "page_number": 18
+    },
+    {
+      "title": "Process-based Spatiotemporal Reasoning QA Examples",
+      "level": 2,
+      "page_number": 19
+    },
+    {
+      "title": "Repetition Issue",
+      "level": 2,
+      "page_number": 31
+    },
+    {
+      "title": "LLM Agent Prompt",
+      "level": 2,
+      "page_number": 31
+    },
+    {
+      "title": "Spatiotemporal Understanding Post-Training Instruction Examples",
+      "level": 2,
+      "page_number": 34
+    }
+  ],
+  "text_char_count": 151201,
+  "status": "ok",
+  "warnings": [],
+  "project_root": "D:\\0-Research\\6-city",
+  "relative_pdf": "01_urban_benchmarks\\04_USTBench_Liu2025.pdf",
+  "fulltext_path": "assets\\papers\\fulltext\\01_urban_benchmarks\\04_USTBench_Liu2025.fulltext.md",
+  "quality_flags": [],
+  "abstract": "Large language models (LLMs) have shown emerging potential in spatiotemporal reasoning, making them promising candidates for building urban agents that support diverse urban downstream applications. Despite these benefits, existing studies primarily focus on evaluating urban LLM agent on outcome-level metrics (e.g., prediction accuracy, traffic efficiency), offering limited insight into their underlying reasoning processes. As a result, the strengths and limitations of urban LLM agents in spatiotemporal reasoning remain poorly understood. To this end, we introduce USTBench, the first benchmark to evaluate LLMs’ spatiotemporal reasoning abilities as urban agents across four decomposed dimensions: spatiotemporal understanding, forecasting, planning, and reflection with feedback. Specifically, USTBench supports five diverse urban decision-making and four spatiotemporal prediction tasks, all running within our constructed interactive city environment UAgentEnv. The benchmark includes 62,466 structured QA pairs for process-level evaluation and standardized end-to-end task assessments, enabling fine-grained diagnostics and broad task-level comparison across diverse urban scenarios. Through extensive evaluation of thirteen leading LLMs, we reveal that although LLMs show promising potential across various urban downstream tasks, they still struggle in long-horizon planning and reflective adaptation in dynamic urban contexts. Notably, recent advanced reasoning models (e.g., DeepSeek-R1) trained on general logic or mathematical problems do not consistently outperform non-reasoning LLMs. This discrepancy highlights the need for domain-specialized adaptation methods to enhance urban spatiotemporal reasoning. Overall, USTBench provides a foundation to build more adaptive and effective LLM-based urban agents and broad smart city applications. Our project is available at https://github.com/usail-hkust/USTBench."
+}

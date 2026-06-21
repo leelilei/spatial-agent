@@ -1,0 +1,131 @@
+{
+  "source_pdf": "D:\\0-Research\\6-city\\assets\\papers\\pdf\\03_embodied_city\\01_EmbodiedCity_Zhou2024.pdf",
+  "extractor_backend": "pdfplumber",
+  "extract_time": "2026-06-21T17:32:31+00:00",
+  "title": "Introduction",
+  "author": "",
+  "doi": "",
+  "keywords": [],
+  "subject": "",
+  "page_count": 22,
+  "outline": [
+    {
+      "title": "Introduction",
+      "level": 0,
+      "page_number": 1
+    },
+    {
+      "title": "Related Work",
+      "level": 0,
+      "page_number": 3
+    },
+    {
+      "title": "The Benchmark Platform",
+      "level": 0,
+      "page_number": 4
+    },
+    {
+      "title": "3D Environment",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "Interface of embodied agents",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "SDK and Online Access",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Benchmark Tasks on Embodied AI in Open City Environments",
+      "level": 0,
+      "page_number": 6
+    },
+    {
+      "title": "Evaluation of Large Language Models",
+      "level": 0,
+      "page_number": 8
+    },
+    {
+      "title": "Discussions and limitations of the benchmark",
+      "level": 0,
+      "page_number": 10
+    },
+    {
+      "title": "Conclusion and Future Work",
+      "level": 0,
+      "page_number": 10
+    },
+    {
+      "title": "Supplementary Materials",
+      "level": 0,
+      "page_number": 13
+    },
+    {
+      "title": "Simulator",
+      "level": 1,
+      "page_number": 13
+    },
+    {
+      "title": "Open Interface",
+      "level": 1,
+      "page_number": 13
+    },
+    {
+      "title": "Benchmark and Dataset",
+      "level": 1,
+      "page_number": 13
+    },
+    {
+      "title": "Experimental Setup",
+      "level": 1,
+      "page_number": 16
+    },
+    {
+      "title": "Baselines",
+      "level": 1,
+      "page_number": 16
+    },
+    {
+      "title": "Case Study",
+      "level": 1,
+      "page_number": 17
+    },
+    {
+      "title": "Task I: Embodied first-view scene understanding",
+      "level": 2,
+      "page_number": 17
+    },
+    {
+      "title": "Task II: Embodied question answering",
+      "level": 2,
+      "page_number": 19
+    },
+    {
+      "title": "Task III: Embodied dialogue",
+      "level": 2,
+      "page_number": 19
+    },
+    {
+      "title": "Task IV: Embodied VLN",
+      "level": 2,
+      "page_number": 21
+    },
+    {
+      "title": "Task V: Embodied task planning",
+      "level": 2,
+      "page_number": 21
+    }
+  ],
+  "text_char_count": 71548,
+  "status": "ok",
+  "warnings": [],
+  "project_root": "D:\\0-Research\\6-city",
+  "relative_pdf": "03_embodied_city\\01_EmbodiedCity_Zhou2024.pdf",
+  "fulltext_path": "assets\\papers\\fulltext\\03_embodied_city\\01_EmbodiedCity_Zhou2024.fulltext.md",
+  "quality_flags": [],
+  "abstract": "Embodied artificial intelligence (EmbodiedAI) emphasizes the role of an agent’s body in generating human-like behaviors. The recent efforts on EmbodiedAI pay a lot of attention to building up machine learning models to possess perceiving, planning, and acting abilities, thereby enabling real-time interaction with the world. However, most works focus on bounded indoor environments, such as navigation in a room or manipulating a device, with limited exploration of embodying the agents in open-world scenarios. That is, embodied intelligence in the open and outdoor environment is less explored, for which one potential reason is the lack of high-quality simulators, benchmarks, and datasets. To address it, in this paper, we construct a benchmark platform for embodied intelligence evaluation in realworld city environments. Specifically, we first construct a highly realistic 3D simulation environment based on the real buildings, roads, and other elements in a real city. In this environment, we combine historically collected data and simulation algorithms to conduct simulations of pedestrian and vehicle flows with high fidelity. Further, we designed a set of evaluation tasks covering different EmbodiedAI abilities. Moreover, we provide a complete set of input and output interfaces for access, enabling embodied agents to easily take task requirements and current environmental observations as input and then make decisions and obtain performance evaluations. On the one hand, it expands the capability of existing embodied intelligence to higher levels. On the other hand, it has a higher practical value in the real world and can support more potential applications for artificial general intelligence. Based on this platform, we evaluate some popular large language models for embodied intelligence capabilities of different dimensions and difficulties. The executable program of this platform is available for download, and we have also released an easy-to-use Python library and detailed tutorial documents. All of the software, Python library, codes, datasets, tutorials, and real-time online service are available on this website: https://embodied-city.fiblab. net."
+}

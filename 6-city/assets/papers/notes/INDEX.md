@@ -1,0 +1,37 @@
+# 6-city Paper Notes Index
+
+> Status: first-pass notes generated from converted fulltext and project literature map.
+> Next step: promote the must-cite papers to `reviewed` after manual PDF checks.
+
+## Decision Summary
+
+- `must-cite`: 9
+- `cite`: 12
+- `background`: 1
+
+## Notes
+
+| Category | Decision | Paper | Role | Note | Fulltext |
+|---|---|---|---|---|---|
+| `01_urban_benchmarks` | `must-cite` | CityBench: Evaluating the Capabilities of Large Language Models for Urban Tasks | broad urban-task benchmark | `assets/papers/notes/01_urban_benchmarks/01_CityBench_Feng2024.md` | `assets/papers/fulltext/01_urban_benchmarks/01_CityBench_Feng2024.fulltext.md` |
+| `01_urban_benchmarks` | `cite` | CityGPT: Empowering Urban Spatial Cognition of Large Language Models | urban spatial cognition benchmark/model | `assets/papers/notes/01_urban_benchmarks/02_CityGPT_CityEval_Feng2024.md` | `assets/papers/fulltext/01_urban_benchmarks/02_CityGPT_CityEval_Feng2024.fulltext.md` |
+| `01_urban_benchmarks` | `cite` | STBench: Assessing the Ability of Large Language Models in Spatio-Temporal Analysis | spatiotemporal reasoning benchmark | `assets/papers/notes/01_urban_benchmarks/03_STBench_Wang2024.md` | `assets/papers/fulltext/01_urban_benchmarks/03_STBench_Wang2024.fulltext.md` |
+| `01_urban_benchmarks` | `must-cite` | USTBench: Benchmarking and Dissecting Spatiotemporal Reasoning of LLMs as Urban Agents | urban-agent spatiotemporal benchmark | `assets/papers/notes/01_urban_benchmarks/04_USTBench_Liu2025.md` | `assets/papers/fulltext/01_urban_benchmarks/04_USTBench_Liu2025.fulltext.md` |
+| `01_urban_benchmarks` | `cite` | UrbanPlanBench: A Comprehensive Urban Planning Benchmark for Evaluating Large Language Models | urban planning benchmark | `assets/papers/notes/01_urban_benchmarks/05_UrbanPlanBench_Luo2025.md` | `assets/papers/fulltext/01_urban_benchmarks/05_UrbanPlanBench_Luo2025.fulltext.md` |
+| `01_urban_benchmarks` | `cite` | Can AI Reason Like an Urban Planner? Benchmarking Large Language Models Against Professional Judgment | urban planner judgment benchmark | `assets/papers/notes/01_urban_benchmarks/06_UPBench_Liu2026.md` | `assets/papers/fulltext/01_urban_benchmarks/06_UPBench_Liu2026.fulltext.md` |
+| `01_urban_benchmarks` | `cite` | UrBench: A Comprehensive Benchmark for Evaluating Large Multimodal Models in Multi-View Urban Scenarios | multimodal urban perception benchmark | `assets/papers/notes/01_urban_benchmarks/07_UrBench_Liu2024.md` | `assets/papers/fulltext/01_urban_benchmarks/07_UrBench_Liu2024.fulltext.md` |
+| `01_urban_benchmarks` | `must-cite` | CityEQA: A Hierarchical LLM Agent on Embodied Question Answering Benchmark in City Space | embodied city QA benchmark | `assets/papers/notes/01_urban_benchmarks/08_CityEQA_Zhang2025.md` | `assets/papers/fulltext/01_urban_benchmarks/08_CityEQA_Zhang2025.fulltext.md` |
+| `01_urban_benchmarks` | `cite` | OpenCity: A Scalable Platform to Simulate Urban Activities with Massive LLM Agents | large-scale urban activity simulation platform | `assets/papers/notes/01_urban_benchmarks/09_OpenCity_Ma2024.md` | `assets/papers/fulltext/01_urban_benchmarks/09_OpenCity_Ma2024.fulltext.md` |
+| `01_urban_benchmarks` | `cite` | MobileCity: An Efficient Framework for Large-Scale Urban Behavior Simulation | efficient urban behavior simulation framework | `assets/papers/notes/01_urban_benchmarks/10_MobileCity_Li2025.md` | `assets/papers/fulltext/01_urban_benchmarks/10_MobileCity_Li2025.fulltext.md` |
+| `02_citysim_agents` | `must-cite` | CitySim: Modeling Urban Behaviors and City Dynamics with Large-Scale LLM-Driven Agent Simulation | closest CitySim agent simulation neighbor | `assets/papers/notes/02_citysim_agents/01_CitySim_Wang2025.md` | `assets/papers/fulltext/02_citysim_agents/01_CitySim_Wang2025.fulltext.md` |
+| `02_citysim_agents` | `must-cite` | GATSim: Urban Mobility Simulation with Generative Agents | generative-agent urban mobility simulation | `assets/papers/notes/02_citysim_agents/02_GATSim_Liu2025.md` | `assets/papers/fulltext/02_citysim_agents/02_GATSim_Liu2025.fulltext.md` |
+| `02_citysim_agents` | `cite` | AgentSociety: Large-Scale Simulation of LLM-Driven Generative Agents Advances Understanding of Human Behaviors and Society | large-scale generative-agent society simulation | `assets/papers/notes/02_citysim_agents/03_AgentSociety_Gao2025.md` | `assets/papers/fulltext/02_citysim_agents/03_AgentSociety_Gao2025.fulltext.md` |
+| `02_citysim_agents` | `must-cite` | Generative agent-based modeling with actions grounded in physical, social, or digital space using Concordia | grounded generative-agent framework | `assets/papers/notes/02_citysim_agents/04_Concordia_Vezhnevets2023.md` | `assets/papers/fulltext/02_citysim_agents/04_Concordia_Vezhnevets2023.fulltext.md` |
+| `02_citysim_agents` | `background` | ChatSUMO: Large Language Model for Automating Traffic Scenario Generation in Simulation of Urban Mobility | traffic scenario generation / SUMO reference | `assets/papers/notes/02_citysim_agents/05_ChatSUMO_Mao2024.md` | `assets/papers/fulltext/02_citysim_agents/05_ChatSUMO_Mao2024.fulltext.md` |
+| `02_citysim_agents` | `cite` | UrbanLLM: Autonomous Urban Activity Planning and Management with Large Language Models | urban activity planning with LLMs | `assets/papers/notes/02_citysim_agents/06_UrbanLLM_Zhang2024.md` | `assets/papers/fulltext/02_citysim_agents/06_UrbanLLM_Zhang2024.fulltext.md` |
+| `02_citysim_agents` | `cite` | TrajAgent: An LLM-Agent Framework for Trajectory Modeling via Large-and-Small Model Collaboration | trajectory modeling agent framework | `assets/papers/notes/02_citysim_agents/07_TrajAgent_Zhang2024.md` | `assets/papers/fulltext/02_citysim_agents/07_TrajAgent_Zhang2024.fulltext.md` |
+| `02_citysim_agents` | `cite` | Urban Generative Intelligence (UGI): A Foundational Platform for Agents in Embodied City Environment | embodied-city agent platform foundation | `assets/papers/notes/02_citysim_agents/08_Urban_Generative_Intelligence_Li2023.md` | `assets/papers/fulltext/02_citysim_agents/08_Urban_Generative_Intelligence_Li2023.fulltext.md` |
+| `03_embodied_city` | `must-cite` | EmbodiedCity: A Benchmark Platform for Embodied Agent in Real-world City Environment | embodied city benchmark platform | `assets/papers/notes/03_embodied_city/01_EmbodiedCity_Zhou2024.md` | `assets/papers/fulltext/03_embodied_city/01_EmbodiedCity_Zhou2024.fulltext.md` |
+| `03_embodied_city` | `cite` | UrbanLLaVA: A Multi-modal Large Language Model for Urban Intelligence with Spatial Reasoning and Understanding | urban multimodal model / spatial reasoning | `assets/papers/notes/03_embodied_city/02_UrbanLLaVA_Feng2025.md` | `assets/papers/fulltext/03_embodied_city/02_UrbanLLaVA_Feng2025.fulltext.md` |
+| `04_social_benchmark_foundations` | `must-cite` | Generative Agents: Interactive Simulacra of Human Behavior | generative-agent foundation | `assets/papers/notes/04_social_benchmark_foundations/01_Generative_Agents_Park2023.md` | `assets/papers/fulltext/04_social_benchmark_foundations/01_Generative_Agents_Park2023.fulltext.md` |
+| `04_social_benchmark_foundations` | `must-cite` | SOTOPIA: Interactive Evaluation for Social Intelligence in Language Agents | interactive social-agent benchmark foundation | `assets/papers/notes/04_social_benchmark_foundations/02_SOTOPIA_Zhou2024_ICLR.md` | `assets/papers/fulltext/04_social_benchmark_foundations/02_SOTOPIA_Zhou2024_ICLR.fulltext.md` |

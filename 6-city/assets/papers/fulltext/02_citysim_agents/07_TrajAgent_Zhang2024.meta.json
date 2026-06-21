@@ -1,0 +1,141 @@
+{
+  "source_pdf": "D:\\0-Research\\6-city\\assets\\papers\\pdf\\02_citysim_agents\\07_TrajAgent_Zhang2024.pdf",
+  "extractor_backend": "pdfplumber",
+  "extract_time": "2026-06-21T17:32:19+00:00",
+  "title": "TrajAgent: An LLM-Agent Framework for Trajectory Modeling via Large-and-Small Model Collaboration",
+  "author": "Yuwei Du; Jie Feng; Jie Zhao; Yong Li",
+  "doi": "",
+  "keywords": [],
+  "subject": "",
+  "page_count": 24,
+  "outline": [
+    {
+      "title": "Introduction",
+      "level": 0,
+      "page_number": 1
+    },
+    {
+      "title": "Methods",
+      "level": 0,
+      "page_number": 3
+    },
+    {
+      "title": "Overview of TrajAgent",
+      "level": 1,
+      "page_number": 3
+    },
+    {
+      "title": "UniEnv: Environment for Experiments",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "Agentic Workflow of TrajAgent",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "Collaborative Learning Schema",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "Agent Learning via Reasoning",
+      "level": 2,
+      "page_number": 5
+    },
+    {
+      "title": "Model Learning via Training",
+      "level": 2,
+      "page_number": 6
+    },
+    {
+      "title": "Experiments",
+      "level": 0,
+      "page_number": 6
+    },
+    {
+      "title": "Settings",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Overall Performance and Generalization Capability of TrajAgent",
+      "level": 1,
+      "page_number": 7
+    },
+    {
+      "title": "Ablation Study and Parameter Analysis of the Agentic Workflow",
+      "level": 1,
+      "page_number": 8
+    },
+    {
+      "title": "Analysis of Optimization Failure Modes and Improvements",
+      "level": 1,
+      "page_number": 9
+    },
+    {
+      "title": "Comparison with Automated Methods",
+      "level": 1,
+      "page_number": 10
+    },
+    {
+      "title": "Related Work",
+      "level": 0,
+      "page_number": 10
+    },
+    {
+      "title": "Conclusion",
+      "level": 0,
+      "page_number": 10
+    },
+    {
+      "title": "Appendix",
+      "level": 0,
+      "page_number": 15
+    },
+    {
+      "title": "Datasets",
+      "level": 1,
+      "page_number": 15
+    },
+    {
+      "title": "Models",
+      "level": 1,
+      "page_number": 16
+    },
+    {
+      "title": "Metrics",
+      "level": 1,
+      "page_number": 17
+    },
+    {
+      "title": "Additional results on GPS trajectory data",
+      "level": 1,
+      "page_number": 17
+    },
+    {
+      "title": "Limitations and Failure Mode Analysis",
+      "level": 1,
+      "page_number": 18
+    },
+    {
+      "title": "Additional Experimental Analysis",
+      "level": 1,
+      "page_number": 18
+    },
+    {
+      "title": "Prompt Examples",
+      "level": 1,
+      "page_number": 21
+    }
+  ],
+  "text_char_count": 93567,
+  "status": "ok",
+  "warnings": [],
+  "project_root": "D:\\0-Research\\6-city",
+  "relative_pdf": "02_citysim_agents\\07_TrajAgent_Zhang2024.pdf",
+  "fulltext_path": "assets\\papers\\fulltext\\02_citysim_agents\\07_TrajAgent_Zhang2024.fulltext.md",
+  "quality_flags": [],
+  "abstract": "Trajectory modeling, which includes research on trajectory data pattern mining and future prediction, has widespread applications in areas such as life services, urban transportation, and public administration. Numerous methods have been proposed to address specific problems within trajectory modeling. However, the heterogeneity of data and the diversity of trajectory tasks make effective and reliable trajectory modeling an important yet highly challenging endeavor, even for domain experts. In this paper, we propose TrajAgent, a agent framework powered by large language models (LLMs), designed to facilitate robust and efficient trajectory modeling through automation modeling. This framework leverages and optimizes diverse specialized models to address various trajectory modeling tasks across different datasets effectively. In TrajAgent, we first develop UniEnv, an execution environment with a unified data and model interface, to support the execution and training of various models. Building on UniEnv, we introduce an agentic workflow designed for automatic trajectory modeling across various trajectory tasks and data. Furthermore, we introduce collaborative learning schema between LLM-based agents and small speciallized models, to enhance the performance of the whole framework effectively. Extensive experiments on four tasks using four real-world datasets demonstrate the effectiveness of TrajAgent in automated trajectory modeling, achieving a performance improvement of 2.38%-69.91% over baseline methods. The codes and data can be accessed via https://github. com/tsinghua-fib-lab/TrajAgent."
+}

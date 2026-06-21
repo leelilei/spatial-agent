@@ -44,6 +44,7 @@ COMMON_FILES = [
     ("proposal.template.md", "docs/plans/proposal.md"),
     ("reference_sources.template.md", "docs/project/reference_sources.md"),
     ("decisions.template.md", "docs/project/decisions.md"),
+    ("assets_papers_README.template.md", "assets/papers/README.md"),
 ]
 
 EMPIRICAL_DIRS = ["src", "scripts", "configs", "data", "results", "tests"]

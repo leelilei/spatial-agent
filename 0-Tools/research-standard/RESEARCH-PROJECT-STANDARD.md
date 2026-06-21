@@ -225,6 +225,10 @@ SMGA 目前在 L2→L3 之间。
 - `scaffold.py <项目名> [--type empirical|survey]`：在 research 根下生成符合规范的骨架。
 - `check_compliance.py [项目路径...]`：检查合规层级，输出 JSON；被 research-dashboard
   调用以显示「规范健康度」。
+- `convert_pdfs_to_fulltext.py <project-root>`：标准 PDF-to-Markdown 文献摄取工具。扫描
+  `assets/papers/pdf/**/*.pdf`，在 `assets/papers/fulltext/` 下生成镜像 Markdown
+  与 JSON sidecar，并写入 `assets/papers/metadata/fulltext_manifest.json` 和
+  `assets/papers/metadata/fulltext_summary.md`。
 
 ---
 

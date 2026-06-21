@@ -1,0 +1,96 @@
+{
+  "source_pdf": "D:\\0-Research\\6-city\\assets\\papers\\pdf\\01_urban_benchmarks\\05_UrbanPlanBench_Luo2025.pdf",
+  "extractor_backend": "pdfplumber",
+  "extract_time": "2026-06-21T17:31:26+00:00",
+  "title": "UrbanPlanBench: A Comprehensive Urban Planning Benchmark for Evaluating Large Language Models",
+  "author": "",
+  "doi": "",
+  "keywords": [],
+  "subject": "",
+  "page_count": 10,
+  "outline": [
+    {
+      "title": "Abstract",
+      "level": 0,
+      "page_number": 1
+    },
+    {
+      "title": "1 Introduction",
+      "level": 0,
+      "page_number": 1
+    },
+    {
+      "title": "2 Benchmarking LLMs on Urban Planning",
+      "level": 0,
+      "page_number": 2
+    },
+    {
+      "title": "2.1 Construction of UrbanPlanBench",
+      "level": 1,
+      "page_number": 2
+    },
+    {
+      "title": "2.2 Evaluation Results",
+      "level": 1,
+      "page_number": 3
+    },
+    {
+      "title": "2.3 Prompting Techniques",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "3 Fine-tuning LLMs with UrbanPlanText",
+      "level": 0,
+      "page_number": 5
+    },
+    {
+      "title": "3.1 Dataset Construction",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "3.2 SFT Data Quality",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "3.3 SFT Results",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "4 Related Work",
+      "level": 0,
+      "page_number": 7
+    },
+    {
+      "title": "5 Conclusion and Future Work",
+      "level": 0,
+      "page_number": 7
+    },
+    {
+      "title": "References",
+      "level": 0,
+      "page_number": 8
+    },
+    {
+      "title": "A Case Study",
+      "level": 0,
+      "page_number": 9
+    },
+    {
+      "title": "B Prompt for data generation",
+      "level": 0,
+      "page_number": 9
+    }
+  ],
+  "text_char_count": 58690,
+  "status": "ok",
+  "warnings": [],
+  "project_root": "D:\\0-Research\\6-city",
+  "relative_pdf": "01_urban_benchmarks\\05_UrbanPlanBench_Luo2025.pdf",
+  "fulltext_path": "assets\\papers\\fulltext\\01_urban_benchmarks\\05_UrbanPlanBench_Luo2025.fulltext.md",
+  "quality_flags": [],
+  "abstract": "The advent of Large Language Models (LLMs) holds promise for revolutionizing various fields traditionally dominated by human expertise. Urban planning, a professional discipline that fundamentally shapes our daily surroundings, is one such field heavily relying on multifaceted domain knowledge and experience of human experts. The extent to which LLMs can assist human practitioners in urban planning remains largely unexplored. In this paper, we introduce a comprehensive benchmark, UrbanPlanBench, tailored to evaluate the efficacy of LLMs in urban planning, which encompasses fundamental principles, professional knowledge, and management and regulations, aligning closely with the qualifications expected of human planners. Through extensive evaluation, we reveal a significant imbalance in the acquisition of planning knowledge among LLMs, with even the most proficient models falling short of meeting professional standards. For instance, we observe that 70% of LLMs achieve subpar performance in understanding planning regulations compared to other aspects. Besides the benchmark, we present the largest-ever supervised fine-tuning (SFT) dataset, UrbanPlanText, comprising over 30,000 instruction pairs sourced from urban planning exams and textbooks. Our findings demonstrate that fine-tuned models exhibit enhanced performance in memorization tests and comprehension of urban planning knowledge, while there exists significant room for improvement, particularly in tasks requiring domain-specific terminology and reasoning. By making our benchmark, dataset, and associated evaluation and fine-tuning toolsets publicly available at https://github.com/tsinghua-fib-lab/PlanBench, we aim to catalyze the integration of LLMs into practical urban planning, fostering a symbiotic collaboration between human expertise and machine intelligence. 2 ]LC.sc[ 1v72012.4052:viXra"
+}

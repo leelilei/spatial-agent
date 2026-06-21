@@ -1,0 +1,106 @@
+{
+  "source_pdf": "D:\\0-Research\\6-city\\assets\\papers\\pdf\\02_citysim_agents\\06_UrbanLLM_Zhang2024.pdf",
+  "extractor_backend": "pdfplumber",
+  "extract_time": "2026-06-21T17:32:14+00:00",
+  "title": "Introduction",
+  "author": "",
+  "doi": "",
+  "keywords": [],
+  "subject": "",
+  "page_count": 15,
+  "outline": [
+    {
+      "title": "Introduction",
+      "level": 0,
+      "page_number": 1
+    },
+    {
+      "title": "Related Work",
+      "level": 0,
+      "page_number": 2
+    },
+    {
+      "title": "UrbanLLM",
+      "level": 0,
+      "page_number": 3
+    },
+    {
+      "title": "Urban Activity Planning Learning",
+      "level": 1,
+      "page_number": 3
+    },
+    {
+      "title": "Spatio-Temporal Analysis",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "Model Matching",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "Results Generation",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "Experiments and Results Discussion",
+      "level": 0,
+      "page_number": 5
+    },
+    {
+      "title": "Experimental Setup",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "Performance of UrbanLLM",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Ablation Study",
+      "level": 1,
+      "page_number": 7
+    },
+    {
+      "title": "Visualization and Generalization",
+      "level": 1,
+      "page_number": 7
+    },
+    {
+      "title": "Conclusions",
+      "level": 0,
+      "page_number": 8
+    },
+    {
+      "title": "Planning and Management Tasks Combinations",
+      "level": 0,
+      "page_number": 11
+    },
+    {
+      "title": "Task Understanding Prompt",
+      "level": 0,
+      "page_number": 14
+    },
+    {
+      "title": "Spatio-Temporal Model Description",
+      "level": 0,
+      "page_number": 15
+    },
+    {
+      "title": "Evaluation Metrics",
+      "level": 0,
+      "page_number": 15
+    }
+  ],
+  "text_char_count": 67808,
+  "status": "ok",
+  "warnings": [],
+  "project_root": "D:\\0-Research\\6-city",
+  "relative_pdf": "02_citysim_agents\\06_UrbanLLM_Zhang2024.pdf",
+  "fulltext_path": "assets\\papers\\fulltext\\02_citysim_agents\\06_UrbanLLM_Zhang2024.fulltext.md",
+  "quality_flags": [],
+  "abstract": "Location-based services play an critical role in improving the quality of our daily lives. Despite the proliferation of numerous specialized AI models within spatio-temporal context of location-based services, these models struggle to autonomously tackle problems regarding complex urban planing and management. To bridge this gap, we introduce UrbanLLM, a fine-tuned large language model (LLM) designed to tackle diverse problems in urban scenarios. UrbanLLM functions as a problemsolver by decomposing urban-related queries into manageable sub-tasks, identifying suitable spatio-temporal AI models for each sub-task, and generating comprehensive responses to the given queries. Our experimental results indicate that UrbanLLM significantly outperforms other established LLMs, such as Llama and the GPT series, in handling problems concerning complex urban activity planning and management. UrbanLLM exhibits considerable potential in enhancing the effectiveness of solving problems in urban scenarios, reducing the workload and reliance for human experts. Our code is available at: https://anonymous.4open.science/r/UrbanLLM1227/"
+}

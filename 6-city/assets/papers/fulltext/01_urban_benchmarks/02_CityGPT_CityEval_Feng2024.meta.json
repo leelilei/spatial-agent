@@ -1,0 +1,141 @@
+{
+  "source_pdf": "D:\\0-Research\\6-city\\assets\\papers\\pdf\\01_urban_benchmarks\\02_CityGPT_CityEval_Feng2024.pdf",
+  "extractor_backend": "pdfplumber",
+  "extract_time": "2026-06-21T17:31:10+00:00",
+  "title": "CityGPT: Empowering Urban Spatial Cognition of Large Language Models",
+  "author": "Jie Feng; Tianhui Liu; Yuwei Du; Siqi Guo; Yuming Lin; Yong Li",
+  "doi": "",
+  "keywords": [],
+  "subject": "",
+  "page_count": 12,
+  "outline": [
+    {
+      "title": "Abstract",
+      "level": 0,
+      "page_number": 1
+    },
+    {
+      "title": "1 Introduction",
+      "level": 0,
+      "page_number": 1
+    },
+    {
+      "title": "2 Methods",
+      "level": 0,
+      "page_number": 2
+    },
+    {
+      "title": "2.1 CityInstruction Construction",
+      "level": 1,
+      "page_number": 3
+    },
+    {
+      "title": "2.2 SWFT: Self-Weighted Fine-Tuning",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "2.3 CityEval Benchmark",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "3 Experiments",
+      "level": 0,
+      "page_number": 5
+    },
+    {
+      "title": "3.1 Settings",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "3.2 Overall Performance on CityEval",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "3.3 General Capabilities and Self-Weighted Fine-Tuning of CityGPT",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "3.4 Spatial Transferability and Downstream Task Applicability",
+      "level": 1,
+      "page_number": 7
+    },
+    {
+      "title": "3.5 Instruction Training Data Ablation Study",
+      "level": 1,
+      "page_number": 7
+    },
+    {
+      "title": "4 Related Work",
+      "level": 0,
+      "page_number": 8
+    },
+    {
+      "title": "5 Conclusion",
+      "level": 0,
+      "page_number": 9
+    },
+    {
+      "title": "References",
+      "level": 0,
+      "page_number": 9
+    },
+    {
+      "title": "A Appendix",
+      "level": 0,
+      "page_number": 10
+    },
+    {
+      "title": "A.1 Comparison of CityEval with other Benchmarks",
+      "level": 1,
+      "page_number": 10
+    },
+    {
+      "title": "A.2 SWFT Validation in Other Cities",
+      "level": 1,
+      "page_number": 10
+    },
+    {
+      "title": "A.3 Effects of the LLM Size",
+      "level": 1,
+      "page_number": 10
+    },
+    {
+      "title": "A.4 Additional Results of SimpleData",
+      "level": 1,
+      "page_number": 11
+    },
+    {
+      "title": "A.5 Extended Results of Spatial Transferability",
+      "level": 1,
+      "page_number": 11
+    },
+    {
+      "title": "A.6 Data Statistics",
+      "level": 1,
+      "page_number": 11
+    },
+    {
+      "title": "A.7 Description of Urban Composite Tasks",
+      "level": 1,
+      "page_number": 11
+    },
+    {
+      "title": "A.8 Hyper-parameter Settings",
+      "level": 1,
+      "page_number": 12
+    }
+  ],
+  "text_char_count": 69615,
+  "status": "ok",
+  "warnings": [],
+  "project_root": "D:\\0-Research\\6-city",
+  "relative_pdf": "01_urban_benchmarks\\02_CityGPT_CityEval_Feng2024.pdf",
+  "fulltext_path": "assets\\papers\\fulltext\\01_urban_benchmarks\\02_CityGPT_CityEval_Feng2024.fulltext.md",
+  "quality_flags": [],
+  "abstract": "Large language models(LLMs), with their powerful language generation and reasoning capabilities, have already achieved notable success in many domains, e.g., math and code generation. However, they often fall short when tackling real-life geospatial tasks within urban environments. This limitation stems from a lack of physical world knowledge and relevant data during training. To address this gap, we propose CityGPT, a systematic framework designed to enhance LLMs’ understanding of urban space and improve their ability to solve the related urban tasks by integrating a city-scale ‘world model’ into the model. Firstly, we construct a diverse instruction tuning dataset, CityInstruction, for injecting urban knowledge into LLMs and effectively boosting their spatial reasoning capabilities. Using a combination of CityInstruction and open source general instruction data, we introduce a novel and easy-to-use self-weighted fine-tuning method (SWFT) to train various LLMs (including ChatGLM3-6B, Llama3-8B, and Qwen2.5-7B) to enhance their urban spatial capabilities without compromising, or even improving, their general abilities. Finally, to validate the effectiveness of our proposed framework, we develop a comprehensive text-based spatial benchmark CityEval for evaluating the performance of LLMs across a wide range of urban scenarios and geospatial tasks. Extensive evaluation results demonstrate that smaller LLMs trained with CityInstruction by SWFT method can achieve performance that is competitive with, and in some cases superior to, proprietary LLMs when assessed using CityEval. Our work highlights the potential for integrating spatial knowledge into LLMs, thereby expanding their spatial cognition abilities and applicability to the real-world physical environments. The dataset, benchmark, and source code are open-sourced and can be accessed through https://github.com/tsinghua-fib-lab/CityGPT."
+}

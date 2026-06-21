@@ -1,0 +1,141 @@
+{
+  "source_pdf": "D:\\0-Research\\6-city\\assets\\papers\\pdf\\01_urban_benchmarks\\08_CityEQA_Zhang2025.pdf",
+  "extractor_backend": "pdfplumber",
+  "extract_time": "2026-06-21T17:31:36+00:00",
+  "title": "Introduction",
+  "author": "",
+  "doi": "",
+  "keywords": [],
+  "subject": "",
+  "page_count": 16,
+  "outline": [
+    {
+      "title": "Introduction",
+      "level": 0,
+      "page_number": 1
+    },
+    {
+      "title": "CityEQA-EC Dataset",
+      "level": 0,
+      "page_number": 3
+    },
+    {
+      "title": "Task Formulation",
+      "level": 1,
+      "page_number": 3
+    },
+    {
+      "title": "Dataset Collection and Validation",
+      "level": 1,
+      "page_number": 3
+    },
+    {
+      "title": "PMA: A Hierarchical LLM Agent for CityEQA Task",
+      "level": 0,
+      "page_number": 4
+    },
+    {
+      "title": "Overview",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "Planner Module",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "Manager Module",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "Actor Module",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "Experiment",
+      "level": 0,
+      "page_number": 6
+    },
+    {
+      "title": "Experiment setup",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Comparison with State-of-the-art",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Ablation Studies",
+      "level": 1,
+      "page_number": 7
+    },
+    {
+      "title": "Effectiveness of Collector Module",
+      "level": 1,
+      "page_number": 7
+    },
+    {
+      "title": "Related Works",
+      "level": 0,
+      "page_number": 8
+    },
+    {
+      "title": "QA and EQA",
+      "level": 1,
+      "page_number": 8
+    },
+    {
+      "title": "LLMs-driven Embodied Agents",
+      "level": 1,
+      "page_number": 8
+    },
+    {
+      "title": "Conclusion",
+      "level": 0,
+      "page_number": 8
+    },
+    {
+      "title": "Limitations",
+      "level": 0,
+      "page_number": 9
+    },
+    {
+      "title": "Ethics Statement",
+      "level": 0,
+      "page_number": 9
+    },
+    {
+      "title": "Appendix",
+      "level": 0,
+      "page_number": 12
+    },
+    {
+      "title": "Dataset Collection and Validation",
+      "level": 1,
+      "page_number": 12
+    },
+    {
+      "title": "PMA Agent Details",
+      "level": 1,
+      "page_number": 12
+    },
+    {
+      "title": "Experiments Details",
+      "level": 1,
+      "page_number": 13
+    }
+  ],
+  "text_char_count": 58936,
+  "status": "ok",
+  "warnings": [],
+  "project_root": "D:\\0-Research\\6-city",
+  "relative_pdf": "01_urban_benchmarks\\08_CityEQA_Zhang2025.pdf",
+  "fulltext_path": "assets\\papers\\fulltext\\01_urban_benchmarks\\08_CityEQA_Zhang2025.fulltext.md",
+  "quality_flags": [],
+  "abstract": "Embodied Question Answering (EQA) has primarily focused on indoor environments, leaving the complexities of urban settings—spanning environment, action, and perception—largely unexplored. To bridge this gap, we introduce CityEQA, a new task where an embodied agent answers open-vocabulary questions through active exploration in dynamic city spaces. To support this task, we present CityEQA-EC, the first benchmark dataset featuring 1,412 human-annotated tasks across six categories, grounded in a realistic 3D urban simulator. Moreover, we propose Planner-Manager-Actor (PMA), a novel agent tailored for CityEQA. PMA enables long-horizon planning and hierarchical task execution: the Planner breaks down the question answering into sub-tasks, the Manager maintains an object-centric cognitive map for spatial reasoning during the process control, and the specialized Actors handle navigation, exploration, and collection sub-tasks. Experiments demonstrate that PMA achieves 60.7% of human-level answering accuracy, significantly outperforming competitive baselines. While promising, the performance gap compared to humans highlights the need for enhanced visual reasoning in CityEQA. This work paves the way for future advancements in urban spatial intelligence. Dataset and code are available at https://anonymous.4open. science/r/CityEQA-3027."
+}

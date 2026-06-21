@@ -1,0 +1,22 @@
+{
+  "source_pdf": "D:\\0-Research\\6-city\\assets\\papers\\pdf\\01_urban_benchmarks\\07_UrBench_Liu2024.pdf",
+  "extractor_backend": "pdfplumber",
+  "extract_time": "2026-06-21T17:31:34+00:00",
+  "title": "",
+  "author": "",
+  "doi": "",
+  "keywords": [],
+  "subject": "",
+  "page_count": 9,
+  "outline": [],
+  "text_char_count": 43463,
+  "status": "ok",
+  "warnings": [],
+  "project_root": "D:\\0-Research\\6-city",
+  "relative_pdf": "01_urban_benchmarks\\07_UrBench_Liu2024.pdf",
+  "fulltext_path": "assets\\papers\\fulltext\\01_urban_benchmarks\\07_UrBench_Liu2024.fulltext.md",
+  "quality_flags": [
+    "abstract_may_include_layout_noise"
+  ],
+  "abstract": "Recent evaluations of Large Multimodal Models (LMMs) have explored their capabilities in various domains, with only few benchmarks specifically focusing on urban environments. Moreover, existing urban benchmarks have been limited to evaluating LMMs with basic region-level urban tasks under singular views, leading to incomplete evaluations of LMMs’ abilities in urban environments. To address these issues, we present UrBench, a comprehensive benchmark designed for evaluating LMMs in complex multi-view urban scenarios. UrBench contains 11.6K meticulously curated questions at both region-level and role-level that cover 4 task dimensions: Geo-Localization, Scene Reasoning, Scene Understanding, and Object Understanding, totaling 14 task types. In constructing UrBench, we utilize data from existing datasets and additionally collect data from 11 cities, creating new annotations using a cross-view detection-matching method. With these images and annotations, we then integrate LMM-based, rule-based, and human-based methods to construct largescale high-quality questions. Our evaluations on 21 LMMs show that current LMMs struggle in the urban environments in several aspects. Even the best performing GPT-4o lags behind humans in most tasks, ranging from simple tasks such as counting to complex tasks such as orientation, localization and object attribute recognition, with an average performance gap of 17.4%. Our benchmark also reveals that LMMs exhibit inconsistent behaviors with different urban views, especially with respect to understanding cross-view relations. Project — https://opendatalab.github.io/UrBench/ Appendix — https://github.com/opendatalab/UrBench/ blob/master/static/appendix.pdf Introduction Recently, the research community has witnessed an emergent interest in developing Large Multimodal Models (LMMs) (Achiam et al. 2023; Liu et al. 2024b; Chen et al. 2024) that have exhibited impressive abilities in a variety of *These authors contributed equally. †W. Li and C. He are the corresponding authors. Copyright © 2025, Association for the Advancement of Artificial Intelligence (www.aaai.org). All rights reserved. 2 raM 9 ]VC.sc[ 3v76271.8042:viXra"
+}
