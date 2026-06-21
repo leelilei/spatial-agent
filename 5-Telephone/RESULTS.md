@@ -36,6 +36,8 @@
 
 | 06-21 | C2 | CURE validation: PROV vs GA, power n=8 + source + r30 | repair_drive mini m2, n=8 (r5) / n=3 (r30) | PROV ~2x GA: baseline 40%[28-53] vs 22%[13-30]; **closes dissociation**: source GA 21 (dead) vs PROV 51[37-65]; unknown 68%->28%; **r30: PROV sustains ~55% (flat, no decay) while GA decays to 6%**. PROV=first non-overwrite cure | done |
 
+| 06-21 | C3 | FAIR (generalized) PROV: origin/version metadata propagation vs GA | repair_drive mini m2 r5 n=8 | **fair-PROV 57% [49-65] vs GA 22% [13-30]** (~2.6x, CIs DISJOINT); unknown 68%->40%; **8/8 seeds improve**; provenance carried as event metadata, NOT hardcoded answer. CURE survives fair impl (stronger+cleaner than marker version's 40%) | done |
+
 Detailed write-ups follow below as runs land.
 
 ---
@@ -605,3 +607,35 @@ the decay, and that provenance-aware integration is a genuine, non-overwrite cur
 per-claim origin/version tags). Next: generalize across
 book_club/carpool; build the comparison table vs recognized non-overwrite baselines (RAG, MemoryBank,
 MemGPT, A-MEM, currency/smga3g, multi-agent debate); generalize the provenance encoding.
+
+---
+
+# C3 — FAIR/generalized PROV: the cure survives without being handed the answer (2026-06-21)
+
+C1/C2 used marker-PROV (told which value is current = unfair vs baselines). C3 generalizes:
+each claim carries a **version tag** (origin round) as conversation METADATA (`event['prov']`);
+the authoritative update arrives carrying its version; an agent holds the highest version it
+has HEARD and re-broadcasts that versioned belief when it speaks; listeners take max version.
+PROV is NEVER told which value is correct -- it infers currency from version, and an agent that
+never hears the versioned update stays unknown. Fair vs baselines (which simply don't track
+provenance). Fig: `paper/figures/fig_cure_fair_prov.png`.
+
+```text
+              HOLD%   95%CI      unknown
+GA (n=8)       22    [13-30]    68%
+fair-PROV      57    [49-65]    40%      <- CIs DISJOINT; ~2.6x
+per-seed GA->fair-PROV (8/8 up): 41:48->76 42:28->56 43:24->64 44:24->52 45:12->32 46:12->60 47:12->56 48:12->60
+```
+
+**Findings.** (1) The cure SURVIVES a fair implementation: 22->57%, 95% CIs disjoint, and
+**every one of 8 seeds improves**. (2) Fair-PROV is actually STRONGER and cleaner than the
+marker version (40%, overlapping CI, one seed flat) -- metadata propagation is more robust than
+text-marker matching. (3) unknown collapses 68->40%: provenance propagates the fact. This
+removes the "you handed PROV the answer" objection and makes PROV a legitimate architectural
+contribution: *tracking provenance* vs memories that do not.
+
+**Caveats / next.** Single scenario (repair_drive), mini, baseline condition. The source and
+r30 conditions and the cure figure still reflect marker-PROV (C2) -- re-run with fair-PROV
+before final. Next: BUILD THE ARCHITECTURE TABLE -- fair-PROV vs recognized non-overwrite
+baselines {raw/RAG, GA, currency/smga3g, A-MEM, MemoryBank, debate} x {repair_drive, book_club,
+carpool}.

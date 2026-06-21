@@ -190,8 +190,15 @@ def _run_encounter(
     history: list[dict[str, Any]] = []
     utts = converse(a, b, topic, history)
     observations = []
+    by_name = {a.name: a, b.name: b}
     for u in utts:
         event = {"round": round_idx, "text": u["text"], "speaker": u["speaker"], "listener": u["listener"]}
+        # Provenance channel (used by PROVMemory): the speaker relays its versioned belief.
+        speaker = by_name.get(u["speaker"])
+        prov_fn = getattr(speaker.memory, "provenance", None) if speaker else None
+        prov = prov_fn() if callable(prov_fn) else None
+        if prov:
+            event["prov"] = prov
         observations.append((a, b, event))
     return {"a": a.name, "b": b.name, "utterances": utts}, observations
 
@@ -239,7 +246,8 @@ def run_round(world: World, round_idx: int, converse: ConverseFn, *, workers: in
         agent = world.agent_by_id(agent_id)
         if agent is None:
             continue
-        event = {"round": round_idx, "text": text, "speaker": "world", "listener": agent.name, "injected": True}
+        event = {"round": round_idx, "text": text, "speaker": "world", "listener": agent.name,
+                 "injected": True, "prov": {"version": round_idx, "value": text}}
         agent.memory.observe(event)
         injected.append({"agent": agent.name, "text": text})
     if workers > 1 and len(world.agents) > 1:
@@ -445,11 +453,9 @@ def interview(world: World, question: str, llm: "Any") -> dict[str, Any]:
 
 
 def build_memory_factory(kind: str, llm: "Any", scenario: str = "repair_drive") -> Callable[[], Memory]:
-    if kind == "prov":  # provenance-aware integration (the cure candidate)
+    if kind == "prov":  # provenance-aware integration (the cure) — generalized origin/version tags
         from memories import PROVMemory
-        sc = SCENARIOS.get(scenario, SCENARIOS["repair_drive"])
-        cur, sta = sc["current_markers"], sc["stale_markers"]
-        return lambda: PROVMemory(llm=llm, current_markers=cur, stale_markers=sta)
+        return lambda: PROVMemory(llm=llm)
     if kind == "raw":
         return lambda: RawStreamMemory()
     if kind == "ga":
