@@ -456,6 +456,15 @@ def build_memory_factory(kind: str, llm: "Any", scenario: str = "repair_drive") 
     if kind == "prov":  # provenance-aware integration (the cure) — generalized origin/version tags
         from memories import PROVMemory
         return lambda: PROVMemory(llm=llm)
+    if kind == "memorybank":  # baseline ~ MemoryBank (recency-weighted retrieval)
+        from memories import MemoryBankMemory
+        return lambda: MemoryBankMemory(llm=llm)
+    if kind == "amem":  # baseline ~ A-MEM (evolving canonical note)
+        from memories import AMemMemory
+        return lambda: AMemMemory(llm=llm)
+    if kind == "mem0":  # baseline ~ Mem0 (LLM extract -> update a compact fact)
+        from memories import Mem0Memory
+        return lambda: Mem0Memory(llm=llm)
     if kind == "raw":
         return lambda: RawStreamMemory()
     if kind == "ga":

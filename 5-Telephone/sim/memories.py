@@ -199,6 +199,109 @@ class PROVMemory:
 
 
 @dataclass
+class MemoryBankMemory:
+    """Recognized baseline ~ MemoryBank (Ebbinghaus-style forgetting): retrieval is
+    RECENCY-weighted, so the most recent statement about a topic dominates. Distinct from
+    GA (no reflection) and from PROV (no provenance channel): it tracks no version and only
+    leans on recency of the surface utterance, which stale relays also have."""
+    llm: Any = None
+    events: list[dict[str, Any]] = field(default_factory=list)
+
+    def observe(self, event: dict[str, Any]) -> None:
+        self.events.append(event)
+
+    def retrieve(self, query: str) -> str:
+        # relevance filter, then recency-primary ordering (recent ranks higher)
+        rel = _rank_by_relevance(query, [(str(e.get("text", "")), e) for e in self.events], 10)
+        rel_recent = sorted(rel, key=lambda e: int(e.get("round", 0)), reverse=True)[:6]
+        return "\n".join(f"- {e.get('text','')}" for e in rel_recent)
+
+    def consolidate(self) -> None:
+        return
+
+    def snapshot(self) -> dict[str, Any]:
+        return {"kind": "memorybank", "n_events": len(self.events)}
+
+
+@dataclass
+class AMemMemory:
+    """Recognized baseline ~ A-MEM (agentic memory with evolving notes): a new memory that
+    asserts a CHANGE to the event EVOLVES the canonical note in place (currency update),
+    foregrounded at retrieval. Distinct from PROV: it updates only from change-cue TEXT it
+    hears and does NOT carry a provenance/version tag onto its own utterances, so it cannot
+    propagate the update through garbled relays the way PROV's metadata channel does."""
+    llm: Any = None
+    events: list[dict[str, Any]] = field(default_factory=list)
+    note: str = ""  # evolving canonical note of the event's current state
+
+    def observe(self, event: dict[str, Any]) -> None:
+        self.events.append(event)
+        text = str(event.get("text", ""))
+        low = text.lower()
+        if any(cue in low for cue in _CHANGE_CUES):  # a change statement -> evolve the note
+            self.note = text
+
+    def retrieve(self, query: str) -> str:
+        ev = _rank_by_relevance(query, [(str(e.get("text", "")), e) for e in self.events], 5)
+        lines: list[str] = []
+        if self.note:
+            lines.append(f"- (current note) {self.note}")
+        lines += [f"- {e.get('text','')}" for e in ev]
+        return "\n".join(lines)
+
+    def consolidate(self) -> None:
+        return
+
+    def snapshot(self) -> dict[str, Any]:
+        return {"kind": "amem", "note": self.note, "n_events": len(self.events)}
+
+
+@dataclass
+class Mem0Memory:
+    """Recognized baseline ~ Mem0 (extract -> ADD/UPDATE/DELETE): each round an LLM extracts
+    and UPDATES a single compact, up-to-date fact about the event from recent messages
+    (faithful to Mem0's extract+update loop). Tracks the current value individually but, like
+    GA-currency/A-MEM, has no provenance channel onto its utterances, so it cannot propagate
+    the update through the society."""
+    llm: Any = None
+    events: list[dict[str, Any]] = field(default_factory=list)
+    fact: str = ""
+    _round: int = 0
+
+    def observe(self, event: dict[str, Any]) -> None:
+        self.events.append(event)
+
+    def consolidate(self) -> None:  # extract -> update the compact fact (LLM, like Mem0)
+        self._round += 1
+        recent = _recent(self.events, 12)
+        if not recent:
+            return
+        statements = "\n".join(f"- {e.get('text','')}" for e in recent)
+        prior = self.fact or "(none yet)"
+        out = self.llm.complete_json(
+            "You maintain ONE up-to-date memory fact about a neighborhood event's schedule (its "
+            "day/time and place). Given your prior fact and recent messages, UPDATE it to the most "
+            "current value if a change is reported; otherwise keep it. "
+            'Reply ONLY JSON: {"fact": "..."}',
+            f"Prior fact: {prior}\nRecent messages:\n{statements}",
+        )
+        f = str(out.get("fact", "")).strip()
+        if f:
+            self.fact = f
+
+    def retrieve(self, query: str) -> str:
+        rel = _rank_by_relevance(query, [(str(e.get("text", "")), e) for e in self.events], 4)
+        lines: list[str] = []
+        if self.fact:
+            lines.append(f"- (memory: current fact) {self.fact}")
+        lines += [f"- {e.get('text','')}" for e in rel]
+        return "\n".join(lines)
+
+    def snapshot(self) -> dict[str, Any]:
+        return {"kind": "mem0", "fact": self.fact, "n_events": len(self.events)}
+
+
+@dataclass
 class SMGAv2Memory:
     llm: LLM
     events: list[dict[str, Any]] = field(default_factory=list)
