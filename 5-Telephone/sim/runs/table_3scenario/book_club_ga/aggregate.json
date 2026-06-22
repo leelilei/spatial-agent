@@ -1,0 +1,87 @@
+{
+  "groups": [
+    {
+      "model": "gpt-5.4-mini",
+      "memory": "ga",
+      "runs": 4,
+      "agents_total": 100,
+      "current": 47,
+      "stale": 17,
+      "unknown": 36,
+      "unsupported_specific": 2,
+      "current_rate": 0.47,
+      "unsupported_specific_rate": 0.02,
+      "mean_run_current_rate": 0.47,
+      "mean_run_unsupported_specific_rate": 0.02,
+      "min_run_current_rate": 0.44,
+      "max_run_current_rate": 0.48,
+      "std_run_current_rate": 0.017320508075688763
+    }
+  ],
+  "rows": [
+    {
+      "memory": "ga",
+      "model": "gpt-5.4-mini",
+      "run_index": 0,
+      "schedule_seed": 41,
+      "agent_count": 25,
+      "rounds": 5,
+      "turns": 3,
+      "out_dir": "/Users/mac/Documents/6-Research/5-Telephone/sim/runs/table_3scenario/book_club_ga/gpt-5.4-mini/ga/run_000",
+      "currency_interview": {
+        "current": 12,
+        "stale": 0,
+        "unknown": 13
+      },
+      "unsupported_specific": 0
+    },
+    {
+      "memory": "ga",
+      "model": "gpt-5.4-mini",
+      "run_index": 1,
+      "schedule_seed": 42,
+      "agent_count": 25,
+      "rounds": 5,
+      "turns": 3,
+      "out_dir": "/Users/mac/Documents/6-Research/5-Telephone/sim/runs/table_3scenario/book_club_ga/gpt-5.4-mini/ga/run_001",
+      "currency_interview": {
+        "current": 12,
+        "stale": 5,
+        "unknown": 8
+      },
+      "unsupported_specific": 2
+    },
+    {
+      "memory": "ga",
+      "model": "gpt-5.4-mini",
+      "run_index": 2,
+      "schedule_seed": 43,
+      "agent_count": 25,
+      "rounds": 5,
+      "turns": 3,
+      "out_dir": "/Users/mac/Documents/6-Research/5-Telephone/sim/runs/table_3scenario/book_club_ga/gpt-5.4-mini/ga/run_002",
+      "currency_interview": {
+        "current": 11,
+        "stale": 9,
+        "unknown": 5
+      },
+      "unsupported_specific": 0
+    },
+    {
+      "memory": "ga",
+      "model": "gpt-5.4-mini",
+      "run_index": 4,
+      "schedule_seed": 45,
+      "agent_count": 25,
+      "rounds": 5,
+      "turns": 3,
+      "out_dir": "/Users/mac/Documents/6-Research/5-Telephone/sim/runs/table_3scenario/book_club_ga/gpt-5.4-mini/ga/run_004",
+      "currency_interview": {
+        "current": 12,
+        "stale": 3,
+        "unknown": 10
+      },
+      "unsupported_specific": 0
+    }
+  ]
+}

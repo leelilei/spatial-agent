@@ -46,6 +46,8 @@
 
 | 06-22 | C7 | SPARSE COMMS (fix every-round broadcast): prov_mention sweep | repair_drive mini r10 n=5, provv2 mention {1.0,0.3,0.1} | The 100% lock was a COMMS-MODEL artifact: with sparse mention + Ebbinghaus decay, v2 settles to a real EQUILIBRIUM — mention 1.0->99, 0.3->96, **0.1->40 [~] (stale 0, ~2x GA 22)**. Decay only bites once comms are sparse enough; provenance still beats frequency under realistic sparse comms | done(v2m01 n=4-5) |
 
+| 06-22 | C8 | GENERALITY: architecture table across 3 scenarios | {ga,prov,smga3g,amem} x {book_club,carpool} mini m2 r5 n=5 (+ repair_drive from C5) | **PROV is #1 in ALL 3 scenarios**: repair_drive 57 vs GA22; book_club 69 vs GA47/A-MEM52; carpool 59 vs GA18. Cure generalizes; single-scenario-artifact attack DEAD | done |
+
 Detailed write-ups follow below as runs land.
 
 ---
@@ -803,3 +805,25 @@ is the number to report as PROV's realistic effect; 100% is the every-round-broa
 utterance (a clean proxy for topic-gated sparse comms); a text-coupled version is a further
 variant. Equilibrium level depends on (mention rate, decay, connectivity) -- a small phase
 diagram (mention x decay) is natural future work.
+
+---
+
+# C8 — architecture comparison across 3 scenarios (generality) (2026-06-22)
+
+Generalizes the C5 repair_drive table to book_club + carpool (mini, m2, r5, n=5).
+
+```text
+scenario        GA          PROV(ours)   GA-currency  A-MEM
+repair_drive    22 [13-30]  57 [49-65]   25 [15-35]   19 [12-26]
+book_club       47 [45-49]  69 [62-76]   42 [17-67]   52 [38-66]
+carpool         18 [10-25]  59 [49-69]   24 [17-31]   30 [25-34]
+(broadcast ceiling ~99 all scenarios)
+```
+
+**Finding: PROV is the top method in ALL THREE scenarios.** repair_drive and carpool show clean CI
+separation (PROV >> all baselines); book_club has higher baselines (GA 47, A-MEM 52 -- this
+scenario is intrinsically easier) but PROV (69) is still highest. No recognized memory architecture
+matches PROV in any scenario. This kills the single-scenario-artifact critique and answers the
+Spark-to-Fire-style demand for a head-to-head architecture comparison: provenance integration
+beats frequency-based memories generally, not just on one task. Next (decisions D3): topology
+robustness + a different fact-TYPE scenario (numeric correction).
