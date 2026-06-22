@@ -165,11 +165,14 @@ class PROVMemory:
     propagate through conversation. The paper contribution = "track provenance" as an
     architecture, compared against memories that do not."""
     llm: Any = None
-    prov_loss: float = 0.0   # prob the provenance fails to survive a relay (lossy-channel stress test)
+    prov_loss: float = 0.0    # prob the provenance fails to survive a relay (drop)
+    prov_garble: float = 0.0  # prob a relay corrupts the value to the stale value (keeping the version)
+    garble_value: str = ""    # the stale value to corrupt to (set from scenario)
     events: list[dict[str, Any]] = field(default_factory=list)
     belief_value: str = ""
     belief_version: int = -1
     _rng: "Any" = None
+    _grng: "Any" = None
 
     def observe(self, event: dict[str, Any]) -> None:
         self.events.append(event)
@@ -188,9 +191,17 @@ class PROVMemory:
         self.belief_value = str(prov.get("value", ""))
 
     def provenance(self) -> dict[str, Any] | None:
-        """What this agent currently believes + its version, for the speaker to relay."""
+        """What this agent relays + its version. Under prov_garble, a relay may corrupt the
+        VALUE to the stale value while keeping the (high) version — the harder lossy-channel
+        test: the clean side-channel itself carries a corrupted value (as LLM retelling would)."""
         if self.belief_version < 0:
             return None
+        if self.prov_garble > 0.0 and self.garble_value:
+            import random as _r
+            if self._grng is None:
+                self._grng = _r.Random()
+            if self._grng.random() < self.prov_garble:
+                return {"value": self.garble_value, "version": self.belief_version}
         return {"value": self.belief_value, "version": self.belief_version}
 
     def retrieve(self, query: str) -> str:

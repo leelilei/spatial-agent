@@ -178,7 +178,7 @@ def run_one(
         converse = make_llm_converse(llm, turns=args.turns)
 
     world = demo_world(
-        build_memory_factory(memory, llm, scenario=args.scenario, prov_loss=args.prov_loss),
+        build_memory_factory(memory, llm, scenario=args.scenario, prov_loss=args.prov_loss, prov_garble=args.prov_garble),
         rng_seed=schedule_seed,
         agent_count=args.agent_count,
         meetings_per_round=args.meetings,
@@ -310,6 +310,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--persona-depth", default="thin", choices=["thin", "thick"], help="thin one-liner vs rich Park-2024-style personas")
     parser.add_argument("--interview-every-round", action="store_true", help="interview after every round (held-belief decay trajectory)")
     parser.add_argument("--prov-loss", type=float, default=0.0, help="PROV lossy-channel: prob provenance fails to survive a relay")
+    parser.add_argument("--prov-garble", type=float, default=0.0, help="PROV lossy-channel: prob a relay corrupts the value to stale (keeps version)")
     parser.add_argument("--rounds", type=int, default=5)
     parser.add_argument("--turns", type=int, default=4)
     parser.add_argument("--workers", type=int, default=1, help="concurrent encounters/consolidations per round")
