@@ -1,0 +1,11 @@
+scenario_id,family,agent_type,goal_completion,feasibility_violation,replanning_success,travel_efficiency,budget_consistency,intention_consistency,social_appropriateness,final_time,final_location,final_budget,violations
+avoid_crowd_event,preference_constraint,utility_planner,1.0,0.0,,1.0,1.0,1.0,,18:27,park,14.0,0
+avoid_crowd_event,preference_constraint,api_llm_direct_actor,1.0,0.0,,0.814,1.0,1.0,,20:00,park,0.0,0
+budget_errand_chain,budget_constraint,utility_planner,1.0,0.0,,1.0,1.0,1.0,,17:33,budget_diner,3.0,0
+budget_errand_chain,budget_constraint,api_llm_direct_actor,1.0,0.0,,1.0,1.0,1.0,,18:33,home_aria,3.0,0
+commute_disruption,disruption,utility_planner,0.5,1.0,0.0,1.0,1.0,0.0,,08:26,office,8.0,1
+commute_disruption,disruption,api_llm_direct_actor,1.0,0.0,1.0,0.634,1.0,1.0,,09:20,office,8.0,0
+conflicting_social_obligation,social_spatial_tradeoff,utility_planner,1.0,0.0,,1.0,1.0,1.0,1.0,17:47,coworking,20.0,0
+conflicting_social_obligation,social_spatial_tradeoff,api_llm_direct_actor,1.0,0.0,,1.0,1.0,1.0,1.0,19:00,coworking,20.0,0
+unexpected_friend_encounter,opportunistic_social,utility_planner,0.75,0.0,,1.0,1.0,0.75,0.0,16:04,pharmacy,11.0,0
+unexpected_friend_encounter,opportunistic_social,api_llm_direct_actor,0.75,0.125,,0.5,0.0,0.656,0.0,16:41,market,-3.0,1

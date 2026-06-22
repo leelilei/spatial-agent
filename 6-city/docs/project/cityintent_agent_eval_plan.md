@@ -2,8 +2,12 @@
 
 Date: 2026-06-22
 
-Purpose: define which city-agent policies CityIntent should evaluate, and clarify
-what SOTOPIA actually compared.
+Purpose: define which city-agent policies the first CityAgency / CityIntent
+track should evaluate, and clarify what SOTOPIA actually compared.
+
+Naming note: **CityAgency** is now the umbrella project name. **CityIntent** is
+the v0 track that focuses on intention persistence, feasible city action, and
+replanning under constraints.
 
 ## Short Answer
 

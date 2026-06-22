@@ -1,28 +1,35 @@
 # 6-city
 
-CitySim / urban generative-agent benchmark research workspace.
+CityAgency / urban generative-agent benchmark research workspace.
+
+Working paper story:
+
+> Plausible Plans, Impossible Traces: a benchmark for measuring whether urban
+> agents can turn reasonable-sounding plans into executable city traces.
 
 ## North Star
 
-Build a small, controllable, verifiable benchmark for embodied or spatially situated
-city agents: agents should make intention-driven decisions in a city environment, and
-their behavior should be evaluated by spatial feasibility, adaptation, social context,
-and goal completion rather than by demo plausibility alone.
+Build a small, controllable, verifiable benchmark for embodied or spatially
+situated city agents: agents should maintain private intentions, respect city
+constraints, recover from disruptions, and produce traces that can be evaluated
+by spatial feasibility, adaptation, social context, and goal completion rather
+than by demo plausibility alone.
 
 ## Current Focus
 
 - Literature map: urban benchmark papers, CitySim-like agent simulation papers, and
   embodied-city / navigation references.
 - Benchmark design: SOTOPIA-style scenario packages for city agents.
-- Opportunity framing: controlled micro-city benchmark for autonomy, spatial
-  sensitivity, and replanning under environmental constraints.
+- Opportunity framing: CityAgency as a controlled microfoundational benchmark
+  for urban agency, connecting individual decision failures to larger city
+  simulation and mobility-realism questions.
 
 ## Key Notes
 
 - `docs/project/citysim-agent-projects.md`: comparison table for related projects.
-- `docs/plans/proposal.md`: current CityIntent proposal.
-- `docs/project/cityintent_agent_eval_plan.md`: candidate agent architectures for CityIntent evaluation.
-- `benchmarks/cityintent_v0/`: runnable v0 smoke-test package with toy city, scenarios, and validator.
+- `docs/plans/proposal.md`: current CityAgency proposal.
+- `docs/project/cityintent_agent_eval_plan.md`: candidate agent architectures for the first CityAgency / CityIntent evaluation track.
+- `benchmarks/cityintent_v0/`: runnable v0 CityIntent track with toy city, scenarios, and validator.
 - `docs/project/sotopia-style-city-benchmark.md`: SOTOPIA-style benchmark design sketch.
 - `docs/project/urban-benchmark-literature.md`: urban benchmark literature scan.
 - `assets/papers/metadata/reference_index.md`: curated reference index and archive map.

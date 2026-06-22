@@ -9,6 +9,8 @@ Curated reference archive for the city-agent benchmark project.
 - `pdf/02_citysim_agents/`: CitySim-like agent simulation and generative-agent papers.
 - `pdf/03_embodied_city/`: embodied city, city navigation, and urban multimodal papers.
 - `pdf/04_social_benchmark_foundations/`: benchmark foundations imported from social-agent research.
+- `pdf/05_mobility_realism/`: mobility realism and mobility-simulation benchmark papers.
+- `pdf/06_agent_execution_benchmarks/`: executable-agent, feasibility, travel-planning, and state-validation benchmark papers.
 - `fulltext/`: Markdown full text extracted from archived PDFs.
 - `notes/`: human-written project notes and citation decisions.
 

@@ -1,0 +1,171 @@
+{
+  "source_pdf": "D:\\0-Research\\6-city\\assets\\papers\\pdf\\06_agent_execution_benchmarks\\06_TheAgentCompany_Xu2024.pdf",
+  "extractor_backend": "pdfplumber",
+  "extract_time": "2026-06-22T16:11:57+00:00",
+  "title": "TheAgentCompany: Benchmarking LLM Agents on Consequential Real World Tasks",
+  "author": "Frank F. Xu; Yufan Song; Boxuan Li; Yuxuan Tang; Kritanjali Jain; Mengxue Bao; Zora Z. Wang; Xuhui Zhou; Zhitong Guo; Murong Cao; Mingyang Yang; Hao Yang Lu; Amaad Martin; Zhe Su; Leander Maben; Raj Mehta; Wayne Chi; Lawrence Jang; Yiqing Xie; Shuyan Zhou; Graham Neubig",
+  "doi": "",
+  "keywords": [],
+  "subject": "",
+  "page_count": 24,
+  "outline": [
+    {
+      "title": "Introduction",
+      "level": 0,
+      "page_number": 1
+    },
+    {
+      "title": "Benchmark Desiderata and Comparison to Other Benchmarks",
+      "level": 0,
+      "page_number": 2
+    },
+    {
+      "title": "TheAgentCompany Environment Setup",
+      "level": 0,
+      "page_number": 3
+    },
+    {
+      "title": "Task Structure",
+      "level": 0,
+      "page_number": 4
+    },
+    {
+      "title": "Evaluation Metrics",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "Workflow",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "Task Creation",
+      "level": 0,
+      "page_number": 5
+    },
+    {
+      "title": "Choosing Task Categories",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "Choosing Tasks",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Manual Task Curation",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Baseline Agents",
+      "level": 0,
+      "page_number": 7
+    },
+    {
+      "title": "Experimental Results",
+      "level": 0,
+      "page_number": 7
+    },
+    {
+      "title": "Result Overview",
+      "level": 1,
+      "page_number": 7
+    },
+    {
+      "title": "Analysis",
+      "level": 1,
+      "page_number": 8
+    },
+    {
+      "title": "Common Agent Failures",
+      "level": 1,
+      "page_number": 9
+    },
+    {
+      "title": "Implications and Future Directions",
+      "level": 0,
+      "page_number": 9
+    },
+    {
+      "title": "Agent Benchmark Comparison",
+      "level": 0,
+      "page_number": 13
+    },
+    {
+      "title": "Benchmark Construction",
+      "level": 0,
+      "page_number": 13
+    },
+    {
+      "title": "Example Tasks",
+      "level": 0,
+      "page_number": 14
+    },
+    {
+      "title": "Baseline Agent Details",
+      "level": 0,
+      "page_number": 15
+    },
+    {
+      "title": "LLM-as-a-Judge",
+      "level": 0,
+      "page_number": 16
+    },
+    {
+      "title": "LLM-as-Colleagues",
+      "level": 0,
+      "page_number": 17
+    },
+    {
+      "title": "More TheAgentCompany Environment Details",
+      "level": 0,
+      "page_number": 17
+    },
+    {
+      "title": "TheAgentCompany Overview",
+      "level": 1,
+      "page_number": 17
+    },
+    {
+      "title": "TheAgentCompany Employee Roster with Project Assignments and Slack Channels",
+      "level": 1,
+      "page_number": 17
+    },
+    {
+      "title": "TheAgentCompany Q3 2024 Quarterly Sprint Goals",
+      "level": 1,
+      "page_number": 19
+    },
+    {
+      "title": "TheAgentCompany Internal Documents",
+      "level": 1,
+      "page_number": 20
+    },
+    {
+      "title": "Agent-Simulated Colleagues Conversation Examples",
+      "level": 0,
+      "page_number": 21
+    },
+    {
+      "title": "Detailed Experimental Results",
+      "level": 0,
+      "page_number": 21
+    },
+    {
+      "title": "Limitation",
+      "level": 0,
+      "page_number": 21
+    }
+  ],
+  "text_char_count": 83662,
+  "status": "ok",
+  "warnings": [],
+  "project_root": "D:\\0-Research\\6-city",
+  "relative_pdf": "06_agent_execution_benchmarks\\06_TheAgentCompany_Xu2024.pdf",
+  "fulltext_path": "assets\\papers\\fulltext\\06_agent_execution_benchmarks\\06_TheAgentCompany_Xu2024.fulltext.md",
+  "quality_flags": [],
+  "abstract": "We interact with computers on an everyday basis, be it in everyday life or work, and many aspects of work can be done entirely with access to a computer and the Internet. At the same time, thanks to improvements in large language models (LLMs), there has also been a rapid development in AI agents that interact with and affect change in their surrounding environments. But how performant are AI agents at accelerating or even autonomously performing work-related tasks? The answer to this question has important implications both for industry looking to adopt AI into their workflows and for economic policy to understand the effects that adoption of AI may have on the labor market. To measure the progress of these LLM agents’ performance on performing real-world professional tasks, in this paper we introduce TheAgentCompany, an extensible benchmark for evaluating AI agents that interact with the world in similar ways to those of a digital worker: by browsing the Web, writing code, running programs, and communicating with other coworkers. We build a self-contained environment with internal web sites and data that mimics a small software company environment, and create a variety of tasks that may be performed by workers in such a company. We test baseline agents powered by both closed API-based and open-weights language models (LMs), and find that the most competitive agent can complete 30% of tasks autonomously. This paints a nuanced picture on task automation with LM agents–in a setting simulating a real workplace, a good portion of simpler tasks could be solved autonomously, but more difficult long-horizon tasks are still beyond the reach of current systems. We release code, data, environment, and experiments on https://the-agent-company.com. Website https://the-agent-company.com Code https://github.com/TheAgentCompany/TheAgentCompany Evaluations https://github.com/TheAgentCompany/experiments"
+}

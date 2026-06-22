@@ -1,0 +1,136 @@
+{
+  "source_pdf": "D:\\0-Research\\6-city\\assets\\papers\\pdf\\04_social_benchmark_foundations\\06_Can_LLM_Agents_Simulate_Multi_Turn_Human_Behavior_2025.pdf",
+  "extractor_backend": "pdfplumber",
+  "extract_time": "2026-06-22T16:10:28+00:00",
+  "title": "Can LLM Agents Simulate Multi-Turn Human Behavior? Evidence from Real Online Customer Behavior Data",
+  "author": "Yuxuan Lu; Jing Huang; Yan Han; Bingsheng Yao; Sisong Bei; Jiri Gesi; Yaochen Xie; Yisi Sang; Zheshen; Wang; Qi He; Dakuo Wang",
+  "doi": "",
+  "keywords": [],
+  "subject": "",
+  "page_count": 17,
+  "outline": [
+    {
+      "title": "Introduction",
+      "level": 0,
+      "page_number": 1
+    },
+    {
+      "title": "Related Works",
+      "level": 0,
+      "page_number": 2
+    },
+    {
+      "title": "Simulation of Human Behavior with LLM",
+      "level": 1,
+      "page_number": 2
+    },
+    {
+      "title": "Reasoning in Human Behavior Simulation",
+      "level": 1,
+      "page_number": 2
+    },
+    {
+      "title": "Method",
+      "level": 0,
+      "page_number": 3
+    },
+    {
+      "title": "Task Definition",
+      "level": 1,
+      "page_number": 3
+    },
+    {
+      "title": "Synthesized Reasoning Trace",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "Model Architecture",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "Experiments",
+      "level": 0,
+      "page_number": 4
+    },
+    {
+      "title": "Dataset Construction",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "Evaluation and Metrics",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "Experimental Setup",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Evaluation Results and Analysis",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Ablation Study",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Error Analysis",
+      "level": 1,
+      "page_number": 7
+    },
+    {
+      "title": "Discussion and Future Works",
+      "level": 0,
+      "page_number": 8
+    },
+    {
+      "title": "Action Misalignment Between Human and Large Language Models",
+      "level": 1,
+      "page_number": 8
+    },
+    {
+      "title": "Reasoning in Next Action Generation",
+      "level": 1,
+      "page_number": 8
+    },
+    {
+      "title": "Reasoning and Human Cognition",
+      "level": 1,
+      "page_number": 9
+    },
+    {
+      "title": "Future Works",
+      "level": 1,
+      "page_number": 9
+    },
+    {
+      "title": "Conclusion",
+      "level": 0,
+      "page_number": 9
+    },
+    {
+      "title": "Prompts",
+      "level": 0,
+      "page_number": 12
+    },
+    {
+      "title": "Example Context",
+      "level": 0,
+      "page_number": 12
+    }
+  ],
+  "text_char_count": 71629,
+  "status": "ok",
+  "warnings": [],
+  "project_root": "D:\\0-Research\\6-city",
+  "relative_pdf": "04_social_benchmark_foundations\\06_Can_LLM_Agents_Simulate_Multi_Turn_Human_Behavior_2025.pdf",
+  "fulltext_path": "assets\\papers\\fulltext\\04_social_benchmark_foundations\\06_Can_LLM_Agents_Simulate_Multi_Turn_Human_Behavior_2025.fulltext.md",
+  "quality_flags": [],
+  "abstract": "Recent research shows that LLM Agents can generate “believable” human behaviors via prompt-only methods, and such agents have been increasingly adopted in downstream applications. However, existing evaluation of these agents only focuses on qualitative believability (whether human raters think they are accurate), leaving open questions of whether LLM agents can accurately generate step-by-step actions mimicking a particular human’s behavior in a multi-turn interaction task. In this work, we take shopping as a case study and present the first large-scale quantitative evaluation of state-of-the-art LLMs’ ability to accurately simulate human behavior. Using real-world data from 31,865 online shopping sessions containing 230,965 user actions, our evaluation reveals that prompt-based LLMs (DeepSeek-R1, Llama, Claude) achieve only 11.86% accuracy in generating human actions, highlighting a substantial gap in actual behavioral accuracy. Through experiments, we also showcase that strategies as simple as fine-tuning LLMs on real human click-through data augmented with synthesized reasoning traces can greatly enhance models’ performance. The fine-tuned Qwen2.5-7B achieves 17.26% action generation accuracy and 33.86% F1 score on final purchase prediction, representing substantial improvements of 5.4% and 13.85% over promptonly baselines. This work establishes the first rigorous benchmark for human behavior simulation and provides actionable insights for developing more accurate LLM agents for future downstream applications."
+}

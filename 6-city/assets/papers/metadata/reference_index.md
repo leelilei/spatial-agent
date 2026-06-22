@@ -1,6 +1,6 @@
 ﻿# Reference Index
 
-Downloaded / archived on 2026-06-22.
+Downloaded / archived on 2026-06-22 and 2026-06-23.
 
 This archive is for the `6-city` research direction: city-scale or micro-city
 generative agents, SOTOPIA-style benchmark design, spatially grounded autonomy, and
@@ -18,6 +18,13 @@ verifiable evaluation.
    landscape.
 4. Read `03_embodied_city/01_EmbodiedCity_Zhou2024.pdf` if the benchmark moves from
    graph/grid space toward embodied navigation.
+5. Read `05_mobility_realism/01_MobiSim_Bench_Zhang2026_OpenReview.pdf` and
+   `05_mobility_realism/02_When_Plausible_Is_Not_Realistic_Santos2026.pdf` for
+   the macro mobility-realism boundary.
+6. Read `06_agent_execution_benchmarks/02_FeasiGen_Do_Agents_Know_What_They_Cant_Do_2026.pdf`,
+   `06_agent_execution_benchmarks/03_tau_bench_Yao2024.pdf`, and
+   `06_agent_execution_benchmarks/04_AppWorld_Trivedi2024.pdf` for executable
+   state-validation and infeasibility-evaluation patterns.
 
 ## 01 Urban Benchmarks
 
@@ -60,6 +67,28 @@ verifiable evaluation.
 |---|---|---|---|
 | `../pdf/04_social_benchmark_foundations/01_Generative_Agents_Park2023.pdf` | Generative Agents: Interactive Simulacra of Human Behavior | [arXiv 2304.03442](https://arxiv.org/abs/2304.03442) | Foundation for memory, reflection, planning, and believable agent behavior. |
 | `../pdf/04_social_benchmark_foundations/02_SOTOPIA_Zhou2024_ICLR.pdf` | SOTOPIA: Interactive Evaluation for Social Intelligence in Language Agents | [OpenReview](https://openreview.net/forum?id=mM7VurbA4r) | Benchmark design model: private goals, social situations, interaction traces, evaluator. |
+| `../pdf/04_social_benchmark_foundations/03_AgentSense_2024.pdf` | AgentSense: Benchmarking Social Intelligence of Language Agents through Interactive Scenarios | [arXiv 2410.19346](https://arxiv.org/abs/2410.19346) | Social-agent benchmark neighbor; useful for private-goal and social-recovery evaluation. |
+| `../pdf/04_social_benchmark_foundations/04_Lifelong_SOTOPIA_2025.pdf` | Lifelong-SOTOPIA: Evaluating Social Intelligence for Lifelong LLM Agents | [arXiv 2506.12666](https://arxiv.org/abs/2506.12666) | Longitudinal social memory benchmark; useful if CityAgency adds repeated social histories. |
+| `../pdf/04_social_benchmark_foundations/05_Misleading_Success_2024.pdf` | Is this the real life? Is this just fantasy? The Misleading Success of Simulating Social Interactions With LLMs | [arXiv 2403.05020](https://arxiv.org/abs/2403.05020) | Cautionary reference on simulation realism and information conditions. |
+| `../pdf/04_social_benchmark_foundations/06_Can_LLM_Agents_Simulate_Multi_Turn_Human_Behavior_2025.pdf` | Can LLM Agents Simulate Multi-Turn Human Behavior? | [arXiv 2503.20749](https://arxiv.org/abs/2503.20749) | Human-behavior simulation benchmark; useful for action-trace realism and behavioral prediction framing. |
+
+## 05 Mobility Realism
+
+| Local archive | Paper | Source | Why keep it |
+|---|---|---|---|
+| `../pdf/05_mobility_realism/01_MobiSim_Bench_Zhang2026_OpenReview.pdf` | MobiSim-Bench: A Multi-Perspective Benchmark for Evaluating LLM-Agent-Based Human Mobility Simulation | [OpenReview](https://openreview.net/forum?id=3QFvAXuNl7) | Strongest mobility-simulation benchmark neighbor; evaluates robustness, realism, responsiveness, microscopic intentions, and macroscopic mobility statistics. |
+| `../pdf/05_mobility_realism/02_When_Plausible_Is_Not_Realistic_Santos2026.pdf` | When Plausible Is Not Realistic: Evaluating Human Mobility in LLM-Based Urban Simulation | [arXiv 2606.13835](https://arxiv.org/abs/2606.13835) | Key motivation for the plausibility-vs-realism gap; CityAgency should position itself as micro-level diagnosis beneath this macro validation. |
+
+## 06 Agent Execution Benchmarks
+
+| Local archive | Paper | Source | Why keep it |
+|---|---|---|---|
+| `../pdf/06_agent_execution_benchmarks/01_ChinaTravel_Shao2024.pdf` | ChinaTravel: An Open-Ended Travel Planning Benchmark for Language Agents in Chinese Travel | [arXiv 2412.13682](https://arxiv.org/abs/2412.13682) | Multi-day, multi-POI planning with feasibility and constraint validation; close neighbor for plausible plans under constraints. |
+| `../pdf/06_agent_execution_benchmarks/02_FeasiGen_Do_Agents_Know_What_They_Cant_Do_2026.pdf` | Do Agents Know What They Can't Do? Evaluating Feasibility Awareness of Language Agents Under Environment Constraints | [arXiv 2605.28532](https://arxiv.org/abs/2605.28532) | Feasibility-awareness benchmark; useful for false-continue and infeasible-task metrics. |
+| `../pdf/06_agent_execution_benchmarks/03_tau_bench_Yao2024.pdf` | tau-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains | [arXiv 2406.12045](https://arxiv.org/abs/2406.12045) | Strong reference for dynamic user interaction, domain rules, repeat trials, and state-based evaluation. |
+| `../pdf/06_agent_execution_benchmarks/04_AppWorld_Trivedi2024.pdf` | AppWorld: A Controllable World of Apps and People for Benchmarking Interactive Coding Agents | [arXiv 2407.18901](https://arxiv.org/abs/2407.18901) | Executable app-world benchmark with programmatic state validation and collateral-damage checks. |
+| `../pdf/06_agent_execution_benchmarks/05_WebArena_Zhou2023.pdf` | WebArena: A Realistic Web Environment for Building Autonomous Agents | [arXiv 2307.13854](https://arxiv.org/abs/2307.13854) | Reproducible web environment and functional task correctness; useful evaluation design precedent. |
+| `../pdf/06_agent_execution_benchmarks/06_TheAgentCompany_Xu2024.pdf` | TheAgentCompany: Benchmarking LLM Agents on Consequential Real World Tasks | [arXiv 2412.14161](https://arxiv.org/abs/2412.14161) | Long-horizon workplace-agent benchmark; useful comparison for consequential, stateful agent evaluation. |
 
 Local extracted text / metadata copied from `3-SMGA`:
 

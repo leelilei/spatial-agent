@@ -1,0 +1,136 @@
+{
+  "source_pdf": "D:\\0-Research\\6-city\\assets\\papers\\pdf\\06_agent_execution_benchmarks\\03_tau_bench_Yao2024.pdf",
+  "extractor_backend": "pdfplumber",
+  "extract_time": "2026-06-22T16:11:24+00:00",
+  "title": "Introduction",
+  "author": "",
+  "doi": "",
+  "keywords": [],
+  "subject": "",
+  "page_count": 50,
+  "outline": [
+    {
+      "title": "Introduction",
+      "level": 0,
+      "page_number": 1
+    },
+    {
+      "title": "Related Work",
+      "level": 0,
+      "page_number": 2
+    },
+    {
+      "title": "TAU-bench: A benchmark for Tool-Agent-User Interaction",
+      "level": 0,
+      "page_number": 3
+    },
+    {
+      "title": "Benchmark Construction",
+      "level": 0,
+      "page_number": 5
+    },
+    {
+      "title": "Domains",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "Key Characteristics",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Experiments",
+      "level": 0,
+      "page_number": 6
+    },
+    {
+      "title": "Main results",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Research challenge analysis",
+      "level": 1,
+      "page_number": 7
+    },
+    {
+      "title": "Discussion",
+      "level": 0,
+      "page_number": 8
+    },
+    {
+      "title": "Additional Results",
+      "level": 0,
+      "page_number": 13
+    },
+    {
+      "title": "Benchmark Construction",
+      "level": 0,
+      "page_number": 13
+    },
+    {
+      "title": "Stage I: design of database schemas, APIs, and policies",
+      "level": 1,
+      "page_number": 13
+    },
+    {
+      "title": "Stage II: data generation",
+      "level": 1,
+      "page_number": 20
+    },
+    {
+      "title": "Retail Examples",
+      "level": 0,
+      "page_number": 23
+    },
+    {
+      "title": "Data examples",
+      "level": 1,
+      "page_number": 23
+    },
+    {
+      "title": "Task and trajectory examples",
+      "level": 1,
+      "page_number": 25
+    },
+    {
+      "title": "Task 0: wrong decision",
+      "level": 2,
+      "page_number": 25
+    },
+    {
+      "title": "Task 7: wrong argument",
+      "level": 2,
+      "page_number": 31
+    },
+    {
+      "title": "Task 42: partially solve compound requests",
+      "level": 2,
+      "page_number": 36
+    },
+    {
+      "title": "Airline Examples",
+      "level": 0,
+      "page_number": 43
+    },
+    {
+      "title": "Data examples",
+      "level": 1,
+      "page_number": 43
+    },
+    {
+      "title": "Task 0: successful trajectory",
+      "level": 1,
+      "page_number": 46
+    }
+  ],
+  "text_char_count": 129440,
+  "status": "ok",
+  "warnings": [],
+  "project_root": "D:\\0-Research\\6-city",
+  "relative_pdf": "06_agent_execution_benchmarks\\03_tau_bench_Yao2024.pdf",
+  "fulltext_path": "assets\\papers\\fulltext\\06_agent_execution_benchmarks\\03_tau_bench_Yao2024.fulltext.md",
+  "quality_flags": [],
+  "abstract": "Existing benchmarks do not test language agents on their interaction with human users or ability to follow domain-specific rules, both of which are vital for deploying them in real world applications. We propose τ -bench, a benchmark emulating dynamic conversations between a user (simulated by language models) and a language agent provided with domain-specific API tools and policy guidelines. We employ an efficient and faithful evaluation process that compares the database state at the end of a conversation with the annotated goal state. We also propose a new metric (pass^k) to evaluate the reliability of agent behavior over multiple trials. Our experiments show that even state-of-the-art function calling agents (like gpt-4o) succeed on < 50% of the tasks, and are quite inconsistent (pass^8 < 25% in retail). Our findings point to the need for methods that can improve the ability of agents to act consistently and follow rules reliably."
+}

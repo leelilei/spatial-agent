@@ -1,19 +1,20 @@
-# CityIntent Proposal
+# CityAgency Proposal
 
-> Version: v0.1
+> Version: v0.3
 > Updated: 2026-06-22
 > Status: draft
 
 ## Title
 
-**CityIntent: Evaluating Intention-Driven Agents in Verifiable Urban Spaces**
+**Plausible Plans, Impossible Traces: CityAgency as a Benchmark for Urban Agent Agency**
 
 ## One-Sentence Thesis
 
-CityIntent is a benchmark for testing whether language-model agents can pursue
-private intentions through spatially constrained urban environments, producing
-feasible, adaptive, and socially coherent trajectories that can be verified by an
-environment rather than merely judged as plausible text.
+CityAgency is a microfoundational benchmark for measuring the gap between
+plausible urban plans and executable urban traces: whether language-model agents
+can maintain private intentions, respect city constraints, recover from urban
+disruptions, and produce action traces that are verified by an environment
+rather than merely judged as plausible text.
 
 ## Motivation
 
@@ -25,16 +26,26 @@ toward embodied or multimodal city-space understanding. CitySim, GATSim,
 OpenCity, MobileCity, and AgentSociety demonstrate increasingly ambitious
 large-scale simulations of urban activity and agent societies.
 
-What remains under-specified is a benchmark for **intentional urban agency**.
-Many systems can answer city questions, plan activities, or simulate aggregate
-mobility, but we still lack a compact and resettable benchmark that asks:
+Recent mobility-realism work also shows an important gap: LLM-driven city
+simulation can produce plausible narratives while failing to reproduce empirical
+mobility patterns such as trip distributions, dwell times, OD flows, activity
+transitions, and temporal rhythms. That line of work is valuable, but it mainly
+tests **macro-level realism**.
+
+What remains under-specified is a benchmark for **micro-level urban agency**:
+the local decision mechanisms that should make macro urban behavior credible in
+the first place. Many systems can answer city questions, plan activities, or
+simulate aggregate mobility, but we still lack a compact and resettable benchmark
+that asks:
 
 > Given private goals, social context, and a constrained city environment, can an
 > agent choose actions that remain feasible, goal-directed, spatially sensitive,
 > and adaptive over time?
 
-This is the gap CityIntent targets. The project should not compete by building a
-larger CitySim. It should compete by making city-agent behavior **measurable**.
+This is the gap CityAgency targets. The project should not compete by building a
+larger CitySim or by claiming to replace macro mobility-realism benchmarks. It
+should compete by making the micro-mechanisms of city-agent behavior
+**measurable**.
 
 ## Core Claim
 
@@ -47,33 +58,70 @@ Current urban-agent work tends to optimize one of three surfaces:
 3. **Large-scale simulation realism**: aggregate activity, mobility, and
    city-dynamic patterns.
 
-CityIntent targets a fourth surface:
+Social-agent benchmarks add another important surface:
 
-4. **Verifiable intentional agency**: agents with hidden private goals act in a
+4. **Interactive social intelligence**: hidden goals, dialogue strategy,
+   relationship management, and social norm reasoning.
+
+CityAgency targets a missing middle between these surfaces:
+
+5. **Verifiable micro-level urban agency**: agents with hidden private goals act in a
    city world where the environment owns truth about location, time, cost,
    co-presence, opening hours, and disruptions.
 
 The benchmark contribution is to separate **what the agent wants** from **what
 the city allows**, and to score the trace where those two meet.
 
+The project should therefore make a precise claim:
+
+> Macro mobility realism tells us whether a simulated city looks statistically
+> realistic. CityAgency diagnoses whether the individual agents have the
+> micro-level agency needed to generate such behavior under urban constraints.
+
+## Central Hypothesis: The Plausibility-Feasibility Gap
+
+The paper should be organized around a sharper empirical hypothesis:
+
+> Current LLM urban agents can often produce plausible plans and explanations,
+> but their executed traces become impossible when the city pushes back.
+
+This gap is not a stylistic flaw. It is a mechanism failure. An agent may explain
+why it should commute, visit a pharmacy, keep a lunch appointment, avoid a crowd,
+or comfort a friend, while the trace shows that it crossed a blocked route,
+entered a closed POI, exceeded the episode time window, repeated an already
+completed errand, or lost the original goal after a social interaction.
+
+CityAgency should therefore report two scores side by side:
+
+1. **Plan plausibility**: whether the agent's plan, rationale, or dialogue reads
+   as reasonable urban behavior.
+2. **Trace feasibility**: whether the environment can execute the resulting
+   action trace under map, time, budget, POI, and social constraints.
+
+The central result should be a **plausibility-feasibility gap**: cases where
+agents look competent in language but fail as city actors.
+
 ## Research Questions
 
-1. **Intentionality**: Does the agent maintain and pursue a private goal across
-   multiple steps, or does it drift with local prompt context?
-2. **Spatial grounding**: Are movements and POI choices feasible under the map,
+1. **Agency persistence**: Does the agent maintain and pursue a private goal
+   across multiple steps, or does it drift with local prompt context?
+2. **Constraint awareness**: Are movements and POI choices feasible under the map,
    travel times, opening hours, and capacity constraints?
 3. **Spatial sensitivity**: When the same agents and goals are placed in a
    different urban layout, do their behaviors change in explainable ways?
 4. **Adaptation**: When the environment changes, such as a closure, delay,
    crowding event, or route blockage, does the agent replan without inventing
    impossible success?
-5. **Social-spatial coupling**: Do social goals and relationships interact with
-   spatial constraints, such as deciding whether to make a long trip to meet a
-   friend, avoid someone, or preserve a promise?
+5. **Social interruption recovery**: When social interaction competes with the
+   private goal, can the agent behave socially while still recovering the
+   original task?
+6. **Micro-to-macro relevance**: Do failures in individual agency explain
+   downstream mobility or activity-chain failures, rather than appearing only as
+   local task mistakes?
 
 ## Benchmark Object
 
-A CityIntent item is a scenario package, not a question. Each package contains:
+A CityAgency item is a scenario package, not a question. Each package contains:
 
 ```text
 urban world
@@ -96,6 +144,15 @@ observe -> choose action/intention -> validate -> execute -> update world
 
 The LLM may choose intentions, explain tradeoffs, and select actions. The
 environment decides whether the action is possible.
+
+The current `cityintent_v0` benchmark package should be treated as the first
+CityAgency task track. In this structure:
+
+- **CityAgency** is the overall benchmark and research frame.
+- **CityIntent** is the first track, focused on intention persistence and
+  constraint-sensitive action.
+- Future tracks can add richer replanning, social recovery, activity-chain, and
+  macro-calibration probes without renaming the project again.
 
 ## Environment Scope
 
@@ -138,19 +195,40 @@ Invalid actions are not silently corrected. They are logged and scored.
 
 | Dimension | Mostly automatic? | What it measures |
 |---|---|---|
-| Goal completion | mixed | Whether the private intention was satisfied. |
-| Spatial feasibility | yes | Whether movement and POI use were physically and temporally possible. |
+| Plan plausibility | human/LLM | Whether the proposed plan or rationale reads as reasonable urban behavior. |
+| Trace feasibility | yes | Whether the action trace can be executed under map, time, budget, POI, and social constraints. |
+| Plausibility-feasibility gap | mixed | Whether a plausible plan produces an impossible or invalid trace. |
+| Intention completion | mixed | Whether the private goal was satisfied. |
+| Agency persistence | mixed | Whether the agent keeps pursuing the goal after delays, distractions, and partial success. |
 | Constraint compliance | yes | Violations of time, budget, opening hours, capacity, or role constraints. |
 | Spatial sensitivity | yes/mixed | Whether behavior changes appropriately under layout or access perturbations. |
 | Adaptation and replanning | mixed | Recovery after route blockage, POI closure, delay, or missed meeting. |
-| Persona consistency | mixed | Alignment with preferences, habits, mobility limits, and prior choices. |
-| Social-spatial coupling | mixed | Whether relationship goals affect movement and interaction decisions. |
+| Done-state awareness | yes/mixed | Whether the agent stops repeating completed errands and avoids redundant action loops. |
+| Social recovery | mixed | Whether relationship behavior helps or distracts from the private goal. |
+| Activity-chain coherence | mixed | Whether the trace forms a plausible daily sequence rather than isolated task completions. |
 | Believability | human/LLM | Whether the trace reads as plausible urban behavior. |
 | Efficiency | yes | LLM calls, tokens, invalid-action retries, and unnecessary movement. |
 
-The benchmark should prioritize automatic scoring first. LLM or human judges
-should be reserved for soft dimensions such as believability or relationship
-quality.
+The benchmark should prioritize automatic scoring for trace correctness. LLM or
+human judges should be reserved for plan plausibility, believability, or
+relationship quality. This separation is essential: the paper's core story
+depends on comparing what sounds plausible with what the city can actually
+execute.
+
+## Impossible Trace Taxonomy
+
+The first paper should make failure types concrete enough to count.
+
+| Failure type | Urban meaning | Example validator signal |
+|---|---|---|
+| Impossible route | Spatial execution failure | The trace crosses a blocked or disconnected edge. |
+| Closed-place action | Institutional constraint failure | The agent enters or buys from a POI outside opening hours. |
+| Time-budget failure | Time-geography failure | The trace misses an appointment or exceeds the episode window. |
+| Money-budget failure | Resource/accessibility failure | The agent spends more than its available budget. |
+| Goal drift | Agency persistence failure | The agent stops pursuing the private goal without justified abandonment. |
+| Social derailment | Social recovery failure | The agent interacts socially but fails to return to the original task. |
+| Done-state loop | State tracking failure | The agent repeats an already completed errand or purchase. |
+| Plausible-but-invalid rationale | Language-world mismatch | The rationale says the plan is feasible while the validator rejects the trace. |
 
 ## Scenario Families
 
@@ -228,9 +306,29 @@ Primary metrics:
 - privacy leakage
 - social goal completion
 
+### Family E: Micro-to-Macro Mechanism Probes
+
+Connect individual agency failures to city-research phenomena.
+
+Examples:
+
+- a transit disruption changes commute mode, work arrival time, and after-work
+  errands
+- a low-budget agent compresses its activity space and drops optional services
+- a service closure shifts demand to nearby substitutes and changes local crowding
+- social or care obligations create non-work trips that alter activity chains
+
+Primary metrics:
+
+- activity-chain completion
+- trip substitution or cancellation
+- time-geography constraint violations
+- accessibility loss under budget or mobility limits
+- downstream changes in POI load, OD flow, or encounter opportunities
+
 ## Baselines
 
-CityIntent should compare agents, not only models.
+CityAgency should compare agents, not only models.
 
 Initial baselines:
 
@@ -248,27 +346,46 @@ Initial baselines:
 The interesting comparison is not only which LLM is stronger. It is whether an
 agent architecture preserves intention while respecting environment constraints.
 
+The expected first-result pattern is:
+
+- Rule-based agents may be more feasible but brittle and less socially natural.
+- Direct LLM actors may produce plausible rationales but more impossible traces.
+- Reactive or memory-based agents should reduce some failures, especially
+  disruption recovery, goal drift, and done-state loops.
+- Oracle or validator-assisted policies define how much of the gap is caused by
+  agent architecture rather than scenario infeasibility.
+
+This comparison supports the paper's main punchline: urban agent quality is not
+only a language-model capability. It depends on architectures that separate
+intention, planning, memory, and environment validation.
+
 ## Expected Contribution
 
-CityIntent should claim three contributions:
+CityAgency should claim four contributions:
 
-1. **Benchmark formulation**: a scenario-package format for private-goal urban
-   agent episodes.
-2. **Scoring framework**: automatic spatial and temporal validation combined with
+1. **Microfoundational benchmark formulation**: a scenario-package format for
+   private-goal urban agent episodes that links individual decision mechanisms to
+   city-level behavior questions.
+2. **Plausibility-feasibility evaluation**: a protocol that scores plan
+   plausibility separately from executable trace feasibility.
+3. **Scoring framework**: automatic spatial and temporal validation combined with
    limited soft judging for believability and social effects.
-3. **Diagnostic findings**: evidence about where current LLM-agent policies fail,
+4. **Diagnostic findings**: evidence about where current LLM-agent policies fail,
    such as goal drift, spatial insensitivity, invalid action hallucination, or weak
    replanning after disruption.
 
 ## Relationship To Prior Work
 
-CityIntent is inspired by SOTOPIA's interactive evaluation structure, but it
+CityAgency is inspired by SOTOPIA's interactive evaluation structure, but it
 should not be framed as a SOTOPIA derivative. The right positioning is:
 
 - **Generative Agents** motivates memory, reflection, planning, and believable
   simulated daily behavior.
 - **SOTOPIA** motivates private-goal interactive episodes and multi-dimensional
   evaluation.
+- **AgentSense and related social-agent benchmarks** motivate evaluation of
+  social intelligence, norm awareness, and private-goal behavior under
+  interaction.
 - **Concordia** motivates environment-grounded action and game-master style world
   control.
 - **CityBench / USTBench / STBench / CityGPT** motivate the urban and
@@ -277,12 +394,28 @@ should not be framed as a SOTOPIA derivative. The right positioning is:
   multimodal city-space branch.
 - **CitySim / GATSim / OpenCity / MobileCity / AgentSociety** define large-scale
   city and society simulation neighbors.
+- **MobiSim-Bench** is the closest mobility-simulation benchmark neighbor,
+  evaluating LLM-agent-based human mobility simulation through robustness,
+  realism, and responsiveness.
+- **Mobility-realism benchmarks**, especially recent work arguing that plausible
+  LLM city simulations are not necessarily realistic, motivate the macro
+  validation layer: simulated traces should eventually be checked against
+  empirical mobility regularities, OD flows, dwell times, temporal rhythms, and
+  activity transitions.
+- **tau-bench, AppWorld, WebArena, and TheAgentCompany** motivate executable
+  agent evaluation: environment-owned state, domain rules, repeat trials, and
+  task completion judged by state changes rather than by text alone.
+- **FeasiGen and related feasibility-awareness work** motivate explicit
+  infeasible-task evaluation and false-continue metrics.
+- **Travel-planning benchmarks such as ChinaTravel** motivate compositional
+  constraint validation over multi-POI plans with implicit user intent.
 
 The novel position is:
 
-> CityIntent evaluates intentional city behavior under resettable spatial and
-> social constraints, rather than evaluating urban knowledge, visual perception,
-> aggregate realism, or simulator scale alone.
+> CityAgency evaluates the micro-level agency mechanisms behind urban behavior:
+> intention persistence, feasible action, social recovery, and replanning under
+> city constraints. It complements macro mobility-realism benchmarks, social
+> benchmarks, and general executable-agent benchmarks rather than replacing them.
 
 ## MVP Plan
 
@@ -291,7 +424,8 @@ The novel position is:
 - Define the scenario package schema.
 - Define the action API.
 - Define automatic validators for movement, time, POI access, and co-presence.
-- Create 10 to 20 seed scenarios across Layout Sensitivity and Disruption.
+- Create 10 to 20 seed scenarios across intention persistence, layout
+  sensitivity, social recovery, and disruption.
 
 ### Phase 1: Simulator and Scorer
 
@@ -300,65 +434,89 @@ The novel position is:
 - Implement trace logging.
 - Implement goal completion, feasibility, invalid-action, travel-cost, and
   adaptation metrics.
+- Implement the impossible-trace taxonomy so failures can be reported by type.
 
 ### Phase 2: Agent Baselines
 
 - Run fixed schedule, utility planner, LLM one-shot, LLM reactive, and LLM memory
   agents.
 - Evaluate across repeated seeds and paraphrased prompts.
-- Compare not only mean scores, but failure modes.
+- Add a lightweight plausibility judge for plans, rationales, and final trace
+  narratives.
+- Compare not only mean scores, but the gap between plausible plans and feasible
+  traces.
 
 ### Phase 3: Benchmark Paper
 
 - Present the benchmark and scenario families.
 - Report baseline failures and qualitative trace analysis.
 - Release scenario packages, scorer, and reference agents.
+- Position `cityintent_v0` as the first CityAgency track, then describe which
+  macro mobility-realism hooks should be added next.
+- Make the first main result a plausibility-feasibility gap table: agent policy
+  by plan plausibility, trace feasibility, goal completion, and impossible-trace
+  failure type.
 
 ## Success Criteria
 
-The first paper is viable if CityIntent can show:
+The first paper is viable if CityAgency can show:
 
 1. The benchmark catches failures that static urban QA does not catch.
 2. Layout or disruption perturbations produce measurable differences in agent
    behavior.
 3. Current LLM agents often produce plausible explanations while violating
    environment constraints or drifting from private goals.
-4. Automatic scorers can handle the hard correctness dimensions, reducing
+4. Micro-level failures can be connected to urban behavior mechanisms such as
+   activity-chain breakdown, accessibility loss, missed appointments, or disrupted
+   service use.
+5. Automatic scorers can handle the hard correctness dimensions, reducing
    over-reliance on LLM judges.
+6. The plausibility-feasibility gap varies by agent architecture, not only by
+   base model.
 
 ## Key Risks
 
 1. **Too small to matter**: A graph-based micro-city may look toy-like. Mitigation:
-   focus on controlled causal tests and transparent failure modes.
+   connect each scenario family to a recognized urban mechanism such as
+   time-geography constraints, activity chains, accessibility, service
+   substitution, or social co-presence.
 2. **Too subjective**: Believability and social quality can become judge-dependent.
    Mitigation: make automatic feasibility and perturbation metrics the core.
 3. **Too close to existing city benchmarks**: USTBench and CityEQA are close.
    Mitigation: emphasize private goals, multi-step traces, and social-spatial
    coupling.
 4. **Too close to CitySim**: CitySim is the obvious neighbor. Mitigation: frame
-   CityIntent as a benchmark harness for evaluating agent policies, not a
+   CityAgency as a benchmark harness for evaluating agent policies, not a
    large-scale simulator.
+5. **Too detached from macro urban research**: Micro agency can become an AI toy
+   task if it is not tied to city phenomena. Mitigation: include a
+   micro-to-macro analysis layer and describe how v0 failures would scale into
+   mobility, activity, or accessibility errors.
 
 ## First Paper Shape
 
 The paper can be organized as:
 
-1. Introduction: city agents need verifiable intentional agency.
+1. Introduction: plausible urban plans can still produce impossible traces.
 2. Related Work: urban benchmarks, embodied city agents, large-scale city sims,
-   social-agent benchmarks.
+   social-agent benchmarks, and mobility-realism evaluation.
 3. Benchmark Design: scenario packages, environment loop, action schema.
-4. Metrics: automatic validation plus soft judging.
-5. Baselines: fixed, utility, LLM one-shot, LLM reactive, LLM memory.
-6. Results: feasibility, goal completion, spatial sensitivity, adaptation.
-7. Failure Analysis: goal drift, invalid action, spatial blindness, weak replanning.
-8. Discussion: why controlled micro-cities are a useful bridge toward larger city
-   simulations.
+4. Metrics: plan plausibility, trace feasibility, agency persistence, and
+   impossible-trace taxonomy.
+5. Baselines: fixed, utility, direct LLM, one-shot planning, reactive replanning,
+   memory, and oracle.
+6. Results: the plausibility-feasibility gap across agent architectures.
+7. Failure Analysis: impossible routes, closed-place actions, time-budget failure,
+   social derailment, done-state loops, and goal drift.
+8. Discussion: why controlled micro-cities are a useful bridge from language
+   plausibility to larger city simulations and mobility realism.
 
 ## Working Claim
 
-CityIntent should make a modest but sharp claim:
+CityAgency should make a modest but sharp claim:
 
-> A city-agent benchmark should not only ask whether agents know cities or can
-> generate plausible schedules. It should test whether agents can maintain private
-> intentions while acting in a world that constrains what they can actually do.
+> A city-agent benchmark should not only ask whether agents know cities, generate
+> plausible schedules, or match aggregate mobility statistics. It should test
+> whether plausible plans become executable traces when the city constrains what
+> agents can actually do.
 

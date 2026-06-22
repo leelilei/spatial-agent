@@ -1,0 +1,251 @@
+{
+  "source_pdf": "D:\\0-Research\\6-city\\assets\\papers\\pdf\\04_social_benchmark_foundations\\03_AgentSense_2024.pdf",
+  "extractor_backend": "pdfplumber",
+  "extract_time": "2026-06-22T16:10:14+00:00",
+  "title": "Introduction",
+  "author": "",
+  "doi": "",
+  "keywords": [],
+  "subject": "",
+  "page_count": 26,
+  "outline": [
+    {
+      "title": "Introduction",
+      "level": 0,
+      "page_number": 1
+    },
+    {
+      "title": "Related Work",
+      "level": 0,
+      "page_number": 2
+    },
+    {
+      "title": "Social Intelligence Benchmarks",
+      "level": 1,
+      "page_number": 2
+    },
+    {
+      "title": "Role-playing Agents",
+      "level": 1,
+      "page_number": 2
+    },
+    {
+      "title": "AgentSense Benchmark",
+      "level": 0,
+      "page_number": 3
+    },
+    {
+      "title": "Framework Overview",
+      "level": 1,
+      "page_number": 3
+    },
+    {
+      "title": "Scenario Construction",
+      "level": 1,
+      "page_number": 3
+    },
+    {
+      "title": "Social Interaction Simulation",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "Evaluation",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "Data Validation and Analysis",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "Experiments",
+      "level": 0,
+      "page_number": 6
+    },
+    {
+      "title": "Experimental Settings",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Overall Performance",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Analysis of Data Leakage",
+      "level": 1,
+      "page_number": 7
+    },
+    {
+      "title": "Further Analysis",
+      "level": 0,
+      "page_number": 8
+    },
+    {
+      "title": "What goals are LLMs good/bad at?",
+      "level": 1,
+      "page_number": 8
+    },
+    {
+      "title": "Which is harder: guessing thoughts or keeping secrets?",
+      "level": 1,
+      "page_number": 8
+    },
+    {
+      "title": "What scenarios are more sensitive to profiles?",
+      "level": 1,
+      "page_number": 8
+    },
+    {
+      "title": "Conclusion",
+      "level": 0,
+      "page_number": 8
+    },
+    {
+      "title": "Scenario Construction",
+      "level": 0,
+      "page_number": 11
+    },
+    {
+      "title": "Scenario Template Construction Details",
+      "level": 1,
+      "page_number": 11
+    },
+    {
+      "title": "Social Goal Extraction",
+      "level": 2,
+      "page_number": 11
+    },
+    {
+      "title": "Private Information Extraction",
+      "level": 2,
+      "page_number": 11
+    },
+    {
+      "title": "Leakage Mitigation and Template Generation",
+      "level": 2,
+      "page_number": 11
+    },
+    {
+      "title": "Prompts in Construction Pipeline",
+      "level": 1,
+      "page_number": 12
+    },
+    {
+      "title": "Scenario Extraction",
+      "level": 2,
+      "page_number": 12
+    },
+    {
+      "title": "Social Goal Extraction",
+      "level": 2,
+      "page_number": 13
+    },
+    {
+      "title": "Private Information Extraction",
+      "level": 2,
+      "page_number": 14
+    },
+    {
+      "title": "Leakage Mitigation and Template Generation",
+      "level": 2,
+      "page_number": 16
+    },
+    {
+      "title": "Agent Synthesizing",
+      "level": 2,
+      "page_number": 17
+    },
+    {
+      "title": "Data Validation Annotation",
+      "level": 1,
+      "page_number": 19
+    },
+    {
+      "title": "Data Statistics and Analysis",
+      "level": 0,
+      "page_number": 19
+    },
+    {
+      "title": "Detailed Statistical Overview of Scripts",
+      "level": 1,
+      "page_number": 19
+    },
+    {
+      "title": "Social Scenario Categories",
+      "level": 1,
+      "page_number": 19
+    },
+    {
+      "title": "Social Goal Classification",
+      "level": 1,
+      "page_number": 19
+    },
+    {
+      "title": "Simulation Details",
+      "level": 0,
+      "page_number": 19
+    },
+    {
+      "title": "Prompts for Agents",
+      "level": 1,
+      "page_number": 19
+    },
+    {
+      "title": "Simulation Details",
+      "level": 1,
+      "page_number": 19
+    },
+    {
+      "title": "Additional Experiment Results",
+      "level": 0,
+      "page_number": 20
+    },
+    {
+      "title": "Human Evaluation of Goal Completion",
+      "level": 1,
+      "page_number": 20
+    },
+    {
+      "title": "Single Model-based Subset Experiment",
+      "level": 1,
+      "page_number": 20
+    },
+    {
+      "title": "Pairwise Model-based Experiment Prompt",
+      "level": 1,
+      "page_number": 20
+    },
+    {
+      "title": "Pairwise Model-based Additional Results",
+      "level": 1,
+      "page_number": 21
+    },
+    {
+      "title": "Goal Completion Score Additional Results",
+      "level": 1,
+      "page_number": 21
+    },
+    {
+      "title": "Experiment on Profiles' Effect on Scenarios",
+      "level": 1,
+      "page_number": 21
+    },
+    {
+      "title": "Under-performing Cases of Llama-2-7b",
+      "level": 1,
+      "page_number": 23
+    }
+  ],
+  "text_char_count": 81400,
+  "status": "ok",
+  "warnings": [],
+  "project_root": "D:\\0-Research\\6-city",
+  "relative_pdf": "04_social_benchmark_foundations\\03_AgentSense_2024.pdf",
+  "fulltext_path": "assets\\papers\\fulltext\\04_social_benchmark_foundations\\03_AgentSense_2024.fulltext.md",
+  "quality_flags": [],
+  "abstract": "Large language models (LLMs) are increasingly leveraged to empower autonomous agents to simulate human beings in various fields of behavioral research. However, evaluating their capacity to navigate complex social interactions remains a challenge. Previous studies face limitations due to insufficient scenario diversity, complexity, and a single-perspective focus. To this end, we introduce AgentSense: Benchmarking Social Intelligence of Language Agents through Interactive Scenarios. Drawing on Dramaturgical Theory, AgentSense employs a bottom-up approach to create 1,225 diverse social scenarios constructed from extensive scripts. We evaluate LLM-driven agents through multi-turn interactions, emphasizing both goal completion and implicit reasoning. We analyze goals using ERG theory and conduct comprehensive experiments. Our findings highlight that LLMs struggle with goals in complex social scenarios, especially highlevel growth needs, and even GPT-4o requires improvement in private information reasoning. Code and data are available at https: //github.com/ljcleo/agent_sense."
+}

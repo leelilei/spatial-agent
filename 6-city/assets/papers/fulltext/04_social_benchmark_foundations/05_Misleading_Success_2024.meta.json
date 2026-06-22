@@ -1,0 +1,171 @@
+{
+  "source_pdf": "D:\\0-Research\\6-city\\assets\\papers\\pdf\\04_social_benchmark_foundations\\05_Misleading_Success_2024.pdf",
+  "extractor_backend": "pdfplumber",
+  "extract_time": "2026-06-22T16:10:24+00:00",
+  "title": "Introduction",
+  "author": "",
+  "doi": "",
+  "keywords": [],
+  "subject": "",
+  "page_count": 23,
+  "outline": [
+    {
+      "title": "Introduction",
+      "level": 0,
+      "page_number": 1
+    },
+    {
+      "title": "Background & Related Work",
+      "level": 0,
+      "page_number": 2
+    },
+    {
+      "title": "Script vs Agents Simulation",
+      "level": 0,
+      "page_number": 3
+    },
+    {
+      "title": "The Unified Framework for Simulation",
+      "level": 1,
+      "page_number": 3
+    },
+    {
+      "title": "Experimental setup",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "RQ1: Script mode overestimates LLMs' ability to achieve social goals",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "RQ2: Script mode overstates LLMs' capability of natural interactions",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "Learning from Generated Stories",
+      "level": 0,
+      "page_number": 5
+    },
+    {
+      "title": "Creating New Scenarios",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "Finetuning Setup",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "RQ3: Training on Script simulations results in selective improvements",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "RQ4: Script simulations can be biased",
+      "level": 1,
+      "page_number": 7
+    },
+    {
+      "title": "Conclusion & Discussion",
+      "level": 0,
+      "page_number": 8
+    },
+    {
+      "title": "Limitations of Omniscient Simulation",
+      "level": 1,
+      "page_number": 8
+    },
+    {
+      "title": "Recommendations for Reporting",
+      "level": 1,
+      "page_number": 8
+    },
+    {
+      "title": "Towards Better Simulations in More Realistic Settings",
+      "level": 1,
+      "page_number": 8
+    },
+    {
+      "title": "Limitations and Ethical Considerations",
+      "level": 0,
+      "page_number": 9
+    },
+    {
+      "title": "Simulation Card",
+      "level": 0,
+      "page_number": 14
+    },
+    {
+      "title": "Full Prompt for Agent Mode",
+      "level": 0,
+      "page_number": 14
+    },
+    {
+      "title": "Full Prompt for Agent Mode",
+      "level": 1,
+      "page_number": 14
+    },
+    {
+      "title": "Full Prompt for Mindreaders",
+      "level": 1,
+      "page_number": 16
+    },
+    {
+      "title": "Full Prompt for Script",
+      "level": 1,
+      "page_number": 18
+    },
+    {
+      "title": "Example Code Snippets for Determining Simulation Modes",
+      "level": 0,
+      "page_number": 19
+    },
+    {
+      "title": "Full Results",
+      "level": 0,
+      "page_number": 19
+    },
+    {
+      "title": "Human Evaluation for Naturalness",
+      "level": 0,
+      "page_number": 21
+    },
+    {
+      "title": "Simulation and Finetuning Details",
+      "level": 0,
+      "page_number": 21
+    },
+    {
+      "title": "Further Analysis for the Simulations across Modes",
+      "level": 0,
+      "page_number": 21
+    },
+    {
+      "title": "Prompting Experiments",
+      "level": 0,
+      "page_number": 22
+    },
+    {
+      "title": "Prompt to Enhance Interaction Naturalness",
+      "level": 1,
+      "page_number": 22
+    },
+    {
+      "title": "Prompts to Evaluate Deal Formation",
+      "level": 1,
+      "page_number": 23
+    }
+  ],
+  "text_char_count": 78033,
+  "status": "ok",
+  "warnings": [],
+  "project_root": "D:\\0-Research\\6-city",
+  "relative_pdf": "04_social_benchmark_foundations\\05_Misleading_Success_2024.pdf",
+  "fulltext_path": "assets\\papers\\fulltext\\04_social_benchmark_foundations\\05_Misleading_Success_2024.fulltext.md",
+  "quality_flags": [],
+  "abstract": "Recent advances in large language models (LLM) have enabled richer social simulations, allowing for the study of various social phenomena. However, most recent work has used a more omniscient perspective on these simulations (e.g., single LLM to generate all interlocutors), which is fundamentally at odds with the non-omniscient, information asymmetric interactions that involve humans and AI agents in the real world. To examine these differences, we develop an evaluation framework to simulate social interactions with LLMs in various settings (omniscient, non-omniscient). Our experiments show that LLMs perform better in unrealistic, omniscient simulation settings but struggle in ones that more accurately reflect real-world conditions with information asymmetry. Our findings indicate that addressing information asymmetry remains a fundamental challenge for LLM-based agents."
+}
