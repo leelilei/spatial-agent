@@ -162,3 +162,45 @@ channel; 100% (p=0) is the upper bound, the realistic range still clears GA. **H
 to ship:** PROV depends on provenance value-fidelity (collapses to GA under severe garble);
 design fix = same-version arbitration (a correct claim should overturn a garbled same-version
 one). See RESULTS C5-stress + `paper/figures/fig_prov_lossy_stress.png`.
+
+---
+
+## 2026-06-22 (late) — Architecture reflection: is PROV the RIGHT design?
+
+**Honest self-critique (human-prompted).**
+
+*What's right.* (a) The principle: for a CHANGING fact, integration must be provenance/recency-
+aware, not frequency-aware (the entrenchment fix). (b) The deeper, defensible architectural
+claim: PROV introduces an explicit BELIEF-STATE layer — it separates "observations heard" from
+"belief held", maintained by an explicit revision rule. GA (and most LLM-agent memories) lack
+this: they store raw observations and let the LLM re-derive belief each time by frequency/
+salience → entrenchment. "Agents need an explicit belief-revision layer" is the real thesis;
+provenance is one rule for it.
+
+*What's naive / possibly wrong in the current PROV.*
+1. **"Latest version always wins, sticky, no doubt" is too rigid + EXPLOITABLE** — a lone agent
+   claiming a higher version with a false value is believed and locks in (= the garble fragility;
+   = a security hole; collides with Spark-to-Fire's adversarial framing).
+2. **Conflates newest with true** — PROV faithfully propagates a LATER falsehood over an earlier
+   truth. It distinguishes new-vs-old, not true-vs-false. Works only because, by construction,
+   the update IS the truth.
+3. **Provenance-as-clean-integer is idealized** — establishing "how recent/authoritative" is the
+   hard part and is assumed away (degrades under loss/garble, per C5-stress).
+4. **No forgetting / no resource bound** — absorbing 100% lock (unrealistic); append-only log
+   grows; not a realistic memory architecture, more a gossip/consensus protocol on one fact.
+
+**Decision — reframe + upgrade.**
+- **D1 — Position current PROV as an EXISTENCE PROOF of the lever** (provenance integration breaks
+  entrenchment), NOT as a deployable memory architecture. Lead the paper on the belief-revision-
+  layer thesis + the mechanism, with explicit limitations (exploitable, no forgetting, single-fact).
+- **D2 — Build PROV-v2** addressing the two load-bearing gaps (which also answer the human's two
+  intuitions + the garble fragility):
+  1. **Corroboration-gated adoption** (break "blindly trust highest version"): a (value,version)
+     claim is held confidently only with ≥k distinct corroborating sources; same-version conflicts
+     broken by corroboration count → a lone high-version liar/garble loses to the well-corroborated
+     truth. Resists exploitation.
+  2. **Ebbinghaus confidence decay** (break "100% lock / explosion"): belief confidence decays each
+     round without reinforcement; re-hearing reinforces; below threshold → forgotten/dropped →
+     dynamic equilibrium <100% + bounded memory. Realism + resource bound.
+- **D3 — Test PROV-v2** vs PROV/GA clean AND under garble (v2 should fix garble fragility via
+  corroboration) and over horizon (v2 should plateau <100%, not lock).
