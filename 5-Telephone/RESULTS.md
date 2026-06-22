@@ -48,6 +48,9 @@
 
 | 06-22 | C8 | GENERALITY: architecture table across 3 scenarios | {ga,prov,smga3g,amem} x {book_club,carpool} mini m2 r5 n=5 (+ repair_drive from C5) | **PROV is #1 in ALL 3 scenarios**: repair_drive 57 vs GA22; book_club 69 vs GA47/A-MEM52; carpool 59 vs GA18. Cure generalizes; single-scenario-artifact attack DEAD | done |
 
+| 06-22 | C9 | FACT-TYPE generality: NUMERIC correction (dues $40->$60) | dues mini m2 r5 n=5, {ga,prov,smga3g,amem} | **PROV 59 [49-69] leads** > GA 28 > A-MEM 25 > GA-curr 7. Cure works on a numeric fact change, not just day/place reschedule -> not a fact-type artifact | done |
+| 06-22 | C10 | TOPOLOGY robustness: GA vs PROV on ring/smallworld | repair_drive mini m2 r10 n=5 | **PROV >> GA on every topology**, gap LARGER on structured nets: random GA22/PROV93; ring GA6/PROV68; smallworld GA10/PROV83. GA collapses on slow nets, PROV's sticky propagation still spreads -> not a single-topology artifact | done |
+
 Detailed write-ups follow below as runs land.
 
 ---
@@ -827,3 +830,34 @@ matches PROV in any scenario. This kills the single-scenario-artifact critique a
 Spark-to-Fire-style demand for a head-to-head architecture comparison: provenance integration
 beats frequency-based memories generally, not just on one task. Next (decisions D3): topology
 robustness + a different fact-TYPE scenario (numeric correction).
+
+---
+
+# C9 / C10 — fact-type + topology generality (2026-06-22)
+
+Closing two external-validity gaps (decisions D3) the way Spark-to-Fire's breadth invites.
+
+**C9 — different FACT TYPE (numeric correction).** New `dues` scenario: membership dues change
+40 -> 60 dollars (a numeric value, not a day/place reschedule). repair_drive table re-run on it
+(mini, m2, r5, n=5):
+```text
+GA 28 [18-38]   PROV 59 [49-69]   GA-currency 7   A-MEM 25 [20-30]
+```
+PROV still leads (~2x GA), so the cure is not tied to the reschedule fact-type.
+
+**C10 — TOPOLOGY robustness (repair_drive, r10).** GA vs PROV across contact structures:
+```text
+topology      GA      PROV
+random       ~22       93     (from C5)
+ring           6       68
+smallworld    10       83
+```
+PROV >> GA on every topology, and the margin GROWS on harder (slower-mixing) structures: on a
+ring GA barely propagates (6%) while PROV still reaches 68%. The decay is worse on structured
+nets (GA), but provenance propagation is largely topology-robust. (star is degenerate under the
+per-round degree cap -> deferred; a broadcast-hub variant is future work.)
+
+**Together:** PROV beats frequency-based memory across 4 scenarios (3 reschedule + 1 numeric)
+AND across 3 topologies -- the single-scenario / single-topology / single-fact-type artifact
+critiques are all closed. Some cells finishing to n=5 (GA-currency dues n=4; ring/smallworld GA
+n=2-3); the PROV>>GA conclusion is stable.
