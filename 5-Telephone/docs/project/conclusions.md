@@ -84,3 +84,60 @@ mechanism here is social entrenchment and speech-belief dissociation.
   the paper materials.
 - Decide whether one additional scenario or broader judge validation is worth
   running for reviewer defense.
+
+---
+
+# CAPSTONE SYNTHESIS (2026-06-22) — full arc + honest verdict
+
+**The complete experimental arc (all archived in RESULTS.md ledger; data in data_index.md):**
+
+1. **Phenomenon (robust social fidelity decay).** A ground-truthed update does NOT survive
+   propagation; the society holds the truth at a low, decaying level. Survives capability
+   (M0/P3), connectivity (M1/P3b, neutral), memory swaps (M2/M3), thick personas (G2); decays
+   over a long horizon (M5, GA peaks ~r6 then -> ~6% by r30). Metric judge-validated (P2).
+
+2. **The DISSOCIATION (sharpest claim).** Speech != belief: interventions change what agents
+   SAY (final-round utterances) without changing what the society HOLDS (private interview).
+   M4: an authoritative source flips SAID to current but HELD stays at baseline; only brute
+   broadcast (overwrite) moves both. SAY/HOLD elicited separately.
+
+3. **Mechanism (entrenchment, not recency).** P1-rec: an early+broad correction succeeds,
+   a late one fails -> path-dependent entrenchment; frequency-based integration lets the
+   incumbent (stale) value win.
+
+4. **The CURE = PROV (provenance-aware integration).** Integrate heard claims by provenance
+   (latest authoritative version) not frequency. C1 de-risk, C2 validation, C3 fair (n=8:
+   57% [49-65] vs GA 22% [13-30], CIs disjoint). C5 architecture table: PROV is the ONLY
+   memory that lifts held truth; all recognized memories fail (Raw14/Mem0-18/A-MEM19/GA22/
+   GA-curr25/MemBank25). Generalizes: C8 (#1 across 3 scenarios), C9 (numeric fact-type),
+   C10 (#1 across topologies, margin GROWS on harder nets).
+
+5. **The CURE's honest boundaries.** C5 horizon: PROV climbs to 100% at r20 -- flagged (by the
+   human) as a DANGER SIGNAL. C5-stress: robust to provenance DROP, graceful under value
+   GARBLE (beats GA until severe). C6: a "smarter" PROV-v2 (corroboration + Ebbinghaus decay)
+   FAILED (negative result, recorded). C7: the 100% was a COMMS-MODEL artifact (every-utterance
+   broadcast); under realistic SPARSE communication + forgetting, PROV settles to a dynamic
+   equilibrium (~40% at mention 0.1, still ~2x GA, clean). The 100% on connected nets is a
+   universal idealized ceiling (would recur for C9/C10 at r20), NOT the headline; the honest
+   cure number is the sparse-comms equilibrium, above GA.
+
+**VERDICT (honest).**
+- *Diagnosis half:* FULLY achieved and strong (publishable on its own): phenomenon +
+  dissociation + mechanism, robust and judge-validated.
+- *Cure half:* achieved as an EXISTENCE PROOF that provenance integration is the right lever
+  (beats every recognized memory, across scenarios/fact-types/topologies) -- NOT as a
+  deployable robust architecture (PROV is naive/exploitable; PROV-v2 failed; realistic level is
+  ~2x GA, not 100%). This is a real positive result (resolves the "finding without a result"
+  worry), made more credible by honestly-mapped boundaries.
+- *The original goal* ("characterize fidelity decay + whether better architecture acts as
+  error-correction" / big Claim A with a real result): SUBSTANTIALLY MET.
+
+**Remaining before "experiments closed":**
+1. CAPABILITY CHECK ON THE CURE (the one real gap) -- all cure runs are mini; verify PROV still
+   beats GA on gpt-5.4/5.5 (symmetry with M0's phenomenon-survives-capability claim).
+2. Minor: two topology GA-baseline cells at n=2-3 (firm to n=5).
+3. Positioning vs Spark-to-Fire (arXiv:2603.04474): lead on dissociation + decentralized-memory
+   comparison + correction-direction, NOT on inventing provenance.
+
+**Future (not blocking):** PROV-v3 (trust/verification for the exploit/garble limit); n-extension
+of headline rows (pool_runs.py ready); star broadcast-hub topology; sparse-comms cross-scenario.
