@@ -324,6 +324,88 @@ class Mem0Memory:
 
 
 @dataclass
+class PROVv2Memory:
+    """PROV-v2: a realistic belief-revision layer. Upgrades the naive PROV with
+    (1) CORROBORATION-gated adoption -- a (value,version) claim is held confidently only with
+        >=k distinct sources; same-version conflicts break by corroboration count, so a lone
+        high-version liar / garbled value loses to the well-corroborated truth (fixes the garble
+        fragility + the 'blindly trust latest version' exploit); and
+    (2) EBBINGHAUS confidence decay -- each candidate's confidence decays per round without
+        reinforcement; re-hearing reinforces; below threshold it is forgotten/dropped. This
+        removes the absorbing 100% lock (-> dynamic equilibrium) and bounds memory.
+    Still decentralized + provenance-aware; relays the held belief + version."""
+    llm: Any = None
+    decay: float = 0.6          # confidence multiplier per round without reinforcement
+    corroborate_k: int = 2      # distinct sources needed to hold a claim confidently
+    floor: float = 0.05         # forget a candidate below this confidence
+    prov_loss: float = 0.0      # channel: prob a relay drops provenance
+    prov_garble: float = 0.0    # channel: prob a relay corrupts the value to stale
+    garble_value: str = ""
+    events: list[dict[str, Any]] = field(default_factory=list)
+    cands: dict = field(default_factory=dict)   # (version,value) -> {"src": set, "conf": float}
+    _rng: "Any" = None
+    _grng: "Any" = None
+
+    def observe(self, event: dict[str, Any]) -> None:
+        self.events.append(event)
+        prov = event.get("prov")
+        if not prov:
+            return
+        v = int(prov.get("version", -1)); val = str(prov.get("value", ""))
+        if v < 0:
+            return
+        if self.prov_loss > 0.0 and not event.get("injected"):  # lossy channel (drop)
+            import random as _r
+            if self._rng is None: self._rng = _r.Random()
+            if self._rng.random() < self.prov_loss: return
+        src = str(event.get("speaker", "?"))
+        c = self.cands.setdefault((v, val), {"src": set(), "conf": 0.0})
+        c["src"].add(src)
+        c["conf"] = 1.0   # reinforced now
+
+    def consolidate(self) -> None:  # Ebbinghaus decay + forgetting/bound
+        for c in self.cands.values():
+            c["conf"] *= self.decay
+        self.cands = {k: c for k, c in self.cands.items() if c["conf"] > self.floor}
+
+    def _belief(self):
+        live = [(k, c) for k, c in self.cands.items() if c["conf"] > self.floor]
+        if not live:
+            return None
+        corrob = [(k, c) for k, c in live if len(c["src"]) >= self.corroborate_k]
+        pool = corrob or live   # fall back to weak claims early (before corroboration builds)
+        # highest version, then most corroboration, then highest confidence
+        pool.sort(key=lambda kc: (kc[0][0], len(kc[1]["src"]), kc[1]["conf"]), reverse=True)
+        return pool[0]
+
+    def provenance(self) -> dict[str, Any] | None:
+        b = self._belief()
+        if not b:
+            return None
+        (v, val), _ = b
+        if self.prov_garble > 0.0 and self.garble_value:  # relay may corrupt the value
+            import random as _r
+            if self._grng is None: self._grng = _r.Random()
+            if self._grng.random() < self.prov_garble:
+                return {"value": self.garble_value, "version": v}
+        return {"value": val, "version": v}
+
+    def retrieve(self, query: str) -> str:
+        ev = _rank_by_relevance(query, [(str(e.get("text", "")), e) for e in self.events], 4)
+        lines: list[str] = []
+        b = self._belief()
+        if b:
+            lines.append(f"- (current belief, version {b[0][0]}) {b[0][1]}")
+        lines += [f"- {e.get('text','')}" for e in ev]
+        return "\n".join(lines)
+
+    def snapshot(self) -> dict[str, Any]:
+        b = self._belief()
+        return {"kind": "prov_v2", "belief": (b[0] if b else None),
+                "n_cands": len(self.cands), "n_events": len(self.events)}
+
+
+@dataclass
 class SMGAv2Memory:
     llm: LLM
     events: list[dict[str, Any]] = field(default_factory=list)

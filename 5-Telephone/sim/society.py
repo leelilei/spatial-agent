@@ -467,6 +467,10 @@ def build_memory_factory(kind: str, llm: "Any", scenario: str = "repair_drive",
     if kind == "mem0":  # baseline ~ Mem0 (LLM extract -> update a compact fact)
         from memories import Mem0Memory
         return lambda: Mem0Memory(llm=llm)
+    if kind == "provv2":  # PROV-v2: corroboration-gated adoption + Ebbinghaus decay
+        from memories import PROVv2Memory
+        gv = SCENARIOS.get(scenario, SCENARIOS["repair_drive"])["seed"]
+        return lambda: PROVv2Memory(llm=llm, prov_loss=prov_loss, prov_garble=prov_garble, garble_value=gv)
     if kind == "raw":
         return lambda: RawStreamMemory()
     if kind == "ga":
