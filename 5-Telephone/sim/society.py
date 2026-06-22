@@ -453,11 +453,13 @@ def interview(world: World, question: str, llm: "Any") -> dict[str, Any]:
 
 
 def build_memory_factory(kind: str, llm: "Any", scenario: str = "repair_drive",
-                         prov_loss: float = 0.0, prov_garble: float = 0.0) -> Callable[[], Memory]:
+                         prov_loss: float = 0.0, prov_garble: float = 0.0,
+                         prov_mention: float = 1.0) -> Callable[[], Memory]:
     if kind == "prov":  # provenance-aware integration (the cure) — generalized origin/version tags
         from memories import PROVMemory
         gv = SCENARIOS.get(scenario, SCENARIOS["repair_drive"])["seed"]  # stale value (for garble test)
-        return lambda: PROVMemory(llm=llm, prov_loss=prov_loss, prov_garble=prov_garble, garble_value=gv)
+        return lambda: PROVMemory(llm=llm, prov_loss=prov_loss, prov_garble=prov_garble,
+                                  prov_mention=prov_mention, garble_value=gv)
     if kind == "memorybank":  # baseline ~ MemoryBank (recency-weighted retrieval)
         from memories import MemoryBankMemory
         return lambda: MemoryBankMemory(llm=llm)
@@ -470,7 +472,8 @@ def build_memory_factory(kind: str, llm: "Any", scenario: str = "repair_drive",
     if kind == "provv2":  # PROV-v2: corroboration-gated adoption + Ebbinghaus decay
         from memories import PROVv2Memory
         gv = SCENARIOS.get(scenario, SCENARIOS["repair_drive"])["seed"]
-        return lambda: PROVv2Memory(llm=llm, prov_loss=prov_loss, prov_garble=prov_garble, garble_value=gv)
+        return lambda: PROVv2Memory(llm=llm, prov_loss=prov_loss, prov_garble=prov_garble,
+                                    prov_mention=prov_mention, garble_value=gv)
     if kind == "raw":
         return lambda: RawStreamMemory()
     if kind == "ga":

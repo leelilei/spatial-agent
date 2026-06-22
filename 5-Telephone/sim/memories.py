@@ -167,12 +167,14 @@ class PROVMemory:
     llm: Any = None
     prov_loss: float = 0.0    # prob the provenance fails to survive a relay (drop)
     prov_garble: float = 0.0  # prob a relay corrupts the value to the stale value (keeping the version)
+    prov_mention: float = 1.0 # prob the agent actually conveys the fact in a given utterance (1.0 = every utterance, the old behaviour)
     garble_value: str = ""    # the stale value to corrupt to (set from scenario)
     events: list[dict[str, Any]] = field(default_factory=list)
     belief_value: str = ""
     belief_version: int = -1
     _rng: "Any" = None
     _grng: "Any" = None
+    _mrng: "Any" = None
 
     def observe(self, event: dict[str, Any]) -> None:
         self.events.append(event)
@@ -191,11 +193,16 @@ class PROVMemory:
         self.belief_value = str(prov.get("value", ""))
 
     def provenance(self) -> dict[str, Any] | None:
-        """What this agent relays + its version. Under prov_garble, a relay may corrupt the
-        VALUE to the stale value while keeping the (high) version — the harder lossy-channel
-        test: the clean side-channel itself carries a corrupted value (as LLM retelling would)."""
+        """What this agent relays + its version. Topic-gated: with prob (1-prov_mention) the
+        agent simply does not bring the fact up in this utterance (sparse, realistic comms).
+        Under prov_garble, a relay may corrupt the VALUE to stale while keeping the version."""
         if self.belief_version < 0:
             return None
+        if self.prov_mention < 1.0:  # the agent does not mention the fact every time
+            import random as _r
+            if self._mrng is None: self._mrng = _r.Random()
+            if self._mrng.random() > self.prov_mention:
+                return None
         if self.prov_garble > 0.0 and self.garble_value:
             import random as _r
             if self._grng is None:
@@ -340,11 +347,13 @@ class PROVv2Memory:
     floor: float = 0.05         # forget a candidate below this confidence
     prov_loss: float = 0.0      # channel: prob a relay drops provenance
     prov_garble: float = 0.0    # channel: prob a relay corrupts the value to stale
+    prov_mention: float = 1.0   # prob the agent conveys the fact in a given utterance (sparse comms)
     garble_value: str = ""
     events: list[dict[str, Any]] = field(default_factory=list)
     cands: dict = field(default_factory=dict)   # (version,value) -> {"src": set, "conf": float}
     _rng: "Any" = None
     _grng: "Any" = None
+    _mrng: "Any" = None
 
     def observe(self, event: dict[str, Any]) -> None:
         self.events.append(event)
@@ -382,6 +391,11 @@ class PROVv2Memory:
         b = self._belief()
         if not b:
             return None
+        if self.prov_mention < 1.0:  # sparse comms: don't bring the fact up every utterance
+            import random as _r
+            if self._mrng is None: self._mrng = _r.Random()
+            if self._mrng.random() > self.prov_mention:
+                return None
         (v, val), _ = b
         if self.prov_garble > 0.0 and self.garble_value:  # relay may corrupt the value
             import random as _r
