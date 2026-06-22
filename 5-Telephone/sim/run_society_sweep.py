@@ -188,6 +188,7 @@ def run_one(
         scenario=args.scenario,
         rebroadcast_rounds=args.rebroadcast_rounds,
         persona_depth=args.persona_depth,
+        topology=args.topology,
     )
     question = world.question  # scenario-correct probe (overrides the default)
     label = model_label(model, llm, mock=args.mock)
@@ -313,6 +314,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--prov-loss", type=float, default=0.0, help="PROV lossy-channel: prob provenance fails to survive a relay")
     parser.add_argument("--prov-garble", type=float, default=0.0, help="PROV lossy-channel: prob a relay corrupts the value to stale (keeps version)")
     parser.add_argument("--prov-mention", type=float, default=1.0, help="PROV sparse comms: prob the agent conveys the fact in a given utterance (1.0=every utterance)")
+    parser.add_argument("--topology", default="random", choices=["random","ring","star","smallworld"], help="contact topology")
     parser.add_argument("--rounds", type=int, default=5)
     parser.add_argument("--turns", type=int, default=4)
     parser.add_argument("--workers", type=int, default=1, help="concurrent encounters/consolidations per round")

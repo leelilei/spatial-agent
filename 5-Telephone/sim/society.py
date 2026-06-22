@@ -148,29 +148,61 @@ class World:
     # encounters per agent per round (connectivity). 1 = single chain (slow diffusion);
     # 2-3 = a realistically connected neighborhood where an update can actually spread.
     meetings_per_round: int = 1
+    # contact topology: random (complete-graph matchings) | ring | star | smallworld
+    topology: str = "random"
     # scenario-specific probe + verdict markers (set by demo_world from SCENARIOS)
     question: str = "When and where is the repair drive being held now?"
     current_markers: tuple[str, ...] = ("sunday", "community center")
     stale_markers: tuple[str, ...] = ("saturday", "front porch", "porch")
+    _edges: list = field(default=None, repr=False)
+
+    def _topology_edges(self) -> list[tuple[Agent, Agent]]:
+        """Candidate contact edges for a structured topology (computed once)."""
+        a = self.agents; n = len(a); E = []
+        if self.topology == "ring":
+            E = [(a[i], a[(i + 1) % n]) for i in range(n)]
+        elif self.topology == "star":
+            E = [(a[0], a[i]) for i in range(1, n)]            # a[0] is the hub
+        elif self.topology == "smallworld":
+            E = [(a[i], a[(i + 1) % n]) for i in range(n)]      # ring +
+            extra = max(1, n // 5)
+            for _ in range(extra):
+                i, j = self.rng.randrange(n), self.rng.randrange(n)
+                if i != j:
+                    E.append((a[i], a[j]))                      # random long-range shortcuts
+        return E
 
     def schedule(self, round_idx: int) -> list[tuple[Agent, Agent]]:
-        """Who meets whom this round: `meetings_per_round` independent random matchings.
-
-        Higher connectivity lets a single-source update diffuse through the society
-        instead of crawling one hop per round. Duplicate pairs within a round are
-        de-duplicated so the same two agents don't hold the same conversation twice."""
-        seen: set[frozenset[str]] = set()
-        pairs: list[tuple[Agent, Agent]] = []
-        for _ in range(max(1, self.meetings_per_round)):
+        """Who meets whom this round. `random` = `meetings_per_round` independent random
+        matchings (well-mixed). Structured topologies (ring/star/smallworld) sample meetings
+        from a fixed edge set, capping each agent at `meetings_per_round` meetings/round."""
+        cap = max(1, self.meetings_per_round)
+        if self.topology != "random":
+            if self._edges is None:
+                self._edges = self._topology_edges()
+            order = list(self._edges); self.rng.shuffle(order)
+            deg: dict[str, int] = {ag.agent_id: 0 for ag in self.agents}
+            pairs: list[tuple[Agent, Agent]] = []
+            seen: set[frozenset[str]] = set()
+            for x, y in order:
+                key = frozenset((x.agent_id, y.agent_id))
+                if key in seen or deg[x.agent_id] >= cap or deg[y.agent_id] >= cap:
+                    continue
+                seen.add(key); deg[x.agent_id] += 1; deg[y.agent_id] += 1
+                pairs.append((x, y))
+            return pairs
+        seen2: set[frozenset[str]] = set()
+        pairs2: list[tuple[Agent, Agent]] = []
+        for _ in range(cap):
             pool = list(self.agents)
             self.rng.shuffle(pool)
             for i in range(0, len(pool) - 1, 2):
                 key = frozenset((pool[i].agent_id, pool[i + 1].agent_id))
-                if key in seen:
+                if key in seen2:
                     continue
-                seen.add(key)
-                pairs.append((pool[i], pool[i + 1]))
-        return pairs
+                seen2.add(key)
+                pairs2.append((pool[i], pool[i + 1]))
+        return pairs2
 
     def agent_by_id(self, agent_id: str) -> Agent | None:
         return next((a for a in self.agents if a.agent_id == agent_id), None)
@@ -353,13 +385,23 @@ SCENARIOS: dict[str, dict[str, Any]] = {
         "current_markers": ("8am", "church"),
         "stale_markers": ("7am", "school lot"),
     },
+    "dues": {  # DIFFERENT FACT TYPE: a numeric value correction (not a day/place reschedule)
+        "event": "the club membership dues",
+        "seed": "I am collecting the club membership dues, they are 40 dollars per person this year",
+        "update": ("Update: the club membership dues have changed from 40 dollars to "
+                   "60 dollars per person."),
+        "question": "How much are the club membership dues now, per person?",
+        "current_markers": ("60", "sixty"),
+        "stale_markers": ("40", "forty"),
+    },
 }
 
 
 def demo_world(memory_factory: Callable[[], Memory], *, rng_seed: int = 7, agent_count: int = 4,
                meetings_per_round: int = 1, rebroadcast_every: int = 0,
                rebroadcast_scope: str = "source", scenario: str = "repair_drive",
-               rebroadcast_rounds: str = "", persona_depth: str = "thin") -> World:
+               rebroadcast_rounds: str = "", persona_depth: str = "thin",
+               topology: str = "random") -> World:
     """A configurable society with one seeded social dynamic (an event to organize).
 
     Authoritative re-broadcast (the C4 intervention): rebroadcast_every>0 re-announces the
@@ -422,6 +464,7 @@ def demo_world(memory_factory: Callable[[], Memory], *, rng_seed: int = 7, agent
         rng=random.Random(rng_seed),
         injections=injections,
         meetings_per_round=meetings_per_round,
+        topology=topology,
         question=sc["question"],
         current_markers=sc["current_markers"],
         stale_markers=sc["stale_markers"],
