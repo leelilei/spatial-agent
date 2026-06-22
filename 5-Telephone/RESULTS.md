@@ -42,6 +42,8 @@
 
 | 06-22 | C5-stress | PROV LOSSY-CHANNEL stress test (the 100% danger signal) | repair_drive mini r10, prov_loss/garble {0.3,0.6,0.9} n=5 | DROP robust (0.3->100 0.6->93 0.9->26); GARBLE graceful-degrade (0.3->74 0.6->42 0.9->24) — beats GA(22) until severe. **Cure NOT a pure channel artifact: survives heavy drop + moderate value-corruption; depends on value fidelity (limitation)** | done(garble n=4-5) |
 
+| 06-22 | C6 | PROV-v2 (corroboration + Ebbinghaus decay) — both upgrades FAIL | repair_drive mini r10/r20 n=3-5 | clean still 99-100% (decay never fires: re-broadcast reinforces every round); **garble0.6 -> 7% (93% STALE, WORSE than PROV 42 & GA 22)**: corroboration backfires (systematic garble corroborates the STALE value too). Lessons: 100%-lock is a COMMS-MODEL artifact (every-round re-broadcast), not memory; corroboration defends a lone liar not a noisy channel | done(neg) |
+
 Detailed write-ups follow below as runs land.
 
 ---
@@ -724,3 +726,42 @@ same-version arbitration).
 (a clean abstraction of the lossy text channel); literal text-embedded provenance is a further
 variant. The injection into the source is never lost (it is a direct authoritative receipt, not a
 relay) — fixed after an initial run where loss zeroed the source.
+
+---
+
+# C6 — PROV-v2 (corroboration + Ebbinghaus decay): an honest NEGATIVE result (2026-06-22)
+
+Following the architecture reflection (decisions 2026-06-22), we built PROV-v2 to fix two flaws
+of PROV: (1) the absorbing 100% lock, via Ebbinghaus confidence decay; (2) the garble/exploit
+fragility, via corroboration-gated adoption (a claim needs >=k distinct sources; same-version
+conflicts break by corroboration). Smoke tests confirmed both mechanisms work in isolation.
+In the SOCIETY, both FAILED.
+
+```text
+                 PROV-v2     vs PROV    vs GA
+clean r10:         99%          93         22
+clean r20:        100%         100
+garble=0.6 r10:     7% (stale-dom 93%)   42    22
+```
+
+**Why decay failed.** The fact is re-broadcast by every believer every round, so confidence is
+reinforced (reset to 1.0) faster than it decays -> it never drops below the forget threshold ->
+the 100% lock persists. **The 100% lock is a property of the COMMUNICATION MODEL (constant
+re-broadcast), not of missing memory-decay.** A realistic fix must drop the "agents restate every
+fact every meeting" assumption, not add memory decay.
+
+**Why corroboration backfired.** garble here is SYSTEMATIC (every relay corrupts the value w.p.
+0.6), so the STALE value is itself corroborated by many agents, easily clears the k-source gate,
+is held confidently, and spreads -> the society converges CONFIDENTLY on stale (93%), worse than
+both PROV and GA. **Corroboration defends against a LONE adversary (one high-version liar), not
+against a noisy CHANNEL that corrupts everyone's relays.**
+
+**Lessons (valuable).** (1) Breaking the 100% requires a realistic communication/attention model,
+not memory decay. (2) Defending held-belief against systematic value-corruption needs source
+credibility / external verification (cf. Spark-to-Fire's verifier) -- a fundamentally harder
+problem that a decentralized memory rule alone cannot solve. (3) This sharpens PROV's honest
+scope: a clean EXISTENCE PROOF that provenance integration breaks frequency-entrenchment under
+benign channels; NOT a robust defense against an adversarial/garbling channel. PROV-v2 (as
+designed) is recorded as a failed upgrade -- do not ship it.
+
+**Status.** clean n=3-5 (finishing), garble n=3. Negative result is stable.

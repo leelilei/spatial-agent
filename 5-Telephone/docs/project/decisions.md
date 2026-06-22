@@ -204,3 +204,13 @@ provenance is one rule for it.
      dynamic equilibrium <100% + bounded memory. Realism + resource bound.
 - **D3 — Test PROV-v2** vs PROV/GA clean AND under garble (v2 should fix garble fragility via
   corroboration) and over horizon (v2 should plateau <100%, not lock).
+
+**UPDATE (C6).** PROV-v2 (corroboration + Ebbinghaus decay) FAILED both fixes: clean still
+99-100% (decay never fires — constant re-broadcast reinforces faster than decay), garble0.6 -> 7%
+stale-dominated (corroboration backfires under SYSTEMATIC garble: stale is corroborated too).
+Lessons: (a) the 100% lock is a COMMUNICATION-MODEL artifact (every-round re-broadcast), not a
+memory-decay issue — fix the comms assumption, not the memory; (b) corroboration defends a lone
+liar, not a noisy channel — systematic value-corruption needs source-credibility/verification (a
+harder problem). DECISION: keep PROV (v1) as the existence-proof cure with honest limitations; do
+NOT ship PROV-v2; the "realistic robustness" path is comms-model + trust/verification, flagged as
+future work, not claimed.
