@@ -176,7 +176,9 @@ class PROVMemory:
         prov = event.get("prov")
         if not prov or int(prov.get("version", -1)) <= self.belief_version:
             return
-        if self.prov_loss > 0.0:  # lossy channel: provenance/recency framing may not survive the relay
+        # Lossy channel: a peer RELAY may fail to convey provenance. The source's own direct
+        # receipt of the authoritative update (injected) is NOT a relay -> never lost.
+        if self.prov_loss > 0.0 and not event.get("injected"):
             import random as _r
             if self._rng is None:
                 self._rng = _r.Random()
