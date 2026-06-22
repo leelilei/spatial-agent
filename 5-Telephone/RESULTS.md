@@ -676,6 +676,6 @@ fidelity given propagation time, decentralized, without overwriting**." It also 
 contrast with the closest neighbor (Spark-to-Fire suppresses error spread to 89% via a
 centralized governance+verifier; we propagate a correction to ~100% via per-agent provenance).
 
-**Caveats / next.** Single scenario (repair_drive), mini. Next per decisions 2026-06-22 D3:
+**DANGER SIGNAL (must address):** the 100%% is from a LOSSLESS/AUTOMATIC provenance side-channel (perfect gossip flood that bypasses the lossy LLM relay) — an IDEALIZED upper bound, not emergent reasoning. Next experiment = lossy provenance channel (survive relay w.p. 1-loss); if PROV still beats GA under loss, the integration rule is the real cure (see decisions 2026-06-22 late). **Caveats / next.** Single scenario (repair_drive), mini. Next per decisions 2026-06-22 D3:
 (1) extend table + horizon to book_club/carpool; (2) topology robustness (chain/star/small-world);
 (3) capability check (gpt-5.4). PROV's value blob = update text; fairness via origin-round metadata.

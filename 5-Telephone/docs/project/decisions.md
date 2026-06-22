@@ -121,3 +121,35 @@ neighbor and reassessed whether our experimental coverage is sufficient.
   (n=8, CIs, judge, capability ladder, 7-architecture table). Breadth is the gap. Prioritize
   D3.1–D3.3 (all cheap-ish) to neutralize the "single-harness/single-topology artifact"
   critique before investing in D3.4.
+
+---
+
+## 2026-06-22 (late) — PROV horizon climb to 100% is a DANGER SIGNAL (idealized channel)
+
+**Finding (C5).** Fair-PROV climbs with propagation time: r5 57% → r10 93% → r20 100% (n=8/5/4),
+while GA stays ~20% and decays. All recognized memories (Raw/Mem0/A-MEM/GA/GA-currency/MemoryBank)
+fail at 14–25%.
+
+**Danger signal (human-flagged, confirmed).** The 100% (zero variance) is NOT emergent reasoning.
+PROV's provenance is a **lossless, automatic, always-adopted side-channel**: every utterance auto-
+carries the version tag (content-independent), the listener adopts max-version by a hard rule (no
+LLM, no doubt, no garble), sticky. → a **perfect gossip/flood** that mechanically saturates a
+connected network. **PROV "cures" by routing AROUND the lossy LLM relay** (the very cause of
+corruption), not by reasoning better about conflicting claims. Risks: (a) "broadcast in disguise"
+dismissal (though it IS decentralized 1-source propagation, not central injection); (b) unrealistic
+(real provenance is garbled/distrusted); (c) GA-vs-PROV contrast partly unfair (PROV rides a clean
+channel GA lacks).
+
+**Decisions.**
+- **D1 — Do NOT headline "PROV→100% solves it."** Frame 100% as an **idealized UPPER BOUND**
+  (what provenance achieves if losslessly preserved) → establishes provenance as the RIGHT LEVER.
+  The honest operating result is the degradation curve (below).
+- **D2 — Key next experiment: lossy provenance channel.** Make provenance survive each relay only
+  with prob (1−loss) (models the recency/source framing not surviving LLM retelling). Sweep loss.
+  If PROV still beats GA/frequency under realistic loss → **real, non-trivial cure** (the
+  INTEGRATION RULE is what matters, not the magic channel). If it collapses to GA → the cure
+  depends on idealization (a crucial honest finding either way).
+- **D3 — The non-trivial core is the integration rule** (prefer latest-origin vs frequency), not
+  the lossless channel. The stress-test isolates it. (Literal text-embedded provenance is an
+  optional further variant.)
+- This upholds the 准绳: report the idealization honestly, don't over-claim, solve under realism.
