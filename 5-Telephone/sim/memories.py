@@ -165,16 +165,25 @@ class PROVMemory:
     propagate through conversation. The paper contribution = "track provenance" as an
     architecture, compared against memories that do not."""
     llm: Any = None
+    prov_loss: float = 0.0   # prob the provenance fails to survive a relay (lossy-channel stress test)
     events: list[dict[str, Any]] = field(default_factory=list)
     belief_value: str = ""
     belief_version: int = -1
+    _rng: "Any" = None
 
     def observe(self, event: dict[str, Any]) -> None:
         self.events.append(event)
         prov = event.get("prov")
-        if prov and int(prov.get("version", -1)) > self.belief_version:
-            self.belief_version = int(prov["version"])
-            self.belief_value = str(prov.get("value", ""))
+        if not prov or int(prov.get("version", -1)) <= self.belief_version:
+            return
+        if self.prov_loss > 0.0:  # lossy channel: provenance/recency framing may not survive the relay
+            import random as _r
+            if self._rng is None:
+                self._rng = _r.Random()
+            if self._rng.random() < self.prov_loss:
+                return  # dropped this relay (agent may still receive it in a later meeting)
+        self.belief_version = int(prov["version"])
+        self.belief_value = str(prov.get("value", ""))
 
     def provenance(self) -> dict[str, Any] | None:
         """What this agent currently believes + its version, for the speaker to relay."""

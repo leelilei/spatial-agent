@@ -452,10 +452,11 @@ def interview(world: World, question: str, llm: "Any") -> dict[str, Any]:
     return results
 
 
-def build_memory_factory(kind: str, llm: "Any", scenario: str = "repair_drive") -> Callable[[], Memory]:
+def build_memory_factory(kind: str, llm: "Any", scenario: str = "repair_drive",
+                         prov_loss: float = 0.0) -> Callable[[], Memory]:
     if kind == "prov":  # provenance-aware integration (the cure) — generalized origin/version tags
         from memories import PROVMemory
-        return lambda: PROVMemory(llm=llm)
+        return lambda: PROVMemory(llm=llm, prov_loss=prov_loss)
     if kind == "memorybank":  # baseline ~ MemoryBank (recency-weighted retrieval)
         from memories import MemoryBankMemory
         return lambda: MemoryBankMemory(llm=llm)
