@@ -1,15 +1,19 @@
-# Social Fidelity Probe - Paper Narrative
+# When Truth Loses Its Source - Paper Narrative
 
-> Working title: *Speech is not belief: Social fidelity decay in LLM agent societies*.
+> Working title: *When Truth Loses Its Source: Provenance-Aware Memory for Socially Distributed Agents*.
 > This is the current writing spine. Numbers live in `../RESULTS.md`; the
 > figure plan lives in `figures.md`; citation triage lives in `references.md`.
+> Intro-specific framing notes live in `introduction.md`.
+> Section-first writing plan lives in `sections/README.md`; stabilize each major
+> Markdown block before migrating prose into LaTeX.
 
 ## One-Sentence Thesis
 
 When LLM agents pass a ground-truthed update through conversation, the society
 can learn to *say* the truth without coming to *hold* the truth. This
-speech-belief dissociation is driven by path-dependent entrenchment: the version
-established early and broadly wins.
+speech-belief dissociation is driven by path-dependent entrenchment: once a
+current fact loses its source/version, the version established early and broadly
+wins.
 
 ## What Changed From The Original Plan
 

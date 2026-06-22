@@ -32,6 +32,9 @@
 | C8 | architecture table × 3 scenarios | `table_3scenario/{book_club,carpool}_{ga,prov,smga3g,amem}` (+ C5 repair_drive) |
 | C9 | numeric fact-type (dues) | `dues/{ga,prov,smga3g,amem}` |
 | C10 | topology robustness (ring/smallworld) | `topology/{ring,smallworld}_{ga,prov}` |
+| C11 | PROV-text deterministic text relay mechanism probe | `provtext_context_relay_probe_v2` |
+| C12 | PROV-text-free real LLM dialogue + partial GA/PROV comparator | `provtext_llm_only_r10_n5`, `provtext_llm_long_r10_n5` |
+| C13 | PROV-text-norm strong attribution dialogue | `provtext_norm_r10_n3` |
 
 ## Reproducibility notes
 - **`run_config.json`** (per out-dir) records every CLI arg + timestamp → a run is now

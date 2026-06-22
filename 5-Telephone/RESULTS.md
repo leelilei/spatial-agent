@@ -52,6 +52,9 @@
 
 | 06-22 | C9 | FACT-TYPE generality: NUMERIC correction (dues $40->$60) | dues mini m2 r5 n=5, {ga,prov,smga3g,amem} | **PROV 59 [49-69] leads** > GA 28 > A-MEM 25 > GA-curr 7. Cure works on a numeric fact change, not just day/place reschedule -> not a fact-type artifact | done |
 | 06-22 | C10 | TOPOLOGY robustness: GA vs PROV on ring/smallworld | repair_drive mini m2 r10 n=5 | **PROV >> GA on every topology**, gap LARGER on structured nets: random GA22/PROV93; ring GA6/PROV68; smallworld GA10/PROV83. GA collapses on slow nets, PROV's sticky propagation still spreads -> not a single-topology artifact | done |
+| 06-22 | C11 | PROV-text mechanism probe (deterministic text relay) | repair_drive mock context relay, 25a r10 m1 n=5, raw/prov/provtext | If utterances explicitly preserve `Official round 1 update`, PROV-text reaches 125/125 current without hidden `prov` payload. Mechanism feasible, but probe is scripted/text-normed, not natural dialogue | done |
+| 06-22 | C12 | PROV-text-free real LLM dialogue | repair_drive gpt-5.4-mini, 25a r10 m1 t2, provtext n=3 (+ GA/PROV partial comparator) | **Natural dialogue drops source/version**: PROV-text-free 16/75 current, 0 stale, 59 unknown; source/version phrase mentions 0/720; only a01/Rosa holds version>=1. Structured PROV remains upper bound; next target = PROV-text-norm | done(neg; stopped after signal) |
+| 06-23 | C13 | PROV-text-norm strong attribution dialogue | repair_drive gpt-5.4-mini, 25a r10 m1 t2, provtextnorm n=3 | **Strong text attribution repairs held truth: 75/75 current, 0 stale, 0 unknown.** Audit: 610/720 utterances contain source/version-like markers; 75/75 memory snapshots hold version>=1. Caveat: this is a protocolized attribution norm / text-only upper bound, not natural human dialogue | done(strong-norm upper bound) |
 
 Detailed write-ups follow below as runs land.
 
@@ -863,3 +866,153 @@ per-round degree cap -> deferred; a broadcast-hub variant is future work.)
 AND across 3 topologies -- the single-scenario / single-topology / single-fact-type artifact
 critiques are all closed. Some cells finishing to n=5 (GA-currency dues n=4; ring/smallworld GA
 n=2-3); the PROV>>GA conclusion is stable.
+
+---
+
+# C11 -- text-coupled provenance probe (2026-06-22)
+
+Question: is GA already the natural-language-only society, and does PROV still work if
+provenance must travel through the utterance text instead of a hidden `event["prov"]` channel?
+
+Implementation: added `PROVTextMemory`, which has no `provenance()` method and therefore cannot
+attach structured metadata to ordinary conversation events. It adopts a relayed update only when
+the utterance itself contains an explicit attribution cue such as `official round 1` plus the
+scenario value. Direct world injections still carry authoritative provenance, as before.
+
+Fast mechanism probe: `--mock --context-relay-mock`, repair_drive, 25 agents, r10, m1, n=5.
+This deterministic text-only relay says one natural sentence from the speaker's retrieved memory
+notes, avoiding API latency while keeping relays as text.
+
+Held-belief snapshot tally:
+
+```text
+condition      current    stale    unknown
+raw              0/125    42/125    83/125
+PROV           125/125     0/125     0/125
+PROV-text      125/125     0/125     0/125
+```
+
+Audit: PROV-text ordinary conversation events have no hidden `prov` payload; propagation occurs
+through utterances containing `Official round 1 update: ...`.
+
+Interpretation: this confirms the mechanism is not inherently dependent on a binary side channel:
+if agents explicitly preserve source/version language, text-coupled provenance can propagate like
+structured PROV. It is still a mechanism probe, not the final realism result. The unresolved next
+experiment is an LLM conversation run where agents may or may not naturally preserve the source
+phrase; initial full LLM sweeps were too slow for this turn and should be run as a longer job.
+
+---
+
+# C12 -- PROV-text-free under real LLM dialogue (2026-06-22)
+
+Question: will ordinary LLM agent dialogue naturally preserve source/version language well enough
+for text-coupled provenance to propagate, without the hidden `event["prov"]` side channel?
+
+Config: repair_drive, `gpt-5.4-mini`, 25 agents, r10, m1, t2.
+
+Data:
+- Main PROV-text-free run: `sim/runs/provtext_llm_only_r10_n5`
+- Partial same-job comparator archive: `sim/runs/provtext_llm_long_r10_n5`
+- Each directory has `ARCHIVE.md`, `run_config.json`, reconstructed `aggregate.json`, and
+  `runs.json` where applicable.
+
+Completed PROV-text-free rows:
+
+```text
+seed 301: 5 current, 0 stale, 20 unknown
+seed 302: 3 current, 0 stale, 22 unknown
+seed 303: 8 current, 0 stale, 17 unknown
+
+total:    16/75 current = 21.3%; 0 stale; 59 unknown
+```
+
+Retention audit:
+
+```text
+utterances containing source/version markers: 0/720
+agents holding version>=1 in memory snapshots: 1/25 per run (only a01/Rosa)
+```
+
+Comparator rows from the stopped mixed job:
+
+```text
+GA, same setting:              21/100 current, 4 stale, 75 unknown
+Structured PROV, same setting: 50/50 current, 0 stale, 0 unknown
+```
+
+Incomplete/excluded runs:
+- `provtext_llm_long_r10_n5/ga/run_000`: provider HTTP 403 after round 0.
+- `provtext_llm_long_r10_n5/prov/run_002`: completed dialogue but no final interview.
+- `provtext_llm_only_r10_n5/provtext/run_003`: empty directory after manual stop.
+
+**Finding.** Natural dialogue does **not** spontaneously preserve source/version. PROV-text-free
+does not improve over GA; it stays near the GA level and is unknown-dominated. The mechanism is
+not stale corruption here: the provenance cue simply fails to leave the source agent.
+
+**Interpretation.** This is a useful negative result. Structured PROV should be framed as an
+idealized provenance-preserving protocol / upper bound, not as a fully naturalistic cure. The
+real design target is now PROV-text-norm: explicit source/version attribution carried in natural
+language, still propagated socially and not broadcast.
+
+**Decision.** Stop PROV-text-free at n=3 because the mechanism signal is already clear
+(0/720 source/version mentions; only a01 holds version>=1). Do not spend more budget confirming
+the same negative. Next P0 = implement and run PROV-text-norm.
+
+---
+
+# C13 -- PROV-text-norm strong attribution dialogue (2026-06-23)
+
+Question: after PROV-text-free fails, can provenance still propagate through text if agents use
+an explicit attribution norm, without hidden `event["prov"]` metadata and without broadcast?
+
+Config: repair_drive, `gpt-5.4-mini`, 25 agents, r10, m1, t2, n=3.
+
+Data:
+- Run archive: `sim/runs/provtext_norm_r10_n3`
+- Files: `run_config.json`, `aggregate.json`, `runs.json`, per-run transcripts, memory snapshots,
+  and `ARCHIVE.md`.
+
+Completed rows:
+
+```text
+seed 301: 25 current, 0 stale, 0 unknown
+seed 302: 25 current, 0 stale, 0 unknown
+seed 303: 25 current, 0 stale, 0 unknown
+
+total:    75/75 current = 100%; 0 stale; 0 unknown
+```
+
+Retention audit:
+
+```text
+run_000: 200/240 utterances contain source/version-like markers; 25/25 agents version>=1
+run_001: 221/240 utterances contain source/version-like markers; 25/25 agents version>=1
+run_002: 189/240 utterances contain source/version-like markers; 25/25 agents version>=1
+
+total:   610/720 marker utterances; 75/75 agents version>=1
+```
+
+**Finding.** A strong attribution norm makes text-only provenance work: every completed agent
+answers with the current fact, and every agent's memory snapshot contains versioned provenance.
+
+**Caveat.** This is not a natural-human dialogue result. The norm is strong and visibly
+protocolized (`Official round 1 update...`). It should be reported as a text-only provenance
+upper bound: if a society preserves attribution explicitly, held truth can be repaired without
+broadcast. It should not be used to claim that ordinary conversation naturally preserves
+source/version.
+
+**Interpretation.** The combination of C12 and C13 is the clean story:
+
+```text
+PROV-text-free: ordinary dialogue drops provenance -> weak held truth.
+PROV-text-norm: explicit attribution in text preserves provenance -> strong held truth.
+```
+
+This supports a design claim rather than a pure memory-module claim: useful agent societies may
+need provenance-preserving social memory interfaces, spanning both memory representation and
+communication norms.
+
+**Next experiment.** Do not scale the current strong norm blindly. The next useful step is an
+attribution-strength ablation: light natural attribution, medium update attribution, and strong
+protocolized attribution, with a listener that extracts varied natural source cues rather than
+only `Official round` phrases.

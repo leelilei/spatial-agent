@@ -1,0 +1,9 @@
+model=gpt-5.4-mini memory=ga run=0 seed=301
+!! run failed (skipped): memory=ga run=0 seed=301: Responses API HTTP 403: {"error":{"message":"内容审计命中风险规则，请调整输入后重试","type":"content_policy_violation"}}
+model=gpt-5.4-mini memory=ga run=1 seed=302
+model=gpt-5.4-mini memory=ga run=2 seed=303
+model=gpt-5.4-mini memory=ga run=3 seed=304
+model=gpt-5.4-mini memory=ga run=4 seed=305
+model=gpt-5.4-mini memory=prov run=0 seed=301
+model=gpt-5.4-mini memory=prov run=1 seed=302
+model=gpt-5.4-mini memory=prov run=2 seed=303

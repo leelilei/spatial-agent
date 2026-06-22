@@ -1,19 +1,24 @@
-# Telephone — Research Proposal v2
+# When Truth Loses Its Source: Provenance-Aware Memory for Socially Distributed Agents
 
 > Supersedes `proposal_v1.md` as the current result-aware proposal. v1 was a pre-result
 > framing document centered on phase boundaries and minimal correction. v2 folds in the
 > M0-M4, G1, P1-rec, P2, P3, and P3b results. Numbers live in `../../RESULTS.md`;
 > the stable synthesis lives in `../project/conclusions.md`.
 
-## Speech is not belief: Fidelity decay in LLM agent societies
+## Working Title
 
-Current working title.
+**When Truth Loses Its Source: Provenance-Aware Memory for Socially Distributed Agents**
+
+This title reframes the project from the internal codename "Telephone" toward the paper's
+current core mechanism: current facts often fail socially not because they never appear,
+but because their source/version is lost during agent-to-agent transmission.
 
 ## One-Line Claim
 
 When LLM agents pass a ground-truthed update through conversation, the society can learn
 to *say* the truth without coming to *hold* the truth. This speech-belief dissociation is
-driven by path-dependent entrenchment: the version established early and broadly wins.
+driven by path-dependent entrenchment: once the source/version of a current fact is lost,
+the version established early and broadly wins.
 
 ## Abstract Sketch
 

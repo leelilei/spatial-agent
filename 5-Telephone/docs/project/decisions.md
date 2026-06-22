@@ -214,3 +214,59 @@ liar, not a noisy channel — systematic value-corruption needs source-credibili
 harder problem). DECISION: keep PROV (v1) as the existence-proof cure with honest limitations; do
 NOT ship PROV-v2; the "realistic robustness" path is comms-model + trust/verification, flagged as
 future work, not claimed.
+
+---
+
+## 2026-06-22 (night) — PROV-text-free fails; next target is explicit attribution norm
+
+**Human concern.** Structured PROV may look like cheating: it gives one condition a hidden
+source/version channel. The key question is whether provenance can work in text rather than as
+metadata, and whether this is genuinely different from broadcast.
+
+**C11 mechanism probe.** A deterministic context-relay mock showed that text-coupled provenance
+can propagate if the utterance explicitly preserves `Official round 1 update`. This establishes
+feasibility without hidden `event["prov"]`, but it is not natural dialogue.
+
+**C12 realistic probe.** PROV-text-free under real LLM dialogue produced a negative result:
+PROV-text-free = 16/75 current, 0 stale, 59 unknown; source/version marker retention = 0/720
+utterances; only a01/Rosa held version>=1 in memory snapshots. Natural dialogue did not
+spontaneously carry provenance out of the source agent.
+
+**Decision.**
+- Stop PROV-text-free at n=3. The mechanism signal is clear; more seeds would mostly spend budget
+  confirming 0 source/version retention.
+- Position structured PROV as an **idealized provenance-preserving protocol / upper bound**, not a
+  fully naturalistic cure.
+- Distinguish from broadcast explicitly:
+  - broadcast = direct overwrite of every agent;
+  - structured PROV = social propagation with preserved provenance metadata;
+  - PROV-text-free = natural dialogue without attribution norm (fails);
+  - PROV-text-norm = explicit source/version attribution in natural language (next P0).
+- Next experiment: implement PROV-text-norm. This is the realistic design target: no hidden
+  metadata, no broadcast, but a communication norm that preserves attribution through text.
+
+---
+
+## 2026-06-23 — PROV-text-norm works, but strong norm is protocolized
+
+**C13 result.** PROV-text-norm with `gpt-5.4-mini`, repair_drive, 25 agents, r10, m1, t2, n=3
+finished cleanly: 75/75 current, 0 stale, 0 unknown. Transcript audit: 610/720 utterances contain
+source/version-like attribution markers; memory audit: 75/75 agents hold version>=1.
+
+**Human concern.** This success is not automatically a human-realism result. In real human
+telephone effects, people selectively absorb, compress, reinterpret, and drop provenance. A
+society that repeats the telephone effect is more human-like descriptively. The problem is not
+that telephone effects are unnatural; the problem is that they are harmful when an agent society
+is used for reliable coordination.
+
+**Decision.**
+- Treat GA / PROV-text-free as the descriptive human-like baseline: natural communication can lose
+  provenance and create social memory decay.
+- Treat structured PROV as an idealized metadata upper bound.
+- Treat current PROV-text-norm as a strong attribution-norm upper bound in natural language, not
+  as ordinary human conversation.
+- Reframe the paper away from "PROV is simply better memory" and toward: provenance preservation
+  is a social memory interface that couples representation, belief revision, retrieval, and
+  communication.
+- Next experiment should weaken the attribution norm instead of scaling the current strong one:
+  light/medium/strong attribution ablation, with robust natural-language source extraction.

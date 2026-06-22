@@ -1,6 +1,6 @@
-# Social Fidelity Probe - Figure Plan
+# When Truth Loses Its Source - Figure Plan
 
-> Working title: *Speech is not belief: Social fidelity decay in LLM agent societies*.
+> Working title: *When Truth Loses Its Source: Provenance-Aware Memory for Socially Distributed Agents*.
 > Figure-first Results plan. Each Results subsection should map to one figure or
 > one table. Numbers live in `../RESULTS.md`.
 

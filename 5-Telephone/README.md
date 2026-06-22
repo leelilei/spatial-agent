@@ -1,4 +1,4 @@
-# Telephone — fidelity and decay of information in LLM-agent societies
+# When Truth Loses Its Source: Provenance-Aware Memory for Socially Distributed Agents
 
 > Codename: **Telephone** (the children's game where a message degrades as it passes
 > person to person). New project, started 2026-06-19. Spun out of the society-simulation

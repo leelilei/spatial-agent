@@ -228,6 +228,95 @@ class PROVMemory:
 
 
 @dataclass
+class PROVTextMemory:
+    """Text-coupled provenance integration.
+
+    Unlike PROVMemory, this class has no `provenance()` side channel. A relay is useful
+    only when the speaker's natural utterance explicitly carries an attribution cue
+    such as "official round 1". This tests whether the provenance mechanism survives
+    when metadata must travel through text itself.
+    """
+    llm: Any = None
+    current_markers: tuple[str, ...] = ()
+    stale_markers: tuple[str, ...] = ()
+    events: list[dict[str, Any]] = field(default_factory=list)
+    belief_value: str = ""
+    belief_version: int = -1
+
+    def observe(self, event: dict[str, Any]) -> None:
+        self.events.append(event)
+        prov = event.get("prov")
+        if event.get("injected") and prov:
+            self._adopt(int(prov.get("version", -1)), str(prov.get("value", "")))
+            return
+        parsed = self._parse_text_provenance(str(event.get("text", "")))
+        if parsed:
+            version, value = parsed
+            self._adopt(version, value)
+
+    def _adopt(self, version: int, value: str) -> None:
+        if version > self.belief_version:
+            self.belief_version = version
+            self.belief_value = value
+
+    def _parse_text_provenance(self, text: str) -> tuple[int, str] | None:
+        lower = text.lower()
+        if not any(cue in lower for cue in ("official round", "source round", "update round", "round 1 update")):
+            return None
+        m = re.search(r"(?:official|source|update)\s+round\s+(\d+)|round\s+(\d+)\s+update", lower)
+        if not m:
+            return None
+        version = int(next(g for g in m.groups() if g is not None))
+        if self.current_markers and all(marker in lower for marker in self.current_markers):
+            return version, text
+        if self.stale_markers and any(marker in lower for marker in self.stale_markers):
+            return version, text
+        return None
+
+    def retrieve(self, query: str) -> str:
+        ev = _rank_by_relevance(query, [(str(e.get("text", "")), e) for e in self.events], 4)
+        lines: list[str] = []
+        if self.belief_version >= 0:
+            lines.append(
+                f"- Official round {self.belief_version} update: {self.belief_value}"
+            )
+        lines += [f"- {e.get('text','')}" for e in ev]
+        return "\n".join(lines)
+
+    def consolidate(self) -> None:
+        return
+
+    def snapshot(self) -> dict[str, Any]:
+        return {"kind": "prov_text", "version": self.belief_version,
+                "value": self.belief_value, "n_events": len(self.events)}
+
+
+@dataclass
+class PROVTextNormMemory(PROVTextMemory):
+    """PROV-text with an explicit natural-language attribution norm.
+
+    This is not structured PROV: it exposes no `provenance()` side channel. The listener
+    can adopt provenance only if the speaker puts source/version in the utterance text.
+    """
+
+    def communication_instructions(self) -> str:
+        if self.belief_version < 0:
+            return (
+                "Speak naturally. If you do not know the latest official update for the "
+                "event, say that you are not sure rather than inventing details."
+            )
+        return (
+            "When you mention the event update, preserve attribution in ordinary text. "
+            f"Use the phrase 'Official round {self.belief_version} update' and include "
+            "the current value. Do not drop who/when/latest-update information."
+        )
+
+    def snapshot(self) -> dict[str, Any]:
+        return {"kind": "prov_text_norm", "version": self.belief_version,
+                "value": self.belief_value, "n_events": len(self.events)}
+
+
+@dataclass
 class MemoryBankMemory:
     """Recognized baseline ~ MemoryBank (Ebbinghaus-style forgetting): retrieval is
     RECENCY-weighted, so the most recent statement about a topic dominates. Distinct from

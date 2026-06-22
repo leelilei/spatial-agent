@@ -1,6 +1,6 @@
 # Supplementary Appendix
 
-Anonymous supplementary material for `Speech Is Not Belief: Social Fidelity Decay in LLM Agent Societies`.
+Anonymous supplementary material for `When Truth Loses Its Source: Provenance-Aware Memory for Socially Distributed Agents`.
 
 This appendix is intended to support the AAAI submission without carrying the main argument. The main paper should remain self-contained; this file stores protocol details, result ledgers, and the reference-placement map.
 

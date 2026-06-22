@@ -22,6 +22,7 @@ from society import (
     make_llm_converse,
     mock_converse,
     run_sim,
+    context_relay_converse,
 )
 
 
@@ -169,9 +170,7 @@ def run_one(
     args: argparse.Namespace,
 ) -> dict[str, Any]:
     if args.mock:
-        if memory != "raw":
-            raise ValueError("--mock currently supports only --memory raw")
-        converse = mock_converse
+        converse = context_relay_converse if args.context_relay_mock else mock_converse
     else:
         if llm is None:
             raise ValueError("llm is required unless --mock is set")
@@ -319,7 +318,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--turns", type=int, default=4)
     parser.add_argument("--workers", type=int, default=1, help="concurrent encounters/consolidations per round")
     parser.add_argument("--question", default=DEFAULT_QUESTION)
-    parser.add_argument("--mock", action="store_true", help="offline smoke test; supports raw memory only")
+    parser.add_argument("--mock", action="store_true", help="offline smoke test without LLM calls")
+    parser.add_argument("--context-relay-mock", action="store_true",
+                        help="with --mock, relay retrieved memory notes as natural text instead of seed-only mock")
     parser.add_argument("--out-dir", type=Path, default=Path("sim/runs/sweeps/latest"))
     return parser.parse_args()
 

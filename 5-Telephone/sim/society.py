@@ -103,6 +103,31 @@ def mock_converse(a: Agent, b: Agent, topic: str, history: list[dict[str, Any]])
     return utts
 
 
+def context_relay_converse(a: Agent, b: Agent, topic: str, history: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Deterministic text-only relay used for fast mechanism probes.
+
+    Each speaker says one natural sentence grounded in its retrieved memory notes. This
+    keeps communication as text while avoiding API latency in exploratory sweeps.
+    """
+    utts = []
+    for speaker, listener in ((a, b), (b, a)):
+        context = speaker.context_for(listener.name, topic)
+        line = ""
+        for raw in context.splitlines():
+            raw = raw.strip()
+            if raw:
+                line = raw[2:] if raw.startswith("- ") else raw
+                break
+        if not line:
+            line = speaker.seeds[0] if speaker.seeds else f"how the {topic} is going"
+        utts.append({
+            "speaker": speaker.name,
+            "listener": listener.name,
+            "text": f"{speaker.name}: I heard that {line}",
+        })
+    return utts
+
+
 CONVERSE_SYSTEM = (
     "You are role-playing a person in a small neighborhood. Stay in character and stay "
     "consistent with your memory notes — only act on what is currently true and honor any "
@@ -112,7 +137,12 @@ CONVERSE_SYSTEM = (
 
 
 def make_llm_converse(llm: "Any", turns: int = 4) -> ConverseFn:
-    """LLM-backed conversation; the system prompt is identical across memory conditions."""
+    """LLM-backed conversation.
+
+    Most memory conditions share the same prompt. A memory may optionally expose
+    `communication_instructions()` for explicit communication-norm experiments such as
+    PROV-text-norm; this changes only the utterance text, not hidden event metadata.
+    """
 
     def converse(a: Agent, b: Agent, topic: str, history: list[dict[str, Any]]) -> list[dict[str, Any]]:
         utts: list[dict[str, Any]] = []
@@ -120,11 +150,15 @@ def make_llm_converse(llm: "Any", turns: int = 4) -> ConverseFn:
         for t in range(turns):
             speaker, listener = order[t % 2]
             context = speaker.context_for(listener.name, topic)
+            norm_fn = getattr(speaker.memory, "communication_instructions", None)
+            norm = norm_fn() if callable(norm_fn) else ""
+            norm_block = f"Communication norm:\n{norm}\n\n" if norm else ""
             convo = "\n".join(u["text"] for u in utts) or "(start of conversation)"
             user = (
                 f"You are {speaker.name}: {speaker.persona}.\n"
                 f"You are talking with {listener.name} about {topic}.\n\n"
                 f"Your memory notes:\n{context or '(nothing relevant yet)'}\n\n"
+                f"{norm_block}"
                 f"Conversation so far:\n{convo}\n\n"
                 f"What does {speaker.name} say next?"
             )
@@ -503,6 +537,22 @@ def build_memory_factory(kind: str, llm: "Any", scenario: str = "repair_drive",
         gv = SCENARIOS.get(scenario, SCENARIOS["repair_drive"])["seed"]  # stale value (for garble test)
         return lambda: PROVMemory(llm=llm, prov_loss=prov_loss, prov_garble=prov_garble,
                                   prov_mention=prov_mention, garble_value=gv)
+    if kind == "provtext":  # provenance must be explicitly carried in natural utterance text
+        from memories import PROVTextMemory
+        sc = SCENARIOS.get(scenario, SCENARIOS["repair_drive"])
+        return lambda: PROVTextMemory(
+            llm=llm,
+            current_markers=sc["current_markers"],
+            stale_markers=sc["stale_markers"],
+        )
+    if kind == "provtextnorm":  # text provenance + explicit natural-language attribution norm
+        from memories import PROVTextNormMemory
+        sc = SCENARIOS.get(scenario, SCENARIOS["repair_drive"])
+        return lambda: PROVTextNormMemory(
+            llm=llm,
+            current_markers=sc["current_markers"],
+            stale_markers=sc["stale_markers"],
+        )
     if kind == "memorybank":  # baseline ~ MemoryBank (recency-weighted retrieval)
         from memories import MemoryBankMemory
         return lambda: MemoryBankMemory(llm=llm)
