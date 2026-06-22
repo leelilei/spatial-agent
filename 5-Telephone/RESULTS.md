@@ -44,6 +44,8 @@
 
 | 06-22 | C6 | PROV-v2 (corroboration + Ebbinghaus decay) — both upgrades FAIL | repair_drive mini r10/r20 n=3-5 | clean still 99-100% (decay never fires: re-broadcast reinforces every round); **garble0.6 -> 7% (93% STALE, WORSE than PROV 42 & GA 22)**: corroboration backfires (systematic garble corroborates the STALE value too). Lessons: 100%-lock is a COMMS-MODEL artifact (every-round re-broadcast), not memory; corroboration defends a lone liar not a noisy channel | done(neg) |
 
+| 06-22 | C7 | SPARSE COMMS (fix every-round broadcast): prov_mention sweep | repair_drive mini r10 n=5, provv2 mention {1.0,0.3,0.1} | The 100% lock was a COMMS-MODEL artifact: with sparse mention + Ebbinghaus decay, v2 settles to a real EQUILIBRIUM — mention 1.0->99, 0.3->96, **0.1->40 [~] (stale 0, ~2x GA 22)**. Decay only bites once comms are sparse enough; provenance still beats frequency under realistic sparse comms | done(v2m01 n=4-5) |
+
 Detailed write-ups follow below as runs land.
 
 ---
@@ -765,3 +767,39 @@ benign channels; NOT a robust defense against an adversarial/garbling channel. P
 designed) is recorded as a failed upgrade -- do not ship it.
 
 **Status.** clean n=3-5 (finishing), garble n=3. Negative result is stable.
+
+---
+
+# C7 — sparse communication: the 100% lock is a comms-model artifact (2026-06-22)
+
+C6 showed PROV-v2's Ebbinghaus decay failed because the fact was re-broadcast EVERY utterance
+(reinforcement outran decay). The human flagged the root cause: agents broadcasting the fact
+every round is unrealistic (people don't restate every fact every conversation). We added
+`--prov-mention p`: an agent conveys the fact in a given utterance only with prob p (sparse,
+topic-gated comms). Fig: `paper/figures/fig_sparse_comms_equilibrium.png`.
+
+```text
+prov_mention:   1.0     0.3     0.1
+PROV-v2 HOLD:    99      96      40   (stale 0; unknown rises)   GA ref: 22
+(v1 sticky, mention 0.1: 40 [34-46] -- would keep climbing, no decay)
+```
+
+**Findings.**
+1. **The 100% lock was an artifact of every-utterance broadcast.** With realistic SPARSE mention,
+   reinforcement no longer outruns decay, and PROV-v2 settles to a DYNAMIC EQUILIBRIUM (~40% at
+   mention 0.1) instead of locking at 100% -- a genuine "mention-rate vs forgetting" balance.
+2. **Provenance still wins under realistic comms.** At the realistic operating point the
+   equilibrium (~40%) is ~2x GA (22%) and CLEAN (stale 0% -- forgotten agents go to unknown, not
+   corrupted). So the cure survives the realism fix; it just no longer claims an unrealistic 100%.
+3. **Decay needs sparse comms to matter.** At mention 0.3 the society still saturates (96%) --
+   decay only bites once mention is sparse enough (<=0.1 here). This locates the realistic regime.
+
+**Interpretation.** This is the correct fix to the C5/C6 danger signal: the 100% was never
+emergent truth, it was constant re-broadcast. Under sparse, realistic communication with
+forgetting, the honest cure result is a stable equilibrium well above GA -- not saturation. This
+is the number to report as PROV's realistic effect; 100% is the every-round-broadcast upper bound.
+
+**Caveats.** Single scenario, mini, r10; v2 mention-0.1 n=4-5. prov_mention is a probability per
+utterance (a clean proxy for topic-gated sparse comms); a text-coupled version is a further
+variant. Equilibrium level depends on (mention rate, decay, connectivity) -- a small phase
+diagram (mention x decay) is natural future work.
