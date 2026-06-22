@@ -40,6 +40,8 @@
 
 | 06-22 | C5 | ARCHITECTURE TABLE (repair_drive) + PROV HORIZON climb | mini m2, 7 memories n=8 + PROV r5/r10/r20 | **All recognized memories fail** (Raw14 Mem0-18 A-MEM19 GA22 GA-curr25 MemBank25); **PROV 57 alone**. **PROV climbs with propagation time: r5 57 -> r10 93 -> r20 100%** (unk 40->7->0); GA stays ~20/decays. Cure CLOSES the gap to overwrite ceiling, decentralized, no verifier | done |
 
+| 06-22 | C5-stress | PROV LOSSY-CHANNEL stress test (the 100% danger signal) | repair_drive mini r10, prov_loss/garble {0.3,0.6,0.9} n=5 | DROP robust (0.3->100 0.6->93 0.9->26); GARBLE graceful-degrade (0.3->74 0.6->42 0.9->24) — beats GA(22) until severe. **Cure NOT a pure channel artifact: survives heavy drop + moderate value-corruption; depends on value fidelity (limitation)** | done(garble n=4-5) |
+
 Detailed write-ups follow below as runs land.
 
 ---
@@ -679,3 +681,46 @@ centralized governance+verifier; we propagate a correction to ~100% via per-agen
 **DANGER SIGNAL (must address):** the 100%% is from a LOSSLESS/AUTOMATIC provenance side-channel (perfect gossip flood that bypasses the lossy LLM relay) — an IDEALIZED upper bound, not emergent reasoning. Next experiment = lossy provenance channel (survive relay w.p. 1-loss); if PROV still beats GA under loss, the integration rule is the real cure (see decisions 2026-06-22 late). **Caveats / next.** Single scenario (repair_drive), mini. Next per decisions 2026-06-22 D3:
 (1) extend table + horizon to book_club/carpool; (2) topology robustness (chain/star/small-world);
 (3) capability check (gpt-5.4). PROV's value blob = update text; fairness via origin-round metadata.
+
+---
+
+# C5-stress — PROV under a lossy provenance channel (the 100% danger-signal probe) (2026-06-22)
+
+C5 found PROV climbs to 100% by r20 — but the human flagged 100% (zero variance) as a DANGER
+SIGNAL: PROV's provenance is a lossless/automatic/always-adopted side-channel (a perfect gossip
+flood that BYPASSES the lossy LLM relay, the very cause of corruption). To test whether PROV's
+win is a pure artifact of that idealized channel, we degrade the channel two ways at r10:
+- **DROP** (`--prov-loss p`): a relay fails to convey provenance w.p. p (value stays clean when
+  it does arrive).
+- **GARBLE** (`--prov-garble p`): a relay corrupts the VALUE to the stale value w.p. p, keeping
+  the high version (the harder test — the clean channel itself carries a corrupted value, as LLM
+  retelling would). Fig: `paper/figures/fig_prov_lossy_stress.png`.
+
+```text
+loss fraction:    0     0.3    0.6    0.9
+DROP   (HOLD%):   93    100     93     26
+GARBLE (HOLD%):   93     74     42     24
+GA ref: 22                          (n=5 drop; n=4-5 garble)
+```
+
+**Findings.**
+1. **Robust to DROP.** Provenance need not survive every relay — redundancy (many meetings +
+   sticky belief) recovers it; PROV stays ~93-100% up to 60% drop, only collapsing to GA at 90%.
+2. **Graceful degradation under GARBLE.** Value-corruption hurts more (as predicted: a garbled
+   stale@high-version is sticky and a same-version correct claim cannot overturn it), but PROV
+   degrades smoothly and **still beats GA across moderate corruption** (0.6 -> 42% ~= 2x GA),
+   only reaching GA at severe (0.9) corruption.
+3. **Verdict on the danger signal: substantially addressed.** PROV's advantage is NOT a pure
+   artifact of a magic lossless channel — it survives heavy drop and moderate value-corruption.
+   The 100% (p=0) is an idealized UPPER BOUND; the realistic operating range still clears GA.
+
+**Honest limitation (for the paper).** PROV assumes provenance metadata conveys the value with
+reasonable fidelity; under heavy value-corruption its advantage narrows to GA. This points to a
+PROV design improvement: same-version conflicts should not be first-wins-sticky (a correct claim
+at the same version cannot currently overturn a garbled one) — future work (trust/verification or
+same-version arbitration).
+
+**Caveats.** Single scenario (repair_drive), mini, r10. Loss is modeled as a per-relay probability
+(a clean abstraction of the lossy text channel); literal text-embedded provenance is a further
+variant. The injection into the source is never lost (it is a direct authoritative receipt, not a
+relay) — fixed after an initial run where loss zeroed the source.
