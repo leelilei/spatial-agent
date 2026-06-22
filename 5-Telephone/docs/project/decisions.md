@@ -153,3 +153,12 @@ channel GA lacks).
   the lossless channel. The stress-test isolates it. (Literal text-embedded provenance is an
   optional further variant.)
 - This upholds the 准绳: report the idealization honestly, don't over-claim, solve under realism.
+
+**RESOLUTION (2026-06-22, C5-stress).** The D2 lossy-channel stress test is done:
+DROP robust (≤0.6 → ~93-100%, 0.9 → GA); GARBLE graceful (0.3→74, 0.6→42 ≈2×GA, 0.9→GA). 
+**Verdict: the 100% danger signal is SUBSTANTIALLY ADDRESSED** — PROV's advantage survives heavy
+drop and moderate value-corruption, so it is NOT a pure artifact of the idealized lossless
+channel; 100% (p=0) is the upper bound, the realistic range still clears GA. **Honest limitation
+to ship:** PROV depends on provenance value-fidelity (collapses to GA under severe garble);
+design fix = same-version arbitration (a correct claim should overturn a garbled same-version
+one). See RESULTS C5-stress + `paper/figures/fig_prov_lossy_stress.png`.
