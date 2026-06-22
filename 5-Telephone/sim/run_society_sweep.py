@@ -330,6 +330,12 @@ def main() -> int:
     models = tuple(args.model or ((None,) if not args.mock else ("mock",)))
     rows: list[dict[str, Any]] = []
 
+    # Reproducibility: dump the FULL config (all CLI args) so every run dir is self-describing.
+    import datetime as _dt
+    cfg = {k: (str(v) if isinstance(v, Path) else v) for k, v in vars(args).items()}
+    cfg["_timestamp"] = _dt.datetime.now().isoformat(timespec="seconds")
+    write_json(args.out_dir / "run_config.json", cfg)
+
     llm_by_model: dict[str | None, LLM | None] = {}
     if not args.mock:
         for model in models:

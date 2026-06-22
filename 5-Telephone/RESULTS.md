@@ -1,5 +1,7 @@
 # Telephone — results
 
+> Data locations per experiment: docs/project/data_index.md  ·  rationale: docs/project/decisions.md
+
 ## Experiment ledger (RULE: every run gets a row here — even small/failed ones)
 
 | date | id | what | key config | headline result | status |
