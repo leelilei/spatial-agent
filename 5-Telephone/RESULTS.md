@@ -55,6 +55,7 @@
 | 06-22 | C11 | PROV-text mechanism probe (deterministic text relay) | repair_drive mock context relay, 25a r10 m1 n=5, raw/prov/provtext | If utterances explicitly preserve `Official round 1 update`, PROV-text reaches 125/125 current without hidden `prov` payload. Mechanism feasible, but probe is scripted/text-normed, not natural dialogue | done |
 | 06-22 | C12 | PROV-text-free real LLM dialogue | repair_drive gpt-5.4-mini, 25a r10 m1 t2, provtext n=3 (+ GA/PROV partial comparator) | **Natural dialogue drops source/version**: PROV-text-free 16/75 current, 0 stale, 59 unknown; source/version phrase mentions 0/720; only a01/Rosa holds version>=1. Structured PROV remains upper bound; next target = PROV-text-norm | done(neg; stopped after signal) |
 | 06-23 | C13 | PROV-text-norm strong attribution dialogue | repair_drive gpt-5.4-mini, 25a r10 m1 t2, provtextnorm n=3 | **Strong text attribution repairs held truth: 75/75 current, 0 stale, 0 unknown.** Audit: 610/720 utterances contain source/version-like markers; 75/75 memory snapshots hold version>=1. Caveat: this is a protocolized attribution norm / text-only upper bound, not natural human dialogue | done(strong-norm upper bound) |
+| 06-23 | C14 | CAPABILITY CHECK ON THE CURE: PROV vs GA on a NON-mini model (DeepSeek-V4-Flash, yunwu.ai) | repair_drive deepseek-v4-flash, 25a m2 r5 t3, {ga,prov} n=3 (seeds 41-43); workers=16 | **The CURE survives capability: PROV 70.7% (53/75) vs GA 17.3% (13/75) held-current @ r5, per-seed ranges DISJOINT (PROV [60-80] vs GA [8-28], every PROV seed > every GA seed).** Mirrors M0 (phenomenon survives capability): GA stays low on a new model family (17% vs mini 22%); PROV still wins, in fact WIDER than mini (70.7 vs 57). Stale: GA 63% -> PROV 11% (same cure signature). n=8 extension (seeds 44-48) RUNNING | done(n=3; n=8 pending) |
 
 Detailed write-ups follow below as runs land.
 
@@ -1016,3 +1017,46 @@ communication norms.
 attribution-strength ablation: light natural attribution, medium update attribution, and strong
 protocolized attribution, with a listener that extracts varied natural source cues rather than
 only `Official round` phrases.
+
+---
+
+# C14 — Capability check on the cure: PROV vs GA on DeepSeek-V4-Flash (2026-06-23)
+
+This closes the one real gap the capstone flagged: every cure run (C1–C13) was on `mini`, so we
+had not shown the *cure* (not just the phenomenon) survives a change of model. M0 had already
+shown the *phenomenon* survives capability (truth-recall flat 16→21% across mini→gpt-5.4→gpt-5.5).
+C14 is the symmetric test for the cure, on a DIFFERENT model FAMILY — DeepSeek-V4-Flash via the
+OpenAI-compatible yunwu.ai gateway — at the headline cure settings (repair_drive, 25 agents,
+meetings=2, rounds=5, turns=3, GA vs fair-PROV).
+
+n=3 (seeds 41–43), workers=16:
+
+```text
+memory  held-current @ r5     per-seed range   stale       unknown
+GA       13/75 = 17.3%        [8%, 28%]        47 (63%)    15 (20%)
+PROV     53/75 = 70.7%        [60%, 80%]        8 (11%)    14 (19%)
+```
+
+**Finding.** The cure survives capability. PROV ≈ 4× GA, and the per-seed ranges are FULLY
+DISJOINT (every PROV seed beats every GA seed) — unambiguous even at n=3.
+
+**Symmetry with M0 / mini.**
+
+```text
+                mini (headline)   DeepSeek-V4-Flash (C14)
+GA held-current   ~22%              17.3%      (phenomenon survives capability)
+PROV held-current ~57%              70.7%      (cure survives capability; WIDER margin)
+PROV > GA?        yes               yes
+```
+
+GA stays low on the new model family (17% vs mini 22%), confirming the phenomenon is not a
+mini artifact; PROV still wins, in fact more strongly than on mini (70.7 vs 57). The cure
+signature is identical: PROV collapses GA's stale-dominated society (63% stale → 11%) into a
+current-dominated one without inflating unknown (≈19% both arms).
+
+**Provider note.** DeepSeek/yunwu concurrency probe (4→32 burst): 100% success up to conc 24,
+one transient SSL at 32 (absorbed by retries=3). Tail-latency bound (stragglers 30–49s), NOT
+throttle-bound; workers=16 ≈ workers=8 in wall-clock (~2 min/round). No rate-limit observed.
+
+**Status.** n=8 extension (seeds 44–48 → pool to n=8 with CIs, matching the mini cell's rigor)
+is RUNNING; this section will be updated with the pooled n=8 number + 95% CI when it lands.

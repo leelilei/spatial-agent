@@ -133,8 +133,11 @@ mechanism here is social entrenchment and speech-belief dissociation.
   error-correction" / big Claim A with a real result): SUBSTANTIALLY MET.
 
 **Remaining before "experiments closed":**
-1. CAPABILITY CHECK ON THE CURE (the one real gap) -- all cure runs are mini; verify PROV still
-   beats GA on gpt-5.4/5.5 (symmetry with M0's phenomenon-survives-capability claim).
+1. ~~CAPABILITY CHECK ON THE CURE (the one real gap)~~ **DONE (C14, 2026-06-23).** Verified on a
+   different model FAMILY (DeepSeek-V4-Flash via yunwu.ai) rather than gpt-5.4/5.5: PROV 70.7%
+   vs GA 17.3% held-current @ r5 (n=3, per-seed ranges disjoint). The cure survives capability,
+   in fact with a WIDER margin than mini (mini PROV 57/GA 22). Symmetric with M0's
+   phenomenon-survives-capability result. n=8 extension (seeds 44-48) in progress for matched CIs.
 2. Minor: two topology GA-baseline cells at n=2-3 (firm to n=5).
 3. Positioning vs Spark-to-Fire (arXiv:2603.04474): lead on dissociation + decentralized-memory
    comparison + correction-direction, NOT on inventing provenance.
