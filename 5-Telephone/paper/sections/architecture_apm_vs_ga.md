@@ -113,6 +113,11 @@ APM           : revise belief by PROVENANCE CHAIN + audit  -> true value wins  -
 - C14: the integration rule's advantage survives a model-family change (DeepSeek-V4-Flash):
   PROV 70.7% vs GA 17.3% held-current @ r5.
 - C7: the 100% ceiling is a comms-model artifact; sparse comms yields a real equilibrium ~2x GA.
+- C15 (APM pilot, DeepSeek, n=3): APM K=1 = 64.0% held-current ~= PROV 70.7% >> GA 17.3% — the
+  cure SURVIVES adding anti-spoof + abstain + auditability (~7-pt cost). 60-76% of agents hold a
+  belief with a complete provenance chain to ORIGIN (avg 3.2 hops); misses are abstain (unknown),
+  not stale. APM K=2 commit-gated deadlocks (12%) -> multi-source corroboration needs
+  relay-before-commit. So APM is a real architecture, not a worse PROV.
 
 ## Open questions before migration to LaTeX
 

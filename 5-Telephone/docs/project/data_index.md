@@ -35,7 +35,8 @@
 | C11 | PROV-text deterministic text relay mechanism probe | `provtext_context_relay_probe_v2` |
 | C12 | PROV-text-free real LLM dialogue + partial GA/PROV comparator | `provtext_llm_only_r10_n5`, `provtext_llm_long_r10_n5` |
 | C13 | PROV-text-norm strong attribution dialogue | `provtext_norm_r10_n3` |
-| C14 | capability check on cure (DeepSeek-V4-Flash) | `cap_deepseek_prov_vs_ga_pilot` (n=3) + `cap_deepseek_prov_vs_ga_n8ext` (seeds 44-48, pool→n=8) |
+| C14 | capability check on cure (DeepSeek-V4-Flash) | `cap_deepseek_prov_vs_ga_pilot` (n=3) + `cap_deepseek_prov_vs_ga_n8ext` (seeds 44-46, PAUSED at 3/10) |
+| C15 | APM architecture pilot (DeepSeek) | `cap_apm_clean_r5_pilot` (K=2, deadlock) + `cap_apm_k1_r5_pilot` (K=1, ≈PROV) |
 
 ## Reproducibility notes
 - **`run_config.json`** (per out-dir) records every CLI arg + timestamp → a run is now

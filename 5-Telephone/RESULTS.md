@@ -55,7 +55,8 @@
 | 06-22 | C11 | PROV-text mechanism probe (deterministic text relay) | repair_drive mock context relay, 25a r10 m1 n=5, raw/prov/provtext | If utterances explicitly preserve `Official round 1 update`, PROV-text reaches 125/125 current without hidden `prov` payload. Mechanism feasible, but probe is scripted/text-normed, not natural dialogue | done |
 | 06-22 | C12 | PROV-text-free real LLM dialogue | repair_drive gpt-5.4-mini, 25a r10 m1 t2, provtext n=3 (+ GA/PROV partial comparator) | **Natural dialogue drops source/version**: PROV-text-free 16/75 current, 0 stale, 59 unknown; source/version phrase mentions 0/720; only a01/Rosa holds version>=1. Structured PROV remains upper bound; next target = PROV-text-norm | done(neg; stopped after signal) |
 | 06-23 | C13 | PROV-text-norm strong attribution dialogue | repair_drive gpt-5.4-mini, 25a r10 m1 t2, provtextnorm n=3 | **Strong text attribution repairs held truth: 75/75 current, 0 stale, 0 unknown.** Audit: 610/720 utterances contain source/version-like markers; 75/75 memory snapshots hold version>=1. Caveat: this is a protocolized attribution norm / text-only upper bound, not natural human dialogue | done(strong-norm upper bound) |
-| 06-23 | C14 | CAPABILITY CHECK ON THE CURE: PROV vs GA on a NON-mini model (DeepSeek-V4-Flash, yunwu.ai) | repair_drive deepseek-v4-flash, 25a m2 r5 t3, {ga,prov} n=3 (seeds 41-43); workers=16 | **The CURE survives capability: PROV 70.7% (53/75) vs GA 17.3% (13/75) held-current @ r5, per-seed ranges DISJOINT (PROV [60-80] vs GA [8-28], every PROV seed > every GA seed).** Mirrors M0 (phenomenon survives capability): GA stays low on a new model family (17% vs mini 22%); PROV still wins, in fact WIDER than mini (70.7 vs 57). Stale: GA 63% -> PROV 11% (same cure signature). n=8 extension (seeds 44-48) RUNNING | done(n=3; n=8 pending) |
+| 06-23 | C14 | CAPABILITY CHECK ON THE CURE: PROV vs GA on a NON-mini model (DeepSeek-V4-Flash, yunwu.ai) | repair_drive deepseek-v4-flash, 25a m2 r5 t3, {ga,prov} n=3 (seeds 41-43); workers=16 | **The CURE survives capability: PROV 70.7% (53/75) vs GA 17.3% (13/75) held-current @ r5, per-seed ranges DISJOINT (PROV [60-80] vs GA [8-28], every PROV seed > every GA seed).** Mirrors M0 (phenomenon survives capability): GA stays low on a new model family (17% vs mini 22%); PROV still wins, in fact WIDER than mini (70.7 vs 57). Stale: GA 63% -> PROV 11% (same cure signature). n=8 extension (seeds 44-48) PAUSED at 3/10 (CI-firming, non-essential; n=3 headline stands) | done(n=3; n=8 deferred) |
+| 06-24 | C15 | APM (Auditable Provenance Memory): does adding anti-spoof + corroboration + abstain + auditability to PROV preserve the cure? | repair_drive deepseek-v4-flash, 25a m2 r5 t3, memory=apm n=3 (seeds 41-43); K={1,2} | **APM K=1 ≈ PROV, cure preserved + interpretable: 64.0% (48/75) vs PROV 70.7% vs GA 17.3%; per-seed [56-76].** Failure mode is SAFE (abstain: unknown 20, stale 7 — not confidently wrong like GA). **Auditability real:** 60-76% of agents hold a belief with a COMPLETE provenance chain to ORIGIN (avg 3.2 hops); rest abstain. Anti-spoof unit-tested (liar's unauthenticated high-version rejected). **APM K=2 (commit-gated) DEADLOCKS: 12% (worse than GA) — only origin commits; auth can't bootstrap because abstaining agents don't relay.** -> multi-source corroboration needs relay-before-commit (next). Lesson: interpretability+spoof-resistance cost ~7pts vs PROV; K knob dials flood(K1)<->over-conservative(K2-gated) | done(n=3 pilot) |
 
 Detailed write-ups follow below as runs land.
 
@@ -1058,5 +1059,51 @@ current-dominated one without inflating unknown (≈19% both arms).
 one transient SSL at 32 (absorbed by retries=3). Tail-latency bound (stragglers 30–49s), NOT
 throttle-bound; workers=16 ≈ workers=8 in wall-clock (~2 min/round). No rate-limit observed.
 
-**Status.** n=8 extension (seeds 44–48 → pool to n=8 with CIs, matching the mini cell's rigor)
-is RUNNING; this section will be updated with the pooled n=8 number + 95% CI when it lands.
+**Status.** n=8 extension (seeds 44–48) PAUSED at 3/10 to free provider capacity for C15 APM
+runs. The n=3 headline (PROV 70.7 / GA 17.3, disjoint ranges) stands; the extension is
+CI-firming only and can resume (seeds 44–46 already on disk) when capacity is free.
+
+---
+
+# C15 — APM (Auditable Provenance Memory): the interpretable architecture (2026-06-24)
+
+The question (raised by the human, re "not a deployable architecture"): can we turn the naive
+PROV *lever* into an actual interpretable, spoof-resistant architecture without losing the cure?
+APM (implemented in `memories.py::APMMemory`) adds three things PROV lacks — origin anchoring
+(anti-spoof), chain corroboration by K independent sources, and abstain — plus a full auditable
+provenance trace. C15 pilots it on DeepSeek at the C14 settings (repair_drive, 25a m2 r5 t3, n=3).
+
+```text
+memory          held-current @ r5     failure mode
+GA               17.3% (13/75)        stale (confidently wrong)
+APM K=2 (gated)  12.0% ( 9/75)        DEADLOCK (only origin commits)
+APM K=1          64.0% (48/75)        abstain (unknown, not stale)
+PROV             70.7% (53/75)        --
+```
+
+**Finding 1 — the cure survives interpretability + spoof-resistance (APM K=1 ≈ PROV).**
+APM K=1 (64.0%, per-seed [56-76]) is within a few points of naive PROV (70.7%) and far above GA
+(17.3%). Adding anti-spoof + abstain + full auditability costs ~7 points of held-current. APM does
+NOT reduce to a worse PROV; it is PROV's performance plus properties PROV lacks.
+
+**Finding 2 — auditability is real and measured.** 15-19 of 25 agents per run (60-76%) hold a
+belief with a COMPLETE provenance chain traced to ORIGIN (avg path length 3.2 hops). The remainder
+abstain. Black-box memories (GA / Mem0 / A-MEM / MemBank) cannot produce this justification.
+
+**Finding 3 — safer failure direction.** APM's misses are *unknown* (20/75), not *stale* (7/75):
+it abstains rather than confidently propagating the wrong value. GA fails the opposite way (stale).
+
+**Finding 4 — K=2 commit-gated DEADLOCKS (recorded negative).** With K=2 and "relay only what you
+committed", only the origin ever commits: each neighbor hears the truth from one source (the
+origin), 1 < K=2, so it abstains and never relays, so `auth` cannot bootstrap. Result 12% (below
+GA). This is the OPPOSITE of the saturation worry — corroboration can choke propagation. Multi-source
+corroboration therefore needs **relay-before-commit** (forward authenticated claims pre-commit so
+`auth` spreads); that is the next implementation, required for the garble/adversarial robustness story.
+
+**Interpretation.** APM earns its place as an architecture (not just a lever): near-PROV held truth,
+spoof-resistant, fail-safe (abstain), and interpretable-by-construction. The K knob dials between
+flood (K=1, PROV-like) and over-conservatism (K=2-gated). Remaining APM work is bounded to two
+questions (pre-registered in `paper/sections/architecture_apm_vs_ga.md`): (a) adversarial-liar
+scenario where APM must beat naive PROV via anti-spoof; (b) realistic-friction equilibrium
+(sparse comms / longer horizon) confirming a stable sub-100% value. After those, APM's scientific
+job is done — further hardening is product, not paper.
