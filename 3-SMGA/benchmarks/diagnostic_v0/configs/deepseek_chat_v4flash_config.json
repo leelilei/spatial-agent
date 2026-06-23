@@ -1,0 +1,15 @@
+{
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "wire_api": "chat_completions",
+  "base_url": "https://yunwu.ai",
+  "temperature": 0,
+  "omit_temperature": false,
+  "timeout": 120,
+  "sleep": 1,
+  "max_concurrency": 8,
+  "retries": 3,
+  "retry_sleep": 5,
+  "json_mode": true,
+  "transport": "urllib"
+}

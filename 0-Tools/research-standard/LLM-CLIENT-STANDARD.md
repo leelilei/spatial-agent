@@ -9,6 +9,8 @@ copying project-specific runners.
 - `llm_client.py`: dependency-free Python client.
 - `templates/llm_config.example.json`: real-provider config template.
 - `templates/llm_config.mock.json`: no-key local smoke-test config.
+- `templates/llm_config.deepseek.json`: DeepSeek via the OpenAI-compatible
+  yunwu.ai gateway.
 
 ## Supported Contract
 
@@ -30,6 +32,21 @@ The standard supports:
 - explicit `model`, `temperature`, `base_url`, `wire_api`, timeout, retries.
 - `json_mode` for JSON-object responses.
 - `transport: "urllib"` or `transport: "curl"` for Responses-style endpoints.
+
+Any OpenAI-compatible gateway is reachable by pointing `base_url` at it and
+naming the key var with `api_key_env`. No code change is needed per provider.
+
+### DeepSeek (yunwu.ai gateway)
+
+`templates/llm_config.deepseek.json` routes to DeepSeek through the
+OpenAI-compatible yunwu.ai gateway:
+
+- `wire_api: "chat_completions"`, `model: "deepseek-v4-flash"`.
+- `base_url: "https://yunwu.ai"` — **not** `https://yunwu.ai/v1`. The client's
+  `normalize_endpoint()` appends `/v1/chat/completions`, so a `/v1` in the base
+  URL would be doubled.
+- `api_key_env: "DEEPSEEK_API_KEY"` — set this env var to the yunwu key
+  (`sk-...`); never commit it.
 
 ## API Keys
 
