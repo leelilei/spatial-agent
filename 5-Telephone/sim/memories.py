@@ -228,6 +228,162 @@ class PROVMemory:
 
 
 @dataclass
+class APMMemory:
+    """Auditable Provenance Memory (APM) — the C15 architecture.
+
+    Extends naive PROV ("highest version heard wins") into a deployable, INTERPRETABLE
+    belief-revision architecture by adding three things naive PROV lacks:
+
+      (1) ORIGIN ANCHORING (anti-spoof). A claim only counts if its provenance carries the
+          authoritative-origin flag `auth`, which is minted ONLY at injection and relayed
+          faithfully. A liar who fabricates a high version without `auth` is rejected. This is
+          the lever naive PROV lacks: naive PROV adopts the highest version blindly and is
+          trivially hijacked.
+      (2) CHAIN CORROBORATION by INDEPENDENT SOURCES (not value frequency). The agent commits a
+          (version, value) only once it has heard it from >= K DISTINCT immediate sources. This
+          is the fix for the PROV-v2 (C6) failure, which corroborated by how often a *value* was
+          heard and so let systematic garble corroborate the stale value. Counting distinct
+          *sources* (independent relays) defeats a lone liar / lone garbling edge and degrades
+          gracefully (not catastrophically) under heavier garble.
+      (3) ABSTAIN. Until the bar is met, the agent holds NO committed belief and reports unknown
+          rather than confidently following the crowd. This is what yields a realistic sub-100%
+          equilibrium under sparse/noisy comms instead of the idealized gossip-flood ceiling.
+
+    INTERPRETABILITY: every committed belief carries an auditable justification — its version,
+    the set of independent sources that corroborated it, and the relay path back toward origin —
+    surfaced in `retrieve()` and dumped in `snapshot()` (supports the audit-rate and
+    corruption-localization metrics). Black-box memories (GA, Mem0, A-MEM, MemBank) cannot do this.
+
+    Saturation note (pre-registered, see paper/sections/architecture_apm_vs_ga.md): K and origin
+    anchoring do NOT prevent the idealized 100% flood under lossless every-utterance comms — they
+    slow it. The realistic sub-100% equilibrium emerges only under friction (sparse comms /
+    garble / adversary). The headline APM number must be that equilibrium, not the flood ceiling.
+    """
+    llm: Any = None
+    corroboration_k: int = 2      # distinct independent sources required to COMMIT a (version,value)
+    require_origin: bool = True   # anti-spoof: only count claims whose provenance carries `auth`
+    prov_garble: float = 0.0
+    prov_mention: float = 1.0
+    garble_value: str = ""
+    self_id: str = ""             # set per-agent by the factory; used to extend the relay path
+    events: list[dict[str, Any]] = field(default_factory=list)
+    # version -> value -> {source_id: shortest_path_seen}  (independent-source support + audit trail)
+    support: dict[int, dict[str, dict[str, list[str]]]] = field(default_factory=dict)
+    committed_value: str = ""
+    committed_version: int = -1
+    committed_sources: list[str] = field(default_factory=list)
+    committed_path: list[str] = field(default_factory=list)
+    _grng: "Any" = None
+    _mrng: "Any" = None
+
+    def observe(self, event: dict[str, Any]) -> None:
+        self.events.append(event)
+        prov = event.get("prov")
+        if not prov:
+            return
+        version = int(prov.get("version", -1))
+        if version < 0:
+            return
+        value = str(prov.get("value", ""))
+        auth = bool(prov.get("auth", False))
+        source = str(prov.get("source", "")) or "?"
+        path = list(prov.get("path", []))
+
+        # The agent's OWN authoritative receipt (injected origin) commits immediately: it IS the
+        # origin, so it needs no corroboration. Everyone else must clear the corroboration bar.
+        if event.get("injected") and auth:
+            self._commit(version, value, [source or "ORIGIN"], path or ["ORIGIN"])
+            return
+
+        if self.require_origin and not auth:
+            return  # anti-spoof: an unauthenticated claim (e.g. a liar's fabrication) is ignored
+
+        vmap = self.support.setdefault(version, {})
+        smap = vmap.setdefault(value, {})
+        # record this independent source (keep the shortest path for the audit trail)
+        full_path = path + [source]
+        if source not in smap or len(full_path) < len(smap[source]):
+            smap[source] = full_path
+        self._reconsider()
+
+    def _reconsider(self) -> None:
+        """Commit the highest version that has a value backed by >= K independent sources."""
+        best = None  # (version, value, sources, path)
+        for version in sorted(self.support, reverse=True):
+            for value, smap in self.support[version].items():
+                if len(smap) >= self.corroboration_k:
+                    # pick the shortest known path among corroborating sources (closest to origin)
+                    src = sorted(smap, key=lambda s: len(smap[s]))
+                    best = (version, value, src, smap[src[0]])
+                    break
+            if best:
+                break
+        if best and best[0] >= self.committed_version:
+            self._commit(*best)
+
+    def _commit(self, version: int, value: str, sources: list[str], path: list[str]) -> None:
+        self.committed_version = version
+        self.committed_value = value
+        self.committed_sources = list(sources)
+        self.committed_path = list(path)
+
+    def provenance(self) -> dict[str, Any] | None:
+        """Relay the committed belief WITH its auditable provenance (auth + source=self + path).
+        Abstains (returns None) until a belief is committed. Mention-gated and garble-able like
+        naive PROV so APM is evaluated under the same realistic-comms knobs."""
+        if self.committed_version < 0:
+            return None
+        if self.prov_mention < 1.0:
+            import random as _r
+            if self._mrng is None:
+                self._mrng = _r.Random()
+            if self._mrng.random() > self.prov_mention:
+                return None
+        value = self.committed_value
+        if self.prov_garble > 0.0 and self.garble_value:
+            import random as _r
+            if self._grng is None:
+                self._grng = _r.Random()
+            if self._grng.random() < self.prov_garble:
+                value = self.garble_value
+        return {
+            "value": value,
+            "version": self.committed_version,
+            "auth": True,                       # relayed faithfully; only origin can mint it
+            "path": self.committed_path + [self.self_id] if self.self_id else self.committed_path,
+        }
+
+    def retrieve(self, query: str) -> str:
+        ev = _rank_by_relevance(query, [(str(e.get("text", "")), e) for e in self.events], 4)
+        lines: list[str] = []
+        if self.committed_version >= 0:
+            justification = f"v{self.committed_version}, {len(self.committed_sources)} indep sources"
+            lines.append(f"- (committed belief; {justification}) {self.committed_value}")
+        else:
+            lines.append("- (no committed belief: insufficient corroboration — abstain)")
+        lines += [f"- {e.get('text','')}" for e in ev]
+        return "\n".join(lines)
+
+    def consolidate(self) -> None:  # belief revision is online; no reflection pass
+        return
+
+    def snapshot(self) -> dict[str, Any]:
+        # full audit trail: committed belief + its justification, for audit-rate /
+        # corruption-localization metrics.
+        return {
+            "kind": "apm",
+            "version": self.committed_version,
+            "value": self.committed_value,
+            "committed_sources": self.committed_sources,
+            "committed_path": self.committed_path,
+            "auditable": self.committed_version >= 0,
+            "k": self.corroboration_k,
+            "require_origin": self.require_origin,
+            "n_events": len(self.events),
+        }
+
+
+@dataclass
 class PROVTextMemory:
     """Text-coupled provenance integration.
 

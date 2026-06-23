@@ -178,7 +178,8 @@ def run_one(
 
     world = demo_world(
         build_memory_factory(memory, llm, scenario=args.scenario, prov_loss=args.prov_loss,
-                             prov_garble=args.prov_garble, prov_mention=args.prov_mention),
+                             prov_garble=args.prov_garble, prov_mention=args.prov_mention,
+                             apm_k=args.apm_k, apm_require_origin=not args.apm_no_origin),
         rng_seed=schedule_seed,
         agent_count=args.agent_count,
         meetings_per_round=args.meetings,
@@ -313,6 +314,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--prov-loss", type=float, default=0.0, help="PROV lossy-channel: prob provenance fails to survive a relay")
     parser.add_argument("--prov-garble", type=float, default=0.0, help="PROV lossy-channel: prob a relay corrupts the value to stale (keeps version)")
     parser.add_argument("--prov-mention", type=float, default=1.0, help="PROV sparse comms: prob the agent conveys the fact in a given utterance (1.0=every utterance)")
+    parser.add_argument("--apm-k", type=int, default=2, help="APM: distinct independent sources required to COMMIT a (version,value)")
+    parser.add_argument("--apm-no-origin", action="store_true", help="APM: disable origin-anchoring (anti-spoof) — for ablation")
     parser.add_argument("--topology", default="random", choices=["random","ring","star","smallworld"], help="contact topology")
     parser.add_argument("--rounds", type=int, default=5)
     parser.add_argument("--turns", type=int, default=4)

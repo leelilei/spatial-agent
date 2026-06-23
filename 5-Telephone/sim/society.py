@@ -264,6 +264,10 @@ def _run_encounter(
         prov_fn = getattr(speaker.memory, "provenance", None) if speaker else None
         prov = prov_fn() if callable(prov_fn) else None
         if prov:
+            # Stamp the immediate relayer so provenance-chain memories (APM) can count
+            # independent sources and build an auditable path. Naive PROV ignores this key.
+            if speaker is not None and "source" not in prov:
+                prov = {**prov, "source": speaker.agent_id}
             event["prov"] = prov
         observations.append((a, b, event))
     return {"a": a.name, "b": b.name, "utterances": utts}, observations
@@ -312,8 +316,12 @@ def run_round(world: World, round_idx: int, converse: ConverseFn, *, workers: in
         agent = world.agent_by_id(agent_id)
         if agent is None:
             continue
+        # `auth`/`source`/`path` mint the authoritative origin for APM's anti-spoof + audit chain.
+        # Naive PROV ignores these extra keys, so existing conditions are unaffected.
         event = {"round": round_idx, "text": text, "speaker": "world", "listener": agent.name,
-                 "injected": True, "prov": {"version": round_idx, "value": text}}
+                 "injected": True,
+                 "prov": {"version": round_idx, "value": text, "auth": True,
+                          "source": "ORIGIN", "path": ["ORIGIN"]}}
         agent.memory.observe(event)
         injected.append({"agent": agent.name, "text": text})
     if workers > 1 and len(world.agents) > 1:
@@ -531,12 +539,18 @@ def interview(world: World, question: str, llm: "Any") -> dict[str, Any]:
 
 def build_memory_factory(kind: str, llm: "Any", scenario: str = "repair_drive",
                          prov_loss: float = 0.0, prov_garble: float = 0.0,
-                         prov_mention: float = 1.0) -> Callable[[], Memory]:
+                         prov_mention: float = 1.0,
+                         apm_k: int = 2, apm_require_origin: bool = True) -> Callable[[], Memory]:
     if kind == "prov":  # provenance-aware integration (the cure) — generalized origin/version tags
         from memories import PROVMemory
         gv = SCENARIOS.get(scenario, SCENARIOS["repair_drive"])["seed"]  # stale value (for garble test)
         return lambda: PROVMemory(llm=llm, prov_loss=prov_loss, prov_garble=prov_garble,
                                   prov_mention=prov_mention, garble_value=gv)
+    if kind == "apm":  # Auditable Provenance Memory (C15): origin-anchored + chain-corroboration + abstain
+        from memories import APMMemory
+        gv = SCENARIOS.get(scenario, SCENARIOS["repair_drive"])["seed"]
+        return lambda: APMMemory(llm=llm, corroboration_k=apm_k, require_origin=apm_require_origin,
+                                 prov_garble=prov_garble, prov_mention=prov_mention, garble_value=gv)
     if kind == "provtext":  # provenance must be explicitly carried in natural utterance text
         from memories import PROVTextMemory
         sc = SCENARIOS.get(scenario, SCENARIOS["repair_drive"])

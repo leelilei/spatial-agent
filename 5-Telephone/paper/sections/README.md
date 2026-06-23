@@ -22,6 +22,7 @@ For every major paper section, maintain one Markdown file with:
 | Title / thesis / story spine | `../narrative.md` | active |
 | Introduction | `../introduction.md` | active |
 | Taxonomy | `taxonomy.md` | active |
+| Architecture (APM vs GA) | `architecture_apm_vs_ga.md` | active; APM integration features are C15+ (not yet built) |
 | Related work | `../references.md` | active citation spine; needs prose section |
 | Measurement / method | `../measurement_grounding.md` | active |
 | Results | `../results.md`, `../results_tables.md` | active; needs result-story consolidation |
