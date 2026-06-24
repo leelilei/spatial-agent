@@ -1,0 +1,70 @@
+{
+  "benchmark": "cityintent_v0",
+  "script": "D:\\0-Research\\6-city\\benchmarks\\cityintent_v0\\tools\\run_repeated_experiment.py",
+  "repeats": 3,
+  "agents": [
+    "utility_planner",
+    "api_llm_direct_actor",
+    "api_llm_plan_then_act",
+    "api_llm_reactive_replanner"
+  ],
+  "scenario_ids": [],
+  "limit_scenarios": null,
+  "llm_config": "6-city\\benchmarks\\cityintent_v0\\configs\\fhl_gpt54mini.json",
+  "output_dir": "6-city\\results\\cityintent_v0\\api_repeated_reliability_12scenarios_gpt54mini",
+  "skip_existing": true,
+  "judge_sleep": 0.0,
+  "timestamp": "2026-06-24T00:17:04",
+  "core_metrics": [
+    "goal_completion",
+    "trace_feasibility",
+    "intention_consistency",
+    "replanning_success",
+    "judge_face_plausibility",
+    "judge_trace_believability",
+    "face_believability_gap",
+    "impossible_trace_rate",
+    "done_state_loop_rate",
+    "social_derailment_rate"
+  ],
+  "extra_metrics": [
+    "plan_plausibility",
+    "plausibility_feasibility_gap",
+    "travel_efficiency",
+    "budget_consistency",
+    "social_appropriateness",
+    "feasibility_violation",
+    "city_false_continue",
+    "face_feasibility_gap"
+  ],
+  "row_count": 144,
+  "run_records": [
+    {
+      "repeat_id": 1,
+      "traces_dir": "6-city\\results\\cityintent_v0\\api_repeated_reliability_12scenarios_gpt54mini\\repeat_01\\traces",
+      "judged_dir": "6-city\\results\\cityintent_v0\\api_repeated_reliability_12scenarios_gpt54mini\\repeat_01\\judged",
+      "trace_count": 48,
+      "judged_count": 48,
+      "traces_json": "6-city\\results\\cityintent_v0\\api_repeated_reliability_12scenarios_gpt54mini\\repeat_01\\traces\\traces.json",
+      "judged_traces_json": "6-city\\results\\cityintent_v0\\api_repeated_reliability_12scenarios_gpt54mini\\repeat_01\\judged\\judged_traces.json"
+    },
+    {
+      "repeat_id": 2,
+      "traces_dir": "6-city\\results\\cityintent_v0\\api_repeated_reliability_12scenarios_gpt54mini\\repeat_02\\traces",
+      "judged_dir": "6-city\\results\\cityintent_v0\\api_repeated_reliability_12scenarios_gpt54mini\\repeat_02\\judged",
+      "trace_count": 48,
+      "judged_count": 48,
+      "traces_json": "6-city\\results\\cityintent_v0\\api_repeated_reliability_12scenarios_gpt54mini\\repeat_02\\traces\\traces.json",
+      "judged_traces_json": "6-city\\results\\cityintent_v0\\api_repeated_reliability_12scenarios_gpt54mini\\repeat_02\\judged\\judged_traces.json"
+    },
+    {
+      "repeat_id": 3,
+      "traces_dir": "6-city\\results\\cityintent_v0\\api_repeated_reliability_12scenarios_gpt54mini\\repeat_03\\traces",
+      "judged_dir": "6-city\\results\\cityintent_v0\\api_repeated_reliability_12scenarios_gpt54mini\\repeat_03\\judged",
+      "trace_count": 48,
+      "judged_count": 48,
+      "traces_json": "6-city\\results\\cityintent_v0\\api_repeated_reliability_12scenarios_gpt54mini\\repeat_03\\traces\\traces.json",
+      "judged_traces_json": "6-city\\results\\cityintent_v0\\api_repeated_reliability_12scenarios_gpt54mini\\repeat_03\\judged\\judged_traces.json"
+    }
+  ]
+}

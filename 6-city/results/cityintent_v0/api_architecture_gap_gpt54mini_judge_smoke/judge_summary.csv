@@ -1,0 +1,3 @@
+scenario_id,agent_type,judge_plan_plausibility,judge_rationale_alignment,judge_urban_common_sense,trace_feasibility,judge_plausibility_feasibility_gap,goal_completion,impossible_trace_rate,main_issue,brief_reason
+avoid_crowd_event,utility_planner,0.55,0.72,0.78,1.0,0.0,1.0,0.0,incomplete goals,"Going to a park for exercise is plausible and avoids the plaza crowd, but the trace stops before picking up groceries despite that being an explicit objective."
+avoid_crowd_event,api_llm_direct_actor,0.34,0.72,0.46,0.75,0.0,0.85,0.25,unexplained budget overrun,"The trace mostly follows a believable avoid-crowd exercise-and-groceries routine, but it repeats park/gym detours and ends with an impossible negative budget."

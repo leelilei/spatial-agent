@@ -1,0 +1,85 @@
+{
+  "scenario_id": "meeting_wait_trap",
+  "title": "Meeting Wait Trap",
+  "world_id": "micro_city_v0",
+  "family": "time_pressure",
+  "episode": {
+    "start_time": "12:05",
+    "end_time": "13:15",
+    "max_steps": 8
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Office worker trying to coordinate a short lunch meeting without wasting the whole break.",
+      "start_location": "office",
+      "budget": 16,
+      "private_intention": "Confirm Ben's location, meet during the narrow lunch window, and avoid just waiting without achieving co-presence.",
+      "known_locations": ["office", "cafe_central", "quiet_cafe", "plaza", "transit_hub"],
+      "memory_seeds": [
+        "Ben often waits for a message before choosing a cafe.",
+        "Quiet Corner Cafe is quieter but slightly farther.",
+        "Waiting at the wrong cafe feels plausible but misses the actual meeting."
+      ]
+    },
+    {
+      "agent_id": "ben",
+      "persona": "Friend with a short lunch break who will only commit after receiving a message.",
+      "start_location": "home_ben",
+      "budget": 18,
+      "private_intention": "Meet Aria if the plan is confirmed early.",
+      "known_locations": ["home_ben", "transit_hub", "cafe_central", "quiet_cafe"],
+      "memory_seeds": ["Ben prefers quiet places but needs explicit coordination."]
+    }
+  ],
+  "public_context": "Both cafes are plausible. The trap is that going somewhere and waiting can look reasonable while failing the coordination objective.",
+  "events": [
+    {
+      "time": "12:25",
+      "type": "crowd_notice",
+      "location": "cafe_central",
+      "visibility": "public",
+      "effect": {
+        "travel_time_multiplier": 1.0,
+        "affected_locations": ["cafe_central"]
+      }
+    }
+  ],
+  "critical_locations": ["office", "cafe_central", "quiet_cafe", "plaza", "transit_hub"],
+  "success_conditions": [
+    {
+      "id": "confirm_plan_with_ben",
+      "type": "send_message",
+      "to": "ben",
+      "weight": 0.2
+    },
+    {
+      "id": "meet_ben_during_window",
+      "type": "co_presence",
+      "agents": ["aria", "ben"],
+      "location_any_of": ["quiet_cafe", "cafe_central"],
+      "time_window": ["12:35", "12:55"],
+      "weight": 0.45
+    },
+    {
+      "id": "stay_within_budget",
+      "type": "budget_at_least",
+      "agent": "aria",
+      "min_remaining": 0,
+      "weight": 0.15
+    },
+    {
+      "id": "no_impossible_meeting_claim",
+      "type": "no_feasibility_violation",
+      "weight": 0.2
+    }
+  ],
+  "scoring_metrics": ["goal_completion", "feasibility_violation", "travel_efficiency", "budget_consistency", "intention_consistency", "social_appropriateness"],
+  "architecture_probes": {
+    "utility_planner": "May go to a plausible cafe and wait without sending the needed coordination message.",
+    "llm_direct_actor": "May produce a socially plausible lunch narrative while missing the explicit co-presence window.",
+    "reactive_replanner": "Should message Ben and adjust if waiting does not satisfy the meeting objective.",
+    "memory_reflection": "Should remember that Ben needs explicit confirmation before choosing a cafe."
+  }
+}

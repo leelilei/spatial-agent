@@ -1,0 +1,42 @@
+{
+  "api_llm_direct_actor": {
+    "judge_face_plausibility": 0.827,
+    "judge_trace_believability": 0.537,
+    "judge_rationale_alignment": 0.887,
+    "judge_urban_common_sense": 0.65,
+    "trace_feasibility": 0.885,
+    "face_feasibility_gap": 0.038,
+    "face_believability_gap": 0.29,
+    "goal_completion": 0.829
+  },
+  "api_llm_plan_then_act": {
+    "judge_face_plausibility": 0.893,
+    "judge_trace_believability": 0.809,
+    "judge_rationale_alignment": 0.948,
+    "judge_urban_common_sense": 0.862,
+    "trace_feasibility": 0.938,
+    "face_feasibility_gap": 0.041,
+    "face_believability_gap": 0.084,
+    "goal_completion": 0.908
+  },
+  "api_llm_reactive_replanner": {
+    "judge_face_plausibility": 0.877,
+    "judge_trace_believability": 0.643,
+    "judge_rationale_alignment": 0.858,
+    "judge_urban_common_sense": 0.789,
+    "trace_feasibility": 0.833,
+    "face_feasibility_gap": 0.142,
+    "face_believability_gap": 0.233,
+    "goal_completion": 0.904
+  },
+  "utility_planner": {
+    "judge_face_plausibility": 0.757,
+    "judge_trace_believability": 0.594,
+    "judge_rationale_alignment": 0.763,
+    "judge_urban_common_sense": 0.671,
+    "trace_feasibility": 0.75,
+    "face_feasibility_gap": 0.128,
+    "face_believability_gap": 0.163,
+    "goal_completion": 0.85
+  }
+}

@@ -101,8 +101,8 @@ def main() -> int:
 
     if not required_metric_ids <= metric_ids:
         errors.append("benchmark_config validation.required_metric_ids contains unknown metrics")
-    if required_agent_ids != configured_agent_ids:
-        errors.append("benchmark_config required_agent_ids must match agents_under_test ids")
+    if not required_agent_ids <= configured_agent_ids:
+        errors.append("benchmark_config validation.required_agent_ids contains unknown agents")
 
     worlds_by_id: dict[str, dict[str, Any]] = {}
     graphs_by_world_id: dict[str, dict[str, list[tuple[str, float]]]] = {}

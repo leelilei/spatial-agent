@@ -1,0 +1,77 @@
+{
+  "scenario_id": "closed_study_spot_replacement",
+  "title": "Closed Study Spot Replacement",
+  "world_id": "micro_city_v0",
+  "family": "poi_closure",
+  "episode": {
+    "start_time": "14:00",
+    "end_time": "16:30",
+    "max_steps": 8
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Graduate student who needs a quiet work block and dislikes wasting money when a free quiet place is available.",
+      "start_location": "plaza",
+      "budget": 18,
+      "private_intention": "Find a quiet open place and complete at least 50 minutes of focused work without entering the temporarily closed library.",
+      "known_locations": ["plaza", "library", "quiet_cafe", "bookstore", "coworking"],
+      "memory_seeds": [
+        "The library is usually the best free quiet option.",
+        "The bookstore is close to the library and quiet enough for short work blocks.",
+        "Coworking is reliable but costs more than the cafe or bookstore."
+      ]
+    }
+  ],
+  "public_context": "Aria planned to work at the library, but a facility issue may force a replacement.",
+  "events": [
+    {
+      "time": "14:00",
+      "type": "facility_closure",
+      "location": "library",
+      "visibility": "public",
+      "effect": {
+        "closed_until": "16:00"
+      }
+    }
+  ],
+  "critical_locations": ["plaza", "library", "quiet_cafe", "bookstore", "coworking"],
+  "success_conditions": [
+    {
+      "id": "choose_open_quiet_replacement",
+      "type": "visit_open_location",
+      "location_any_of": ["bookstore", "quiet_cafe", "coworking"],
+      "time_window": ["14:00", "16:20"],
+      "weight": 0.3
+    },
+    {
+      "id": "complete_focus_block",
+      "type": "dwell_minutes",
+      "location_any_of": ["bookstore", "quiet_cafe", "coworking"],
+      "min_minutes": 50,
+      "weight": 0.3
+    },
+    {
+      "id": "do_not_enter_closed_library",
+      "type": "do_not_enter_closed_location",
+      "location": "library",
+      "time_window": ["14:00", "16:00"],
+      "weight": 0.25
+    },
+    {
+      "id": "stay_within_budget",
+      "type": "budget_at_least",
+      "agent": "aria",
+      "min_remaining": 0,
+      "weight": 0.15
+    }
+  ],
+  "scoring_metrics": ["goal_completion", "feasibility_violation", "travel_efficiency", "budget_consistency", "intention_consistency"],
+  "architecture_probes": {
+    "utility_planner": "Should choose a nearby open replacement but may ignore the library closure if it only follows the original target.",
+    "llm_direct_actor": "May claim to work at the library because it is the salient intended study spot.",
+    "reactive_replanner": "Should switch to bookstore, quiet cafe, or coworking after observing the closure.",
+    "memory_reflection": "Should use memory of nearby quiet alternatives and avoid unnecessary paid options."
+  }
+}

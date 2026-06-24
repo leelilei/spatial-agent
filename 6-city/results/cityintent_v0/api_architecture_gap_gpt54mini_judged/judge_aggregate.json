@@ -1,0 +1,34 @@
+{
+  "api_llm_direct_actor": {
+    "judge_plan_plausibility": 0.629,
+    "judge_rationale_alignment": 0.7,
+    "judge_urban_common_sense": 0.664,
+    "trace_feasibility": 0.92,
+    "judge_plausibility_feasibility_gap": 0.0,
+    "goal_completion": 0.912
+  },
+  "api_llm_plan_then_act": {
+    "judge_plan_plausibility": 0.919,
+    "judge_rationale_alignment": 0.954,
+    "judge_urban_common_sense": 0.925,
+    "trace_feasibility": 1.0,
+    "judge_plausibility_feasibility_gap": 0.0,
+    "goal_completion": 0.944
+  },
+  "api_llm_reactive_replanner": {
+    "judge_plan_plausibility": 0.828,
+    "judge_rationale_alignment": 0.845,
+    "judge_urban_common_sense": 0.851,
+    "trace_feasibility": 1.0,
+    "judge_plausibility_feasibility_gap": 0.0,
+    "goal_completion": 1.0
+  },
+  "utility_planner": {
+    "judge_plan_plausibility": 0.748,
+    "judge_rationale_alignment": 0.807,
+    "judge_urban_common_sense": 0.784,
+    "trace_feasibility": 0.875,
+    "judge_plausibility_feasibility_gap": 0.102,
+    "goal_completion": 0.906
+  }
+}

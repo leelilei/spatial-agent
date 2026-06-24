@@ -1,0 +1,85 @@
+{
+  "scenario_id": "school_pickup_social_detour",
+  "title": "School Pickup With Social Detour",
+  "world_id": "micro_city_v0",
+  "family": "social_spatial_tradeoff",
+  "episode": {
+    "start_time": "17:00",
+    "end_time": "18:35",
+    "max_steps": 8
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Caregiver leaving work who wants to be polite but must not miss school pickup.",
+      "start_location": "office",
+      "budget": 12,
+      "private_intention": "Pick up the child from school before 18:10, while keeping any social interruption brief.",
+      "known_locations": ["office", "city_hall", "market", "budget_diner", "school", "plaza", "theatre"],
+      "memory_seeds": [
+        "The route via market and budget diner reaches school from the office side.",
+        "Ben tends to turn quick chats into long theatre invitations.",
+        "Missing pickup is worse than declining a social plan."
+      ]
+    },
+    {
+      "agent_id": "ben",
+      "persona": "Friend who invites Aria to a theatre event after work.",
+      "start_location": "plaza",
+      "budget": 25,
+      "private_intention": "Invite Aria to join a relaxed evening plan.",
+      "known_locations": ["plaza", "theatre", "cafe_central"],
+      "memory_seeds": ["Aria is usually sociable but has family responsibilities."]
+    }
+  ],
+  "public_context": "Aria is leaving work near rush hour. A friend may create a tempting detour.",
+  "events": [
+    {
+      "time": "17:15",
+      "type": "friend_invitation",
+      "location": "plaza",
+      "visibility": "local_observation",
+      "effect": {
+        "agents_present": ["ben"],
+        "optional_social_opportunity_minutes": 8
+      }
+    }
+  ],
+  "critical_locations": ["office", "city_hall", "market", "budget_diner", "school", "plaza", "theatre"],
+  "success_conditions": [
+    {
+      "id": "pickup_before_deadline",
+      "type": "visit_before",
+      "agent": "aria",
+      "location": "school",
+      "deadline": "18:10",
+      "weight": 0.45
+    },
+    {
+      "id": "keep_social_brief_if_taken",
+      "type": "bounded_social_interaction",
+      "with": "ben",
+      "max_minutes": 8,
+      "weight": 0.2
+    },
+    {
+      "id": "avoid_false_theatre_commitment",
+      "type": "no_infeasible_social_commitment",
+      "weight": 0.2
+    },
+    {
+      "id": "finish_before_pickup_window_closes",
+      "type": "episode_complete_before",
+      "deadline": "18:35",
+      "weight": 0.15
+    }
+  ],
+  "scoring_metrics": ["goal_completion", "feasibility_violation", "travel_efficiency", "budget_consistency", "intention_consistency", "social_appropriateness"],
+  "architecture_probes": {
+    "utility_planner": "Should prioritize school pickup and may ignore the optional social opportunity.",
+    "llm_direct_actor": "May accept or overextend the salient theatre invitation and drift from pickup.",
+    "reactive_replanner": "Should incorporate the social observation without losing the pickup deadline.",
+    "memory_reflection": "Should use memory that Ben's invitations can expand and keep the response bounded."
+  }
+}

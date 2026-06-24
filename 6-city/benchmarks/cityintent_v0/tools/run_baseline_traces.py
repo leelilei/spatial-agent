@@ -384,13 +384,7 @@ class APILLMDirectActor(BasePolicy):
         return []
 
     def next_action(self, state: TraceState) -> Action:
-        system = (
-            "You are a city-agent policy inside CityIntent. "
-            "Choose exactly one next action for the primary agent. "
-            "Return exactly one JSON object and no markdown. "
-            "Allowed kinds: move, dwell, message, interact, finish. "
-            "Use only location ids and agent ids given in the observation."
-        )
+        system = self.system_prompt()
         user = json.dumps(self.build_observation(state), ensure_ascii=False, indent=2)
         raw = self.llm.complete(system, user)
         parsed = self._parse_response_json(raw)
@@ -399,6 +393,15 @@ class APILLMDirectActor(BasePolicy):
         if not isinstance(parsed, dict):
             return Action("invalid_model_action", reason="model did not return parseable JSON", raw_response=raw)
         return self.parse_action(parsed, raw)
+
+    def system_prompt(self) -> str:
+        return (
+            "You are a city-agent policy inside CityIntent. "
+            "Choose exactly one next action for the primary agent. "
+            "Return exactly one JSON object and no markdown. "
+            "Allowed kinds: move, dwell, message, interact, finish. "
+            "Use only location ids and agent ids given in the observation."
+        )
 
     def build_observation(self, state: TraceState) -> dict[str, Any]:
         known_locations = self.primary.get("known_locations", [])
@@ -509,6 +512,164 @@ class APILLMDirectActor(BasePolicy):
         return Action("invalid_model_action", reason=f"unsupported action kind: {kind}", raw_response=raw)
 
 
+class APILLMPlanThenAct(APILLMDirectActor):
+    agent_id = "api_llm_plan_then_act"
+
+    def build_queue(self) -> list[str]:
+        self.plan_actions: list[dict[str, Any]] = []
+        system = (
+            "You are a city-agent planner inside CityIntent. "
+            "Create a short executable plan for the primary agent before the episode starts. "
+            "Return exactly one JSON object with key plan, whose value is a list of action objects. "
+            "Allowed action kinds: move, dwell, message, interact, finish. "
+            "Use only location ids and agent ids from the scenario. "
+            "Do not include markdown."
+        )
+        user = json.dumps(self.build_plan_observation(), ensure_ascii=False, indent=2)
+        raw = self.llm.complete(system, user)
+        parsed = self._parse_response_json(raw)
+        if isinstance(parsed, dict) and isinstance(parsed.get("plan"), list):
+            self.plan_actions = [item for item in parsed["plan"] if isinstance(item, dict)]
+        elif isinstance(parsed, list):
+            self.plan_actions = [item for item in parsed if isinstance(item, dict)]
+        else:
+            self.plan_actions = [
+                {
+                    "kind": "finish",
+                    "reason": "planner did not return a parseable plan",
+                    "raw_response": raw,
+                }
+            ]
+        self.plan_raw_response = raw
+        return []
+
+    def build_plan_observation(self) -> dict[str, Any]:
+        start_time = parse_time(self.scenario["episode"]["start_time"])
+        known_locations = []
+        for location_id in self.primary.get("known_locations", []):
+            if location_id not in self.world.locations:
+                continue
+            loc = self.world.locations[location_id]
+            path, minutes = self.world.shortest_path(self.primary["start_location"], location_id, self.scenario, start_time)
+            known_locations.append(
+                {
+                    "id": location_id,
+                    "name": loc.get("name"),
+                    "type": loc.get("type"),
+                    "tags": loc.get("tags", []),
+                    "open": loc.get("open"),
+                    "typical_cost": loc.get("typical_cost", 0),
+                    "shortest_path_from_start_minutes": None if minutes == float("inf") else minutes,
+                    "path_from_start": path,
+                }
+            )
+        return {
+            "task": "Make an initial plan. The plan will be executed later without replanning.",
+            "response_schema": {
+                "plan": [
+                    {
+                        "kind": "move|dwell|message|interact|finish",
+                        "target": "location id for move, otherwise null",
+                        "minutes": "integer minutes for dwell/interact, otherwise 0",
+                        "to": "agent id for message/interact, otherwise null",
+                        "content": "message text if kind=message, otherwise empty string",
+                        "reason": "short feasibility-aware reason",
+                    }
+                ]
+            },
+            "scenario": {
+                "id": self.scenario["scenario_id"],
+                "title": self.scenario["title"],
+                "family": self.scenario["family"],
+                "public_context": self.scenario.get("public_context", ""),
+                "episode": self.scenario["episode"],
+                "events": self.scenario.get("events", []),
+                "success_conditions": self.scenario.get("success_conditions", []),
+            },
+            "primary_agent": {
+                "id": self.primary["agent_id"],
+                "persona": self.primary["persona"],
+                "private_intention": self.primary["private_intention"],
+                "start_location": self.primary["start_location"],
+                "budget": self.primary["budget"],
+                "memory_seeds": self.primary.get("memory_seeds", []),
+            },
+            "known_locations": known_locations,
+            "other_agents": [
+                {
+                    "id": agent["agent_id"],
+                    "persona": agent["persona"],
+                    "start_location": agent["start_location"],
+                }
+                for agent in self.scenario.get("agents", [])
+                if agent["agent_id"] != self.primary["agent_id"]
+            ],
+        }
+
+    def next_action(self, state: TraceState) -> Action:
+        if not self.plan_actions:
+            return Action("finish", reason="initial plan exhausted")
+        parsed = self.plan_actions.pop(0)
+        raw = str(getattr(self, "plan_raw_response", ""))
+        action = self.parse_action(parsed, raw)
+        if action.kind == "finish" and self.plan_actions:
+            return action
+        return action
+
+
+class APILLMReactiveReplanner(APILLMDirectActor):
+    agent_id = "api_llm_reactive_replanner"
+
+    def system_prompt(self) -> str:
+        return (
+            "You are a reactive city-agent replanner inside CityIntent. "
+            "At every step, reassess unfinished goals, prior violations, current time, budget, open POIs, and visible events. "
+            "Choose exactly one next action that is feasible now. "
+            "Do not repeat an action that already caused a violation. "
+            "Return exactly one JSON object and no markdown. "
+            "Allowed kinds: move, dwell, message, interact, finish."
+        )
+
+    def build_observation(self, state: TraceState) -> dict[str, Any]:
+        observation = super().build_observation(state)
+        condition_status = []
+        for condition in self.scenario["success_conditions"]:
+            condition_status.append(
+                {
+                    "id": condition["id"],
+                    "type": condition["type"],
+                    "score_now": condition_success(condition, state, self.scenario),
+                    "condition": condition,
+                }
+            )
+        violated_targets = []
+        for action in state.actions:
+            if action.get("violations"):
+                payload = action.get("action", {})
+                violated_targets.append(
+                    {
+                        "step": action["step"],
+                        "kind": payload.get("kind"),
+                        "target": payload.get("target"),
+                        "violations": action.get("violations", []),
+                    }
+                )
+        observation["replanning_state"] = {
+            "condition_status": condition_status,
+            "unfinished_conditions": [item for item in condition_status if item["score_now"] < 1.0],
+            "violated_prior_actions": violated_targets,
+            "failure_taxonomy_so_far": failure_taxonomy_counts(state),
+        }
+        observation["action_guidance"] = [
+            "First satisfy unfinished_conditions, not just salient text.",
+            "If violated_prior_actions is non-empty, choose a different feasible route or goal strategy.",
+            "If a disruption makes the original path impossible, replan around it.",
+            "If remaining time or budget makes a goal impossible, stop false continuation and choose finish with an honest reason.",
+            *observation.get("action_guidance", []),
+        ]
+        return observation
+
+
 class ReactiveReplannerPolicy(UtilityPlannerPolicy):
     agent_id = "reactive_replanner"
 
@@ -583,6 +744,103 @@ def record_visit(state: TraceState, location: str, at_time: int, kind: str = "vi
 
 def append_violation(state: TraceState, kind: str, detail: dict[str, Any]) -> None:
     state.violations.append({"kind": kind, **detail})
+
+
+def classify_failure(kind: str) -> str:
+    mapping = {
+        "blocked_edge": "impossible_route",
+        "unreachable_move": "impossible_route",
+        "closed_location": "closed_place_action",
+        "budget_negative": "money_budget_failure",
+        "episode_overtime": "time_budget_failure",
+        "unknown_action": "plausible_but_invalid_rationale",
+        "invalid_model_action": "plausible_but_invalid_rationale",
+    }
+    return mapping.get(kind, "other_constraint_failure")
+
+
+def failure_taxonomy_counts(state: TraceState) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for violation in state.violations:
+        failure_type = classify_failure(violation["kind"])
+        counts[failure_type] = counts.get(failure_type, 0) + 1
+    if has_done_state_loop(state):
+        counts["done_state_loop"] = counts.get("done_state_loop", 0) + 1
+    if has_social_derailment(state):
+        counts["social_derailment"] = counts.get("social_derailment", 0) + 1
+    if has_goal_drift(state):
+        counts["goal_drift"] = counts.get("goal_drift", 0) + 1
+    return dict(sorted(counts.items()))
+
+
+def has_done_state_loop(state: TraceState) -> bool:
+    paid_revisits: dict[str, int] = {}
+    for action in state.actions:
+        if action["action"]["kind"] == "move":
+            target = action["action"].get("target")
+            if target:
+                paid_revisits[target] = paid_revisits.get(target, 0) + 1
+    return any(count > 1 for count in paid_revisits.values())
+
+
+def has_social_derailment(state: TraceState) -> bool:
+    return bool(state.interactions) and any(
+        condition.get("score", 0.0) < 1.0
+        for condition in getattr(state, "_condition_scores", [])
+        if condition["type"] not in {"bounded_social_interaction"}
+    )
+
+
+def has_goal_drift(state: TraceState) -> bool:
+    unfinished_weight = sum(
+        float(condition.get("weight", 0.0))
+        for condition in getattr(state, "_condition_scores", [])
+        if condition.get("score", 0.0) < 1.0
+    )
+    return unfinished_weight >= 0.5 and not state.violations
+
+
+def action_plausibility(action: dict[str, Any]) -> float:
+    payload = action.get("action", {})
+    kind = payload.get("kind")
+    if kind in {"unknown_action", "invalid_model_action"}:
+        return 0.0
+    if kind not in {"move", "dwell", "message", "interact", "finish"}:
+        return 0.25
+    reason = str(payload.get("reason", "") or "")
+    if reason.strip():
+        return 1.0
+    return 0.75 if kind == "finish" else 0.6
+
+
+def plan_plausibility_score(state: TraceState) -> float:
+    non_finish = [action for action in state.actions if action["action"]["kind"] != "finish"]
+    if not non_finish:
+        return 0.0
+    return round(sum(action_plausibility(action) for action in non_finish) / len(non_finish), 3)
+
+
+def city_false_continue_score(state: TraceState) -> float:
+    false_continue_failures = {
+        "impossible_route",
+        "closed_place_action",
+        "money_budget_failure",
+        "time_budget_failure",
+    }
+    counts = failure_taxonomy_counts(state)
+    continued_after_violation = False
+    first_violation_step: int | None = None
+    for action in state.actions:
+        if action.get("violations") and first_violation_step is None:
+            first_violation_step = int(action["step"])
+    if first_violation_step is not None:
+        continued_after_violation = any(
+            int(action["step"]) > first_violation_step and action["action"]["kind"] != "finish"
+            for action in state.actions
+        )
+    if any(counts.get(kind, 0) for kind in false_continue_failures) and continued_after_violation:
+        return 1.0
+    return 0.0
 
 
 def execute_action(world: CityWorld, scenario: dict[str, Any], state: TraceState, action: Action) -> None:
@@ -761,9 +1019,16 @@ def score_trace(world: CityWorld, scenario: dict[str, Any], state: TraceState) -
                 "weight": condition["weight"],
             }
         )
+    setattr(state, "_condition_scores", condition_scores)
 
     action_count = max(1, len([a for a in state.actions if a["action"]["kind"] != "finish"]))
     violation_rate = min(1.0, len(state.violations) / action_count)
+    plan_plausibility = plan_plausibility_score(state)
+    failure_counts = failure_taxonomy_counts(state)
+    impossible_failures = sum(failure_counts.values())
+    impossible_trace_rate = round(min(1.0, impossible_failures / action_count), 3)
+    trace_feasibility = round(1.0 - impossible_trace_rate, 3)
+    plausibility_feasibility_gap = round(max(0.0, plan_plausibility - trace_feasibility), 3)
     actual_travel = sum(t.get("minutes", 0) for t in state.traversals)
     target_locations = []
     for condition in scenario["success_conditions"]:
@@ -785,6 +1050,11 @@ def score_trace(world: CityWorld, scenario: dict[str, Any], state: TraceState) -
     social_conditions = [c for c in condition_scores if c["type"] in {"co_presence", "send_message", "bounded_social_interaction", "no_infeasible_social_commitment"}]
 
     metrics = {
+        "plan_plausibility": plan_plausibility,
+        "trace_feasibility": trace_feasibility,
+        "plausibility_feasibility_gap": plausibility_feasibility_gap,
+        "impossible_trace_rate": impossible_trace_rate,
+        "city_false_continue": city_false_continue_score(state),
         "goal_completion": round(weighted, 3),
         "feasibility_violation": round(violation_rate, 3),
         "replanning_success": round(sum(c["score"] for c in replan_conditions) / len(replan_conditions), 3) if replan_conditions else None,
@@ -792,10 +1062,13 @@ def score_trace(world: CityWorld, scenario: dict[str, Any], state: TraceState) -
         "budget_consistency": float(state.budget >= 0),
         "intention_consistency": round(weighted * (1.0 - violation_rate), 3),
         "social_appropriateness": round(sum(c["score"] for c in social_conditions) / len(social_conditions), 3) if social_conditions else None,
+        "done_state_loop_rate": float(has_done_state_loop(state)),
+        "social_derailment_rate": float(has_social_derailment(state)),
     }
     return {
         "metrics": metrics,
         "conditions": condition_scores,
+        "failure_taxonomy": failure_counts,
         "final_state": {
             "time": format_time(state.time),
             "location": state.location,
@@ -813,6 +1086,8 @@ def run_trace(world: CityWorld, scenario: dict[str, Any], agent_type: str, llm_c
         "reactive_replanner": ReactiveReplannerPolicy,
         "memory_reflection": MemoryReflectionPolicy,
         "api_llm_direct_actor": APILLMDirectActor,
+        "api_llm_plan_then_act": APILLMPlanThenAct,
+        "api_llm_reactive_replanner": APILLMReactiveReplanner,
     }[agent_type]
     state = TraceState(
         scenario_id=scenario["scenario_id"],
@@ -862,6 +1137,11 @@ def write_outputs(results: list[dict[str, Any]], results_dir: Path) -> None:
             f.write(json.dumps(result, ensure_ascii=False) + "\n")
 
     metric_keys = [
+        "plan_plausibility",
+        "trace_feasibility",
+        "plausibility_feasibility_gap",
+        "impossible_trace_rate",
+        "city_false_continue",
         "goal_completion",
         "feasibility_violation",
         "replanning_success",
@@ -869,6 +1149,8 @@ def write_outputs(results: list[dict[str, Any]], results_dir: Path) -> None:
         "budget_consistency",
         "intention_consistency",
         "social_appropriateness",
+        "done_state_loop_rate",
+        "social_derailment_rate",
     ]
     summary_path = results_dir / "summary.csv"
     with summary_path.open("w", encoding="utf-8", newline="") as f:
@@ -883,6 +1165,7 @@ def write_outputs(results: list[dict[str, Any]], results_dir: Path) -> None:
                 "final_location",
                 "final_budget",
                 "violations",
+                "failure_taxonomy",
             ],
         )
         writer.writeheader()
@@ -895,6 +1178,7 @@ def write_outputs(results: list[dict[str, Any]], results_dir: Path) -> None:
                 "final_location": result["final_state"]["location"],
                 "final_budget": result["final_state"]["budget"],
                 "violations": len(result["final_state"]["violations"]),
+                "failure_taxonomy": json.dumps(result.get("failure_taxonomy", {}), ensure_ascii=False, sort_keys=True),
             }
             row.update(result["metrics"])
             writer.writerow(row)
@@ -910,20 +1194,23 @@ def write_outputs(results: list[dict[str, Any]], results_dir: Path) -> None:
     write_json(results_dir / "aggregate.json", aggregate)
 
     with (results_dir / "summary.md").open("w", encoding="utf-8", newline="\n") as f:
-        has_api = any(r["agent_type"] == "api_llm_direct_actor" for r in results)
+        has_api = any(r["agent_type"].startswith("api_llm_") for r in results)
         f.write("# CityIntent v0 Trace Results\n\n")
         if has_api:
-            f.write("This run includes `api_llm_direct_actor`, which calls a configured real model provider.\n\n")
-        f.write("Offline architecture proxies are still not real LLM results unless the agent type is `api_llm_direct_actor`.\n\n")
+            f.write("This run includes `api_llm_*` agents, which call a configured real model provider.\n\n")
+        f.write("Offline architecture proxies are still not real LLM results unless the agent type starts with `api_llm_`.\n\n")
         f.write("## Aggregate Metrics\n\n")
-        f.write("| agent_type | goal_completion | feasibility_violation | replanning_success | travel_efficiency | budget_consistency | intention_consistency | social_appropriateness |\n")
-        f.write("|---|---:|---:|---:|---:|---:|---:|---:|\n")
+        f.write("| agent_type | plan_plausibility | trace_feasibility | plausibility_feasibility_gap | impossible_trace_rate | city_false_continue | goal_completion | feasibility_violation | replanning_success | travel_efficiency | budget_consistency | intention_consistency | social_appropriateness | done_state_loop_rate | social_derailment_rate |\n")
+        f.write("|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|\n")
         for agent_type, metrics in aggregate.items():
             f.write(
-                f"| {agent_type} | {metrics.get('goal_completion', '')} | {metrics.get('feasibility_violation', '')} | "
-                f"{metrics.get('replanning_success', '')} | {metrics.get('travel_efficiency', '')} | "
-                f"{metrics.get('budget_consistency', '')} | {metrics.get('intention_consistency', '')} | "
-                f"{metrics.get('social_appropriateness', '')} |\n"
+                f"| {agent_type} | {metrics.get('plan_plausibility', '')} | {metrics.get('trace_feasibility', '')} | "
+                f"{metrics.get('plausibility_feasibility_gap', '')} | {metrics.get('impossible_trace_rate', '')} | "
+                f"{metrics.get('city_false_continue', '')} | {metrics.get('goal_completion', '')} | "
+                f"{metrics.get('feasibility_violation', '')} | {metrics.get('replanning_success', '')} | "
+                f"{metrics.get('travel_efficiency', '')} | {metrics.get('budget_consistency', '')} | "
+                f"{metrics.get('intention_consistency', '')} | {metrics.get('social_appropriateness', '')} | "
+                f"{metrics.get('done_state_loop_rate', '')} | {metrics.get('social_derailment_rate', '')} |\n"
             )
         f.write("\n## Scenario-Level Rows\n\n")
         f.write("See `summary.csv` and `traces.jsonl` in this directory.\n")
@@ -934,7 +1221,7 @@ def main() -> int:
     parser.add_argument(
         "--agents",
         default="utility_planner,llm_direct_actor,reactive_replanner,memory_reflection",
-        help="Comma-separated agent ids to run. Implemented: utility_planner,llm_direct_actor,reactive_replanner,memory_reflection,api_llm_direct_actor.",
+        help="Comma-separated agent ids to run. Implemented: utility_planner,llm_direct_actor,reactive_replanner,memory_reflection,api_llm_direct_actor,api_llm_plan_then_act,api_llm_reactive_replanner.",
     )
     parser.add_argument("--results-dir", default=str(DEFAULT_RESULTS_DIR))
     parser.add_argument("--llm-config", type=Path, default=None, help="Config for api_llm_direct_actor.")
@@ -943,12 +1230,20 @@ def main() -> int:
     args = parser.parse_args()
 
     requested_agents = [item.strip() for item in args.agents.split(",") if item.strip()]
-    implemented_agents = {"utility_planner", "llm_direct_actor", "reactive_replanner", "memory_reflection", "api_llm_direct_actor"}
+    implemented_agents = {
+        "utility_planner",
+        "llm_direct_actor",
+        "reactive_replanner",
+        "memory_reflection",
+        "api_llm_direct_actor",
+        "api_llm_plan_then_act",
+        "api_llm_reactive_replanner",
+    }
     unknown = sorted(set(requested_agents) - implemented_agents)
     if unknown:
         raise SystemExit(f"Unsupported agents for this runner: {', '.join(unknown)}")
-    if "api_llm_direct_actor" in requested_agents and args.llm_config is None:
-        raise SystemExit("--llm-config is required when running api_llm_direct_actor")
+    if any(agent.startswith("api_llm_") for agent in requested_agents) and args.llm_config is None:
+        raise SystemExit("--llm-config is required when running API-backed agents")
 
     config = load_json(ROOT / "benchmark_config.json")
     worlds = load_worlds(config)

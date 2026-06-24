@@ -1,0 +1,35 @@
+{
+  "repeats": 1,
+  "agents": [
+    "utility_planner",
+    "api_llm_direct_actor",
+    "api_llm_plan_then_act",
+    "api_llm_reactive_replanner"
+  ],
+  "scenario_ids": [
+    "closed_poi_replacement"
+  ],
+  "limit_scenarios": null,
+  "core_metrics": [
+    "goal_completion",
+    "trace_feasibility",
+    "intention_consistency",
+    "replanning_success",
+    "judge_face_plausibility",
+    "judge_trace_believability",
+    "face_believability_gap",
+    "impossible_trace_rate",
+    "done_state_loop_rate",
+    "social_derailment_rate"
+  ],
+  "extra_metrics": [
+    "plan_plausibility",
+    "plausibility_feasibility_gap",
+    "travel_efficiency",
+    "budget_consistency",
+    "social_appropriateness",
+    "feasibility_violation",
+    "city_false_continue",
+    "face_feasibility_gap"
+  ]
+}

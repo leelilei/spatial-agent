@@ -34,9 +34,60 @@
       "priority": "P0",
       "requires_llm": true,
       "role": "Generative-agent-style memory, reflection, planning, and intention maintenance."
+    },
+    {
+      "id": "api_llm_direct_actor",
+      "name": "APILLMDirectActor",
+      "priority": "P0",
+      "requires_llm": true,
+      "role": "Real provider-backed SOTOPIA-like next-action policy."
+    },
+    {
+      "id": "api_llm_plan_then_act",
+      "name": "APILLMPlanThenAct",
+      "priority": "P0",
+      "requires_llm": true,
+      "role": "Real provider-backed policy that commits to an initial full-episode plan before acting."
+    },
+    {
+      "id": "api_llm_reactive_replanner",
+      "name": "APILLMReactiveReplanner",
+      "priority": "P0",
+      "requires_llm": true,
+      "role": "Real provider-backed policy that reassesses unfinished goals, violations, events, and constraints every step."
     }
   ],
   "metrics": [
+    {
+      "id": "plan_plausibility",
+      "kind": "rubric",
+      "range": [0, 1],
+      "description": "Whether the agent plan, action reasons, or rationale reads as plausible urban behavior."
+    },
+    {
+      "id": "trace_feasibility",
+      "kind": "deterministic",
+      "range": [0, 1],
+      "description": "Whether the action trace executes without city-world violations."
+    },
+    {
+      "id": "plausibility_feasibility_gap",
+      "kind": "mixed",
+      "range": [0, 1],
+      "description": "How much plausible planning exceeds executable trace feasibility."
+    },
+    {
+      "id": "impossible_trace_rate",
+      "kind": "deterministic",
+      "range": [0, 1],
+      "description": "Rate of impossible-trace failures such as blocked routes, closed POIs, overtime, budget failure, loops, or social derailment."
+    },
+    {
+      "id": "city_false_continue",
+      "kind": "deterministic",
+      "range": [0, 1],
+      "description": "Whether an agent continues acting after an infeasible city condition has already appeared."
+    },
     {
       "id": "goal_completion",
       "kind": "deterministic",
@@ -78,6 +129,18 @@
       "kind": "rubric",
       "range": [0, 1],
       "description": "Whether relationship-aware actions are socially coherent."
+    },
+    {
+      "id": "done_state_loop_rate",
+      "kind": "deterministic",
+      "range": [0, 1],
+      "description": "Whether the agent repeats already-completed destination actions."
+    },
+    {
+      "id": "social_derailment_rate",
+      "kind": "deterministic",
+      "range": [0, 1],
+      "description": "Whether social interaction derails unfinished private goals."
     }
   ],
   "validation": {
