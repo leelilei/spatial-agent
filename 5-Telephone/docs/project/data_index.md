@@ -38,7 +38,7 @@
 | C14 | capability check on cure (DeepSeek-V4-Flash), n=8 | pool: `cap_deepseek_prov_vs_ga_pilot` (41-43) + `cap_deepseek_prov_vs_ga_n8ext` (GA 44-48, PROV 44) + `cap_deepseek_prov_n8fill` (PROV 45-48) + `cap_deepseek_prov_seed44` (PROV 44 interview) |
 | C15 | APM architecture pilot (DeepSeek) | `cap_apm_clean_r5_pilot` (K=2, deadlock) + `cap_apm_k1_r5_pilot` (K=1, ≈PROV) |
 | C16 | adversarial-liar robustness (mini/FHL) | `cap_c16_mini_adversary` (PROV vs APM, adversary a13@r2, n=3) + `cap_c16_adversary_pilot` (ds PROV seed41 cross-check) |
-| C17 | APM realistic-friction equilibrium (saturation check) | `cap_c17_mini_sparse_r10` (apm vs ga, mention 0.1, r10, n=3) |
+| C17 | APM realistic-friction equilibrium (saturation check), n=8 | `cap_c17_mini_sparse_r10` (41-43) + `cap_c17_mini_sparse_r10_ext` (44-48) — apm vs ga, mention 0.1, r10 |
 
 ## Reproducibility notes
 - **`run_config.json`** (per out-dir) records every CLI arg + timestamp → a run is now
