@@ -58,6 +58,7 @@
 | 06-23 | C14 | CAPABILITY CHECK ON THE CURE: PROV vs GA on a NON-mini model (DeepSeek-V4-Flash, yunwu.ai) | repair_drive deepseek-v4-flash, 25a m2 r5 t3, {ga,prov} **n=8** (seeds 41-48) | **The CURE survives capability (n=8, CIs DISJOINT): PROV 64.0% [57.8-70.2] (median 62) vs GA 15.5% [10.1-20.9] (median 14).** Mirrors M0: GA stays low on a new model family (ds 15.5 ≈ mini median 18, CIs overlap → phenomenon survives capability); PROV wins decisively, slightly WIDER than mini (ds 64 vs mini 57). n=8 corrects the n=3 over-estimate (was PROV 70.7/GA 17.3 on the first 3 high seeds). Pooled across pilot+n8ext+n8fill+seed44 dirs | **done(n=8)** |
 | 06-24 | C15 | APM (Auditable Provenance Memory): does adding anti-spoof + corroboration + abstain + auditability to PROV preserve the cure? | repair_drive deepseek-v4-flash, 25a m2 r5 t3, memory=apm n=3 (seeds 41-43); K={1,2} | **APM K=1 ≈ PROV, cure preserved + interpretable: 64.0% (48/75) vs PROV 70.7% vs GA 17.3%; per-seed [56-76].** Failure mode is SAFE (abstain: unknown 20, stale 7 — not confidently wrong like GA). **Auditability real:** 60-76% of agents hold a belief with a COMPLETE provenance chain to ORIGIN (avg 3.2 hops); rest abstain. Anti-spoof unit-tested (liar's unauthenticated high-version rejected). **APM K=2 (commit-gated) DEADLOCKS: 12% (worse than GA) — only origin commits; auth can't bootstrap because abstaining agents don't relay.** -> multi-source corroboration needs relay-before-commit (next). Lesson: interpretability+spoof-resistance cost ~7pts vs PROV; K knob dials flood(K1)<->over-conservative(K2-gated) | done(n=3 pilot) |
 | 06-25 | C16 | ADVERSARIAL-LIAR robustness (the test that justifies APM as an architecture): one agent broadcasts a FORGED high-version stale claim (auth=False). PROV vs APM(K=1) | repair_drive gpt-5.4-mini (FHL; yunwu/ds was 429-overloaded), 25a m2 r5 t3, adversary=a13 from r2, n=3 (seeds 41-43) | **Only APM survives the attack. APM 64.0% [60-72] held-current with STALE=0 (ZERO hijack); PROV 33.3% [24-40] with STALE=43/75 (mass hijack).** vs no-adversary baseline (PROV 57% mini / APM≈PROV): the liar collapses PROV (57->33, 43 agents believe the forgery) but APM is UNMOVED (≈64, unchanged). Audit: 15-18/25 APM agents hold a committed belief, 0 contaminated by the forged v999 — anti-spoof holds society-wide, not just in the unit test. Mechanism unit-tested separately (PROV adopts forgery, APM rejects). This is APM's unique value: ≈PROV without an adversary, the ONLY one standing with one. ds cross-check (seed41): PROV adv 36% (consistent) | **done(n=3)** |
+| 06-25 | C17 | APM realistic-friction EQUILIBRIUM (the saturation check, pre-registered): does APM settle to a stable <100% equilibrium under sparse comms + long horizon, or flood to 100%? | repair_drive gpt-5.4-mini (FHL), 25a m2 **r10**, **--prov-mention 0.1**, apm(K=1) vs ga, n=3 (seeds 41-43) | **APM does NOT saturate: settles to ~44% [8-72] held-current, STALE=0, ~3x GA (14.7%).** The 100% ceiling was a comms-model artifact (Telephone C7); under realistic sparse comms + r10, APM's abstain yields a healthy sub-100% equilibrium, not a flood. Misses go to unknown(42), never stale(0) — GA instead has 12 stale. Honest caveat: high per-seed variance [8-72] (seed43=8%: sparse schedule where truth didn't spread); mean >> GA and stale=0 are robust, but a tight CI needs more seeds. Comparable to C7 PROVv2-sparse ~40% (APM has no decay but abstain caps it). | done(n=3; high var) |
 
 Detailed write-ups follow below as runs land.
 
@@ -1112,6 +1113,42 @@ questions (pre-registered in `paper/sections/architecture_apm_vs_ga.md`): (a) ad
 scenario where APM must beat naive PROV via anti-spoof; (b) realistic-friction equilibrium
 (sparse comms / longer horizon) confirming a stable sub-100% value. After those, APM's scientific
 job is done — further hardening is product, not paper.
+
+---
+
+# C17 — APM realistic-friction equilibrium: the saturation check (2026-06-25)
+
+The second and last pre-registered APM question, and the direct answer to the human's recurring
+worry ("will APM also flood to 100% like PROV did?"). Telephone C7 already showed the 100%
+ceiling is a COMMUNICATION-model artifact (every-utterance broadcast + lossless + sticky), not a
+property of provenance integration. C17 confirms it for APM: under realistic SPARSE comms
+(`--prov-mention 0.1`: an agent conveys the fact in only ~10% of utterances) + long horizon (r10),
+does APM settle to a stable sub-100% equilibrium? Run on gpt-5.4-mini/FHL. n=3.
+
+```text
+                held-current     stale   unknown
+APM @m0.1 r10   44.0% [8-72]      0       42
+GA  @m0.1 r10   14.7% [4-24]      12      52
+```
+
+**Finding — APM does NOT saturate.** It settles to ~44%, far from 100% and ~3x GA. The 100% seen
+in idealized comms is the gossip-flood ceiling; once comms are realistically sparse, APM's abstain
+mechanism caps it at a healthy dynamic equilibrium. This is the honest cure number under friction:
+a real, reasonable lift — not a saturation artifact.
+
+**Fail-safe holds under friction.** APM misses go to *unknown* (42/75), never to a wrong value
+(stale = 0). GA instead holds 12 stale. Even sparse and long-horizon, APM never confidently wrong.
+
+**Honest caveat.** Per-seed variance is high: [8, 72]. seed43 = 8% is a sparse-comms schedule
+where the truth simply did not spread enough (most agents abstain). The mean (>> GA) and stale=0
+are robust to this, but a tight CI would need more seeds. Comparable in magnitude to Telephone C7
+(PROVv2-sparse ~40%): APM has no Ebbinghaus decay, but its abstain caps the equilibrium similarly.
+
+**Status — APM's scientific job is DONE.** Both pre-registered questions are now answered:
+C16 (adversarial robustness: APM survives, PROV hijacked) and C17 (realistic equilibrium: APM
+sub-100%, ~3x GA, stale=0). Per the scoping discipline, further APM hardening is product, not
+paper. Forgetting as a first-class variable — which would re-open the dynamics — is deliberately
+deferred to the sequel project 7-Thaw, not folded in here.
 
 ---
 
