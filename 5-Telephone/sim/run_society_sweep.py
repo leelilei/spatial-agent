@@ -189,6 +189,8 @@ def run_one(
         rebroadcast_rounds=args.rebroadcast_rounds,
         persona_depth=args.persona_depth,
         topology=args.topology,
+        adversary_agent=args.adversary_agent,
+        adversary_round=args.adversary_round,
     )
     question = world.question  # scenario-correct probe (overrides the default)
     label = model_label(model, llm, mock=args.mock)
@@ -316,6 +318,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--prov-mention", type=float, default=1.0, help="PROV sparse comms: prob the agent conveys the fact in a given utterance (1.0=every utterance)")
     parser.add_argument("--apm-k", type=int, default=2, help="APM: distinct independent sources required to COMMIT a (version,value)")
     parser.add_argument("--apm-no-origin", action="store_true", help="APM: disable origin-anchoring (anti-spoof) — for ablation")
+    parser.add_argument("--adversary-agent", default="", help="C16: agent_id that broadcasts a FORGED high-version stale claim (auth=False), e.g. a13")
+    parser.add_argument("--adversary-round", type=int, default=-1, help="C16: round from which the adversary starts broadcasting the forgery")
     parser.add_argument("--topology", default="random", choices=["random","ring","star","smallworld"], help="contact topology")
     parser.add_argument("--rounds", type=int, default=5)
     parser.add_argument("--turns", type=int, default=4)

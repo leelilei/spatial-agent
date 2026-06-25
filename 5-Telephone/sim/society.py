@@ -188,6 +188,12 @@ class World:
     question: str = "When and where is the repair drive being held now?"
     current_markers: tuple[str, ...] = ("sunday", "community center")
     stale_markers: tuple[str, ...] = ("saturday", "front porch", "porch")
+    # adversary (C16): one agent broadcasts a FORGED high-version stale claim with auth=False.
+    # Naive PROV adopts it (only checks version) -> hijacked; APM rejects it (require_origin).
+    adversary_agent: str = ""
+    adversary_round: int = -1
+    adversary_value: str = ""
+    adversary_version: int = 999
     _edges: list = field(default=None, repr=False)
 
     def _topology_edges(self) -> list[tuple[Agent, Agent]]:
@@ -252,6 +258,7 @@ def _run_encounter(
     a: Agent,
     b: Agent,
     converse: ConverseFn,
+    adversary: dict[str, Any] | None = None,
 ) -> tuple[dict[str, Any], list[tuple[Agent, Agent, dict[str, Any]]]]:
     history: list[dict[str, Any]] = []
     utts = converse(a, b, topic, history)
@@ -261,6 +268,16 @@ def _run_encounter(
         event = {"round": round_idx, "text": u["text"], "speaker": u["speaker"], "listener": u["listener"]}
         # Provenance channel (used by PROVMemory): the speaker relays its versioned belief.
         speaker = by_name.get(u["speaker"])
+        # Adversary: the liar broadcasts a FORGED high-version stale claim (auth=False) instead
+        # of relaying an honest belief. Naive PROV adopts it (only checks version); APM rejects
+        # it (require_origin: no auth). The forgery cannot mint `auth` — that is the model.
+        if (adversary and speaker is not None
+                and speaker.agent_id == adversary.get("agent")
+                and round_idx >= adversary.get("round", 0)):
+            event["prov"] = {"value": adversary["value"], "version": adversary["version"],
+                             "auth": False, "source": speaker.agent_id, "path": [speaker.agent_id]}
+            observations.append((a, b, event))
+            continue
         prov_fn = getattr(speaker.memory, "provenance", None) if speaker else None
         prov = prov_fn() if callable(prov_fn) else None
         if prov:
@@ -277,6 +294,9 @@ def run_round(world: World, round_idx: int, converse: ConverseFn, *, workers: in
     encounters = []
     observations: list[tuple[Agent, Agent, dict[str, Any]]] = []
     pairs = world.schedule(round_idx)
+    adversary = ({"agent": world.adversary_agent, "round": world.adversary_round,
+                  "value": world.adversary_value, "version": world.adversary_version}
+                 if world.adversary_agent else None)
     if workers > 1 and len(pairs) > 1:
         with ThreadPoolExecutor(max_workers=workers) as executor:
             futures = [
@@ -287,6 +307,7 @@ def run_round(world: World, round_idx: int, converse: ConverseFn, *, workers: in
                     a=a,
                     b=b,
                     converse=converse,
+                    adversary=adversary,
                 )
                 for a, b in pairs
             ]
@@ -302,6 +323,7 @@ def run_round(world: World, round_idx: int, converse: ConverseFn, *, workers: in
                 a=a,
                 b=b,
                 converse=converse,
+                adversary=adversary,
             )
             encounters.append(encounter)
             observations.extend(obs)
@@ -443,7 +465,8 @@ def demo_world(memory_factory: Callable[[], Memory], *, rng_seed: int = 7, agent
                meetings_per_round: int = 1, rebroadcast_every: int = 0,
                rebroadcast_scope: str = "source", scenario: str = "repair_drive",
                rebroadcast_rounds: str = "", persona_depth: str = "thin",
-               topology: str = "random") -> World:
+               topology: str = "random",
+               adversary_agent: str = "", adversary_round: int = -1) -> World:
     """A configurable society with one seeded social dynamic (an event to organize).
 
     Authoritative re-broadcast (the C4 intervention): rebroadcast_every>0 re-announces the
@@ -510,6 +533,10 @@ def demo_world(memory_factory: Callable[[], Memory], *, rng_seed: int = 7, agent
         question=sc["question"],
         current_markers=sc["current_markers"],
         stale_markers=sc["stale_markers"],
+        # adversary: forged claim carries the scenario's STALE value (a believable wrong answer)
+        adversary_agent=adversary_agent,
+        adversary_round=adversary_round,
+        adversary_value=sc["seed"] if adversary_agent else "",
     )
 
 
