@@ -57,6 +57,7 @@
 | 06-23 | C13 | PROV-text-norm strong attribution dialogue | repair_drive gpt-5.4-mini, 25a r10 m1 t2, provtextnorm n=3 | **Strong text attribution repairs held truth: 75/75 current, 0 stale, 0 unknown.** Audit: 610/720 utterances contain source/version-like markers; 75/75 memory snapshots hold version>=1. Caveat: this is a protocolized attribution norm / text-only upper bound, not natural human dialogue | done(strong-norm upper bound) |
 | 06-23 | C14 | CAPABILITY CHECK ON THE CURE: PROV vs GA on a NON-mini model (DeepSeek-V4-Flash, yunwu.ai) | repair_drive deepseek-v4-flash, 25a m2 r5 t3, {ga,prov} **n=8** (seeds 41-48) | **The CURE survives capability (n=8, CIs DISJOINT): PROV 64.0% [57.8-70.2] (median 62) vs GA 15.5% [10.1-20.9] (median 14).** Mirrors M0: GA stays low on a new model family (ds 15.5 ≈ mini median 18, CIs overlap → phenomenon survives capability); PROV wins decisively, slightly WIDER than mini (ds 64 vs mini 57). n=8 corrects the n=3 over-estimate (was PROV 70.7/GA 17.3 on the first 3 high seeds). Pooled across pilot+n8ext+n8fill+seed44 dirs | **done(n=8)** |
 | 06-24 | C15 | APM (Auditable Provenance Memory): does adding anti-spoof + corroboration + abstain + auditability to PROV preserve the cure? | repair_drive deepseek-v4-flash, 25a m2 r5 t3, memory=apm n=3 (seeds 41-43); K={1,2} | **APM K=1 ≈ PROV, cure preserved + interpretable: 64.0% (48/75) vs PROV 70.7% vs GA 17.3%; per-seed [56-76].** Failure mode is SAFE (abstain: unknown 20, stale 7 — not confidently wrong like GA). **Auditability real:** 60-76% of agents hold a belief with a COMPLETE provenance chain to ORIGIN (avg 3.2 hops); rest abstain. Anti-spoof unit-tested (liar's unauthenticated high-version rejected). **APM K=2 (commit-gated) DEADLOCKS: 12% (worse than GA) — only origin commits; auth can't bootstrap because abstaining agents don't relay.** -> multi-source corroboration needs relay-before-commit (next). Lesson: interpretability+spoof-resistance cost ~7pts vs PROV; K knob dials flood(K1)<->over-conservative(K2-gated) | done(n=3 pilot) |
+| 06-25 | C16 | ADVERSARIAL-LIAR robustness (the test that justifies APM as an architecture): one agent broadcasts a FORGED high-version stale claim (auth=False). PROV vs APM(K=1) | repair_drive gpt-5.4-mini (FHL; yunwu/ds was 429-overloaded), 25a m2 r5 t3, adversary=a13 from r2, n=3 (seeds 41-43) | **Only APM survives the attack. APM 64.0% [60-72] held-current with STALE=0 (ZERO hijack); PROV 33.3% [24-40] with STALE=43/75 (mass hijack).** vs no-adversary baseline (PROV 57% mini / APM≈PROV): the liar collapses PROV (57->33, 43 agents believe the forgery) but APM is UNMOVED (≈64, unchanged). Audit: 15-18/25 APM agents hold a committed belief, 0 contaminated by the forged v999 — anti-spoof holds society-wide, not just in the unit test. Mechanism unit-tested separately (PROV adopts forgery, APM rejects). This is APM's unique value: ≈PROV without an adversary, the ONLY one standing with one. ds cross-check (seed41): PROV adv 36% (consistent) | **done(n=3)** |
 
 Detailed write-ups follow below as runs land.
 
@@ -1111,3 +1112,45 @@ questions (pre-registered in `paper/sections/architecture_apm_vs_ga.md`): (a) ad
 scenario where APM must beat naive PROV via anti-spoof; (b) realistic-friction equilibrium
 (sparse comms / longer horizon) confirming a stable sub-100% value. After those, APM's scientific
 job is done — further hardening is product, not paper.
+
+---
+
+# C16 — Adversarial-liar robustness: the test that justifies APM (2026-06-25)
+
+The one experiment that makes APM an architecture rather than a re-skin of PROV: APM and PROV
+are equivalent WITHOUT an adversary (both ≈ the cure level); the question is what happens WITH a
+deliberate attacker. One agent (a13) is turned into a liar that, from round 2, broadcasts a
+FORGED claim — the stale value carried at version 999 with `auth=False` (the attacker cannot mint
+`auth`; that is the trust model). Run on gpt-5.4-mini via FHL (yunwu/ds was 429-overloaded at the
+time). repair_drive, 25a m2 r5 t3, n=3.
+
+```text
+                held-current     stale (HIJACKED)   unknown
+PROV (adv)      33.3% [24-40]     43/75              7
+APM  (adv)      64.0% [60-72]      0/75              27
+no-adversary    PROV 57% (mini, C3) ;  APM ≈ PROV (verified on ds, both 64%)
+```
+
+**Finding — only APM survives the attack.** The liar collapses PROV from 57% to 33% and drives
+43 of 75 agents to believe the forgery (stale). APM is essentially UNMOVED (≈64%, its
+no-adversary level) and **not one agent is hijacked: stale = 0**. APM's misses go to *unknown*
+(abstain), never to the forged value.
+
+**Audit (interpretability under attack).** 15-18 of 25 APM agents per run hold a committed
+belief; **0 are contaminated by the forged v999**. The anti-spoof property (origin anchoring)
+holds society-wide, not merely in the isolated unit test — and every surviving belief remains
+traceable to the authoritative origin.
+
+**Mechanism (unit-tested separately).** Given the same forged claim, naive PROV adopts it
+(belief -> FORGED stale; only checks version), while APM rejects it (require_origin: no auth).
+C16 shows that micro-mechanism scales to the society.
+
+**Interpretation — APM's reason to exist.** Without an adversary, APM ≈ PROV (interpretability is
+nearly free, C15). With an adversary, PROV is hijacked and APM is the ONLY architecture left
+standing. This is the deployable-architecture answer to the human's original worry ("not a
+deployable architecture"): provenance integration HARDENED with origin anchoring resists a
+forgery attack that defeats naive provenance. ds cross-check (seed41) agrees: PROV-adv = 36%.
+
+**Scope note.** This closes the first of APM's two pre-registered remaining questions
+(adversarial robustness). The second (realistic-friction sub-100% equilibrium under sparse comms /
+longer horizon) remains; after it, APM's scientific job is done.

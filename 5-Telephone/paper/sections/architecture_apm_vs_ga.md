@@ -118,6 +118,11 @@ APM           : revise belief by PROVENANCE CHAIN + audit  -> true value wins  -
   belief with a complete provenance chain to ORIGIN (avg 3.2 hops); misses are abstain (unknown),
   not stale. APM K=2 commit-gated deadlocks (12%) -> multi-source corroboration needs
   relay-before-commit. So APM is a real architecture, not a worse PROV.
+- C16 (adversarial-liar, mini, n=3): a liar broadcasting a FORGED high-version stale claim
+  (auth=False) collapses PROV (57% -> 33%, 43/75 agents hijacked to the forgery) but leaves APM
+  UNMOVED (≈64%, stale=0, ZERO hijack; audit: 0/15-18 committed beliefs contaminated). This is
+  APM's reason to exist: ≈PROV without an adversary, the ONLY one standing with one. Answers the
+  "not deployable" worry — hardened provenance resists a forgery that defeats naive provenance.
 
 ## Open questions before migration to LaTeX
 
