@@ -55,7 +55,7 @@
 | 06-22 | C11 | PROV-text mechanism probe (deterministic text relay) | repair_drive mock context relay, 25a r10 m1 n=5, raw/prov/provtext | If utterances explicitly preserve `Official round 1 update`, PROV-text reaches 125/125 current without hidden `prov` payload. Mechanism feasible, but probe is scripted/text-normed, not natural dialogue | done |
 | 06-22 | C12 | PROV-text-free real LLM dialogue | repair_drive gpt-5.4-mini, 25a r10 m1 t2, provtext n=3 (+ GA/PROV partial comparator) | **Natural dialogue drops source/version**: PROV-text-free 16/75 current, 0 stale, 59 unknown; source/version phrase mentions 0/720; only a01/Rosa holds version>=1. Structured PROV remains upper bound; next target = PROV-text-norm | done(neg; stopped after signal) |
 | 06-23 | C13 | PROV-text-norm strong attribution dialogue | repair_drive gpt-5.4-mini, 25a r10 m1 t2, provtextnorm n=3 | **Strong text attribution repairs held truth: 75/75 current, 0 stale, 0 unknown.** Audit: 610/720 utterances contain source/version-like markers; 75/75 memory snapshots hold version>=1. Caveat: this is a protocolized attribution norm / text-only upper bound, not natural human dialogue | done(strong-norm upper bound) |
-| 06-23 | C14 | CAPABILITY CHECK ON THE CURE: PROV vs GA on a NON-mini model (DeepSeek-V4-Flash, yunwu.ai) | repair_drive deepseek-v4-flash, 25a m2 r5 t3, {ga,prov} n=3 (seeds 41-43); workers=16 | **The CURE survives capability: PROV 70.7% (53/75) vs GA 17.3% (13/75) held-current @ r5, per-seed ranges DISJOINT (PROV [60-80] vs GA [8-28], every PROV seed > every GA seed).** Mirrors M0 (phenomenon survives capability): GA stays low on a new model family (17% vs mini 22%); PROV still wins, in fact WIDER than mini (70.7 vs 57). Stale: GA 63% -> PROV 11% (same cure signature). n=8 extension (seeds 44-48) PAUSED at 3/10 (CI-firming, non-essential; n=3 headline stands) | done(n=3; n=8 deferred) |
+| 06-23 | C14 | CAPABILITY CHECK ON THE CURE: PROV vs GA on a NON-mini model (DeepSeek-V4-Flash, yunwu.ai) | repair_drive deepseek-v4-flash, 25a m2 r5 t3, {ga,prov} **n=8** (seeds 41-48) | **The CURE survives capability (n=8, CIs DISJOINT): PROV 64.0% [57.8-70.2] (median 62) vs GA 15.5% [10.1-20.9] (median 14).** Mirrors M0: GA stays low on a new model family (ds 15.5 ≈ mini median 18, CIs overlap → phenomenon survives capability); PROV wins decisively, slightly WIDER than mini (ds 64 vs mini 57). n=8 corrects the n=3 over-estimate (was PROV 70.7/GA 17.3 on the first 3 high seeds). Pooled across pilot+n8ext+n8fill+seed44 dirs | **done(n=8)** |
 | 06-24 | C15 | APM (Auditable Provenance Memory): does adding anti-spoof + corroboration + abstain + auditability to PROV preserve the cure? | repair_drive deepseek-v4-flash, 25a m2 r5 t3, memory=apm n=3 (seeds 41-43); K={1,2} | **APM K=1 ≈ PROV, cure preserved + interpretable: 64.0% (48/75) vs PROV 70.7% vs GA 17.3%; per-seed [56-76].** Failure mode is SAFE (abstain: unknown 20, stale 7 — not confidently wrong like GA). **Auditability real:** 60-76% of agents hold a belief with a COMPLETE provenance chain to ORIGIN (avg 3.2 hops); rest abstain. Anti-spoof unit-tested (liar's unauthenticated high-version rejected). **APM K=2 (commit-gated) DEADLOCKS: 12% (worse than GA) — only origin commits; auth can't bootstrap because abstaining agents don't relay.** -> multi-source corroboration needs relay-before-commit (next). Lesson: interpretability+spoof-resistance cost ~7pts vs PROV; K knob dials flood(K1)<->over-conservative(K2-gated) | done(n=3 pilot) |
 
 Detailed write-ups follow below as runs land.
@@ -1030,38 +1030,42 @@ C14 is the symmetric test for the cure, on a DIFFERENT model FAMILY — DeepSeek
 OpenAI-compatible yunwu.ai gateway — at the headline cure settings (repair_drive, 25 agents,
 meetings=2, rounds=5, turns=3, GA vs fair-PROV).
 
-n=3 (seeds 41–43), workers=16:
+n=8 (seeds 41–48):
 
 ```text
-memory  held-current @ r5     per-seed range   stale       unknown
-GA       13/75 = 17.3%        [8%, 28%]        47 (63%)    15 (20%)
-PROV     53/75 = 70.7%        [60%, 80%]        8 (11%)    14 (19%)
+memory  held-current @ r5     median   95% CI          std
+GA       15.5%                14.0%    [10.1, 20.9]     7.9
+PROV     64.0%                62.0%    [57.8, 70.2]     8.9
 ```
 
-**Finding.** The cure survives capability. PROV ≈ 4× GA, and the per-seed ranges are FULLY
-DISJOINT (every PROV seed beats every GA seed) — unambiguous even at n=3.
+(per-seed GA: 16,28,8,12,8,8,28,16 · PROV: 80,72,60,64,48,60,68,60)
 
-**Symmetry with M0 / mini.**
+**Finding.** The cure survives capability. PROV ≈ 4× GA, and the 95% CIs are DISJOINT
+([57.8,70.2] vs [10.1,20.9]). The first-3-seed n=3 pilot over-estimated both arms
+(PROV 70.7 / GA 17.3); n=8 settles to the honest PROV 64.0 / GA 15.5.
+
+**Symmetry with M0 / mini (both arms now n=8).**
 
 ```text
-                mini (headline)   DeepSeek-V4-Flash (C14)
-GA held-current   ~22%              17.3%      (phenomenon survives capability)
-PROV held-current ~57%              70.7%      (cure survives capability; WIDER margin)
-PROV > GA?        yes               yes
+              mini (n=8)              DeepSeek-V4-Flash (n=8)
+GA            21.5% mean / 18% median  15.5% mean / 14% median   CIs OVERLAP -> phenomenon survives capability
+PROV          57% [49-65]              64.0% [57.8-70.2]         PROV > GA on both; cure survives capability
+PROV > GA?    yes (disjoint)           yes (disjoint)
 ```
 
-GA stays low on the new model family (17% vs mini 22%), confirming the phenomenon is not a
-mini artifact; PROV still wins, in fact more strongly than on mini (70.7 vs 57). The cure
-signature is identical: PROV collapses GA's stale-dominated society (63% stale → 11%) into a
-current-dominated one without inflating unknown (≈19% both arms).
+GA is statistically indistinguishable across model families (mini median 18 ≈ ds 14; CIs
+overlap) -> the phenomenon is not a mini artifact. PROV wins on both, slightly stronger on ds
+(64 vs 57). NB the mini GA mean (21.5) is pulled up by one high seed (seed41=48%, audited as
+real variance, not a fault — kept); the median (18) is the robust comparator and is ≈ ds.
 
 **Provider note.** DeepSeek/yunwu concurrency probe (4→32 burst): 100% success up to conc 24,
 one transient SSL at 32 (absorbed by retries=3). Tail-latency bound (stragglers 30–49s), NOT
 throttle-bound; workers=16 ≈ workers=8 in wall-clock (~2 min/round). No rate-limit observed.
 
-**Status.** n=8 extension (seeds 44–48) PAUSED at 3/10 to free provider capacity for C15 APM
-runs. The n=3 headline (PROV 70.7 / GA 17.3, disjoint ranges) stands; the extension is
-CI-firming only and can resume (seeds 44–46 already on disk) when capacity is free.
+**Status.** COMPLETE at n=8 (2026-06-24). Both arms pooled across dirs: `cap_deepseek_prov_vs_ga_pilot`
+(seeds 41-43), `cap_deepseek_prov_vs_ga_n8ext` (GA 44-48 + PROV 44), `cap_deepseek_prov_n8fill`
+(PROV 45-48), `cap_deepseek_prov_seed44` (PROV 44 interview backfill). The capability-check gap is
+closed at full n=8 rigor.
 
 ---
 
