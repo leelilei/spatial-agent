@@ -155,7 +155,7 @@ closes the dissociation (source GA dead vs PROV alive). STATUS: ok.
 APM settles to a sub-100% equilibrium, and stale stays ≡ 0 at every sparsity.
 **Encoding:** x = mention prob {0.1,0.15,0.2,0.25,0.3,0.5,(0.8)}; y = held-current
 (rising) + stale (flat 0); reference idealized mention→1 ≈ 100% (C5/C7).
-**Data:** C17 (n=8 @0.1) + C17b sweep. STATUS: **data in progress; render when done**.
+**Data:** C17 (n=8 @0.1) + C17b sweep (11 pts, mention 0->0.8). STATUS: **data COMPLETE; render png** (curve drafted as widget).
 
 ### Supplement (cure/APM)
 PROV horizon r5/r10/r20 (C5) + sparse equilibrium (C7: `fig_sparse_comms_equilibrium`);
@@ -164,6 +164,6 @@ deadlock (C15); n / CI / seed reproducibility tables.
 
 ## Render queue (what is actually missing)
 1. **Fig 8 — APM adversarial (C16): READY to render.**
-2. **Fig 9 — APM comms curve (C17b): render when sweep finishes.**
+2. **Fig 9 — APM comms curve (C17b): data COMPLETE (11 pts); render png.**
 3. Table 2 — add APM row (C15). 4. Table 3 — add C14 cross-model column.
 (Diagnosis Figs 1-6 + PROV cure figs already rendered.)
