@@ -1,0 +1,55 @@
+{
+  "groups": [
+    {
+      "model": "gpt-5.4-mini",
+      "memory": "apm",
+      "runs": 2,
+      "agents_total": 50,
+      "current": 20,
+      "stale": 0,
+      "unknown": 30,
+      "unsupported_specific": 6,
+      "current_rate": 0.4,
+      "unsupported_specific_rate": 0.12,
+      "mean_run_current_rate": 0.4,
+      "mean_run_unsupported_specific_rate": 0.12000000000000001,
+      "min_run_current_rate": 0.28,
+      "max_run_current_rate": 0.52,
+      "std_run_current_rate": 0.12
+    }
+  ],
+  "rows": [
+    {
+      "memory": "apm",
+      "model": "gpt-5.4-mini",
+      "run_index": 0,
+      "schedule_seed": 44,
+      "agent_count": 25,
+      "rounds": 10,
+      "turns": 3,
+      "out_dir": "sim/runs/cap_c17b_apm_mention_0.07_ext/gpt-5.4-mini/apm/run_000",
+      "currency_interview": {
+        "current": 7,
+        "stale": 0,
+        "unknown": 18
+      },
+      "unsupported_specific": 5
+    },
+    {
+      "memory": "apm",
+      "model": "gpt-5.4-mini",
+      "run_index": 1,
+      "schedule_seed": 45,
+      "agent_count": 25,
+      "rounds": 10,
+      "turns": 3,
+      "out_dir": "sim/runs/cap_c17b_apm_mention_0.07_ext/gpt-5.4-mini/apm/run_001",
+      "currency_interview": {
+        "current": 13,
+        "stale": 0,
+        "unknown": 12
+      },
+      "unsupported_specific": 1
+    }
+  ]
+}
