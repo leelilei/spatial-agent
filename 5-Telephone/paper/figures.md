@@ -162,8 +162,13 @@ PROV horizon r5/r10/r20 (C5) + sparse equilibrium (C7: `fig_sparse_comms_equilib
 lossy-channel stress (C5-stress: `fig_prov_lossy_stress`); APM auditability + K=2
 deadlock (C15); n / CI / seed reproducibility tables.
 
-## Render queue (what is actually missing)
-1. **Fig 8 — APM adversarial (C16): READY to render.**
-2. **Fig 9 — APM comms curve (C17b): data COMPLETE (11 pts); render png.**
-3. Table 2 — add APM row (C15). 4. Table 3 — add C14 cross-model column.
-(Diagnosis Figs 1-6 + PROV cure figs already rendered.)
+## Render queue (status)
+RENDERED 2026-06-26 from the latest ledger data via `scripts/render_latest_figs.py`:
+- `fig_failed_levers.png` (M0-M4/G2), `fig_say_vs_hold.png` (M4), `fig_entrenchment.png` (P1-rec),
+- `fig_architecture.png` (C5), `fig_capability_c14.png` (C14 n=8),
+- `fig_apm_adversarial.png` (C16), `fig_apm_comms_curve.png` (C17b n=5).
+
+These supersede the older `fig1-6.png` as the current main-text set. Still TODO (markdown tables,
+not figures): Table 2 architecture +APM row, Table 3 generality +C14 column — assemble in
+`results_tables.md`. Supplement still to render: PROV horizon (C5), lossy/garble stress
+(C5-stress), judge validation (P2).
