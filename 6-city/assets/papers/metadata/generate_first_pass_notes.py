@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 import re
 from pathlib import Path
@@ -388,6 +389,210 @@ PAPERS = [
         "use": "SOTOPIA provides the interactive evaluation pattern; 6-city spatializes that pattern into city-agent scenarios with verifiable movement and environmental constraints.",
         "reason": "Core benchmark-method foundation.",
     },
+    {
+        "category": "04_social_benchmark_foundations",
+        "file": "03_AgentSense_2024",
+        "title": "AgentSense: Benchmarking Social Intelligence of Language Agents through Interactive Scenarios",
+        "source": "https://arxiv.org/abs/2410.19346",
+        "role": "diverse interactive social-agent benchmark",
+        "decision": "must-cite",
+        "why": "AgentSense is a close social-benchmark neighbor because it tests goal pursuit and implicit reasoning across 1,225 interactive scenarios rather than relying on a small set of hand-written conversations.",
+        "claim": "The paper constructs diverse multi-turn social scenarios from scripts and evaluates language agents on explicit goal completion and implicit social reasoning.",
+        "evidence": ["Large, theory-grounded interactive scenario construction pipeline.", "Separate attention to goal completion, private information, and implicit reasoning."],
+        "measures": "social goal achievement and implicit reasoning in multi-turn interactions",
+        "does_not": "spatially grounded execution, travel feasibility, city-state transitions, or continuous mobility traces",
+        "informs": "Reuse its scenario-diversity discipline and separate observable goal completion from latent social reasoning.",
+        "add": "CityAgency can embed similarly diverse private goals in a city world where actions also have spatial, temporal, and resource consequences.",
+        "use": "AgentSense broadens social-agent evaluation across diverse interactive scenarios; CityAgency adds executable urban state and trajectory validation to that episode structure.",
+        "reason": "Close benchmark reference for private goals, scenario diversity, and social reasoning.",
+    },
+    {
+        "category": "04_social_benchmark_foundations",
+        "file": "04_Lifelong_SOTOPIA_2025",
+        "title": "Lifelong-SOTOPIA: Evaluating Social Intelligence of Language Agents Over Lifelong Social Interactions",
+        "source": "https://arxiv.org/abs/2506.12666",
+        "role": "longitudinal social-agent benchmark",
+        "decision": "cite",
+        "why": "Lifelong-SOTOPIA shows that agent quality can degrade across episodes and that memory must be evaluated through later behavior, not only by inspecting stored summaries.",
+        "claim": "The benchmark extends social-agent evaluation to linked multi-episode interactions that require agents to recover and use interaction history.",
+        "evidence": ["Multi-episode evaluation with persistent character histories.", "Goal achievement and believability tracked over prolonged interaction."],
+        "measures": "longitudinal social goal achievement, believability, and use of interaction history",
+        "does_not": "persistent urban routines, spatial memories, or the feasibility of physical action over time",
+        "informs": "Use linked episodes later to test whether agents remember places, people, obligations, and prior disruptions.",
+        "add": "CityAgency can extend lifelong evaluation from social memory to spatial and commitment memory in a changing city.",
+        "use": "Lifelong-SOTOPIA tests social intelligence across linked episodes; CityAgency can apply this principle to persistent urban commitments and spatial histories.",
+        "reason": "Important extension path after the single-episode benchmark is stable.",
+    },
+    {
+        "category": "04_social_benchmark_foundations",
+        "file": "05_Misleading_Success_2024",
+        "title": "Is This the Real Life? Is This Just Fantasy? The Misleading Success of Simulating Social Interactions With LLMs",
+        "source": "https://arxiv.org/abs/2403.05020",
+        "role": "information-asymmetry realism critique",
+        "decision": "must-cite",
+        "why": "This paper is a methodological warning for CityAgency: agents can look successful when the simulator grants them omniscient information that real people would not possess.",
+        "claim": "The paper compares omniscient and non-omniscient social simulations and finds that apparent agent success falls under realistic information asymmetry.",
+        "evidence": ["Controlled comparison of omniscient and information-asymmetric settings.", "Demonstration that simulator information design can inflate social-agent performance."],
+        "measures": "social interaction performance under different information-access assumptions",
+        "does_not": "physical observability, map knowledge, local sensing, or trace feasibility in a city",
+        "informs": "Give each city agent an explicit observation boundary and keep hidden world state outside the prompt.",
+        "add": "CityAgency can test whether plans remain valid when agents must discover closures, delays, and other agents' intentions through permitted observations.",
+        "use": "Information-asymmetry studies warn that omniscient simulation can produce misleading success; CityAgency therefore separates agent observations from authoritative world state.",
+        "reason": "Central validity reference for avoiding an unrealistically omniscient city benchmark.",
+    },
+    {
+        "category": "04_social_benchmark_foundations",
+        "file": "06_Can_LLM_Agents_Simulate_Multi_Turn_Human_Behavior_2025",
+        "title": "Can LLM Agents Simulate Multi-Turn Human Behavior? Evidence from Real Online Customer Behavior Data",
+        "source": "https://arxiv.org/abs/2503.20749",
+        "role": "empirical step-by-step behavior benchmark",
+        "decision": "must-cite",
+        "why": "The paper directly challenges qualitative believability as evidence of human-like behavior and evaluates step-by-step actions against large-scale observed human traces.",
+        "claim": "Using real online shopping sessions, the paper finds a substantial gap between plausible generated behavior and accurate next-action simulation.",
+        "evidence": ["Action-level comparison against 31,865 real multi-turn sessions.", "Separation of qualitative believability from quantitative behavioral accuracy."],
+        "measures": "next-action accuracy and final-outcome prediction against observed human traces",
+        "does_not": "physical mobility, city constraints, or open-ended goal adaptation in an urban environment",
+        "informs": "Keep trace-level behavioral validity distinct from judge-rated plausibility and add human data when available.",
+        "add": "CityAgency can diagnose impossible or incoherent urban traces even before a large human-trajectory comparison dataset is available.",
+        "use": "Empirical multi-turn studies show that believable narratives need not reproduce human action sequences; CityAgency tests the same gap in urban execution.",
+        "reason": "Strong empirical support for the plausible-plan versus credible-trace story.",
+    },
+    {
+        "category": "05_mobility_realism",
+        "file": "01_MobiSim_Bench_Zhang2026_OpenReview",
+        "title": "MobiSim-Bench: A Multi-Perspective Benchmark for Evaluating LLM-Agent-Based Human Mobility Simulation",
+        "source": "https://openreview.net/forum?id=3QFvAXuNl7",
+        "role": "closest mobility-simulation benchmark",
+        "decision": "must-cite",
+        "why": "MobiSim-Bench is the strongest direct benchmark neighbor because it evaluates LLM-agent mobility from robustness, realism, and responsiveness perspectives in both daily and extraordinary conditions.",
+        "claim": "The benchmark evaluates human mobility simulation through complementary daily-mobility and hurricane-response settings using micro- and macro-level measurements.",
+        "evidence": ["Three-part robustness, realism, and responsiveness framework.", "Daily and disruptive mobility scenarios implemented on an agent-society simulator."],
+        "measures": "aggregate mobility realism, run robustness, and behavioral response to environmental disruption",
+        "does_not": "fine-grained proof that an individual agent completed private goals through a valid continuous trace",
+        "informs": "Use it as the macro-level benchmark anchor and make CityAgency's individual execution diagnostics explicit.",
+        "add": "CityAgency can explain why a trajectory fails by checking goal evidence, world-state transitions, impossible movement, false continuation, and replanning decisions.",
+        "use": "MobiSim-Bench evaluates whether populations reproduce robust and responsive mobility; CityAgency diagnoses whether individual agents execute intentions as valid city traces.",
+        "reason": "Closest benchmark competitor and essential positioning reference.",
+    },
+    {
+        "category": "05_mobility_realism",
+        "file": "02_When_Plausible_Is_Not_Realistic_Santos2026",
+        "title": "When Plausible Is Not Realistic: Evaluating Human Mobility in LLM-Based Urban Simulation",
+        "source": "https://arxiv.org/abs/2606.13835",
+        "role": "empirical urban-mobility realism critique",
+        "decision": "must-cite",
+        "why": "This work provides direct evidence for our motivating gap: coherent mobility narratives can still violate empirical spatial, temporal, and transition patterns.",
+        "claim": "The paper validates AgentSociety and CitySim against real mobility data and reports substantial discrepancies across mobility laws, rhythms, motifs, transitions, and profiles.",
+        "evidence": ["Multi-dimensional comparison with mobility data from Greater Paris and Shanghai.", "Explicit separation between narrative plausibility and empirical mobility realism."],
+        "measures": "population-level spatial, temporal, network, semantic, and profile realism",
+        "does_not": "attribute failure to an individual agent's planning, action validity, goal maintenance, or recovery decisions",
+        "informs": "Connect micro-level execution failures to downstream macro-level mobility distortions without claiming to replace empirical realism validation.",
+        "add": "CityAgency supplies controlled causal probes beneath macro statistics, showing which agent behaviors produce implausible aggregate traces.",
+        "use": "Empirical validation reveals that plausible urban narratives need not yield realistic mobility; CityAgency studies the individual execution failures beneath that discrepancy.",
+        "reason": "Direct support for the paper title and the micro-versus-macro benchmark distinction.",
+    },
+    {
+        "category": "06_agent_execution_benchmarks",
+        "file": "01_ChinaTravel_Shao2024",
+        "title": "ChinaTravel: An Open-Ended Travel Planning Benchmark with Compositional Constraint Validation for Language Agents",
+        "source": "https://arxiv.org/abs/2412.13682",
+        "role": "compositional travel-plan feasibility benchmark",
+        "decision": "must-cite",
+        "why": "ChinaTravel is a close feasibility neighbor because it translates open-ended travel requirements into compositional constraints that can be checked automatically.",
+        "claim": "The benchmark combines a multi-day travel sandbox, a constraint DSL, human-authored requirements, and programmatic feasibility and preference validation.",
+        "evidence": ["Domain-specific language for compositional constraint validation.", "Open-ended multi-POI plans with explicit and implicit human requirements."],
+        "measures": "plan feasibility, constraint satisfaction, and preference quality",
+        "does_not": "stepwise execution in a changing city, social encounters, or stateful replanning after disturbances",
+        "informs": "Represent CityAgency goals and hard constraints as executable predicates instead of relying on free-form judge scores.",
+        "add": "CityAgency can move from validating a proposed itinerary to validating every action and resulting world state during execution.",
+        "use": "ChinaTravel demonstrates compositional validation of open-ended travel plans; CityAgency extends validation from plans to stateful urban execution traces.",
+        "reason": "Closest planning-feasibility precedent for deterministic urban validators.",
+    },
+    {
+        "category": "06_agent_execution_benchmarks",
+        "file": "02_FeasiGen_Do_Agents_Know_What_They_Cant_Do_2026",
+        "title": "Do Agents Know What They Can't Do? Evaluating Feasibility Awareness in Tool-Using Agents",
+        "source": "https://arxiv.org/abs/2605.28532",
+        "role": "agent infeasibility-awareness benchmark",
+        "decision": "must-cite",
+        "why": "FeasiGen isolates whether agents recognize that a task has become impossible and stop, a central failure mode when city resources, routes, or time windows disappear.",
+        "claim": "The paper generates infeasible tasks by masking critical tools and evaluates whether agents detect infeasibility instead of continuing unproductively.",
+        "evidence": ["Automatic construction of infeasible variants from successful tool traces.", "False-continue-style metrics for feasibility awareness."],
+        "measures": "infeasibility detection, appropriate stopping, and wasted execution under missing capabilities",
+        "does_not": "graded spatial feasibility or recovery through alternative routes, places, and social coordination",
+        "informs": "Include paired feasible and infeasible city scenarios and report false continuation separately from task failure.",
+        "add": "CityAgency can distinguish stop, repair, substitute, and impossible physical continuation under urban disruptions.",
+        "use": "FeasiGen tests whether tool agents know when execution is impossible; CityAgency brings feasibility awareness into spatially and temporally constrained city worlds.",
+        "reason": "Direct source for the false-continue metric and infeasible-scenario design.",
+    },
+    {
+        "category": "06_agent_execution_benchmarks",
+        "file": "03_tau_bench_Yao2024",
+        "title": "tau-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains",
+        "source": "https://arxiv.org/abs/2406.12045",
+        "role": "state-based interactive-agent benchmark",
+        "decision": "must-cite",
+        "why": "tau-bench provides two crucial design precedents: evaluate final environment state rather than verbal claims, and measure reliability over repeated executions.",
+        "claim": "The benchmark evaluates agents interacting with simulated users and domain APIs by comparing the resulting database state with an annotated goal state.",
+        "evidence": ["Authoritative state-based task evaluation.", "The pass^k metric for repeated-run behavioral reliability."],
+        "measures": "goal-state correctness, policy compliance, and consistency over repeated trials",
+        "does_not": "continuous space, travel time, embodied observations, or human-like urban traces",
+        "informs": "Use world-state predicates for goal completion and repeated seeds for reliability instead of trusting self-reported success.",
+        "add": "CityAgency can add trace continuity and intermediate-state validity, because the path to a city goal matters as well as the final state.",
+        "use": "tau-bench validates agents against authoritative goal states and repeated trials; CityAgency extends this principle to continuous urban trajectories.",
+        "reason": "Core methodological precedent for proof-carrying traces and repeated reliability.",
+    },
+    {
+        "category": "06_agent_execution_benchmarks",
+        "file": "04_AppWorld_Trivedi2024",
+        "title": "AppWorld: A Controllable World of Apps and People for Benchmarking Interactive Coding Agents",
+        "source": "https://arxiv.org/abs/2407.18901",
+        "role": "executable world with programmatic state tests",
+        "decision": "cite",
+        "why": "AppWorld demonstrates how a rich simulated world can support multiple valid solution paths while still testing intended outcomes and unintended side effects programmatically.",
+        "claim": "The work builds an executable multi-app environment and evaluates complex agent tasks with state-based unit tests, including checks for collateral damage.",
+        "evidence": ["Programmatic evaluation over a large executable state space.", "Outcome tests that allow alternative solutions and detect unintended changes."],
+        "measures": "functional task completion and collateral state changes",
+        "does_not": "spatial continuity, mobility realism, or socially believable city behavior",
+        "informs": "Write verifier tests over world-state deltas and permit any route that satisfies goals without invalid side effects.",
+        "add": "CityAgency can adapt collateral-damage checks to missed commitments, overspending, invalid occupancy, and disruption of other agents.",
+        "use": "AppWorld shows how open-ended agent behavior can be judged by executable state tests; CityAgency applies that pattern to urban worlds and traces.",
+        "reason": "Strong engineering precedent for deterministic outcome and side-effect validation.",
+    },
+    {
+        "category": "06_agent_execution_benchmarks",
+        "file": "05_WebArena_Zhou2023",
+        "title": "WebArena: A Realistic Web Environment for Building Autonomous Agents",
+        "source": "https://arxiv.org/abs/2307.13854",
+        "role": "reproducible long-horizon environment benchmark",
+        "decision": "cite",
+        "why": "WebArena is a mature example of evaluating agents in a realistic, resettable environment with long-horizon tasks and functional correctness checks.",
+        "claim": "The benchmark provides reproducible functional websites and human-like tasks for evaluating language-guided autonomous web agents end to end.",
+        "evidence": ["Self-hosted, resettable environment with realistic task domains.", "Functional task correctness rather than textual answer similarity."],
+        "measures": "end-to-end functional success in long-horizon web tasks",
+        "does_not": "private autonomous goals, physical travel, or trajectory believability",
+        "informs": "Package city scenarios as resettable world snapshots with reproducible initial and goal states.",
+        "add": "CityAgency can evaluate both functional completion and whether the intervening physical trace is possible and credible.",
+        "use": "WebArena established resettable functional environments for agent evaluation; CityAgency transfers that rigor to urban action and movement.",
+        "reason": "Useful benchmark-infrastructure and end-to-end evaluation precedent.",
+    },
+    {
+        "category": "06_agent_execution_benchmarks",
+        "file": "06_TheAgentCompany_Xu2024",
+        "title": "TheAgentCompany: Benchmarking LLM Agents on Consequential Real World Tasks",
+        "source": "https://arxiv.org/abs/2412.14161",
+        "role": "consequential long-horizon agent benchmark",
+        "decision": "cite",
+        "why": "TheAgentCompany broadens executable evaluation to consequential workplace tasks involving tools, communication, and persistent organizational state.",
+        "claim": "The benchmark creates a self-contained software-company environment in which agents complete realistic professional tasks across web, code, programs, and coworker communication.",
+        "evidence": ["Consequential tasks spanning multiple tools and coworkers.", "Persistent environment where agent actions modify shared state."],
+        "measures": "completion of long-horizon professional tasks in a stateful environment",
+        "does_not": "physical city movement, resident routines, or empirical mobility realism",
+        "informs": "Design city tasks whose actions affect later obligations and other agents rather than isolated one-shot navigation goals.",
+        "add": "CityAgency can make consequences spatial and temporal, including missed meetings, unavailable resources, and downstream schedule failures.",
+        "use": "TheAgentCompany evaluates consequential action in a persistent digital workplace; CityAgency studies analogous consequences in an urban world.",
+        "reason": "Relevant long-horizon comparison for stateful, socially consequential execution.",
+    },
 ]
 
 
@@ -491,13 +696,30 @@ Reason: {p['reason']}
 """
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Regenerate existing notes instead of only creating missing notes.",
+    )
+    return parser.parse_args()
+
+
 def main() -> int:
+    args = parse_args()
     rows = []
+    written = 0
+    preserved = 0
     for paper in PAPERS:
         note_dir = NOTES_ROOT / paper["category"]
         note_dir.mkdir(parents=True, exist_ok=True)
         note_path = note_dir / f"{paper['file']}.md"
-        note_path.write_text(note_content(paper), encoding="utf-8")
+        if args.force or not note_path.exists():
+            note_path.write_text(note_content(paper), encoding="utf-8")
+            written += 1
+        else:
+            preserved += 1
         rows.append(
             {
                 "category": paper["category"],
@@ -539,7 +761,10 @@ def main() -> int:
             f"`{row['note']}` | `{row['fulltext']}` |"
         )
     (NOTES_ROOT / "INDEX.md").write_text("\n".join(index_lines) + "\n", encoding="utf-8")
-    print(f"Wrote {len(rows)} notes and INDEX.md")
+    print(
+        f"Indexed {len(rows)} notes; wrote {written}, preserved {preserved}, "
+        "and refreshed INDEX.md"
+    )
     return 0
 
 

@@ -1,8 +1,9 @@
 # 6-city Reading Notes Pipeline
 
-> Updated: 2026-06-22
-> Scope: first-pass notes for the archived city-agent, urban benchmark, embodied
-> city, and social benchmark foundation papers.
+> Updated: 2026-06-27
+> Scope: first-pass notes for all archived urban benchmarks, city-agent systems,
+> embodied-city work, social benchmarks, mobility-realism studies, and agent
+> execution benchmarks.
 
 ## Purpose
 
@@ -15,7 +16,11 @@ Each note should answer four practical questions:
 1. What does this paper already benchmark or simulate?
 2. Does it evaluate autonomous city behavior, or mainly knowledge / planning / QA?
 3. What evaluation pattern can we reuse?
-4. Where is the gap that a SOTOPIA-style city benchmark can claim?
+4. Where is the gap that CityAgency can claim without overstating novelty?
+
+The project generator is additive by default: it creates missing notes and refreshes
+the index without overwriting notes that have already been reviewed or edited. Use
+`--force` only when a full regeneration is intentional.
 
 ## Note Status
 

@@ -1,6 +1,6 @@
 # Fulltext Conversion Summary
 
-Updated: 2026-06-22T16:12:04+00:00
+Updated: 2026-06-27T04:57:02+00:00
 PDF directory: `D:\0-Research\6-city\assets\papers\pdf`
 Fulltext directory: `D:\0-Research\6-city\assets\papers\fulltext`
 Total selected: 34
@@ -31,15 +31,15 @@ Failed: 0
 | `03_embodied_city\02_UrbanLLaVA_Feng2025.pdf` | ok | skipped_existing | 94653 | 29 |  | `assets\papers\fulltext\03_embodied_city\02_UrbanLLaVA_Feng2025.fulltext.md` |
 | `04_social_benchmark_foundations\01_Generative_Agents_Park2023.pdf` | ok | skipped_existing | 129267 | 22 | abstract_may_include_layout_noise | `assets\papers\fulltext\04_social_benchmark_foundations\01_Generative_Agents_Park2023.fulltext.md` |
 | `04_social_benchmark_foundations\02_SOTOPIA_Zhou2024_ICLR.pdf` | ok | skipped_existing | 132806 | 45 |  | `assets\papers\fulltext\04_social_benchmark_foundations\02_SOTOPIA_Zhou2024_ICLR.fulltext.md` |
-| `04_social_benchmark_foundations\03_AgentSense_2024.pdf` | ok | converted | 81400 | 26 |  | `assets\papers\fulltext\04_social_benchmark_foundations\03_AgentSense_2024.fulltext.md` |
-| `04_social_benchmark_foundations\04_Lifelong_SOTOPIA_2025.pdf` | ok | converted | 78127 | 28 |  | `assets\papers\fulltext\04_social_benchmark_foundations\04_Lifelong_SOTOPIA_2025.fulltext.md` |
-| `04_social_benchmark_foundations\05_Misleading_Success_2024.pdf` | ok | converted | 78033 | 23 |  | `assets\papers\fulltext\04_social_benchmark_foundations\05_Misleading_Success_2024.fulltext.md` |
-| `04_social_benchmark_foundations\06_Can_LLM_Agents_Simulate_Multi_Turn_Human_Behavior_2025.pdf` | ok | converted | 71629 | 17 |  | `assets\papers\fulltext\04_social_benchmark_foundations\06_Can_LLM_Agents_Simulate_Multi_Turn_Human_Behavior_2025.fulltext.md` |
-| `05_mobility_realism\01_MobiSim_Bench_Zhang2026_OpenReview.pdf` | ok | converted | 64291 | 16 | abstract_may_include_layout_noise | `assets\papers\fulltext\05_mobility_realism\01_MobiSim_Bench_Zhang2026_OpenReview.fulltext.md` |
-| `05_mobility_realism\02_When_Plausible_Is_Not_Realistic_Santos2026.pdf` | ok | converted | 82865 | 14 |  | `assets\papers\fulltext\05_mobility_realism\02_When_Plausible_Is_Not_Realistic_Santos2026.fulltext.md` |
-| `06_agent_execution_benchmarks\01_ChinaTravel_Shao2024.pdf` | ok | converted | 166154 | 53 |  | `assets\papers\fulltext\06_agent_execution_benchmarks\01_ChinaTravel_Shao2024.fulltext.md` |
-| `06_agent_execution_benchmarks\02_FeasiGen_Do_Agents_Know_What_They_Cant_Do_2026.pdf` | ok | converted | 58197 | 14 |  | `assets\papers\fulltext\06_agent_execution_benchmarks\02_FeasiGen_Do_Agents_Know_What_They_Cant_Do_2026.fulltext.md` |
-| `06_agent_execution_benchmarks\03_tau_bench_Yao2024.pdf` | ok | converted | 129440 | 50 |  | `assets\papers\fulltext\06_agent_execution_benchmarks\03_tau_bench_Yao2024.fulltext.md` |
-| `06_agent_execution_benchmarks\04_AppWorld_Trivedi2024.pdf` | ok | converted | 163139 | 55 |  | `assets\papers\fulltext\06_agent_execution_benchmarks\04_AppWorld_Trivedi2024.fulltext.md` |
-| `06_agent_execution_benchmarks\05_WebArena_Zhou2023.pdf` | ok | converted | 77881 | 22 |  | `assets\papers\fulltext\06_agent_execution_benchmarks\05_WebArena_Zhou2023.fulltext.md` |
-| `06_agent_execution_benchmarks\06_TheAgentCompany_Xu2024.pdf` | ok | converted | 83662 | 24 |  | `assets\papers\fulltext\06_agent_execution_benchmarks\06_TheAgentCompany_Xu2024.fulltext.md` |
+| `04_social_benchmark_foundations\03_AgentSense_2024.pdf` | ok | skipped_existing | 81400 | 26 |  | `assets\papers\fulltext\04_social_benchmark_foundations\03_AgentSense_2024.fulltext.md` |
+| `04_social_benchmark_foundations\04_Lifelong_SOTOPIA_2025.pdf` | ok | skipped_existing | 78127 | 28 |  | `assets\papers\fulltext\04_social_benchmark_foundations\04_Lifelong_SOTOPIA_2025.fulltext.md` |
+| `04_social_benchmark_foundations\05_Misleading_Success_2024.pdf` | ok | skipped_existing | 78033 | 23 |  | `assets\papers\fulltext\04_social_benchmark_foundations\05_Misleading_Success_2024.fulltext.md` |
+| `04_social_benchmark_foundations\06_Can_LLM_Agents_Simulate_Multi_Turn_Human_Behavior_2025.pdf` | ok | skipped_existing | 71629 | 17 |  | `assets\papers\fulltext\04_social_benchmark_foundations\06_Can_LLM_Agents_Simulate_Multi_Turn_Human_Behavior_2025.fulltext.md` |
+| `05_mobility_realism\01_MobiSim_Bench_Zhang2026_OpenReview.pdf` | ok | skipped_existing | 64291 | 16 | abstract_may_include_layout_noise | `assets\papers\fulltext\05_mobility_realism\01_MobiSim_Bench_Zhang2026_OpenReview.fulltext.md` |
+| `05_mobility_realism\02_When_Plausible_Is_Not_Realistic_Santos2026.pdf` | ok | skipped_existing | 82865 | 14 |  | `assets\papers\fulltext\05_mobility_realism\02_When_Plausible_Is_Not_Realistic_Santos2026.fulltext.md` |
+| `06_agent_execution_benchmarks\01_ChinaTravel_Shao2024.pdf` | ok | skipped_existing | 166154 | 53 |  | `assets\papers\fulltext\06_agent_execution_benchmarks\01_ChinaTravel_Shao2024.fulltext.md` |
+| `06_agent_execution_benchmarks\02_FeasiGen_Do_Agents_Know_What_They_Cant_Do_2026.pdf` | ok | skipped_existing | 58197 | 14 |  | `assets\papers\fulltext\06_agent_execution_benchmarks\02_FeasiGen_Do_Agents_Know_What_They_Cant_Do_2026.fulltext.md` |
+| `06_agent_execution_benchmarks\03_tau_bench_Yao2024.pdf` | ok | skipped_existing | 129440 | 50 |  | `assets\papers\fulltext\06_agent_execution_benchmarks\03_tau_bench_Yao2024.fulltext.md` |
+| `06_agent_execution_benchmarks\04_AppWorld_Trivedi2024.pdf` | ok | skipped_existing | 163139 | 55 |  | `assets\papers\fulltext\06_agent_execution_benchmarks\04_AppWorld_Trivedi2024.fulltext.md` |
+| `06_agent_execution_benchmarks\05_WebArena_Zhou2023.pdf` | ok | skipped_existing | 77881 | 22 |  | `assets\papers\fulltext\06_agent_execution_benchmarks\05_WebArena_Zhou2023.fulltext.md` |
+| `06_agent_execution_benchmarks\06_TheAgentCompany_Xu2024.pdf` | ok | skipped_existing | 83662 | 24 |  | `assets\papers\fulltext\06_agent_execution_benchmarks\06_TheAgentCompany_Xu2024.fulltext.md` |
