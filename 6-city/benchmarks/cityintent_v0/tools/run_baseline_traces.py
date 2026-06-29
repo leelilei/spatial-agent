@@ -57,6 +57,7 @@ def normalize_edge(edge: list[str] | tuple[str, str]) -> tuple[str, str]:
 class Action:
     kind: str
     target: str | None = None
+    path: list[str] | None = None
     minutes: int = 0
     to: str | None = None
     content: str = ""
@@ -855,15 +856,39 @@ def execute_action(world: CityWorld, scenario: dict[str, Any], state: TraceState
     }
 
     if action.kind == "move" and action.target:
-        avoid_blocks = state.agent_type != "llm_direct_actor"
-        path, minutes = world.shortest_path(
-            state.location,
-            action.target,
-            scenario,
-            state.time,
-            avoid_active_blocks=avoid_blocks,
-        )
-        if minutes == float("inf") or path == [state.location] and state.location != action.target:
+        invalid_explicit_path = False
+        if action.path:
+            path = list(action.path)
+            invalid_explicit_path = (
+                path[0] != state.location
+                or path[-1] != action.target
+                or any(node not in world.locations for node in path)
+                or any(not any(neighbor == dst for neighbor, _ in world.graph[src]) for src, dst in zip(path, path[1:]))
+            )
+            minutes = (
+                float("inf")
+                if invalid_explicit_path
+                else sum(
+                    next(weight for neighbor, weight in world.graph[src] if neighbor == dst)
+                    for src, dst in zip(path, path[1:])
+                )
+            )
+        else:
+            avoid_blocks = state.agent_type != "llm_direct_actor"
+            path, minutes = world.shortest_path(
+                state.location,
+                action.target,
+                scenario,
+                state.time,
+                avoid_active_blocks=avoid_blocks,
+            )
+        if invalid_explicit_path:
+            append_violation(
+                state,
+                "invalid_explicit_path",
+                {"from": state.location, "to": action.target, "path": action.path},
+            )
+        elif minutes == float("inf") or path == [state.location] and state.location != action.target:
             append_violation(state, "unreachable_move", {"from": state.location, "to": action.target, "time": format_time(state.time)})
         else:
             closed_locations_recorded: set[str] = set()
@@ -1080,7 +1105,7 @@ def score_trace(world: CityWorld, scenario: dict[str, Any], state: TraceState) -
 
 def run_trace(world: CityWorld, scenario: dict[str, Any], agent_type: str, llm_config: Path | None = None) -> dict[str, Any]:
     primary = next(agent for agent in scenario["agents"] if agent["agent_id"] == scenario["primary_agent"])
-    policy_cls = {
+    policy_registry: dict[str, Any] = {
         "utility_planner": UtilityPlannerPolicy,
         "llm_direct_actor": DirectActorOfflineProxy,
         "reactive_replanner": ReactiveReplannerPolicy,
@@ -1088,7 +1113,14 @@ def run_trace(world: CityWorld, scenario: dict[str, Any], agent_type: str, llm_c
         "api_llm_direct_actor": APILLMDirectActor,
         "api_llm_plan_then_act": APILLMPlanThenAct,
         "api_llm_reactive_replanner": APILLMReactiveReplanner,
-    }[agent_type]
+    }
+    if agent_type == "gatsim_official_planner":
+        if str(ROOT) not in sys.path:
+            sys.path.insert(0, str(ROOT))
+        from external_adapters.gatsim_official import GATSimOfficialPlannerAdapter
+
+        policy_registry[agent_type] = GATSimOfficialPlannerAdapter
+    policy_cls = policy_registry[agent_type]
     state = TraceState(
         scenario_id=scenario["scenario_id"],
         agent_id=primary["agent_id"],
@@ -1101,7 +1133,8 @@ def run_trace(world: CityWorld, scenario: dict[str, Any], agent_type: str, llm_c
     record_visit(state, state.location, state.time, kind="start")
     policy = policy_cls(world, scenario, primary, llm_config=llm_config)
     for _ in range(int(scenario["episode"]["max_steps"])):
-        action = policy.next_action(state)
+        action_value = policy.next_action(state)
+        action = Action(**action_value) if isinstance(action_value, dict) else action_value
         execute_action(world, scenario, state, action)
         if action.kind == "finish" or state.time >= state.end_time:
             break
@@ -1195,10 +1228,23 @@ def write_outputs(results: list[dict[str, Any]], results_dir: Path) -> None:
 
     with (results_dir / "summary.md").open("w", encoding="utf-8", newline="\n") as f:
         has_api = any(r["agent_type"].startswith("api_llm_") for r in results)
+        external_agents = sorted(
+            {
+                r["agent_type"]
+                for r in results
+                if (r.get("model_info") or {}).get("integration_level")
+            }
+        )
         f.write("# CityIntent v0 Trace Results\n\n")
         if has_api:
             f.write("This run includes `api_llm_*` agents, which call a configured real model provider.\n\n")
-        f.write("Offline architecture proxies are still not real LLM results unless the agent type starts with `api_llm_`.\n\n")
+        if external_agents:
+            names = ", ".join(f"`{agent}`" for agent in external_agents)
+            f.write(f"This run includes verified external-framework adapters: {names}.\n\n")
+        f.write(
+            "Controlled agents without `model_info` remain offline architecture proxies, "
+            "not real model or external-framework results.\n\n"
+        )
         f.write("## Aggregate Metrics\n\n")
         f.write("| agent_type | plan_plausibility | trace_feasibility | plausibility_feasibility_gap | impossible_trace_rate | city_false_continue | goal_completion | feasibility_violation | replanning_success | travel_efficiency | budget_consistency | intention_consistency | social_appropriateness | done_state_loop_rate | social_derailment_rate |\n")
         f.write("|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|\n")
@@ -1221,10 +1267,10 @@ def main() -> int:
     parser.add_argument(
         "--agents",
         default="utility_planner,llm_direct_actor,reactive_replanner,memory_reflection",
-        help="Comma-separated agent ids to run. Implemented: utility_planner,llm_direct_actor,reactive_replanner,memory_reflection,api_llm_direct_actor,api_llm_plan_then_act,api_llm_reactive_replanner.",
+        help="Comma-separated agent ids to run. Includes controlled baselines, api_llm_* policies, and gatsim_official_planner.",
     )
     parser.add_argument("--results-dir", default=str(DEFAULT_RESULTS_DIR))
-    parser.add_argument("--llm-config", type=Path, default=None, help="Config for api_llm_direct_actor.")
+    parser.add_argument("--llm-config", type=Path, default=None, help="LLM config for provider-backed and external adapted agents.")
     parser.add_argument("--scenario-ids", default="", help="Comma-separated scenario ids to run.")
     parser.add_argument("--limit-scenarios", type=int, default=None)
     args = parser.parse_args()
@@ -1238,12 +1284,14 @@ def main() -> int:
         "api_llm_direct_actor",
         "api_llm_plan_then_act",
         "api_llm_reactive_replanner",
+        "gatsim_official_planner",
     }
     unknown = sorted(set(requested_agents) - implemented_agents)
     if unknown:
         raise SystemExit(f"Unsupported agents for this runner: {', '.join(unknown)}")
-    if any(agent.startswith("api_llm_") for agent in requested_agents) and args.llm_config is None:
-        raise SystemExit("--llm-config is required when running API-backed agents")
+    llm_agents = {"gatsim_official_planner"}
+    if any(agent.startswith("api_llm_") or agent in llm_agents for agent in requested_agents) and args.llm_config is None:
+        raise SystemExit("--llm-config is required when running API-backed or adapted external agents")
 
     config = load_json(ROOT / "benchmark_config.json")
     worlds = load_worlds(config)

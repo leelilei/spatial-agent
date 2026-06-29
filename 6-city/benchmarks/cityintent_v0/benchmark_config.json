@@ -55,6 +55,16 @@
       "priority": "P0",
       "requires_llm": true,
       "role": "Real provider-backed policy that reassesses unfinished goals, violations, events, and constraints every step."
+    },
+    {
+      "id": "gatsim_official_planner",
+      "name": "GATSimOfficialPlannerAdapter",
+      "priority": "P1",
+      "requires_llm": true,
+      "implementation": "adapted_official_planner",
+      "source_repo": "https://github.com/qiliuchn/gatsim.git",
+      "source_commit": "3dc40248086cdfb1eca38d22b76b0edb5fe53ea6",
+      "role": "Pinned official GATSim planning prompt and activity-plan schema adapted to the shared CityIntent world and executor."
     }
   ],
   "metrics": [

@@ -1,0 +1,4 @@
+scenario_id,family,agent_type,plan_plausibility,trace_feasibility,plausibility_feasibility_gap,impossible_trace_rate,city_false_continue,goal_completion,feasibility_violation,replanning_success,travel_efficiency,budget_consistency,intention_consistency,social_appropriateness,done_state_loop_rate,social_derailment_rate,final_time,final_location,final_budget,violations,failure_taxonomy
+budget_errand_chain,budget_constraint,gatsim_official_planner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,,0.0,0.0,17:58,home_aria,3.0,0,{}
+closed_poi_replacement,poi_closure,gatsim_official_planner,1.0,0.667,0.333,0.333,1.0,0.75,0.333,,0.5,1.0,0.5,,0.0,0.0,17:07,office,6.0,1,"{""closed_place_action"": 1}"
+commute_disruption,disruption,gatsim_official_planner,1.0,0.0,1.0,1.0,0.0,0.5,1.0,0.0,1.0,1.0,0.0,,0.0,0.0,08:26,office,8.0,1,"{""impossible_route"": 1}"

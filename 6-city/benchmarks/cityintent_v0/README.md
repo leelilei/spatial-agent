@@ -21,11 +21,19 @@ LLM policies:
 | `api_llm_direct_actor` | `APILLMDirectActor` | Real provider-backed direct next-action policy |
 | `api_llm_plan_then_act` | `APILLMPlanThenAct` | Real provider-backed initial-plan-then-execute policy |
 | `api_llm_reactive_replanner` | `APILLMReactiveReplanner` | Real provider-backed observe-update-act replanner |
+| `gatsim_official_planner` | `GATSimOfficialPlannerAdapter` | Pinned official GATSim planning code/templates adapted to the CityIntent world |
 
 The benchmark deliberately does **not** start by evaluating SimCity or CitySim
 as full systems. CitySim-style agents can become a later adapter. The first
 scientific question is whether different agent architectures behave differently
 in the same verifiable city environment.
+
+CityIntent now also includes the first external-framework integration. The
+`gatsim_official_planner` adapter verifies the official GATSim repository and
+commit, executes GATSim's official `generate_prompt` function, and uses its
+official daily-plan and update-plan templates plus six-field activity schema.
+CityIntent still owns the micro-city world and action executor, so results are
+labelled `adapted_official_planner`, not native full-backend GATSim results.
 
 ## Scenario Set
 
@@ -55,7 +63,10 @@ tools/validate_cityintent_v0.py
 tools/run_baseline_traces.py
 tools/judge_trace_plausibility.py
 tools/run_repeated_experiment.py
+tools/setup_external_framework.py
 configs/fhl_gpt54mini.json
+external_adapters/gatsim_manifest.json
+external_adapters/gatsim_official.py
 ```
 
 ## Verification
@@ -99,10 +110,48 @@ The current offline runner supports:
 - `api_llm_direct_actor` for a real configured provider
 - `api_llm_plan_then_act` for a real configured provider
 - `api_llm_reactive_replanner` for a real configured provider
+- `gatsim_official_planner` after setting up the pinned official checkout
 
-Important: the current LLM-named agents are offline architecture proxies. They
-do not call external models and should not be reported as real LLM results.
-Only `api_llm_*` agents call a model provider.
+## External GATSim Adapter
+
+Create the pinned sparse checkout. This fetches only the official planning
+source and templates required by the adapter, not GATSim's large frontend,
+map-tile, or archived movement folders:
+
+```bash
+python 6-city/benchmarks/cityintent_v0/tools/setup_external_framework.py ^
+  --framework gatsim
+```
+
+Verify the source remote, commit, and required-file hashes without changing it:
+
+```bash
+python 6-city/benchmarks/cityintent_v0/tools/setup_external_framework.py ^
+  --framework gatsim ^
+  --verify-only
+```
+
+Run a real provider-backed GATSim-adapter smoke scenario:
+
+```bash
+python 6-city/benchmarks/cityintent_v0/tools/run_baseline_traces.py ^
+  --agents gatsim_official_planner ^
+  --scenario-ids closed_poi_replacement ^
+  --llm-config 6-city/benchmarks/cityintent_v0/configs/fhl_gpt54mini.json ^
+  --results-dir 6-city/results/cityintent_v0/gatsim_official_smoke_gpt54mini
+```
+
+The trace `model_info` records `framework`, `source_repo`, `source_commit`,
+`source_verified`, `integration_level`, `native_backend`, and the actual LLM.
+Explicit routes in GATSim's activity-plan `path` field are preserved and
+validated by the CityIntent executor instead of being silently replaced with a
+new shortest path.
+
+Important: `llm_direct_actor`, `reactive_replanner`, and `memory_reflection`
+remain offline architecture proxies and should not be reported as real LLM
+results. The `api_llm_*` policies and `gatsim_official_planner` call the
+configured model provider; the latter is additionally a verified external
+framework adapter.
 
 Small API smoke run:
 

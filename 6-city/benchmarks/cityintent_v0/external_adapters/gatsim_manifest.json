@@ -1,0 +1,29 @@
+{
+  "framework_id": "gatsim_official_planner",
+  "framework_name": "GATSim",
+  "source_repo": "https://github.com/qiliuchn/gatsim.git",
+  "source_commit": "3dc40248086cdfb1eca38d22b76b0edb5fe53ea6",
+  "license": "Apache-2.0",
+  "integration_level": "adapted_official_planner",
+  "native_backend": false,
+  "required_files": {
+    "gatsim/agent/llm_modules/llm.py": "225806156c6875c0a5c85cbbae2ca6290f600649665013e362e65d6cfd5ae087",
+    "gatsim/agent/llm_modules/prompt_templates/generate_daily_activity_plan_v1.txt": "34e06c76ef8736c0a84d61ab23e7643c2f912bc7cb2878dc1f63946859676953",
+    "gatsim/agent/llm_modules/prompt_templates/update_daily_activity_plan_v1.txt": "2317ef00c74602a20736bbc1d20207ef545c47e88fa1a159885a03ca40cf4a16"
+  },
+  "sparse_paths": [
+    "requirements.txt",
+    "setup.py",
+    "gatsim/__init__.py",
+    "gatsim/config.py",
+    "gatsim/utils.py",
+    "gatsim/agent/__init__.py",
+    "gatsim/agent/persona.py",
+    "gatsim/agent/cognitive_modules/__init__.py",
+    "gatsim/agent/cognitive_modules/plan.py",
+    "gatsim/agent/llm_modules/__init__.py",
+    "gatsim/agent/llm_modules/llm.py",
+    "gatsim/agent/llm_modules/prompt_templates/generate_daily_activity_plan_v1.txt",
+    "gatsim/agent/llm_modules/prompt_templates/update_daily_activity_plan_v1.txt"
+  ]
+}
