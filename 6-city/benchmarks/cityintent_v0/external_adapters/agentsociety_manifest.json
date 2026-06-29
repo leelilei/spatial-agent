@@ -1,0 +1,28 @@
+{
+  "setup_name": "agentsociety",
+  "checkout_dir": "agentsociety",
+  "framework_id": "agentsociety_official_plan_blocks",
+  "framework_name": "AgentSociety",
+  "source_repo": "https://github.com/tsinghua-fib-lab/AgentSociety.git",
+  "source_commit": "c8001a42409eb37be7cf745395bbe2269e7d83e0",
+  "license": "Apache-2.0 (excluding commercial package)",
+  "integration_level": "adapted_official_plan_blocks",
+  "native_backend": false,
+  "required_files": {
+    "packages/agentsociety/agentsociety/agent/prompt.py": "a50fc4523bc13c9a69cbfe30d6a9eb5ee4d8f82e7e53b3df9b633ee74932d42c",
+    "packages/agentsociety/agentsociety/cityagent/blocks/plan_block.py": "8f4d7d2055a4b817c2f737b53aa2bea20242da8ca33211172ee2690ff2c9701d",
+    "packages/agentsociety/agentsociety/cityagent/blocks/mobility_block.py": "3f0cf1598c47ee9265bf23065d4a3aea906daf74922617349613214448d0a19b",
+    "packages/agentsociety/agentsociety/cityagent/blocks/needs_block.py": "1e09451ff2784a621211f48c24db21da1acb9639e5db8fdd44a0580360058cb6"
+  },
+  "sparse_paths": [
+    "README.md",
+    "LICENSE",
+    "pyproject.toml",
+    "packages/agentsociety/LICENSE",
+    "packages/agentsociety/pyproject.toml",
+    "packages/agentsociety/agentsociety/agent/prompt.py",
+    "packages/agentsociety/agentsociety/cityagent/blocks/plan_block.py",
+    "packages/agentsociety/agentsociety/cityagent/blocks/mobility_block.py",
+    "packages/agentsociety/agentsociety/cityagent/blocks/needs_block.py"
+  ]
+}

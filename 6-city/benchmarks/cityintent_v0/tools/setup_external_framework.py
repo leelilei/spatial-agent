@@ -14,6 +14,13 @@ BENCHMARK_ROOT = Path(__file__).resolve().parents[1]
 PROJECT_ROOT = BENCHMARK_ROOT.parents[1]
 MANIFESTS = {
     "gatsim": BENCHMARK_ROOT / "external_adapters" / "gatsim_manifest.json",
+    "sotopia": BENCHMARK_ROOT / "external_adapters" / "sotopia_manifest.json",
+    "generative-agents": BENCHMARK_ROOT
+    / "external_adapters"
+    / "generative_agents_manifest.json",
+    "agentsociety": BENCHMARK_ROOT
+    / "external_adapters"
+    / "agentsociety_manifest.json",
 }
 
 
@@ -30,11 +37,14 @@ def output(*args: str, cwd: Path | None = None) -> str:
     return subprocess.check_output(args, cwd=cwd, text=True, encoding="utf-8").strip()
 
 
-def setup_gatsim(target: Path, verify_only: bool = False) -> dict[str, Any]:
-    manifest = load_json(MANIFESTS["gatsim"])
+def setup_framework(
+    framework: str, target: Path, verify_only: bool = False
+) -> dict[str, Any]:
+    manifest_path = MANIFESTS[framework]
+    manifest = load_json(manifest_path)
     if not (target / ".git").exists():
         if verify_only:
-            raise SystemExit(f"missing GATSim checkout: {target}")
+            raise SystemExit(f"missing {manifest['framework_name']} checkout: {target}")
         target.mkdir(parents=True, exist_ok=True)
         run("git", "init", cwd=target)
         run("git", "remote", "add", "origin", manifest["source_repo"], cwd=target)
@@ -58,9 +68,9 @@ def setup_gatsim(target: Path, verify_only: bool = False) -> dict[str, Any]:
 
     if str(BENCHMARK_ROOT) not in __import__("sys").path:
         __import__("sys").path.insert(0, str(BENCHMARK_ROOT))
-    from external_adapters.gatsim_official import verify_official_checkout
+    from external_adapters.adapter_common import verify_official_checkout
 
-    verified = verify_official_checkout(target)
+    verified = verify_official_checkout(target, manifest_path)
     return {
         "framework": manifest["framework_name"],
         "target": str(target.resolve()),
@@ -74,11 +84,11 @@ def main() -> int:
     parser.add_argument("--target", type=Path, default=None)
     parser.add_argument("--verify-only", action="store_true")
     args = parser.parse_args()
-    target = args.target or (PROJECT_ROOT / "tmp" / "external" / args.framework)
-    if args.framework == "gatsim":
-        result = setup_gatsim(target, verify_only=args.verify_only)
-    else:
-        raise SystemExit(f"unsupported framework: {args.framework}")
+    manifest = load_json(MANIFESTS[args.framework])
+    target = args.target or (
+        PROJECT_ROOT / "tmp" / "external" / manifest["checkout_dir"]
+    )
+    result = setup_framework(args.framework, target, verify_only=args.verify_only)
     print(json.dumps(result, indent=2, ensure_ascii=False))
     return 0
 

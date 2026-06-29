@@ -1120,6 +1120,28 @@ def run_trace(world: CityWorld, scenario: dict[str, Any], agent_type: str, llm_c
         from external_adapters.gatsim_official import GATSimOfficialPlannerAdapter
 
         policy_registry[agent_type] = GATSimOfficialPlannerAdapter
+    elif agent_type == "sotopia_official_llm_agent":
+        if str(ROOT) not in sys.path:
+            sys.path.insert(0, str(ROOT))
+        from external_adapters.sotopia_official import SOTOPIAOfficialLLMAgentAdapter
+
+        policy_registry[agent_type] = SOTOPIAOfficialLLMAgentAdapter
+    elif agent_type == "generative_agents_official_planner":
+        if str(ROOT) not in sys.path:
+            sys.path.insert(0, str(ROOT))
+        from external_adapters.generative_agents_official import (
+            GenerativeAgentsOfficialPlannerAdapter,
+        )
+
+        policy_registry[agent_type] = GenerativeAgentsOfficialPlannerAdapter
+    elif agent_type == "agentsociety_official_plan_blocks":
+        if str(ROOT) not in sys.path:
+            sys.path.insert(0, str(ROOT))
+        from external_adapters.agentsociety_official import (
+            AgentSocietyOfficialPlanBlocksAdapter,
+        )
+
+        policy_registry[agent_type] = AgentSocietyOfficialPlanBlocksAdapter
     policy_cls = policy_registry[agent_type]
     state = TraceState(
         scenario_id=scenario["scenario_id"],
@@ -1267,7 +1289,7 @@ def main() -> int:
     parser.add_argument(
         "--agents",
         default="utility_planner,llm_direct_actor,reactive_replanner,memory_reflection",
-        help="Comma-separated agent ids to run. Includes controlled baselines, api_llm_* policies, and gatsim_official_planner.",
+        help="Comma-separated agent ids to run. Includes controlled baselines, api_llm_* policies, and verified external adapters.",
     )
     parser.add_argument("--results-dir", default=str(DEFAULT_RESULTS_DIR))
     parser.add_argument("--llm-config", type=Path, default=None, help="LLM config for provider-backed and external adapted agents.")
@@ -1285,11 +1307,19 @@ def main() -> int:
         "api_llm_plan_then_act",
         "api_llm_reactive_replanner",
         "gatsim_official_planner",
+        "sotopia_official_llm_agent",
+        "generative_agents_official_planner",
+        "agentsociety_official_plan_blocks",
     }
     unknown = sorted(set(requested_agents) - implemented_agents)
     if unknown:
         raise SystemExit(f"Unsupported agents for this runner: {', '.join(unknown)}")
-    llm_agents = {"gatsim_official_planner"}
+    llm_agents = {
+        "gatsim_official_planner",
+        "sotopia_official_llm_agent",
+        "generative_agents_official_planner",
+        "agentsociety_official_plan_blocks",
+    }
     if any(agent.startswith("api_llm_") or agent in llm_agents for agent in requested_agents) and args.llm_config is None:
         raise SystemExit("--llm-config is required when running API-backed or adapted external agents")
 

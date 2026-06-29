@@ -1,0 +1,24 @@
+{
+  "setup_name": "sotopia",
+  "checkout_dir": "sotopia",
+  "framework_id": "sotopia_official_llm_agent",
+  "framework_name": "SOTOPIA",
+  "source_repo": "https://github.com/sotopia-lab/sotopia.git",
+  "source_commit": "a0aaafb440e570e5e61b7c44a44e5e417c545383",
+  "license": "MIT",
+  "integration_level": "adapted_official_llm_agent",
+  "native_backend": false,
+  "required_files": {
+    "sotopia/agents/llm_agent.py": "792ab9f76ca2d1fe5a9d24a88e9d405cac1a93dae3f4d0b3b01786366fa908de",
+    "sotopia/generation_utils/generate.py": "b5f2f20a2c9f3495d63cba6d7fc33bcef9db6f667bda8d7353225c1d4d3613ad",
+    "sotopia/messages/message_classes.py": "c217c18f21d22959cb7a2205cafac456feb6b222017fcc4a762c5d9fe478a528"
+  },
+  "sparse_paths": [
+    "README.md",
+    "LICENSE",
+    "pyproject.toml",
+    "sotopia/agents/llm_agent.py",
+    "sotopia/generation_utils/generate.py",
+    "sotopia/messages/message_classes.py"
+  ]
+}

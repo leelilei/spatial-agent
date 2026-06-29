@@ -1,0 +1,30 @@
+{
+  "setup_name": "generative-agents",
+  "checkout_dir": "generative_agents",
+  "framework_id": "generative_agents_official_planner",
+  "framework_name": "Generative Agents",
+  "source_repo": "https://github.com/joonspk-research/generative_agents.git",
+  "source_commit": "fe05a71d3e4ed7d10bf68aa4eda6dd995ec070f4",
+  "license": "Apache-2.0",
+  "integration_level": "adapted_official_memory_planner",
+  "native_backend": false,
+  "required_files": {
+    "reverie/backend_server/persona/cognitive_modules/plan.py": "f037e88b42a3d72a25c312c6019960367a19aedf9fe932066c68b1652b64f963",
+    "reverie/backend_server/persona/prompt_template/gpt_structure.py": "c0b09dbb2c8dc04e781281fa5504a65ca4c99dd0dcc053e1e17181aedc23bb8d",
+    "reverie/backend_server/persona/prompt_template/run_gpt_prompt.py": "856f69d047e0e2cfbc582542e0f103f576d1769bcc91f9ceea94d04526e6d7df",
+    "reverie/backend_server/persona/prompt_template/v2/daily_planning_v6.txt": "a5456542b2e34cd469e4190d55a82994203fa5a539f0231841241cf9cc04f34c",
+    "reverie/backend_server/persona/prompt_template/v2/new_decomp_schedule_v1.txt": "9ad8ba37f5f40f692f54ce2788efa14693866c44d6916fbf967c17a446120f56",
+    "reverie/backend_server/persona/prompt_template/v2/insight_and_evidence_v1.txt": "eaf74ee5c843ec7142b65b64fcf18a18cb77cd1c2c8c9c670b0b7e134b1ba016"
+  },
+  "sparse_paths": [
+    "README.md",
+    "LICENSE",
+    "requirements.txt",
+    "reverie/backend_server/persona/cognitive_modules/plan.py",
+    "reverie/backend_server/persona/prompt_template/gpt_structure.py",
+    "reverie/backend_server/persona/prompt_template/run_gpt_prompt.py",
+    "reverie/backend_server/persona/prompt_template/v2/daily_planning_v6.txt",
+    "reverie/backend_server/persona/prompt_template/v2/new_decomp_schedule_v1.txt",
+    "reverie/backend_server/persona/prompt_template/v2/insight_and_evidence_v1.txt"
+  ]
+}

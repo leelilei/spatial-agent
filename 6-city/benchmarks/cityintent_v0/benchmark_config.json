@@ -65,6 +65,36 @@
       "source_repo": "https://github.com/qiliuchn/gatsim.git",
       "source_commit": "3dc40248086cdfb1eca38d22b76b0edb5fe53ea6",
       "role": "Pinned official GATSim planning prompt and activity-plan schema adapted to the shared CityIntent world and executor."
+    },
+    {
+      "id": "sotopia_official_llm_agent",
+      "name": "SOTOPIAOfficialLLMAgentAdapter",
+      "priority": "P1",
+      "requires_llm": true,
+      "implementation": "adapted_official_llm_agent",
+      "source_repo": "https://github.com/sotopia-lab/sotopia.git",
+      "source_commit": "a0aaafb440e570e5e61b7c44a44e5e417c545383",
+      "role": "Pinned official SOTOPIA LLMAgent per-turn private-goal action prompt adapted to typed CityIntent actions."
+    },
+    {
+      "id": "generative_agents_official_planner",
+      "name": "GenerativeAgentsOfficialPlannerAdapter",
+      "priority": "P1",
+      "requires_llm": true,
+      "implementation": "adapted_official_memory_planner",
+      "source_repo": "https://github.com/joonspk-research/generative_agents.git",
+      "source_commit": "fe05a71d3e4ed7d10bf68aa4eda6dd995ec070f4",
+      "role": "Pinned official Generative Agents daily planning, reflection, and schedule revision prompts adapted to CityIntent."
+    },
+    {
+      "id": "agentsociety_official_plan_blocks",
+      "name": "AgentSocietyOfficialPlanBlocksAdapter",
+      "priority": "P1",
+      "requires_llm": true,
+      "implementation": "adapted_official_plan_blocks",
+      "source_repo": "https://github.com/tsinghua-fib-lab/AgentSociety.git",
+      "source_commit": "c8001a42409eb37be7cf745395bbe2269e7d83e0",
+      "role": "Pinned official AgentSociety TPB guidance, detailed-plan, and mobility place-analysis blocks adapted to CityIntent."
     }
   ],
   "metrics": [
