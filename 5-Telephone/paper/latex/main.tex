@@ -46,485 +46,389 @@
 \maketitle
 
 \begin{abstract}
-Generative-agent work shows that information can spread through a simulated
-society, but not whether the spread is faithful. We introduce a social fidelity
-probe that injects a single ground-truthed update into an LLM-agent society,
-lets the agents relay it through rounds of pairwise conversation, and then interviews
-every agent to measure what the society holds. Across capability, connectivity,
-memory architecture, and a persistent authoritative source, natural levers fail to
-restore held truth; only directly overwriting every agent's memory does. The sharpest
-result is a dissociation: an authoritative source makes agents increasingly say
-the current value while the society's held belief stays near baseline---speech
-moves without belief. We trace the mechanism to path-dependent entrenchment: the version
-established early and broadly wins, and late or narrow correction can be uttered without
-being adopted. The effect survives a long horizon (truth peaks early then decays), three
-scenarios, thicker personas, and a semantic-judge validation of the metric.
+LLM agents increasingly coordinate by talking to one another, and a growing body of work
+shows that information \emph{spreads} through agent societies. We ask a reliability question
+that spread does not answer: when a ground-truthed fact changes, does the society come to
+\emph{hold} the new truth, or merely \emph{say} it? With a social-fidelity probe that
+separately measures what agents hear, say, and later hold, we find a robust speech--belief
+dissociation: an authoritative source drives agents to utter the current value while their
+held belief stays at baseline. No natural lever fixes this---not model capability,
+connectivity, memory swaps, richer personas, or a persistent source; only direct broadcast, an
+overwrite control, succeeds. The mechanism is path-dependent entrenchment: the version
+established early and broadly wins. We then localize the repair to a single architectural
+choice---integrating heard claims by \emph{provenance} (source and version) rather than by
+frequency. Provenance-aware memory (PROV) is the only memory architecture that lifts held
+truth, and it holds across scenarios, fact types, topologies, and model families
+($n{=}8$). Hardened into an auditable architecture (APM) with origin anchoring, corroboration,
+and abstain, it remains the only architecture that survives an adversarial liar (zero hijack,
+against PROV's collapse) and settles to a realistic, non-saturating equilibrium under sparse
+communication---never confidently wrong.
 \end{abstract}
 
 % ============================================================
 \section{Introduction}
-Large language model (LLM) agents increasingly form societies that talk, remember, and
-coordinate \citep{park2023generative,li2023camel,wu2023autogen,chen2023agentverse}. A celebrated demonstration
-is that information spreads through such a society, and \citet{park2024thousand} show that a
-single agent can be made remarkably faithful to a real person.
-Between ``information spreads'' and ``an agent is individually
-faithful'' lies a question neither line answers: when a society passes a changing fact
-through conversation, does it come to \emph{hold} the truth, or merely \emph{repeat} it?
+A true update can become unreliable without ever becoming intentionally false. In human
+societies a message may be accurate when first announced, but after a few retellings people
+keep the content while losing track of who said it, when it was updated, and whether it
+superseded an older version. This is the telephone-game failure: the social channel does not
+merely transmit content, it also drops source, timing, and authority cues.
 
-This is the distinction between \emph{reach} and \emph{fidelity}, long drawn in
-misinformation research \citep{lazer2018science,vosoughi2018spread}. It matters now because
-agent societies are themselves used as instruments---to simulate opinion, deliberate, or
-aggregate judgments---and their collective outputs are read as if they were the society's
-beliefs. If a society can be made to say something it does not hold, such
-readings are unsafe. Individual fidelity does not imply collective fidelity.
+LLM-agent societies reproduce this failure in an instrumented setting. Unlike a human rumor
+chain, an agent society exposes every utterance, every injected update, every memory snapshot,
+and every final answer---letting us separate three objects that are usually conflated:
+\textbf{reach} (whether the current update appears in the social transcript), \textbf{speech}
+(whether agents later utter the current value), and the \textbf{held answer} (whether agents
+answer with the current value when probed after transmission).
 
-We operationalize this question with a controlled social fidelity probe
-(Figure~\ref{fig:setup}). We inject a single ground-truthed update at one source, let $N{=}25$
-agents relay it through rounds of pairwise conversation using generative-agent reflection
-memory, and then interview every agent to measure what the society holds. We separate
-what agents say in meetings from what they hold at interview, and we test the
-natural repair levers---model capability, connectivity, memory architecture, and a persistent
-authoritative source---against a positive control that overwrites every agent.
+Generative-agent work establishes that information can spread through an agent society
+\citep{park2023generative,li2023camel,wu2023autogen,zhou2024sotopia}. Spread, however, is not
+fidelity. A correction, schedule change, or policy update can reach the conversation stream yet
+fail to become the society's later answer. This is the distinction between reach and fidelity,
+long drawn in misinformation research \citep{lazer2018science,vosoughi2018spread}. Our central
+finding is that reach and speech improve \emph{without} durable held truth---so ``information
+spread'' is not a sufficient evaluation target for agent societies.
 
-The main result is a speech--belief dissociation (Figure~\ref{fig:dissoc}): a
-persistent authoritative source makes agents increasingly say the current value while
-what the society holds stays near baseline. Speech moves without belief. The
-dissociation sits inside a broader decay process: truth rises early and then erodes to a
-low, unknown-dominated steady state (Figure~\ref{fig:decay}). Natural repair levers do not
-close the gap---capability, connectivity, memory architecture, and authority all fall far
-short of a direct all-agent broadcast (Figure~\ref{fig:levers}). The mechanism is
-path-dependent entrenchment, not recency (Figure~\ref{fig:mech}): an early, broad correction
-succeeds where a late one fails. The pattern replicates across three scenarios and under
-richer personas (Figure~\ref{fig:general}).
-
-\noindent Our contributions are:
+\noindent We make three contributions:
 \begin{itemize}
-\item a \textbf{social fidelity probe} that separates what agents hear, what they say, and
-  what they later hold after a ground-truthed update;
-\item a robust \textbf{speech--belief dissociation}: authority can move utterances toward
-  truth while held belief remains near baseline; and
-\item an empirical and mechanistic account of \textbf{social fidelity decay}: natural repair
-  levers fail, while early and broad entrenchment explains when truth persists.
+\item a \textbf{measurement shift}: a social-fidelity probe that separates what agents hear,
+  say, and later hold after a ground-truthed update;
+\item a \textbf{diagnosis}: a speech--belief dissociation driven by path-dependent
+  entrenchment, which no natural lever repairs; and
+\item a \textbf{cure and an architecture}: integrating by provenance rather than frequency is
+  the lever that works, and hardened as APM it is the only memory architecture that stays
+  interpretable, survives an adversarial liar, and yields a realistic non-saturating
+  equilibrium.
 \end{itemize}
+
+Our working hypothesis is that truth decays not merely because content changes, but because
+content loses its source. Stripped of source and version, ``Saturday at the porch'' and
+``Sunday at the community center'' compete as undifferentiated text, and the old value can win
+simply because it was established early, repeated often, or retrieved more easily. Provenance
+changes the social state representation: an agent can ask not only ``what have I heard?'' but
+``who said it, is it the latest authoritative version, and does it supersede the old one?''
 
 % ============================================================
 \section{Related Work}
+\textbf{Agent societies and communicative agents.} Generative Agents
+\citep{park2023generative}, CAMEL \citep{li2023camel}, AutoGen \citep{wu2023autogen}, and
+SOTOPIA \citep{zhou2024sotopia} establish the setting: agents talk, remember, coordinate, and
+simulate social environments. We pose a missing reliability question within it---the fidelity
+of a \emph{changing} held fact.
 
-\paragraph{Agent societies and communicative agents.}
-\citet{park2023generative} establish a setting in which LLM agents talk, remember, and
-coordinate in a believable social world, and communicative-agent systems make
-agent-to-agent dialogue a standard substrate
-\citep{li2023camel,wu2023autogen,chen2023agentverse,hong2024metagpt,qian2024chatdev,gao2024agentscope}.
-Interactive-agent methods further interleave reasoning, action, and observable traces
-\citep{yao2023react}, while social-evaluation environments broaden assessment beyond
-isolated QA \citep{zhou2024sotopia}. Multi-agent collaboration work studies
-theory-of-mind and task-state failures \citep{li2023theorymind}, and recent work shows a
-single agent can be made faithful to a real individual \citep{park2024thousand}. We ask a
-narrower reliability question: whether a changing fact remains current after social
-transmission.
+\textbf{Misinformation, rumor, reach vs fidelity.} Rumor and continued-influence research
+separates spread from truth and shows that corrections often fail to displace stale beliefs
+\citep{lewandowsky2012misinformation,thorson2016belief}. LLM-agent rumor simulations are close
+neighbors, but they typically measure propagation or vulnerability; we measure held-fact
+fidelity after a truth change. The closest concurrent neighbor \citep{xie2026spark} also
+studies provenance-style cures and adoption-vs-repetition; we lead instead on the explicit,
+separately elicited say/hold dissociation, a head-to-head decentralized-memory comparison, and
+adversarial robustness.
 
-\paragraph{Reach versus fidelity in (mis)information.}
-Misinformation research separates how far content spreads from whether it is believed and
-acted upon \citep{lazer2018science,vosoughi2018spread,friggeri2014rumor}. With LLM agents,
-\citet{maurya2025simulating} reproduce misinformation propagation through social networks,
-but measure propagation or vulnerability. Our probe shifts the endpoint from reach to
-held-belief fidelity after a ground-truthed change.
+\textbf{Factuality and measurement.} Treating truthfulness as a semantic behavioral target
+rather than surface fluency is now standard \citep{lin2022truthfulqa,manakul2023selfcheckgpt,
+farquhar2024detecting}. Our three-way verdict mirrors fact verification
+\citep{thorne2018fever} and the efficacy-vs-locality structure of knowledge editing
+\citep{meng2022rome,meng2023memit}.
 
-\paragraph{Factuality, debate, and the speech--belief gap.}
-Factuality evaluation treats truth as a semantic behavioral target rather than fluency
-\citep{lin2022truthfulqa,kadavath2022language,manakul2023selfcheckgpt,farquhar2024detecting,li2023halueval,niu2024ragtruth}.
-Calibration and internal-state work further caution against reading surface text as the
-whole epistemic state \citep{azaria2023internal,tian2023just}. Multi-agent debate is the
-optimistic counterpoint---structured discussion can improve judged answers
-\citep{du2023improving,michael2023debate,liang2024encouraging,khan2024debating}---yet
-explicit correction can fail without reliable grounding \citep{huang2024selfcorrect}. We
-identify a complementary society-level failure: the correct statement can win space in
-conversation without becoming the answer agents later hold.
-
-\paragraph{Memory, communication, and recursive degradation.}
-Agent-memory and reflection methods show that durable state must be engineered---exposure
-in context is not the same as retrievable belief
-\citep{shinn2023reflexion,zhong2024memorybank,packer2024memgpt,wang2023voyager,xu2025amem}.
-Human communication work provides parallel precedents: corrected misinformation can
-continue to shape attitudes \citep{thorson2016belief}, language can stabilize social
-beliefs \citep{beukeboom2019stereotypes}, audience-tuned speech can feed back into later
-memory \citep{ye2021audience}, and serial transmission can converge toward attractors
-\citep{kirby2008cumulative}. Finally, model-collapse work gives a training-time analogy
-for recursive degradation \citep{shumailov2023curse,alemohammad2024selfconsuming,seddik2024synthetic};
-we study a communication-time analogue that arises without retraining.
+\textbf{Memory, correction, recursive degradation.} Memory systems
+\citep{chhikara2025mem0,xu2025amem,zhong2024memorybank} explain why exposure is not retention;
+belief revision and truth maintenance \citep{alchourron1985logic,doyle1979truth} and
+source-credibility opinion dynamics \citep{degroot1974reaching} motivate provenance; and
+model-collapse work \citep{shumailov2023curse} offers an analogy for recursive
+degradation---though ours is communication-time degradation, not training-time collapse.
 
 % ============================================================
-\section{Measuring Social Fidelity}
-\label{sec:method}
-\begin{figure*}[t]
-\centering
-\includegraphics[width=\textwidth]{figures/fig1_setup.png}
-\caption{Social fidelity probe. We inject a ground-truthed update, observe social relay,
-and separately probe each agent's later answer.}
-\label{fig:setup}
-\end{figure*}
+\section{Method: The Social-Fidelity Probe}
+\textbf{Setup.} A society of $N{=}25$ LLM agents on a contact graph organizes an event. At
+round~1 the event's time and place \emph{change} from a stale value (A) to a current value (B),
+and the update is injected into a single source agent. Agents then meet pairwise over rounds (a
+\texttt{meetings} parameter sets how many encounters each agent has per round, i.e.\
+connectivity), converse, store what they hear, and retrieve memory to condition later
+utterances. We log every utterance (SAID) and, at the end, privately interview every agent
+about the current fact (HELD): Inject $\rightarrow$ Propagate $\rightarrow$ Measure.
 
-The probe is a controlled instrument, not a benchmark: we hold a society fixed,
-inject one ground-truthed change, and measure what survives transmission
-(Figure~\ref{fig:setup}).
+\textbf{The current / stale / unknown verdict.} Because the fact's truth value changed, we
+classify each held answer three ways, mirroring recognized evaluation structures:
+\textbf{current} (holds the new value---edit \emph{efficacy} / \textsc{supported}),
+\textbf{stale} (holds the superseded value---a \emph{locality} failure / continued-influence),
+and \textbf{unknown} (holds neither---a retention failure / \textsc{not-enough-info}). The
+three-way split is load-bearing: separating \emph{stale} (active corruption) from \emph{unknown}
+(information loss) is essential, because interventions act on them differently---scaling
+capability, for instance, converts loss into confident corruption. A semantic LLM judge
+reproduces the keyword verdict (99--100\% agreement), so the categories are not a keyword
+artifact.
 
-\paragraph{From reach to social fidelity.}
-The task is designed to avoid a common ambiguity in multi-agent simulations. A message can
-reach the conversation stream without becoming the answer that agents later give. We
-therefore treat social fidelity as a three-stage measurement problem: \textsc{Hear}, the
-value an agent is exposed to in its event stream; \textsc{Say}, the value it later utters in
-meetings; and \textsc{Hold}, the value it gives when individually probed. The paper's main
-claim is about the gap between \textsc{Say} and \textsc{Hold}, not about whether a string can
-be produced somewhere in the society.
-
-\paragraph{Society and contact model.}
-The society is $N{=}25$ LLM agents, each with a short persona describing a member of a
-neighborhood, and one designated source. In each round we draw $m$ independent
-random matchings over the agents (duplicate pairs removed), so every agent holds about $m$
-pairwise conversations per round; we use $m{=}2$ unless noted, and vary $m\in\{1,2,3\}$ to
-test connectivity. Each meeting is a short exchange of $T$ alternating turns ($T{=}3$), and
-both participants observe every utterance.
-
-\paragraph{The ground-truthed update.}
-The society is organizing an event with a known time and place---the stale value. At
-round~1 an authoritative update changes the event's day and place to the current
-value, observed by the source. To guard against scenario-specific artifacts we use three
-structurally identical scenarios: \textsc{repair\_drive} (Saturday, porch $\rightarrow$
-Sunday, community center), \textsc{book\_club} (Tuesday, library $\rightarrow$ Thursday,
-cafe), and \textsc{carpool} (7\,am, school lot $\rightarrow$ 8\,am, church lot).
-
-\paragraph{Propagation via reflection memory.}
-Agents relay through generative-agent reflection memory
-\citep{park2023generative,shinn2023reflexion,zhong2024memorybank,packer2024memgpt,wang2023voyager}: an append-only stream of observed utterances
-plus periodic free-text reflections. Retrieval ranks the most relevant events and
-reflections (semantic embedding ranking with a lexical fallback) into the context each agent
-speaks and answers from, and agents consolidate (reflect) every round. This is the standard
-generative-agent baseline; we additionally test a currency-resolving memory variant that
-prioritizes the most recent value of a changing fact.
-
-\paragraph{Interventions.}
-The baseline injects the update once (round~1, into the source). An authoritative
-re-broadcast re-injects the update every round, either to the source only (which must then
-re-propagate it) or to every agent---a town-announcement / overwrite control. For the
-mechanism test we vary the timing of a single all-agent broadcast: early (round~1)
-versus late (immediately before the probe).
-
-\paragraph{Measurement: speech versus held belief.}
-\textsc{Say} is computed from meeting logs as the fraction of value-coded utterances that
-carry the current value rather than the stale value. \textsc{Hold} is measured separately by
-interviewing every agent after the run, instructing it to answer the probe
-(``when/where is it now?'') using only its own memory notes, and scoring the answer current,
-stale, or unknown by the scenario's value markers. ``Held belief'' is operational---the
-answer an agent later gives when probed---and implies no claim about mental states. This
-operationalization is deliberately conservative: an agent that merely repeats the source in
-conversation receives no credit unless it later answers with the current value.
-
-\paragraph{Why a current/stale/unknown verdict.}
-The three-way verdict is not ad hoc; it mirrors recognized evaluation structures for a fact
-whose truth value has changed. It parallels the supported / refuted / not-enough-info labels
-of fact verification \citep{thorne2018fever}, and it separates the two outcomes that
-knowledge-editing evaluations keep distinct: whether the new value takes hold (edit
-\emph{efficacy}) and whether the old value is displaced rather than persisting
-(\emph{specificity}/\emph{locality}) \citep{meng2022rome,meng2023memit}. The stale category
-in particular operationalizes the \emph{continued-influence effect} from misinformation
-research---a corrected, superseded fact that is nonetheless still believed and acted upon
-\citep{lewandowsky2012misinformation,thorson2016belief}. Crucially, distinguishing
-stale (active corruption) from unknown (information loss) is load-bearing: the two respond
-differently to interventions---for example, capability converts loss into confident
-corruption---a distinction a binary correct/incorrect score would hide. A semantic LLM judge
-reproduces the verdict (below), so the categories are not a keyword artifact.
-
-\paragraph{Models, replicates, and validation.}
-The default agent model is gpt-5.4-mini at temperature~0; the capability ladder
-adds gpt-5.4 and gpt-5.5. Each condition is repeated over $n$ random seeds
-that control the meeting schedule ($n$ up to~8). Because temperature~0 LLM societies are
-still chaotic (a single divergent token cascades), we report per-seed variation rather than
-treat any single run as canonical, and we validate the keyword verdict against an independent
-LLM judge that re-scores answers semantically (below), following the broader practice of
-behavioral factuality and hallucination evaluation \citep{lin2022truthfulqa,manakul2023selfcheckgpt,farquhar2024detecting,li2023halueval,niu2024ragtruth}.
-Because elicited confidence and internal truth signals can diverge from surface text
-\citep{azaria2023internal,tian2023just}, we treat the final interview as an operational
-held-answer probe rather than a literal mind-read.
-
-\paragraph{Design rationale.}
-The probe uses a mutable fact rather than a static trivia item because social fidelity is
-most visible when an old value and a current value compete. The stale value is not noise:
-it is a previously valid coordination fact that agents have reason to reuse. The current
-value is ground-truthed and unambiguous, but it must travel through the same ordinary
-meetings and memory operations that make agent societies appealing as simulations. This
-creates a harder test than asking whether an isolated agent can answer a factual question,
-and a cleaner test than open-ended opinion diffusion, where there may be no external
-truth condition.
-
-The intervention ladder is chosen to separate three explanations that are often conflated.
-If agents simply lack capability, stronger models or direct broadcast should help. If the
-problem is insufficient exposure, a persistent source should close the gap. If the problem
-is social state, only interventions that change many agents' own stored value should work.
-The all-agent broadcast is therefore not treated as a realistic deployment mechanism; it is
-an upper-bound control that verifies the task is answerable and that the scoring rule can
-recognize success. The source condition is the stricter social test because it gives the
-truth an authoritative and repeated conversational origin while leaving adoption to the
-society.
-
-\paragraph{Reporting convention.}
-\textsc{Hold} rates are percentages of agents at the final probe. \textsc{Say} rates are
-computed over utterances that explicitly contain either the stale or current value; this
-prevents irrelevant conversation from being counted as false, but also means \textsc{Say}
-is not a measure of how often the topic appears. A condition counts as a repair only if it
-moves final \textsc{Hold}, not merely exposure or transcript frequency. This convention is
-why transient peaks in the long-horizon runs and source-driven increases in current-valued
-speech are treated as evidence for availability, not adoption.
+\textbf{HEARD / SAID / HELD.} The probe's leverage comes from separating what reaches an agent,
+what it utters, and what it later holds. ``Held belief'' is operational---the answer an agent
+gives when probed; we make no claim about literal mental states.
 
 % ============================================================
 \section{Results}
 
-\subsection{Speech is not belief}
-\begin{figure*}[t]
+\subsection{Social Fidelity Decays, and No Natural Lever Repairs It}
+In the core task the current value reaches the conversation stream but does not reliably become
+the society's held answer. Over a long horizon the dynamics are sharper still: current truth can
+rise early, peak near round~6, then decay toward a low steady state by round~30---so truth can
+appear transiently and still lose, and the round-5 snapshot slightly overstates retention.
+
+Figure~\ref{fig:levers} and Table~\ref{tab:levers} rule out every intuitive repair. Capability
+(16$\to$21\% across mini$\to$gpt-5.4$\to$gpt-5.5), connectivity (roughly neutral in the powered
+rerun---the early ``connectivity amplifies corruption'' cell was an underpowered outlier, now
+retracted), a memory swap (the apparent rescue did not replicate), thick personas, and a
+persistent authoritative source all leave held truth at the $\sim$14--21\% baseline. Only
+broadcasting the current value into \textbf{every} agent succeeds (99\%)---an overwrite-style
+positive control that bypasses social transmission, not a social cure. Agents can clearly output
+the truth; the problem is that ordinary social communication does not reliably install it as
+held belief.
+
+\begin{figure}[t]
 \centering
-\includegraphics[width=0.95\textwidth]{figures/fig2_speech_belief.png}
-\caption{Speech is not belief. Source repetition moves speech, but only broad broadcast
-installs held truth. Error bars show 95\% CIs.}
-\label{fig:dissoc}
-\end{figure*}
-The central experiment compares three conditions (Figure~\ref{fig:dissoc}). In the baseline,
-the update enters through ordinary social transmission. In the source condition, the
-authoritative source repeats the current truth across rounds. In broadcast, every agent
-receives the current truth directly.
-
-The source intervention is the crucial test. It makes agents increasingly utter the current
-value: by the final round, 82\% of value-coded source-condition utterances carry the current
-answer, compared with 63\% in the baseline. Yet final interviews remain near baseline
-(15\% held-current under source versus 12\% under baseline, $n{=}5$). Broadcast to all moves
-both speech and belief (99\% held-current), so the failure is not that the models cannot
-represent, retrieve, or output the current value. They can say it. The problem is that
-uttered truth does not become the answer agents later give when probed. A per-agent trace
-audit makes this stricter than the aggregate \textsc{Say} curve: counting only utterances
-that contain both current markers (Sunday and community center), 28 source-condition
-agent-observations heard the full current pair from conversation, but 12 of them later
-answered unknown. Fifteen agent-observations themselves said the full current pair, yet
-four later answered unknown. The trace therefore rules out a purely transcript-level
-absence explanation. We use ``held belief'' only in this operational sense---the answer an
-agent gives from its own memory notes, not a claim about literal mental states.
-
-\subsection{Social fidelity decays over time}
-\begin{figure*}[t]
-\centering
-\includegraphics[width=0.95\textwidth]{figures/fig3_decay.png}
-\caption{Long-horizon decay. Held truth peaks early, then erodes; continuous broadcast is
-the only stable condition.}
-\label{fig:decay}
-\end{figure*}
-The current value reaches the conversation stream but does not reliably become the
-society's held answer. Over a long horizon (Figure~\ref{fig:decay}) truth can rise
-transiently---peaking near round~6---then decays toward a low steady state by round~30.
-The important object is the trajectory: truth can appear and still lose. A persistent source
-delays but does not prevent the erosion, while continuous broadcast keeps held-current belief
-near ceiling by bypassing ordinary social transmission.
-
-The time series also changes the interpretation of the short-horizon experiments. Round~5 is
-near the transient peak, not a settled state: baseline held-current truth is about 20\% at
-round~5, peaks at 28\% around round~6, and falls to 6\% by round~29. The source condition
-peaks higher early but falls to 4\% by the end. The long-run failure is therefore not simply
-stale corruption; in many runs the update becomes unretrievable and the society becomes
-unknown-dominated. This strengthens the fidelity-decay claim: even when truth becomes
-visible for a time, ordinary social reuse does not keep it alive.
-
-\subsection{Natural levers do not repair held truth}
-\begin{figure*}[t]
-\centering
-\includegraphics[width=0.92\textwidth]{figures/fig4_failed_levers.png}
-\caption{Natural levers fail. Capability, connectivity, memory, and source repetition all
-remain far below broadcast. Error bars show 95\% CIs.}
+\includegraphics[width=\columnwidth]{figures/fig_failed_levers.png}
+\caption{Failed natural levers. Capability, memory, persona, and an authoritative source all
+leave held truth at baseline; only broadcast (an overwrite control) succeeds.}
 \label{fig:levers}
-\end{figure*}
-Each lever is an intuitive repair story, and each fails (Figure~\ref{fig:levers}).
-Capability helps modestly but leaves most agents off the current truth; connectivity is
-roughly neutral; a currency-resolving memory does not reliably rescue truth; a persistent
-authoritative source changes speech but not held belief; only broadcasting the truth to
-every agent every round works---an overwrite-style positive control, not a social cure.
-The claim is not that agents cannot output the truth; they can. Ordinary social
-communication does not install it as later held belief.
+\end{figure}
 
-The negative result is important because the levers correspond to natural engineering
-responses. Stronger models raise held-current truth from 19\% to roughly 30--34\%, but most
-agents still fail the probe. Increasing meetings per round does not create redundancy-based
-error correction; at the tested power it is roughly neutral. The memory swap is similarly
-non-curative: it changes what gets relayed in some runs, but its held-current confidence
-interval overlaps the generative-agent baseline. Authority is the sharpest case because it
-does change the conversation stream. Its failure therefore rules out the simple story that
-agents merely need to hear a correction more often. This is where our data diverge from
-the optimistic reading of debate and multi-agent deliberation results: structured debate can
-improve judged answers \citep{du2023improving,michael2023debate,liang2024encouraging,khan2024debating},
-but ordinary social relay can make the truth more utterable without making it durable.
-
-\subsection{The mechanism is early, broad entrenchment}
-\begin{figure*}[t]
+\begin{table}[t]
 \centering
-\includegraphics[width=0.95\textwidth]{figures/fig5_mechanism.png}
-\caption{Early broad entrenchment. Early broadcast succeeds; late broadcast fails despite
-maximal recency.}
-\label{fig:mech}
-\end{figure*}
-If recency drove belief, a late all-agent broadcast just before the probe should work; if
-repetition drove it, a single early broadcast should fail. The opposite happens
-(Figure~\ref{fig:mech}): early succeeds, late fails. The stale value begins with incumbent
-advantage; narrow or late correction can be uttered without taking over the society's held
-state \citep{thorson2016belief,kirby2008cumulative}.
-
-The mechanism requires both timing and breadth. Baseline is early but narrow: only the source
-receives the update, so held truth remains low. The persistent source is repeated but still
-narrow, and it also remains low. A late all-agent broadcast is broad but too late, landing
-near baseline despite being maximally recent. By contrast, a single early all-agent broadcast
-is enough to match every-round broadcast. The winning condition is not the number of times
-truth is repeated; it is whether the current value becomes the population-wide version before
-the stale incumbent has been reinforced by later conversation. Human communication work
-offers a useful precedent: linguistic framing and audience tuning can shape later memory and
-shared belief, rather than merely transmitting neutral content
-\citep{beukeboom2019stereotypes,ye2021audience}.
-
-\subsection{Robustness and measurement validation}
-\begin{figure*}[t]
-\centering
-\includegraphics[width=0.92\textwidth]{figures/fig6_robustness.png}
-\caption{Robustness and validation. The source--broadcast gap holds across scenarios,
-thicker personas, and semantic re-scoring.}
-\label{fig:general}
-\end{figure*}
-The pattern replicates across \textsc{repair\_drive}, \textsc{book\_club}, and
-\textsc{carpool}, and persists under thicker personas (Figure~\ref{fig:general}),
-addressing the concern that the effect is a thin-persona artifact
-\citep{park2024thousand}. A semantic LLM judge agrees with the keyword metric on the
-headline (99--100\%), so the current/stale verdict is not a keyword artifact.
-
-The scenario results also clarify the scope of the effect. Absolute difficulty varies:
-\textsc{book\_club} has higher baseline retention than \textsc{repair\_drive} or
-\textsc{carpool}. But the intervention pattern is stable: source does not approach
-broadcast, while broadcast restores near-ceiling held truth in every scenario. The
-thick-persona condition addresses a different concern, that thin neighborhood sketches make
-agents too shallow to preserve facts. Richer persona descriptions leave the pattern
-unchanged. Finally, semantic judge validation shows that the main current/stale/unknown
-verdict is not an artifact of surface keyword matching.
-
-\begin{table*}[t]
-\centering
-\small
-\begin{tabular}{p{0.18\textwidth}p{0.23\textwidth}p{0.29\textwidth}p{0.20\textwidth}}
+\caption{Failed-lever evidence ledger (held-current; ns = not significant).}
+\label{tab:levers}
+\begin{tabular}{lcc}
 \toprule
-Evidence block & Question & Result & Supported claim \\
+Lever & Contrast & Held-current \\
 \midrule
-Speech--belief probe & Does an authority source repair held belief? &
-Source raises final \textsc{say}-current to 82\%, but \textsc{hold}-current stays
-near baseline (15\% vs.\ 12\%); broadcast reaches 99\%. &
-Speech and belief are separable. \\
-Long horizon & Is the truth merely slow to settle? &
-Baseline peaks at 28\% and decays to 6\%; source peaks at 36\% and decays to 4\%;
-broadcast remains near ceiling. &
-Social truth decays without broad overwrite. \\
-Natural levers & Do scale-like repairs fix the problem? &
-Capability reaches only 30--34\%, connectivity is neutral, memory is unstable, and
-authority remains near baseline. &
-Common engineering levers are not sufficient. \\
-Timing and breadth & Is the mechanism recency or repetition? &
-Late all-agent broadcast fails (9\%); one early all-agent broadcast succeeds
-(100\%). &
-Early, broad entrenchment governs adoption. \\
-Robustness checks & Is the effect a scenario, persona, or metric artifact? &
-The source--broadcast gap holds across scenarios and thick personas; semantic
-judge scoring reproduces the headline metric. &
-The pattern is not a thin setup artifact. \\
+Capability   & mini$\to$gpt-5.5      & 16$\to$21\% (ns) \\
+Connectivity & meetings 1/2/3        & ratio $\sim$1.0 (ns) \\
+Memory       & GA vs.\ smga3g        & $\Delta\approx0$ (ns) \\
+Persona      & thin vs.\ thick       & 12 vs.\ 14\% (ns) \\
+Source       & vs.\ baseline         & $\Delta{+}0.8$ (ns) \\
+Broadcast    & vs.\ baseline         & $\Delta{+}21.8 \to 99\%$ \\
 \bottomrule
 \end{tabular}
-\caption{Evidence ledger. Each block isolates a different link in the social-fidelity
-failure chain.}
-\label{tab:ledger}
-\end{table*}
+\end{table}
 
-Table~\ref{tab:ledger} summarizes the full evidential chain. The important comparison is
-not any single percentage in isolation but the repeated separation between \emph{local
-availability} and \emph{population-wide adoption}. Source makes the correction available
-to the society and increasingly visible in conversation, yet the later private probe
-still recovers the stale or unknown state for most agents. Broadcast is therefore not a
-realistic repair proposal; it is a diagnostic upper bound showing that the agents and
-probe can represent the current value when the population state is forcibly aligned.
+\subsection{Speech Is Not Belief}
+Figure~\ref{fig:dissoc} is the centerpiece. Separating SAID (final-round utterances) from HELD
+(private interviews) exposes a dissociation: under a persistent authoritative source, agents
+reach 83\% current in what they \textbf{say} while their \textbf{held} belief stays near
+baseline (15\%). The gap is not confined to the source condition---even baseline agents say the
+current value more than they hold it (SAID 56\% / HELD 12\%)---and only broadcast aligns the two
+(99/99). Reach is not belief: a fact can be visible in the transcript while failing as held
+state. The pattern replicates across three scenarios and survives thick personas.
 
-\paragraph{Data-level interpretation.}
-The results separate three quantities that are easy to collapse: availability, adoption,
-and persistence. Source improves availability, visible as current-valued speech, but barely
-moves final private adoption. Broadcast moves adoption, ruling out a simple scoring or
-capability artifact. Long-horizon runs then show that adoption is not stable by default:
-early gains can decay into an unknown-dominated state. Scenario variation changes level,
-not pattern; we therefore read the small lifts from capability, connectivity, or memory as
-partial availability effects, not repairs of held social state.
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_say_vs_hold.png}
+\caption{Speech is not belief. A source pushes SAID to 83\% while HELD stays at 15\%; even
+baseline says more than it holds; only broadcast aligns the two.}
+\label{fig:dissoc}
+\end{figure}
+
+\subsection{The Mechanism Is Entrenchment, Not Recency}
+Two stories could explain a sticky stale belief. If \emph{recency} drove belief, a late
+all-agent broadcast just before the probe should work; if \emph{repetition} drove it, a single
+early all-agent broadcast should fail. The opposite happens (Figure~\ref{fig:mech}): an early
+(round-1) all-agent correction succeeds (100\%), while an identical late (round-5) one fails
+(0\%). What governs the outcome is whether the truth becomes the early, broad version that later
+conversation reinforces. The stale value starts with incumbent advantage, so a narrow or late
+correction can be uttered without ever taking over the society's held state. We call this
+path-dependent entrenchment.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\columnwidth]{figures/fig_entrenchment.png}
+\caption{Entrenchment, not recency. An early all-agent correction succeeds (100\%) while an
+identical late one fails (0\%).}
+\label{fig:mech}
+\end{figure}
+
+\subsection{The Cure: Integrate by Provenance, Not Frequency}
+The diagnosis points to a precise repair. Decay arises because integration is by frequency, so
+the stale incumbent wins; we integrate by \emph{provenance} instead. Each claim carries a
+version (its origin round) as conversation metadata; an agent holds the highest version it has
+\emph{heard} and re-broadcasts that versioned belief, so the latest authoritative version
+supersedes the merely frequent older one. This is \emph{fair}, not broadcast in disguise: PROV
+never overwrites an agent---the current value must still arrive through conversation, and an
+agent that never hears it stays stale or unknown. PROV changes only how an agent integrates and
+relays what it locally hears. It is also principled: it directly negates the diagnosed
+mechanism, it is normatively correct for a changing fact (frequency is the wrong cue---an old
+value repeated often is still old), and it instantiates classic ideas---truth maintenance and
+belief revision \citep{doyle1979truth,alchourron1985logic} and source-weighted opinion dynamics
+\citep{degroot1974reaching}---in the social channel.
+
+Figure~\ref{fig:arch} places PROV beside recognized memory architectures under one harness. Raw
+(14), Mem0 (18), A-MEM (19), GA (22), GA-curr (25), and MemBank (25) all fail; only PROV lifts
+held truth (57\%). The decisive lever is the listener-side \textbf{integration rule}, not a
+larger or fancier memory.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_architecture.png}
+\caption{Architecture comparison ($n{=}8$). Recognized memories all fail (14--25\%); only PROV
+lifts held truth (57\%).}
+\label{fig:arch}
+\end{figure}
+
+The cure is not a single-condition artifact (Table~\ref{tab:general}): PROV wins across three
+scenarios, a numeric fact change (dues \$40$\to$\$60), and contact topologies, with the margin
+\emph{widening} on harder structured networks.
+
+\begin{table}[t]
+\centering
+\caption{Generality and capability (held-current \%, GA vs.\ PROV).}
+\label{tab:general}
+\begin{tabular}{llcc}
+\toprule
+Axis & Condition & GA & PROV \\
+\midrule
+Model       & mini             & 21.5 & \textbf{57} \\
+            & DeepSeek         & 15.5 & \textbf{64} \\
+Scenario    & repair\_drive    & 22 & \textbf{57} \\
+            & book\_club       & 47 & \textbf{69} \\
+            & carpool          & 18 & \textbf{59} \\
+Fact type   & dues \$40$\to$\$60 & 28 & \textbf{59} \\
+Topology    & random           & 22 & \textbf{93} \\
+            & ring             & 6  & \textbf{68} \\
+            & smallworld       & 10 & \textbf{83} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{The Cure Survives Capability}
+Figure~\ref{fig:cap} repeats the comparison on a different model family (DeepSeek-V4-Flash) at
+full power ($n{=}8$). GA is statistically flat-and-failing across models (mini 21.5\%, DeepSeek
+15.5\%, overlapping CIs), while PROV wins on both (57\% / 64\%) with CIs disjoint from GA. The
+cure survives capability---the mirror image of ``the phenomenon survives capability.''
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_capability_c14.png}
+\caption{Capability check ($n{=}8$). GA is flat-and-failing across model families; PROV wins on
+both with disjoint CIs. Error bars are 95\% CIs.}
+\label{fig:cap}
+\end{figure}
+
+\subsection{From Lever to Architecture: APM}
+Naive PROV identifies the right lever but is not yet a deployable architecture: it adopts the
+highest version blindly---a liar can claim version~999 and hijack the society---and it carries
+only a version, not an auditable chain. We harden it into \textbf{APM} (Auditable Provenance
+Memory) with three guards, each closing one gap. \emph{Origin anchoring}: an \texttt{auth} flag
+is minted only at the source and relayed faithfully, so unauthenticated forgeries are rejected.
+\emph{Chain corroboration}: a value is committed only after $K$ independent sources support it,
+counting paths rather than value-frequency---the fix for the failure mode in which systematic
+garble corroborates the stale value. \emph{Abstain}: the agent holds \emph{unknown} until that
+bar is met. Because every committed belief carries a complete source$\to$version$\to$path trace,
+APM is auditable by construction---something black-box memories cannot offer.
+
+Without an adversary, APM $\approx$ PROV: interpretability is nearly free ($\sim$64\% on
+DeepSeek, with 60--76\% of agents holding a fully traceable belief). Its reason to exist appears
+under attack (Figure~\ref{fig:adv}). A liar broadcasting a forged high-version stale claim
+collapses PROV from 57\% to 33\% and hijacks 43 of 75 agents (stale 57\%); APM is unmoved
+(64\%) with \textbf{zero hijack} (stale 0), its origin anchoring rejecting the forgery
+society-wide. Equivalent without an adversary, APM is the only architecture left standing with
+one (Table~\ref{tab:apm}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_apm_adversarial.png}
+\caption{Adversarial liar. PROV collapses (held 33\%, stale 57\%) while APM is unmoved (held
+64\%, stale 0).}
+\label{fig:adv}
+\end{figure}
+
+\begin{table}[t]
+\centering
+\caption{Architecture comparison including APM. Held-current is mini/$n{=}8$ for recognized
+memories; APM no-adversary is on DeepSeek; the under-liar column is mini.}
+\label{tab:apm}
+\begin{tabular}{lccc}
+\toprule
+Memory & Held & Auditable & Under liar \\
+\midrule
+Raw     & 14 & no   & --- \\
+Mem0    & 18 & no   & --- \\
+A-MEM   & 19 & no   & --- \\
+GA      & 22 & no   & hijacked \\
+MemBank & 25 & no   & --- \\
+PROV    & 57 & half & 33 (stale 57\%) \\
+\textbf{APM} & \textbf{$\approx$64} & \textbf{yes} & \textbf{64 (stale 0)} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{APM Does Not Saturate}
+One might worry that any sticky provenance memory simply floods to 100\%. That ceiling is a
+communication-model artifact (every-utterance, lossless broadcast), not a property of provenance
+integration. Figure~\ref{fig:curve} sweeps communication density---how often agents actually
+mention the fact. APM traces a smooth, fully monotonic S-curve: held-current climbs from 11\%
+(mention~0, where only the source knows) to 87\% (mention 0.25--0.3), and reaches 100\% only at
+the unrealistic dense limit (0.5+). The 40\% value at the sparse end is an honest floor, not a
+ceiling. Crucially, stale stays 0 at every density: under hard sparse communication no method
+spreads truth widely (the breadth advantage over GA narrows), but APM still guarantees that the
+informed are never misled, which GA does not. Its safety is independent of how far truth
+spreads.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_apm_comms_curve.png}
+\caption{APM communication-sufficiency curve ($n{=}5$). Held-current rises monotonically with
+communication density and saturates only at the unrealistic dense limit; stale stays $\equiv 0$
+throughout. Shaded band is the 95\% CI.}
+\label{fig:curve}
+\end{figure}
 
 % ============================================================
 \section{Discussion and Limitations}
+\textbf{What we claim.} Social truth maintenance requires preserving provenance. PROV
+demonstrates the value of provenance-aware memory; the failure of every other lever shows the
+repair lives at a specific locus---listener-side integration---not in capacity. APM shows that
+provenance can be hardened into an interpretable, adversary-resistant, non-saturating
+architecture.
 
-\paragraph{Implications.}
-The central finding is a dissociation: in an LLM-agent society, what agents say and
-what the society holds can be moved independently. This cautions a growing practice of
-reading collective behavior off agent societies. An intervention that changes utterances
-need not change what the society later answers. It also sharpens the relation to
-single-agent fidelity: an agent can be faithful to an individual \citep{park2024thousand}
-while a society of such agents fails to carry a fact. The failure is the communication-time
-cousin of recursive model collapse \citep{shumailov2023curse,alemohammad2024selfconsuming}:
-degradation from repeated social reuse, with no retraining.
+\textbf{Is structured PROV cheating?} This is the central reviewer risk, and the answer is no on
+both sides. PROV is \emph{not} broadcast: it still propagates through meetings, helps only
+agents the update reaches, and is weakened by loss, garble, sparse mention, horizon, and
+topology. But it is \emph{not} fully naturalistic either---it assumes source and version survive
+the relay as structured metadata, so it is best read as an idealized protocol or upper bound. A
+companion result shows that ordinary LLM dialogue does \emph{not} spontaneously preserve
+source/version, whereas an explicit attribution norm can repair held truth---a text-only upper
+bound that is visibly protocolized. The engineering lesson is that agent societies may need not
+larger memories but social-memory interfaces that preserve provenance through communication.
 
-For evaluation, this means that social-agent benchmarks should report at least three
-state variables rather than one: who heard the update, who later uttered it, and who
-privately answers with it after interaction. A transcript-only metric can mistake a
-surface correction for durable adoption, while a final-answer metric without transcript
-state can miss how the society arrived there.
+\textbf{We did not invent provenance.} Provenance is a classic idea from truth-maintenance and
+belief revision. Our contribution is to (i) show that default decentralized agent memories
+systematically lose it, (ii) localize the repair to the integration rule, (iii) quantify it
+through the say/hold dissociation, and (iv) harden it into an auditable, adversary-tested
+architecture.
 
-\paragraph{Why the levers fail, and what would help.}
-The mechanism is path-dependent entrenchment: the value established early and broadly is the
-one later conversation reinforces, so a late or narrow correction can be uttered without
-being adopted. This explains why each natural lever fails---more capable agents, more
-communication, or a different memory do not change which value arrived first---and why
-only overwriting every agent works. The constructive reading is that effective corrections
-must be early and broad by construction, and that memory architectures aimed at this failure
-must privilege the current value over the entrenched majority, not merely store more.
+\textbf{Limitations.} All experiments are simulations, and ``held belief'' is operational. APM's
+headline cells are $n{=}3$--5 pilots (versus $n{=}8$ for the diagnosis and the capability check);
+under sparse communication its breadth advantage over GA is suggestive (overlapping CIs) while
+its safety advantage (stale 0 vs.\ 30) is decisive. APM's corroboration knob $K$ trades flooding
+($K{=}1$, PROV-like) against over-conservatism ($K{\ge}2$ deadlocks without relay-before-commit),
+and value fidelity remains a dependency---heavy garble still degrades it. We deliberately disable
+individual forgetting so that the failure is attributable to the integration rule rather than to
+memory loss; whether forgetting could itself thaw entrenchment is a question we leave to a
+sequel.
 
-This suggests freshness-aware state reconciliation: for mutable facts, memory should treat
-later grounded updates as state replacements, mark older values obsolete, propagate that
-invalidation, and verify the private state after subsequent conversation. Adaptive memory
-systems such as A-MEM point toward this design space \citep{xu2025amem}, but the present
-results show that memory capacity alone is not the missing ingredient.
-
-\paragraph{Claim boundaries.}
-We are deliberately conservative. We do not claim a capability or connectivity phase
-boundary; capability helps modestly and connectivity is roughly neutral in powered reruns (an
-early ``connectivity amplifies corruption'' cell was an underpowered outlier and did not
-replicate). We do not claim correction fails because agents never hear it---the source
-condition shows the opposite. And we do not claim memory never matters---only that the
-tested currency-resolving swap did not robustly restore held truth.
-
-\paragraph{Limitations.}
-The base task is a single family---an event whose day and place are rescheduled---and though
-it replicates across three scenarios, other fact types (quantities, causal or multi-part
-claims) are untested. The society is small ($N{=}25$) with a single source and a
-random-matching contact model; structured networks and larger populations remain open.
-``Held belief'' is operationalized as the later probed answer, and both \textsc{say} and
-\textsc{hold} use value markers (judge-validated, but still surface-based). The
-unknown-dominated steady state may partly reflect reflection-memory retrieval; disentangling
-society-level from memory-level decay is future work. Results center on gpt-5.4-mini with a
-capability ladder to gpt-5.5; some conditions use modest $n$.
-
-\paragraph{Future work.}
-The next experiments should move from diagnosis to repair while preserving the
-\textsc{Hear}/\textsc{Say}/\textsc{Hold} audit: explicit state invalidation, structured
-networks, multiple authorities, and other fact types.
+\textbf{Human-society reading.} The telephone effect is not always a defect---for descriptive
+social simulation, selective absorption and provenance loss are features to be reproduced, not
+bugs. Our normative claim is narrower: once an agent society must maintain a changing fact for
+reliable coordination, human-like telephone effects turn from feature into engineering risk.
 
 % ============================================================
 \section{Conclusion}
-In LLM-agent societies, a society can learn to say the truth without coming to
-hold it. The dissociation is driven by path-dependent entrenchment, survives a long
-horizon and several robustness checks, and resists every natural repair lever short of
-overwriting memory directly.
-Social-agent reliability therefore cannot be read from transcript fluency alone: a
-correction has done real work only when it changes the answer agents give after later
-interaction.
+In a society of LLM agents, a ground-truthed update can be \emph{said} without being
+\emph{held}: authority moves speech but not belief, and the version established early and broadly
+entrenches. No natural lever repairs this. The repair is a specific architectural locus---
+integrate heard claims by provenance, not frequency---and it holds across scenarios, fact types,
+topologies, and model families. Hardened into APM, provenance integration becomes interpretable
+by construction, the only architecture that survives an adversarial liar, and a realistic
+non-saturating equilibrium that is never confidently wrong. Reach is not belief; for agent
+societies that must track changing facts, faithfully carrying source and version is the
+difference between saying the truth and holding it.
 
-\clearpage
+% ============================================================
 \bibliography{references}
 
 \end{document}
