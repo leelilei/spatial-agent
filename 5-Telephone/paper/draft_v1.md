@@ -44,7 +44,7 @@ usually conflated:
 - **Held answer** — whether agents answer with the current value when probed after transmission.
 
 Generative-agent work establishes that information can spread through an agent society
-(Park et al. 2023; CAMEL; AutoGen; SOTOPIA). That is not the same as showing the spread is
+(Park et al. 2023; Li et al. 2023; Wu et al. 2023; Zhou et al. 2024). That is not the same as showing the spread is
 faithful. A correction, schedule change, or policy update can reach the conversation stream
 while failing to become the society's later answer. Our central empirical pattern is that reach
 and speech can improve **without** durable held truth — so "information spread" is not enough as
@@ -68,8 +68,9 @@ authoritative version, does it supersede the old one?"
 
 ## 2. Related work
 
-**Agent societies and communicative agents.** Generative Agents, CAMEL, AutoGen, and SOTOPIA
-establish the setting: agents talk, remember, coordinate, and simulate social environments. We
+**Agent societies and communicative agents.** Generative Agents (Park et al. 2023), CAMEL
+(Li et al. 2023), AutoGen (Wu et al. 2023), and SOTOPIA (Zhou et al. 2024) establish the setting:
+agents talk, remember, coordinate, and simulate social environments. We
 ask a missing reliability question inside that setting — fidelity of a *changing* held fact.
 
 **Misinformation, rumor, reach vs fidelity.** Rumor and continued-influence work distinguishes
@@ -144,16 +145,18 @@ source: Δ+0.8 (ns); broadcast: +21.8 (sig) → 99%.
 ### 4.2 Speech is not belief
 
 Figure 2 is the centerpiece. Separating SAID (final-round utterances) from HELD (private
-interviews) reveals a dissociation: under a persistent authoritative source, agents increasingly
-**say** the current value (SAID 25→83%) while their **held** belief stays at baseline (≈15%).
-Only broadcast moves both (99/99). Reach is not belief — a fact can be visible in the log while
+interviews) reveals a dissociation: under a persistent authoritative source, agents
+**say** the current value at the final round (SAID 83%) while their **held** belief stays near
+baseline (15%); even baseline agents say it more than they hold it (SAID 56% / HELD 12%). Only
+broadcast aligns both (99/99). Reach is not belief — a fact can be visible in the log while
 failing as held state.
 
 ![Figure 2. Speech is not belief (SAY/HOLD dissociation).](figures/fig_say_vs_hold.png)
 
-*Table 2 — HEARD→SAID→HELD.* baseline said 25 / held 14; source said 83 / held 15 (the gap);
-broadcast said 99 / held 99. The source row's high-SAID, low-HELD is the dissociation. The
-pattern replicates across three scenarios (G1) and survives thick personas (G2).
+*Table 2 — HEARD→SAID→HELD (final-round SAID; HELD at interview).* baseline said 56 / held 12;
+source said 83 / held 15 (the gap); broadcast said 99 / held 99. The source row's high-SAID,
+low-HELD is the dissociation — and even baseline says more than it holds. The pattern replicates
+across three scenarios (G1) and survives thick personas (G2).
 
 ### 4.3 The mechanism is entrenchment, not recency
 
