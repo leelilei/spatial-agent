@@ -79,18 +79,26 @@ CITYAGENCY ACTION ADAPTER:
 The environment is authoritative. Choose exactly one outer SOTOPIA AgentAction.
 For physical city behavior use action_type "action" and one argument command:
 - move FACILITY_ID
+- enter FACILITY_ID
+- use_service FACILITY_ID SERVICE_NAME MINUTES
+- buy FACILITY_ID ITEM_NAME MINUTES
 - dwell MINUTES
 - message AGENT_ID: TEXT
 - interact AGENT_ID MINUTES
 - finish
-Use only exact facility ids from the observation. Never claim an action succeeded;
-the environment will execute it. Return only the outer JSON object.
+- abandon REASON
+Use only exact facility ids from the observation. Moving only arrives outside;
+enter before buy/use_service/dwell. Only buy/use_service spends money and proves
+consumption. Never claim an action succeeded; the environment will execute it.
+Return only the outer JSON object.
 """.strip()
 
     def _parse_command(self, action_type: str, argument: Any, recipients: Any) -> dict[str, Any]:
         text = str(argument or "").strip()
         if action_type in {"none", "leave"} or text.lower() == "finish":
             return {"kind": "finish", "reason": "SOTOPIA chose to stop or leave"}
+        if text.lower().startswith("abandon "):
+            return {"kind": "abandon", "reason": text.split(" ", 1)[1].strip()}
         if action_type == "speak":
             target = recipients[0] if isinstance(recipients, list) and recipients else None
             return {
@@ -112,6 +120,39 @@ the environment will execute it. Return only the outer JSON object.
             return {
                 "kind": "move",
                 "target": move.group(1),
+                "reason": "SOTOPIA physical action",
+            }
+        enter = re.fullmatch(r"enter\s+([A-Za-z0-9_-]+)", text, flags=re.IGNORECASE)
+        if enter:
+            return {
+                "kind": "enter",
+                "target": enter.group(1),
+                "reason": "SOTOPIA physical action",
+            }
+        service = re.fullmatch(
+            r"use_service\s+([A-Za-z0-9_-]+)\s+([A-Za-z0-9_-]+)\s+(\d+)",
+            text,
+            flags=re.IGNORECASE,
+        )
+        if service:
+            return {
+                "kind": "use_service",
+                "target": service.group(1),
+                "service": service.group(2),
+                "minutes": int(service.group(3)),
+                "reason": "SOTOPIA physical action",
+            }
+        buy = re.fullmatch(
+            r"buy\s+([A-Za-z0-9_-]+)\s+([A-Za-z0-9_-]+)\s+(\d+)",
+            text,
+            flags=re.IGNORECASE,
+        )
+        if buy:
+            return {
+                "kind": "buy",
+                "target": buy.group(1),
+                "item": buy.group(2),
+                "minutes": int(buy.group(3)),
                 "reason": "SOTOPIA physical action",
             }
         dwell = re.fullmatch(r"dwell\s+(\d+)", text, flags=re.IGNORECASE)

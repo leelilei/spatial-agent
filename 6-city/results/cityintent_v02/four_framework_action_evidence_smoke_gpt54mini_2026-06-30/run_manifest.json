@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-06-30T23:18:56+08:00",
+  "benchmark_id": "cityintent_v0",
+  "benchmark_version": "0.2",
+  "runner": "D:\\0-Research\\6-city\\benchmarks\\cityintent_v0\\tools\\run_baseline_traces.py",
+  "agents": [
+    "gatsim_official_planner",
+    "sotopia_official_llm_agent",
+    "generative_agents_official_planner",
+    "agentsociety_official_plan_blocks"
+  ],
+  "scenario_ids": [
+    "budget_errand_chain"
+  ],
+  "llm_config_path": "6-city/benchmarks/cityintent_v0/configs/fhl_gpt54mini.json",
+  "llm_config": {
+    "provider": "fhl",
+    "model": "gpt-5.4-mini",
+    "wire_api": "responses",
+    "base_url": "https://www.fhl.mom",
+    "temperature": 0,
+    "omit_temperature": true,
+    "timeout": 120,
+    "sleep": 3,
+    "max_concurrency": 1,
+    "retries": 2,
+    "retry_sleep": 5,
+    "json_mode": false,
+    "transport": "curl",
+    "responses_input_mode": "string",
+    "disable_response_storage": true,
+    "api_key_env": "FHL_API_KEY"
+  },
+  "results_dir": "6-city/results/cityintent_v02/four_framework_action_evidence_smoke_gpt54mini_2026-06-30",
+  "archive_note": "Final pilot after evidence-filter correction. An earlier development run used this directory before overwrite protection was added and is not part of this archive."
+}

@@ -1,6 +1,6 @@
-# CityIntent v0 Benchmark Smoke Test
+# CityIntent v0.2 Benchmark Smoke Test
 
-Status: draft, locally validated.
+Status: draft, locally validated action-evidence protocol.
 
 This package is the first runnable CityAgency track. It keeps the `CityIntent`
 name because v0 focuses on intention persistence and constraint-sensitive
@@ -56,6 +56,23 @@ The pressure scenarios are intentionally diagnostic. They stress cases where an
 action can sound locally plausible while the full city trace becomes
 unbelievable or deterministically invalid.
 
+## Action-Evidence Protocol
+
+Version 0.2 separates physical arrival from task completion:
+
+- `move` changes the outdoor graph location only. Passing through or arriving
+  creates no entry, purchase, service, or goal-completion evidence.
+- `enter` checks opening constraints and creates explicit entry evidence.
+- `buy` and `use_service` require entry, deduct the POI cost, and create typed
+  completion evidence such as `groceries`, `medicine`, or `meal`.
+- `dwell` requires entry and, at paid locations, prior purchase or service
+  evidence.
+- `finish` and `abandon` are distinct terminal actions.
+
+Each success-condition row in `traces.json` includes the exact evidence used by
+the deterministic verifier. This prevents a plausible plan or a route passing
+through a POI from being scored as a completed urban activity.
+
 ## Contents
 
 ```text
@@ -65,6 +82,7 @@ worlds/micro_city.json       # graph city with POIs, opening hours, prices, and 
 scenarios/*.json             # twelve seed and pressure scenarios
 tools/validate_cityintent_v0.py
 tools/run_baseline_traces.py
+tests/test_action_protocol_v02.py
 tools/judge_trace_plausibility.py
 tools/run_repeated_experiment.py
 tools/setup_external_framework.py
@@ -154,6 +172,12 @@ per-turn `AgentAction`; Generative Agents keeps daily planning, reflection, and
 schedule revision; AgentSociety keeps TPB guidance, typed plan steps, and place
 analysis.
 
+Provider-backed runs also archive per-call latency, retries, prompt hashes, and
+provider token usage (or a labelled character estimate). Totals are written to
+`telemetry_aggregate.json` and the telemetry columns in `summary.csv`.
+Every run writes a sanitized `run_manifest.json`. Existing archives are not
+overwritten unless `--overwrite` is passed explicitly.
+
 Important: `llm_direct_actor`, `reactive_replanner`, and `memory_reflection`
 remain offline architecture proxies and should not be reported as real LLM
 results. The `api_llm_*` policies and all four `*_official_*` adapters call the
@@ -229,6 +253,8 @@ The repeated runner creates:
 
 The next code step is to make the experiment less anecdotal:
 
+- split multi-edge movement at newly observed mid-route events so replanning is
+  tested at a real decision boundary rather than after an atomic route action;
 - expand the scenario suite with harder impossible-trace traps;
 - calibrate the LLM judge against a small human-coded audit set;
 - keep all agents behind the same typed action and scoring contract.

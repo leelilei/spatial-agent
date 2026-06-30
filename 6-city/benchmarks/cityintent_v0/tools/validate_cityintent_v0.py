@@ -16,6 +16,27 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SUPPORTED_CONDITION_TYPES = {
+    "visit_location",
+    "visit_location_any_of",
+    "visit_before",
+    "visit_open_location",
+    "do_not_enter_closed_location",
+    "dwell_minutes",
+    "buy_item",
+    "use_service_at",
+    "co_presence",
+    "budget_at_least",
+    "avoid_when_possible",
+    "avoid_after_time",
+    "no_feasibility_violation",
+    "avoid_blocked_edge",
+    "replan_after_event",
+    "send_message",
+    "no_infeasible_social_commitment",
+    "bounded_social_interaction",
+    "episode_complete_before",
+}
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -236,6 +257,19 @@ def main() -> int:
 
         weight_sum = 0.0
         for condition in scenario.get("success_conditions", []):
+            condition_type = condition.get("type")
+            if condition_type not in SUPPORTED_CONDITION_TYPES:
+                errors.append(
+                    f"{rel}: condition {condition.get('id')} has unsupported type {condition_type!r}"
+                )
+            if condition_type == "buy_item" and not condition.get("item"):
+                errors.append(
+                    f"{rel}: buy_item condition {condition.get('id')} requires item"
+                )
+            if condition_type == "use_service_at" and not condition.get("service"):
+                errors.append(
+                    f"{rel}: use_service_at condition {condition.get('id')} requires service"
+                )
             weight = condition.get("weight")
             if not isinstance(weight, (int, float)) or weight <= 0:
                 errors.append(f"{rel}: condition {condition.get('id')} has invalid weight")

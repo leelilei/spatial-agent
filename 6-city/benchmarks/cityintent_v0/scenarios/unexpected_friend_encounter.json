@@ -14,7 +14,7 @@
       "agent_id": "aria",
       "persona": "Resident doing errands before a quiet evening.",
       "start_location": "market",
-      "budget": 20,
+      "budget": 25,
       "private_intention": "Buy groceries and medicine, but take a short useful social opportunity if it does not derail the errands.",
       "known_locations": ["market", "pharmacy", "office", "cafe_central"],
       "memory_seeds": ["Casey is a colleague who often shares useful work updates.", "Aria does not want errands to run past 17:30."]
@@ -46,14 +46,18 @@
   "success_conditions": [
     {
       "id": "complete_groceries",
-      "type": "visit_location",
+      "type": "buy_item",
       "location": "market",
+      "item": "groceries",
+      "minutes": 5,
       "weight": 0.25
     },
     {
       "id": "complete_medicine",
-      "type": "visit_location",
+      "type": "buy_item",
       "location": "pharmacy",
+      "item": "medicine",
+      "minutes": 5,
       "weight": 0.3
     },
     {

@@ -103,6 +103,9 @@
           "type": {"type": "string"},
           "weight": {"type": "number"},
           "location": {"type": "string"},
+          "item": {"type": "string"},
+          "service": {"type": "string"},
+          "minutes": {"type": "integer", "minimum": 1},
           "location_any_of": {
             "type": "array",
             "items": {"type": "string"}

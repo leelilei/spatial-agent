@@ -15,6 +15,7 @@ Design goals:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import subprocess
@@ -67,6 +68,7 @@ class MockClient:
     model: str
 
     def complete(self, prompt: dict[str, Any]) -> str:
+        object.__setattr__(self, "last_usage", None)
         return json.dumps(
             {
                 "model": self.model,
@@ -99,6 +101,7 @@ class OpenAICompatibleChatClient:
             self.api_key,
             self.config.timeout,
         )
+        object.__setattr__(self, "last_usage", data.get("usage"))
         choices = data.get("choices")
         if not choices:
             raise RuntimeError(f"chat completions response has no choices: {data}")
@@ -131,6 +134,7 @@ class OpenAICompatibleResponsesClient:
             )
         else:
             raise ValueError(f"unsupported transport: {self.config.transport}")
+        object.__setattr__(self, "last_usage", data.get("usage"))
         content = extract_responses_text(data)
         if not isinstance(content, str):
             raise RuntimeError(f"responses response has no text content: {data}")
@@ -157,22 +161,134 @@ class LLM:
             json_mode=json_mode,
         )
         self.client = build_client(self.config)
+        self.telemetry: list[dict[str, Any]] = []
 
     def complete(self, system: str, user: str) -> str:
         prompt = {"system_prompt": system, "user_prompt": user}
         attempts = 0
+        started = time.perf_counter()
         while True:
             attempts += 1
             try:
-                return self.client.complete(prompt)
-            except Exception:
+                response = self.client.complete(prompt)
+                latency = time.perf_counter() - started
+                usage = normalize_usage(getattr(self.client, "last_usage", None))
+                self.telemetry.append(
+                    build_telemetry_record(
+                        call_index=len(self.telemetry) + 1,
+                        system=system,
+                        user=user,
+                        response=response,
+                        attempts=attempts,
+                        latency=latency,
+                        usage=usage,
+                        success=True,
+                    )
+                )
+                return response
+            except Exception as exc:
                 if attempts > self.config.retries:
+                    latency = time.perf_counter() - started
+                    self.telemetry.append(
+                        build_telemetry_record(
+                            call_index=len(self.telemetry) + 1,
+                            system=system,
+                            user=user,
+                            response="",
+                            attempts=attempts,
+                            latency=latency,
+                            usage=None,
+                            success=False,
+                            error=type(exc).__name__,
+                        )
+                    )
                     raise
                 time.sleep(self.config.retry_sleep)
 
     def complete_json(self, system: str, user: str) -> dict[str, Any]:
         parsed = parse_response_json(self.complete(system, user))
         return parsed if isinstance(parsed, dict) else {}
+
+    def telemetry_summary(self) -> dict[str, Any]:
+        successful = [record for record in self.telemetry if record["success"]]
+        exact_usage = [record for record in successful if record["usage_source"] == "provider"]
+        return {
+            "calls": len(self.telemetry),
+            "successful_calls": len(successful),
+            "failed_calls": len(self.telemetry) - len(successful),
+            "latency_seconds": round(
+                sum(float(record["latency_seconds"]) for record in self.telemetry), 3
+            ),
+            "provider_usage_calls": len(exact_usage),
+            "input_tokens": sum(int(record["input_tokens"]) for record in successful),
+            "output_tokens": sum(int(record["output_tokens"]) for record in successful),
+            "total_tokens": sum(int(record["total_tokens"]) for record in successful),
+            "usage_complete": bool(successful) and len(exact_usage) == len(successful),
+        }
+
+
+def normalize_usage(value: Any) -> dict[str, int] | None:
+    if not isinstance(value, dict):
+        return None
+    input_tokens = value.get("input_tokens", value.get("prompt_tokens"))
+    output_tokens = value.get("output_tokens", value.get("completion_tokens"))
+    total_tokens = value.get("total_tokens")
+    if not isinstance(input_tokens, (int, float)) or not isinstance(
+        output_tokens, (int, float)
+    ):
+        return None
+    if not isinstance(total_tokens, (int, float)):
+        total_tokens = input_tokens + output_tokens
+    return {
+        "input_tokens": int(input_tokens),
+        "output_tokens": int(output_tokens),
+        "total_tokens": int(total_tokens),
+    }
+
+
+def build_telemetry_record(
+    *,
+    call_index: int,
+    system: str,
+    user: str,
+    response: str,
+    attempts: int,
+    latency: float,
+    usage: dict[str, int] | None,
+    success: bool,
+    error: str | None = None,
+) -> dict[str, Any]:
+    input_chars = len(system) + len(user)
+    output_chars = len(response)
+    if usage is None:
+        input_tokens = (input_chars + 3) // 4
+        output_tokens = (output_chars + 3) // 4
+        usage_source = "character_estimate"
+    else:
+        input_tokens = usage["input_tokens"]
+        output_tokens = usage["output_tokens"]
+        total_tokens = usage["total_tokens"]
+        usage_source = "provider"
+    if usage is None:
+        total_tokens = input_tokens + output_tokens
+    record: dict[str, Any] = {
+        "call_index": call_index,
+        "prompt_sha256": hashlib.sha256(
+            (system + "\0" + user).encode("utf-8")
+        ).hexdigest(),
+        "attempts": attempts,
+        "latency_seconds": round(latency, 3),
+        "input_chars": input_chars,
+        "output_chars": output_chars,
+        "input_tokens": input_tokens,
+        "output_tokens": output_tokens,
+        "total_tokens": total_tokens,
+        "usage_source": usage_source,
+        "success": success,
+    }
+    if error:
+        record["error"] = error
+    return record
 
 
 def load_config(path: Path | str) -> LLMConfig:

@@ -1,11 +1,31 @@
 {
   "benchmark_id": "cityintent_v0",
-  "version": "0.1",
+  "version": "0.2",
   "status": "smoke_test",
   "worlds": [
     "worlds/micro_city.json"
   ],
   "scenario_dir": "scenarios",
+  "action_protocol": {
+    "version": "0.2",
+    "kinds": [
+      "move",
+      "enter",
+      "use_service",
+      "buy",
+      "dwell",
+      "message",
+      "interact",
+      "finish",
+      "abandon"
+    ],
+    "rules": [
+      "move changes location but does not enter, spend, or complete a service goal",
+      "enter checks opening constraints and creates entry evidence",
+      "buy and use_service create completion evidence and deduct typical_cost",
+      "dwell requires entry and, at paid locations, prior purchase or service evidence"
+    ]
+  },
   "agents_under_test": [
     {
       "id": "utility_planner",
@@ -174,7 +194,7 @@
       "id": "done_state_loop_rate",
       "kind": "deterministic",
       "range": [0, 1],
-      "description": "Whether the agent repeats already-completed destination actions."
+      "description": "Whether the agent repeats an already-completed purchase or service action."
     },
     {
       "id": "social_derailment_rate",

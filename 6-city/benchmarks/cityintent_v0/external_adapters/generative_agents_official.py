@@ -72,11 +72,16 @@ The private goal and success conditions have priority. Use only exact facility i
 Return only JSON with this schema:
 {{"reflection":"brief memory-based reasoning","plan":[
   {{"time":"HH:MM","activity":"description","kind":"move","target":"facility_id","path":null}},
+  {{"time":"HH:MM","activity":"description","kind":"enter","target":"facility_id"}},
+  {{"time":"HH:MM","activity":"description","kind":"use_service","target":"facility_id","service":"meal or access","minutes":5}},
+  {{"time":"HH:MM","activity":"description","kind":"buy","target":"facility_id","item":"item name","minutes":5}},
   {{"time":"HH:MM","activity":"description","kind":"dwell","minutes":15}},
   {{"time":"HH:MM","activity":"description","kind":"message","to":"agent_id","content":"text"}},
   {{"time":"HH:MM","activity":"description","kind":"interact","to":"agent_id","minutes":5}}
 ]}}
-Do not report success in advance. The environment executes and validates actions.
+Moving only arrives outside. Enter before buying, using a service, or dwelling.
+Only buy/use_service spends money and proves consumption. Do not report success
+in advance. The environment executes and validates actions.
 Success conditions: {json.dumps(self.scenario.get('success_conditions', []), ensure_ascii=False)}
 {observation}
 """.strip()

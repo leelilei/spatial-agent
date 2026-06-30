@@ -26,14 +26,18 @@
   "success_conditions": [
     {
       "id": "buy_medicine",
-      "type": "visit_location",
+      "type": "buy_item",
       "location": "pharmacy",
+      "item": "medicine",
+      "minutes": 5,
       "weight": 0.3
     },
     {
       "id": "eat_affordable_dinner",
-      "type": "visit_location",
+      "type": "use_service_at",
       "location": "budget_diner",
+      "service": "meal",
+      "minutes": 15,
       "weight": 0.25
     },
     {

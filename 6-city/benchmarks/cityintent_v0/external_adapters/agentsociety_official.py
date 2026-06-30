@@ -150,10 +150,15 @@ CITYAGENCY STEP EXTENSION:
 Keep AgentSociety's official plan.target and step intention/type fields. Add an
 "action" object to every executable step using exactly one of:
 {"kind":"move","target":"exact_facility_id","path":null}
+{"kind":"enter","target":"exact_facility_id"}
+{"kind":"use_service","target":"exact_facility_id","service":"meal or access","minutes":5}
+{"kind":"buy","target":"exact_facility_id","item":"item name","minutes":5}
 {"kind":"dwell","minutes":15}
 {"kind":"message","to":"agent_id","content":"text"}
 {"kind":"interact","to":"agent_id","minutes":5}
-Do not claim success; the environment executes and validates every action.
+Moving only arrives outside. Enter before buy/use_service/dwell. Only
+buy/use_service spends money and proves consumption. Do not claim success; the
+environment executes and validates every action.
 Return only JSON.
 """
         return prompt
@@ -193,7 +198,16 @@ Return only JSON.
             elif step.get("type") == "mobility":
                 fallback = self._place_action(plan, step)
                 if fallback:
-                    actions.append(fallback)
+                    actions.extend(
+                        [
+                            fallback,
+                            {
+                                "kind": "enter",
+                                "target": fallback["target"],
+                                "reason": "enter AgentSociety-selected destination",
+                            },
+                        ]
+                    )
         return actions
 
     def _generate_plan(self, state: Any | None) -> bool:

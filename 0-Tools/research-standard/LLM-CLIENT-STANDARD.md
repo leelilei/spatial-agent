@@ -33,6 +33,18 @@ The standard supports:
 - `json_mode` for JSON-object responses.
 - `transport: "urllib"` or `transport: "curl"` for Responses-style endpoints.
 
+## Experiment Telemetry
+
+Every `LLM.complete()` and `LLM.complete_json()` call appends one record to
+`llm.telemetry`. The record includes latency, retry attempts, a prompt hash,
+input/output character counts, token counts, usage provenance, and success or
+failure. Prompt text and API keys are never written to telemetry.
+
+Use `llm.telemetry_summary()` to obtain run-level totals. Token counts come
+from provider usage fields when available; otherwise they are explicitly
+labelled `character_estimate`. Experiment runners should archive both the
+per-call records and summary so cost and latency are auditable.
+
 Any OpenAI-compatible gateway is reachable by pointing `base_url` at it and
 naming the key var with `api_key_env`. No code change is needed per provider.
 

@@ -17,6 +17,7 @@ import json
 import sys
 from collections import defaultdict
 from dataclasses import dataclass, field
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
@@ -61,6 +62,8 @@ class Action:
     minutes: int = 0
     to: str | None = None
     content: str = ""
+    item: str = ""
+    service: str = ""
     reason: str = ""
     raw_response: str = ""
 
@@ -83,7 +86,12 @@ class TraceState:
     dwell: dict[str, int] = field(default_factory=lambda: defaultdict(int))
     messages: list[dict[str, Any]] = field(default_factory=list)
     interactions: list[dict[str, Any]] = field(default_factory=list)
-    paid_locations: set[str] = field(default_factory=set)
+    entries: list[dict[str, Any]] = field(default_factory=list)
+    services: list[dict[str, Any]] = field(default_factory=list)
+    purchases: list[dict[str, Any]] = field(default_factory=list)
+    abandonments: list[dict[str, Any]] = field(default_factory=list)
+    inside_location: str | None = None
+    paid_services: set[str] = field(default_factory=set)
 
 
 class CityWorld:
@@ -226,6 +234,8 @@ class UtilityPlannerPolicy(BasePolicy):
             ctype = condition["type"]
             if ctype in {"visit_location", "visit_before"}:
                 queue.append(condition["location"])
+            elif ctype in {"buy_item", "use_service_at"}:
+                queue.append(condition["location"])
             elif ctype == "visit_location_any_of":
                 queue.append(self.choose_from_candidates(condition["location_any_of"], pseudo_state))
             elif ctype in {"visit_open_location", "dwell_minutes"}:
@@ -241,6 +251,14 @@ class UtilityPlannerPolicy(BasePolicy):
     def next_action(self, state: TraceState) -> Action:
         if self.scenario["scenario_id"] == "conflicting_social_obligation":
             if state.location == "coworking" and state.dwell.get("coworking", 0) < 45:
+                if not has_used_service(state, "coworking"):
+                    return Action(
+                        "use_service",
+                        target="coworking",
+                        service="workspace_access",
+                        minutes=5,
+                        reason="pay for coworking before the protected work block",
+                    )
                 return Action("dwell", minutes=45, reason="protect work block before handling social invitation")
             if not any(msg.get("to") == "ben" for msg in state.messages):
                 return Action(
@@ -257,6 +275,36 @@ class UtilityPlannerPolicy(BasePolicy):
     def next_condition_action(self, state: TraceState) -> Action | None:
         for condition in self.scenario["success_conditions"]:
             ctype = condition["type"]
+            if ctype == "buy_item":
+                target = condition["location"]
+                item = condition.get("item", "item")
+                if has_purchased(state, target, item):
+                    continue
+                access = self.access_action(state, target, "reach purchase location")
+                if access:
+                    return access
+                return Action(
+                    "buy",
+                    target=target,
+                    item=item,
+                    minutes=int(condition.get("minutes", 5)),
+                    reason="produce explicit purchase evidence",
+                )
+            if ctype == "use_service_at":
+                target = condition["location"]
+                service = condition.get("service", "general_service")
+                if has_used_service(state, target, service):
+                    continue
+                access = self.access_action(state, target, "reach service location")
+                if access:
+                    return access
+                return Action(
+                    "use_service",
+                    target=target,
+                    service=service,
+                    minutes=int(condition.get("minutes", 15)),
+                    reason="produce explicit service evidence",
+                )
             if ctype == "dwell_minutes":
                 candidates = condition.get("location_any_of") or [condition.get("location")]
                 candidates = [item for item in candidates if item]
@@ -264,8 +312,23 @@ class UtilityPlannerPolicy(BasePolicy):
                 current_dwell = state.dwell.get(state.location, 0) if state.location in candidates else 0
                 if current_dwell >= condition["min_minutes"]:
                     continue
-                if state.location not in candidates:
-                    return Action("move", target=target, reason="move to a place where the required dwell can be completed")
+                if state.location not in candidates or state.inside_location != state.location:
+                    access = self.access_action(
+                        state, target, "reach and enter a place for the required dwell"
+                    )
+                    if access:
+                        return access
+                if self.world.location_cost(state.location) > 0 and not (
+                    has_used_service(state, state.location)
+                    or has_purchased(state, state.location)
+                ):
+                    return Action(
+                        "use_service",
+                        target=state.location,
+                        service="workspace_access",
+                        minutes=5,
+                        reason="pay for access before using a paid place",
+                    )
                 return Action(
                     "dwell",
                     minutes=int(condition["min_minutes"] - current_dwell),
@@ -274,11 +337,23 @@ class UtilityPlannerPolicy(BasePolicy):
             if ctype == "co_presence":
                 target = self.choose_from_candidates(condition["location_any_of"], state)
                 start, end = [parse_time(v) for v in condition["time_window"]]
-                if any(start <= t <= end for t in visit_times(state, condition["location_any_of"])):
+                if condition_success(condition, state, self.scenario) >= 1.0:
                     continue
-                if state.location not in condition["location_any_of"]:
-                    return Action("move", target=target, reason="move to meeting location")
+                access = self.access_action(state, target, "reach and enter meeting location")
+                if access:
+                    return access
                 if state.time < start:
+                    if self.world.location_cost(state.location) > 0 and not (
+                        has_used_service(state, state.location)
+                        or has_purchased(state, state.location)
+                    ):
+                        return Action(
+                            "use_service",
+                            target=state.location,
+                            service="meeting_refreshment",
+                            minutes=5,
+                            reason="use paid meeting venue before waiting",
+                        )
                     return Action("dwell", minutes=start - state.time, reason="wait until the meeting window")
                 if state.time <= end:
                     return Action("dwell", minutes=5, reason="stay present for the meeting")
@@ -287,23 +362,81 @@ class UtilityPlannerPolicy(BasePolicy):
                 candidates = [item for item in candidates if item]
                 target = self.choose_from_candidates(candidates, state)
                 start, end = [parse_time(v) for v in condition["time_window"]]
-                if any(start <= t <= end for t in visit_times(state, candidates)):
+                if any(start <= t <= end for t in presence_times(state, candidates)):
                     continue
-                if state.location not in candidates:
-                    return Action("move", target=target, reason="move to an open replacement location")
+                access = self.access_action(state, target, "reach and enter an open replacement")
+                if access:
+                    return access
                 if state.time < start:
+                    if self.world.location_cost(state.location) > 0 and not (
+                        has_used_service(state, state.location)
+                        or has_purchased(state, state.location)
+                    ):
+                        return Action(
+                            "use_service",
+                            target=state.location,
+                            service="workspace_access",
+                            minutes=5,
+                            reason="pay before waiting in a paid replacement",
+                        )
                     return Action("dwell", minutes=start - state.time, reason="wait until the valid replacement window")
                 if state.time <= end:
+                    if self.world.location_cost(state.location) > 0 and not (
+                        has_used_service(state, state.location)
+                        or has_purchased(state, state.location)
+                    ):
+                        return Action(
+                            "use_service",
+                            target=state.location,
+                            service="workspace_access",
+                            minutes=5,
+                            reason="pay before using a paid replacement",
+                        )
                     return Action("dwell", minutes=1, reason="mark presence in the valid replacement window")
             if ctype in {"visit_location", "visit_before"}:
                 include_start = not bool(condition.get("ignore_start", False))
                 if not visit_times(state, [condition["location"]], include_start=include_start):
-                    if state.location == condition["location"]:
-                        return Action("dwell", minutes=1, reason="mark current-location visit after prior goals")
-                    return Action("move", target=condition["location"], reason="satisfy explicit visit target")
+                    return self.access_action(
+                        state,
+                        condition["location"],
+                        "satisfy explicit entered-location target",
+                    )
             if ctype == "visit_location_any_of" and not visit_times(state, condition["location_any_of"]):
                 target = self.choose_from_candidates(condition["location_any_of"], state)
-                return Action("move", target=target, reason="satisfy one acceptable visit target")
+                return self.access_action(
+                    state, target, "satisfy one acceptable entered-location target"
+                )
+            if ctype == "send_message" and not any(
+                message.get("to") == condition["to"] for message in state.messages
+            ):
+                return Action(
+                    "message",
+                    to=condition["to"],
+                    content="Confirming the feasible meeting plan and timing.",
+                    reason="satisfy explicit communication requirement",
+                )
+            if ctype == "bounded_social_interaction":
+                minutes = sum(
+                    interaction.get("minutes", 0)
+                    for interaction in state.interactions
+                    if interaction.get("with") == condition["with"]
+                )
+                if minutes == 0:
+                    return Action(
+                        "interact",
+                        to=condition["with"],
+                        minutes=min(5, int(condition["max_minutes"])),
+                        reason="take the bounded social opportunity",
+                    )
+        return None
+
+    def access_action(
+        self, state: TraceState, target: str, reason: str
+    ) -> Action | None:
+        if state.location != target:
+            return Action("move", target=target, reason=reason)
+        if state.inside_location != target:
+            return Action("enter", target=target, reason=reason)
         return None
 
 
@@ -345,11 +478,69 @@ class DirectActorOfflineProxy(BasePolicy):
             if state.location == "market" and not state.interactions:
                 return Action("interact", to="casey", minutes=20, reason="over-engage with salient unexpected encounter")
         for target in self.queue:
-            if not has_visited(state, target):
-                if state.location == target:
-                    return Action("dwell", minutes=15, reason="act on the currently salient destination")
-                return Action("move", target=target, reason="direct action from salient scenario cue")
+            if not self.target_complete(state, target):
+                if state.location != target:
+                    return Action("move", target=target, reason="direct action from salient scenario cue")
+                if state.inside_location != target:
+                    return Action("enter", target=target, reason="enter the salient destination")
+                for condition in self.scenario["success_conditions"]:
+                    if condition.get("location") != target:
+                        continue
+                    if condition["type"] == "buy_item":
+                        return Action(
+                            "buy",
+                            target=target,
+                            item=condition.get("item", "item"),
+                            minutes=5,
+                            reason="complete salient purchase",
+                        )
+                    if condition["type"] == "use_service_at":
+                        return Action(
+                            "use_service",
+                            target=target,
+                            service=condition.get("service", "general_service"),
+                            minutes=15,
+                            reason="complete salient service",
+                        )
+                if self.world.location_cost(target) > 0 and not (
+                    has_used_service(state, target) or has_purchased(state, target)
+                ):
+                    return Action(
+                        "use_service",
+                        target=target,
+                        service="salient_activity",
+                        minutes=5,
+                        reason="pay before using the salient destination",
+                    )
+                return Action("dwell", minutes=15, reason="act on the currently salient destination")
         return Action("finish", reason="no salient destination remains")
+
+    def target_complete(self, state: TraceState, target: str) -> bool:
+        matching = [
+            condition
+            for condition in self.scenario["success_conditions"]
+            if condition["type"]
+            in {
+                "visit_location",
+                "visit_location_any_of",
+                "visit_before",
+                "visit_open_location",
+                "dwell_minutes",
+                "buy_item",
+                "use_service_at",
+                "co_presence",
+            }
+            and (
+                condition.get("location") == target
+                or target in condition.get("location_any_of", [])
+            )
+        ]
+        if not matching:
+            return has_visited(state, target)
+        return all(
+            condition_success(condition, state, self.scenario) >= 1.0
+            for condition in matching
+        )
 
 
 class APILLMDirectActor(BasePolicy):
@@ -400,7 +591,7 @@ class APILLMDirectActor(BasePolicy):
             "You are a city-agent policy inside CityIntent. "
             "Choose exactly one next action for the primary agent. "
             "Return exactly one JSON object and no markdown. "
-            "Allowed kinds: move, dwell, message, interact, finish. "
+            "Allowed kinds: move, enter, use_service, buy, dwell, message, interact, finish, abandon. "
             "Use only location ids and agent ids given in the observation."
         )
 
@@ -432,11 +623,13 @@ class APILLMDirectActor(BasePolicy):
         return {
             "task": "Choose the next typed action for the primary city agent.",
             "response_schema": {
-                "kind": "move|dwell|message|interact|finish",
-                "target": "location id for move, otherwise null",
-                "minutes": "integer minutes for dwell/interact, otherwise 0",
+                "kind": "move|enter|use_service|buy|dwell|message|interact|finish|abandon",
+                "target": "location id for move/enter/use_service/buy, otherwise null",
+                "minutes": "integer minutes for use_service/buy/dwell/interact, otherwise 0",
                 "to": "agent id for message/interact, otherwise null",
                 "content": "message text if kind=message, otherwise empty string",
+                "item": "purchased item if kind=buy, otherwise empty string",
+                "service": "service used if kind=use_service, otherwise empty string",
                 "reason": "short reason grounded in the observation",
             },
             "scenario": {
@@ -444,6 +637,7 @@ class APILLMDirectActor(BasePolicy):
                 "title": self.scenario["title"],
                 "family": self.scenario["family"],
                 "public_context": self.scenario.get("public_context", ""),
+                "success_conditions": self.scenario.get("success_conditions", []),
             },
             "primary_agent": {
                 "id": self.primary["agent_id"],
@@ -455,8 +649,12 @@ class APILLMDirectActor(BasePolicy):
                 "time": format_time(state.time),
                 "episode_end": format_time(state.end_time),
                 "location": state.location,
+                "inside_location": state.inside_location,
                 "budget": state.budget,
-                "visited_locations": [visit["location"] for visit in state.visits],
+                "arrivals": state.visits,
+                "entries": state.entries,
+                "services_used": state.services,
+                "purchases": state.purchases,
                 "dwell_minutes_by_location": dict(state.dwell),
                 "messages_sent": state.messages,
                 "interactions": state.interactions,
@@ -475,12 +673,14 @@ class APILLMDirectActor(BasePolicy):
             ],
             "action_guidance": [
                 "Prefer feasible actions over merely plausible narration.",
-                "If a place is closed, choose an alternative rather than claiming success there.",
-                "Use dwell to work, wait, hold a meeting, eat, or complete time at the current place.",
-                "Dwell is free; moving to a location with typical_cost may spend that cost once.",
-                "Your current budget already reflects prior spending, so do not move to a paid place you cannot afford.",
+                "Move only changes location; it never enters a POI, pays, buys, or completes an errand.",
+                "After moving, use enter before dwell, buy, or use_service.",
+                "Use buy for item evidence and use_service for meals, tickets, or paid access.",
+                "Only buy/use_service deducts typical_cost; pass-through and arrival are free.",
+                "If a place is closed, do not enter it; choose an alternative.",
+                "Use dwell only after entering. Paid places require buy/use_service before dwell.",
                 "If the current place satisfies the intention, dwell there instead of moving to another similar place.",
-                "If all important goals are complete, use finish.",
+                "If all important goals have evidence, use finish. If impossible, use abandon with an honest reason.",
             ],
         }
 
@@ -493,6 +693,8 @@ class APILLMDirectActor(BasePolicy):
         to = parsed.get("to")
         to = str(to).strip() if to is not None and str(to).strip() else None
         content = str(parsed.get("content", "") or "")
+        item = str(parsed.get("item", "") or "")
+        service = str(parsed.get("service", "") or "")
         reason = str(parsed.get("reason", "") or "")
         try:
             minutes = int(float(parsed.get("minutes", 0) or 0))
@@ -502,6 +704,32 @@ class APILLMDirectActor(BasePolicy):
             if target not in self.world.locations:
                 return Action("invalid_model_action", reason=f"unknown move target: {target}", raw_response=raw)
             return Action("move", target=target, reason=reason, raw_response=raw)
+        if kind == "enter":
+            if target is not None and target not in self.world.locations:
+                return Action("invalid_model_action", reason=f"unknown enter target: {target}", raw_response=raw)
+            return Action("enter", target=target, reason=reason, raw_response=raw)
+        if kind == "use_service":
+            if target is not None and target not in self.world.locations:
+                return Action("invalid_model_action", reason=f"unknown service target: {target}", raw_response=raw)
+            return Action(
+                "use_service",
+                target=target,
+                service=service or "general_service",
+                minutes=max(1, min(minutes or 5, 90)),
+                reason=reason,
+                raw_response=raw,
+            )
+        if kind == "buy":
+            if target is not None and target not in self.world.locations:
+                return Action("invalid_model_action", reason=f"unknown purchase target: {target}", raw_response=raw)
+            return Action(
+                "buy",
+                target=target,
+                item=item or "item",
+                minutes=max(1, min(minutes or 5, 90)),
+                reason=reason,
+                raw_response=raw,
+            )
         if kind == "dwell":
             return Action("dwell", minutes=max(1, min(minutes or 10, 90)), reason=reason, raw_response=raw)
         if kind == "message":
@@ -510,6 +738,8 @@ class APILLMDirectActor(BasePolicy):
             return Action("interact", to=to, minutes=max(1, min(minutes or 10, 60)), reason=reason, raw_response=raw)
         if kind == "finish":
             return Action("finish", reason=reason, raw_response=raw)
+        if kind == "abandon":
+            return Action("abandon", reason=reason, raw_response=raw)
         return Action("invalid_model_action", reason=f"unsupported action kind: {kind}", raw_response=raw)
 
 
@@ -522,7 +752,7 @@ class APILLMPlanThenAct(APILLMDirectActor):
             "You are a city-agent planner inside CityIntent. "
             "Create a short executable plan for the primary agent before the episode starts. "
             "Return exactly one JSON object with key plan, whose value is a list of action objects. "
-            "Allowed action kinds: move, dwell, message, interact, finish. "
+            "Allowed action kinds: move, enter, use_service, buy, dwell, message, interact, finish, abandon. "
             "Use only location ids and agent ids from the scenario. "
             "Do not include markdown."
         )
@@ -569,11 +799,13 @@ class APILLMPlanThenAct(APILLMDirectActor):
             "response_schema": {
                 "plan": [
                     {
-                        "kind": "move|dwell|message|interact|finish",
-                        "target": "location id for move, otherwise null",
-                        "minutes": "integer minutes for dwell/interact, otherwise 0",
+                        "kind": "move|enter|use_service|buy|dwell|message|interact|finish|abandon",
+                        "target": "location id for move/enter/use_service/buy, otherwise null",
+                        "minutes": "integer minutes for use_service/buy/dwell/interact, otherwise 0",
                         "to": "agent id for message/interact, otherwise null",
                         "content": "message text if kind=message, otherwise empty string",
+                        "item": "item name for buy",
+                        "service": "service name for use_service",
                         "reason": "short feasibility-aware reason",
                     }
                 ]
@@ -628,7 +860,7 @@ class APILLMReactiveReplanner(APILLMDirectActor):
             "Choose exactly one next action that is feasible now. "
             "Do not repeat an action that already caused a violation. "
             "Return exactly one JSON object and no markdown. "
-            "Allowed kinds: move, dwell, message, interact, finish."
+            "Allowed kinds: move, enter, use_service, buy, dwell, message, interact, finish, abandon."
         )
 
     def build_observation(self, state: TraceState) -> dict[str, Any]:
@@ -677,15 +909,29 @@ class ReactiveReplannerPolicy(UtilityPlannerPolicy):
     def next_action(self, state: TraceState) -> Action:
         if self.scenario["scenario_id"] == "commute_disruption":
             event_time = parse_time("08:15")
-            if not has_visited(state, "transit_hub"):
+            if not has_arrived(state, "transit_hub"):
                 return Action("move", target="transit_hub", reason="start with the normal commute route")
+            if state.location == "transit_hub" and state.inside_location != "transit_hub":
+                return Action("enter", target="transit_hub", reason="enter the transit hub while monitoring service")
             if state.time < event_time:
                 return Action("dwell", minutes=event_time - state.time, reason="observe disruption before committing to office edge")
             if not has_visited(state, "office"):
-                return Action("move", target="office", reason="replan around the blocked transit-office edge")
+                return self.access_action(
+                    state, "office", "replan around the blocked transit-office edge"
+                ) or Action("finish", reason="office reached")
         if self.scenario["scenario_id"] == "closed_poi_replacement":
             if not has_visited(state, "bookstore"):
-                return Action("move", target="bookstore", reason="switch to an open quiet replacement after closure")
+                return self.access_action(
+                    state, "bookstore", "switch to an open quiet replacement after closure"
+                ) or Action("finish", reason="bookstore reached")
+            if not has_used_service(state, "bookstore"):
+                return Action(
+                    "use_service",
+                    target="bookstore",
+                    service="workspace_access",
+                    minutes=5,
+                    reason="pay before using the bookstore workspace",
+                )
             if state.dwell.get("bookstore", 0) < 60:
                 return Action("dwell", minutes=60 - state.dwell.get("bookstore", 0), reason="complete focus session after replanning")
         return super().next_action(state)
@@ -736,11 +982,39 @@ def dedupe(items: list[str]) -> list[str]:
 
 
 def has_visited(state: TraceState, location: str) -> bool:
+    return any(entry["location"] == location for entry in state.entries)
+
+
+def has_arrived(state: TraceState, location: str) -> bool:
     return any(visit["location"] == location for visit in state.visits)
+
+
+def has_entered(state: TraceState, location: str) -> bool:
+    return state.inside_location == location or has_visited(state, location)
+
+
+def has_used_service(state: TraceState, location: str, service: str | None = None) -> bool:
+    return any(
+        record["location"] == location
+        and (service is None or record.get("service") == service)
+        for record in state.services
+    )
+
+
+def has_purchased(state: TraceState, location: str, item: str | None = None) -> bool:
+    return any(
+        record["location"] == location
+        and (item is None or record.get("item") == item)
+        for record in state.purchases
+    )
 
 
 def record_visit(state: TraceState, location: str, at_time: int, kind: str = "visit") -> None:
     state.visits.append({"location": location, "time": at_time, "kind": kind})
+
+
+def record_entry(state: TraceState, location: str, at_time: int, kind: str = "enter") -> None:
+    state.entries.append({"location": location, "time": at_time, "kind": kind})
 
 
 def append_violation(state: TraceState, kind: str, detail: dict[str, Any]) -> None:
@@ -753,6 +1027,13 @@ def classify_failure(kind: str) -> str:
         "unreachable_move": "impossible_route",
         "closed_location": "closed_place_action",
         "budget_negative": "money_budget_failure",
+        "enter_not_at_location": "invalid_state_transition",
+        "duplicate_enter": "done_state_loop",
+        "service_without_entry": "invalid_state_transition",
+        "duplicate_service": "done_state_loop",
+        "dwell_without_entry": "invalid_state_transition",
+        "unpaid_service_required": "money_budget_failure",
+        "invalid_explicit_path": "impossible_route",
         "episode_overtime": "time_budget_failure",
         "unknown_action": "plausible_but_invalid_rationale",
         "invalid_model_action": "plausible_but_invalid_rationale",
@@ -775,13 +1056,17 @@ def failure_taxonomy_counts(state: TraceState) -> dict[str, int]:
 
 
 def has_done_state_loop(state: TraceState) -> bool:
-    paid_revisits: dict[str, int] = {}
+    repeated_completion_actions: dict[tuple[str, str, str], int] = {}
     for action in state.actions:
-        if action["action"]["kind"] == "move":
-            target = action["action"].get("target")
-            if target:
-                paid_revisits[target] = paid_revisits.get(target, 0) + 1
-    return any(count > 1 for count in paid_revisits.values())
+        payload = action["action"]
+        kind = payload.get("kind")
+        if kind not in {"buy", "use_service"}:
+            continue
+        target = payload.get("target") or action.get("start_location", "")
+        label = payload.get("item") if kind == "buy" else payload.get("service")
+        key = (str(kind), str(target), str(label or ""))
+        repeated_completion_actions[key] = repeated_completion_actions.get(key, 0) + 1
+    return any(count > 1 for count in repeated_completion_actions.values())
 
 
 def has_social_derailment(state: TraceState) -> bool:
@@ -806,16 +1091,30 @@ def action_plausibility(action: dict[str, Any]) -> float:
     kind = payload.get("kind")
     if kind in {"unknown_action", "invalid_model_action"}:
         return 0.0
-    if kind not in {"move", "dwell", "message", "interact", "finish"}:
+    if kind not in {
+        "move",
+        "enter",
+        "use_service",
+        "buy",
+        "dwell",
+        "message",
+        "interact",
+        "finish",
+        "abandon",
+    }:
         return 0.25
     reason = str(payload.get("reason", "") or "")
     if reason.strip():
         return 1.0
-    return 0.75 if kind == "finish" else 0.6
+    return 0.75 if kind in {"finish", "abandon"} else 0.6
 
 
 def plan_plausibility_score(state: TraceState) -> float:
-    non_finish = [action for action in state.actions if action["action"]["kind"] != "finish"]
+    non_finish = [
+        action
+        for action in state.actions
+        if action["action"]["kind"] not in {"finish", "abandon"}
+    ]
     if not non_finish:
         return 0.0
     return round(sum(action_plausibility(action) for action in non_finish) / len(non_finish), 3)
@@ -836,7 +1135,8 @@ def city_false_continue_score(state: TraceState) -> float:
             first_violation_step = int(action["step"])
     if first_violation_step is not None:
         continued_after_violation = any(
-            int(action["step"]) > first_violation_step and action["action"]["kind"] != "finish"
+            int(action["step"]) > first_violation_step
+            and action["action"]["kind"] not in {"finish", "abandon"}
             for action in state.actions
         )
     if any(counts.get(kind, 0) for kind in false_continue_failures) and continued_after_violation:
@@ -891,7 +1191,8 @@ def execute_action(world: CityWorld, scenario: dict[str, Any], state: TraceState
         elif minutes == float("inf") or path == [state.location] and state.location != action.target:
             append_violation(state, "unreachable_move", {"from": state.location, "to": action.target, "time": format_time(state.time)})
         else:
-            closed_locations_recorded: set[str] = set()
+            if path and path[-1] != state.location:
+                state.inside_location = None
             for src, dst in zip(path, path[1:]):
                 edge = normalize_edge((src, dst))
                 edge_minutes = next(weight for neighbor, weight in world.graph[src] if neighbor == dst)
@@ -911,25 +1212,104 @@ def execute_action(world: CityWorld, scenario: dict[str, Any], state: TraceState
                 state.time += int(edge_minutes)
                 state.location = dst
                 state.traversals.append({"from": src, "to": dst, "arrive_time": state.time, "minutes": int(edge_minutes)})
-                record_visit(state, dst, state.time, kind="pass_through" if dst != action.target else "visit")
-                if not world.is_open(dst, state.time, scenario):
-                    append_violation(state, "closed_location", {"location": dst, "time": format_time(state.time)})
-                    closed_locations_recorded.add(dst)
-            if action.target not in closed_locations_recorded and not world.is_open(action.target, state.time, scenario):
-                append_violation(state, "closed_location", {"location": action.target, "time": format_time(state.time)})
-            cost = world.location_cost(action.target)
-            if cost and action.target not in state.paid_locations:
+                record_visit(state, dst, state.time, kind="pass_through" if dst != action.target else "arrival")
+    elif action.kind == "enter":
+        target = action.target or state.location
+        state.time += 1
+        if target != state.location:
+            append_violation(
+                state,
+                "enter_not_at_location",
+                {"location": state.location, "target": target, "time": format_time(state.time)},
+            )
+        elif state.inside_location == target:
+            append_violation(
+                state,
+                "duplicate_enter",
+                {"location": target, "time": format_time(state.time)},
+            )
+        elif not world.is_open(target, state.time, scenario):
+            append_violation(
+                state,
+                "closed_location",
+                {"location": target, "time": format_time(state.time)},
+            )
+        else:
+            state.inside_location = target
+            record_entry(state, target, state.time)
+    elif action.kind in {"use_service", "buy"}:
+        target = action.target or state.location
+        duration = max(1, action.minutes or 5)
+        state.time += duration
+        label = (action.service if action.kind == "use_service" else action.item).strip()
+        label = label or ("general_service" if action.kind == "use_service" else "item")
+        if target != state.location or state.inside_location != target:
+            append_violation(
+                state,
+                "service_without_entry",
+                {
+                    "action": action.kind,
+                    "location": state.location,
+                    "target": target,
+                    "time": format_time(state.time),
+                },
+            )
+        elif not world.is_open(target, state.time, scenario):
+            append_violation(
+                state,
+                "closed_location",
+                {"location": target, "time": format_time(state.time)},
+            )
+        else:
+            payment_key = f"{action.kind}:{target}:{label}"
+            if payment_key in state.paid_services:
+                append_violation(
+                    state,
+                    "duplicate_service",
+                    {"action": action.kind, "location": target, "label": label},
+                )
+            else:
+                cost = world.location_cost(target)
                 state.budget -= cost
-                state.paid_locations.add(action.target)
+                state.paid_services.add(payment_key)
+                record = {
+                    "location": target,
+                    "time": state.time,
+                    "cost": cost,
+                    "budget_after": state.budget,
+                }
+                if action.kind == "use_service":
+                    state.services.append({**record, "service": label})
+                else:
+                    state.purchases.append({**record, "item": label})
                 if state.budget < 0:
-                    append_violation(state, "budget_negative", {"location": action.target, "budget": state.budget})
+                    append_violation(
+                        state,
+                        "budget_negative",
+                        {"location": target, "budget": state.budget},
+                    )
     elif action.kind == "dwell":
         minutes = max(1, action.minutes)
-        state.dwell[state.location] += minutes
         state.time += minutes
-        record_visit(state, state.location, state.time, kind="dwell")
-        if state.location == "coworking" and state.dwell[state.location] >= 45:
-            state.completed_work = True
+        if state.inside_location != state.location:
+            append_violation(
+                state,
+                "dwell_without_entry",
+                {"location": state.location, "time": format_time(state.time)},
+            )
+        elif world.location_cost(state.location) > 0 and not (
+            has_used_service(state, state.location) or has_purchased(state, state.location)
+        ):
+            append_violation(
+                state,
+                "unpaid_service_required",
+                {"location": state.location, "time": format_time(state.time)},
+            )
+        else:
+            state.dwell[state.location] += minutes
+            record_visit(state, state.location, state.time, kind="dwell")
+            if state.location == "coworking" and state.dwell[state.location] >= 45:
+                state.completed_work = True
     elif action.kind == "message":
         state.messages.append({"to": action.to, "content": action.content, "time": state.time})
         state.time += 2
@@ -939,6 +1319,10 @@ def execute_action(world: CityWorld, scenario: dict[str, Any], state: TraceState
         state.time += minutes
     elif action.kind == "finish":
         pass
+    elif action.kind == "abandon":
+        state.abandonments.append(
+            {"time": state.time, "location": state.location, "reason": action.reason}
+        )
     else:
         append_violation(state, "unknown_action", {"action": action.kind})
 
@@ -952,7 +1336,15 @@ def execute_action(world: CityWorld, scenario: dict[str, Any], state: TraceState
     if before < state.time:
         for event in scenario.get("events", []):
             event_time = parse_time(event["time"])
-            if before <= event_time <= state.time and action.kind in {"move", "dwell", "message", "interact"}:
+            if before <= event_time <= state.time and action.kind in {
+                "move",
+                "enter",
+                "use_service",
+                "buy",
+                "dwell",
+                "message",
+                "interact",
+            }:
                 if state.agent_type != "llm_direct_actor":
                     state.replanned_after_event = True
 
@@ -970,10 +1362,21 @@ def execute_action(world: CityWorld, scenario: dict[str, Any], state: TraceState
 def visit_times(state: TraceState, locations: list[str], include_start: bool = True) -> list[int]:
     location_set = set(locations)
     return [
+        entry["time"]
+        for entry in state.entries
+        if entry["location"] in location_set and (include_start or entry.get("kind") != "start")
+    ]
+
+
+def presence_times(state: TraceState, locations: list[str]) -> list[int]:
+    location_set = set(locations)
+    times = visit_times(state, locations)
+    times.extend(
         visit["time"]
         for visit in state.visits
-        if visit["location"] in location_set and (include_start or visit.get("kind") != "start")
-    ]
+        if visit["location"] in location_set and visit.get("kind") == "dwell"
+    )
+    return times
 
 
 def condition_success(condition: dict[str, Any], state: TraceState, scenario: dict[str, Any]) -> float:
@@ -988,7 +1391,12 @@ def condition_success(condition: dict[str, Any], state: TraceState, scenario: di
         return float(any(t <= deadline for t in times))
     if ctype == "visit_open_location":
         start, end = [parse_time(v) for v in condition["time_window"]]
-        return float(any(start <= t <= end for t in visit_times(state, condition["location_any_of"])))
+        return float(
+            any(
+                start <= time <= end
+                for time in presence_times(state, condition["location_any_of"])
+            )
+        )
     if ctype == "do_not_enter_closed_location":
         start, end = [parse_time(v) for v in condition["time_window"]]
         return float(not any(start <= t <= end for t in visit_times(state, [condition["location"]])))
@@ -996,9 +1404,22 @@ def condition_success(condition: dict[str, Any], state: TraceState, scenario: di
         locations = condition.get("location_any_of") or [condition.get("location")]
         dwell = sum(state.dwell.get(loc, 0) for loc in locations)
         return float(dwell >= condition["min_minutes"])
+    if ctype == "buy_item":
+        return float(
+            has_purchased(state, condition["location"], condition.get("item"))
+        )
+    if ctype == "use_service_at":
+        return float(
+            has_used_service(state, condition["location"], condition.get("service"))
+        )
     if ctype == "co_presence":
         start, end = [parse_time(v) for v in condition["time_window"]]
-        return float(any(start <= t <= end for t in visit_times(state, condition["location_any_of"])))
+        return float(
+            any(
+                start <= time <= end
+                for time in presence_times(state, condition["location_any_of"])
+            )
+        )
     if ctype == "budget_at_least":
         return float(state.budget >= condition["min_remaining"])
     if ctype == "avoid_when_possible":
@@ -1030,6 +1451,69 @@ def condition_success(condition: dict[str, Any], state: TraceState, scenario: di
     return 0.0
 
 
+def condition_evidence(condition: dict[str, Any], state: TraceState) -> list[dict[str, Any]]:
+    ctype = condition["type"]
+    if ctype == "buy_item":
+        return [
+            record
+            for record in state.purchases
+            if record["location"] == condition["location"]
+            and (not condition.get("item") or record.get("item") == condition["item"])
+        ]
+    if ctype == "visit_open_location":
+        start, end = [parse_time(value) for value in condition["time_window"]]
+        return [
+            {"location": location, "time": time, "kind": "presence"}
+            for location in condition["location_any_of"]
+            for time in presence_times(state, [location])
+            if start <= time <= end
+        ]
+    if ctype == "use_service_at":
+        return [
+            record
+            for record in state.services
+            if record["location"] == condition["location"]
+            and (
+                not condition.get("service")
+                or record.get("service") == condition["service"]
+            )
+        ]
+    if ctype == "dwell_minutes":
+        locations = condition.get("location_any_of") or [condition.get("location")]
+        return [
+            {"location": location, "minutes": state.dwell.get(location, 0)}
+            for location in locations
+            if state.dwell.get(location, 0) > 0
+        ]
+    if ctype == "co_presence":
+        start, end = [parse_time(value) for value in condition["time_window"]]
+        return [
+            {"location": location, "time": time, "kind": "presence"}
+            for location in condition["location_any_of"]
+            for time in presence_times(state, [location])
+            if start <= time <= end
+        ]
+    locations = condition.get("location_any_of") or [condition.get("location")]
+    locations = [location for location in locations if location]
+    if locations:
+        include_start = not bool(condition.get("ignore_start", False))
+        return [
+            entry
+            for entry in state.entries
+            if entry["location"] in locations
+            and (include_start or entry.get("kind") != "start")
+        ]
+    if ctype == "send_message":
+        return [message for message in state.messages if message.get("to") == condition["to"]]
+    if ctype == "bounded_social_interaction":
+        return [
+            interaction
+            for interaction in state.interactions
+            if interaction.get("with") == condition["with"]
+        ]
+    return []
+
+
 def score_trace(world: CityWorld, scenario: dict[str, Any], state: TraceState) -> dict[str, Any]:
     condition_scores: list[dict[str, Any]] = []
     weighted = 0.0
@@ -1042,11 +1526,21 @@ def score_trace(world: CityWorld, scenario: dict[str, Any], state: TraceState) -
                 "type": condition["type"],
                 "score": score,
                 "weight": condition["weight"],
+                "evidence": condition_evidence(condition, state),
             }
         )
     setattr(state, "_condition_scores", condition_scores)
 
-    action_count = max(1, len([a for a in state.actions if a["action"]["kind"] != "finish"]))
+    action_count = max(
+        1,
+        len(
+            [
+                action
+                for action in state.actions
+                if action["action"]["kind"] not in {"finish", "abandon"}
+            ]
+        ),
+    )
     violation_rate = min(1.0, len(state.violations) / action_count)
     plan_plausibility = plan_plausibility_score(state)
     failure_counts = failure_taxonomy_counts(state)
@@ -1097,7 +1591,12 @@ def score_trace(world: CityWorld, scenario: dict[str, Any], state: TraceState) -
         "final_state": {
             "time": format_time(state.time),
             "location": state.location,
+            "inside_location": state.inside_location,
             "budget": round(state.budget, 2),
+            "entries": state.entries,
+            "services": state.services,
+            "purchases": state.purchases,
+            "abandonments": state.abandonments,
             "violations": state.violations,
         },
     }
@@ -1152,15 +1651,27 @@ def run_trace(world: CityWorld, scenario: dict[str, Any], agent_type: str, llm_c
         location=primary["start_location"],
         budget=float(primary["budget"]),
     )
+    state.inside_location = state.location
     record_visit(state, state.location, state.time, kind="start")
+    record_entry(state, state.location, state.time, kind="start")
     policy = policy_cls(world, scenario, primary, llm_config=llm_config)
     for _ in range(int(scenario["episode"]["max_steps"])):
         action_value = policy.next_action(state)
         action = Action(**action_value) if isinstance(action_value, dict) else action_value
         execute_action(world, scenario, state, action)
-        if action.kind == "finish" or state.time >= state.end_time:
+        if action.kind in {"finish", "abandon"} or state.time >= state.end_time:
             break
     scored = score_trace(world, scenario, state)
+    llm = getattr(policy, "llm", None)
+    llm_telemetry = list(getattr(llm, "telemetry", []))
+    llm_summary = (
+        llm.telemetry_summary()
+        if llm is not None and hasattr(llm, "telemetry_summary")
+        else None
+    )
+    model_info = dict(policy.model_info) if policy.model_info else None
+    if model_info is not None and llm_summary is not None:
+        model_info["llm_telemetry_summary"] = llm_summary
     return {
         "scenario_id": scenario["scenario_id"],
         "scenario_title": scenario["title"],
@@ -1171,7 +1682,12 @@ def run_trace(world: CityWorld, scenario: dict[str, Any], agent_type: str, llm_c
         "traversals": state.traversals,
         "messages": state.messages,
         "interactions": state.interactions,
-        "model_info": policy.model_info,
+        "entries": state.entries,
+        "services": state.services,
+        "purchases": state.purchases,
+        "abandonments": state.abandonments,
+        "model_info": model_info,
+        "llm_telemetry": llm_telemetry,
         **scored,
     }
 
@@ -1221,6 +1737,12 @@ def write_outputs(results: list[dict[str, Any]], results_dir: Path) -> None:
                 "final_budget",
                 "violations",
                 "failure_taxonomy",
+                "llm_calls",
+                "llm_latency_seconds",
+                "llm_input_tokens",
+                "llm_output_tokens",
+                "llm_total_tokens",
+                "llm_usage_complete",
             ],
         )
         writer.writeheader()
@@ -1235,6 +1757,19 @@ def write_outputs(results: list[dict[str, Any]], results_dir: Path) -> None:
                 "violations": len(result["final_state"]["violations"]),
                 "failure_taxonomy": json.dumps(result.get("failure_taxonomy", {}), ensure_ascii=False, sort_keys=True),
             }
+            telemetry = (result.get("model_info") or {}).get(
+                "llm_telemetry_summary", {}
+            )
+            row.update(
+                {
+                    "llm_calls": telemetry.get("calls", 0),
+                    "llm_latency_seconds": telemetry.get("latency_seconds", 0),
+                    "llm_input_tokens": telemetry.get("input_tokens", 0),
+                    "llm_output_tokens": telemetry.get("output_tokens", 0),
+                    "llm_total_tokens": telemetry.get("total_tokens", 0),
+                    "llm_usage_complete": telemetry.get("usage_complete", False),
+                }
+            )
             row.update(result["metrics"])
             writer.writerow(row)
 
@@ -1248,6 +1783,38 @@ def write_outputs(results: list[dict[str, Any]], results_dir: Path) -> None:
                 aggregate[agent_type][key] = round(sum(values) / len(values), 3)
     write_json(results_dir / "aggregate.json", aggregate)
 
+    telemetry_aggregate: dict[str, dict[str, Any]] = {}
+    for agent_type in sorted({r["agent_type"] for r in results}):
+        summaries = [
+            (result.get("model_info") or {}).get("llm_telemetry_summary")
+            for result in results
+            if result["agent_type"] == agent_type
+        ]
+        summaries = [summary for summary in summaries if isinstance(summary, dict)]
+        if not summaries:
+            continue
+        telemetry_aggregate[agent_type] = {
+            "traces": len(summaries),
+            "calls": sum(int(summary.get("calls", 0)) for summary in summaries),
+            "latency_seconds": round(
+                sum(float(summary.get("latency_seconds", 0)) for summary in summaries),
+                3,
+            ),
+            "input_tokens": sum(
+                int(summary.get("input_tokens", 0)) for summary in summaries
+            ),
+            "output_tokens": sum(
+                int(summary.get("output_tokens", 0)) for summary in summaries
+            ),
+            "total_tokens": sum(
+                int(summary.get("total_tokens", 0)) for summary in summaries
+            ),
+            "usage_complete": all(
+                bool(summary.get("usage_complete", False)) for summary in summaries
+            ),
+        }
+    write_json(results_dir / "telemetry_aggregate.json", telemetry_aggregate)
+
     with (results_dir / "summary.md").open("w", encoding="utf-8", newline="\n") as f:
         has_api = any(r["agent_type"].startswith("api_llm_") for r in results)
         external_agents = sorted(
@@ -1257,7 +1824,7 @@ def write_outputs(results: list[dict[str, Any]], results_dir: Path) -> None:
                 if (r.get("model_info") or {}).get("integration_level")
             }
         )
-        f.write("# CityIntent v0 Trace Results\n\n")
+        f.write("# CityIntent v0.2 Trace Results\n\n")
         if has_api:
             f.write("This run includes `api_llm_*` agents, which call a configured real model provider.\n\n")
         if external_agents:
@@ -1282,6 +1849,16 @@ def write_outputs(results: list[dict[str, Any]], results_dir: Path) -> None:
             )
         f.write("\n## Scenario-Level Rows\n\n")
         f.write("See `summary.csv` and `traces.jsonl` in this directory.\n")
+        if telemetry_aggregate:
+            f.write("\n## LLM Telemetry\n\n")
+            f.write("| agent_type | calls | latency_seconds | input_tokens | output_tokens | total_tokens | provider_usage_complete |\n")
+            f.write("|---|---:|---:|---:|---:|---:|---|\n")
+            for agent_type, telemetry in telemetry_aggregate.items():
+                f.write(
+                    f"| {agent_type} | {telemetry['calls']} | {telemetry['latency_seconds']} | "
+                    f"{telemetry['input_tokens']} | {telemetry['output_tokens']} | "
+                    f"{telemetry['total_tokens']} | {telemetry['usage_complete']} |\n"
+                )
 
 
 def main() -> int:
@@ -1295,7 +1872,19 @@ def main() -> int:
     parser.add_argument("--llm-config", type=Path, default=None, help="LLM config for provider-backed and external adapted agents.")
     parser.add_argument("--scenario-ids", default="", help="Comma-separated scenario ids to run.")
     parser.add_argument("--limit-scenarios", type=int, default=None)
+    parser.add_argument(
+        "--overwrite",
+        action="store_true",
+        help="Allow replacing an existing traces.json in the result directory.",
+    )
     args = parser.parse_args()
+
+    results_dir = Path(args.results_dir)
+    if (results_dir / "traces.json").exists() and not args.overwrite:
+        raise SystemExit(
+            f"Refusing to overwrite archived run: {results_dir}. "
+            "Choose a new --results-dir or pass --overwrite explicitly."
+        )
 
     requested_agents = [item.strip() for item in args.agents.split(",") if item.strip()]
     implemented_agents = {
@@ -1336,7 +1925,29 @@ def main() -> int:
         world = worlds[scenario["world_id"]]
         for agent_type in requested_agents:
             results.append(run_trace(world, scenario, agent_type, llm_config=args.llm_config))
-    write_outputs(results, Path(args.results_dir))
+    write_outputs(results, results_dir)
+    llm_config = load_json(args.llm_config) if args.llm_config else None
+    if llm_config:
+        llm_config = {
+            key: value
+            for key, value in llm_config.items()
+            if key == "api_key_env" or "key" not in key.lower()
+        }
+    write_json(
+        results_dir / "run_manifest.json",
+        {
+            "timestamp": datetime.now().astimezone().isoformat(timespec="seconds"),
+            "benchmark_id": config["benchmark_id"],
+            "benchmark_version": config["version"],
+            "runner": str(Path(__file__).resolve()),
+            "agents": requested_agents,
+            "scenario_ids": [scenario["scenario_id"] for scenario in scenarios],
+            "llm_config_path": str(args.llm_config) if args.llm_config else None,
+            "llm_config": llm_config,
+            "results_dir": str(results_dir),
+            "overwrite": args.overwrite,
+        },
+    )
     print(f"Wrote {len(results)} traces to {args.results_dir}")
     return 0
 

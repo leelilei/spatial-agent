@@ -368,6 +368,57 @@ class GATSimOfficialPlannerAdapter:
                 required = max(required, int(condition.get("min_minutes", 0)))
         return max(0, required - int(state.dwell.get(target, 0)))
 
+    def _required_evidence_action(
+        self, target: str, state: Any
+    ) -> dict[str, Any] | None:
+        for condition in self.scenario.get("success_conditions", []):
+            if condition.get("location") != target:
+                continue
+            if condition.get("type") == "buy_item":
+                item = str(condition.get("item", "item"))
+                if not any(
+                    record.get("location") == target and record.get("item") == item
+                    for record in state.purchases
+                ):
+                    return {
+                        "kind": "buy",
+                        "target": target,
+                        "item": item,
+                        "minutes": int(condition.get("minutes", 5)),
+                        "reason": "execute GATSim activity as explicit purchase evidence",
+                        "raw_response": self.last_raw_response,
+                    }
+            if condition.get("type") == "use_service_at":
+                service = str(condition.get("service", "general_service"))
+                if not any(
+                    record.get("location") == target
+                    and record.get("service") == service
+                    for record in state.services
+                ):
+                    return {
+                        "kind": "use_service",
+                        "target": target,
+                        "service": service,
+                        "minutes": int(condition.get("minutes", 5)),
+                        "reason": "execute GATSim activity as explicit service evidence",
+                        "raw_response": self.last_raw_response,
+                    }
+        if (
+            self._required_dwell(target, state) > 0
+            and self.world.location_cost(target) > 0
+            and not any(record.get("location") == target for record in state.services)
+            and not any(record.get("location") == target for record in state.purchases)
+        ):
+            return {
+                "kind": "use_service",
+                "target": target,
+                "service": "workspace_access",
+                "minutes": 5,
+                "reason": "pay for access before the GATSim-planned activity",
+                "raw_response": self.last_raw_response,
+            }
+        return None
+
     def _explicit_path(self, activity: list[Any], current: str) -> list[str] | None:
         value = str(activity[4]).strip()
         if not value or value.lower() in {"none", "shortest", "direct", "null"}:
@@ -405,6 +456,16 @@ class GATSimOfficialPlannerAdapter:
                     "reason": "follow GATSim official activity-plan destination",
                     "raw_response": self.last_raw_response,
                 }
+            if state.inside_location != target:
+                return {
+                    "kind": "enter",
+                    "target": target,
+                    "reason": "enter the GATSim activity destination",
+                    "raw_response": self.last_raw_response,
+                }
+            evidence_action = self._required_evidence_action(target, state)
+            if evidence_action:
+                return evidence_action
             remaining_dwell = self._required_dwell(target, state)
             self.queue.pop(0)
             if remaining_dwell > 0:

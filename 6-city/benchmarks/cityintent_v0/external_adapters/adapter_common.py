@@ -258,6 +258,10 @@ class OfficialAdapterBase:
                 "budget": state.budget,
                 "visited": [visit["location"] for visit in state.visits],
                 "dwell": dict(state.dwell),
+                "inside_location": state.inside_location,
+                "entries": state.entries,
+                "services": state.services,
+                "purchases": state.purchases,
                 "messages": state.messages,
                 "interactions": state.interactions,
                 "violations": state.violations,
@@ -294,28 +298,49 @@ class OfficialAdapterBase:
     def validate_actions(self, value: Any) -> list[dict[str, Any]]:
         if not isinstance(value, list):
             return []
-        allowed = {"kind", "target", "path", "minutes", "to", "content", "reason"}
+        allowed = {
+            "kind",
+            "target",
+            "path",
+            "minutes",
+            "to",
+            "content",
+            "item",
+            "service",
+            "reason",
+        }
         actions: list[dict[str, Any]] = []
         for item in value[:12]:
             if not isinstance(item, dict):
                 continue
             action = {key: item[key] for key in allowed if key in item}
             kind = str(action.get("kind", "")).strip().lower()
-            if kind not in {"move", "dwell", "message", "interact", "finish"}:
+            if kind not in {
+                "move",
+                "enter",
+                "use_service",
+                "buy",
+                "dwell",
+                "message",
+                "interact",
+                "finish",
+                "abandon",
+            }:
                 continue
             action["kind"] = kind
-            if kind == "move":
+            if kind in {"move", "enter", "use_service", "buy"}:
                 target = str(action.get("target", ""))
                 if target not in self.world.locations:
                     continue
                 action["target"] = target
+            if kind == "move":
                 if isinstance(action.get("path"), str):
                     action["path"] = [
                         node.strip()
                         for node in re.split(r"\s*(?:,|->|\u2192)\s*", action["path"])
                         if node.strip()
                     ]
-            if kind in {"dwell", "interact"}:
+            if kind in {"use_service", "buy", "dwell", "interact"}:
                 try:
                     action["minutes"] = max(1, int(action.get("minutes", 1)))
                 except (TypeError, ValueError):
@@ -328,6 +353,12 @@ class OfficialAdapterBase:
         while self.queue:
             action = dict(self.queue[0])
             if action["kind"] == "move" and state.location == action.get("target"):
+                self.queue.pop(0)
+                continue
+            if (
+                action["kind"] == "enter"
+                and state.inside_location == action.get("target")
+            ):
                 self.queue.pop(0)
                 continue
             if action["kind"] != "move":
