@@ -48,10 +48,10 @@ than by demo plausibility alone.
 |       |-- pdf/         # archived reference PDFs
 |       |-- fulltext/    # extracted Markdown full text
 |       `-- notes/       # human / project reading notes
-|-- benchmarks/          # future benchmark definitions and scenario packages
-|-- experiments/         # future runnable experiment scripts
-|-- annotation/          # future annotation protocols and rubrics
-|-- results/             # future experiment outputs and analysis artifacts
+|-- benchmarks/          # benchmark definitions, scenarios, runners, and tests
+|-- experiments/         # runnable experiment scripts and prototypes
+|-- annotation/          # blinded audit packets, rubrics, and annotation forms
+|-- results/             # archived experiment outputs and analysis artifacts
 |-- sim/                 # future simulation environment prototypes
 |-- city-agency-core/    # future reusable city-agent core code
 `-- paper/               # future paper draft, figures, tables, bibliography

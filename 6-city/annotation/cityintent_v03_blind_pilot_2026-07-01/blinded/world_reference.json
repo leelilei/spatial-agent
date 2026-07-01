@@ -1,0 +1,425 @@
+{
+  "world_id": "micro_city_v0",
+  "name": "Micro City v0",
+  "description": "A compact graph city for testing intention-driven urban agents under spatial, temporal, social, and budget constraints.",
+  "time_unit": "minutes",
+  "currency": "credits",
+  "locations": [
+    {
+      "id": "home_aria",
+      "name": "Aria Apartment",
+      "type": "home",
+      "tags": [
+        "home",
+        "quiet"
+      ],
+      "open": [
+        "00:00",
+        "23:59"
+      ],
+      "capacity": 2
+    },
+    {
+      "id": "home_ben",
+      "name": "Ben Apartment",
+      "type": "home",
+      "tags": [
+        "home"
+      ],
+      "open": [
+        "00:00",
+        "23:59"
+      ],
+      "capacity": 2
+    },
+    {
+      "id": "office",
+      "name": "North Loop Office",
+      "type": "work",
+      "tags": [
+        "work",
+        "wifi"
+      ],
+      "open": [
+        "07:00",
+        "21:00"
+      ],
+      "capacity": 20
+    },
+    {
+      "id": "transit_hub",
+      "name": "Central Transit Hub",
+      "type": "transit",
+      "tags": [
+        "transit",
+        "crowded"
+      ],
+      "open": [
+        "05:00",
+        "23:30"
+      ],
+      "capacity": 80
+    },
+    {
+      "id": "plaza",
+      "name": "Civic Plaza",
+      "type": "public_space",
+      "tags": [
+        "outdoor",
+        "event_space",
+        "crowded"
+      ],
+      "open": [
+        "00:00",
+        "23:59"
+      ],
+      "capacity": 120
+    },
+    {
+      "id": "cafe_central",
+      "name": "Central Cafe",
+      "type": "food",
+      "tags": [
+        "coffee",
+        "meeting",
+        "moderate_noise"
+      ],
+      "open": [
+        "07:30",
+        "20:00"
+      ],
+      "capacity": 24,
+      "typical_cost": 12
+    },
+    {
+      "id": "quiet_cafe",
+      "name": "Quiet Corner Cafe",
+      "type": "food",
+      "tags": [
+        "coffee",
+        "quiet",
+        "wifi",
+        "vegan"
+      ],
+      "open": [
+        "08:00",
+        "21:00"
+      ],
+      "capacity": 18,
+      "typical_cost": 10
+    },
+    {
+      "id": "library",
+      "name": "West Library",
+      "type": "study",
+      "tags": [
+        "quiet",
+        "free",
+        "wifi"
+      ],
+      "open": [
+        "09:00",
+        "18:00"
+      ],
+      "capacity": 40,
+      "typical_cost": 0
+    },
+    {
+      "id": "coworking",
+      "name": "Civic Coworking",
+      "type": "work",
+      "tags": [
+        "quiet",
+        "wifi",
+        "paid"
+      ],
+      "open": [
+        "08:00",
+        "22:00"
+      ],
+      "capacity": 30,
+      "typical_cost": 15
+    },
+    {
+      "id": "city_hall",
+      "name": "City Hall",
+      "type": "service",
+      "tags": [
+        "appointment",
+        "public_service"
+      ],
+      "open": [
+        "09:00",
+        "17:00"
+      ],
+      "capacity": 50
+    },
+    {
+      "id": "park",
+      "name": "Riverside Park",
+      "type": "recreation",
+      "tags": [
+        "outdoor",
+        "low_cost",
+        "exercise"
+      ],
+      "open": [
+        "06:00",
+        "22:00"
+      ],
+      "capacity": 100
+    },
+    {
+      "id": "gym",
+      "name": "Pocket Gym",
+      "type": "recreation",
+      "tags": [
+        "exercise",
+        "paid"
+      ],
+      "open": [
+        "06:00",
+        "23:00"
+      ],
+      "capacity": 25,
+      "typical_cost": 8
+    },
+    {
+      "id": "market",
+      "name": "Harbor Market",
+      "type": "shopping",
+      "tags": [
+        "groceries",
+        "busy"
+      ],
+      "open": [
+        "08:00",
+        "21:00"
+      ],
+      "capacity": 60,
+      "typical_cost": 14
+    },
+    {
+      "id": "pharmacy",
+      "name": "Green Cross Pharmacy",
+      "type": "shopping",
+      "tags": [
+        "medicine",
+        "errand"
+      ],
+      "open": [
+        "08:00",
+        "22:00"
+      ],
+      "capacity": 12,
+      "typical_cost": 9
+    },
+    {
+      "id": "clinic",
+      "name": "Walk-In Clinic",
+      "type": "health",
+      "tags": [
+        "health",
+        "appointment"
+      ],
+      "open": [
+        "08:30",
+        "19:00"
+      ],
+      "capacity": 20,
+      "typical_cost": 20
+    },
+    {
+      "id": "budget_diner",
+      "name": "Budget Diner",
+      "type": "food",
+      "tags": [
+        "meal",
+        "cheap"
+      ],
+      "open": [
+        "07:00",
+        "22:00"
+      ],
+      "capacity": 30,
+      "typical_cost": 6
+    },
+    {
+      "id": "school",
+      "name": "East School",
+      "type": "school",
+      "tags": [
+        "family",
+        "pickup"
+      ],
+      "open": [
+        "07:30",
+        "18:30"
+      ],
+      "capacity": 80
+    },
+    {
+      "id": "theatre",
+      "name": "Pocket Theatre",
+      "type": "culture",
+      "tags": [
+        "social",
+        "ticketed"
+      ],
+      "open": [
+        "17:00",
+        "23:00"
+      ],
+      "capacity": 50,
+      "typical_cost": 18
+    },
+    {
+      "id": "bookstore",
+      "name": "Arcade Bookstore",
+      "type": "shopping",
+      "tags": [
+        "quiet",
+        "books",
+        "wifi"
+      ],
+      "open": [
+        "10:00",
+        "20:00"
+      ],
+      "capacity": 20,
+      "typical_cost": 7
+    }
+  ],
+  "edges": [
+    {
+      "from": "home_aria",
+      "to": "transit_hub",
+      "minutes": 12
+    },
+    {
+      "from": "home_aria",
+      "to": "gym",
+      "minutes": 9
+    },
+    {
+      "from": "home_ben",
+      "to": "transit_hub",
+      "minutes": 10
+    },
+    {
+      "from": "home_ben",
+      "to": "school",
+      "minutes": 8
+    },
+    {
+      "from": "transit_hub",
+      "to": "office",
+      "minutes": 14
+    },
+    {
+      "from": "transit_hub",
+      "to": "plaza",
+      "minutes": 8
+    },
+    {
+      "from": "transit_hub",
+      "to": "clinic",
+      "minutes": 10
+    },
+    {
+      "from": "office",
+      "to": "cafe_central",
+      "minutes": 6
+    },
+    {
+      "from": "office",
+      "to": "coworking",
+      "minutes": 8
+    },
+    {
+      "from": "office",
+      "to": "city_hall",
+      "minutes": 10
+    },
+    {
+      "from": "cafe_central",
+      "to": "plaza",
+      "minutes": 4
+    },
+    {
+      "from": "plaza",
+      "to": "library",
+      "minutes": 7
+    },
+    {
+      "from": "plaza",
+      "to": "market",
+      "minutes": 9
+    },
+    {
+      "from": "plaza",
+      "to": "theatre",
+      "minutes": 6
+    },
+    {
+      "from": "library",
+      "to": "quiet_cafe",
+      "minutes": 5
+    },
+    {
+      "from": "library",
+      "to": "bookstore",
+      "minutes": 3
+    },
+    {
+      "from": "quiet_cafe",
+      "to": "park",
+      "minutes": 6
+    },
+    {
+      "from": "quiet_cafe",
+      "to": "theatre",
+      "minutes": 8
+    },
+    {
+      "from": "park",
+      "to": "gym",
+      "minutes": 5
+    },
+    {
+      "from": "park",
+      "to": "market",
+      "minutes": 8
+    },
+    {
+      "from": "market",
+      "to": "pharmacy",
+      "minutes": 4
+    },
+    {
+      "from": "market",
+      "to": "budget_diner",
+      "minutes": 3
+    },
+    {
+      "from": "market",
+      "to": "city_hall",
+      "minutes": 7
+    },
+    {
+      "from": "pharmacy",
+      "to": "clinic",
+      "minutes": 4
+    },
+    {
+      "from": "budget_diner",
+      "to": "school",
+      "minutes": 6
+    },
+    {
+      "from": "coworking",
+      "to": "bookstore",
+      "minutes": 5
+    }
+  ]
+}

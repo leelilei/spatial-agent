@@ -1,0 +1,25 @@
+# CityIntent v0.3 Blinded Human Audit Pilot
+
+This package contains 16 anonymized traces: one seeded random repeat from every
+scenario-adapter cell in the 4 x 4 experiment.
+
+## Handoff
+
+1. Give each annotator `RUBRIC.md`, the complete `blinded/` directory, and only
+   their own CSV from `annotations/`.
+2. Do not share `sealed/`, source result paths, framework names, scores, or the
+   other annotator's labels until both files are locked.
+3. Use two independent annotators. Resolve disagreements only after computing
+   pre-adjudication agreement.
+4. After both CSV files are complete, run:
+
+```bash
+python 6-city/benchmarks/cityintent_v0/tools/score_human_audit.py ^
+  --annotations-a 6-city/annotation/cityintent_v03_blind_pilot_2026-07-01/annotations/annotator_a.csv ^
+  --annotations-b 6-city/annotation/cityintent_v03_blind_pilot_2026-07-01/annotations/annotator_b.csv ^
+  --key 6-city/annotation/cityintent_v03_blind_pilot_2026-07-01/sealed/audit_key.csv ^
+  --output-dir 6-city/annotation/cityintent_v03_blind_pilot_2026-07-01/agreement
+```
+
+The annotation CSVs are intentionally blank in the repository. Committing
+labels before independent annotation would invalidate the blind pilot.

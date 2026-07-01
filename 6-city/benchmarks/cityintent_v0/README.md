@@ -92,8 +92,11 @@ tools/run_baseline_traces.py
 tests/test_action_protocol_v02.py
 tools/judge_trace_plausibility.py
 tools/run_repeated_experiment.py
+tools/build_human_audit.py
+tools/score_human_audit.py
 tools/setup_external_framework.py
 tools/validate_external_adapters.py
+tests/test_human_audit_tools.py
 configs/fhl_gpt54mini.json
 external_adapters/*_manifest.json
 external_adapters/*_official.py
@@ -266,10 +269,25 @@ It contains 48 traces: four diagnostic scenarios, four verified official
 decision-layer adapters, and three repeats. The accompanying interpretation is
 in `6-city/docs/experiments/cityintent_v03_interruptible_movement_4x4x3_2026-07-01.md`.
 
+## Blinded Human Audit
+
+The balanced 16-trace pilot is archived at
+`6-city/annotation/cityintent_v03_blind_pilot_2026-07-01/`. One seeded repeat is
+sampled from each scenario-adapter cell. Annotators receive only the rubric,
+world reference, blinded packet, and their own blank CSV. Framework identity,
+repeat id, metrics, violations, failure taxonomy, and verified replans remain in
+the separate sealed key.
+
+After two independent annotation files are locked, run
+`tools/score_human_audit.py` to report exact agreement, Cohen's kappa, and
+calibration against deterministic completion, feasibility, and replanning.
+
 ## Next Implementation Step
 
 The next code step is to make the experiment less anecdotal:
 
 - expand the scenario suite with harder impossible-trace traps;
-- calibrate the LLM judge against a small human-coded audit set;
+- complete the two-person blinded audit and adjudicate disagreements;
+- use the audit to decide whether `co_presence` needs explicit second-agent
+  trajectory or interaction evidence;
 - keep all agents behind the same typed action and scoring contract.
