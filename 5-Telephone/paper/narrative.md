@@ -1,5 +1,9 @@
 # When Truth Loses Its Source - Paper Narrative
 
+> **Audit warning (2026-06-30):** P1-rec's late-broadcast condition contained zero injections.
+> The entrenchment-vs-recency mechanism claim is retracted pending redesign. Do not migrate that
+> result into the submission. See `../docs/project/p1_rec_audit_2026-06-30.md`.
+
 > Working title: *When Truth Loses Its Source: Provenance-Aware Memory for Socially Distributed Agents*.
 > This is the current writing spine. Numbers live in `../RESULTS.md`; the
 > figure plan lives in `figures.md`; citation triage lives in `references.md`.

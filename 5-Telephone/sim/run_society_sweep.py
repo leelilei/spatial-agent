@@ -160,6 +160,32 @@ def write_json(path: Path, data: Any) -> None:
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
+def social_rehearsal_trajectory(run_dir: Path, world: Any) -> dict[str, Any]:
+    """Count current/stale fact rehearsal in natural utterances by round.
+
+    Thaw is about competition between individual decay and social re-exposure.
+    These counts make that competing process observable instead of attributing
+    every endpoint change to the memory-decay knob alone.
+    """
+    trajectory = []
+    totals = {"current": 0, "stale": 0, "mixed": 0, "neutral": 0}
+    for path in sorted(run_dir.glob("round_*.json")):
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        counts = {"current": 0, "stale": 0, "mixed": 0, "neutral": 0}
+        for encounter in payload.get("encounters", []):
+            for utterance in encounter.get("utterances", []):
+                text = str(utterance.get("text", "")).lower()
+                has_current = any(marker in text for marker in world.current_markers)
+                has_stale = any(marker in text for marker in world.stale_markers)
+                label = ("mixed" if has_current and has_stale else
+                         "current" if has_current else
+                         "stale" if has_stale else "neutral")
+                counts[label] += 1
+                totals[label] += 1
+        trajectory.append({"round": int(payload.get("round", len(trajectory))), **counts})
+    return {"trajectory": trajectory, "totals": totals}
+
+
 def run_one(
     *,
     memory: str,
@@ -167,6 +193,7 @@ def run_one(
     llm: LLM | None,
     run_index: int,
     schedule_seed: int,
+    forget_rate: float,
     args: argparse.Namespace,
 ) -> dict[str, Any]:
     if args.mock:
@@ -179,7 +206,8 @@ def run_one(
     world = demo_world(
         build_memory_factory(memory, llm, scenario=args.scenario, prov_loss=args.prov_loss,
                              prov_garble=args.prov_garble, prov_mention=args.prov_mention,
-                             apm_k=args.apm_k, apm_require_origin=not args.apm_no_origin),
+                             apm_k=args.apm_k, apm_require_origin=not args.apm_no_origin,
+                             forget_rate=forget_rate, forget_floor=args.forget_floor),
         rng_seed=schedule_seed,
         agent_count=args.agent_count,
         meetings_per_round=args.meetings,
@@ -191,10 +219,12 @@ def run_one(
         topology=args.topology,
         adversary_agent=args.adversary_agent,
         adversary_round=args.adversary_round,
+        initial_fact_scope=args.initial_fact_scope,
     )
     question = world.question  # scenario-correct probe (overrides the default)
     label = model_label(model, llm, mock=args.mock)
-    run_dir = args.out_dir / label / memory / f"run_{run_index:03d}"
+    forget_label = f"forget_{forget_rate:.3f}".rstrip("0").rstrip(".")
+    run_dir = args.out_dir / label / memory / forget_label / f"run_{run_index:03d}"
 
     trajectory: list[dict[str, Any]] = []
     round_hook = None
@@ -207,6 +237,8 @@ def run_one(
 
     summary = run_sim(world, args.rounds, converse, run_dir, workers=max(1, args.workers),
                       round_hook=round_hook)
+    rehearsal = social_rehearsal_trajectory(run_dir, world)
+    write_json(run_dir / "social_rehearsal.json", rehearsal)
     if trajectory:
         write_json(run_dir / "trajectory.json", {"question": question, "trajectory": trajectory})
     summary.update({
@@ -215,6 +247,8 @@ def run_one(
         "run_index": run_index,
         "schedule_seed": schedule_seed,
         "agent_count": args.agent_count,
+        "forget_rate": forget_rate,
+        "forget_floor": args.forget_floor,
     })
 
     if args.mock:
@@ -232,6 +266,7 @@ def run_one(
 
     summary["currency_interview"] = tally
     summary["unsupported_specific"] = unsupported_specific
+    summary["social_rehearsal"] = rehearsal["totals"]
     write_json(run_dir / "sim_summary.json", summary)
 
     return {
@@ -240,21 +275,25 @@ def run_one(
         "run_index": run_index,
         "schedule_seed": schedule_seed,
         "agent_count": args.agent_count,
+        "forget_rate": forget_rate,
+        "forget_floor": args.forget_floor,
         "rounds": args.rounds,
         "turns": args.turns,
         "out_dir": str(run_dir),
         "currency_interview": tally,
         "unsupported_specific": unsupported_specific,
+        "social_rehearsal": rehearsal["totals"],
     }
 
 
 def aggregate(rows: list[dict[str, Any]]) -> dict[str, Any]:
-    groups: dict[tuple[str, str], dict[str, Any]] = {}
+    groups: dict[tuple[str, str, float], dict[str, Any]] = {}
     for row in rows:
-        key = (str(row["model"]), str(row["memory"]))
+        key = (str(row["model"]), str(row["memory"]), float(row.get("forget_rate", 0.0)))
         group = groups.setdefault(key, {
             "model": key[0],
             "memory": key[1],
+            "forget_rate": key[2],
             "runs": 0,
             "agents_total": 0,
             "current": 0,
@@ -293,7 +332,9 @@ def aggregate(rows: list[dict[str, Any]]) -> dict[str, Any]:
         summaries.append(group)
 
     return {
-        "groups": sorted(summaries, key=lambda item: (item["model"], item["memory"])),
+        "groups": sorted(summaries, key=lambda item: (
+            item["model"], item["memory"], item["forget_rate"]
+        )),
         "rows": rows,
     }
 
@@ -318,9 +359,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--prov-mention", type=float, default=1.0, help="PROV sparse comms: prob the agent conveys the fact in a given utterance (1.0=every utterance)")
     parser.add_argument("--apm-k", type=int, default=2, help="APM: distinct independent sources required to COMMIT a (version,value)")
     parser.add_argument("--apm-no-origin", action="store_true", help="APM: disable origin-anchoring (anti-spoof) — for ablation")
+    parser.add_argument("--forget-rate", action="append", type=float, default=None,
+                        help="Thaw GA: per-round accessibility loss in [0,1]; repeatable sweep axis")
+    parser.add_argument("--forget-floor", type=float, default=0.1,
+                        help="Thaw GA: remove memory items once strength falls below this")
     parser.add_argument("--adversary-agent", default="", help="C16: agent_id that broadcasts a FORGED high-version stale claim (auth=False), e.g. a13")
     parser.add_argument("--adversary-round", type=int, default=-1, help="C16: round from which the adversary starts broadcasting the forgery")
     parser.add_argument("--topology", default="random", choices=["random","ring","star","smallworld"], help="contact topology")
+    parser.add_argument("--initial-fact-scope", default="legacy",
+                        choices=["legacy", "none", "source", "broadcast"],
+                        help="initial stale fact exposure; Thaw uses broadcast to create a real incumbent")
     parser.add_argument("--rounds", type=int, default=5)
     parser.add_argument("--turns", type=int, default=4)
     parser.add_argument("--workers", type=int, default=1, help="concurrent encounters/consolidations per round")
@@ -336,6 +384,7 @@ def main() -> int:
     args = parse_args()
     memories = tuple(args.memory or (("raw",) if args.mock else DEFAULT_MEMORIES))
     models = tuple(args.model or ((None,) if not args.mock else ("mock",)))
+    forget_rates = tuple(args.forget_rate or (0.0,))
     rows: list[dict[str, Any]] = []
 
     # Reproducibility: dump the FULL config (all CLI args) so every run dir is self-describing.
@@ -352,25 +401,28 @@ def main() -> int:
     for model in models:
         llm = llm_by_model.get(model)
         for memory in memories:
-            for run_index in range(args.runs):
-                schedule_seed = args.seed + run_index
-                print(
-                    f"model={model_label(model, llm, mock=args.mock)} "
-                    f"memory={memory} run={run_index} seed={schedule_seed}",
-                    flush=True,
-                )
-                try:
-                    rows.append(run_one(
-                        memory=memory,
-                        model=model,
-                        llm=llm,
-                        run_index=run_index,
-                        schedule_seed=schedule_seed,
-                        args=args,
-                    ))
-                except Exception as exc:  # one failed run (e.g. provider outage) must not lose the sweep
-                    print(f"!! run failed (skipped): memory={memory} run={run_index} seed={schedule_seed}: {exc}",
-                          flush=True)
+            for forget_rate in forget_rates:
+                for run_index in range(args.runs):
+                    schedule_seed = args.seed + run_index
+                    print(
+                        f"model={model_label(model, llm, mock=args.mock)} "
+                        f"memory={memory} forget_rate={forget_rate} "
+                        f"run={run_index} seed={schedule_seed}",
+                        flush=True,
+                    )
+                    try:
+                        rows.append(run_one(
+                            memory=memory,
+                            model=model,
+                            llm=llm,
+                            run_index=run_index,
+                            schedule_seed=schedule_seed,
+                            forget_rate=forget_rate,
+                            args=args,
+                        ))
+                    except Exception as exc:  # one failed run (e.g. provider outage) must not lose the sweep
+                        print(f"!! run failed (skipped): memory={memory} forget_rate={forget_rate} "
+                              f"run={run_index} seed={schedule_seed}: {exc}", flush=True)
 
     if not rows:
         print("no runs completed", flush=True)

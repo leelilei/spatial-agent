@@ -1,0 +1,1882 @@
+{
+  "a01": {
+    "kind": "thaw_ga_reflection",
+    "forget_rate": 0.0,
+    "forget_floor": 0.1,
+    "n_events": 24,
+    "event_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "reflections": [
+      "Rosa is organizing the repair effort and coordinating scheduling details with Bo.",
+      "Bo is providing priority direction on what should be handled first.",
+      "Pia is cooperating but depends on missing logistics from others before she can finalize her updates.",
+      "Rosa is coordinating the repair drive and acting as the central scheduler, while others feed her updates and logistics.",
+      "Bo appears to be directing priorities on repairs, especially on immediate issues like the leaky sink and front gate.",
+      "The group is collaborative and in active coordination, with the event location and timing changing as logistics get finalized.",
+      "Rosa is coordinating the repair drive and acting as the main hub for schedule and logistics updates.",
+      "Several people are contributing in parallel by sharing status, relaying changes, and confirming details as they become available.",
+      "The event moved in time and location, so the group is actively adjusting plans and keeping everyone aligned around the new Sunday community center setup.",
+      "Rosa is coordinating the repair drive centrally and keeping others synchronized as details shift.",
+      "Several participants are contributing in parallel by handling tasks like house assignment, supplies, logistics, and confirmations.",
+      "The group is responsive and collaborative, with people offering specific help and feeding updates back as they become available.",
+      "Rosa is coordinating the repair drive and serves as the central organizer who keeps the plan updated.",
+      "Uli and Sam are taking on concrete logistical support, with Uli assigning houses and Sam handling setup and supplies.",
+      "Oren is responsive and ready to help hands-on, especially with tools and house pickups."
+    ],
+    "reflection_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Rosa: I’ve got the repair drive list in order, Bo. Tell me what’s needed first and I’ll put it on the schedule.",
+        "speaker": "Rosa",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Start with the leaky sink and the front gate.",
+        "speaker": "Bo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: I’ve got the repair drive list ready, and I’m lining up the first houses now. If you’ve got updates from your side, send them over and I’ll fold them in.",
+        "speaker": "Rosa",
+        "listener": "Pia"
+      },
+      {
+        "round": 0,
+        "text": "Pia: I can send mine, but I’m still waiting on two addresses and a time window for the truck.",
+        "speaker": "Pia",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Vik: I’ll spread the word and make sure everyone knows when and where it’s happening. I’m helping with the repair drive setup too.",
+        "speaker": "Vik",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: Thanks, Vik. Send me any updates as they come in, and I’ll plug them into the schedule.",
+        "speaker": "Rosa",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: I’ve got the repair drive list ready, and I’m lining up the first houses now. Send me any updates from your side and I’ll fold them in.",
+        "speaker": "Rosa",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Mina: Great, I’ll send anything I hear. What time do you want me to head over to the community hall?",
+        "speaker": "Mina",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+        "speaker": "world",
+        "listener": "Rosa",
+        "injected": true,
+        "prov": {
+          "version": 1,
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "auth": true,
+          "source": "ORIGIN",
+          "path": [
+            "ORIGIN"
+          ]
+        }
+      },
+      {
+        "round": 2,
+        "text": "Rosa: The repair drive is now Sunday at the community center, so send me any updates from your side and I’ll fold them in.",
+        "speaker": "Rosa",
+        "listener": "Tess"
+      },
+      {
+        "round": 2,
+        "text": "Tess: Oh good, I’ll pass that along. Last I heard, they were still collecting tools and supplies, and a few folks were planning to help sort everything Sunday afternoon.",
+        "speaker": "Tess",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Thanks, Pia. Send what you have now, and I’ll slot in the two addresses and truck window as soon as they come through.",
+        "speaker": "Rosa",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Pia: I’m still waiting on the truck window and one address confirmation, but I’ll send both as soon as they land.",
+        "speaker": "Pia",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+        "speaker": "world",
+        "listener": "Rosa",
+        "injected": true,
+        "prov": {
+          "version": 2,
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "auth": true,
+          "source": "ORIGIN",
+          "path": [
+            "ORIGIN"
+          ]
+        }
+      },
+      {
+        "round": 3,
+        "text": "Rosa: I’ve got the repair drive list ready, and I’m lining up the first houses now. Send me any updates from your side and I’ll fold them in.",
+        "speaker": "Rosa",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Uli: Thanks, Rosa. I can handle assigning the first few houses and matching people to the smaller fixes, then I’ll send you the updated list.",
+        "speaker": "Uli",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Oren: Right, the repair drive. What still needs doing, and where can I help? I’ve got a few tools and can come by today.",
+        "speaker": "Oren",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Thanks, Oren. I’m still finalizing the house list and setup at the community center on Sunday, so I can use help with prep and checking in on a few homes.",
+        "speaker": "Rosa",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+        "speaker": "world",
+        "listener": "Rosa",
+        "injected": true,
+        "prov": {
+          "version": 3,
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "auth": true,
+          "source": "ORIGIN",
+          "path": [
+            "ORIGIN"
+          ]
+        }
+      },
+      {
+        "round": 4,
+        "text": "Oren: Right, the repair drive. What still needs doing, and where can I help? I’ve got a few tools and can come by today.",
+        "speaker": "Oren",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Thanks, Oren. We’re set for Sunday at the community center now, and I can use your help on the first two house pickups if you’re free today.",
+        "speaker": "Rosa",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Sam: It’s today at the community center, and I’m getting the repair station set up there. Could you bring the tools and help sort the supplies when you arrive?",
+        "speaker": "Sam",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Yes, I’ll bring the tools and help sort supplies at the community center. Send me any last-minute changes and I’ll keep everyone updated.",
+        "speaker": "Rosa",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+        "speaker": "world",
+        "listener": "Rosa",
+        "injected": true,
+        "prov": {
+          "version": 4,
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "auth": true,
+          "source": "ORIGIN",
+          "path": [
+            "ORIGIN"
+          ]
+        }
+      }
+    ]
+  },
+  "a02": {
+    "kind": "thaw_ga_reflection",
+    "forget_rate": 0.0,
+    "forget_floor": 0.1,
+    "n_events": 20,
+    "event_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "reflections": [
+      "Sam is organizing the repair drive and delegating specific setup tasks to volunteers.",
+      "Uli is practical and focused on physical support and missing supplies, especially for heavier work.",
+      "Bo is responsive and ready to help, suggesting a cooperative group dynamic around the event.",
+      "Sam is a proactive organizer who coordinates tasks and helps route volunteers to specific jobs.",
+      "Uli is relying on others for heavier physical work and is good at assigning concrete next steps on site.",
+      "Bo and Oren are offering flexible, willing support, suggesting a cooperative group with clear task-sharing.",
+      "Sam is coordinating the repair drive and delegating tasks based on each person’s availability and strengths.",
+      "Several people are stepping in with practical, hands-on support, suggesting a cooperative group with clear task sharing.",
+      "Nell is less informed than the others, so Sam is also serving as the main point of contact for updates and logistics.",
+      "Sam is coordinating the repair drive and delegating concrete setup tasks to others.",
+      "Oren, Nell, and Uli are responsive helpers who volunteer tools and hands-on support.",
+      "Vik is taking on an information-and-flow role, helping with timing, directions, and arrivals.",
+      "Sam is organizing a same-day repair station at the community center and coordinating logistics.",
+      "Nell, Uli, Tess, and Rosa are responsive helpers who can bring tools and sort supplies.",
+      "Rosa is also acting as a communication relay, offering to keep everyone updated on changes."
+    ],
+    "reflection_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Sam: I can help with the repair drive. What do you need me to bring or fix?",
+        "speaker": "Sam",
+        "listener": "Uli"
+      },
+      {
+        "round": 0,
+        "text": "Uli: I could use a hand with the heavier stuff, and maybe a spare extension cord if you have one.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Yeah, I can help with the repair drive. Just tell me what needs doing.",
+        "speaker": "Bo",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Thanks, Bo. Could you help sort the donated tools and set them out by the garage?",
+        "speaker": "Sam",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Sam: I can bring a spare extension cord and help with the heavier stuff. Point me to whatever needs moving first.",
+        "speaker": "Sam",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Uli: Thanks, Sam. Bring the extension cord and start with the old shelving by the back wall; I’ll point out the heavier pieces when you get here.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Right, the repair drive. What still needs doing, and where can I help? I’ve got a few tools and can come by today.",
+        "speaker": "Oren",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Could you bring the tools and help set up the repair station today? I still need a hand sorting supplies and checking what needs fixing.",
+        "speaker": "Sam",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Vik: I’m heading over a bit early to help with setup, and I’ll make sure everyone knows the time and place for the repair drive.",
+        "speaker": "Vik",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Sam: Thanks, Vik. Could you help point people to the setup area and keep an eye on arrivals while I sort the supplies?",
+        "speaker": "Sam",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Nell: I’m still catching up on the details, so what’s the latest you’ve heard about when and where it’s happening?",
+        "speaker": "Nell",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Sam: It’s still set for today at the community center, and I’m trying to get the repair station ready there. Could you bring the tools and help me sort the supplies when you arrive?",
+        "speaker": "Sam",
+        "listener": "Nell"
+      },
+      {
+        "round": 3,
+        "text": "Sam: It’s today at the community center. I’m getting the repair station set up there, and I could use help with the tools and sorting supplies when you arrive.",
+        "speaker": "Sam",
+        "listener": "Nell"
+      },
+      {
+        "round": 3,
+        "text": "Nell: Got it, I’ll bring the tools and help sort the supplies when I get there.",
+        "speaker": "Nell",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Sam: Could you bring the tools and help me sort the supplies when you get there? We’re still set for today at the community center.",
+        "speaker": "Sam",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Uli: Yes, I’ll bring the tools and help sort the supplies when I get there. I’m still set for today at the community center.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Sam: It’s today at the community center, and I’m setting up the repair station there. If you can bring the tools and help sort the supplies when you arrive, that would be a big help.",
+        "speaker": "Sam",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Tess: Got it, I’ll bring the tools and help sort the supplies when I get there.",
+        "speaker": "Tess",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Sam: It’s today at the community center, and I’m getting the repair station set up there. Could you bring the tools and help sort the supplies when you arrive?",
+        "speaker": "Sam",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Yes, I’ll bring the tools and help sort supplies at the community center. Send me any last-minute changes and I’ll keep everyone updated.",
+        "speaker": "Rosa",
+        "listener": "Sam"
+      }
+    ]
+  },
+  "a03": {
+    "kind": "thaw_ga_reflection",
+    "forget_rate": 0.0,
+    "forget_floor": 0.1,
+    "n_events": 18,
+    "event_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "reflections": [
+      "The group is coordinating a community repair drive, with people sharing updates on turnout, donations, and volunteer shifts.",
+      "Tess appears to be the most informed connector so far, relaying logistics and checking on staffing needs.",
+      "Mina is looking for specific instructions and likely needs clearer ownership and timing before contributing her supplies.",
+      "Tess is a central coordinator who keeps relaying partial updates and follows up on logistics for others.",
+      "Nell and Mina are seeking clear, current information and are relying on Tess to fill in gaps.",
+      "Pia is focused on planning and routing, and needs finalized details before she can act efficiently.",
+      "Tess is acting as an informal hub, relaying schedule and logistics updates to multiple people while still waiting on final details.",
+      "Several people are coordinating the repair drive indirectly, relying on shared status updates rather than a single confirmed plan.",
+      "The group is organized around a community repair effort with changing timing and routing details, and people are actively adapting to those updates.",
+      "Tess is a central info relay for the repair drive, but she is still waiting on final scheduling details and is passing along partial updates to others.",
+      "Mina, Pia, and Rosa are coordinating around logistics, with Pia needing an exact house order and Rosa changing the event time/location.",
+      "Bo is ready to take on the first repair as soon as work is assigned, suggesting a hands-on role rather than planning.",
+      "Tess is acting as a relay point, passing updates between multiple people and trying to keep the repair drive organized.",
+      "The group is coordinating a community repair event with shared uncertainty about timing and schedule, but clear willingness to help.",
+      "Bo and Oren are offering hands-on support, while Rosa and Sam appear to be helping coordinate the venue and logistics."
+    ],
+    "reflection_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Nell: I heard the repair drive’s moving along, but I’m still catching up on the details. What’s the latest you’ve heard?",
+        "speaker": "Nell",
+        "listener": "Tess"
+      },
+      {
+        "round": 0,
+        "text": "Tess: Last I heard, they’ve got a solid turnout and folks are sorting donations by what needs fixing first. I’m trying to hear whether they still need hands for the afternoon shift.",
+        "speaker": "Tess",
+        "listener": "Nell"
+      },
+      {
+        "round": 0,
+        "text": "Tess: Oh, right, the repair drive. I heard they’re still collecting tools and supplies over by the community hall, and a few folks said they’d help sort everything this afternoon.",
+        "speaker": "Tess",
+        "listener": "Mina"
+      },
+      {
+        "round": 0,
+        "text": "Mina: Who’s in charge of the drop-off, and what time should I bring what I’ve got?",
+        "speaker": "Mina",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Mina: What time are you heading over for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Tess: I’m thinking of swinging by around 2, when they start sorting things at the community hall. I’m still checking who’s handling drop-offs, but I can ask around and tell you what I find.",
+        "speaker": "Tess",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Pia: I’ve got the list, but I need the final house order and any updates before I can route anyone efficiently. Send me what changed, and I’ll slot it in.",
+        "speaker": "Pia",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Tess: They’re still collecting tools and supplies over by the community hall, and a few folks said they’d help sort everything this afternoon. I haven’t heard a final house order yet, though.",
+        "speaker": "Tess",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: The repair drive is now Sunday at the community center, so send me any updates from your side and I’ll fold them in.",
+        "speaker": "Rosa",
+        "listener": "Tess"
+      },
+      {
+        "round": 2,
+        "text": "Tess: Oh good, I’ll pass that along. Last I heard, they were still collecting tools and supplies, and a few folks were planning to help sort everything Sunday afternoon.",
+        "speaker": "Tess",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Tess: Last I heard, they’re still gathering tools and supplies at the community hall, and a few folks are sorting things this afternoon. I’m still waiting on the exact schedule, though.",
+        "speaker": "Tess",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Okay, just send me the first repair when you have it and I’ll handle it.",
+        "speaker": "Bo",
+        "listener": "Tess"
+      },
+      {
+        "round": 3,
+        "text": "Bo: Got it, just send me the first repair when you have it and I’ll handle it.",
+        "speaker": "Bo",
+        "listener": "Tess"
+      },
+      {
+        "round": 3,
+        "text": "Tess: Still waiting on the first one, but I heard they’re collecting tools and supplies over by the community hall, and a few folks said they’d help sort everything this afternoon.",
+        "speaker": "Tess",
+        "listener": "Bo"
+      },
+      {
+        "round": 4,
+        "text": "Sam: It’s today at the community center, and I’m setting up the repair station there. If you can bring the tools and help sort the supplies when you arrive, that would be a big help.",
+        "speaker": "Sam",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Tess: Got it, I’ll bring the tools and help sort the supplies when I get there.",
+        "speaker": "Tess",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Right, the repair drive. What still needs doing, and where can I help? I’ve got a few tools and can come by today.",
+        "speaker": "Oren",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Tess: They’re still sorting tools and supplies at the community hall, and a few folks are lining up to help this afternoon. I’m still waiting on the final schedule, but I can pass along your tools and help offer to the others.",
+        "speaker": "Tess",
+        "listener": "Oren"
+      }
+    ]
+  },
+  "a04": {
+    "kind": "thaw_ga_reflection",
+    "forget_rate": 0.0,
+    "forget_floor": 0.1,
+    "n_events": 20,
+    "event_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "reflections": [
+      "Uli is coordinating a practical repair effort and is comfortable delegating specific tasks to others.",
+      "Sam and Oren are both willing to contribute quickly, with Oren offering time and tools and Sam offering hands-on help.",
+      "The interactions suggest a cooperative, community-oriented group where people respond directly to concrete needs.",
+      "Uli is coordinating a practical group repair effort and delegating tasks based on what each person can bring or handle.",
+      "Sam is proactive and reliable, offering specific help and follow-through on needed supplies and heavy lifting.",
+      "Oren and Nell are entering as flexible support, asking for priorities and tools so they can plug into the work where needed.",
+      "Uli is coordinating a hands-on repair effort and is the main point of contact assigning tasks and directing helpers.",
+      "Oren and Sam are dependable helpers who proactively offer tools, labor, and to take on specific repair tasks.",
+      "Nell and Mina are newer or less informed about the effort and rely on Uli for direction or logistics before contributing.",
+      "Uli is coordinating a hands-on repair effort and is the main point of contact for assigning tasks and consolidating updates.",
+      "Several people are responsive and willing to help today, usually by bringing tools or taking on whatever work is still open.",
+      "Rosa is organizing the larger schedule while Uli feeds her task-level updates, showing a clear division between planning and on-site coordination.",
+      "Uli is coordinating a hands-on community repair effort, assigning tasks, matching people to jobs, and keeping the schedule aligned.",
+      "Sam, Rosa, Mina, Nell, and Vik are responsive volunteers who ask for timing, confirm availability, and take on specific repair or setup tasks.",
+      "The group communicates in a practical, collaborative way, with Uli acting as the central organizer and others adapting to shifting task needs."
+    ],
+    "reflection_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Sam: I can help with the repair drive. What do you need me to bring or fix?",
+        "speaker": "Sam",
+        "listener": "Uli"
+      },
+      {
+        "round": 0,
+        "text": "Uli: I could use a hand with the heavier stuff, and maybe a spare extension cord if you have one.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Right, the repair drive. I was just about to ask what still needs doing, because I’ve got a few tools and I can come by today.",
+        "speaker": "Oren",
+        "listener": "Uli"
+      },
+      {
+        "round": 0,
+        "text": "Uli: That would help a lot. I still need the porch latch looked at and a loose step tightened, if you’ve got time.",
+        "speaker": "Uli",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Sam: I can bring a spare extension cord and help with the heavier stuff. Point me to whatever needs moving first.",
+        "speaker": "Sam",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Uli: Thanks, Sam. Bring the extension cord and start with the old shelving by the back wall; I’ll point out the heavier pieces when you get here.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Uli: We still need someone to sort the loose boards and another pair of hands for the east fence. If you can bring your tools today, that would help a lot.",
+        "speaker": "Uli",
+        "listener": "Nell"
+      },
+      {
+        "round": 1,
+        "text": "Nell: I’m still catching up on the details, but I can bring my tools today. Do you want me on the loose boards or the east fence?",
+        "speaker": "Nell",
+        "listener": "Uli"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Right, the repair drive. What still needs doing, and where can I help? I’ve got a few tools and can come by today.",
+        "speaker": "Oren",
+        "listener": "Uli"
+      },
+      {
+        "round": 2,
+        "text": "Uli: That would help a lot. If you can bring the tools and handle whatever’s left in the back rooms, I’ll sort the list and meet you there.",
+        "speaker": "Uli",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Uli: Thanks, Sam. If you can bring your tools and help with the door latch, that would cover the main thing for today.",
+        "speaker": "Uli",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Mina: Got it. What time should I come by for the handoff?",
+        "speaker": "Mina",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: I’ve got the repair drive list ready, and I’m lining up the first houses now. Send me any updates from your side and I’ll fold them in.",
+        "speaker": "Rosa",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Uli: Thanks, Rosa. I can handle assigning the first few houses and matching people to the smaller fixes, then I’ll send you the updated list.",
+        "speaker": "Uli",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Sam: Could you bring the tools and help me sort the supplies when you get there? We’re still set for today at the community center.",
+        "speaker": "Sam",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Uli: Yes, I’ll bring the tools and help sort the supplies when I get there. I’m still set for today at the community center.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Uli: The east fence would help most. I’ll send you over there, and we can look at the loose boards after.",
+        "speaker": "Uli",
+        "listener": "Nell"
+      },
+      {
+        "round": 4,
+        "text": "Nell: Got it, I’ll head over to the east fence and bring my tools with me.",
+        "speaker": "Nell",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Uli: Thanks, Vik. I’m still pulling the list together, so if you’ve got tools or can take one house, send me your availability and I’ll slot you in.",
+        "speaker": "Uli",
+        "listener": "Vik"
+      },
+      {
+        "round": 4,
+        "text": "Vik: I can help set up a bit early, and I’m free to take one house too. Send me the time and place, and I’ll pass it along.",
+        "speaker": "Vik",
+        "listener": "Uli"
+      }
+    ]
+  },
+  "a05": {
+    "kind": "thaw_ga_reflection",
+    "forget_rate": 0.0,
+    "forget_floor": 0.1,
+    "n_events": 20,
+    "event_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "reflections": [
+      "Mina is coordinating logistics and wants a clear handoff plan for the repair drive.",
+      "Vik is taking an active helper role and plans to arrive early to assist with setup.",
+      "The group is loosely organized around a shared community effort, with multiple people contributing supplies and sorting support.",
+      "Mina is coordinating logistics and looking for clear instructions, suggesting she is a practical organizer in the group.",
+      "Vik and Tess are both helping with setup and sorting, indicating a shared, cooperative role in the repair drive.",
+      "Rosa appears to be leading the event planning, with others feeding her updates so she can consolidate the schedule.",
+      "Mina is actively coordinating logistics and following up for exact times and responsibilities.",
+      "Tess acts as a local information hub, but still needs to confirm details before giving firm answers.",
+      "Rosa, Bo, and Uli are each tied to task-specific roles in the repair effort, suggesting a distributed, cooperative workflow.",
+      "Mina is coordinating logistics across multiple people and is the main point of contact for timing and handoffs.",
+      "The group is collaboratively organizing a community repair drive with clear task delegation and a shared focus on practical help.",
+      "Communication is efficient and task-oriented, with people asking for exact times, locations, and what tools or repairs are needed.",
+      "Mina is coordinating logistics across multiple people and follows up to confirm exact times and meeting points.",
+      "Uli, Oren, and Bo are responsive helpers who adapt their schedules and bring tools or support as needed.",
+      "Vik and Pia appear to be taking more organizing roles, handling setup, communication, and route planning for the repair drive."
+    ],
+    "reflection_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Mina: Hey Vik, what time are you heading over for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Vik"
+      },
+      {
+        "round": 0,
+        "text": "Vik: I’m thinking around 10, and I’ll probably swing by the school lot first to help set up.",
+        "speaker": "Vik",
+        "listener": "Mina"
+      },
+      {
+        "round": 0,
+        "text": "Tess: Oh, right, the repair drive. I heard they’re still collecting tools and supplies over by the community hall, and a few folks said they’d help sort everything this afternoon.",
+        "speaker": "Tess",
+        "listener": "Mina"
+      },
+      {
+        "round": 0,
+        "text": "Mina: Who’s in charge of the drop-off, and what time should I bring what I’ve got?",
+        "speaker": "Mina",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Mina: What time are you heading over for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Tess: I’m thinking of swinging by around 2, when they start sorting things at the community hall. I’m still checking who’s handling drop-offs, but I can ask around and tell you what I find.",
+        "speaker": "Tess",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: I’ve got the repair drive list ready, and I’m lining up the first houses now. Send me any updates from your side and I’ll fold them in.",
+        "speaker": "Rosa",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Mina: Great, I’ll send anything I hear. What time do you want me to head over to the community hall?",
+        "speaker": "Mina",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Just send me the first repair on the list and I’ll take it from there.",
+        "speaker": "Bo",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Mina: I’ve got the first house ready for you. What time should I tell them you’ll be over?",
+        "speaker": "Mina",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Uli: Thanks, Sam. If you can bring your tools and help with the door latch, that would cover the main thing for today.",
+        "speaker": "Uli",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Mina: Got it. What time should I come by for the handoff?",
+        "speaker": "Mina",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Mina: What time are you heading over for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Oren: I can head over this afternoon, if that works. Just tell me what time and I’ll bring the tools.",
+        "speaker": "Oren",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Vik: I’m heading over a bit early to help set up, and I’ll make sure everyone knows when and where the repair drive is.",
+        "speaker": "Vik",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Mina: Around 10 works for me. Are you still starting at the school lot?",
+        "speaker": "Mina",
+        "listener": "Vik"
+      },
+      {
+        "round": 4,
+        "text": "Bo: I can be there this afternoon, around 3 if that works.",
+        "speaker": "Bo",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Mina: 3 works for me. Are you meeting at the community hall first?",
+        "speaker": "Mina",
+        "listener": "Bo"
+      },
+      {
+        "round": 4,
+        "text": "Mina: What time are you heading over for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: I’m still pinning that down, since I need to line up the first houses and make sure the list is set. I’ll send the time as soon as I have the route sorted.",
+        "speaker": "Pia",
+        "listener": "Mina"
+      }
+    ]
+  },
+  "a06": {
+    "kind": "thaw_ga_reflection",
+    "forget_rate": 0.0,
+    "forget_floor": 0.1,
+    "n_events": 20,
+    "event_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "reflections": [
+      "Pia is carrying coordination stress for the repair drive and is relieved by concrete help with logistics.",
+      "Oren is proactive and willing to contribute hands-on, especially when tasks are clearly specified.",
+      "Uli trusts Oren enough to ask for practical home repairs, suggesting a cooperative and helpful relationship.",
+      "Oren is highly proactive and repeatedly offers hands-on help, especially with tools and same-day availability.",
+      "Pia is coordinating logistics under pressure and values concrete support with sorting, labeling, loading, and drop-off planning.",
+      "The group communicates in a task-focused, cooperative way, with people asking for specific jobs and others stepping in to reduce each other's workload.",
+      "Oren is proactive and dependable, repeatedly offering tools, time, and flexible help for the repair drive.",
+      "Uli is coordinating the work and assigning concrete tasks, relying on others to handle hands-on repairs while they organize the list.",
+      "The group is collaborating in a practical, cooperative way, with people taking distinct roles in setup, repairs, supplies, and outreach.",
+      "Oren is dependable and repeatedly offers concrete, hands-on help, but he needs clear direction on the first task and timing.",
+      "The repair drive is a coordinated group effort with people splitting roles across logistics, outreach, supplies, and site setup.",
+      "Several participants are checking in because the work is time-sensitive and still being organized, which suggests a collaborative but not fully settled plan.",
+      "Oren is proactive and available on short notice, offering tools and hands-on help for repair work.",
+      "Rosa is coordinating the repair drive logistics and is relying on volunteers for prep, pickups, and setup.",
+      "Vik and Tess are helping with communication and coordination, suggesting a collaborative, distributed volunteer effort."
+    ],
+    "reflection_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Oren: Oh right, the repair drive. I was just about to ask Pia what still needs doing and where I can help.",
+        "speaker": "Oren",
+        "listener": "Pia"
+      },
+      {
+        "round": 0,
+        "text": "Pia: I still need the boxes sorted and the labels checked, and I’m a bit worried about getting the donations over there on time. If you can help with loading and the drop-off list, that would take a lot off my plate.",
+        "speaker": "Pia",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Right, the repair drive. I was just about to ask what still needs doing, because I’ve got a few tools and I can come by today.",
+        "speaker": "Oren",
+        "listener": "Uli"
+      },
+      {
+        "round": 0,
+        "text": "Uli: That would help a lot. I still need the porch latch looked at and a loose step tightened, if you’ve got time.",
+        "speaker": "Uli",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Bo: Just send me the first repair on the list and I’ll take it from there.",
+        "speaker": "Bo",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Right, the repair drive. What’s the first repair on the list, and I can come by today with a few tools if that helps.",
+        "speaker": "Oren",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Right, the repair drive. What still needs doing, and where can I help? I’ve got a few tools and can come by today.",
+        "speaker": "Oren",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Could you bring the tools and help set up the repair station today? I still need a hand sorting supplies and checking what needs fixing.",
+        "speaker": "Sam",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Right, the repair drive. What still needs doing, and where can I help? I’ve got a few tools and can come by today.",
+        "speaker": "Oren",
+        "listener": "Uli"
+      },
+      {
+        "round": 2,
+        "text": "Uli: That would help a lot. If you can bring the tools and handle whatever’s left in the back rooms, I’ll sort the list and meet you there.",
+        "speaker": "Uli",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Right, I can bring the tools and help set up the repair station today. Just point me at the first thing that needs doing.",
+        "speaker": "Oren",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Vik: That helps a lot. I’ll keep spreading the word and make sure everyone knows when and where to show up, and I’ll help get the station set up too.",
+        "speaker": "Vik",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Mina: What time are you heading over for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Oren: I can head over this afternoon, if that works. Just tell me what time and I’ll bring the tools.",
+        "speaker": "Oren",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Oren: Right, the repair drive. What still needs doing, and where can I help? I’ve got a few tools and can come by today.",
+        "speaker": "Oren",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Thanks, Oren. I’m still finalizing the house list and setup at the community center on Sunday, so I can use help with prep and checking in on a few homes.",
+        "speaker": "Rosa",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Right, the repair drive. What still needs doing, and where can I help? I’ve got a few tools and can come by today.",
+        "speaker": "Oren",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Thanks, Oren. We’re set for Sunday at the community center now, and I can use your help on the first two house pickups if you’re free today.",
+        "speaker": "Rosa",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Right, the repair drive. What still needs doing, and where can I help? I’ve got a few tools and can come by today.",
+        "speaker": "Oren",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Tess: They’re still sorting tools and supplies at the community hall, and a few folks are lining up to help this afternoon. I’m still waiting on the final schedule, but I can pass along your tools and help offer to the others.",
+        "speaker": "Tess",
+        "listener": "Oren"
+      }
+    ]
+  },
+  "a07": {
+    "kind": "thaw_ga_reflection",
+    "forget_rate": 0.0,
+    "forget_floor": 0.1,
+    "n_events": 20,
+    "event_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "reflections": [
+      "Oren is proactive and looking for a concrete way to support Pia with the repair drive.",
+      "Pia is carrying coordination pressure and is most concerned about logistics, timing, and getting donations delivered on schedule.",
+      "Rosa is organizing the house list and acting as the coordination hub, waiting on updates to merge into the plan.",
+      "Pia is the coordination hub, handling routing, house order, and logistics, but is under pressure from missing details and timing uncertainty.",
+      "Oren, Rosa, Nell, and Tess are contributing in supportive, task-focused ways by gathering updates, sorting supplies, and filling gaps rather than driving the whole plan.",
+      "The group is collaborating well but depends on frequent status sharing to avoid overlap and keep the repair drive on schedule.",
+      "Pia is coordinating the routing and timing, and the group is depending on her to reconcile addresses, order, and overlap.",
+      "Rosa is moving ahead with concrete planning, while still relying on missing address and truck-window details from others.",
+      "Nell and Tess are supporting in a lighter, relay-style way by collecting updates and tracking logistics rather than owning the route.",
+      "Pia is coordinating logistics and depends on others for late-breaking house-list, address, and timing confirmations.",
+      "Nell, Tess, Rosa, and Vik are supporting from the edges by relaying updates, but several of them are still waiting on final details rather than owning the plan.",
+      "The group has a shared expectation of quick status handoffs to avoid conflicts, with Pia acting as the central point for routing and follow-up.",
+      "Pia is coordinating a moving set of logistics and depends on fast updates to avoid conflicts.",
+      "Rosa and Vik are proactive helpers who offer concrete support, while Nell is more of a relay for partial information.",
+      "The group works best with immediate status sharing because timing and assignment changes affect each other directly."
+    ],
+    "reflection_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Oren: Oh right, the repair drive. I was just about to ask Pia what still needs doing and where I can help.",
+        "speaker": "Oren",
+        "listener": "Pia"
+      },
+      {
+        "round": 0,
+        "text": "Pia: I still need the boxes sorted and the labels checked, and I’m a bit worried about getting the donations over there on time. If you can help with loading and the drop-off list, that would take a lot off my plate.",
+        "speaker": "Pia",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: I’ve got the repair drive list ready, and I’m lining up the first houses now. If you’ve got updates from your side, send them over and I’ll fold them in.",
+        "speaker": "Rosa",
+        "listener": "Pia"
+      },
+      {
+        "round": 0,
+        "text": "Pia: I can send mine, but I’m still waiting on two addresses and a time window for the truck.",
+        "speaker": "Pia",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Pia: I’m still sorting the house list and the order, so the main thing is matching people to addresses without overlaps. If you’ve got time, send me any updates from your side and I’ll plug them in.",
+        "speaker": "Pia",
+        "listener": "Nell"
+      },
+      {
+        "round": 1,
+        "text": "Nell: I’m still piecing it together, but I can send along any updates I hear and help keep track of overlaps.",
+        "speaker": "Nell",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: I’ve got the list, but I need the final house order and any updates before I can route anyone efficiently. Send me what changed, and I’ll slot it in.",
+        "speaker": "Pia",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Tess: They’re still collecting tools and supplies over by the community hall, and a few folks said they’d help sort everything this afternoon. I haven’t heard a final house order yet, though.",
+        "speaker": "Tess",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Pia: Thanks, Nell. If you hear any updates, send them my way so I can keep the house list and timing from drifting.",
+        "speaker": "Pia",
+        "listener": "Nell"
+      },
+      {
+        "round": 2,
+        "text": "Nell: I’m still catching up too, but I’ll pass along anything I hear. Has the address list settled yet, or is that still being shuffled?",
+        "speaker": "Nell",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Thanks, Pia. Send what you have now, and I’ll slot in the two addresses and truck window as soon as they come through.",
+        "speaker": "Rosa",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Pia: I’m still waiting on the truck window and one address confirmation, but I’ll send both as soon as they land.",
+        "speaker": "Pia",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Pia: I’m still sorting the house list and the timing, so the main thing is to keep me posted on any updates as soon as you have them. If you can take one of the first houses or help with contact follow-up, that would keep us from stepping on each other.",
+        "speaker": "Pia",
+        "listener": "Vik"
+      },
+      {
+        "round": 3,
+        "text": "Vik: I’m heading over a bit early for setup, and I’ll keep you posted on any timing or house-list updates right away.",
+        "speaker": "Vik",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Nell: I’m still just hearing bits and pieces, but I can pass along anything I get. What’s changed on the house list or timing?",
+        "speaker": "Nell",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Pia: Mostly just the usual shuffle for now, but I need the latest house list before I lock anything in. If you hear a change, send it over right away so I can keep the timing straight.",
+        "speaker": "Pia",
+        "listener": "Nell"
+      },
+      {
+        "round": 4,
+        "text": "Vik: I’ll keep you posted as soon as I have any updates, and I can take one of the first houses or handle contact follow-up. I’m also heading over early to help with setup.",
+        "speaker": "Vik",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: That helps, Vik. Please take a first house if you can, and send me any timing changes right away so I don’t double-book anything.",
+        "speaker": "Pia",
+        "listener": "Vik"
+      },
+      {
+        "round": 4,
+        "text": "Mina: What time are you heading over for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: I’m still pinning that down, since I need to line up the first houses and make sure the list is set. I’ll send the time as soon as I have the route sorted.",
+        "speaker": "Pia",
+        "listener": "Mina"
+      }
+    ]
+  },
+  "a08": {
+    "kind": "thaw_ga_reflection",
+    "forget_rate": 0.0,
+    "forget_floor": 0.1,
+    "n_events": 20,
+    "event_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "reflections": [
+      "Vik is taking a proactive coordination role, handling both setup and communication for the repair drive.",
+      "Mina appears to be organizing logistics and checking timing, while Nell is supporting by monitoring and relaying updates.",
+      "The group’s interaction is collaborative and task-focused, with clear division of responsibilities and informal trust in follow-through.",
+      "Vik is a central organizer who coordinates timing, setup, and outreach for the repair drive.",
+      "Mina, Nell, Rosa, and Bo are responsive helpers who rely on Vik for updates and task direction.",
+      "The group communication is practical and collaborative, with people dividing responsibilities around setup, scheduling, and spreading information.",
+      "Vik is a reliable coordinator who takes initiative on both communication and hands-on setup for the repair drive.",
+      "The others respond to Vik with practical support roles, suggesting a well-organized, cooperative team dynamic with clear task delegation.",
+      "Nell and Rosa act as information relays, while Bo, Sam, and Oren are ready to take directed operational tasks as needed.",
+      "Vik is a reliable coordinator who repeatedly volunteers for communication and setup support.",
+      "The group is dividing work cleanly by role, with people asking for first tasks and passing along timing/location updates.",
+      "Pia is managing house-list logistics and needs rapid status updates to avoid overlap with others.",
+      "Vik is a dependable coordinator who actively helps with setup, communication, and early house coverage.",
+      "Pia and Uli are managing the list and scheduling closely, and they rely on timely updates to avoid overlap or double-booking.",
+      "The group is coordinating a repair drive with shared responsibilities, and clear timing/location updates are important to keep everyone aligned."
+    ],
+    "reflection_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Mina: Hey Vik, what time are you heading over for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Vik"
+      },
+      {
+        "round": 0,
+        "text": "Vik: I’m thinking around 10, and I’ll probably swing by the school lot first to help set up.",
+        "speaker": "Vik",
+        "listener": "Mina"
+      },
+      {
+        "round": 0,
+        "text": "Vik: I’ll spread the word about the repair drive and make sure folks know when and where it’s happening.",
+        "speaker": "Vik",
+        "listener": "Nell"
+      },
+      {
+        "round": 0,
+        "text": "Nell: Thanks, Vik. I’ll keep an ear out for updates and pass them along if I hear anything.",
+        "speaker": "Nell",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Vik: I’ll spread the word and make sure everyone knows when and where it’s happening. I’m helping with the repair drive setup too.",
+        "speaker": "Vik",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: Thanks, Vik. Send me any updates as they come in, and I’ll plug them into the schedule.",
+        "speaker": "Rosa",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Bo: Sure, just tell me the first thing that needs doing and I’ll handle it.",
+        "speaker": "Bo",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Vik: I’ll spread the word and make sure everyone knows when and where it’s happening. First thing, let’s get the setup area ready.",
+        "speaker": "Vik",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Vik: I’m heading over a bit early to help with setup, and I’ll make sure everyone knows the time and place for the repair drive.",
+        "speaker": "Vik",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Sam: Thanks, Vik. Could you help point people to the setup area and keep an eye on arrivals while I sort the supplies?",
+        "speaker": "Sam",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Right, I can bring the tools and help set up the repair station today. Just point me at the first thing that needs doing.",
+        "speaker": "Oren",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Vik: That helps a lot. I’ll keep spreading the word and make sure everyone knows when and where to show up, and I’ll help get the station set up too.",
+        "speaker": "Vik",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Pia: I’m still sorting the house list and the timing, so the main thing is to keep me posted on any updates as soon as you have them. If you can take one of the first houses or help with contact follow-up, that would keep us from stepping on each other.",
+        "speaker": "Pia",
+        "listener": "Vik"
+      },
+      {
+        "round": 3,
+        "text": "Vik: I’m heading over a bit early for setup, and I’ll keep you posted on any timing or house-list updates right away.",
+        "speaker": "Vik",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Vik: I’m heading over a bit early to help set up, and I’ll make sure everyone knows when and where the repair drive is.",
+        "speaker": "Vik",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Mina: Around 10 works for me. Are you still starting at the school lot?",
+        "speaker": "Mina",
+        "listener": "Vik"
+      },
+      {
+        "round": 4,
+        "text": "Vik: I’ll keep you posted as soon as I have any updates, and I can take one of the first houses or handle contact follow-up. I’m also heading over early to help with setup.",
+        "speaker": "Vik",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: That helps, Vik. Please take a first house if you can, and send me any timing changes right away so I don’t double-book anything.",
+        "speaker": "Pia",
+        "listener": "Vik"
+      },
+      {
+        "round": 4,
+        "text": "Uli: Thanks, Vik. I’m still pulling the list together, so if you’ve got tools or can take one house, send me your availability and I’ll slot you in.",
+        "speaker": "Uli",
+        "listener": "Vik"
+      },
+      {
+        "round": 4,
+        "text": "Vik: I can help set up a bit early, and I’m free to take one house too. Send me the time and place, and I’ll pass it along.",
+        "speaker": "Vik",
+        "listener": "Uli"
+      }
+    ]
+  },
+  "a09": {
+    "kind": "thaw_ga_reflection",
+    "forget_rate": 0.0,
+    "forget_floor": 0.1,
+    "n_events": 20,
+    "event_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "reflections": [
+      "Nell and Vik have a supportive, cooperative rapport, with Vik taking on the role of organizer and Nell acting as a relay for updates.",
+      "Tess is tracking operational details and is focused on staffing gaps, especially for the afternoon shift.",
+      "The group is collaboratively coordinating a repair drive through informal information sharing and division of labor.",
+      "Nell is a coordination hub: she regularly asks for updates, relays information, and offers to help organize overlapping tasks.",
+      "Vik takes a broadcast/support role, helping spread information to mobilize others.",
+      "The group is working in a collaborative, task-oriented way with people dividing labor across repair and house-list logistics.",
+      "Nell is acting as a connector and follow-up point, repeatedly offering to relay updates and track details across people.",
+      "Pia is coordinating logistics carefully, with a strong focus on matching addresses, timing, and avoiding overlaps.",
+      "The group is collaborating on a practical repair effort with shared uncertainty, and people are relying on one another to fill gaps in the plan.",
+      "Nell is a dependable helper who asks clarifying questions and offers to pass along updates, but she is still catching up on the details.",
+      "Pia appears to be coordinating logistics and timing, relying on others to relay changes so she can keep the house list and schedule aligned.",
+      "Uli and Sam are organizing hands-on repair work and need practical support with tools, supplies, and task allocation.",
+      "Nell is a helpful but slightly out-of-the-loop organizer who keeps checking for the latest details and offers practical support when assigned a task.",
+      "Sam and Nell have a cooperative working relationship centered on a community-center repair effort, with Sam coordinating setup and Nell helping with tools and supplies.",
+      "Pia and Uli are trying to keep repairs and timing organized, and the group is sharing updates quickly so work can be routed to the most urgent task."
+    ],
+    "reflection_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Nell: I heard the repair drive’s moving along, but I’m still catching up on the details. What’s the latest you’ve heard?",
+        "speaker": "Nell",
+        "listener": "Tess"
+      },
+      {
+        "round": 0,
+        "text": "Tess: Last I heard, they’ve got a solid turnout and folks are sorting donations by what needs fixing first. I’m trying to hear whether they still need hands for the afternoon shift.",
+        "speaker": "Tess",
+        "listener": "Nell"
+      },
+      {
+        "round": 0,
+        "text": "Vik: I’ll spread the word about the repair drive and make sure folks know when and where it’s happening.",
+        "speaker": "Vik",
+        "listener": "Nell"
+      },
+      {
+        "round": 0,
+        "text": "Nell: Thanks, Vik. I’ll keep an ear out for updates and pass them along if I hear anything.",
+        "speaker": "Nell",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Pia: I’m still sorting the house list and the order, so the main thing is matching people to addresses without overlaps. If you’ve got time, send me any updates from your side and I’ll plug them in.",
+        "speaker": "Pia",
+        "listener": "Nell"
+      },
+      {
+        "round": 1,
+        "text": "Nell: I’m still piecing it together, but I can send along any updates I hear and help keep track of overlaps.",
+        "speaker": "Nell",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Uli: We still need someone to sort the loose boards and another pair of hands for the east fence. If you can bring your tools today, that would help a lot.",
+        "speaker": "Uli",
+        "listener": "Nell"
+      },
+      {
+        "round": 1,
+        "text": "Nell: I’m still catching up on the details, but I can bring my tools today. Do you want me on the loose boards or the east fence?",
+        "speaker": "Nell",
+        "listener": "Uli"
+      },
+      {
+        "round": 2,
+        "text": "Pia: Thanks, Nell. If you hear any updates, send them my way so I can keep the house list and timing from drifting.",
+        "speaker": "Pia",
+        "listener": "Nell"
+      },
+      {
+        "round": 2,
+        "text": "Nell: I’m still catching up too, but I’ll pass along anything I hear. Has the address list settled yet, or is that still being shuffled?",
+        "speaker": "Nell",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Nell: I’m still catching up on the details, so what’s the latest you’ve heard about when and where it’s happening?",
+        "speaker": "Nell",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Sam: It’s still set for today at the community center, and I’m trying to get the repair station ready there. Could you bring the tools and help me sort the supplies when you arrive?",
+        "speaker": "Sam",
+        "listener": "Nell"
+      },
+      {
+        "round": 3,
+        "text": "Sam: It’s today at the community center. I’m getting the repair station set up there, and I could use help with the tools and sorting supplies when you arrive.",
+        "speaker": "Sam",
+        "listener": "Nell"
+      },
+      {
+        "round": 3,
+        "text": "Nell: Got it, I’ll bring the tools and help sort the supplies when I get there.",
+        "speaker": "Nell",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Nell: I’m still just hearing bits and pieces, but I can pass along anything I get. What’s changed on the house list or timing?",
+        "speaker": "Nell",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Pia: Mostly just the usual shuffle for now, but I need the latest house list before I lock anything in. If you hear a change, send it over right away so I can keep the timing straight.",
+        "speaker": "Pia",
+        "listener": "Nell"
+      },
+      {
+        "round": 4,
+        "text": "Uli: The east fence would help most. I’ll send you over there, and we can look at the loose boards after.",
+        "speaker": "Uli",
+        "listener": "Nell"
+      },
+      {
+        "round": 4,
+        "text": "Nell: Got it, I’ll head over to the east fence and bring my tools with me.",
+        "speaker": "Nell",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Nell: I’m still a bit behind on the details, but I heard it’s today at the community center. What have you heard about what they need most?",
+        "speaker": "Nell",
+        "listener": "Bo"
+      },
+      {
+        "round": 4,
+        "text": "Bo: I’m a little behind too, so just tell me the first repair they need and I’ll handle it.",
+        "speaker": "Bo",
+        "listener": "Nell"
+      }
+    ]
+  },
+  "a10": {
+    "kind": "thaw_ga_reflection",
+    "forget_rate": 0.0,
+    "forget_floor": 0.1,
+    "n_events": 18,
+    "event_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "reflections": [
+      "Bo is positioned as a practical coordinator who gives clear repair priorities and offers hands-on help.",
+      "Rosa is organizing the repair drive and looking for task sequencing, suggesting a logistics role.",
+      "Sam is involved in a donation or community effort and is delegating an organizing task to Bo.",
+      "Bo is positioning himself as a dependable helper, but he prefers concrete direction and a clear first task rather than broad coordination.",
+      "Rosa and Sam are organizing the repair drive by delegating specific jobs, suggesting a practical, collaborative group effort.",
+      "Oren and Vik are offering supportive roles beyond repairs, with Oren contributing tools and Vik handling outreach and setup.",
+      "Bo is cooperative but prefers clear, direct assignments before acting.",
+      "The group is organizing a repair drive with a mix of logistics, outreach, and hands-on help.",
+      "Mina and Sam appear to be coordinating the task flow, while Vik is handling broader communication and setup.",
+      "Bo is eager and direct, repeatedly asking for the first repair so they can start work immediately.",
+      "Oren, Mina, Vik, and Tess are coordinating logistics around the repair drive, with some people handling tools, setup, and scheduling.",
+      "The group has shared intent and mild friction from incomplete information: Bo wants a concrete task, while others are still assembling the plan and materials.",
+      "Bo is taking a practical, wait-for-instructions role and wants a single assigned repair before acting.",
+      "Mina appears to be coordinating logistics and timing, likely serving as a point of contact for the repair effort.",
+      "Tess and Nell seem less certain on the schedule and needs, relying on secondhand updates while the group organizes tools and supplies at the community hall/center."
+    ],
+    "reflection_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Rosa: I’ve got the repair drive list in order, Bo. Tell me what’s needed first and I’ll put it on the schedule.",
+        "speaker": "Rosa",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Start with the leaky sink and the front gate.",
+        "speaker": "Bo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Yeah, I can help with the repair drive. Just tell me what needs doing.",
+        "speaker": "Bo",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Thanks, Bo. Could you help sort the donated tools and set them out by the garage?",
+        "speaker": "Sam",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Bo: Just send me the first repair on the list and I’ll take it from there.",
+        "speaker": "Bo",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Right, the repair drive. What’s the first repair on the list, and I can come by today with a few tools if that helps.",
+        "speaker": "Oren",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Bo: Sure, just tell me the first thing that needs doing and I’ll handle it.",
+        "speaker": "Bo",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Vik: I’ll spread the word and make sure everyone knows when and where it’s happening. First thing, let’s get the setup area ready.",
+        "speaker": "Vik",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Just send me the first repair on the list and I’ll take it from there.",
+        "speaker": "Bo",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Mina: I’ve got the first house ready for you. What time should I tell them you’ll be over?",
+        "speaker": "Mina",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Tess: Last I heard, they’re still gathering tools and supplies at the community hall, and a few folks are sorting things this afternoon. I’m still waiting on the exact schedule, though.",
+        "speaker": "Tess",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Okay, just send me the first repair when you have it and I’ll handle it.",
+        "speaker": "Bo",
+        "listener": "Tess"
+      },
+      {
+        "round": 3,
+        "text": "Bo: Got it, just send me the first repair when you have it and I’ll handle it.",
+        "speaker": "Bo",
+        "listener": "Tess"
+      },
+      {
+        "round": 3,
+        "text": "Tess: Still waiting on the first one, but I heard they’re collecting tools and supplies over by the community hall, and a few folks said they’d help sort everything this afternoon.",
+        "speaker": "Tess",
+        "listener": "Bo"
+      },
+      {
+        "round": 4,
+        "text": "Bo: I can be there this afternoon, around 3 if that works.",
+        "speaker": "Bo",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Mina: 3 works for me. Are you meeting at the community hall first?",
+        "speaker": "Mina",
+        "listener": "Bo"
+      },
+      {
+        "round": 4,
+        "text": "Nell: I’m still a bit behind on the details, but I heard it’s today at the community center. What have you heard about what they need most?",
+        "speaker": "Nell",
+        "listener": "Bo"
+      },
+      {
+        "round": 4,
+        "text": "Bo: I’m a little behind too, so just tell me the first repair they need and I’ll handle it.",
+        "speaker": "Bo",
+        "listener": "Nell"
+      }
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "memory": [
+    "thaw_ga"
+  ],
+  "model": [
+    "gpt-5.4-mini"
+  ],
+  "config": "D:\\0-Research\\3-SMGA\\benchmarks\\diagnostic_v0\\configs\\fhl_responses_gpt54_config.example.json",
+  "runs": 1,
+  "seed": 41,
+  "agent_count": 8,
+  "meetings": 2,
+  "rebroadcast_every": 0,
+  "rebroadcast_scope": "source",
+  "scenario": "repair_drive",
+  "rebroadcast_rounds": "3,4,5",
+  "persona_depth": "thin",
+  "interview_every_round": false,
+  "prov_loss": 0.0,
+  "prov_garble": 0.0,
+  "prov_mention": 1.0,
+  "apm_k": 2,
+  "apm_no_origin": false,
+  "forget_rate": [
+    0.5,
+    0.8
+  ],
+  "forget_floor": 0.1,
+  "adversary_agent": "",
+  "adversary_round": -1,
+  "topology": "random",
+  "initial_fact_scope": "broadcast",
+  "rounds": 6,
+  "turns": 2,
+  "workers": 12,
+  "question": "When and where is the repair drive being held now?",
+  "mock": false,
+  "context_relay_mock": false,
+  "out_dir": "D:\\0-Research\\7-Thaw\\runs\\h1_frozen_thaw_probe_2026-06-30",
+  "_timestamp": "2026-06-30T23:27:25"
+}

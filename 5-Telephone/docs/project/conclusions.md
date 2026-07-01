@@ -12,10 +12,10 @@ converge on the current truth. The current value can enter the conversation
 stream, and under an authoritative source agents can increasingly *say* it, but
 the society's later probed answer often remains stale or unknown. The failure is
 not solved by model scaling, increased connectivity, tested memory swaps, richer
-personas, or a persistent source. Only direct broadcast to every agent succeeds,
+personas, or a persistent source. Direct broadcast to every agent succeeds,
 which is best interpreted as an overwrite-style positive control rather than a
-realistic social cure. The mechanism is path-dependent entrenchment: the version
-established early and broadly wins.
+realistic social cure. The earlier timing-based claim that this reflects path-dependent
+entrenchment was invalidated by a round-index audit and is no longer supported.
 
 ## Load-Bearing Findings
 
@@ -35,9 +35,9 @@ established early and broadly wins.
    near baseline.
 6. **Broadcast works as a positive control.** Injecting the current truth into
    every agent succeeds because it bypasses ordinary social transmission.
-7. **The mechanism is entrenchment, not recency.** Early all-agent broadcast
-   succeeds; late all-agent broadcast fails. Truth must win the early population
-   competition, not merely appear later.
+7. **The timing mechanism is unresolved.** The old late-broadcast condition never
+   injected the correction because of a round-index error. A corrected last-round
+   all-agent broadcast succeeds (25/25 in the audit rerun), so P1-rec is retracted.
 
 ## Why It Matters
 

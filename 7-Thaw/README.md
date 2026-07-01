@@ -8,8 +8,12 @@
 > **natural error-correction mechanism** for stuck collective beliefs.
 
 ## Status
-**Proposal stage (2026-06-25).** Spun out of 5-Telephone, to start after the Telephone paper is
-closed. No experiments run yet. Construct + hypotheses in `docs/project/kickoff_2026-06-25.md`.
+**Novelty-gated pilot stage (2026-06-30).** The broad claim that "forgetting helps" is already
+crowded. Thaw now targets the narrower competition between individual memory decay and social
+rehearsal: can decay reopen a correction window after an erroneous collective attractor forms?
+See `docs/project/lit_positioning_2026-06-30.md`; construct + hypotheses remain in
+`docs/project/kickoff_2026-06-25.md`. The first valid frozen-state pilot shows only a weak n=1
+signal (2/8 current at rate 0 vs 3/8 at rates 0.5 and 0.8); see `RESULTS.md`.
 
 ## Why it is its own project (not a knob in Telephone)
 Forgetting has two faces. As a *friction knob* it merely lowers an equilibrium (redundant with

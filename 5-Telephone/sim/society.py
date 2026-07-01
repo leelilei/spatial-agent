@@ -291,6 +291,12 @@ def _run_encounter(
 
 
 def run_round(world: World, round_idx: int, converse: ConverseFn, *, workers: int = 1) -> dict[str, Any]:
+    # Optional lifecycle hook used by Thaw memories. Aging happens before this
+    # round's observations, so freshly received evidence remains available.
+    for agent in world.agents:
+        begin_round = getattr(agent.memory, "begin_round", None)
+        if callable(begin_round):
+            begin_round(round_idx)
     encounters = []
     observations: list[tuple[Agent, Agent, dict[str, Any]]] = []
     pairs = world.schedule(round_idx)
@@ -466,7 +472,8 @@ def demo_world(memory_factory: Callable[[], Memory], *, rng_seed: int = 7, agent
                rebroadcast_scope: str = "source", scenario: str = "repair_drive",
                rebroadcast_rounds: str = "", persona_depth: str = "thin",
                topology: str = "random",
-               adversary_agent: str = "", adversary_round: int = -1) -> World:
+               adversary_agent: str = "", adversary_round: int = -1,
+               initial_fact_scope: str = "legacy") -> World:
     """A configurable society with one seeded social dynamic (an event to organize).
 
     Authoritative re-broadcast (the C4 intervention): rebroadcast_every>0 re-announces the
@@ -506,6 +513,22 @@ def demo_world(memory_factory: Callable[[], Memory], *, rng_seed: int = 7, agent
     if agent_count < 2 or agent_count > len(roster):
         raise ValueError(f"agent_count must be between 2 and {len(roster)}")
     agents = roster[:agent_count]
+    if initial_fact_scope not in {"legacy", "none", "source", "broadcast"}:
+        raise ValueError("initial_fact_scope must be legacy, none, source, or broadcast")
+    # Thaw requires a genuine frozen incumbent. The legacy simulator stored the old
+    # plan only in Agent.seeds, which the LLM conversation path does not read. An
+    # explicit initial observation makes the starting belief manipulation real and
+    # auditable. Defaults to legacy to preserve all prior Telephone conditions.
+    if initial_fact_scope in {"source", "broadcast"}:
+        initial_targets = agents if initial_fact_scope == "broadcast" else agents[:1]
+        for agent in initial_targets:
+            agent.memory.observe({
+                "round": -1,
+                "text": sc["seed"],
+                "speaker": "world",
+                "listener": agent.name,
+                "injected_initial": True,
+            })
     if persona_depth == "thick":  # richer, individuating personas (Park-2024 robustness)
         for a in agents:
             if a.agent_id in THICK_PERSONAS:
@@ -567,7 +590,9 @@ def interview(world: World, question: str, llm: "Any") -> dict[str, Any]:
 def build_memory_factory(kind: str, llm: "Any", scenario: str = "repair_drive",
                          prov_loss: float = 0.0, prov_garble: float = 0.0,
                          prov_mention: float = 1.0,
-                         apm_k: int = 2, apm_require_origin: bool = True) -> Callable[[], Memory]:
+                         apm_k: int = 2, apm_require_origin: bool = True,
+                         forget_rate: float = 0.0,
+                         forget_floor: float = 0.1) -> Callable[[], Memory]:
     if kind == "prov":  # provenance-aware integration (the cure) — generalized origin/version tags
         from memories import PROVMemory
         gv = SCENARIOS.get(scenario, SCENARIOS["repair_drive"])["seed"]  # stale value (for garble test)
@@ -613,6 +638,11 @@ def build_memory_factory(kind: str, llm: "Any", scenario: str = "repair_drive",
     if kind == "ga":
         from memories import GAReflectionMemory
         return lambda: GAReflectionMemory(llm=llm)
+    if kind == "thaw_ga":
+        from memories import ThawGAReflectionMemory
+        return lambda: ThawGAReflectionMemory(
+            llm=llm, forget_rate=forget_rate, forget_floor=forget_floor
+        )
     if kind == "smga":
         from memories import SMGAv2Memory
         return lambda: SMGAv2Memory(llm=llm)

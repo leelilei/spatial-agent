@@ -1,5 +1,9 @@
 # Results Draft v0
 
+> **Audit warning (2026-06-30):** the P1-rec timing result is retracted because its purported
+> late-broadcast runs performed zero injections. See
+> `../docs/project/p1_rec_audit_2026-06-30.md`.
+
 > Figure-first draft. This is prose scaffolding for the paper, not final
 > camera-ready text. Keep numbers synchronized with `../RESULTS.md` and
 > `results_tables.md`.

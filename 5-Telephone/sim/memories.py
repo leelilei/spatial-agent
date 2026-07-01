@@ -147,6 +147,122 @@ class GAReflectionMemory:
 
 
 @dataclass
+class ThawGAReflectionMemory:
+    """GA memory with round-level accessibility decay for Thaw experiments.
+
+    This is deliberately a *retrieval-memory* intervention, not model-weight
+    unlearning.  Every observed event and generated reflection starts at strength
+    1.0.  At the beginning of each subsequent round its strength is multiplied by
+    ``1 - forget_rate``; items below ``forget_floor`` stop being retrievable.
+
+    ``forget_rate=0`` is behaviorally identical to the append-only GA baseline.
+    Fresh observations are aged only from the following round, so a late correction
+    cannot disappear in the same round in which it is received.
+    """
+
+    llm: Any = None
+    forget_rate: float = 0.0
+    forget_floor: float = 0.1
+    reflect_every: int = 1
+    events: list[dict[str, Any]] = field(default_factory=list)
+    reflections: list[str] = field(default_factory=list)
+    _event_strengths: list[float] = field(default_factory=list)
+    _reflection_strengths: list[float] = field(default_factory=list)
+    _round: int = 0
+    _last_aged_round: int = -1
+
+    def __post_init__(self) -> None:
+        if not 0.0 <= self.forget_rate <= 1.0:
+            raise ValueError("forget_rate must be in [0, 1]")
+        if not 0.0 <= self.forget_floor < 1.0:
+            raise ValueError("forget_floor must be in [0, 1)")
+
+    def begin_round(self, round_idx: int) -> None:
+        """Age accessible memory once, before this round's new observations."""
+        if round_idx <= self._last_aged_round:
+            return
+        self._last_aged_round = round_idx
+        if self.forget_rate <= 0.0:
+            return
+        retention = 1.0 - self.forget_rate
+
+        aged_events = [s * retention for s in self._event_strengths]
+        kept_events = [
+            (event, strength)
+            for event, strength in zip(self.events, aged_events)
+            if strength >= self.forget_floor
+        ]
+        self.events = [event for event, _ in kept_events]
+        self._event_strengths = [strength for _, strength in kept_events]
+
+        aged_reflections = [s * retention for s in self._reflection_strengths]
+        kept_reflections = [
+            (reflection, strength)
+            for reflection, strength in zip(self.reflections, aged_reflections)
+            if strength >= self.forget_floor
+        ]
+        self.reflections = [reflection for reflection, _ in kept_reflections]
+        self._reflection_strengths = [strength for _, strength in kept_reflections]
+
+    def observe(self, event: dict[str, Any]) -> None:
+        self.events.append(event)
+        self._event_strengths.append(1.0)
+
+    def retrieve(self, query: str) -> str:
+        ev = _rank_by_relevance(query, [(str(e.get("text", "")), e) for e in self.events], 6)
+        rf = _rank_by_relevance(query, [(r, r) for r in self.reflections], 3)
+        lines = [f"- {e.get('text','')}" for e in ev]
+        lines += [f"- (reflection) {r}" for r in rf]
+        return "\n".join(lines)
+
+    def consolidate(self) -> None:
+        self._round += 1
+        if self._round % self.reflect_every != 0 or self.llm is None:
+            return
+        recent = _recent(self.events, 10)
+        if not recent:
+            return
+        statements = "\n".join(f"{i+1}. {e.get('text','')}" for i, e in enumerate(recent))
+        out = self.llm.complete_json(
+            "You are a generative agent reflecting on your recent interactions, GA-style. "
+            "Infer up to 3 short high-level insights about the people and relationships. "
+            'Return ONLY JSON: {"insights": ["...", ...]}',
+            f"Recent events:\n{statements}",
+        )
+        for raw in (out.get("insights") or [])[:3]:
+            insight = str(raw).strip()
+            if not insight:
+                continue
+            if self.forget_rate <= 0.0:
+                # Exact GA-control semantics: append reflections without reinforcement
+                # or deduplication. This makes rate=0 a clean baseline reproduction.
+                self.reflections.append(insight)
+                self._reflection_strengths.append(1.0)
+                continue
+            # Re-deriving the same reflection reinforces it instead of duplicating it.
+            key = insight.casefold()
+            match = next((i for i, old in enumerate(self.reflections)
+                          if old.casefold() == key), None)
+            if match is None:
+                self.reflections.append(insight)
+                self._reflection_strengths.append(1.0)
+            else:
+                self._reflection_strengths[match] = 1.0
+
+    def snapshot(self) -> dict[str, Any]:
+        return {
+            "kind": "thaw_ga_reflection",
+            "forget_rate": self.forget_rate,
+            "forget_floor": self.forget_floor,
+            "n_events": len(self.events),
+            "event_strengths": self._event_strengths,
+            "reflections": self.reflections,
+            "reflection_strengths": self._reflection_strengths,
+            "events": self.events,
+        }
+
+
+@dataclass
 class PROVMemory:
     """Provenance-aware social integration (the cure) -- GENERALIZED (origin/version tags).
 

@@ -23,7 +23,7 @@
 | 06-19 | G1 | GENERALITY (P1): M4 dissociation on 2 NEW scenarios | GA mini m2 r5 n=5, book_club + carpool | REPLICATES across all 3 scenarios: source FAILS (Δ ns ×3) despite flipping SAID; broadcast WORKS (Δ SIG ×3 →~25/25). Single-scenario-artifact attack DEAD | done |
 
 | 06-19 | P1-mech | DISSOCIATION MECHANISM (P4): heard-ratio vs recency | analysis of M4+G1 (0-API) | dose-response real (held rises with heard cur-frac, →95%) BUT mean ratio similar across baseline/source/broadcast (0.64/0.72/0.73) w/ opposite outcomes → naive ratio REFUTED; points to RECENCY | done |
-| 06-19 | P1-rec | RECENCY vs ENTRENCHMENT: r1-broadcast vs r5-broadcast | repair_drive GA mini m2 r5 (n=2-5) | RECENCY REFUTED: r1_broadcast(early,all)=25/25 but r5_broadcast(last,all)=0/25. Mechanism = ENTRENCHMENT/path-dependence: truth must be established EARLY+BROAD before the incumbent stale belief entrenches; late/narrow correction fails | done |
+| 06-19 | P1-rec | RECENCY vs ENTRENCHMENT: r1-broadcast vs r5-broadcast | repair_drive GA mini m2 r5 (n=5) | **RETRACTED 2026-06-30:** raw logs show r5 injected into 0 agents in every run (round-index bug). Correct last-round index=4 rerun gives 25/25 current. This experiment does not establish entrenchment or refute recency. | retracted(config invalid) |
 
 | 06-19 | P3 | POWER: M0 capability n=8/5 + M1 connectivity n=8 (mini) with CIs | GA, 25a r5 | TEMPERS n=3 claims: M0 capability gives MODEST bump (mini 18%→strong ~32%) but recall stays ≤34% (scale doesn't solve it); M1 connectivity on MINI ~null (ratio 0.8-1.1) — the dramatic 10× was strong-model-only (n=3), confirming w/ P3b | done |
 | 06-19 | P3b | confirm M1 connectivity on gpt-5.4 (n=5) | GA 25a r5 meetings{1,3} | does connectivity amplify corruption on a STRONG model (the n=3 52:5 cell)? | RUNNING |
@@ -339,7 +339,19 @@ If last-round-only ≈ every-round ⇒ RECENCY; if last-round-only fails ⇒ cum
 
 ---
 
-# P1-rec — RECENCY refuted; the mechanism is ENTRENCHMENT / path-dependence (2026-06-19)
+# P1-rec — RETRACTED after configuration audit (2026-06-30)
+
+> **Do not cite the original timing result.** Raw logs show that `r5_broadcast` performed zero
+> injections in all five runs. The apparent late-broadcast failure was therefore a no-treatment
+> condition. See `docs/project/p1_rec_audit_2026-06-30.md`.
+
+The corrected last-round broadcast uses zero-based round index `4`. Under the original
+25-agent / meetings=2 / rounds=5 / turns=3 / seed=41 configuration, a `forget_rate=0`
+GA-equivalent rerun yields **25/25 current**. Late all-agent broadcast succeeds when it is
+actually delivered. P1-rec does not distinguish recency from entrenchment.
+
+<details>
+<summary>Retracted original interpretation (kept only for audit history)</summary>
 
 To distinguish the candidate mechanisms (cumulative ratio vs recency), a clean contrast:
 the SAME single broadcast to ALL agents, differing only in TIMING. repair_drive, GA, mini,
@@ -389,6 +401,8 @@ Two clean equalities nail the ENTRENCHMENT mechanism:
   doing nothing. Late correction is worthless even at full breadth.
 ⇒ TIMING is decisive: early = total success, late = total failure, independent of breadth.
 Pure first-mover / path-dependence. Recency definitively refuted.
+
+</details>
 
 ---
 

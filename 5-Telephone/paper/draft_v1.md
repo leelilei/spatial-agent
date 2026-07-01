@@ -1,5 +1,9 @@
 # When Truth Loses Its Source: Provenance-Aware Memory for Socially Distributed Agents
 
+> **Audit warning (2026-06-30):** P1-rec's late-broadcast condition contained zero injections.
+> Section 4.3's entrenchment-vs-recency claim is invalid and must not be submitted. See
+> `../docs/project/p1_rec_audit_2026-06-30.md`.
+
 > Draft v1 (2026-06-26; language pass). Assembled from `narrative.md`, `introduction.md`,
 > `measurement_grounding.md`, `sections/discussion.md`, and the `figure_guide.md` /
 > `RESULTS.md` data. Figures are in `figures/`; numbers trace to the RESULTS.md ledger.
