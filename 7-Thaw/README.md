@@ -8,12 +8,14 @@
 > **natural error-correction mechanism** for stuck collective beliefs.
 
 ## Status
-**Novelty-gated pilot stage (2026-06-30).** The broad claim that "forgetting helps" is already
-crowded. Thaw now targets the narrower competition between individual memory decay and social
-rehearsal: can decay reopen a correction window after an erroneous collective attractor forms?
-See `docs/project/lit_positioning_2026-06-30.md`; construct + hypotheses remain in
-`docs/project/kickoff_2026-06-25.md`. The first valid frozen-state pilot shows only a weak n=1
-signal (2/8 current at rate 0 vs 3/8 at rates 0.5 and 0.8); see `RESULTS.md`.
+**H1 (monotone thaw) rejected, 2026-07-01.** The n=1 de-risk signal (held-current rising with
+forget rate) did not replicate at n=5/cell (seeds 42-46): held-current went 40%→22.5%→40%
+(non-monotone dip, not a rise) and stale-rehearsal utterance counts stayed flat across forget
+rates. Simple per-round accessibility decay does not thaw a frozen incumbent on this
+scenario/config — see `RESULTS.md` verdict section. Not scheduled but not ruled out: forgetting at
+the communication layer, forgetting combined with a second lever (sparse comms / provenance),
+finer-grained non-monotone sweeps at higher n. See `docs/project/lit_positioning_2026-06-30.md`
+for the novelty context and `docs/project/kickoff_2026-06-25.md` for the original hypotheses.
 
 ## Why it is its own project (not a knob in Telephone)
 Forgetting has two faces. As a *friction knob* it merely lowers an equilibrium (redundant with

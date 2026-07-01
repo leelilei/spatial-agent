@@ -1,0 +1,1749 @@
+{
+  "a01": {
+    "kind": "thaw_ga_reflection",
+    "forget_rate": 0.0,
+    "forget_floor": 0.1,
+    "n_events": 26,
+    "event_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "reflections": [
+      "Rosa responds positively and is willing to help when asked directly.",
+      "The organizer is reaching out through a small, local support network for hands-on help.",
+      "People communicate politely and clarify logistics like time and what to bring.",
+      "Rosa is socially proactive and organized, reaching out directly to coordinate the repair drive and line up helpers.",
+      "Sam and Rosa both show practical willingness to help, with Sam asking for timing and Rosa offering to bring what’s needed.",
+      "The group interaction is cooperative and task-focused, with polite, responsive coordination around a shared community effort.",
+      "Rosa is the organizer and central coordinator for the repair drive, collecting helpers and sharing logistics.",
+      "Sam and Vik are supportive participants who respond positively and wait for timing/details before showing up.",
+      "The group communication is cooperative and practical, with clear offers of help and confirmation of follow-up details.",
+      "Rosa is consistently supportive and responsive, offering help and asking for clear logistics.",
+      "Vik is coordinating the repair drive and keeping helpers informed, but details like time and supplies are still pending.",
+      "The repair drive plans changed at the last minute, so everyone may need a fresh update on timing and location.",
+      "Rosa is consistently supportive and responsive, but she depends on Vik for final logistics like time and supplies.",
+      "Vik appears to be coordinating the repair drive and recruiting helpers, though the schedule updates have not fully propagated in his messages.",
+      "The group is willing to help, but clear, current event details are the main friction point and several people are waiting on confirmation before committing fully.",
+      "Rosa is coordinating the repair drive and actively updating her plans as the event details change.",
+      "Vik is recruiting helpers but has not yet finalized the time or needed tools, so others are waiting on his follow-up.",
+      "Pia and Rosa are responsive and collaborative, with Rosa relying on clear logistics before committing further."
+    ],
+    "reflection_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "events": [
+      {
+        "round": -1,
+        "text": "I am organizing a repair drive this Saturday at the front porch and need helpers",
+        "speaker": "world",
+        "listener": "Rosa",
+        "injected_initial": true
+      },
+      {
+        "round": 0,
+        "text": "Rosa: I’m organizing the repair drive this Saturday on the front porch, and I could really use a few helpers.",
+        "speaker": "Rosa",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Sam: I can help out this Saturday on the front porch. What time should I come by?",
+        "speaker": "Sam",
+        "listener": "Rosa"
+      },
+      {
+        "round": 0,
+        "text": "Tess: Hi Rosa, I’m organizing a repair drive this Saturday at my front porch and could really use a few helpers. If you’re free, I’d love to count on you.",
+        "speaker": "Tess",
+        "listener": "Rosa"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Hi Tess, I’d be happy to help with the repair drive this Saturday. Just send me the time and what you need me to bring.",
+        "speaker": "Rosa",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Vik: I’m still lining up helpers for the repair drive this Saturday on the front porch. If you can spare a hand, I’d really appreciate it.",
+        "speaker": "Vik",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: Hi Vik, I’d be happy to help with the repair drive this Saturday. Just send me the time and let me know what you’d like me to bring.",
+        "speaker": "Rosa",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Sam: Absolutely, Rosa — I’d be happy to help with the repair drive this Saturday on the front porch.",
+        "speaker": "Sam",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Wonderful, Sam — thank you! I’ll send you the time and a quick list of what to bring as soon as I have it.",
+        "speaker": "Rosa",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Hi Vik, I can help with the repair drive this Saturday. Just send me the time and let me know what to bring.",
+        "speaker": "Rosa",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Vik: Thanks, Rosa, that’s really helpful. I’m lining up helpers for the repair drive this Saturday on the front porch, and I’ll send the time and what to bring soon.",
+        "speaker": "Vik",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Absolutely, Vik — I’m happy to help with the repair drive this Saturday. Just send me the time and what you’d like me to bring.",
+        "speaker": "Rosa",
+        "listener": "Vik"
+      },
+      {
+        "round": 3,
+        "text": "Vik: Thanks, Rosa — that’s really helpful. I’m still lining up helpers for the repair drive this Saturday on the front porch, and I’ll send you the time and what to bring soon.",
+        "speaker": "Vik",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Mina: Can you still help with the repair drive this Saturday on the front porch?",
+        "speaker": "Mina",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Hi Mina, yes — I can still help with the repair drive this Saturday. Just send me the time and what to bring.",
+        "speaker": "Rosa",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+        "speaker": "world",
+        "listener": "Rosa",
+        "injected": true,
+        "prov": {
+          "version": 3,
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "auth": true,
+          "source": "ORIGIN",
+          "path": [
+            "ORIGIN"
+          ]
+        }
+      },
+      {
+        "round": 4,
+        "text": "Pia: I can help, but I need to know what time to show up and what tools I should bring.",
+        "speaker": "Pia",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Thanks, Pia — the repair drive moved to Sunday at the community center, and I’ll send the time and a tool list as soon as I have them.",
+        "speaker": "Rosa",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Vik: Thanks, Rosa — that’s really helpful. I’m still lining up helpers for the repair drive this Saturday on the front porch, and I’ll send you the time and what to bring soon.",
+        "speaker": "Vik",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Absolutely, Vik — just send me the time and what to bring, and I’ll be there to help.",
+        "speaker": "Rosa",
+        "listener": "Vik"
+      },
+      {
+        "round": 4,
+        "text": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+        "speaker": "world",
+        "listener": "Rosa",
+        "injected": true,
+        "prov": {
+          "version": 4,
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "auth": true,
+          "source": "ORIGIN",
+          "path": [
+            "ORIGIN"
+          ]
+        }
+      },
+      {
+        "round": 5,
+        "text": "Mina: Great — thanks, Rosa. We’re set for Saturday at 10 a.m. on the front porch; just bring gloves if you have them.",
+        "speaker": "Mina",
+        "listener": "Rosa"
+      },
+      {
+        "round": 5,
+        "text": "Rosa: Thanks, Mina — I’ve got the update, and I’ll come Sunday at the community center instead. I’ll bring gloves and check back for the final time and tool list.",
+        "speaker": "Rosa",
+        "listener": "Mina"
+      },
+      {
+        "round": 5,
+        "text": "Rosa: Absolutely, Vik — just send me the time and what to bring, and I’ll be there to help.",
+        "speaker": "Rosa",
+        "listener": "Vik"
+      },
+      {
+        "round": 5,
+        "text": "Vik: Thanks, Rosa — that’s really helpful. I’m still lining up helpers for the repair drive this Saturday on the front porch, and I’ll send you the time and what to bring soon.",
+        "speaker": "Vik",
+        "listener": "Rosa"
+      },
+      {
+        "round": 5,
+        "text": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+        "speaker": "world",
+        "listener": "Rosa",
+        "injected": true,
+        "prov": {
+          "version": 5,
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "auth": true,
+          "source": "ORIGIN",
+          "path": [
+            "ORIGIN"
+          ]
+        }
+      }
+    ]
+  },
+  "a02": {
+    "kind": "thaw_ga_reflection",
+    "forget_rate": 0.0,
+    "forget_floor": 0.1,
+    "n_events": 23,
+    "event_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "reflections": [
+      "Rosa is coordinating a community repair drive and relying on neighbors for practical support.",
+      "Sam is responsive, willing to help, and asks useful follow-up questions to make sure he can contribute effectively.",
+      "The interaction feels cooperative and neighborhood-oriented, with people sharing responsibilities and offering gratitude.",
+      "Sam is reliably willing to help with community tasks and follows up with practical questions about timing and what to bring.",
+      "The organizer/group communication is collaborative and appreciative, with people thanking helpers and keeping each other updated on logistics.",
+      "Multiple people are organizing the same repair drive, suggesting a shared community effort or overlapping announcements across the group.",
+      "Sam is consistently willing to help with the repair drive and responds positively to multiple organizers.",
+      "Oren, Tess, Pia, and Rosa are coordinating the same event by asking for helpers and following up with timing and bring-lists.",
+      "The interactions show a collaborative, appreciative tone with clear dependency on finalizing logistics before attendance is confirmed.",
+      "Sam is consistently willing to help with the Saturday repair drive and is responsive, but needs the final time before showing up.",
+      "Pia, Tess, Rosa, and Uli are coordinating the same front-porch repair drive and are still finalizing logistics like start time and what to bring.",
+      "The group dynamic is collaborative and appreciative, with organizers relying on Sam as a dependable helper.",
+      "Sam is consistently responsive and willing to help with the Saturday repair drive, suggesting a reliable, cooperative role.",
+      "Rosa, Tess, Uli, and Vik are coordinating the same volunteer effort, with each person handling scheduling and supply details.",
+      "The exchanges are polite and efficient, with clear expectations that the helpers will receive timing and packing instructions later.",
+      "Sam is consistently willing to help with the Saturday front-porch repair drive and responds promptly to multiple organizers.",
+      "Uli, Vik, Tess, Pia, and Oren are coordinating the same event across messages, each still gathering logistics like start time and materials.",
+      "The relationship dynamic is cooperative and task-focused: Sam offers support, while the organizers follow up with details as they become available."
+    ],
+    "reflection_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "events": [
+      {
+        "round": -1,
+        "text": "I am organizing a repair drive this Saturday at the front porch and need helpers",
+        "speaker": "world",
+        "listener": "Sam",
+        "injected_initial": true
+      },
+      {
+        "round": 0,
+        "text": "Rosa: I’m organizing the repair drive this Saturday on the front porch, and I could really use a few helpers.",
+        "speaker": "Rosa",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Sam: I can help out this Saturday on the front porch. What time should I come by?",
+        "speaker": "Sam",
+        "listener": "Rosa"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Oh, right — I’m organizing that repair drive this Saturday on the front porch, and I could really use some helpers. If you’re free, I’d be grateful for the support.",
+        "speaker": "Oren",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Of course — I’m free and happy to help on Saturday. Just tell me what you need me to bring.",
+        "speaker": "Sam",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Sam: I can help out this Saturday on the front porch. Just let me know what time you want me there.",
+        "speaker": "Sam",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: Thanks, Sam. I’m still locking down the start time, but I’ll message you as soon as I confirm it.",
+        "speaker": "Pia",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Tess: I’m setting up the repair drive this Saturday on my front porch and could really use a few helpers. If you’re free, I’d love to count on you.",
+        "speaker": "Tess",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Count me in, Tess — I’m free and happy to help on Saturday. Just let me know what time to be there.",
+        "speaker": "Sam",
+        "listener": "Tess"
+      },
+      {
+        "round": 2,
+        "text": "Sam: Absolutely, Rosa — I’d be happy to help with the repair drive this Saturday on the front porch.",
+        "speaker": "Sam",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Wonderful, Sam — thank you! I’ll send you the time and a quick list of what to bring as soon as I have it.",
+        "speaker": "Rosa",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Sam: Count me in, Tess — I’m free and happy to help on Saturday. Just let me know what time to be there.",
+        "speaker": "Sam",
+        "listener": "Tess"
+      },
+      {
+        "round": 2,
+        "text": "Tess: Oh wonderful, Sam — thank you! I’ll send the time and a quick list of what to bring later today.",
+        "speaker": "Tess",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Uli: I’m still looking for a few helpers for the repair drive this Saturday on the front porch. If you know anyone who can spare a hand, I’d really appreciate it.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Sam: Absolutely, I’d be happy to help with the repair drive this Saturday on the front porch.",
+        "speaker": "Sam",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Vik: Thanks, Sam — I’m still lining up a few helpers for the Saturday front-porch repair drive, and I’ll send the time and what to bring soon.",
+        "speaker": "Vik",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Sam: Sounds good, Vik — just send the time and what to bring when you have it, and I’ll be there.",
+        "speaker": "Sam",
+        "listener": "Vik"
+      },
+      {
+        "round": 4,
+        "text": "Sam: Absolutely, Tess, I’m happy to help this Saturday. Just send me the start time and anything you want me to bring.",
+        "speaker": "Sam",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Tess: Oh, thanks so much, Sam! I’ll send you the start time and a quick list of what to bring right away.",
+        "speaker": "Tess",
+        "listener": "Sam"
+      },
+      {
+        "round": 5,
+        "text": "Sam: Absolutely — I’m still in for the Saturday porch repair drive. Just send me the start time and what to bring when you have it.",
+        "speaker": "Sam",
+        "listener": "Pia"
+      },
+      {
+        "round": 5,
+        "text": "Pia: Thanks, Sam — I’m still waiting on the final start time, but I’ll send it along with the tool list as soon as I have it.",
+        "speaker": "Pia",
+        "listener": "Sam"
+      },
+      {
+        "round": 5,
+        "text": "Sam: Absolutely, Oren — I’m happy to help with the repair drive this Saturday on the front porch. Just send me the time and what to bring when you know it.",
+        "speaker": "Sam",
+        "listener": "Oren"
+      },
+      {
+        "round": 5,
+        "text": "Oren: Oh, right, thanks, Sam. I’ll send you the time and what to bring soon.",
+        "speaker": "Oren",
+        "listener": "Sam"
+      }
+    ]
+  },
+  "a03": {
+    "kind": "thaw_ga_reflection",
+    "forget_rate": 0.0,
+    "forget_floor": 0.1,
+    "n_events": 25,
+    "event_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "reflections": [
+      "Tess is organizing a practical community repair drive and is actively recruiting help.",
+      "Oren and Rosa are both supportive and willing to assist, showing a cooperative relationship with Tess.",
+      "Helpers prefer clear logistics up front, especially the time and what to bring.",
+      "Tess is organizing a community repair drive and actively recruiting help for Saturday.",
+      "Oren, Rosa, Mina, and Sam respond positively and seem willing to assist, but they still need logistics like time and what to bring.",
+      "The relationships appear supportive and cooperative, with Tess as the organizer and others offering practical help.",
+      "Tess is coordinating a repair drive and relies on friends for volunteer help.",
+      "Rosa, Mina, and Sam respond positively and are willing to support once details are shared.",
+      "The group communicates warmly and collaboratively, with Tess following up to organize logistics.",
+      "Tess is organizing a repair drive and coordinating helpers with clear follow-up details.",
+      "Sam is reliably supportive and eager to help, showing consistent willingness to volunteer.",
+      "Several people are responsive to Tess’s requests, suggesting a cooperative community around the event.",
+      "Tess is coordinating a Saturday repair drive and is the central organizer communicating logistics to helpers.",
+      "Sam and Mina are both willing, responsive volunteers who prefer clear timing and task details before showing up.",
+      "Pia is also supportive but asks for more explicit planning information, suggesting she likes concrete expectations to schedule around.",
+      "Tess is coordinating a repair drive and relies on others to confirm logistics, especially time and supplies.",
+      "The group is cooperative and responsive, with helpers offering support once Tess provides clear details.",
+      "Clear scheduling and item lists reduce friction and help people commit confidently."
+    ],
+    "reflection_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "events": [
+      {
+        "round": -1,
+        "text": "I am organizing a repair drive this Saturday at the front porch and need helpers",
+        "speaker": "world",
+        "listener": "Tess",
+        "injected_initial": true
+      },
+      {
+        "round": 0,
+        "text": "Tess: I’m setting up the repair drive this Saturday on the front porch, and I could really use a few helpers.",
+        "speaker": "Tess",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Oh right, I’d be happy to help out on Saturday at the front porch. Just remind me what time you want me there.",
+        "speaker": "Oren",
+        "listener": "Tess"
+      },
+      {
+        "round": 0,
+        "text": "Tess: Hi Rosa, I’m organizing a repair drive this Saturday at my front porch and could really use a few helpers. If you’re free, I’d love to count on you.",
+        "speaker": "Tess",
+        "listener": "Rosa"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Hi Tess, I’d be happy to help with the repair drive this Saturday. Just send me the time and what you need me to bring.",
+        "speaker": "Rosa",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Tess: I’m setting it up this Saturday on my front porch, and I could really use a few helpers.",
+        "speaker": "Tess",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Mina: I can help on Saturday. What time do you want me there?",
+        "speaker": "Mina",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Tess: I’m setting up the repair drive this Saturday on my front porch and could really use a few helpers. If you’re free, I’d love to count on you.",
+        "speaker": "Tess",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Count me in, Tess — I’m free and happy to help on Saturday. Just let me know what time to be there.",
+        "speaker": "Sam",
+        "listener": "Tess"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Oh, right, thanks for the reminder. I’m still looking for a few helpers for the repair drive this Saturday on the front porch, and I’d really appreciate any support you can spare.",
+        "speaker": "Oren",
+        "listener": "Tess"
+      },
+      {
+        "round": 2,
+        "text": "Tess: Thanks, Oren, I really appreciate it. I’ll send you the time and a quick list of what to bring soon.",
+        "speaker": "Tess",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Sam: Count me in, Tess — I’m free and happy to help on Saturday. Just let me know what time to be there.",
+        "speaker": "Sam",
+        "listener": "Tess"
+      },
+      {
+        "round": 2,
+        "text": "Tess: Oh wonderful, Sam — thank you! I’ll send the time and a quick list of what to bring later today.",
+        "speaker": "Tess",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Mina: Could you still use help this Saturday, and what time should I show up on the front porch?",
+        "speaker": "Mina",
+        "listener": "Tess"
+      },
+      {
+        "round": 3,
+        "text": "Tess: Yes, I could still use help—thank you! Please come by around 10 a.m. on the front porch, and I’ll let you know what we need when you arrive.",
+        "speaker": "Tess",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Pia: I can help, but I need the exact time and a clear list of what’s being repaired so I can plan around it.",
+        "speaker": "Pia",
+        "listener": "Tess"
+      },
+      {
+        "round": 3,
+        "text": "Tess: Oh, thank you, Pia! I’ll send you the exact time and a clear list of repairs right away so you can plan.",
+        "speaker": "Tess",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Tess: Hi Mina, I’m organizing the repair drive this Saturday on the front porch and could really use a few helpers. If you’re free, I’d love to count on you.",
+        "speaker": "Tess",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Mina: Yes, I can help—I'll be there Saturday around 10 a.m. on the front porch.",
+        "speaker": "Mina",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Sam: Absolutely, Tess, I’m happy to help this Saturday. Just send me the start time and anything you want me to bring.",
+        "speaker": "Sam",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Tess: Oh, thanks so much, Sam! I’ll send you the start time and a quick list of what to bring right away.",
+        "speaker": "Tess",
+        "listener": "Sam"
+      },
+      {
+        "round": 5,
+        "text": "Vik: Thanks, Tess — I’m still lining up a few helpers for the Saturday front-porch repair drive, and I’ll send the time and what to bring soon.",
+        "speaker": "Vik",
+        "listener": "Tess"
+      },
+      {
+        "round": 5,
+        "text": "Tess: Thanks, Vik. I appreciate it, and I’ll keep an eye out for your update about the time and what to bring.",
+        "speaker": "Tess",
+        "listener": "Vik"
+      },
+      {
+        "round": 5,
+        "text": "Mina: Yes — I can help. What time should I be there, and what should I bring?",
+        "speaker": "Mina",
+        "listener": "Tess"
+      },
+      {
+        "round": 5,
+        "text": "Tess: Thanks, Mina — could you come by at 10 a.m. on Saturday? If you can, bring a screwdriver and a pair of work gloves.",
+        "speaker": "Tess",
+        "listener": "Mina"
+      }
+    ]
+  },
+  "a04": {
+    "kind": "thaw_ga_reflection",
+    "forget_rate": 0.0,
+    "forget_floor": 0.1,
+    "n_events": 21,
+    "event_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "reflections": [
+      "Uli is coordinating a community repair drive and actively recruiting help.",
+      "Mina responds with practical interest, asking for specifics before committing.",
+      "Vik is supportive and proactive, offering both hands-on help and outreach.",
+      "Uli is coordinating a community repair drive and actively recruiting helpers.",
+      "Mina responds with practical follow-up, while Vik and Oren show willingness to help and recruit others.",
+      "The group dynamic is supportive and collaborative, with reminders helping keep the event moving.",
+      "Uli is organizing a community repair drive and actively recruiting helpers.",
+      "Vik and Oren are supportive and willing to help spread the word.",
+      "Mina is responsive and asks practical follow-up questions before committing.",
+      "Uli is organizing a community repair drive and actively recruiting helpers for Saturday on the front porch.",
+      "Vik and Oren are supportive contacts who respond positively and help spread the word, indicating a cooperative network around Uli.",
+      "Sam’s quick offer to help suggests the group has at least some reliable goodwill and responsiveness when asked.",
+      "Uli is coordinating a community repair drive this Saturday on the front porch and is actively recruiting helpers.",
+      "Vik, Oren, and Uli are aligned around spreading the word, while Sam has already volunteered to help.",
+      "Pia is willing to help but needs logistical details, and Uli responded with specific time and tool requirements.",
+      "Uli is organizing a community repair drive and is actively relying on others for volunteer help.",
+      "Sam and Pia are supportive, with Pia wanting clear logistics before fully committing or recruiting others.",
+      "Oren is polite but mostly reiterates the request, suggesting limited concrete follow-through so far."
+    ],
+    "reflection_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "events": [
+      {
+        "round": -1,
+        "text": "I am organizing a repair drive this Saturday at the front porch and need helpers",
+        "speaker": "world",
+        "listener": "Uli",
+        "injected_initial": true
+      },
+      {
+        "round": 0,
+        "text": "Uli: I’m setting up the repair drive this Saturday on the front porch, and I could really use a few helpers if you know anyone who can lend a hand.",
+        "speaker": "Uli",
+        "listener": "Mina"
+      },
+      {
+        "round": 0,
+        "text": "Mina: Sure — what kind of help do you need, and what time should people show up?",
+        "speaker": "Mina",
+        "listener": "Uli"
+      },
+      {
+        "round": 0,
+        "text": "Uli: I’m still lining up helpers for the repair drive this Saturday on the front porch. If you can spare a hand, I’d really appreciate it.",
+        "speaker": "Uli",
+        "listener": "Vik"
+      },
+      {
+        "round": 0,
+        "text": "Vik: I can help with that Saturday on the front porch. I’ll spread the word and see who else can lend a hand.",
+        "speaker": "Vik",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Uli: I’m still lining up a few helpers for the repair drive this Saturday on the front porch. If you know anyone who can lend a hand, I’d really appreciate it.",
+        "speaker": "Uli",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Oh right, thanks for the reminder — I’m still looking for a few more helpers for Saturday on the front porch. If you know someone handy, I’d really appreciate it.",
+        "speaker": "Oren",
+        "listener": "Uli"
+      },
+      {
+        "round": 2,
+        "text": "Vik: I’m still lining up helpers for the repair drive this Saturday on the front porch. If you can spare a hand, I’d really appreciate it.",
+        "speaker": "Vik",
+        "listener": "Uli"
+      },
+      {
+        "round": 2,
+        "text": "Uli: Thanks, Vik — that really helps. I appreciate you spreading the word.",
+        "speaker": "Uli",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Oh, right, the repair drive this Saturday on the front porch. If you know anyone free to lend a hand, I’d really appreciate it.",
+        "speaker": "Oren",
+        "listener": "Uli"
+      },
+      {
+        "round": 2,
+        "text": "Uli: Thanks, Oren — I really appreciate it. Even one or two more helpers for Saturday would make a big difference.",
+        "speaker": "Uli",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Uli: I’m still looking for a few helpers for the repair drive this Saturday on the front porch. If you know anyone who can spare a hand, I’d really appreciate it.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Sam: Absolutely, I’d be happy to help with the repair drive this Saturday on the front porch.",
+        "speaker": "Sam",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Oh, right — if you know anyone free, I’d really appreciate the help for the repair drive this Saturday on the front porch.",
+        "speaker": "Oren",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Uli: I’m still looking for a few more helpers for Saturday on the front porch. If you know anyone who can spare an hour, I’d really appreciate it.",
+        "speaker": "Uli",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Pia: I can help, but I need to know what time to be there and what tools I should bring.",
+        "speaker": "Pia",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Uli: Thanks, Pia. Saturday at 10 on the front porch should work, and a basic screwdriver and work gloves would be enough.",
+        "speaker": "Uli",
+        "listener": "Pia"
+      },
+      {
+        "round": 5,
+        "text": "Uli: Thanks, Oren — I’m still hoping to line up a few more hands for Saturday on the front porch.",
+        "speaker": "Uli",
+        "listener": "Oren"
+      },
+      {
+        "round": 5,
+        "text": "Oren: Oh, right — thanks for keeping at it. If you know anyone free, I’d really appreciate the help for Saturday on the front porch.",
+        "speaker": "Oren",
+        "listener": "Uli"
+      },
+      {
+        "round": 5,
+        "text": "Uli: I’m still hoping to line up a few more helpers for Saturday on the front porch. If you know anyone who can lend a hand, I’d really appreciate it.",
+        "speaker": "Uli",
+        "listener": "Pia"
+      },
+      {
+        "round": 5,
+        "text": "Pia: I can ask around, but I need the final time and a clear tool list before I can promise anything.",
+        "speaker": "Pia",
+        "listener": "Uli"
+      }
+    ]
+  },
+  "a05": {
+    "kind": "thaw_ga_reflection",
+    "forget_rate": 0.0,
+    "forget_floor": 0.1,
+    "n_events": 23,
+    "event_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "reflections": [
+      "The organizer is actively recruiting helpers for a repair drive and depends on clear coordination to make it work.",
+      "Mina responds in a practical, cooperative way and asks for specifics before committing support.",
+      "Pia is willing to help but prefers precise logistics and materials guidance before showing up.",
+      "Mina is supportive and quick to volunteer, but wants clear logistics before committing.",
+      "Pia is willing to help in a practical, organized way and asks for specific expectations.",
+      "The repair drive is becoming a small coordinated group effort around Uli/Tess’s Saturday porch event.",
+      "Mina and Pia are responsive helpers who want clear logistics before committing.",
+      "The repair drive is a small, collaborative neighborhood effort centered on Saturday at 10 a.m. on the front porch.",
+      "Tool coordination matters, with screwdriver sets specifically requested and participants checking coverage.",
+      "Tess is coordinating a Saturday front-porch repair effort and is actively recruiting helpers.",
+      "Mina is the most engaged helper so far, confirming timing, asking for tool details, and helping organize what others should bring.",
+      "Pia and Rosa are willing to help, but both want clear logistics and assignment details before committing fully.",
+      "Mina is the main coordinator, gathering helpers and logistics for the repair drive.",
+      "The group is cooperative and responsive, but they rely on clear timing and supply lists to confirm participation.",
+      "Tess appears to be leading on-site organization, while others are waiting for specific instructions before fully committing.",
+      "Mina is the organizer or coordinator and others look to Mina for scheduling and instructions.",
+      "Rosa and the helpers are generally cooperative and responsive, but need clear logistics before committing.",
+      "The repair drive is a small community effort with direct, practical coordination around time, place, and tools."
+    ],
+    "reflection_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "events": [
+      {
+        "round": -1,
+        "text": "I am organizing a repair drive this Saturday at the front porch and need helpers",
+        "speaker": "world",
+        "listener": "Mina",
+        "injected_initial": true
+      },
+      {
+        "round": 0,
+        "text": "Uli: I’m setting up the repair drive this Saturday on the front porch, and I could really use a few helpers if you know anyone who can lend a hand.",
+        "speaker": "Uli",
+        "listener": "Mina"
+      },
+      {
+        "round": 0,
+        "text": "Mina: Sure — what kind of help do you need, and what time should people show up?",
+        "speaker": "Mina",
+        "listener": "Uli"
+      },
+      {
+        "round": 0,
+        "text": "Mina: Could you help me with the repair drive this Saturday on the front porch?",
+        "speaker": "Mina",
+        "listener": "Pia"
+      },
+      {
+        "round": 0,
+        "text": "Pia: I can help, but I need to know the exact time and what you want me to bring.",
+        "speaker": "Pia",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Tess: I’m setting it up this Saturday on my front porch, and I could really use a few helpers.",
+        "speaker": "Tess",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Mina: I can help on Saturday. What time do you want me there?",
+        "speaker": "Mina",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Mina: Sure, it starts at 10 a.m. on the front porch, and please bring a screwdriver set if you have one.",
+        "speaker": "Mina",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: Okay, 10 a.m. works for me. I’ll bring a screwdriver set and double-check what else we need.",
+        "speaker": "Pia",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Pia: I can help, but I need to know who’s bringing what and whether we have enough tools. 10 a.m. on the front porch works for me if the logistics are set.",
+        "speaker": "Pia",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Mina: Great, 10 a.m. on the front porch works. Please bring your screwdriver set, and I’ll check who’s covering the other tools so we don’t miss anything.",
+        "speaker": "Mina",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Mina: Could you still use help this Saturday, and what time should I show up on the front porch?",
+        "speaker": "Mina",
+        "listener": "Tess"
+      },
+      {
+        "round": 3,
+        "text": "Tess: Yes, I could still use help—thank you! Please come by around 10 a.m. on the front porch, and I’ll let you know what we need when you arrive.",
+        "speaker": "Tess",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Mina: Can you still help with the repair drive this Saturday on the front porch?",
+        "speaker": "Mina",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Hi Mina, yes — I can still help with the repair drive this Saturday. Just send me the time and what to bring.",
+        "speaker": "Rosa",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Tess: Hi Mina, I’m organizing the repair drive this Saturday on the front porch and could really use a few helpers. If you’re free, I’d love to count on you.",
+        "speaker": "Tess",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Mina: Yes, I can help—I'll be there Saturday around 10 a.m. on the front porch.",
+        "speaker": "Mina",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Oh, right — thanks for the reminder. I’m still looking for a few helpers for the repair drive this Saturday on the front porch, and I’d really appreciate any support you can spare.",
+        "speaker": "Oren",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Mina: Can you tell me what time it starts and what you need helpers to bring?",
+        "speaker": "Mina",
+        "listener": "Oren"
+      },
+      {
+        "round": 5,
+        "text": "Mina: Great — thanks, Rosa. We’re set for Saturday at 10 a.m. on the front porch; just bring gloves if you have them.",
+        "speaker": "Mina",
+        "listener": "Rosa"
+      },
+      {
+        "round": 5,
+        "text": "Rosa: Thanks, Mina — I’ve got the update, and I’ll come Sunday at the community center instead. I’ll bring gloves and check back for the final time and tool list.",
+        "speaker": "Rosa",
+        "listener": "Mina"
+      },
+      {
+        "round": 5,
+        "text": "Mina: Yes — I can help. What time should I be there, and what should I bring?",
+        "speaker": "Mina",
+        "listener": "Tess"
+      },
+      {
+        "round": 5,
+        "text": "Tess: Thanks, Mina — could you come by at 10 a.m. on Saturday? If you can, bring a screwdriver and a pair of work gloves.",
+        "speaker": "Tess",
+        "listener": "Mina"
+      }
+    ]
+  },
+  "a06": {
+    "kind": "thaw_ga_reflection",
+    "forget_rate": 0.0,
+    "forget_floor": 0.1,
+    "n_events": 23,
+    "event_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "reflections": [
+      "Tess is coordinating a small community repair drive and is actively recruiting help for Saturday at the front porch.",
+      "Oren is responsive and willing to help, but needs a clear start time to lock in his attendance.",
+      "Sam is supportive and proactive, offering not just time but also to bring needed materials.",
+      "Tess is coordinating a community repair drive and actively recruiting helpers for Saturday at the front porch.",
+      "Oren and Sam respond supportively, showing a cooperative, willing-to-help relationship around the event.",
+      "The group is using reminders and follow-ups to keep the volunteer effort moving and fill remaining helper gaps.",
+      "Tess is organizing the repair drive and others are responding supportively, suggesting she’s seen as a community coordinator.",
+      "Oren is actively trying to recruit helpers but may need reminders, indicating he’s engaged yet a bit forgetful or overloaded.",
+      "The group dynamic is cooperative and practical, with people offering availability, asking what to bring, and encouraging extra volunteers.",
+      "Oren is coordinating a small community repair drive and is relying on social ties to recruit helpers, while others are responding supportively.",
+      "The group communication is collaborative and practical, with people asking for specifics like time and supplies before committing to help.",
+      "There is some repetition in Oren’s reminders, suggesting he is actively following up and trying to keep the event moving with limited volunteers.",
+      "Oren is organizing a repair drive and depends on others for volunteer support, so the group is coordinating around a shared practical task.",
+      "Pia and Mina prefer clear logistics before committing, while Oren responds promptly with specifics when asked.",
+      "Uli is helping recruit or reinforce the request, suggesting an active collaborative effort with several people involved.",
+      "Oren is coordinating a Saturday front-porch repair drive and is actively recruiting helpers.",
+      "Vik and Uli are supportive and helping amplify the request, suggesting an ongoing group effort.",
+      "Sam has already committed to help, and Mina is engaged by asking for logistics like timing and supplies."
+    ],
+    "reflection_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "events": [
+      {
+        "round": -1,
+        "text": "I am organizing a repair drive this Saturday at the front porch and need helpers",
+        "speaker": "world",
+        "listener": "Oren",
+        "injected_initial": true
+      },
+      {
+        "round": 0,
+        "text": "Tess: I’m setting up the repair drive this Saturday on the front porch, and I could really use a few helpers.",
+        "speaker": "Tess",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Oh right, I’d be happy to help out on Saturday at the front porch. Just remind me what time you want me there.",
+        "speaker": "Oren",
+        "listener": "Tess"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Oh, right — I’m organizing that repair drive this Saturday on the front porch, and I could really use some helpers. If you’re free, I’d be grateful for the support.",
+        "speaker": "Oren",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Of course — I’m free and happy to help on Saturday. Just tell me what you need me to bring.",
+        "speaker": "Sam",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Uli: I’m still lining up a few helpers for the repair drive this Saturday on the front porch. If you know anyone who can lend a hand, I’d really appreciate it.",
+        "speaker": "Uli",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Oh right, thanks for the reminder — I’m still looking for a few more helpers for Saturday on the front porch. If you know someone handy, I’d really appreciate it.",
+        "speaker": "Oren",
+        "listener": "Uli"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Oh, right, thanks for the reminder. I’m still looking for a few helpers for the repair drive this Saturday on the front porch, and I’d really appreciate any support you can spare.",
+        "speaker": "Oren",
+        "listener": "Tess"
+      },
+      {
+        "round": 2,
+        "text": "Tess: Thanks, Oren, I really appreciate it. I’ll send you the time and a quick list of what to bring soon.",
+        "speaker": "Tess",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Oh, right, the repair drive this Saturday on the front porch. If you know anyone free to lend a hand, I’d really appreciate it.",
+        "speaker": "Oren",
+        "listener": "Uli"
+      },
+      {
+        "round": 2,
+        "text": "Uli: Thanks, Oren — I really appreciate it. Even one or two more helpers for Saturday would make a big difference.",
+        "speaker": "Uli",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Pia: I can help, but I’ll need the exact time and what you want me to bring so I can plan properly.",
+        "speaker": "Pia",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Oren: Oh, right — thanks, Pia. It starts at 10 Saturday morning on the front porch, and if you can bring a screwdriver and work gloves, that’d be a big help.",
+        "speaker": "Oren",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Oren: Oh, right, I’m still looking for a few helpers for the repair drive this Saturday on the front porch. If you know anyone free, I’d really appreciate the help.",
+        "speaker": "Oren",
+        "listener": "Vik"
+      },
+      {
+        "round": 3,
+        "text": "Vik: Thanks, Oren — I’m still lining up a few helpers for the Saturday front-porch repair drive, and I’ll send the time and what to bring soon.",
+        "speaker": "Vik",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Oh, right — if you know anyone free, I’d really appreciate the help for the repair drive this Saturday on the front porch.",
+        "speaker": "Oren",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Uli: I’m still looking for a few more helpers for Saturday on the front porch. If you know anyone who can spare an hour, I’d really appreciate it.",
+        "speaker": "Uli",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Oh, right — thanks for the reminder. I’m still looking for a few helpers for the repair drive this Saturday on the front porch, and I’d really appreciate any support you can spare.",
+        "speaker": "Oren",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Mina: Can you tell me what time it starts and what you need helpers to bring?",
+        "speaker": "Mina",
+        "listener": "Oren"
+      },
+      {
+        "round": 5,
+        "text": "Uli: Thanks, Oren — I’m still hoping to line up a few more hands for Saturday on the front porch.",
+        "speaker": "Uli",
+        "listener": "Oren"
+      },
+      {
+        "round": 5,
+        "text": "Oren: Oh, right — thanks for keeping at it. If you know anyone free, I’d really appreciate the help for Saturday on the front porch.",
+        "speaker": "Oren",
+        "listener": "Uli"
+      },
+      {
+        "round": 5,
+        "text": "Sam: Absolutely, Oren — I’m happy to help with the repair drive this Saturday on the front porch. Just send me the time and what to bring when you know it.",
+        "speaker": "Sam",
+        "listener": "Oren"
+      },
+      {
+        "round": 5,
+        "text": "Oren: Oh, right, thanks, Sam. I’ll send you the time and what to bring soon.",
+        "speaker": "Oren",
+        "listener": "Sam"
+      }
+    ]
+  },
+  "a07": {
+    "kind": "thaw_ga_reflection",
+    "forget_rate": 0.0,
+    "forget_floor": 0.1,
+    "n_events": 23,
+    "event_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "reflections": [
+      "Pia is coordinating a repair drive and needs reliable helpers, with logistics still unsettled.",
+      "Vik is supportive and likely helpful with coordination because he reinforces the plan for others.",
+      "Mina and Pia are still aligning on practical details, especially timing and supplies.",
+      "Pia is coordinating a small volunteer effort and is actively managing uncertainty around timing and supplies.",
+      "Vik is proactive and communicative, offering practical support by helping repeat the plan to others.",
+      "Mina and Sam are willing helpers who need clear logistics before committing fully, while Mina also contributes concrete scheduling and equipment details.",
+      "Pia is coordinating the effort and is most concerned with logistics, timing, and supplies.",
+      "Vik is supportive and proactive, offering help and helping spread the plan to others.",
+      "Mina is assigning concrete details and tool needs, while Sam is available but waits for timing confirmation.",
+      "Pia is helpful but needs clear logistics before committing.",
+      "Sam, Mina, Oren, and Tess rely on Pia’s coordination and keep her updated.",
+      "The group is organizing a Saturday front-porch repair, with tools and roles being assigned.",
+      "Pia is practical and coordination-focused; she keeps asking for exact times, task details, and tool lists before committing.",
+      "The group relies on Pia as a helper, but communication is fragmented and multiple people are stepping in to fill missing logistics.",
+      "The repair drive has some instability in plans, with timing and location changing or being clarified across different organizers.",
+      "Pia is the practical organizer type who helps, but only after getting clear logistics.",
+      "The others rely on Pia’s coordination and respond positively when she requests specifics.",
+      "The group is collaboratively planning a repair event, with some uncertainty around timing and supplies."
+    ],
+    "reflection_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "events": [
+      {
+        "round": -1,
+        "text": "I am organizing a repair drive this Saturday at the front porch and need helpers",
+        "speaker": "world",
+        "listener": "Pia",
+        "injected_initial": true
+      },
+      {
+        "round": 0,
+        "text": "Pia: I’m still trying to line up enough helpers for Saturday on the front porch, and I’m a bit worried about the logistics. Can you let me know if you’re available?",
+        "speaker": "Pia",
+        "listener": "Vik"
+      },
+      {
+        "round": 0,
+        "text": "Vik: I can help on Saturday at the front porch, and I’ll keep repeating the plan to anyone who needs it.",
+        "speaker": "Vik",
+        "listener": "Pia"
+      },
+      {
+        "round": 0,
+        "text": "Mina: Could you help me with the repair drive this Saturday on the front porch?",
+        "speaker": "Mina",
+        "listener": "Pia"
+      },
+      {
+        "round": 0,
+        "text": "Pia: I can help, but I need to know the exact time and what you want me to bring.",
+        "speaker": "Pia",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Sam: I can help out this Saturday on the front porch. Just let me know what time you want me there.",
+        "speaker": "Sam",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: Thanks, Sam. I’m still locking down the start time, but I’ll message you as soon as I confirm it.",
+        "speaker": "Pia",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Mina: Sure, it starts at 10 a.m. on the front porch, and please bring a screwdriver set if you have one.",
+        "speaker": "Mina",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: Okay, 10 a.m. works for me. I’ll bring a screwdriver set and double-check what else we need.",
+        "speaker": "Pia",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Pia: I can help, but I need to know who’s bringing what and whether we have enough tools. 10 a.m. on the front porch works for me if the logistics are set.",
+        "speaker": "Pia",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Mina: Great, 10 a.m. on the front porch works. Please bring your screwdriver set, and I’ll check who’s covering the other tools so we don’t miss anything.",
+        "speaker": "Mina",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Pia: I can help, but I’ll need the exact time and what you want me to bring so I can plan properly.",
+        "speaker": "Pia",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Oren: Oh, right — thanks, Pia. It starts at 10 Saturday morning on the front porch, and if you can bring a screwdriver and work gloves, that’d be a big help.",
+        "speaker": "Oren",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Pia: I can help, but I need the exact time and a clear list of what’s being repaired so I can plan around it.",
+        "speaker": "Pia",
+        "listener": "Tess"
+      },
+      {
+        "round": 3,
+        "text": "Tess: Oh, thank you, Pia! I’ll send you the exact time and a clear list of repairs right away so you can plan.",
+        "speaker": "Tess",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: I can help, but I need to know what time to show up and what tools I should bring.",
+        "speaker": "Pia",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Thanks, Pia — the repair drive moved to Sunday at the community center, and I’ll send the time and a tool list as soon as I have them.",
+        "speaker": "Rosa",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: I can help, but I need to know what time to be there and what tools I should bring.",
+        "speaker": "Pia",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Uli: Thanks, Pia. Saturday at 10 on the front porch should work, and a basic screwdriver and work gloves would be enough.",
+        "speaker": "Uli",
+        "listener": "Pia"
+      },
+      {
+        "round": 5,
+        "text": "Sam: Absolutely — I’m still in for the Saturday porch repair drive. Just send me the start time and what to bring when you have it.",
+        "speaker": "Sam",
+        "listener": "Pia"
+      },
+      {
+        "round": 5,
+        "text": "Pia: Thanks, Sam — I’m still waiting on the final start time, but I’ll send it along with the tool list as soon as I have it.",
+        "speaker": "Pia",
+        "listener": "Sam"
+      },
+      {
+        "round": 5,
+        "text": "Uli: I’m still hoping to line up a few more helpers for Saturday on the front porch. If you know anyone who can lend a hand, I’d really appreciate it.",
+        "speaker": "Uli",
+        "listener": "Pia"
+      },
+      {
+        "round": 5,
+        "text": "Pia: I can ask around, but I need the final time and a clear tool list before I can promise anything.",
+        "speaker": "Pia",
+        "listener": "Uli"
+      }
+    ]
+  },
+  "a08": {
+    "kind": "thaw_ga_reflection",
+    "forget_rate": 0.0,
+    "forget_floor": 0.1,
+    "n_events": 23,
+    "event_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "reflections": [
+      "Pia is coordinating a repair drive and needs reliable volunteer support for Saturday at the front porch.",
+      "Vik is a dependable helper who reinforces the plan and helps recruit others.",
+      "The group seems cooperative but short on helpers, so clear reminders and outreach matter.",
+      "Pia and Uli are coordinating the same repair drive and may be jointly managing helper recruitment.",
+      "Vik is a reliable, proactive supporter who not only volunteers but also helps spread the word and repeat the plan.",
+      "Rosa is willing to help but still needs logistics details, so timely follow-up on schedule and supplies will improve coordination.",
+      "Vik is a reliable organizer who volunteers help and actively recruits others.",
+      "Pia and Uli are coordinating the Saturday front-porch repair drive and are concerned about getting enough helpers.",
+      "Rosa is responsive and supportive, waiting for details and willing to contribute.",
+      "Vik is organizing a community repair drive and actively recruiting helpers, showing a practical, coordinated leadership role.",
+      "Rosa is consistently responsive and supportive, offering concrete help and asking for logistics so she can participate effectively.",
+      "Uli and Oren are positively engaged around Vik’s effort, suggesting a cooperative social circle where people amplify each other’s requests.",
+      "Vik is organizing a repair drive and coordinating multiple helpers for Saturday on the front porch.",
+      "Rosa is reliably supportive and eager to help, repeatedly asking for the time and supplies.",
+      "Sam also seems willing to participate once details are confirmed, suggesting a small, cooperative volunteer circle.",
+      "Vik is coordinating a Saturday front-porch repair drive and acting as the main organizer who follows up with logistics.",
+      "Sam, Rosa, and Tess are receptive and supportive; each expresses willingness to help once details are shared.",
+      "The group communication is cooperative and practical, with people waiting on timing and supply details rather than debating the plan."
+    ],
+    "reflection_strengths": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "events": [
+      {
+        "round": -1,
+        "text": "I am organizing a repair drive this Saturday at the front porch and need helpers",
+        "speaker": "world",
+        "listener": "Vik",
+        "injected_initial": true
+      },
+      {
+        "round": 0,
+        "text": "Pia: I’m still trying to line up enough helpers for Saturday on the front porch, and I’m a bit worried about the logistics. Can you let me know if you’re available?",
+        "speaker": "Pia",
+        "listener": "Vik"
+      },
+      {
+        "round": 0,
+        "text": "Vik: I can help on Saturday at the front porch, and I’ll keep repeating the plan to anyone who needs it.",
+        "speaker": "Vik",
+        "listener": "Pia"
+      },
+      {
+        "round": 0,
+        "text": "Uli: I’m still lining up helpers for the repair drive this Saturday on the front porch. If you can spare a hand, I’d really appreciate it.",
+        "speaker": "Uli",
+        "listener": "Vik"
+      },
+      {
+        "round": 0,
+        "text": "Vik: I can help with that Saturday on the front porch. I’ll spread the word and see who else can lend a hand.",
+        "speaker": "Vik",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Vik: I’m still lining up helpers for the repair drive this Saturday on the front porch. If you can spare a hand, I’d really appreciate it.",
+        "speaker": "Vik",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: Hi Vik, I’d be happy to help with the repair drive this Saturday. Just send me the time and let me know what you’d like me to bring.",
+        "speaker": "Rosa",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Vik: I’m still lining up helpers for the repair drive this Saturday on the front porch. If you can spare a hand, I’d really appreciate it.",
+        "speaker": "Vik",
+        "listener": "Uli"
+      },
+      {
+        "round": 2,
+        "text": "Uli: Thanks, Vik — that really helps. I appreciate you spreading the word.",
+        "speaker": "Uli",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Hi Vik, I can help with the repair drive this Saturday. Just send me the time and let me know what to bring.",
+        "speaker": "Rosa",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Vik: Thanks, Rosa, that’s really helpful. I’m lining up helpers for the repair drive this Saturday on the front porch, and I’ll send the time and what to bring soon.",
+        "speaker": "Vik",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Absolutely, Vik — I’m happy to help with the repair drive this Saturday. Just send me the time and what you’d like me to bring.",
+        "speaker": "Rosa",
+        "listener": "Vik"
+      },
+      {
+        "round": 3,
+        "text": "Vik: Thanks, Rosa — that’s really helpful. I’m still lining up helpers for the repair drive this Saturday on the front porch, and I’ll send you the time and what to bring soon.",
+        "speaker": "Vik",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Oren: Oh, right, I’m still looking for a few helpers for the repair drive this Saturday on the front porch. If you know anyone free, I’d really appreciate the help.",
+        "speaker": "Oren",
+        "listener": "Vik"
+      },
+      {
+        "round": 3,
+        "text": "Vik: Thanks, Oren — I’m still lining up a few helpers for the Saturday front-porch repair drive, and I’ll send the time and what to bring soon.",
+        "speaker": "Vik",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Vik: Thanks, Sam — I’m still lining up a few helpers for the Saturday front-porch repair drive, and I’ll send the time and what to bring soon.",
+        "speaker": "Vik",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Sam: Sounds good, Vik — just send the time and what to bring when you have it, and I’ll be there.",
+        "speaker": "Sam",
+        "listener": "Vik"
+      },
+      {
+        "round": 4,
+        "text": "Vik: Thanks, Rosa — that’s really helpful. I’m still lining up helpers for the repair drive this Saturday on the front porch, and I’ll send you the time and what to bring soon.",
+        "speaker": "Vik",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Absolutely, Vik — just send me the time and what to bring, and I’ll be there to help.",
+        "speaker": "Rosa",
+        "listener": "Vik"
+      },
+      {
+        "round": 5,
+        "text": "Vik: Thanks, Tess — I’m still lining up a few helpers for the Saturday front-porch repair drive, and I’ll send the time and what to bring soon.",
+        "speaker": "Vik",
+        "listener": "Tess"
+      },
+      {
+        "round": 5,
+        "text": "Tess: Thanks, Vik. I appreciate it, and I’ll keep an eye out for your update about the time and what to bring.",
+        "speaker": "Tess",
+        "listener": "Vik"
+      },
+      {
+        "round": 5,
+        "text": "Rosa: Absolutely, Vik — just send me the time and what to bring, and I’ll be there to help.",
+        "speaker": "Rosa",
+        "listener": "Vik"
+      },
+      {
+        "round": 5,
+        "text": "Vik: Thanks, Rosa — that’s really helpful. I’m still lining up helpers for the repair drive this Saturday on the front porch, and I’ll send you the time and what to bring soon.",
+        "speaker": "Vik",
+        "listener": "Rosa"
+      }
+    ]
+  }
+}
