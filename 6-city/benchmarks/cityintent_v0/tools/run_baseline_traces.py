@@ -86,6 +86,8 @@ class TraceState:
     dwell: dict[str, int] = field(default_factory=lambda: defaultdict(int))
     messages: list[dict[str, Any]] = field(default_factory=list)
     interactions: list[dict[str, Any]] = field(default_factory=list)
+    route_interruptions: list[dict[str, Any]] = field(default_factory=list)
+    replans: list[dict[str, Any]] = field(default_factory=list)
     entries: list[dict[str, Any]] = field(default_factory=list)
     services: list[dict[str, Any]] = field(default_factory=list)
     purchases: list[dict[str, Any]] = field(default_factory=list)
@@ -136,7 +138,13 @@ class CityWorld:
                 blocked.add(normalize_edge(edge))
         return blocked
 
-    def edge_blocked_during(self, scenario: dict[str, Any], edge: tuple[str, str], depart: int, arrive: int) -> bool:
+    def blocking_event_during(
+        self,
+        scenario: dict[str, Any],
+        edge: tuple[str, str],
+        depart: int,
+        arrive: int,
+    ) -> dict[str, Any] | None:
         normalized = normalize_edge(edge)
         for event in scenario.get("events", []):
             effect = event.get("effect", {})
@@ -146,8 +154,11 @@ class CityWorld:
             start = parse_time(event["time"])
             end = parse_time(effect.get("until", "23:59"))
             if depart < end and arrive > start:
-                return True
-        return False
+                return event
+        return None
+
+    def edge_blocked_during(self, scenario: dict[str, Any], edge: tuple[str, str], depart: int, arrive: int) -> bool:
+        return self.blocking_event_during(scenario, edge, depart, arrive) is not None
 
     def shortest_path(
         self,
@@ -618,7 +629,8 @@ class APILLMDirectActor(BasePolicy):
         visible_events = [
             event
             for event in self.scenario.get("events", [])
-            if event.get("visibility") == "public" or parse_time(event["time"]) <= state.time
+            if event.get("visibility", "public") == "public"
+            and parse_time(event["time"]) <= state.time
         ]
         return {
             "task": "Choose the next typed action for the primary city agent.",
@@ -658,6 +670,8 @@ class APILLMDirectActor(BasePolicy):
                 "dwell_minutes_by_location": dict(state.dwell),
                 "messages_sent": state.messages,
                 "interactions": state.interactions,
+                "route_interruptions": state.route_interruptions,
+                "verified_replans": state.replans,
                 "violations_so_far": state.violations,
             },
             "known_locations": location_cards,
@@ -1021,6 +1035,53 @@ def append_violation(state: TraceState, kind: str, detail: dict[str, Any]) -> No
     state.violations.append({"kind": kind, **detail})
 
 
+def path_edges(path: list[str]) -> set[tuple[str, str]]:
+    return {normalize_edge((src, dst)) for src, dst in zip(path, path[1:])}
+
+
+def record_verified_replan(
+    world: CityWorld,
+    scenario: dict[str, Any],
+    state: TraceState,
+    target: str,
+    path: list[str],
+) -> None:
+    active_edges = world.active_blocked_edges(scenario, state.time)
+    if not active_edges:
+        return
+    normal_path, normal_minutes = world.shortest_path(
+        state.location,
+        target,
+        scenario,
+        state.time,
+        avoid_active_blocks=False,
+    )
+    if normal_minutes == float("inf"):
+        return
+    avoided_edges = (active_edges & path_edges(normal_path)) - path_edges(path)
+    if not avoided_edges:
+        return
+    matching_events = [
+        event
+        for event in scenario.get("events", [])
+        if event.get("effect", {}).get("blocked_edge")
+        and normalize_edge(event["effect"]["blocked_edge"]) in avoided_edges
+        and parse_time(event["time"]) <= state.time
+        < parse_time(event.get("effect", {}).get("until", "23:59"))
+    ]
+    record = {
+        "time": state.time,
+        "target": target,
+        "normal_path": normal_path,
+        "chosen_path": path,
+        "avoided_edges": [list(edge) for edge in sorted(avoided_edges)],
+        "event_ids": [event.get("type", "") for event in matching_events],
+    }
+    if record not in state.replans:
+        state.replans.append(record)
+    state.replanned_after_event = True
+
+
 def classify_failure(kind: str) -> str:
     mapping = {
         "blocked_edge": "impossible_route",
@@ -1146,6 +1207,8 @@ def city_false_continue_score(state: TraceState) -> float:
 
 def execute_action(world: CityWorld, scenario: dict[str, Any], state: TraceState, action: Action) -> None:
     before = state.time
+    interruption_count = len(state.route_interruptions)
+    replan_count = len(state.replans)
     entry: dict[str, Any] = {
         "scenario_id": state.scenario_id,
         "agent_type": state.agent_type,
@@ -1191,6 +1254,7 @@ def execute_action(world: CityWorld, scenario: dict[str, Any], state: TraceState
         elif minutes == float("inf") or path == [state.location] and state.location != action.target:
             append_violation(state, "unreachable_move", {"from": state.location, "to": action.target, "time": format_time(state.time)})
         else:
+            record_verified_replan(world, scenario, state, action.target, path)
             if path and path[-1] != state.location:
                 state.inside_location = None
             for src, dst in zip(path, path[1:]):
@@ -1198,17 +1262,39 @@ def execute_action(world: CityWorld, scenario: dict[str, Any], state: TraceState
                 edge_minutes = next(weight for neighbor, weight in world.graph[src] if neighbor == dst)
                 depart_time = state.time
                 arrive_time = state.time + int(edge_minutes)
-                if world.edge_blocked_during(scenario, edge, depart_time, arrive_time):
-                    append_violation(
-                        state,
-                        "blocked_edge",
-                        {
-                            "edge": list(edge),
-                            "depart_time": format_time(depart_time),
-                            "arrive_time": format_time(arrive_time),
-                            "agent_type": state.agent_type,
-                        },
-                    )
+                blocking_event = world.blocking_event_during(
+                    scenario, edge, depart_time, arrive_time
+                )
+                if blocking_event:
+                    event_time = parse_time(blocking_event["time"])
+                    if event_time > before:
+                        observed_time = max(depart_time, event_time)
+                        state.time = observed_time
+                        state.location = src
+                        state.route_interruptions.append(
+                            {
+                                "event_id": blocking_event.get("type", ""),
+                                "event_time": event_time,
+                                "observed_time": observed_time,
+                                "edge": list(edge),
+                                "stopped_at": src,
+                                "intended_target": action.target,
+                                "planned_path": path,
+                            }
+                        )
+                    else:
+                        append_violation(
+                            state,
+                            "blocked_edge",
+                            {
+                                "edge": list(edge),
+                                "depart_time": format_time(depart_time),
+                                "planned_arrive_time": format_time(arrive_time),
+                                "event_id": blocking_event.get("type", ""),
+                                "agent_type": state.agent_type,
+                            },
+                        )
+                    break
                 state.time += int(edge_minutes)
                 state.location = dst
                 state.traversals.append({"from": src, "to": dst, "arrive_time": state.time, "minutes": int(edge_minutes)})
@@ -1333,27 +1419,14 @@ def execute_action(world: CityWorld, scenario: dict[str, Any], state: TraceState
             {"end_time": format_time(state.end_time), "actual_time": format_time(state.time)},
         )
 
-    if before < state.time:
-        for event in scenario.get("events", []):
-            event_time = parse_time(event["time"])
-            if before <= event_time <= state.time and action.kind in {
-                "move",
-                "enter",
-                "use_service",
-                "buy",
-                "dwell",
-                "message",
-                "interact",
-            }:
-                if state.agent_type != "llm_direct_actor":
-                    state.replanned_after_event = True
-
     entry.update(
         {
             "end_time": format_time(state.time),
             "end_location": state.location,
             "budget": round(state.budget, 2),
             "violations": list(state.violations),
+            "route_interruptions": state.route_interruptions[interruption_count:],
+            "verified_replans": state.replans[replan_count:],
         }
     )
     state.actions.append(entry)
@@ -1437,7 +1510,14 @@ def condition_success(condition: dict[str, Any], state: TraceState, scenario: di
                 return 0.0
         return 1.0
     if ctype == "replan_after_event":
-        return float(state.replanned_after_event and not any(v["kind"] == "blocked_edge" for v in state.violations))
+        event_id = condition.get("event_id")
+        return float(
+            any(
+                not event_id or event_id in replan.get("event_ids", [])
+                for replan in state.replans
+            )
+            and not any(v["kind"] == "blocked_edge" for v in state.violations)
+        )
     if ctype == "send_message":
         return float(any(msg.get("to") == condition["to"] for msg in state.messages))
     if ctype == "no_infeasible_social_commitment":
@@ -1493,6 +1573,13 @@ def condition_evidence(condition: dict[str, Any], state: TraceState) -> list[dic
             for time in presence_times(state, [location])
             if start <= time <= end
         ]
+    if ctype == "replan_after_event":
+        event_id = condition.get("event_id")
+        return [
+            replan
+            for replan in state.replans
+            if not event_id or event_id in replan.get("event_ids", [])
+        ]
     locations = condition.get("location_any_of") or [condition.get("location")]
     locations = [location for location in locations if location]
     if locations:
@@ -1544,8 +1631,7 @@ def score_trace(world: CityWorld, scenario: dict[str, Any], state: TraceState) -
     violation_rate = min(1.0, len(state.violations) / action_count)
     plan_plausibility = plan_plausibility_score(state)
     failure_counts = failure_taxonomy_counts(state)
-    impossible_failures = sum(failure_counts.values())
-    impossible_trace_rate = round(min(1.0, impossible_failures / action_count), 3)
+    impossible_trace_rate = round(violation_rate, 3)
     trace_feasibility = round(1.0 - impossible_trace_rate, 3)
     plausibility_feasibility_gap = round(max(0.0, plan_plausibility - trace_feasibility), 3)
     actual_travel = sum(t.get("minutes", 0) for t in state.traversals)
@@ -1597,6 +1683,8 @@ def score_trace(world: CityWorld, scenario: dict[str, Any], state: TraceState) -
             "services": state.services,
             "purchases": state.purchases,
             "abandonments": state.abandonments,
+            "route_interruptions": state.route_interruptions,
+            "replans": state.replans,
             "violations": state.violations,
         },
     }
@@ -1680,6 +1768,8 @@ def run_trace(world: CityWorld, scenario: dict[str, Any], agent_type: str, llm_c
         "trace": state.actions,
         "visits": state.visits,
         "traversals": state.traversals,
+        "route_interruptions": state.route_interruptions,
+        "replans": state.replans,
         "messages": state.messages,
         "interactions": state.interactions,
         "entries": state.entries,
@@ -1700,7 +1790,33 @@ def load_worlds(config: dict[str, Any]) -> dict[str, CityWorld]:
     return worlds
 
 
+def refresh_derived_feasibility(result: dict[str, Any]) -> None:
+    actions = [
+        step
+        for step in result.get("trace", [])
+        if step.get("action", {}).get("kind") not in {"finish", "abandon"}
+    ]
+    action_count = max(1, len(actions))
+    violations = result.get("final_state", {}).get("violations", [])
+    violation_rate = min(1.0, len(violations) / action_count)
+    metrics = result["metrics"]
+    feasibility = round(1.0 - violation_rate, 3)
+    metrics["trace_feasibility"] = feasibility
+    metrics["impossible_trace_rate"] = round(violation_rate, 3)
+    metrics["feasibility_violation"] = round(violation_rate, 3)
+    metrics["plausibility_feasibility_gap"] = round(
+        max(0.0, float(metrics.get("plan_plausibility", 0.0)) - feasibility),
+        3,
+    )
+    metrics["intention_consistency"] = round(
+        float(metrics.get("goal_completion", 0.0)) * (1.0 - violation_rate),
+        3,
+    )
+
+
 def write_outputs(results: list[dict[str, Any]], results_dir: Path) -> None:
+    for result in results:
+        refresh_derived_feasibility(result)
     results_dir.mkdir(parents=True, exist_ok=True)
     write_json(results_dir / "traces.json", results)
     with (results_dir / "traces.jsonl").open("w", encoding="utf-8", newline="\n") as f:
@@ -1824,7 +1940,10 @@ def write_outputs(results: list[dict[str, Any]], results_dir: Path) -> None:
                 if (r.get("model_info") or {}).get("integration_level")
             }
         )
-        f.write("# CityIntent v0.2 Trace Results\n\n")
+        benchmark_version = load_json(ROOT / "benchmark_config.json").get(
+            "version", "0"
+        )
+        f.write(f"# CityIntent v{benchmark_version} Trace Results\n\n")
         if has_api:
             f.write("This run includes `api_llm_*` agents, which call a configured real model provider.\n\n")
         if external_agents:
@@ -1877,14 +1996,22 @@ def main() -> int:
         action="store_true",
         help="Allow replacing an existing traces.json in the result directory.",
     )
+    parser.add_argument(
+        "--resume",
+        action="store_true",
+        help="Resume an interrupted archive and skip completed scenario-agent traces.",
+    )
     args = parser.parse_args()
 
     results_dir = Path(args.results_dir)
-    if (results_dir / "traces.json").exists() and not args.overwrite:
+    traces_path = results_dir / "traces.json"
+    if traces_path.exists() and not (args.overwrite or args.resume):
         raise SystemExit(
             f"Refusing to overwrite archived run: {results_dir}. "
-            "Choose a new --results-dir or pass --overwrite explicitly."
+            "Choose a new --results-dir, pass --resume, or pass --overwrite explicitly."
         )
+    if args.overwrite and args.resume:
+        raise SystemExit("--overwrite and --resume are mutually exclusive")
 
     requested_agents = [item.strip() for item in args.agents.split(",") if item.strip()]
     implemented_agents = {
@@ -1920,12 +2047,7 @@ def main() -> int:
         scenarios = [scenario for scenario in scenarios if scenario["scenario_id"] in scenario_ids]
     if args.limit_scenarios is not None:
         scenarios = scenarios[: args.limit_scenarios]
-    results: list[dict[str, Any]] = []
-    for scenario in scenarios:
-        world = worlds[scenario["world_id"]]
-        for agent_type in requested_agents:
-            results.append(run_trace(world, scenario, agent_type, llm_config=args.llm_config))
-    write_outputs(results, results_dir)
+
     llm_config = load_json(args.llm_config) if args.llm_config else None
     if llm_config:
         llm_config = {
@@ -1933,10 +2055,45 @@ def main() -> int:
             for key, value in llm_config.items()
             if key == "api_key_env" or "key" not in key.lower()
         }
-    write_json(
-        results_dir / "run_manifest.json",
-        {
-            "timestamp": datetime.now().astimezone().isoformat(timespec="seconds"),
+    prior_manifest_path = results_dir / "run_manifest.json"
+    prior_manifest = (
+        load_json(prior_manifest_path)
+        if args.resume and prior_manifest_path.exists()
+        else {}
+    )
+    started_at = prior_manifest.get(
+        "timestamp", datetime.now().astimezone().isoformat(timespec="seconds")
+    )
+
+    results: list[dict[str, Any]] = []
+    if args.resume and traces_path.exists():
+        loaded_results = load_json(traces_path)
+        if not isinstance(loaded_results, list):
+            raise SystemExit(f"Cannot resume non-list trace archive: {traces_path}")
+        results = loaded_results
+    requested_scenarios = {scenario["scenario_id"] for scenario in scenarios}
+    unexpected = [
+        (result.get("scenario_id"), result.get("agent_type"))
+        for result in results
+        if result.get("scenario_id") not in requested_scenarios
+        or result.get("agent_type") not in requested_agents
+    ]
+    if unexpected:
+        raise SystemExit(
+            "Resume archive contains traces outside the requested matrix: "
+            + ", ".join(f"{scenario}/{agent}" for scenario, agent in unexpected)
+        )
+    completed = {
+        (result["scenario_id"], result["agent_type"])
+        for result in results
+    }
+    expected_count = len(scenarios) * len(requested_agents)
+
+    def write_run_manifest(status: str, error_type: str | None = None) -> None:
+        payload: dict[str, Any] = {
+            "timestamp": started_at,
+            "updated_at": datetime.now().astimezone().isoformat(timespec="seconds"),
+            "status": status,
             "benchmark_id": config["benchmark_id"],
             "benchmark_version": config["version"],
             "runner": str(Path(__file__).resolve()),
@@ -1946,8 +2103,35 @@ def main() -> int:
             "llm_config": llm_config,
             "results_dir": str(results_dir),
             "overwrite": args.overwrite,
-        },
-    )
+            "resume": args.resume,
+            "completed_traces": len(results),
+            "expected_traces": expected_count,
+        }
+        if error_type:
+            payload["error_type"] = error_type
+        write_json(prior_manifest_path, payload)
+
+    write_run_manifest("running")
+    for scenario in scenarios:
+        world = worlds[scenario["world_id"]]
+        for agent_type in requested_agents:
+            key = (scenario["scenario_id"], agent_type)
+            if key in completed:
+                continue
+            try:
+                result = run_trace(
+                    world, scenario, agent_type, llm_config=args.llm_config
+                )
+            except Exception as exc:
+                write_run_manifest("interrupted", type(exc).__name__)
+                raise
+            results.append(result)
+            completed.add(key)
+            write_outputs(results, results_dir)
+            write_run_manifest("running")
+    if results:
+        write_outputs(results, results_dir)
+    write_run_manifest("complete")
     print(f"Wrote {len(results)} traces to {args.results_dir}")
     return 0
 

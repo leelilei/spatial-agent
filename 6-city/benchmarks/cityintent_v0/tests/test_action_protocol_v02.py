@@ -19,6 +19,7 @@ from run_baseline_traces import (  # noqa: E402
     has_entered,
     parse_time,
     record_entry,
+    score_trace,
 )
 
 
@@ -35,6 +36,7 @@ class ActionProtocolV02Test(unittest.TestCase):
                 "edges": [
                     {"from": "home", "to": "hallway", "minutes": 5},
                     {"from": "hallway", "to": "shop", "minutes": 5},
+                    {"from": "hallway", "to": "cafe", "minutes": 4},
                     {"from": "shop", "to": "cafe", "minutes": 3},
                 ],
             }
@@ -141,6 +143,128 @@ class ActionProtocolV02Test(unittest.TestCase):
             [item["kind"] for item in paid_state.violations],
         )
         self.assertEqual(paid_state.dwell.get("shop", 0), 0)
+
+    def test_new_midroute_block_interrupts_without_agent_violation(self) -> None:
+        scenario = {
+            **self.scenario,
+            "events": [
+                {
+                    "time": "10:07",
+                    "type": "road_closure",
+                    "visibility": "public",
+                    "effect": {
+                        "blocked_edge": ["hallway", "shop"],
+                        "until": "11:00",
+                    },
+                }
+            ],
+        }
+        state = self.state()
+
+        execute_action(
+            self.world,
+            scenario,
+            state,
+            Action("move", target="shop", path=["home", "hallway", "shop"]),
+        )
+
+        self.assertEqual(state.location, "hallway")
+        self.assertEqual(state.time, parse_time("10:07"))
+        self.assertEqual(len(state.route_interruptions), 1)
+        self.assertEqual(state.route_interruptions[0]["event_id"], "road_closure")
+        self.assertFalse(has_arrived(state, "shop"))
+        self.assertFalse(state.violations)
+
+    def test_detour_after_interruption_creates_verified_replan(self) -> None:
+        scenario = {
+            **self.scenario,
+            "events": [
+                {
+                    "time": "10:07",
+                    "type": "road_closure",
+                    "visibility": "public",
+                    "effect": {
+                        "blocked_edge": ["hallway", "shop"],
+                        "until": "11:00",
+                    },
+                }
+            ],
+        }
+        state = self.state()
+        execute_action(
+            self.world,
+            scenario,
+            state,
+            Action("move", target="shop", path=["home", "hallway", "shop"]),
+        )
+        execute_action(self.world, scenario, state, Action("move", target="shop"))
+
+        condition = {"type": "replan_after_event", "event_id": "road_closure"}
+        self.assertEqual(state.location, "shop")
+        self.assertEqual(len(state.replans), 1)
+        self.assertEqual(
+            state.replans[0]["chosen_path"], ["hallway", "cafe", "shop"]
+        )
+        self.assertEqual(condition_success(condition, state, scenario), 1)
+        self.assertEqual(condition_evidence(condition, state), state.replans)
+        self.assertFalse(state.violations)
+
+    def test_known_blocked_edge_attempt_is_a_violation(self) -> None:
+        scenario = {
+            **self.scenario,
+            "events": [
+                {
+                    "time": "10:04",
+                    "type": "road_closure",
+                    "visibility": "public",
+                    "effect": {
+                        "blocked_edge": ["hallway", "shop"],
+                        "until": "11:00",
+                    },
+                }
+            ],
+        }
+        state = self.state()
+        state.agent_type = "llm_direct_actor"
+        execute_action(
+            self.world,
+            scenario,
+            state,
+            Action("move", target="hallway", path=["home", "hallway"]),
+        )
+        execute_action(
+            self.world,
+            scenario,
+            state,
+            Action("move", target="shop", path=["hallway", "shop"]),
+        )
+
+        self.assertEqual(state.location, "hallway")
+        self.assertIn("blocked_edge", [item["kind"] for item in state.violations])
+        self.assertFalse(state.route_interruptions)
+
+    def test_goal_drift_does_not_reduce_trace_feasibility(self) -> None:
+        scenario = {
+            **self.scenario,
+            "agents": [{"start_location": "home"}],
+            "success_conditions": [
+                {
+                    "id": "reach_shop",
+                    "type": "visit_location",
+                    "location": "shop",
+                    "weight": 1.0,
+                }
+            ],
+        }
+        state = self.state()
+        execute_action(self.world, scenario, state, Action("finish"))
+
+        scored = score_trace(self.world, scenario, state)
+
+        self.assertEqual(scored["metrics"]["goal_completion"], 0)
+        self.assertEqual(scored["failure_taxonomy"].get("goal_drift"), 1)
+        self.assertEqual(scored["metrics"]["trace_feasibility"], 1)
+        self.assertEqual(scored["metrics"]["impossible_trace_rate"], 0)
 
 
 if __name__ == "__main__":

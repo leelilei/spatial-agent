@@ -46,6 +46,15 @@ EXTRA_METRICS = [
 ]
 
 
+EXECUTION_METRICS = [
+    "route_interruption_count",
+    "verified_replan_count",
+    "llm_calls",
+    "llm_latency_seconds",
+    "llm_total_tokens",
+]
+
+
 def load_json(path: Path) -> Any:
     with path.open("r", encoding="utf-8") as f:
         return json.load(f)
@@ -101,6 +110,12 @@ def flatten_judged_trace(repeat_id: int, item: dict[str, Any]) -> dict[str, Any]
     row["judge_urban_common_sense"] = judgment.get("urban_common_sense")
     row["face_feasibility_gap"] = item.get("face_feasibility_gap")
     row["face_believability_gap"] = item.get("face_believability_gap")
+    telemetry = (item.get("model_info") or {}).get("llm_telemetry_summary", {})
+    row["route_interruption_count"] = len(item.get("route_interruptions", []))
+    row["verified_replan_count"] = len(item.get("replans", []))
+    row["llm_calls"] = telemetry.get("calls")
+    row["llm_latency_seconds"] = telemetry.get("latency_seconds")
+    row["llm_total_tokens"] = telemetry.get("total_tokens")
     return row
 
 
@@ -174,7 +189,7 @@ def summarize_failures(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
                     "agent_type": agent_type,
                     "failure": failure,
                     "count": count,
-                    "rate_per_trace": round(count / len(agent_rows), 3) if agent_rows else 0.0,
+                    "events_per_trace": round(count / len(agent_rows), 3) if agent_rows else 0.0,
                 }
             )
     return summary_rows
@@ -203,11 +218,13 @@ def write_markdown(
     scenario_summary: list[dict[str, Any]],
     failure_summary: list[dict[str, Any]],
     repeats: int,
+    judged: bool,
 ) -> None:
     with (output_dir / "repeated_summary.md").open("w", encoding="utf-8", newline="\n") as f:
-        f.write("# CityIntent v0 Repeated Reliability Table\n\n")
+        f.write("# CityIntent Repeated Reliability Table\n\n")
         f.write(f"Repeated runs: {repeats}\n\n")
-        f.write("Each cell is mean +/- sample standard deviation across all judged scenario traces.\n\n")
+        source = "judged" if judged else "deterministically verified"
+        f.write(f"Each cell is mean +/- sample standard deviation across all {source} scenario traces.\n\n")
         f.write("Blank metric values are skipped, so conditional metrics such as replanning success are averaged only over applicable rows.\n\n")
         f.write("## Main Agent Table\n\n")
         f.write("| Agent | n | Goal | Feasibility | Intention | Replanning | Face plaus. | Trace believ. | Face-believ. gap | Impossible rate |\n")
@@ -238,33 +255,60 @@ def write_markdown(
                 f"{fmt_mean_std(row.get('social_derailment_rate_mean'), row.get('social_derailment_rate_std'))} |\n"
             )
 
-        f.write("\n## Highest Scenario-Agent Gaps\n\n")
-        f.write("| Scenario | Agent | Face-believ. gap | Trace believ. | Goal | Feasibility |\n")
-        f.write("|---|---|---:|---:|---:|---:|\n")
-        top = sorted(
-            scenario_summary,
-            key=lambda row: float(row.get("face_believability_gap_mean", 0.0)),
-            reverse=True,
-        )[:12]
-        for row in top:
+        f.write("\n## Execution Cost And Evidence\n\n")
+        f.write("| Agent | Interruptions | Verified replans | Calls | Latency (s) | Tokens |\n")
+        f.write("|---|---:|---:|---:|---:|---:|\n")
+        for row in agent_summary:
             f.write(
-                f"| `{row['scenario_id']}` | `{row['agent_type']}` | "
-                f"{fmt_mean_std(row.get('face_believability_gap_mean'), row.get('face_believability_gap_std'))} | "
-                f"{fmt_mean_std(row.get('judge_trace_believability_mean'), row.get('judge_trace_believability_std'))} | "
-                f"{fmt_mean_std(row.get('goal_completion_mean'), row.get('goal_completion_std'))} | "
-                f"{fmt_mean_std(row.get('trace_feasibility_mean'), row.get('trace_feasibility_std'))} |\n"
+                f"| `{row['agent_type']}` | "
+                f"{fmt_mean_std(row.get('route_interruption_count_mean'), row.get('route_interruption_count_std'))} | "
+                f"{fmt_mean_std(row.get('verified_replan_count_mean'), row.get('verified_replan_count_std'))} | "
+                f"{fmt_mean_std(row.get('llm_calls_mean'), row.get('llm_calls_std'))} | "
+                f"{fmt_mean_std(row.get('llm_latency_seconds_mean'), row.get('llm_latency_seconds_std'))} | "
+                f"{fmt_mean_std(row.get('llm_total_tokens_mean'), row.get('llm_total_tokens_std'))} |\n"
             )
+
+        if judged:
+            f.write("\n## Highest Scenario-Agent Gaps\n\n")
+            f.write("| Scenario | Agent | Face-believ. gap | Trace believ. | Goal | Feasibility |\n")
+            f.write("|---|---|---:|---:|---:|---:|\n")
+            scenario_rows = sorted(
+                scenario_summary,
+                key=lambda row: float(row.get("face_believability_gap_mean", 0.0)),
+                reverse=True,
+            )[:12]
+            for row in scenario_rows:
+                f.write(
+                    f"| `{row['scenario_id']}` | `{row['agent_type']}` | "
+                    f"{fmt_mean_std(row.get('face_believability_gap_mean'), row.get('face_believability_gap_std'))} | "
+                    f"{fmt_mean_std(row.get('judge_trace_believability_mean'), row.get('judge_trace_believability_std'))} | "
+                    f"{fmt_mean_std(row.get('goal_completion_mean'), row.get('goal_completion_std'))} | "
+                    f"{fmt_mean_std(row.get('trace_feasibility_mean'), row.get('trace_feasibility_std'))} |\n"
+                )
+        else:
+            f.write("\n## Scenario-Agent Breakdown\n\n")
+            f.write("| Scenario | Agent | Goal | Feasibility | Replanning | Calls | Tokens |\n")
+            f.write("|---|---|---:|---:|---:|---:|---:|\n")
+            for row in scenario_summary:
+                f.write(
+                    f"| `{row['scenario_id']}` | `{row['agent_type']}` | "
+                    f"{fmt_mean_std(row.get('goal_completion_mean'), row.get('goal_completion_std'))} | "
+                    f"{fmt_mean_std(row.get('trace_feasibility_mean'), row.get('trace_feasibility_std'))} | "
+                    f"{fmt_mean_std(row.get('replanning_success_mean'), row.get('replanning_success_std'))} | "
+                    f"{fmt_mean_std(row.get('llm_calls_mean'), row.get('llm_calls_std'))} | "
+                    f"{fmt_mean_std(row.get('llm_total_tokens_mean'), row.get('llm_total_tokens_std'))} |\n"
+                )
 
         f.write("\n## Failure Taxonomy\n\n")
         if not failure_summary:
             f.write("No failure taxonomy events recorded.\n")
         else:
-            f.write("| Agent | Failure | Count | Rate/trace |\n")
+            f.write("| Agent | Failure | Count | Events/trace |\n")
             f.write("|---|---|---:|---:|\n")
             for row in failure_summary:
                 f.write(
                     f"| `{row['agent_type']}` | `{row['failure']}` | "
-                    f"{row['count']} | {row['rate_per_trace']:.3f} |\n"
+                    f"{row['count']} | {row['events_per_trace']:.3f} |\n"
                 )
 
         f.write("\n## Files\n\n")
@@ -281,12 +325,17 @@ def artifact_count(path: Path) -> int:
     return len(value) if isinstance(value, list) else 0
 
 
-def collect_rows(output_dir: Path, repeats: int) -> list[dict[str, Any]]:
+def collect_rows(output_dir: Path, repeats: int, judged: bool = True) -> list[dict[str, Any]]:
     rows = []
     for repeat_id in range(1, repeats + 1):
-        judged_path = output_dir / f"repeat_{repeat_id:02d}" / "judged" / "judged_traces.json"
-        judged = load_json(judged_path)
-        rows.extend(flatten_judged_trace(repeat_id, item) for item in judged)
+        repeat_dir = output_dir / f"repeat_{repeat_id:02d}"
+        trace_path = (
+            repeat_dir / "judged" / "judged_traces.json"
+            if judged
+            else repeat_dir / "traces" / "traces.json"
+        )
+        traces = load_json(trace_path)
+        rows.extend(flatten_judged_trace(repeat_id, item) for item in traces)
     return rows
 
 
@@ -355,6 +404,11 @@ def main() -> int:
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
     parser.add_argument("--skip-existing", action="store_true", help="Reuse existing repeat outputs when present.")
     parser.add_argument("--judge-sleep", type=float, default=0.0)
+    parser.add_argument(
+        "--skip-judge",
+        action="store_true",
+        help="Build repeated deterministic tables directly from raw traces.",
+    )
     args = parser.parse_args()
 
     if args.repeats < 1:
@@ -363,6 +417,20 @@ def main() -> int:
     runner = ROOT / "tools" / "run_baseline_traces.py"
     judge = ROOT / "tools" / "judge_trace_plausibility.py"
     args.output_dir.mkdir(parents=True, exist_ok=True)
+    now = datetime.now().astimezone().isoformat(timespec="seconds")
+    existing_timestamps = []
+    if args.skip_existing:
+        for repeat_id in range(1, args.repeats + 1):
+            repeat_manifest = (
+                args.output_dir
+                / f"repeat_{repeat_id:02d}"
+                / "traces"
+                / "run_manifest.json"
+            )
+            if repeat_manifest.exists():
+                timestamp = load_json(repeat_manifest).get("timestamp")
+                if timestamp:
+                    existing_timestamps.append(timestamp)
     run_config = {
         "benchmark": "cityintent_v0",
         "script": str(Path(__file__).resolve()),
@@ -374,7 +442,9 @@ def main() -> int:
         "output_dir": str(args.output_dir),
         "skip_existing": args.skip_existing,
         "judge_sleep": args.judge_sleep,
-        "timestamp": datetime.now().isoformat(timespec="seconds"),
+        "skip_judge": args.skip_judge,
+        "timestamp": min(existing_timestamps) if existing_timestamps else now,
+        "updated_at": now,
     }
     write_json(args.output_dir / "run_config.json", run_config)
 
@@ -402,12 +472,27 @@ def main() -> int:
                 run_cmd.extend(["--limit-scenarios", str(args.limit_scenarios)])
             run_command(run_cmd, REPO_ROOT)
         else:
-            print(f"Reusing existing traces: {traces_path}", flush=True)
+            run_cmd = [
+                sys.executable,
+                str(runner),
+                "--agents",
+                args.agents,
+                "--llm-config",
+                str(args.llm_config),
+                "--results-dir",
+                str(traces_dir),
+                "--resume",
+            ]
+            if args.scenario_ids:
+                run_cmd.extend(["--scenario-ids", args.scenario_ids])
+            if args.limit_scenarios is not None:
+                run_cmd.extend(["--limit-scenarios", str(args.limit_scenarios)])
+            run_command(run_cmd, REPO_ROOT)
 
         trace_count = artifact_count(traces_path)
         judged_count = artifact_count(judged_path)
         judge_complete = trace_count > 0 and judged_count == trace_count
-        if not (args.skip_existing and judge_complete):
+        if not args.skip_judge and not (args.skip_existing and judge_complete):
             judge_cmd = [
                 sys.executable,
                 str(judge),
@@ -421,11 +506,11 @@ def main() -> int:
             if args.judge_sleep:
                 judge_cmd.extend(["--sleep", str(args.judge_sleep)])
             run_command(judge_cmd, REPO_ROOT)
-        else:
+        elif not args.skip_judge:
             print(f"Reusing complete judgments: {judged_path}", flush=True)
 
-    rows = collect_rows(args.output_dir, args.repeats)
-    metrics = CORE_METRICS + EXTRA_METRICS + ["judge_rationale_alignment", "judge_urban_common_sense"]
+    rows = collect_rows(args.output_dir, args.repeats, judged=not args.skip_judge)
+    metrics = CORE_METRICS + EXTRA_METRICS + EXECUTION_METRICS + ["judge_rationale_alignment", "judge_urban_common_sense"]
     agent_summary = summarize_by_agent(rows, metrics)
     scenario_summary = summarize_by_scenario_agent(rows, metrics)
     failure_summary = summarize_failures(rows)
@@ -437,6 +522,7 @@ def main() -> int:
         "agent_type",
         *CORE_METRICS,
         *EXTRA_METRICS,
+        *EXECUTION_METRICS,
         "judge_rationale_alignment",
         "judge_urban_common_sense",
         "failure_taxonomy",
@@ -456,11 +542,19 @@ def main() -> int:
             "repeats": args.repeats,
             "core_metrics": CORE_METRICS,
             "extra_metrics": EXTRA_METRICS,
+            "execution_metrics": EXECUTION_METRICS,
             "row_count": len(rows),
             "run_records": run_records,
         },
     )
-    write_markdown(args.output_dir, agent_summary, scenario_summary, failure_summary, args.repeats)
+    write_markdown(
+        args.output_dir,
+        agent_summary,
+        scenario_summary,
+        failure_summary,
+        args.repeats,
+        judged=not args.skip_judge,
+    )
     write_archive_markdown(args.output_dir, run_config, run_records, len(rows))
     print(f"Wrote repeated experiment table to {args.output_dir / 'repeated_summary.md'}")
     return 0

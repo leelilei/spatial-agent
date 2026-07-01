@@ -264,6 +264,8 @@ class OfficialAdapterBase:
                 "purchases": state.purchases,
                 "messages": state.messages,
                 "interactions": state.interactions,
+                "route_interruptions": state.route_interruptions,
+                "verified_replans": state.replans,
                 "violations": state.violations,
                 "visible_events": self.visible_events(state),
             },
@@ -290,8 +292,6 @@ class OfficialAdapterBase:
 
     def record_observations(self, state: Any, changed: bool) -> None:
         events = self.visible_events(state)
-        if events and changed:
-            state.replanned_after_event = True
         self.last_violation_count = len(state.violations)
         self.observed_event_keys.update(self.event_key(event) for event in events)
 

@@ -353,8 +353,6 @@ class GATSimOfficialPlannerAdapter:
                 "plan": plan,
             }
         )
-        if visible_events and changed:
-            state.replanned_after_event = True
         self.last_violation_count = len(state.violations)
         self.observed_event_keys.update(self._event_key(event) for event in visible_events)
 

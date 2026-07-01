@@ -1,13 +1,13 @@
 {
   "benchmark_id": "cityintent_v0",
-  "version": "0.2",
+  "version": "0.3",
   "status": "smoke_test",
   "worlds": [
     "worlds/micro_city.json"
   ],
   "scenario_dir": "scenarios",
   "action_protocol": {
-    "version": "0.2",
+    "version": "0.3",
     "kinds": [
       "move",
       "enter",
@@ -23,7 +23,9 @@
       "move changes location but does not enter, spend, or complete a service goal",
       "enter checks opening constraints and creates entry evidence",
       "buy and use_service create completion evidence and deduct typical_cost",
-      "dwell requires entry and, at paid locations, prior purchase or service evidence"
+      "dwell requires entry and, at paid locations, prior purchase or service evidence",
+      "a newly observed mid-route block interrupts movement without agent fault",
+      "attempting a visible blocked edge is a violation; choosing a verified detour creates replanning evidence"
     ]
   },
   "agents_under_test": [
@@ -140,7 +142,7 @@
       "id": "impossible_trace_rate",
       "kind": "deterministic",
       "range": [0, 1],
-      "description": "Rate of impossible-trace failures such as blocked routes, closed POIs, overtime, budget failure, loops, or social derailment."
+      "description": "Action-normalized rate of environment and state-transition violations in the executed trace."
     },
     {
       "id": "city_false_continue",
@@ -158,7 +160,7 @@
       "id": "feasibility_violation",
       "kind": "deterministic",
       "range": [0, 1],
-      "description": "Rate of impossible moves, closed-POI use, budget violations, or invalid co-presence claims."
+      "description": "Action-normalized rate of impossible moves, closed-POI use, budget violations, and invalid state transitions."
     },
     {
       "id": "replanning_success",

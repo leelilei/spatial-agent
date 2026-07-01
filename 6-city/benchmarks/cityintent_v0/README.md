@@ -1,6 +1,6 @@
-# CityIntent v0.2 Benchmark Smoke Test
+# CityIntent v0.3 Benchmark Smoke Test
 
-Status: draft, locally validated action-evidence protocol.
+Status: draft, locally validated action-evidence and interruptible-movement protocol.
 
 This package is the first runnable CityAgency track. It keeps the `CityIntent`
 name because v0 focuses on intention persistence and constraint-sensitive
@@ -72,6 +72,13 @@ Version 0.2 separates physical arrival from task completion:
 Each success-condition row in `traces.json` includes the exact evidence used by
 the deterministic verifier. This prevents a plausible plan or a route passing
 through a POI from being scored as a completed urban activity.
+
+Version 0.3 adds interruptible movement. If a road or transit block becomes
+visible after a multi-edge move begins, execution stops at the last reachable
+node and records `route_interruptions` without blaming the agent. A subsequent
+move counts as a verified replan only when its chosen path avoids an active
+blocked edge that the normal shortest path would have used. Re-attempting an
+already visible blocked edge remains a feasibility violation.
 
 ## Contents
 
@@ -241,20 +248,28 @@ python 6-city/benchmarks/cityintent_v0/tools/run_repeated_experiment.py ^
   --skip-existing
 ```
 
+For deterministic protocol repeats without the second-pass LLM judge, add
+`--skip-judge`. The repeated table still includes calls, token use, latency,
+route interruptions, and verified replans.
+
 The repeated runner creates:
 
 - `repeated_summary.md`: paper-style main table
 - `all_runs.csv`: repeat/scenario/agent rows
 - `agent_repeated_summary.csv`: agent-level means and sample standard deviations
 - `scenario_agent_repeated_summary.csv`: scenario-agent diagnostics
-- `failure_taxonomy_summary.csv`: failure counts and rates
+- `failure_taxonomy_summary.csv`: failure counts and events per trace
+
+The first v0.3 real-model matrix is archived at
+`6-city/results/cityintent_v03/external_frameworks_4x4x3_gpt54mini_2026-07-01/`.
+It contains 48 traces: four diagnostic scenarios, four verified official
+decision-layer adapters, and three repeats. The accompanying interpretation is
+in `6-city/docs/experiments/cityintent_v03_interruptible_movement_4x4x3_2026-07-01.md`.
 
 ## Next Implementation Step
 
 The next code step is to make the experiment less anecdotal:
 
-- split multi-edge movement at newly observed mid-route events so replanning is
-  tested at a real decision boundary rather than after an atomic route action;
 - expand the scenario suite with harder impossible-trace traps;
 - calibrate the LLM judge against a small human-coded audit set;
 - keep all agents behind the same typed action and scoring contract.

@@ -434,28 +434,33 @@ def post_json(url: str, payload: dict[str, Any], api_key: str, timeout: int) -> 
 
 
 def post_json_with_curl(url: str, payload: dict[str, Any], api_key: str, timeout: int) -> dict[str, Any]:
-    completed = subprocess.run(
-        [
-            "curl",
-            "-sS",
-            url,
-            "-H",
-            f"Authorization: Bearer {api_key}",
-            "-H",
-            "Content-Type: application/json",
-            "--data-binary",
-            "@-",
-            "--write-out",
-            "\n%{http_code}",
-        ],
-        input=json.dumps(payload),
-        text=True,
-        encoding="utf-8",
-        errors="replace",
-        capture_output=True,
-        timeout=timeout,
-        check=False,
-    )
+    try:
+        completed = subprocess.run(
+            [
+                "curl",
+                "-sS",
+                url,
+                "-H",
+                f"Authorization: Bearer {api_key}",
+                "-H",
+                "Content-Type: application/json",
+                "--data-binary",
+                "@-",
+                "--write-out",
+                "\n%{http_code}",
+            ],
+            input=json.dumps(payload),
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            capture_output=True,
+            timeout=timeout,
+            check=False,
+        )
+    except subprocess.TimeoutExpired:
+        raise RuntimeError(
+            f"provider curl request timed out after {timeout} seconds"
+        ) from None
     if completed.returncode != 0:
         raise RuntimeError(f"curl request failed: {completed.stderr.strip()}")
     body, separator, status_text = (completed.stdout or "").rpartition("\n")

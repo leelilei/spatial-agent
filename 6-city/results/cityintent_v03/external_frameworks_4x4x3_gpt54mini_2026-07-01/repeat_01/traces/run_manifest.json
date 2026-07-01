@@ -1,0 +1,44 @@
+{
+  "timestamp": "2026-07-01T20:26:33+08:00",
+  "updated_at": "2026-07-01T21:03:39+08:00",
+  "status": "complete",
+  "benchmark_id": "cityintent_v0",
+  "benchmark_version": "0.3",
+  "runner": "D:\\0-Research\\6-city\\benchmarks\\cityintent_v0\\tools\\run_baseline_traces.py",
+  "agents": [
+    "gatsim_official_planner",
+    "sotopia_official_llm_agent",
+    "generative_agents_official_planner",
+    "agentsociety_official_plan_blocks"
+  ],
+  "scenario_ids": [
+    "closed_study_spot_replacement",
+    "detour_commute_midroute_block",
+    "meeting_wait_trap",
+    "school_pickup_social_detour"
+  ],
+  "llm_config_path": "6-city\\benchmarks\\cityintent_v0\\configs\\fhl_gpt54mini.json",
+  "llm_config": {
+    "provider": "fhl",
+    "model": "gpt-5.4-mini",
+    "wire_api": "responses",
+    "base_url": "https://www.fhl.mom",
+    "temperature": 0,
+    "omit_temperature": true,
+    "timeout": 120,
+    "sleep": 3,
+    "max_concurrency": 1,
+    "retries": 2,
+    "retry_sleep": 5,
+    "json_mode": false,
+    "transport": "curl",
+    "responses_input_mode": "string",
+    "disable_response_storage": true,
+    "api_key_env": "FHL_API_KEY"
+  },
+  "results_dir": "6-city\\results\\cityintent_v03\\external_frameworks_4x4x3_gpt54mini_2026-07-01\\repeat_01\\traces",
+  "overwrite": false,
+  "resume": true,
+  "completed_traces": 16,
+  "expected_traces": 16
+}

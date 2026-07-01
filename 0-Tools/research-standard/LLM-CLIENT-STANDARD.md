@@ -45,6 +45,9 @@ from provider usage fields when available; otherwise they are explicitly
 labelled `character_estimate`. Experiment runners should archive both the
 per-call records and summary so cost and latency are auditable.
 
+Transport failures are sanitized before they leave the client. In particular,
+curl timeout exceptions never include the authorization command or API key.
+
 Any OpenAI-compatible gateway is reachable by pointing `base_url` at it and
 naming the key var with `api_key_env`. No code change is needed per provider.
 

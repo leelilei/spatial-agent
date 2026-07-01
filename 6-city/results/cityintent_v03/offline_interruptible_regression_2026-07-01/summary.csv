@@ -1,0 +1,49 @@
+scenario_id,family,agent_type,plan_plausibility,trace_feasibility,plausibility_feasibility_gap,impossible_trace_rate,city_false_continue,goal_completion,feasibility_violation,replanning_success,travel_efficiency,budget_consistency,intention_consistency,social_appropriateness,done_state_loop_rate,social_derailment_rate,final_time,final_location,final_budget,violations,failure_taxonomy,llm_calls,llm_latency_seconds,llm_input_tokens,llm_output_tokens,llm_total_tokens,llm_usage_complete
+avoid_crowd_event,preference_constraint,utility_planner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,,0.0,0.0,18:42,market,0.0,0,{},0,0,0,0,0,False
+avoid_crowd_event,preference_constraint,llm_direct_actor,1.0,1.0,0.0,0.0,0.0,0.7,0.0,,1.0,1.0,0.7,,0.0,0.0,18:26,market,0.0,0,{},0,0,0,0,0,False
+avoid_crowd_event,preference_constraint,reactive_replanner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,,0.0,0.0,18:42,market,0.0,0,{},0,0,0,0,0,False
+avoid_crowd_event,preference_constraint,memory_reflection,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,,0.0,0.0,18:42,market,0.0,0,{},0,0,0,0,0,False
+budget_errand_chain,budget_constraint,utility_planner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,,0.0,0.0,18:21,home_aria,3.0,0,{},0,0,0,0,0,False
+budget_errand_chain,budget_constraint,llm_direct_actor,1.0,1.0,0.0,0.0,0.0,0.75,0.0,,0.866,1.0,0.75,,0.0,0.0,18:15,home_aria,9.0,0,{},0,0,0,0,0,False
+budget_errand_chain,budget_constraint,reactive_replanner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,,0.0,0.0,18:21,home_aria,3.0,0,{},0,0,0,0,0,False
+budget_errand_chain,budget_constraint,memory_reflection,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,,0.0,0.0,18:21,home_aria,3.0,0,{},0,0,0,0,0,False
+closed_poi_replacement,poi_closure,utility_planner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,,0.0,0.0,16:34,bookstore,9.0,0,{},0,0,0,0,0,False
+closed_poi_replacement,poi_closure,llm_direct_actor,1.0,0.125,0.875,0.875,1.0,0.25,0.875,,1.0,1.0,0.031,,0.0,0.0,15:38,library,16.0,7,"{""closed_place_action"": 7}",0,0,0,0,0,False
+closed_poi_replacement,poi_closure,reactive_replanner,1.0,1.0,0.0,0.0,0.0,0.6,0.0,,1.0,1.0,0.6,,0.0,0.0,16:34,bookstore,9.0,0,{},0,0,0,0,0,False
+closed_poi_replacement,poi_closure,memory_reflection,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,0.839,1.0,1.0,,0.0,0.0,17:07,quiet_cafe,6.0,0,{},0,0,0,0,0,False
+closed_study_spot_replacement,poi_closure,utility_planner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,,0.0,0.0,15:19,bookstore,11.0,0,{},0,0,0,0,0,False
+closed_study_spot_replacement,poi_closure,llm_direct_actor,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,,0.0,0.0,15:19,library,11.0,0,{},0,0,0,0,0,False
+closed_study_spot_replacement,poi_closure,reactive_replanner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,,0.0,0.0,15:19,bookstore,11.0,0,{},0,0,0,0,0,False
+closed_study_spot_replacement,poi_closure,memory_reflection,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,,0.0,0.0,15:19,bookstore,11.0,0,{},0,0,0,0,0,False
+commute_disruption,disruption,utility_planner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,1.0,0.867,1.0,1.0,,0.0,0.0,08:34,office,8.0,0,{},0,0,0,0,0,False
+commute_disruption,disruption,llm_direct_actor,1.0,0.125,0.875,0.875,1.0,0.25,0.875,0.0,1.0,1.0,0.031,,0.0,0.0,08:15,transit_hub,8.0,7,"{""impossible_route"": 7}",0,0,0,0,0,False
+commute_disruption,disruption,reactive_replanner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,1.0,0.867,1.0,1.0,,0.0,0.0,08:34,office,8.0,0,{},0,0,0,0,0,False
+commute_disruption,disruption,memory_reflection,1.0,1.0,0.0,0.0,0.0,1.0,0.0,1.0,0.867,1.0,1.0,,0.0,0.0,08:34,office,8.0,0,{},0,0,0,0,0,False
+conflicting_social_obligation,social_spatial_tradeoff,utility_planner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,1.0,0.0,0.0,17:52,coworking,5.0,0,{},0,0,0,0,0,False
+conflicting_social_obligation,social_spatial_tradeoff,llm_direct_actor,1.0,1.0,0.0,0.0,0.0,0.45,0.0,,0.0,1.0,0.45,0.5,0.0,0.0,17:24,theatre,20.0,0,"{""goal_drift"": 1}",0,0,0,0,0,False
+conflicting_social_obligation,social_spatial_tradeoff,reactive_replanner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,1.0,0.0,0.0,17:52,coworking,5.0,0,{},0,0,0,0,0,False
+conflicting_social_obligation,social_spatial_tradeoff,memory_reflection,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,1.0,0.0,0.0,17:52,coworking,5.0,0,{},0,0,0,0,0,False
+detour_commute_midroute_block,disruption,utility_planner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,1.0,0.867,1.0,1.0,,0.0,0.0,08:31,office,10.0,0,{},0,0,0,0,0,False
+detour_commute_midroute_block,disruption,llm_direct_actor,1.0,0.125,0.875,0.875,1.0,0.3,0.875,0.0,1.0,1.0,0.037,,0.0,0.0,08:12,transit_hub,10.0,7,"{""impossible_route"": 7}",0,0,0,0,0,False
+detour_commute_midroute_block,disruption,reactive_replanner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,1.0,0.867,1.0,1.0,,0.0,0.0,08:31,office,10.0,0,{},0,0,0,0,0,False
+detour_commute_midroute_block,disruption,memory_reflection,1.0,1.0,0.0,0.0,0.0,1.0,0.0,1.0,0.867,1.0,1.0,,0.0,0.0,08:31,office,10.0,0,{},0,0,0,0,0,False
+lunch_meeting_time_pressure,time_pressure,utility_planner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,1.0,0.0,0.0,12:25,cafe_central,6.0,0,{},0,0,0,0,0,False
+lunch_meeting_time_pressure,time_pressure,llm_direct_actor,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,1.0,0.0,0.0,12:27,cafe_central,6.0,0,{},0,0,0,0,0,False
+lunch_meeting_time_pressure,time_pressure,reactive_replanner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,1.0,0.0,0.0,12:25,cafe_central,6.0,0,{},0,0,0,0,0,False
+lunch_meeting_time_pressure,time_pressure,memory_reflection,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,0.286,1.0,1.0,1.0,0.0,0.0,12:32,quiet_cafe,8.0,0,{},0,0,0,0,0,False
+meeting_wait_trap,time_pressure,utility_planner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,1.0,0.0,0.0,12:35,cafe_central,4.0,0,{},0,0,0,0,0,False
+meeting_wait_trap,time_pressure,llm_direct_actor,1.0,1.0,0.0,0.0,0.0,0.8,0.0,,1.0,1.0,0.8,0.5,0.0,0.0,12:47,quiet_cafe,6.0,0,{},0,0,0,0,0,False
+meeting_wait_trap,time_pressure,reactive_replanner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,1.0,0.0,0.0,12:35,cafe_central,4.0,0,{},0,0,0,0,0,False
+meeting_wait_trap,time_pressure,memory_reflection,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,1.0,0.0,0.0,12:35,cafe_central,4.0,0,{},0,0,0,0,0,False
+memory_dependent_place_choice,memory,utility_planner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,1.0,0.0,0.0,10:30,quiet_cafe,4.0,0,{},0,0,0,0,0,False
+memory_dependent_place_choice,memory,llm_direct_actor,1.0,1.0,0.0,0.0,0.0,0.0,0.0,,0.455,1.0,0.0,0.0,0.0,0.0,10:12,cafe_central,14.0,0,"{""goal_drift"": 1}",0,0,0,0,0,False
+memory_dependent_place_choice,memory,reactive_replanner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,1.0,0.0,0.0,10:30,quiet_cafe,4.0,0,{},0,0,0,0,0,False
+memory_dependent_place_choice,memory,memory_reflection,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,1.0,0.0,0.0,10:30,quiet_cafe,4.0,0,{},0,0,0,0,0,False
+school_pickup_social_detour,social_spatial_tradeoff,utility_planner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,1.0,0.0,0.0,17:32,school,12.0,0,{},0,0,0,0,0,False
+school_pickup_social_detour,social_spatial_tradeoff,llm_direct_actor,1.0,1.0,0.0,0.0,0.0,0.8,0.0,,1.0,1.0,0.8,0.5,0.0,0.0,17:27,school,12.0,0,{},0,0,0,0,0,False
+school_pickup_social_detour,social_spatial_tradeoff,reactive_replanner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,1.0,0.0,0.0,17:32,school,12.0,0,{},0,0,0,0,0,False
+school_pickup_social_detour,social_spatial_tradeoff,memory_reflection,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,1.0,0.0,0.0,17:32,school,12.0,0,{},0,0,0,0,0,False
+unexpected_friend_encounter,opportunistic_social,utility_planner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,1.0,0.0,0.0,16:20,pharmacy,2.0,0,{},0,0,0,0,0,False
+unexpected_friend_encounter,opportunistic_social,llm_direct_actor,1.0,1.0,0.0,0.0,0.0,0.75,0.0,,1.0,1.0,0.75,0.0,0.0,0.0,16:35,pharmacy,2.0,0,{},0,0,0,0,0,False
+unexpected_friend_encounter,opportunistic_social,reactive_replanner,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,1.0,0.0,0.0,16:20,pharmacy,2.0,0,{},0,0,0,0,0,False
+unexpected_friend_encounter,opportunistic_social,memory_reflection,1.0,1.0,0.0,0.0,0.0,1.0,0.0,,1.0,1.0,1.0,1.0,0.0,0.0,16:23,pharmacy,2.0,0,{},0,0,0,0,0,False
