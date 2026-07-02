@@ -133,8 +133,11 @@ def calibration(
         truth = key[audit_id]
         completion = human.get("completion_label", "")
         if completion and completion != "uncertain":
+            completion_score = truth.get("task_completion", "")
+            if completion_score == "":
+                completion_score = truth["goal_completion"]
             comparisons["completion_label"].append(
-                (completion, deterministic_completion(float(truth["goal_completion"])))
+                (completion, deterministic_completion(float(completion_score)))
             )
         feasibility = human.get("feasibility_label", "")
         if feasibility and feasibility != "uncertain":

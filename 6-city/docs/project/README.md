@@ -7,6 +7,7 @@ Living notes for direction finding, paper comparison, benchmark design, and deci
 - `cityagency-related-work-broad-scan-2026-06-22.md`: broad related-work search around CityAgency, mobility realism, social-agent benchmarks, and feasibility validation.
 - `cityagency-reference-benchmark-comparison-2026-06-27.md`: reference table comparing benchmark goals, tested agent architectures/models, test methods, metrics, urban-research significance, findings, and the remaining CityAgency gap.
 - `cityagency-reference-benchmark-comparison-2026-06-27.zh-CN.md`: Chinese edition of the benchmark comparison, ending with a CityAgency (ours) row under the same evaluation framework.
+- `../plans/cityagency_v1_release_candidate_spec.md`: v1 evidence contract, condition roles, human-validation gate, and freeze criteria.
 - `cityagency-worklog-2026-06-27.md`: archive of the day's evaluation decisions, literature/note completion, reference comparison, checks, and next steps.
 - `cityagency-broad-scan-archive-status-2026-06-23.md`: archive status for PDFs/fulltext downloaded from the broad scan.
 - `cityagency-four-paper-positioning-2026-06-23.md`: focused positioning against MobiSim-Bench, When Plausible Is Not Realistic, FeasiGen, and ChinaTravel.

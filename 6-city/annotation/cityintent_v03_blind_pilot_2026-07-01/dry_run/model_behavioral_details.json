@@ -1,0 +1,258 @@
+[
+  {
+    "audit_id": "H001",
+    "profile": "behavioral",
+    "label": {
+      "audit_id": "H001",
+      "annotator_id": "model_behavioral",
+      "completion_label": "complete",
+      "feasibility_label": "infeasible",
+      "replan_label": "not_applicable",
+      "evidence_sufficient": "yes",
+      "first_invalid_step": 1,
+      "confidence": 4,
+      "notes": "The trace reaches and enters school before the 18:10 deadline and dwells there, so the pickup intent is satisfied, but step 1 is invalid because a move with an explicit path leaves the agent at the office with no executed traversal despite claiming a move action."
+    },
+    "raw_response": "{\"completion_label\":\"complete\",\"feasibility_label\":\"infeasible\",\"replan_label\":\"not_applicable\",\"evidence_sufficient\":\"yes\",\"first_invalid_step\":\"1\",\"confidence\":4,\"notes\":\"The trace reaches and enters school before the 18:10 deadline and dwells there, so the pickup intent is satisfied, but step 1 is invalid because a move with an explicit path leaves the agent at the office with no executed traversal despite claiming a move action.\"}"
+  },
+  {
+    "audit_id": "H002",
+    "profile": "behavioral",
+    "label": {
+      "audit_id": "H002",
+      "annotator_id": "model_behavioral",
+      "completion_label": "complete",
+      "feasibility_label": "infeasible",
+      "replan_label": "successful",
+      "evidence_sufficient": "yes",
+      "first_invalid_step": 1,
+      "confidence": 5,
+      "notes": "Step 1 follows the blocked transit_hub->office edge after the 08:08 alert, so the trace is infeasible; the later detour reaches office before 09:15 and shows recovery."
+    },
+    "raw_response": "{\"completion_label\":\"complete\",\"feasibility_label\":\"infeasible\",\"replan_label\":\"successful\",\"evidence_sufficient\":\"yes\",\"first_invalid_step\":\"1\",\"confidence\":5,\"notes\":\"Step 1 follows the blocked transit_hub->office edge after the 08:08 alert, so the trace is infeasible; the later detour reaches office before 09:15 and shows recovery.\"}"
+  },
+  {
+    "audit_id": "H003",
+    "profile": "behavioral",
+    "label": {
+      "audit_id": "H003",
+      "annotator_id": "model_behavioral",
+      "completion_label": "partial",
+      "feasibility_label": "feasible",
+      "replan_label": "not_applicable",
+      "evidence_sufficient": "yes",
+      "first_invalid_step": "",
+      "confidence": 5,
+      "notes": "Aria reached an allowed replacement at the bookstore, entered it, paid for workspace access, and completed 50 accepted dwell minutes with no library entry during the closure window. The trace is feasible, but the final finish at the plaza means the private intention is only partially evidenced as a completed work block rather than a clearly preserved stay at the quiet location."
+    },
+    "raw_response": "{\"completion_label\":\"partial\",\"feasibility_label\":\"feasible\",\"replan_label\":\"not_applicable\",\"evidence_sufficient\":\"yes\",\"first_invalid_step\":\"\",\"confidence\":5,\"notes\":\"Aria reached an allowed replacement at the bookstore, entered it, paid for workspace access, and completed 50 accepted dwell minutes with no library entry during the closure window. The trace is feasible, but the final finish at the plaza means the private intention is only partially evidenced as a completed work block rather than a clearly preserved stay at the quiet location.\"}"
+  },
+  {
+    "audit_id": "H004",
+    "profile": "behavioral",
+    "label": {
+      "audit_id": "H004",
+      "annotator_id": "model_behavioral",
+      "completion_label": "partial",
+      "feasibility_label": "feasible",
+      "replan_label": "not_applicable",
+      "evidence_sufficient": "yes",
+      "first_invalid_step": "",
+      "confidence": 5,
+      "notes": "The trace shows Aria reached and entered an open quiet cafe before 16:20 and stayed there well past 50 minutes total, while never entering the closed library during its closure window. The only miss is that the explicit accepted dwell record is not separately surfaced, but the executed dwell actions support the focus block."
+    },
+    "raw_response": "{\"completion_label\":\"partial\",\"feasibility_label\":\"feasible\",\"replan_label\":\"not_applicable\",\"evidence_sufficient\":\"yes\",\"first_invalid_step\":\"\",\"confidence\":5,\"notes\":\"The trace shows Aria reached and entered an open quiet cafe before 16:20 and stayed there well past 50 minutes total, while never entering the closed library during its closure window. The only miss is that the explicit accepted dwell record is not separately surfaced, but the executed dwell actions support the focus block.\"}"
+  },
+  {
+    "audit_id": "H005",
+    "profile": "behavioral",
+    "label": {
+      "audit_id": "H005",
+      "annotator_id": "model_behavioral",
+      "completion_label": "partial",
+      "feasibility_label": "feasible",
+      "replan_label": "not_applicable",
+      "evidence_sufficient": "yes",
+      "first_invalid_step": "",
+      "confidence": 5,
+      "notes": "Aria confirmed with Ben and reached cafe_central, but there is no observable co-presence with Ben during 12:35-12:55, so the meeting objective is not completed; all executed actions are valid."
+    },
+    "raw_response": "{\"completion_label\":\"partial\",\"feasibility_label\":\"feasible\",\"replan_label\":\"not_applicable\",\"evidence_sufficient\":\"yes\",\"first_invalid_step\":\"\",\"confidence\":5,\"notes\":\"Aria confirmed with Ben and reached cafe_central, but there is no observable co-presence with Ben during 12:35-12:55, so the meeting objective is not completed; all executed actions are valid.\"}"
+  },
+  {
+    "audit_id": "H006",
+    "profile": "behavioral",
+    "label": {
+      "audit_id": "H006",
+      "annotator_id": "model_behavioral",
+      "completion_label": "complete",
+      "feasibility_label": "feasible",
+      "replan_label": "not_applicable",
+      "evidence_sufficient": "yes",
+      "first_invalid_step": "",
+      "confidence": 5,
+      "notes": "Aria reaches and enters school before the 18:10 deadline, with no social detour or invalid action; the finish is legally early and supported by the observed enter outcome."
+    },
+    "raw_response": "{\"completion_label\":\"complete\",\"feasibility_label\":\"feasible\",\"replan_label\":\"not_applicable\",\"evidence_sufficient\":\"yes\",\"first_invalid_step\":\"\",\"confidence\":5,\"notes\":\"Aria reaches and enters school before the 18:10 deadline, with no social detour or invalid action; the finish is legally early and supported by the observed enter outcome.\"}"
+  },
+  {
+    "audit_id": "H007",
+    "profile": "behavioral",
+    "label": {
+      "audit_id": "H007",
+      "annotator_id": "model_behavioral",
+      "completion_label": "complete",
+      "feasibility_label": "infeasible",
+      "replan_label": "failed",
+      "evidence_sufficient": "yes",
+      "first_invalid_step": 2,
+      "confidence": 5,
+      "notes": "Step 2 traverses transit_hub -> plaza -> cafe_central -> office even though the service_alert at 08:08 blocks the transit_hub-office edge until 08:55; later arrival at office is before the deadline but the blocked-edge traversal makes the trace infeasible."
+    },
+    "raw_response": "{\"completion_label\":\"complete\",\"feasibility_label\":\"infeasible\",\"replan_label\":\"failed\",\"evidence_sufficient\":\"yes\",\"first_invalid_step\":\"2\",\"confidence\":5,\"notes\":\"Step 2 traverses transit_hub -> plaza -> cafe_central -> office even though the service_alert at 08:08 blocks the transit_hub-office edge until 08:55; later arrival at office is before the deadline but the blocked-edge traversal makes the trace infeasible.\"}"
+  },
+  {
+    "audit_id": "H008",
+    "profile": "behavioral",
+    "label": {
+      "audit_id": "H008",
+      "annotator_id": "model_behavioral",
+      "completion_label": "partial",
+      "feasibility_label": "infeasible",
+      "replan_label": "not_applicable",
+      "evidence_sufficient": "yes",
+      "first_invalid_step": 1,
+      "confidence": 4,
+      "notes": "Step 1 is invalid because a move that starts and ends at plaza with target bookstore and an explicit one-hop path does not produce a valid traversal; the first successful movement to bookstore is only reflected in step 2. The trace does support visiting the open replacement and staying within budget, but only 31 minutes of accepted dwell are observable, so the 50-minute focus block is not fully evidenced."
+    },
+    "raw_response": "{\"completion_label\":\"partial\",\"feasibility_label\":\"infeasible\",\"replan_label\":\"not_applicable\",\"evidence_sufficient\":\"yes\",\"first_invalid_step\":\"1\",\"confidence\":4,\"notes\":\"Step 1 is invalid because a move that starts and ends at plaza with target bookstore and an explicit one-hop path does not produce a valid traversal; the first successful movement to bookstore is only reflected in step 2. The trace does support visiting the open replacement and staying within budget, but only 31 minutes of accepted dwell are observable, so the 50-minute focus block is not fully evidenced.\"}"
+  },
+  {
+    "audit_id": "H009",
+    "profile": "behavioral",
+    "label": {
+      "audit_id": "H009",
+      "annotator_id": "model_behavioral",
+      "completion_label": "complete",
+      "feasibility_label": "feasible",
+      "replan_label": "not_applicable",
+      "evidence_sufficient": "yes",
+      "first_invalid_step": "",
+      "confidence": 5,
+      "notes": "Aria reaches the office by 08:30 and the executed route avoids the blocked transit_hub->office edge during the 08:08-08:55 window; no invalid action is shown."
+    },
+    "raw_response": "{\"completion_label\":\"complete\",\"feasibility_label\":\"feasible\",\"replan_label\":\"not_applicable\",\"evidence_sufficient\":\"yes\",\"first_invalid_step\":\"\",\"confidence\":5,\"notes\":\"Aria reaches the office by 08:30 and the executed route avoids the blocked transit_hub->office edge during the 08:08-08:55 window; no invalid action is shown.\"}"
+  },
+  {
+    "audit_id": "H010",
+    "profile": "behavioral",
+    "label": {
+      "audit_id": "H010",
+      "annotator_id": "model_behavioral",
+      "completion_label": "partial",
+      "feasibility_label": "feasible",
+      "replan_label": "not_applicable",
+      "evidence_sufficient": "yes",
+      "first_invalid_step": "",
+      "confidence": 5,
+      "notes": "The trace clearly reaches and enters school before the 18:10 deadline, but it then detours to home_ben and finishes there without any observable social interaction with Ben, so the pickup intention is only partially satisfied. All executed transitions are valid in the packet."
+    },
+    "raw_response": "{\"completion_label\":\"partial\",\"feasibility_label\":\"feasible\",\"replan_label\":\"not_applicable\",\"evidence_sufficient\":\"yes\",\"first_invalid_step\":\"\",\"confidence\":5,\"notes\":\"The trace clearly reaches and enters school before the 18:10 deadline, but it then detours to home_ben and finishes there without any observable social interaction with Ben, so the pickup intention is only partially satisfied. All executed transitions are valid in the packet.\"}"
+  },
+  {
+    "audit_id": "H011",
+    "profile": "behavioral",
+    "label": {
+      "audit_id": "H011",
+      "annotator_id": "model_behavioral",
+      "completion_label": "partial",
+      "feasibility_label": "uncertain",
+      "replan_label": "not_applicable",
+      "evidence_sufficient": "yes",
+      "first_invalid_step": "",
+      "confidence": 4,
+      "notes": "The trace shows repeated messages to Ben and presence at quiet_cafe during the lunch window, but there is no observable evidence that Ben actually co-presented, so the meeting objective is not fully completed. The packet does not provide world-reference path/cost/hour validation, so feasibility cannot be fully determined from this packet alone."
+    },
+    "raw_response": "{\"completion_label\":\"partial\",\"feasibility_label\":\"uncertain\",\"replan_label\":\"not_applicable\",\"evidence_sufficient\":\"yes\",\"first_invalid_step\":\"\",\"confidence\":4,\"notes\":\"The trace shows repeated messages to Ben and presence at quiet_cafe during the lunch window, but there is no observable evidence that Ben actually co-presented, so the meeting objective is not fully completed. The packet does not provide world-reference path/cost/hour validation, so feasibility cannot be fully determined from this packet alone.\"}"
+  },
+  {
+    "audit_id": "H012",
+    "profile": "behavioral",
+    "label": {
+      "audit_id": "H012",
+      "annotator_id": "model_behavioral",
+      "completion_label": "partial",
+      "feasibility_label": "infeasible",
+      "replan_label": "successful",
+      "evidence_sufficient": "yes",
+      "first_invalid_step": 2,
+      "confidence": 5,
+      "notes": "Step 1 was interrupted by the service alert but the trace recovered; step 2 is invalid because it attempts a move to park with a path from transit_hub to park yet ends with no traversal and no location change, so the executed action is not supported. The office was reached before 09:15, but the trace contains a feasibility violation."
+    },
+    "raw_response": "{\"completion_label\":\"partial\",\"feasibility_label\":\"infeasible\",\"replan_label\":\"successful\",\"evidence_sufficient\":\"yes\",\"first_invalid_step\":2,\"confidence\":5,\"notes\":\"Step 1 was interrupted by the service alert but the trace recovered; step 2 is invalid because it attempts a move to park with a path from transit_hub to park yet ends with no traversal and no location change, so the executed action is not supported. The office was reached before 09:15, but the trace contains a feasibility violation.\"}"
+  },
+  {
+    "audit_id": "H013",
+    "profile": "behavioral",
+    "label": {
+      "audit_id": "H013",
+      "annotator_id": "model_behavioral",
+      "completion_label": "not_complete",
+      "feasibility_label": "feasible",
+      "replan_label": "not_applicable",
+      "evidence_sufficient": "yes",
+      "first_invalid_step": "",
+      "confidence": 5,
+      "notes": "Aria moved to quiet_cafe and entered it, then finished at 12:27, but there is no observable message to Ben and no co-presence during the required 12:35-12:55 window. No action is invalid from the packet."
+    },
+    "raw_response": "{\"completion_label\":\"not_complete\",\"feasibility_label\":\"feasible\",\"replan_label\":\"not_applicable\",\"evidence_sufficient\":\"yes\",\"first_invalid_step\":\"\",\"confidence\":5,\"notes\":\"Aria moved to quiet_cafe and entered it, then finished at 12:27, but there is no observable message to Ben and no co-presence during the required 12:35-12:55 window. No action is invalid from the packet.\"}"
+  },
+  {
+    "audit_id": "H014",
+    "profile": "behavioral",
+    "label": {
+      "audit_id": "H014",
+      "annotator_id": "model_behavioral",
+      "completion_label": "complete",
+      "feasibility_label": "feasible",
+      "replan_label": "not_applicable",
+      "evidence_sufficient": "yes",
+      "first_invalid_step": "",
+      "confidence": 5,
+      "notes": "The trace reaches the bookstore, dwells there for 50 minutes, never enters the closed library, and stays within budget; no invalid transition is shown."
+    },
+    "raw_response": "{\"completion_label\":\"complete\",\"feasibility_label\":\"feasible\",\"replan_label\":\"not_applicable\",\"evidence_sufficient\":\"yes\",\"first_invalid_step\":\"\",\"confidence\":5,\"notes\":\"The trace reaches the bookstore, dwells there for 50 minutes, never enters the closed library, and stays within budget; no invalid transition is shown.\"}"
+  },
+  {
+    "audit_id": "H015",
+    "profile": "behavioral",
+    "label": {
+      "audit_id": "H015",
+      "annotator_id": "model_behavioral",
+      "completion_label": "partial",
+      "feasibility_label": "feasible",
+      "replan_label": "not_applicable",
+      "evidence_sufficient": "yes",
+      "first_invalid_step": "",
+      "confidence": 5,
+      "notes": "Aria confirmed contact with Ben repeatedly and reached cafe_central, but the packet shows no co-presence with Ben during 12:35-12:55, so the meeting objective is not completed. All executed actions are physically valid and there is no disruption requiring replanning."
+    },
+    "raw_response": "{\"completion_label\":\"partial\",\"feasibility_label\":\"feasible\",\"replan_label\":\"not_applicable\",\"evidence_sufficient\":\"yes\",\"first_invalid_step\":\"\",\"confidence\":5,\"notes\":\"Aria confirmed contact with Ben repeatedly and reached cafe_central, but the packet shows no co-presence with Ben during 12:35-12:55, so the meeting objective is not completed. All executed actions are physically valid and there is no disruption requiring replanning.\"}"
+  },
+  {
+    "audit_id": "H016",
+    "profile": "behavioral",
+    "label": {
+      "audit_id": "H016",
+      "annotator_id": "model_behavioral",
+      "completion_label": "complete",
+      "feasibility_label": "feasible",
+      "replan_label": "not_applicable",
+      "evidence_sufficient": "yes",
+      "first_invalid_step": "",
+      "confidence": 5,
+      "notes": "Aria reaches school by 17:26, before the 18:10 pickup deadline, and the trace shows no social detour, commitment, cost, or invalid transition."
+    },
+    "raw_response": "{\"completion_label\":\"complete\",\"feasibility_label\":\"feasible\",\"replan_label\":\"not_applicable\",\"evidence_sufficient\":\"yes\",\"first_invalid_step\":\"\",\"confidence\":5,\"notes\":\"Aria reaches school by 17:26, before the 18:10 pickup deadline, and the trace shows no social detour, commitment, cost, or invalid transition.\"}\n"
+  }
+]

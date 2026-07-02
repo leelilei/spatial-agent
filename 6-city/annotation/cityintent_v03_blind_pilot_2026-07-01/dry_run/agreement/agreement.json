@@ -1,0 +1,97 @@
+{
+  "audit_item_count": 16,
+  "pending_rows": {
+    "annotator_a": 0,
+    "annotator_b": 0
+  },
+  "inter_annotator_agreement": {
+    "completion_label": {
+      "n": 16,
+      "exact_agreement": 0.75,
+      "cohen_kappa": 0.522
+    },
+    "feasibility_label": {
+      "n": 16,
+      "exact_agreement": 0.688,
+      "cohen_kappa": 0.208
+    },
+    "replan_label": {
+      "n": 16,
+      "exact_agreement": 0.875,
+      "cohen_kappa": 0.652
+    },
+    "evidence_sufficient": {
+      "n": 16,
+      "exact_agreement": 1.0,
+      "cohen_kappa": 1.0
+    },
+    "first_invalid_step": {
+      "n": 1,
+      "exact_agreement": 1.0,
+      "cohen_kappa": 1.0
+    }
+  },
+  "verifier_calibration": {
+    "annotator_a": {
+      "completion_label": {
+        "n": 16,
+        "exact_agreement": 0.625,
+        "confusion": {
+          "human=complete|verifier=complete": 2,
+          "human=complete|verifier=partial": 4,
+          "human=partial|verifier=complete": 2,
+          "human=partial|verifier=partial": 8
+        }
+      },
+      "feasibility_label": {
+        "n": 16,
+        "exact_agreement": 0.688,
+        "confusion": {
+          "human=feasible|verifier=feasible": 10,
+          "human=feasible|verifier=infeasible": 5,
+          "human=infeasible|verifier=infeasible": 1
+        }
+      },
+      "replan_label": {
+        "n": 4,
+        "exact_agreement": 0.75,
+        "confusion": {
+          "human=successful|verifier=failed": 1,
+          "human=successful|verifier=successful": 3
+        }
+      }
+    },
+    "annotator_b": {
+      "completion_label": {
+        "n": 16,
+        "exact_agreement": 0.5,
+        "confusion": {
+          "human=complete|verifier=complete": 2,
+          "human=complete|verifier=partial": 5,
+          "human=not_complete|verifier=partial": 1,
+          "human=partial|verifier=complete": 2,
+          "human=partial|verifier=partial": 6
+        }
+      },
+      "feasibility_label": {
+        "n": 15,
+        "exact_agreement": 0.733,
+        "confusion": {
+          "human=feasible|verifier=feasible": 8,
+          "human=feasible|verifier=infeasible": 2,
+          "human=infeasible|verifier=feasible": 2,
+          "human=infeasible|verifier=infeasible": 3
+        }
+      },
+      "replan_label": {
+        "n": 3,
+        "exact_agreement": 0.333,
+        "confusion": {
+          "human=failed|verifier=successful": 1,
+          "human=successful|verifier=failed": 1,
+          "human=successful|verifier=successful": 1
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-"""Validate the CityIntent v0 benchmark package.
+"""Validate the CityAgency CityIntent release-candidate package.
 
 This is a dependency-free smoke validator. It checks structural consistency,
 world graph reachability, metric coverage, and whether every scenario probes the
@@ -37,6 +37,7 @@ SUPPORTED_CONDITION_TYPES = {
     "bounded_social_interaction",
     "episode_complete_before",
 }
+SUPPORTED_CONDITION_ROLES = {"outcome", "process", "constraint"}
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -249,6 +250,11 @@ def main() -> int:
                 for node in blocked_edge:
                     if node not in location_ids:
                         errors.append(f"{rel}: blocked_edge references unknown location {node!r}")
+            for agent in effect.get("agents_present", []):
+                if agent not in agent_id_set:
+                    errors.append(
+                        f"{rel}: event {event.get('type')} references unknown present agent {agent!r}"
+                    )
 
         critical_locations = scenario.get("critical_locations", [])
         for loc in critical_locations:
@@ -256,12 +262,20 @@ def main() -> int:
                 errors.append(f"{rel}: unknown critical location {loc!r}")
 
         weight_sum = 0.0
+        role_counts: Counter[str] = Counter()
         for condition in scenario.get("success_conditions", []):
             condition_type = condition.get("type")
+            condition_role = condition.get("role")
             if condition_type not in SUPPORTED_CONDITION_TYPES:
                 errors.append(
                     f"{rel}: condition {condition.get('id')} has unsupported type {condition_type!r}"
                 )
+            if condition_role not in SUPPORTED_CONDITION_ROLES:
+                errors.append(
+                    f"{rel}: condition {condition.get('id')} has unsupported role {condition_role!r}"
+                )
+            else:
+                role_counts[condition_role] += 1
             if condition_type == "buy_item" and not condition.get("item"):
                 errors.append(
                     f"{rel}: buy_item condition {condition.get('id')} requires item"
@@ -270,6 +284,46 @@ def main() -> int:
                 errors.append(
                     f"{rel}: use_service_at condition {condition.get('id')} requires service"
                 )
+            if condition_type == "co_presence":
+                if len(condition.get("agents", [])) < 2:
+                    errors.append(
+                        f"{rel}: co_presence condition {condition.get('id')} requires at least two agents"
+                    )
+                if not condition.get("location_any_of") and not condition.get("location"):
+                    errors.append(
+                        f"{rel}: co_presence condition {condition.get('id')} requires a location"
+                    )
+                if not condition.get("time_window"):
+                    errors.append(
+                        f"{rel}: co_presence condition {condition.get('id')} requires time_window"
+                    )
+            if condition_type == "bounded_social_interaction" and not isinstance(
+                condition.get("max_minutes"), int
+            ):
+                errors.append(
+                    f"{rel}: bounded_social_interaction condition {condition.get('id')} requires max_minutes"
+                )
+            for time_key in ("deadline", "after"):
+                if condition.get(time_key) is not None:
+                    try:
+                        parse_time(condition[time_key])
+                    except (AttributeError, TypeError, ValueError) as exc:
+                        errors.append(f"{rel}: condition {condition.get('id')}: {exc}")
+            if condition.get("time_window") is not None:
+                window = condition.get("time_window")
+                if not isinstance(window, list) or len(window) != 2:
+                    errors.append(
+                        f"{rel}: condition {condition.get('id')} requires a two-value time_window"
+                    )
+                else:
+                    try:
+                        window_start, window_end = [parse_time(value) for value in window]
+                        if window_end < window_start:
+                            errors.append(
+                                f"{rel}: condition {condition.get('id')} time_window is reversed"
+                            )
+                    except (AttributeError, TypeError, ValueError) as exc:
+                        errors.append(f"{rel}: condition {condition.get('id')}: {exc}")
             weight = condition.get("weight")
             if not isinstance(weight, (int, float)) or weight <= 0:
                 errors.append(f"{rel}: condition {condition.get('id')} has invalid weight")
@@ -285,6 +339,8 @@ def main() -> int:
             for agent in condition.get("agents", []):
                 if agent not in agent_id_set:
                     errors.append(f"{rel}: condition {condition.get('id')} references unknown agent {agent!r}")
+        if scenario.get("success_conditions") and not role_counts["outcome"]:
+            errors.append(f"{rel}: at least one outcome condition is required")
         if scenario.get("success_conditions") and abs(weight_sum - 1.0) > 0.01:
             warnings.append(f"{rel}: success condition weights sum to {weight_sum:.2f}, not 1.00")
 
@@ -332,7 +388,7 @@ def main() -> int:
                 print(f"WARNING: {warning}")
         return 1
 
-    print("CityIntent v0 validation passed.")
+    print(f"CityIntent {config.get('version', 'unknown')} validation passed.")
     print(f"- worlds: {len(worlds_by_id)}")
     print(f"- scenarios: {len(scenario_paths)}")
     print(f"- scenario families: {dict(sorted(family_counts.items()))}")

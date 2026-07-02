@@ -41,6 +41,7 @@
     {
       "id": "choose_open_quiet_replacement",
       "type": "visit_open_location",
+      "role": "outcome",
       "location_any_of": ["bookstore", "quiet_cafe", "coworking"],
       "time_window": ["14:00", "16:20"],
       "weight": 0.3
@@ -48,6 +49,7 @@
     {
       "id": "complete_focus_block",
       "type": "dwell_minutes",
+      "role": "outcome",
       "location_any_of": ["bookstore", "quiet_cafe", "coworking"],
       "min_minutes": 50,
       "weight": 0.3
@@ -55,6 +57,7 @@
     {
       "id": "do_not_enter_closed_library",
       "type": "do_not_enter_closed_location",
+      "role": "constraint",
       "location": "library",
       "time_window": ["14:00", "16:00"],
       "weight": 0.25
@@ -62,12 +65,13 @@
     {
       "id": "stay_within_budget",
       "type": "budget_at_least",
+      "role": "constraint",
       "agent": "aria",
       "min_remaining": 0,
       "weight": 0.15
     }
   ],
-  "scoring_metrics": ["goal_completion", "feasibility_violation", "travel_efficiency", "budget_consistency", "intention_consistency"],
+  "scoring_metrics": ["task_completion", "constraint_satisfaction", "goal_completion", "feasibility_violation", "travel_efficiency", "budget_consistency", "intention_consistency"],
   "architecture_probes": {
     "utility_planner": "Should choose a nearby open replacement but may ignore the library closure if it only follows the original target.",
     "llm_direct_actor": "May claim to work at the library because it is the salient intended study spot.",

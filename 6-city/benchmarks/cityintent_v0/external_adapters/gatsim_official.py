@@ -370,7 +370,10 @@ class GATSimOfficialPlannerAdapter:
         self, target: str, state: Any
     ) -> dict[str, Any] | None:
         for condition in self.scenario.get("success_conditions", []):
-            if condition.get("location") != target:
+            candidates = condition.get("location_any_of") or [
+                condition.get("location")
+            ]
+            if target not in candidates:
                 continue
             if condition.get("type") == "buy_item":
                 item = str(condition.get("item", "item"))
@@ -384,6 +387,56 @@ class GATSimOfficialPlannerAdapter:
                         "item": item,
                         "minutes": int(condition.get("minutes", 5)),
                         "reason": "execute GATSim activity as explicit purchase evidence",
+                        "raw_response": self.last_raw_response,
+                    }
+            if condition.get("type") == "co_presence":
+                other_agents = [
+                    agent
+                    for agent in condition.get("agents", [])
+                    if agent != state.agent_id
+                ]
+                other = other_agents[0] if other_agents else None
+                if other and not any(
+                    record.get("with") == other
+                    and record.get("location") == target
+                    for record in state.interactions
+                ):
+                    start, end = [
+                        parse_time(value) for value in condition["time_window"]
+                    ]
+                    if state.time > end:
+                        continue
+                    if (
+                        self.world.location_cost(target) > 0
+                        and not any(
+                            record.get("location") == target
+                            for record in state.services
+                        )
+                        and not any(
+                            record.get("location") == target
+                            for record in state.purchases
+                        )
+                    ):
+                        return {
+                            "kind": "use_service",
+                            "target": target,
+                            "service": "meeting_refreshment",
+                            "minutes": 5,
+                            "reason": "pay before GATSim social interaction",
+                            "raw_response": self.last_raw_response,
+                        }
+                    if state.time < start:
+                        return {
+                            "kind": "dwell",
+                            "minutes": start - state.time,
+                            "reason": "wait for the GATSim-planned meeting window",
+                            "raw_response": self.last_raw_response,
+                        }
+                    return {
+                        "kind": "interact",
+                        "to": other,
+                        "minutes": 5,
+                        "reason": "execute explicit GATSim co-presence evidence",
                         "raw_response": self.last_raw_response,
                     }
             if condition.get("type") == "use_service_at":

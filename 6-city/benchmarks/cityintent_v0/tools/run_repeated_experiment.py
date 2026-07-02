@@ -21,6 +21,7 @@ DEFAULT_AGENTS = "utility_planner,api_llm_direct_actor,api_llm_plan_then_act,api
 
 
 CORE_METRICS = [
+    "task_completion",
     "goal_completion",
     "trace_feasibility",
     "intention_consistency",
@@ -35,6 +36,8 @@ CORE_METRICS = [
 
 
 EXTRA_METRICS = [
+    "constraint_satisfaction",
+    "process_success",
     "plan_plausibility",
     "plausibility_feasibility_gap",
     "travel_efficiency",
@@ -227,11 +230,12 @@ def write_markdown(
         f.write(f"Each cell is mean +/- sample standard deviation across all {source} scenario traces.\n\n")
         f.write("Blank metric values are skipped, so conditional metrics such as replanning success are averaged only over applicable rows.\n\n")
         f.write("## Main Agent Table\n\n")
-        f.write("| Agent | n | Goal | Feasibility | Intention | Replanning | Face plaus. | Trace believ. | Face-believ. gap | Impossible rate |\n")
-        f.write("|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|\n")
+        f.write("| Agent | n | Task | Legacy goal | Feasibility | Intention | Replanning | Face plaus. | Trace believ. | Face-believ. gap | Impossible rate |\n")
+        f.write("|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|\n")
         for row in agent_summary:
             f.write(
                 f"| `{row['agent_type']}` | {row['n']} | "
+                f"{fmt_mean_std(row.get('task_completion_mean'), row.get('task_completion_std'))} | "
                 f"{fmt_mean_std(row.get('goal_completion_mean'), row.get('goal_completion_std'))} | "
                 f"{fmt_mean_std(row.get('trace_feasibility_mean'), row.get('trace_feasibility_std'))} | "
                 f"{fmt_mean_std(row.get('intention_consistency_mean'), row.get('intention_consistency_std'))} | "
@@ -243,11 +247,13 @@ def write_markdown(
             )
 
         f.write("\n## Diagnostic Metrics\n\n")
-        f.write("| Agent | Travel eff. | Budget | Social approp. | Done-loop | Social derailment |\n")
-        f.write("|---|---:|---:|---:|---:|---:|\n")
+        f.write("| Agent | Constraints | Process | Travel eff. | Budget | Social approp. | Done-loop | Social derailment |\n")
+        f.write("|---|---:|---:|---:|---:|---:|---:|---:|\n")
         for row in agent_summary:
             f.write(
                 f"| `{row['agent_type']}` | "
+                f"{fmt_mean_std(row.get('constraint_satisfaction_mean'), row.get('constraint_satisfaction_std'))} | "
+                f"{fmt_mean_std(row.get('process_success_mean'), row.get('process_success_std'))} | "
                 f"{fmt_mean_std(row.get('travel_efficiency_mean'), row.get('travel_efficiency_std'))} | "
                 f"{fmt_mean_std(row.get('budget_consistency_mean'), row.get('budget_consistency_std'))} | "
                 f"{fmt_mean_std(row.get('social_appropriateness_mean'), row.get('social_appropriateness_std'))} | "
@@ -270,8 +276,8 @@ def write_markdown(
 
         if judged:
             f.write("\n## Highest Scenario-Agent Gaps\n\n")
-            f.write("| Scenario | Agent | Face-believ. gap | Trace believ. | Goal | Feasibility |\n")
-            f.write("|---|---|---:|---:|---:|---:|\n")
+            f.write("| Scenario | Agent | Face-believ. gap | Trace believ. | Task | Legacy goal | Feasibility |\n")
+            f.write("|---|---|---:|---:|---:|---:|---:|\n")
             scenario_rows = sorted(
                 scenario_summary,
                 key=lambda row: float(row.get("face_believability_gap_mean", 0.0)),
@@ -282,16 +288,18 @@ def write_markdown(
                     f"| `{row['scenario_id']}` | `{row['agent_type']}` | "
                     f"{fmt_mean_std(row.get('face_believability_gap_mean'), row.get('face_believability_gap_std'))} | "
                     f"{fmt_mean_std(row.get('judge_trace_believability_mean'), row.get('judge_trace_believability_std'))} | "
+                    f"{fmt_mean_std(row.get('task_completion_mean'), row.get('task_completion_std'))} | "
                     f"{fmt_mean_std(row.get('goal_completion_mean'), row.get('goal_completion_std'))} | "
                     f"{fmt_mean_std(row.get('trace_feasibility_mean'), row.get('trace_feasibility_std'))} |\n"
                 )
         else:
             f.write("\n## Scenario-Agent Breakdown\n\n")
-            f.write("| Scenario | Agent | Goal | Feasibility | Replanning | Calls | Tokens |\n")
-            f.write("|---|---|---:|---:|---:|---:|---:|\n")
+            f.write("| Scenario | Agent | Task | Legacy goal | Feasibility | Replanning | Calls | Tokens |\n")
+            f.write("|---|---|---:|---:|---:|---:|---:|---:|\n")
             for row in scenario_summary:
                 f.write(
                     f"| `{row['scenario_id']}` | `{row['agent_type']}` | "
+                    f"{fmt_mean_std(row.get('task_completion_mean'), row.get('task_completion_std'))} | "
                     f"{fmt_mean_std(row.get('goal_completion_mean'), row.get('goal_completion_std'))} | "
                     f"{fmt_mean_std(row.get('trace_feasibility_mean'), row.get('trace_feasibility_std'))} | "
                     f"{fmt_mean_std(row.get('replanning_success_mean'), row.get('replanning_success_std'))} | "
@@ -431,8 +439,11 @@ def main() -> int:
                 timestamp = load_json(repeat_manifest).get("timestamp")
                 if timestamp:
                     existing_timestamps.append(timestamp)
+    benchmark_config = load_json(ROOT / "benchmark_config.json")
     run_config = {
-        "benchmark": "cityintent_v0",
+        "benchmark": benchmark_config.get("benchmark_id", "cityintent_v0"),
+        "benchmark_version": benchmark_config.get("version"),
+        "benchmark_status": benchmark_config.get("status"),
         "script": str(Path(__file__).resolve()),
         "repeats": args.repeats,
         "agents": [item.strip() for item in args.agents.split(",") if item.strip()],

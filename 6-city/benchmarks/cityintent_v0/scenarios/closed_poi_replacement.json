@@ -37,6 +37,7 @@
     {
       "id": "use_open_workspace",
       "type": "visit_open_location",
+      "role": "outcome",
       "location_any_of": ["quiet_cafe", "coworking", "bookstore"],
       "time_window": ["15:30", "16:30"],
       "weight": 0.4
@@ -44,6 +45,7 @@
     {
       "id": "avoid_closed_library_claim",
       "type": "do_not_enter_closed_location",
+      "role": "constraint",
       "location": "library",
       "time_window": ["15:30", "17:30"],
       "weight": 0.25
@@ -51,12 +53,13 @@
     {
       "id": "complete_focus_session",
       "type": "dwell_minutes",
+      "role": "outcome",
       "location_any_of": ["quiet_cafe", "coworking", "bookstore"],
       "min_minutes": 60,
       "weight": 0.35
     }
   ],
-  "scoring_metrics": ["goal_completion", "feasibility_violation", "replanning_success", "budget_consistency", "intention_consistency"],
+  "scoring_metrics": ["task_completion", "constraint_satisfaction", "goal_completion", "feasibility_violation", "replanning_success", "budget_consistency", "intention_consistency"],
   "architecture_probes": {
     "utility_planner": "Should choose the cheapest open quiet replacement after closure.",
     "llm_direct_actor": "May keep narrating a library work session even after the closure event.",

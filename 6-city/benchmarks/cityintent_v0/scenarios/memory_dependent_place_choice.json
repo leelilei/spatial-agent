@@ -36,12 +36,14 @@
     {
       "id": "choose_memory_matched_place",
       "type": "visit_location",
+      "role": "outcome",
       "location": "quiet_cafe",
       "weight": 0.4
     },
     {
       "id": "meet_ben_quietly",
       "type": "co_presence",
+      "role": "outcome",
       "agents": ["aria", "ben"],
       "location_any_of": ["quiet_cafe"],
       "time_window": ["10:30", "11:45"],
@@ -50,11 +52,12 @@
     {
       "id": "avoid_noisy_cafe",
       "type": "avoid_when_possible",
+      "role": "constraint",
       "avoid_locations": ["cafe_central"],
       "weight": 0.25
     }
   ],
-  "scoring_metrics": ["goal_completion", "feasibility_violation", "travel_efficiency", "budget_consistency", "intention_consistency", "social_appropriateness"],
+  "scoring_metrics": ["task_completion", "constraint_satisfaction", "goal_completion", "feasibility_violation", "travel_efficiency", "budget_consistency", "intention_consistency", "social_appropriateness"],
   "architecture_probes": {
     "utility_planner": "May choose the nearest or cheapest place and miss the memory-based vegan/noise preference.",
     "llm_direct_actor": "May pick the more salient Central Cafe unless memory is explicitly used.",

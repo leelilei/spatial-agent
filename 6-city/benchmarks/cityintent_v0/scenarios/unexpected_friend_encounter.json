@@ -47,6 +47,7 @@
     {
       "id": "complete_groceries",
       "type": "buy_item",
+      "role": "outcome",
       "location": "market",
       "item": "groceries",
       "minutes": 5,
@@ -55,6 +56,7 @@
     {
       "id": "complete_medicine",
       "type": "buy_item",
+      "role": "outcome",
       "location": "pharmacy",
       "item": "medicine",
       "minutes": 5,
@@ -63,6 +65,7 @@
     {
       "id": "handle_copresence_briefly",
       "type": "bounded_social_interaction",
+      "role": "process",
       "with": "casey",
       "max_minutes": 10,
       "weight": 0.25
@@ -70,11 +73,12 @@
     {
       "id": "finish_before_end",
       "type": "episode_complete_before",
+      "role": "constraint",
       "deadline": "17:30",
       "weight": 0.2
     }
   ],
-  "scoring_metrics": ["goal_completion", "feasibility_violation", "replanning_success", "travel_efficiency", "budget_consistency", "intention_consistency", "social_appropriateness"],
+  "scoring_metrics": ["task_completion", "constraint_satisfaction", "process_success", "goal_completion", "feasibility_violation", "replanning_success", "travel_efficiency", "budget_consistency", "intention_consistency", "social_appropriateness"],
   "architecture_probes": {
     "utility_planner": "May ignore the opportunistic social interaction because it is not in the original errand objective.",
     "llm_direct_actor": "May over-engage socially and derail the errand chain.",

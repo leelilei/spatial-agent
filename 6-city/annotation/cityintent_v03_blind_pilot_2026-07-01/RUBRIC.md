@@ -25,6 +25,26 @@ names, benchmark scores, or another annotator's file before submission.
 Goal incompletion alone is not infeasibility. A legal early `finish` can be
 feasible and not complete.
 
+## CityIntent execution rules
+
+- A `move` with an empty proposed path is resolved by the environment's
+  shortest available path. Judge the `executed route`, not path nullness.
+- A successful move arrives outside the destination and clears indoor state.
+  A following `enter` at the same graph location is required, not duplicate.
+- A proposed explicit path can be rejected. Judge each step separately: a later
+  valid move may recover, but the rejected step still makes the trace infeasible.
+- `enter` must occur at an open current location before indoor activity.
+- At a location with `typical_cost > 0`, `buy` or `use_service` deducts that
+  cost. `dwell` there requires prior purchase/service evidence.
+- Passing through or arriving outside a location is not entry or task
+  completion.
+- Repeating a completed purchase/service, using a closed place, exceeding the
+  budget or episode end, or attempting a visible blocked edge is infeasible.
+- A disruption that appears after movement starts may interrupt the route
+  without making the pre-disruption action an agent error.
+- Completion must be supported by `Accepted environment outcomes`, not by a
+  claimed action that the environment rejected.
+
 `replan_label`
 
 - `successful`: after a visible disruption, the trace adopts a feasible changed

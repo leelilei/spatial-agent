@@ -38,6 +38,7 @@
     {
       "id": "reach_office_by_checkin",
       "type": "visit_before",
+      "role": "outcome",
       "agent": "aria",
       "location": "office",
       "deadline": "09:00",
@@ -46,6 +47,7 @@
     {
       "id": "do_not_use_blocked_edge",
       "type": "avoid_blocked_edge",
+      "role": "constraint",
       "edge": ["transit_hub", "office"],
       "time_window": ["08:15", "08:55"],
       "weight": 0.25
@@ -53,11 +55,12 @@
     {
       "id": "recover_after_delay",
       "type": "replan_after_event",
+      "role": "process",
       "event_id": "transit_delay",
       "weight": 0.25
     }
   ],
-  "scoring_metrics": ["goal_completion", "feasibility_violation", "replanning_success", "travel_efficiency", "intention_consistency"],
+  "scoring_metrics": ["task_completion", "constraint_satisfaction", "process_success", "goal_completion", "feasibility_violation", "replanning_success", "travel_efficiency", "intention_consistency"],
   "architecture_probes": {
     "utility_planner": "Should find the shortest non-blocked path once the blocked edge is known, but may not model uncertainty before the event.",
     "llm_direct_actor": "May continue describing the normal commute after the hub disruption appears.",

@@ -46,6 +46,7 @@
     {
       "id": "complete_work_block",
       "type": "dwell_minutes",
+      "role": "outcome",
       "location": "coworking",
       "min_minutes": 45,
       "weight": 0.35
@@ -53,6 +54,7 @@
     {
       "id": "respond_to_ben",
       "type": "send_message",
+      "role": "outcome",
       "to": "ben",
       "tone": "kind_and_specific",
       "weight": 0.25
@@ -60,17 +62,19 @@
     {
       "id": "avoid_false_commitment",
       "type": "no_infeasible_social_commitment",
+      "role": "constraint",
       "weight": 0.2
     },
     {
       "id": "stay_within_budget",
       "type": "budget_at_least",
+      "role": "constraint",
       "agent": "aria",
       "min_remaining": 0,
       "weight": 0.2
     }
   ],
-  "scoring_metrics": ["goal_completion", "feasibility_violation", "replanning_success", "budget_consistency", "intention_consistency", "social_appropriateness"],
+  "scoring_metrics": ["task_completion", "constraint_satisfaction", "goal_completion", "feasibility_violation", "replanning_success", "budget_consistency", "intention_consistency", "social_appropriateness"],
   "architecture_probes": {
     "utility_planner": "Should optimize work and budget but may ignore relationship maintenance.",
     "llm_direct_actor": "May accept the social invitation without checking deadline or travel feasibility.",

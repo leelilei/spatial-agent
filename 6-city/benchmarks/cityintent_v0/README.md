@@ -1,6 +1,6 @@
-# CityIntent v0.3 Benchmark Smoke Test
+# CityIntent v1.0 Release Candidate
 
-Status: draft, locally validated action-evidence and interruptible-movement protocol.
+Status: `1.0-rc1`, locally validated and awaiting two-person blinded human audit.
 
 This package is the first runnable CityAgency track. It keeps the `CityIntent`
 name because v0 focuses on intention persistence and constraint-sensitive
@@ -9,7 +9,7 @@ proposed benchmark object is concrete enough to support agent comparisons.
 
 ## What This Tests
 
-CityIntent v0 includes four offline architecture probes, three generic
+CityIntent includes four offline architecture probes, three generic
 API-backed policies, and four verified external-framework adapters:
 
 | Agent id | Architecture | Purpose |
@@ -41,7 +41,7 @@ official public implementation that can be pinned and executed.
 
 ## Scenario Set
 
-CityIntent v0 currently has 12 scenarios:
+CityIntent currently has 12 scenarios:
 
 - 8 original seed scenarios covering budget, disruption, memory, POI closure,
   preference, social-spatial tradeoff, opportunistic social interaction, and
@@ -79,6 +79,21 @@ node and records `route_interruptions` without blaming the agent. A subsequent
 move counts as a verified replan only when its chosen path avoids an active
 blocked edge that the normal shortest path would have used. Re-attempting an
 already visible blocked edge remains a feasibility violation.
+
+Version 1.0-rc1 adds environment-owned social and activity evidence:
+
+- `interact` is accepted only after entry and when the named counterpart is
+  observable at that location and time.
+- `co_presence` requires an accepted interaction record; presence at a venue is
+  not enough.
+- school pickup requires a completed `child_pickup` service before the deadline;
+  arrival at school is not pickup.
+- success conditions have `outcome`, `process`, or `constraint` roles.
+  `task_completion` uses outcomes only, so budget or avoidance points cannot
+  substitute for a missing intended result.
+
+`goal_completion` remains as the legacy weighted aggregate for comparison.
+The v1 primary completion metric is `task_completion`.
 
 ## Contents
 
@@ -131,7 +146,7 @@ python 6-city/benchmarks/cityintent_v0/tools/run_baseline_traces.py
 Default outputs are written to:
 
 ```text
-6-city/results/cityintent_v0/baseline_smoke/
+6-city/results/cityintent_v1_rc1_offline_2026-07-02/
 ```
 
 The current offline runner supports:
@@ -271,23 +286,24 @@ in `6-city/docs/experiments/cityintent_v03_interruptible_movement_4x4x3_2026-07-
 
 ## Blinded Human Audit
 
-The balanced 16-trace pilot is archived at
+The v0.3 balanced 16-trace rubric-debugging pilot is archived at
 `6-city/annotation/cityintent_v03_blind_pilot_2026-07-01/`. One seeded repeat is
 sampled from each scenario-adapter cell. Annotators receive only the rubric,
 world reference, blinded packet, and their own blank CSV. Framework identity,
 repeat id, metrics, violations, failure taxonomy, and verified replans remain in
 the separate sealed key.
 
-After two independent annotation files are locked, run
+Model dry-runs under `dry_run/` are rubric debugging only and are not human
+validation. After two independent human annotation files are locked, run
 `tools/score_human_audit.py` to report exact agreement, Cohen's kappa, and
 calibration against deterministic completion, feasibility, and replanning.
 
-## Next Implementation Step
+## Freeze Gate
 
-The next code step is to make the experiment less anecdotal:
+CityIntent v1 is not frozen yet. Freeze requires:
 
-- expand the scenario suite with harder impossible-trace traps;
-- complete the two-person blinded audit and adjudicate disagreements;
-- use the audit to decide whether `co_presence` needs explicit second-agent
-  trajectory or interaction evidence;
-- keep all agents behind the same typed action and scoring contract.
+- a v1 trace sample from the verified external-framework adapters;
+- two independent human annotations completed without sealed-key access;
+- pre-adjudication agreement and verifier-calibration reports;
+- documented resolution of material disagreements, followed by a final
+  regression run and immutable v1 manifest.

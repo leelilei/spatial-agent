@@ -304,7 +304,7 @@ class UtilityPlannerPolicy(BasePolicy):
             if ctype == "use_service_at":
                 target = condition["location"]
                 service = condition.get("service", "general_service")
-                if has_used_service(state, target, service):
+                if condition_success(condition, state, self.scenario) >= 1.0:
                     continue
                 access = self.access_action(state, target, "reach service location")
                 if access:
@@ -367,7 +367,28 @@ class UtilityPlannerPolicy(BasePolicy):
                         )
                     return Action("dwell", minutes=start - state.time, reason="wait until the meeting window")
                 if state.time <= end:
-                    return Action("dwell", minutes=5, reason="stay present for the meeting")
+                    if self.world.location_cost(state.location) > 0 and not (
+                        has_used_service(state, state.location)
+                        or has_purchased(state, state.location)
+                    ):
+                        return Action(
+                            "use_service",
+                            target=state.location,
+                            service="meeting_refreshment",
+                            minutes=5,
+                            reason="use paid meeting venue before interaction",
+                        )
+                    other_agents = [
+                        agent
+                        for agent in condition.get("agents", [])
+                        if agent != state.agent_id
+                    ]
+                    return Action(
+                        "interact",
+                        to=other_agents[0] if other_agents else None,
+                        minutes=min(5, end - state.time + 1),
+                        reason="create explicit co-presence interaction evidence",
+                    )
             if ctype == "visit_open_location":
                 candidates = condition.get("location_any_of") or [condition.get("location")]
                 candidates = [item for item in candidates if item]
@@ -427,12 +448,49 @@ class UtilityPlannerPolicy(BasePolicy):
                     reason="satisfy explicit communication requirement",
                 )
             if ctype == "bounded_social_interaction":
+                if condition.get("allow_zero"):
+                    continue
                 minutes = sum(
                     interaction.get("minutes", 0)
                     for interaction in state.interactions
                     if interaction.get("with") == condition["with"]
                 )
                 if minutes == 0:
+                    matching_events = [
+                        event
+                        for event in self.scenario.get("events", [])
+                        if condition["with"] in event.get("effect", {}).get("agents_present", [])
+                        and int(event.get("effect", {}).get("optional_social_opportunity_minutes", 0)) > 0
+                    ]
+                    if matching_events:
+                        event = min(matching_events, key=lambda item: parse_time(item["time"]))
+                        event_location = event.get("location")
+                        if event_location and state.location != event_location:
+                            return Action(
+                                "move",
+                                target=event_location,
+                                reason="reach the observed social opportunity",
+                            )
+                        if event_location and state.inside_location != event_location:
+                            return Action(
+                                "enter",
+                                target=event_location,
+                                reason="enter before the social interaction",
+                            )
+                        event_time = parse_time(event["time"])
+                        opportunity_end = event_time + int(
+                            event.get("effect", {}).get(
+                                "optional_social_opportunity_minutes", 0
+                            )
+                        )
+                        if state.time > opportunity_end:
+                            continue
+                        if state.time < event_time:
+                            return Action(
+                                "dwell",
+                                minutes=event_time - state.time,
+                                reason="wait for the observable social opportunity",
+                            )
                     return Action(
                         "interact",
                         to=condition["with"],
@@ -495,7 +553,10 @@ class DirectActorOfflineProxy(BasePolicy):
                 if state.inside_location != target:
                     return Action("enter", target=target, reason="enter the salient destination")
                 for condition in self.scenario["success_conditions"]:
-                    if condition.get("location") != target:
+                    candidates = condition.get("location_any_of") or [
+                        condition.get("location")
+                    ]
+                    if target not in candidates:
                         continue
                     if condition["type"] == "buy_item":
                         return Action(
@@ -512,6 +573,29 @@ class DirectActorOfflineProxy(BasePolicy):
                             service=condition.get("service", "general_service"),
                             minutes=15,
                             reason="complete salient service",
+                        )
+                    if condition["type"] == "co_presence":
+                        if self.world.location_cost(target) > 0 and not (
+                            has_used_service(state, target)
+                            or has_purchased(state, target)
+                        ):
+                            return Action(
+                                "use_service",
+                                target=target,
+                                service="meeting_refreshment",
+                                minutes=5,
+                                reason="pay before salient social interaction",
+                            )
+                        other_agents = [
+                            agent
+                            for agent in condition.get("agents", [])
+                            if agent != state.agent_id
+                        ]
+                        return Action(
+                            "interact",
+                            to=other_agents[0] if other_agents else None,
+                            minutes=5,
+                            reason="attempt explicit social co-presence",
                         )
                 if self.world.location_cost(target) > 0 and not (
                     has_used_service(state, target) or has_purchased(state, target)
@@ -1023,6 +1107,63 @@ def has_purchased(state: TraceState, location: str, item: str | None = None) -> 
     )
 
 
+def matching_copresence_interactions(
+    condition: dict[str, Any], state: TraceState
+) -> list[dict[str, Any]]:
+    start, end = [parse_time(value) for value in condition["time_window"]]
+    other_agents = [
+        agent for agent in condition.get("agents", []) if agent != state.agent_id
+    ]
+    locations = set(
+        condition.get("location_any_of") or [condition.get("location")]
+    )
+    locations.discard(None)
+    return [
+        interaction
+        for interaction in state.interactions
+        if interaction.get("with") in other_agents
+        and interaction.get("location") in locations
+        and start <= int(interaction.get("start_time", interaction.get("time", -1))) <= end
+        and int(interaction.get("end_time", interaction.get("time", -1))) <= end
+    ]
+
+
+def interaction_target_available(
+    scenario: dict[str, Any], state: TraceState, target: str | None
+) -> bool:
+    if not target:
+        return False
+    for condition in scenario.get("success_conditions", []):
+        if condition.get("type") != "co_presence":
+            continue
+        if target not in condition.get("agents", []):
+            continue
+        start, end = [parse_time(value) for value in condition["time_window"]]
+        if (
+            state.location in condition.get("location_any_of", [])
+            and start <= state.time <= end
+        ):
+            required_message = any(
+                item.get("type") == "send_message" and item.get("to") == target
+                for item in scenario.get("success_conditions", [])
+            )
+            if not required_message or any(
+                message.get("to") == target for message in state.messages
+            ):
+                return True
+    for event in scenario.get("events", []):
+        effect = event.get("effect", {})
+        duration = int(effect.get("optional_social_opportunity_minutes", 0))
+        event_time = parse_time(event["time"])
+        if (
+            target in effect.get("agents_present", [])
+            and event.get("location") == state.location
+            and event_time <= state.time <= event_time + duration
+        ):
+            return True
+    return False
+
+
 def record_visit(state: TraceState, location: str, at_time: int, kind: str = "visit") -> None:
     state.visits.append({"location": location, "time": at_time, "kind": kind})
 
@@ -1094,6 +1235,8 @@ def classify_failure(kind: str) -> str:
         "duplicate_service": "done_state_loop",
         "dwell_without_entry": "invalid_state_transition",
         "unpaid_service_required": "money_budget_failure",
+        "interaction_without_entry": "invalid_state_transition",
+        "interaction_target_unavailable": "invalid_state_transition",
         "invalid_explicit_path": "impossible_route",
         "episode_overtime": "time_budget_failure",
         "unknown_action": "plausible_but_invalid_rationale",
@@ -1134,17 +1277,24 @@ def has_social_derailment(state: TraceState) -> bool:
     return bool(state.interactions) and any(
         condition.get("score", 0.0) < 1.0
         for condition in getattr(state, "_condition_scores", [])
-        if condition["type"] not in {"bounded_social_interaction"}
+        if condition.get("role", "outcome") == "outcome"
+        and condition["type"] not in {"bounded_social_interaction"}
     )
 
 
 def has_goal_drift(state: TraceState) -> bool:
+    outcome_conditions = [
+        condition
+        for condition in getattr(state, "_condition_scores", [])
+        if condition.get("role", "outcome") == "outcome"
+    ]
+    total_weight = sum(float(condition.get("weight", 0.0)) for condition in outcome_conditions)
     unfinished_weight = sum(
         float(condition.get("weight", 0.0))
-        for condition in getattr(state, "_condition_scores", [])
+        for condition in outcome_conditions
         if condition.get("score", 0.0) < 1.0
     )
-    return unfinished_weight >= 0.5 and not state.violations
+    return bool(total_weight) and unfinished_weight / total_weight >= 0.5 and not state.violations
 
 
 def action_plausibility(action: dict[str, Any]) -> float:
@@ -1401,8 +1551,40 @@ def execute_action(world: CityWorld, scenario: dict[str, Any], state: TraceState
         state.time += 2
     elif action.kind == "interact":
         minutes = max(1, action.minutes)
-        state.interactions.append({"with": action.to, "minutes": minutes, "time": state.time})
+        start_time = state.time
+        target_available = interaction_target_available(scenario, state, action.to)
         state.time += minutes
+        if state.inside_location != state.location:
+            append_violation(
+                state,
+                "interaction_without_entry",
+                {
+                    "with": action.to,
+                    "location": state.location,
+                    "time": format_time(start_time),
+                },
+            )
+        elif not target_available:
+            append_violation(
+                state,
+                "interaction_target_unavailable",
+                {
+                    "with": action.to,
+                    "location": state.location,
+                    "time": format_time(start_time),
+                },
+            )
+        else:
+            state.interactions.append(
+                {
+                    "with": action.to,
+                    "minutes": minutes,
+                    "time": start_time,
+                    "start_time": start_time,
+                    "end_time": state.time,
+                    "location": state.location,
+                }
+            )
     elif action.kind == "finish":
         pass
     elif action.kind == "abandon":
@@ -1482,17 +1664,21 @@ def condition_success(condition: dict[str, Any], state: TraceState, scenario: di
             has_purchased(state, condition["location"], condition.get("item"))
         )
     if ctype == "use_service_at":
-        return float(
-            has_used_service(state, condition["location"], condition.get("service"))
-        )
-    if ctype == "co_presence":
-        start, end = [parse_time(v) for v in condition["time_window"]]
-        return float(
-            any(
-                start <= time <= end
-                for time in presence_times(state, condition["location_any_of"])
+        records = [
+            record
+            for record in state.services
+            if record["location"] == condition["location"]
+            and (
+                not condition.get("service")
+                or record.get("service") == condition["service"]
             )
-        )
+        ]
+        if condition.get("deadline"):
+            deadline = parse_time(condition["deadline"])
+            records = [record for record in records if int(record["time"]) <= deadline]
+        return float(bool(records))
+    if ctype == "co_presence":
+        return float(bool(matching_copresence_interactions(condition, state)))
     if ctype == "budget_at_least":
         return float(state.budget >= condition["min_remaining"])
     if ctype == "avoid_when_possible":
@@ -1525,6 +1711,8 @@ def condition_success(condition: dict[str, Any], state: TraceState, scenario: di
         return float(not accepted and not any(v["kind"] == "budget_negative" for v in state.violations))
     if ctype == "bounded_social_interaction":
         minutes = sum(i.get("minutes", 0) for i in state.interactions if i.get("with") == condition["with"])
+        if condition.get("allow_zero"):
+            return float(0 <= minutes <= condition["max_minutes"])
         return float(0 < minutes <= condition["max_minutes"])
     if ctype == "episode_complete_before":
         return float(state.time <= parse_time(condition["deadline"]))
@@ -1549,7 +1737,7 @@ def condition_evidence(condition: dict[str, Any], state: TraceState) -> list[dic
             if start <= time <= end
         ]
     if ctype == "use_service_at":
-        return [
+        records = [
             record
             for record in state.services
             if record["location"] == condition["location"]
@@ -1558,6 +1746,10 @@ def condition_evidence(condition: dict[str, Any], state: TraceState) -> list[dic
                 or record.get("service") == condition["service"]
             )
         ]
+        if condition.get("deadline"):
+            deadline = parse_time(condition["deadline"])
+            records = [record for record in records if int(record["time"]) <= deadline]
+        return records
     if ctype == "dwell_minutes":
         locations = condition.get("location_any_of") or [condition.get("location")]
         return [
@@ -1566,13 +1758,7 @@ def condition_evidence(condition: dict[str, Any], state: TraceState) -> list[dic
             if state.dwell.get(location, 0) > 0
         ]
     if ctype == "co_presence":
-        start, end = [parse_time(value) for value in condition["time_window"]]
-        return [
-            {"location": location, "time": time, "kind": "presence"}
-            for location in condition["location_any_of"]
-            for time in presence_times(state, [location])
-            if start <= time <= end
-        ]
+        return matching_copresence_interactions(condition, state)
     if ctype == "replan_after_event":
         event_id = condition.get("event_id")
         return [
@@ -1613,6 +1799,7 @@ def score_trace(world: CityWorld, scenario: dict[str, Any], state: TraceState) -
                 "type": condition["type"],
                 "score": score,
                 "weight": condition["weight"],
+                "role": condition.get("role", "outcome"),
                 "evidence": condition_evidence(condition, state),
             }
         )
@@ -1654,6 +1841,17 @@ def score_trace(world: CityWorld, scenario: dict[str, Any], state: TraceState) -
     replan_conditions = [c for c in condition_scores if c["type"] == "replan_after_event"]
     social_conditions = [c for c in condition_scores if c["type"] in {"co_presence", "send_message", "bounded_social_interaction", "no_infeasible_social_commitment"}]
 
+    def role_score(role: str) -> float | None:
+        selected = [condition for condition in condition_scores if condition["role"] == role]
+        total_weight = sum(float(condition["weight"]) for condition in selected)
+        if total_weight <= 0:
+            return None
+        return round(
+            sum(float(condition["score"]) * float(condition["weight"]) for condition in selected)
+            / total_weight,
+            3,
+        )
+
     metrics = {
         "plan_plausibility": plan_plausibility,
         "trace_feasibility": trace_feasibility,
@@ -1661,6 +1859,9 @@ def score_trace(world: CityWorld, scenario: dict[str, Any], state: TraceState) -
         "impossible_trace_rate": impossible_trace_rate,
         "city_false_continue": city_false_continue_score(state),
         "goal_completion": round(weighted, 3),
+        "task_completion": role_score("outcome"),
+        "constraint_satisfaction": role_score("constraint"),
+        "process_success": role_score("process"),
         "feasibility_violation": round(violation_rate, 3),
         "replanning_success": round(sum(c["score"] for c in replan_conditions) / len(replan_conditions), 3) if replan_conditions else None,
         "travel_efficiency": round(travel_efficiency, 3),
@@ -1830,6 +2031,9 @@ def write_outputs(results: list[dict[str, Any]], results_dir: Path) -> None:
         "impossible_trace_rate",
         "city_false_continue",
         "goal_completion",
+        "task_completion",
+        "constraint_satisfaction",
+        "process_success",
         "feasibility_violation",
         "replanning_success",
         "travel_efficiency",
@@ -1954,13 +2158,15 @@ def write_outputs(results: list[dict[str, Any]], results_dir: Path) -> None:
             "not real model or external-framework results.\n\n"
         )
         f.write("## Aggregate Metrics\n\n")
-        f.write("| agent_type | plan_plausibility | trace_feasibility | plausibility_feasibility_gap | impossible_trace_rate | city_false_continue | goal_completion | feasibility_violation | replanning_success | travel_efficiency | budget_consistency | intention_consistency | social_appropriateness | done_state_loop_rate | social_derailment_rate |\n")
-        f.write("|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|\n")
+        f.write("| agent_type | plan_plausibility | trace_feasibility | plausibility_feasibility_gap | impossible_trace_rate | city_false_continue | goal_completion | task_completion | constraint_satisfaction | process_success | feasibility_violation | replanning_success | travel_efficiency | budget_consistency | intention_consistency | social_appropriateness | done_state_loop_rate | social_derailment_rate |\n")
+        f.write("|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|\n")
         for agent_type, metrics in aggregate.items():
             f.write(
                 f"| {agent_type} | {metrics.get('plan_plausibility', '')} | {metrics.get('trace_feasibility', '')} | "
                 f"{metrics.get('plausibility_feasibility_gap', '')} | {metrics.get('impossible_trace_rate', '')} | "
                 f"{metrics.get('city_false_continue', '')} | {metrics.get('goal_completion', '')} | "
+                f"{metrics.get('task_completion', '')} | {metrics.get('constraint_satisfaction', '')} | "
+                f"{metrics.get('process_success', '')} | "
                 f"{metrics.get('feasibility_violation', '')} | {metrics.get('replanning_success', '')} | "
                 f"{metrics.get('travel_efficiency', '')} | {metrics.get('budget_consistency', '')} | "
                 f"{metrics.get('intention_consistency', '')} | {metrics.get('social_appropriateness', '')} | "

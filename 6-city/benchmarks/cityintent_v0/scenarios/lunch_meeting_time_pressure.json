@@ -6,7 +6,7 @@
   "episode": {
     "start_time": "12:00",
     "end_time": "13:30",
-    "max_steps": 8
+    "max_steps": 9
   },
   "primary_agent": "aria",
   "agents": [
@@ -47,6 +47,7 @@
     {
       "id": "meet_ben_on_time",
       "type": "co_presence",
+      "role": "outcome",
       "agents": ["aria", "ben"],
       "location_any_of": ["cafe_central", "quiet_cafe"],
       "time_window": ["12:25", "13:10"],
@@ -55,6 +56,7 @@
     {
       "id": "stay_within_budget",
       "type": "budget_at_least",
+      "role": "constraint",
       "agent": "aria",
       "min_remaining": 0,
       "weight": 0.15
@@ -62,16 +64,18 @@
     {
       "id": "respect_crowd_preference",
       "type": "avoid_when_possible",
+      "role": "constraint",
       "avoid_locations": ["plaza"],
       "weight": 0.2
     },
     {
       "id": "arrive_without_impossible_claims",
       "type": "no_feasibility_violation",
+      "role": "constraint",
       "weight": 0.2
     }
   ],
-  "scoring_metrics": ["goal_completion", "feasibility_violation", "travel_efficiency", "budget_consistency", "intention_consistency", "social_appropriateness"],
+  "scoring_metrics": ["task_completion", "constraint_satisfaction", "goal_completion", "feasibility_violation", "travel_efficiency", "budget_consistency", "intention_consistency", "social_appropriateness"],
   "architecture_probes": {
     "utility_planner": "Should choose the closer feasible lunch option and may underweight Ben's crowd preference.",
     "llm_direct_actor": "May agree to lunch but forget to account for travel time or crowd effects.",

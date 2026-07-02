@@ -266,6 +266,141 @@ class ActionProtocolV02Test(unittest.TestCase):
         self.assertEqual(scored["metrics"]["trace_feasibility"], 1)
         self.assertEqual(scored["metrics"]["impossible_trace_rate"], 0)
 
+    def test_presence_without_counterpart_interaction_is_not_copresence(self) -> None:
+        scenario = {
+            **self.scenario,
+            "agents": [
+                {"agent_id": "aria", "start_location": "home"},
+                {"agent_id": "ben", "start_location": "home"},
+            ],
+            "success_conditions": [
+                {
+                    "id": "meet_ben",
+                    "type": "co_presence",
+                    "role": "outcome",
+                    "agents": ["aria", "ben"],
+                    "location_any_of": ["cafe"],
+                    "time_window": ["10:00", "11:00"],
+                    "weight": 1.0,
+                }
+            ],
+        }
+        state = self.state()
+        execute_action(self.world, scenario, state, Action("move", target="cafe"))
+        execute_action(self.world, scenario, state, Action("enter", target="cafe"))
+
+        condition = scenario["success_conditions"][0]
+        self.assertEqual(condition_success(condition, state, scenario), 0)
+        self.assertEqual(condition_evidence(condition, state), [])
+
+    def test_copresence_requires_message_when_scenario_declares_coordination(self) -> None:
+        scenario = {
+            **self.scenario,
+            "agents": [
+                {"agent_id": "aria", "start_location": "home"},
+                {"agent_id": "ben", "start_location": "home"},
+            ],
+            "success_conditions": [
+                {
+                    "id": "confirm",
+                    "type": "send_message",
+                    "role": "outcome",
+                    "to": "ben",
+                    "weight": 0.2,
+                },
+                {
+                    "id": "meet_ben",
+                    "type": "co_presence",
+                    "role": "outcome",
+                    "agents": ["aria", "ben"],
+                    "location_any_of": ["cafe"],
+                    "time_window": ["10:00", "11:00"],
+                    "weight": 0.8,
+                },
+            ],
+        }
+        rejected = self.state()
+        execute_action(self.world, scenario, rejected, Action("move", target="cafe"))
+        execute_action(self.world, scenario, rejected, Action("enter", target="cafe"))
+        execute_action(
+            self.world, scenario, rejected, Action("interact", to="ben", minutes=5)
+        )
+        self.assertFalse(rejected.interactions)
+        self.assertIn(
+            "interaction_target_unavailable",
+            [item["kind"] for item in rejected.violations],
+        )
+
+        accepted = self.state()
+        execute_action(self.world, scenario, accepted, Action("message", to="ben"))
+        execute_action(self.world, scenario, accepted, Action("move", target="cafe"))
+        execute_action(self.world, scenario, accepted, Action("enter", target="cafe"))
+        execute_action(
+            self.world, scenario, accepted, Action("interact", to="ben", minutes=5)
+        )
+        condition = scenario["success_conditions"][1]
+        self.assertEqual(condition_success(condition, accepted, scenario), 1)
+        self.assertEqual(condition_evidence(condition, accepted)[0]["location"], "cafe")
+        self.assertFalse(accepted.violations)
+
+    def test_service_completion_honors_deadline(self) -> None:
+        condition = {
+            "type": "use_service_at",
+            "location": "shop",
+            "service": "child_pickup",
+            "deadline": "10:15",
+        }
+        before = self.state()
+        execute_action(self.world, self.scenario, before, Action("move", target="shop"))
+        execute_action(self.world, self.scenario, before, Action("enter", target="shop"))
+        execute_action(
+            self.world,
+            self.scenario,
+            before,
+            Action("use_service", target="shop", service="child_pickup", minutes=2),
+        )
+        self.assertEqual(condition_success(condition, before, self.scenario), 1)
+
+        after = self.state()
+        after.time = parse_time("10:16")
+        after.location = "shop"
+        after.inside_location = "shop"
+        execute_action(
+            self.world,
+            self.scenario,
+            after,
+            Action("use_service", target="shop", service="child_pickup", minutes=2),
+        )
+        self.assertEqual(condition_success(condition, after, self.scenario), 0)
+        self.assertEqual(condition_evidence(condition, after), [])
+
+    def test_task_completion_cannot_be_replaced_by_constraint_points(self) -> None:
+        scenario = {
+            **self.scenario,
+            "agents": [{"agent_id": "aria", "start_location": "home"}],
+            "success_conditions": [
+                {
+                    "id": "pickup",
+                    "type": "use_service_at",
+                    "role": "outcome",
+                    "location": "shop",
+                    "service": "child_pickup",
+                    "weight": 0.5,
+                },
+                {
+                    "id": "budget",
+                    "type": "budget_at_least",
+                    "role": "constraint",
+                    "min_remaining": 0,
+                    "weight": 0.5,
+                },
+            ],
+        }
+        scored = score_trace(self.world, scenario, self.state())
+        self.assertEqual(scored["metrics"]["goal_completion"], 0.5)
+        self.assertEqual(scored["metrics"]["task_completion"], 0)
+        self.assertEqual(scored["metrics"]["constraint_satisfaction"], 1)
+
 
 if __name__ == "__main__":
     unittest.main()

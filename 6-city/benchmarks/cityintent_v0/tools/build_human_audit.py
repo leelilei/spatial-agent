@@ -91,8 +91,22 @@ def balanced_sample(
     return selected
 
 
-def compact_action(step: dict[str, Any]) -> dict[str, Any]:
+def parse_time(value: str) -> int:
+    hour, minute = value.split(":", 1)
+    return int(hour) * 60 + int(minute)
+
+
+def compact_action(
+    step: dict[str, Any], traversals: list[dict[str, Any]]
+) -> dict[str, Any]:
     action = step.get("action", {})
+    start = parse_time(step["start_time"])
+    end = parse_time(step["end_time"])
+    executed = [
+        traversal
+        for traversal in traversals
+        if start < int(traversal["arrive_time"]) <= end
+    ]
     return {
         "step": step.get("step"),
         "start_time": step.get("start_time"),
@@ -115,7 +129,23 @@ def compact_action(step: dict[str, Any]) -> dict[str, Any]:
         "end_location": step.get("end_location"),
         "budget_after": step.get("budget"),
         "route_interruptions": step.get("route_interruptions", []),
+        "executed_traversals": executed,
     }
+
+
+def accepted_dwell_minutes(trace: dict[str, Any]) -> dict[str, int]:
+    dwell: dict[str, int] = defaultdict(int)
+    prior_violation_count = 0
+    for step in trace.get("trace", []):
+        violation_count = len(step.get("violations", []))
+        action = step.get("action", {})
+        if (
+            action.get("kind") == "dwell"
+            and violation_count == prior_violation_count
+        ):
+            dwell[step["start_location"]] += max(1, int(action.get("minutes", 0)))
+        prior_violation_count = violation_count
+    return dict(dwell)
 
 
 def blind_item(
@@ -158,7 +188,10 @@ def blind_item(
             for agent in scenario.get("agents", [])
             if agent["agent_id"] != scenario["primary_agent"]
         ],
-        "action_trace": [compact_action(step) for step in trace["trace"]],
+        "action_trace": [
+            compact_action(step, trace.get("traversals", []))
+            for step in trace["trace"]
+        ],
         "observable_outcomes": {
             "final_time": trace["final_state"]["time"],
             "final_location": trace["final_state"]["location"],
@@ -169,11 +202,46 @@ def blind_item(
             "messages": trace.get("messages", []),
             "interactions": trace.get("interactions", []),
             "route_interruptions": trace.get("route_interruptions", []),
+            "accepted_dwell_minutes_by_location": accepted_dwell_minutes(trace),
         },
     }
 
 
-def sealed_row(audit_id: str, row: dict[str, Any]) -> dict[str, Any]:
+def trace_role_score(
+    trace: dict[str, Any], scenario: dict[str, Any], role: str
+) -> float | None:
+    metric_key = {
+        "outcome": "task_completion",
+        "constraint": "constraint_satisfaction",
+        "process": "process_success",
+    }[role]
+    if metric_key in trace.get("metrics", {}):
+        return trace["metrics"][metric_key]
+    role_by_id = {
+        condition["id"]: condition.get("role", "outcome")
+        for condition in scenario["success_conditions"]
+    }
+    selected = [
+        condition
+        for condition in trace.get("conditions", [])
+        if role_by_id.get(condition.get("id"), "outcome") == role
+    ]
+    total_weight = sum(float(condition.get("weight", 0)) for condition in selected)
+    if total_weight <= 0:
+        return None
+    return round(
+        sum(
+            float(condition.get("score", 0)) * float(condition.get("weight", 0))
+            for condition in selected
+        )
+        / total_weight,
+        3,
+    )
+
+
+def sealed_row(
+    audit_id: str, row: dict[str, Any], scenario: dict[str, Any]
+) -> dict[str, Any]:
     trace = row["trace"]
     return {
         "audit_id": audit_id,
@@ -181,6 +249,9 @@ def sealed_row(audit_id: str, row: dict[str, Any]) -> dict[str, Any]:
         "scenario_id": trace["scenario_id"],
         "agent_type": trace["agent_type"],
         "goal_completion": trace["metrics"]["goal_completion"],
+        "task_completion": trace_role_score(trace, scenario, "outcome"),
+        "constraint_satisfaction": trace_role_score(trace, scenario, "constraint"),
+        "process_success": trace_role_score(trace, scenario, "process"),
         "trace_feasibility": trace["metrics"]["trace_feasibility"],
         "replanning_success": trace["metrics"].get("replanning_success"),
         "verified_replan_count": len(trace.get("replans", [])),
@@ -241,8 +312,8 @@ def write_packet_markdown(path: Path, items: list[dict[str, Any]]) -> None:
             f.write("Success conditions:\n\n")
             for condition in scenario["success_conditions"]:
                 f.write(f"- `{condition['id']}`: `{json.dumps(condition, ensure_ascii=False)}`\n")
-            f.write("\n| step | time | from | action | target/detail | end | location | budget | interruption |\n")
-            f.write("|---:|---|---|---|---|---|---|---:|---|\n")
+            f.write("\n| step | time | from | action | target/detail | proposed path | executed route | end | location | budget | interruption |\n")
+            f.write("|---:|---|---|---|---|---|---|---|---|---:|---|\n")
             for step in item["action_trace"]:
                 action = step["action"]
                 details = []
@@ -255,9 +326,14 @@ def write_packet_markdown(path: Path, items: list[dict[str, Any]]) -> None:
                     event.get("event_id", "")
                     for event in step.get("route_interruptions", [])
                 )
+                route = ">".join(
+                    [step["executed_traversals"][0]["from"]]
+                    + [edge["to"] for edge in step["executed_traversals"]]
+                ) if step["executed_traversals"] else ""
                 f.write(
                     f"| {step['step']} | {step['start_time']} | {safe_cell(step['start_location'])} | "
-                    f"{safe_cell(action.get('kind'))} | {safe_cell(detail)} | {step['end_time']} | "
+                    f"{safe_cell(action.get('kind'))} | {safe_cell(detail)} | "
+                    f"{safe_cell('>'.join(action.get('path') or []))} | {safe_cell(route)} | {step['end_time']} | "
                     f"{safe_cell(step['end_location'])} | {step['budget_after']} | {safe_cell(interruptions)} |\n"
                 )
             outcomes = item["observable_outcomes"]
@@ -265,6 +341,20 @@ def write_packet_markdown(path: Path, items: list[dict[str, Any]]) -> None:
                 f"\nFinal observable state: time {outcomes['final_time']}, location "
                 f"{outcomes['final_location']}, budget {outcomes['final_budget']}.\n\n"
             )
+            f.write("Accepted environment outcomes:\n\n")
+            for key in (
+                "entries",
+                "services",
+                "purchases",
+                "accepted_dwell_minutes_by_location",
+                "messages",
+                "interactions",
+                "route_interruptions",
+            ):
+                f.write(
+                    f"- `{key}`: `{json.dumps(outcomes.get(key), ensure_ascii=False)}`\n"
+                )
+            f.write("\n")
     cleaned = "\n".join(line.rstrip() for line in path.read_text(encoding="utf-8").splitlines())
     path.write_text(cleaned.rstrip() + "\n", encoding="utf-8", newline="\n")
 
@@ -280,8 +370,8 @@ names, benchmark scores, or another annotator's file before submission.
 
 `completion_label`
 
-- `complete`: all important parts of the private intention and weighted success
-  conditions are completed with observable evidence.
+- `complete`: every `outcome` condition is completed with observable evidence.
+  Constraint or process points cannot substitute for a missing intended outcome.
 - `partial`: meaningful progress or some conditions are completed, but at least
   one important part is missing.
 - `not_complete`: little or none of the intended outcome is completed.
@@ -297,6 +387,28 @@ names, benchmark scores, or another annotator's file before submission.
 
 Goal incompletion alone is not infeasibility. A legal early `finish` can be
 feasible and not complete.
+
+## CityIntent execution rules
+
+- A `move` with an empty proposed path is resolved by the environment's
+  shortest available path. Judge the `executed route`, not path nullness.
+- A successful move arrives outside the destination and clears indoor state.
+  A following `enter` at the same graph location is required, not duplicate.
+- A proposed explicit path can be rejected. Judge each step separately: a later
+  valid move may recover, but the rejected step still makes the trace infeasible.
+- `enter` must occur at an open current location before indoor activity.
+- At a location with `typical_cost > 0`, `buy` or `use_service` deducts that
+  cost. `dwell` there requires prior purchase/service evidence.
+- Passing through or arriving outside a location is not entry or task
+  completion.
+- Repeating a completed purchase/service, using a closed place, exceeding the
+  budget or episode end, or attempting a visible blocked edge is infeasible.
+- A disruption that appears after movement starts may interrupt the route
+  without making the pre-disruption action an agent error.
+- Completion must be supported by `Accepted environment outcomes`, not by a
+  claimed action that the environment rejected.
+- A social meeting requires an accepted `interaction` record naming the other
+  agent, location, and time. Presence at the venue alone is insufficient.
 
 `replan_label`
 
@@ -326,12 +438,16 @@ trace is sufficient to support your labels.
     )
 
 
-def write_readme(path: Path) -> None:
+def write_readme(path: Path, output_dir: Path, item_count: int) -> None:
+    try:
+        output_ref = output_dir.relative_to(REPO_ROOT).as_posix()
+    except ValueError:
+        output_ref = output_dir.as_posix()
     path.write_text(
-        """# CityIntent v0.3 Blinded Human Audit Pilot
+        f"""# CityIntent Blinded Human Audit
 
-This package contains 16 anonymized traces: one seeded random repeat from every
-scenario-adapter cell in the 4 x 4 experiment.
+This package contains {item_count} anonymized traces sampled evenly across the
+available scenario-adapter cells.
 
 ## Handoff
 
@@ -345,14 +461,14 @@ scenario-adapter cell in the 4 x 4 experiment.
 
 ```bash
 python 6-city/benchmarks/cityintent_v0/tools/score_human_audit.py ^
-  --annotations-a 6-city/annotation/cityintent_v03_blind_pilot_2026-07-01/annotations/annotator_a.csv ^
-  --annotations-b 6-city/annotation/cityintent_v03_blind_pilot_2026-07-01/annotations/annotator_b.csv ^
-  --key 6-city/annotation/cityintent_v03_blind_pilot_2026-07-01/sealed/audit_key.csv ^
-  --output-dir 6-city/annotation/cityintent_v03_blind_pilot_2026-07-01/agreement
+  --annotations-a {output_ref}/annotations/annotator_a.csv ^
+  --annotations-b {output_ref}/annotations/annotator_b.csv ^
+  --key {output_ref}/sealed/audit_key.csv ^
+  --output-dir {output_ref}/agreement
 ```
 
-The annotation CSVs are intentionally blank in the repository. Committing
-labels before independent annotation would invalidate the blind pilot.
+The annotation CSVs are intentionally blank in the repository. Sharing labels
+or the sealed key before both independent submissions would invalidate the audit.
 """,
         encoding="utf-8",
         newline="\n",
@@ -380,7 +496,7 @@ def build_packet(
         audit_id = f"H{index:03d}"
         scenario = scenarios[row["trace"]["scenario_id"]]
         items.append(blind_item(audit_id, row, scenario))
-        sealed.append(sealed_row(audit_id, row))
+        sealed.append(sealed_row(audit_id, row, scenario))
 
     packet_jsonl = output_dir / "blinded" / "audit_items.jsonl"
     packet_jsonl.parent.mkdir(parents=True, exist_ok=True)
@@ -409,7 +525,7 @@ def build_packet(
     sealed_fields = list(sealed[0]) if sealed else []
     write_csv(output_dir / "sealed" / "audit_key.csv", sealed, sealed_fields)
     write_rubric(output_dir / "RUBRIC.md")
-    write_readme(output_dir / "README.md")
+    write_readme(output_dir / "README.md", output_dir, len(items))
 
     files = [
         output_dir / "blinded" / "audit_items.jsonl",
@@ -422,7 +538,7 @@ def build_packet(
         output_dir / "README.md",
     ]
     manifest = {
-        "schema_version": "cityintent_human_audit_v1",
+        "schema_version": "cityintent_human_audit_v2",
         "source_dir": str(source_dir),
         "seed": seed,
         "sample_per_scenario_agent_cell": sample_per_cell,

@@ -27,6 +27,7 @@
     {
       "id": "buy_medicine",
       "type": "buy_item",
+      "role": "outcome",
       "location": "pharmacy",
       "item": "medicine",
       "minutes": 5,
@@ -35,6 +36,7 @@
     {
       "id": "eat_affordable_dinner",
       "type": "use_service_at",
+      "role": "outcome",
       "location": "budget_diner",
       "service": "meal",
       "minutes": 15,
@@ -43,6 +45,7 @@
     {
       "id": "return_home",
       "type": "visit_before",
+      "role": "outcome",
       "location": "home_aria",
       "deadline": "19:00",
       "ignore_start": true,
@@ -51,12 +54,13 @@
     {
       "id": "stay_under_budget",
       "type": "budget_at_least",
+      "role": "constraint",
       "agent": "aria",
       "min_remaining": 0,
       "weight": 0.25
     }
   ],
-  "scoring_metrics": ["goal_completion", "feasibility_violation", "travel_efficiency", "budget_consistency", "intention_consistency"],
+  "scoring_metrics": ["task_completion", "constraint_satisfaction", "goal_completion", "feasibility_violation", "travel_efficiency", "budget_consistency", "intention_consistency"],
   "architecture_probes": {
     "utility_planner": "Should solve the errand chain by cost and shortest path.",
     "llm_direct_actor": "May choose an attractive cafe while forgetting the combined medicine and dinner budget.",

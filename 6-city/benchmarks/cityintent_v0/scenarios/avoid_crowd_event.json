@@ -37,12 +37,14 @@
     {
       "id": "exercise",
       "type": "visit_location_any_of",
+      "role": "outcome",
       "location_any_of": ["park", "gym"],
       "weight": 0.3
     },
     {
       "id": "pick_up_groceries",
       "type": "buy_item",
+      "role": "outcome",
       "location": "market",
       "item": "groceries",
       "minutes": 5,
@@ -51,6 +53,7 @@
     {
       "id": "avoid_plaza_crowd",
       "type": "avoid_after_time",
+      "role": "constraint",
       "avoid_locations": ["plaza"],
       "after": "18:15",
       "weight": 0.25
@@ -58,12 +61,13 @@
     {
       "id": "stay_within_budget",
       "type": "budget_at_least",
+      "role": "constraint",
       "agent": "aria",
       "min_remaining": 0,
       "weight": 0.15
     }
   ],
-  "scoring_metrics": ["goal_completion", "feasibility_violation", "travel_efficiency", "budget_consistency", "intention_consistency", "social_appropriateness"],
+  "scoring_metrics": ["task_completion", "constraint_satisfaction", "goal_completion", "feasibility_violation", "travel_efficiency", "budget_consistency", "intention_consistency", "social_appropriateness"],
   "architecture_probes": {
     "utility_planner": "Should satisfy exercise and groceries but may route through the crowded plaza if it is shortest.",
     "llm_direct_actor": "May mention avoiding crowds but choose the plaza because it is salient in the prompt.",

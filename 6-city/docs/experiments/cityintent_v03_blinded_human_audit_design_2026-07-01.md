@@ -73,3 +73,15 @@ agreement tool are complete. The repository contains no human labels yet.
 
 Package:
 `6-city/annotation/cityintent_v03_blind_pilot_2026-07-01/`
+
+## 2026-07-02 Disposition
+
+A two-profile model dry run confirmed that the packet can expose the
+co-presence evidence gap, but model labels are not human validation. The dry
+run also motivated showing executed traversals and accepted outcomes explicitly.
+
+The benchmark implementation has moved to `1.0-rc1`: co-presence now requires
+an accepted counterpart interaction, pickup requires typed service evidence,
+and outcome completion is separated from process and constraint scores. A new
+v1 trace sample and two independent human annotations are still required before
+freeze.

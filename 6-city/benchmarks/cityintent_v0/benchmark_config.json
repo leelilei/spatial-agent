@@ -1,13 +1,13 @@
 {
   "benchmark_id": "cityintent_v0",
-  "version": "0.3",
-  "status": "smoke_test",
+  "version": "1.0-rc1",
+  "status": "release_candidate_pending_human_audit",
   "worlds": [
     "worlds/micro_city.json"
   ],
   "scenario_dir": "scenarios",
   "action_protocol": {
-    "version": "0.3",
+    "version": "1.0-rc1",
     "kinds": [
       "move",
       "enter",
@@ -24,6 +24,9 @@
       "enter checks opening constraints and creates entry evidence",
       "buy and use_service create completion evidence and deduct typical_cost",
       "dwell requires entry and, at paid locations, prior purchase or service evidence",
+      "interact requires entry plus environment-observable counterpart availability",
+      "co-presence requires an accepted interaction with the named counterpart at an allowed location and time",
+      "arrival alone cannot prove service completion, pickup, purchase, or social meeting",
       "a newly observed mid-route block interrupts movement without agent fault",
       "attempting a visible blocked edge is a violation; choosing a verified detour creates replanning evidence"
     ]
@@ -157,6 +160,24 @@
       "description": "Whether explicit private-intention success conditions are satisfied."
     },
     {
+      "id": "task_completion",
+      "kind": "deterministic",
+      "range": [0, 1],
+      "description": "Normalized completion of outcome-role conditions only; constraints and process probes cannot substitute for the intended urban outcome."
+    },
+    {
+      "id": "constraint_satisfaction",
+      "kind": "deterministic",
+      "range": [0, 1],
+      "description": "Normalized satisfaction of budget, avoidance, deadline, and feasibility constraints."
+    },
+    {
+      "id": "process_success",
+      "kind": "deterministic",
+      "range": [0, 1],
+      "description": "Normalized success of explicitly marked process probes such as disruption recovery or optional social handling."
+    },
+    {
       "id": "feasibility_violation",
       "kind": "deterministic",
       "range": [0, 1],
@@ -209,6 +230,7 @@
     "min_scenarios": 6,
     "required_metric_ids": [
       "goal_completion",
+      "task_completion",
       "feasibility_violation",
       "replanning_success",
       "intention_consistency"
