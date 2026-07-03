@@ -168,6 +168,90 @@ def calibration(
     return output
 
 
+def deterministic_labels(truth: dict[str, str]) -> dict[str, str | None]:
+    completion_score = truth.get("task_completion", "")
+    if completion_score == "":
+        completion_score = truth["goal_completion"]
+    replanning = truth.get("replanning_success", "")
+    return {
+        "completion_label": deterministic_completion(float(completion_score)),
+        "feasibility_label": (
+            "feasible" if float(truth["trace_feasibility"]) >= 0.999 else "infeasible"
+        ),
+        "replan_label": (
+            None
+            if replanning == ""
+            else ("successful" if float(replanning) >= 0.999 else "failed")
+        ),
+    }
+
+
+def material_findings(
+    rows_a: dict[str, dict[str, str]],
+    rows_b: dict[str, dict[str, str]],
+    key: dict[str, dict[str, str]],
+) -> list[dict[str, str]]:
+    findings: list[dict[str, str]] = []
+    dimensions = (
+        "completion_label",
+        "feasibility_label",
+        "replan_label",
+        "evidence_sufficient",
+    )
+    for audit_id in sorted(key):
+        row_a = rows_a[audit_id]
+        row_b = rows_b[audit_id]
+        truth = deterministic_labels(key[audit_id])
+        for field in dimensions:
+            label_a = row_a.get(field, "")
+            label_b = row_b.get(field, "")
+            if label_a != label_b:
+                findings.append(
+                    {
+                        "finding_id": f"{audit_id}:{field}:inter_annotator",
+                        "audit_id": audit_id,
+                        "dimension": field,
+                        "kind": "inter_annotator_disagreement",
+                        "annotator_a": label_a,
+                        "annotator_b": label_b,
+                        "verifier": truth.get(field) or "",
+                    }
+                )
+        for annotator_name, row in (("annotator_a", row_a), ("annotator_b", row_b)):
+            for field in ("completion_label", "feasibility_label", "replan_label"):
+                human = row.get(field, "")
+                verifier = truth.get(field)
+                if human in {"", "uncertain", "not_applicable"} or verifier is None:
+                    continue
+                if human != verifier:
+                    findings.append(
+                        {
+                            "finding_id": f"{audit_id}:{field}:{annotator_name}_verifier",
+                            "audit_id": audit_id,
+                            "dimension": field,
+                            "kind": "human_verifier_disagreement",
+                            "annotator_a": row_a.get(field, ""),
+                            "annotator_b": row_b.get(field, ""),
+                            "verifier": verifier,
+                        }
+                    )
+        if row_a.get("evidence_sufficient") != "yes" or row_b.get(
+            "evidence_sufficient"
+        ) != "yes":
+            findings.append(
+                {
+                    "finding_id": f"{audit_id}:evidence_sufficient:packet",
+                    "audit_id": audit_id,
+                    "dimension": "evidence_sufficient",
+                    "kind": "packet_evidence_concern",
+                    "annotator_a": row_a.get("evidence_sufficient", ""),
+                    "annotator_b": row_b.get("evidence_sufficient", ""),
+                    "verifier": "",
+                }
+            )
+    return findings
+
+
 def score_annotations(
     annotations_a: Path,
     annotations_b: Path,
@@ -183,6 +267,14 @@ def score_annotations(
             errors.extend(validate_row(row, source))
     if set(rows_a) != set(key) or set(rows_b) != set(key):
         errors.append("annotation audit_id sets must exactly match the sealed key")
+    annotator_ids_a = {row.get("annotator_id", "") for row in rows_a.values()}
+    annotator_ids_b = {row.get("annotator_id", "") for row in rows_b.values()}
+    if len(annotator_ids_a) != 1 or "" in annotator_ids_a:
+        errors.append("annotator A must use one non-empty annotator_id")
+    if len(annotator_ids_b) != 1 or "" in annotator_ids_b:
+        errors.append("annotator B must use one non-empty annotator_id")
+    if annotator_ids_a == annotator_ids_b:
+        errors.append("the two annotation files must use different annotator_id values")
     required = [
         "completion_label",
         "feasibility_label",
@@ -209,7 +301,7 @@ def score_annotations(
         "evidence_sufficient",
         "first_invalid_step",
     ]
-    return {
+    output = {
         "audit_item_count": len(key),
         "pending_rows": pending,
         "inter_annotator_agreement": {
@@ -220,6 +312,11 @@ def score_annotations(
             "annotator_b": calibration(rows_b, key),
         },
     }
+    if not any(pending.values()):
+        output["material_findings"] = material_findings(rows_a, rows_b, key)
+    else:
+        output["material_findings"] = []
+    return output
 
 
 def write_summary(path: Path, result: dict[str, Any]) -> None:
@@ -245,6 +342,41 @@ def write_summary(path: Path, result: dict[str, Any]) -> None:
                     f"| `{field}` | {values['n']} | {values['exact_agreement']} |\n"
                 )
             f.write("\n")
+        f.write("## Material Findings\n\n")
+        findings = result.get("material_findings", [])
+        f.write(f"Count: {len(findings)}\n\n")
+        if findings:
+            f.write("| Finding | Audit item | Dimension | Kind | A | B | Verifier |\n")
+            f.write("|---|---|---|---|---|---|---|\n")
+            for finding in findings:
+                f.write(
+                    f"| `{finding['finding_id']}` | `{finding['audit_id']}` | "
+                    f"`{finding['dimension']}` | `{finding['kind']}` | "
+                    f"{finding['annotator_a']} | {finding['annotator_b']} | "
+                    f"{finding['verifier']} |\n"
+                )
+
+
+def write_findings_csv(path: Path, result: dict[str, Any]) -> None:
+    fieldnames = [
+        "finding_id",
+        "audit_id",
+        "dimension",
+        "kind",
+        "annotator_a",
+        "annotator_b",
+        "verifier",
+        "status",
+        "action",
+        "rationale",
+        "affected_files",
+        "rerun_evidence",
+    ]
+    with path.open("w", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        for finding in result.get("material_findings", []):
+            writer.writerow({**finding, **{field: "" for field in fieldnames[7:]}})
 
 
 def main() -> int:
@@ -264,6 +396,7 @@ def main() -> int:
     args.output_dir.mkdir(parents=True, exist_ok=True)
     write_json(args.output_dir / "agreement.json", result)
     write_summary(args.output_dir / "agreement.md", result)
+    write_findings_csv(args.output_dir / "material_findings.csv", result)
     print(f"Wrote human-audit agreement to {args.output_dir}")
     return 0
 

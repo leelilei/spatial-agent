@@ -1,0 +1,31 @@
+{
+  "schema_version": "cityintent_human_handoff_v1",
+  "audit_dir": "D:\\0-Research\\6-city\\annotation\\cityintent_v1_rc1_blind_validation_2026-07-02",
+  "archives": [
+    {
+      "annotator": "annotator_a",
+      "archive": "annotator_a_blinded_handoff.zip",
+      "sha256": "d74b22d2ca46cdd6acf6faf9d59f3eb60e79cef49f11635b547078c1f0225e70",
+      "members": [
+        "RUBRIC.md",
+        "annotations/annotator_a.csv",
+        "blinded/audit_items.jsonl",
+        "blinded/audit_packet.md",
+        "blinded/world_reference.json"
+      ]
+    },
+    {
+      "annotator": "annotator_b",
+      "archive": "annotator_b_blinded_handoff.zip",
+      "sha256": "ff5bb655065b1b6a405a5ada9fe1f8fddca66bc479f72a96e74394d687b1e983",
+      "members": [
+        "RUBRIC.md",
+        "annotations/annotator_b.csv",
+        "blinded/audit_items.jsonl",
+        "blinded/audit_packet.md",
+        "blinded/world_reference.json"
+      ]
+    }
+  ],
+  "sealed_material_included": false
+}

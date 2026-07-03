@@ -222,3 +222,34 @@ The clean contribution remains:
 > CityAgency is a benchmark for measuring when plausible urban plans fail to
 > become executable city traces.
 
+## 2026-07-03 Expansion Addendum
+
+The archive has expanded from 34 to 44 complete PDF/fulltext/note packages. One
+additional verified IEEE survey is awaiting a retrievable PDF. The published
+ScienceDirect version of GATSim is a version update, not a separate paper.
+
+Three newly found papers materially change the positioning:
+
+1. **LiveCultureBench** already combines a graph-based small city, a resident's
+   daily goal, supporting residents, cultural norms, and verifier uncertainty.
+2. **DeliveryBench** already evaluates long-horizon city execution under time,
+   economic, physical, and social constraints, with seven VLMs and a human baseline.
+3. **MobilityBench** already uses deterministic API replay to evaluate 100,000 real
+   route queries across more than 350 cities.
+
+Two validation papers sharpen the scientific boundary:
+
+1. **Validation Is the Central Challenge for Generative Social Simulation** argues
+   that face validity and loosely related outcomes often fail to validate the
+   mechanisms claimed by generative ABMs.
+2. **Mechanism Plausibility in Generative Agent-Based Modeling** shows that
+   agent-level evidence is frequently overextended into ABM-level claims.
+
+The revised contribution is therefore narrower and stronger:
+
+> CityAgency compares heterogeneous urban-agent frameworks through a shared,
+> typed evidence protocol. It tests whether plausible plans and completion claims
+> survive authoritative spatial, temporal, resource, and social state transitions.
+
+This supports an agent-level execution-mechanism claim. Human behavioral realism,
+population mobility realism, and macro urban validity require separate evidence.

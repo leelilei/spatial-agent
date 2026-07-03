@@ -59,6 +59,22 @@ travel consistency, and blinded human trace judgments.
 
 Model-generated labels may debug the packet but cannot satisfy this gate.
 
+### Pre-Registered Pilot Thresholds
+
+For the 16-item v1 pilot, freezing requires:
+
+- exact agreement >= 0.75 and Cohen's kappa >= 0.40 for completion,
+  feasibility, and replanning labels;
+- verifier agreement >= 0.75 for each annotator on completion, feasibility,
+  and applicable replanning items;
+- `evidence_sufficient=yes` on at least 87.5% of items for each annotator;
+- mean confidence >= 3.0 for each annotator;
+- a resolved disposition with rationale for every human-human disagreement,
+  human-verifier disagreement, or evidence-sufficiency concern.
+
+Threshold failure requires a rubric, packet, or verifier revision and a new
+pre-adjudication audit. It cannot be waived by writing a disposition.
+
 ## Freeze Criteria
 
 CityAgency v1 can be frozen only when all tests and package validation pass,
@@ -66,3 +82,8 @@ verified external adapters produce archived v1 traces, both human annotation
 files are complete, agreement/calibration results are archived, and every
 material audit finding has a documented disposition. Until then the status
 must remain `release_candidate_pending_human_audit`.
+
+The executable gate is `tools/check_v1_release.py`. It writes a machine-readable
+and Markdown report, and `--freeze` refuses to change the benchmark version unless
+all structural, adapter, runtime, human-audit, calibration, and disposition checks
+pass.

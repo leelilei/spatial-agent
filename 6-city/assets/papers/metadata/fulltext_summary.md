@@ -1,10 +1,10 @@
 # Fulltext Conversion Summary
 
-Updated: 2026-06-27T04:57:02+00:00
+Updated: 2026-07-03T12:08:44+00:00
 PDF directory: `D:\0-Research\6-city\assets\papers\pdf`
 Fulltext directory: `D:\0-Research\6-city\assets\papers\fulltext`
-Total selected: 34
-Converted or existing: 34
+Total selected: 44
+Converted or existing: 44
 Failed: 0
 
 | Source PDF | Status | Action | Chars | Pages | Flags | Fulltext |
@@ -35,6 +35,7 @@ Failed: 0
 | `04_social_benchmark_foundations\04_Lifelong_SOTOPIA_2025.pdf` | ok | skipped_existing | 78127 | 28 |  | `assets\papers\fulltext\04_social_benchmark_foundations\04_Lifelong_SOTOPIA_2025.fulltext.md` |
 | `04_social_benchmark_foundations\05_Misleading_Success_2024.pdf` | ok | skipped_existing | 78033 | 23 |  | `assets\papers\fulltext\04_social_benchmark_foundations\05_Misleading_Success_2024.fulltext.md` |
 | `04_social_benchmark_foundations\06_Can_LLM_Agents_Simulate_Multi_Turn_Human_Behavior_2025.pdf` | ok | skipped_existing | 71629 | 17 |  | `assets\papers\fulltext\04_social_benchmark_foundations\06_Can_LLM_Agents_Simulate_Multi_Turn_Human_Behavior_2025.fulltext.md` |
+| `04_social_benchmark_foundations\07_LiveCultureBench_Pham2026.pdf` | ok | converted | 77792 | 30 |  | `assets\papers\fulltext\04_social_benchmark_foundations\07_LiveCultureBench_Pham2026.fulltext.md` |
 | `05_mobility_realism\01_MobiSim_Bench_Zhang2026_OpenReview.pdf` | ok | skipped_existing | 64291 | 16 | abstract_may_include_layout_noise | `assets\papers\fulltext\05_mobility_realism\01_MobiSim_Bench_Zhang2026_OpenReview.fulltext.md` |
 | `05_mobility_realism\02_When_Plausible_Is_Not_Realistic_Santos2026.pdf` | ok | skipped_existing | 82865 | 14 |  | `assets\papers\fulltext\05_mobility_realism\02_When_Plausible_Is_Not_Realistic_Santos2026.fulltext.md` |
 | `06_agent_execution_benchmarks\01_ChinaTravel_Shao2024.pdf` | ok | skipped_existing | 166154 | 53 |  | `assets\papers\fulltext\06_agent_execution_benchmarks\01_ChinaTravel_Shao2024.fulltext.md` |
@@ -43,3 +44,12 @@ Failed: 0
 | `06_agent_execution_benchmarks\04_AppWorld_Trivedi2024.pdf` | ok | skipped_existing | 163139 | 55 |  | `assets\papers\fulltext\06_agent_execution_benchmarks\04_AppWorld_Trivedi2024.fulltext.md` |
 | `06_agent_execution_benchmarks\05_WebArena_Zhou2023.pdf` | ok | skipped_existing | 77881 | 22 |  | `assets\papers\fulltext\06_agent_execution_benchmarks\05_WebArena_Zhou2023.fulltext.md` |
 | `06_agent_execution_benchmarks\06_TheAgentCompany_Xu2024.pdf` | ok | skipped_existing | 83662 | 24 |  | `assets\papers\fulltext\06_agent_execution_benchmarks\06_TheAgentCompany_Xu2024.fulltext.md` |
+| `07_large_scale_urban_sim\01_GenWorld_Li2026.pdf` | ok | converted | 87668 | 27 |  | `assets\papers\fulltext\07_large_scale_urban_sim\01_GenWorld_Li2026.fulltext.md` |
+| `07_large_scale_urban_sim\02_Limits_of_Agency_Chopra2025.pdf` | ok | converted | 59944 | 10 |  | `assets\papers\fulltext\07_large_scale_urban_sim\02_Limits_of_Agency_Chopra2025.fulltext.md` |
+| `08_route_planning_agents\01_MobilityBench_Song2026.pdf` | ok | converted | 58124 | 11 |  | `assets\papers\fulltext\08_route_planning_agents\01_MobilityBench_Song2026.fulltext.md` |
+| `08_route_planning_agents\02_DeliveryBench_Mao2025.pdf` | ok | converted | 87043 | 20 |  | `assets\papers\fulltext\08_route_planning_agents\02_DeliveryBench_Mao2025.fulltext.md` |
+| `08_route_planning_agents\03_TrajGenAgent_Li2026.pdf` | ok | converted | 73959 | 14 |  | `assets\papers\fulltext\08_route_planning_agents\03_TrajGenAgent_Li2026.fulltext.md` |
+| `08_route_planning_agents\04_AgentMob_Chen2026.pdf` | ok | converted | 60877 | 15 |  | `assets\papers\fulltext\08_route_planning_agents\04_AgentMob_Chen2026.fulltext.md` |
+| `09_surveys\02_Multi_Stakeholder_Urban_Planning_Gao2025.pdf` | ok | converted | 28658 | 9 |  | `assets\papers\fulltext\09_surveys\02_Multi_Stakeholder_Urban_Planning_Gao2025.fulltext.md` |
+| `09_surveys\03_Validation_Central_Larooij2026.pdf` | ok | converted | 103870 | 31 |  | `assets\papers\fulltext\09_surveys\03_Validation_Central_Larooij2026.fulltext.md` |
+| `09_surveys\04_Mechanism_Plausibility_Zhao2026.pdf` | ok | converted | 97730 | 26 | abstract_may_include_layout_noise | `assets\papers\fulltext\09_surveys\04_Mechanism_Plausibility_Zhao2026.fulltext.md` |

@@ -1,6 +1,10 @@
 ﻿# Reference Index
 
-Downloaded / archived on 2026-06-22 and 2026-06-23.
+Downloaded / archived on 2026-06-22, 2026-06-23, and 2026-07-03.
+
+Archive status on 2026-07-03: **45 verified unique references, 44 archived
+PDF/fulltext/note packages, and 1 verified paper awaiting a retrievable PDF**.
+The published GATSim journal article is counted as a version update, not a new paper.
 
 This archive is for the `6-city` research direction: city-scale or micro-city
 generative agents, SOTOPIA-style benchmark design, spatially grounded autonomy, and
@@ -46,7 +50,7 @@ verifiable evaluation.
 | Local archive | Paper | Source | Why keep it |
 |---|---|---|---|
 | `../pdf/02_citysim_agents/01_CitySim_Wang2025.pdf` | CitySim: Modeling Urban Behaviors and City Dynamics with Large-Scale LLM-Driven Agent Simulation | [arXiv 2506.21805](https://arxiv.org/abs/2506.21805) | Closest named CitySim reference; central comparison for agent autonomy and city dynamics. |
-| `../pdf/02_citysim_agents/02_GATSim_Liu2025.pdf` | GATSim: Urban Mobility Simulation with Generative Agents | [arXiv 2506.23306](https://arxiv.org/abs/2506.23306) | Directly uses generative agents for urban mobility; close to our city-agent benchmark idea. |
+| `../pdf/02_citysim_agents/02_GATSim_Liu2025.pdf` | GATSim: Urban Mobility Simulation with Generative Agents | [arXiv 2506.23306](https://arxiv.org/abs/2506.23306); [journal DOI 10.1016/j.simpat.2025.103234](https://doi.org/10.1016/j.simpat.2025.103234) | Directly uses generative agents for urban mobility; the 2025 journal article is the published version of this archived work, not a separate reference. |
 | `../pdf/02_citysim_agents/03_AgentSociety_Gao2025.pdf` | AgentSociety: Large-Scale Simulation of LLM-Driven Generative Agents Advances Understanding of Human Behaviors and Society | [arXiv 2502.08691](https://arxiv.org/abs/2502.08691) | Large-scale LLM society simulation; useful for population-level evaluation and realism claims. |
 | `../pdf/02_citysim_agents/04_Concordia_Vezhnevets2023.pdf` | Generative agent-based modeling with actions grounded in physical, social, or digital space using Concordia | [arXiv 2312.03664](https://arxiv.org/abs/2312.03664) | Framework precedent for grounding actions in explicit spaces and game-master style control. |
 | `../pdf/02_citysim_agents/05_ChatSUMO_Mao2024.pdf` | ChatSUMO: Large Language Model for Automating Traffic Scenario Generation in Simulation of Urban Mobility | [arXiv 2409.09040](https://arxiv.org/abs/2409.09040) | Traffic / SUMO angle; useful if benchmark tasks include road-network mobility. |
@@ -71,6 +75,7 @@ verifiable evaluation.
 | `../pdf/04_social_benchmark_foundations/04_Lifelong_SOTOPIA_2025.pdf` | Lifelong-SOTOPIA: Evaluating Social Intelligence for Lifelong LLM Agents | [arXiv 2506.12666](https://arxiv.org/abs/2506.12666) | Longitudinal social memory benchmark; useful if CityAgency adds repeated social histories. |
 | `../pdf/04_social_benchmark_foundations/05_Misleading_Success_2024.pdf` | Is this the real life? Is this just fantasy? The Misleading Success of Simulating Social Interactions With LLMs | [arXiv 2403.05020](https://arxiv.org/abs/2403.05020) | Cautionary reference on simulation realism and information conditions. |
 | `../pdf/04_social_benchmark_foundations/06_Can_LLM_Agents_Simulate_Multi_Turn_Human_Behavior_2025.pdf` | Can LLM Agents Simulate Multi-Turn Human Behavior? | [arXiv 2503.20749](https://arxiv.org/abs/2503.20749) | Human-behavior simulation benchmark; useful for action-trace realism and behavioral prediction framing. |
+| `../pdf/04_social_benchmark_foundations/07_LiveCultureBench_Pham2026.pdf` | LiveCultureBench: a Multi-Agent, Multi-Cultural Benchmark for Large Language Models in Dynamic Social Simulations | [arXiv 2603.01952](https://arxiv.org/abs/2603.01952) | Closest newly identified competitor: graph-based town, resident daily goals, supporting agents, task completion, cultural norms, and verifier reliability. CityAgency must differentiate through deterministic physical execution evidence and continuous trace validation. |
 
 ## 05 Mobility Realism
 
@@ -112,53 +117,57 @@ Local extracted text / metadata copied from `3-SMGA`:
 
 ## 07 Large-Scale Urban Simulation & Scaling
 
-*Archived: 2026-07-01 — expanded literature scan.*
+*Identified on 2026-07-01; archived and reviewed on 2026-07-03.*
 
 | Local archive | Paper | Source | Why keep it |
 |---|---|---|---|
-| *(not yet downloaded)* | GenWorld: Empirically Grounded Urban Simulation Infrastructure for Scalable LLM-Agent Studies | [arXiv 2606.27650](https://arxiv.org/abs/2606.27650) | 196K synthetic residents on real Higashi-Hiroshima census + geographic data; LLM decisions compiled offline to lookup policies; city-wide weekday rollout + perturbation response with auditable replanning. Latest large-scale empirically grounded urban sim. CityAgency should compare: GenWorld tests aggregate mobility patterns, CityAgency tests individual private-goal trace feasibility. |
-| *(not yet downloaded)* | On the Limits of Agency in Agent-Based Models | [arXiv 2409.10568](https://arxiv.org/abs/2409.10568) (AAMAS 2025) | Introduces LLM archetypes: group population by demographics, one LLM call per archetype, sample behavior for all agents in group. 8.4M-agent NYC COVID-19 simulation via AgentTorch. Formalizes the agency-vs-scale trade-off — agents' expressiveness and population size are fundamentally in tension. CityAgency occupies the high-agency, micro-scale end of this continuum. |
+| `../pdf/07_large_scale_urban_sim/01_GenWorld_Li2026.pdf` | GenWorld: Empirically Grounded Urban Simulation Infrastructure for Scalable LLM-Agent Studies | [arXiv 2606.27650](https://arxiv.org/abs/2606.27650) | 196,608 synthetic residents grounded in Higashihiroshima census, buildings, POIs, roads, and mobility evidence; LLM decisions are compiled offline for population-scale rollout. CityAgency instead diagnoses individual online execution. |
+| `../pdf/07_large_scale_urban_sim/02_Limits_of_Agency_Chopra2025.pdf` | On the Limits of Agency in Agent-Based Models | [arXiv 2409.10568](https://arxiv.org/abs/2409.10568) (AAMAS 2025) | Introduces LLM archetypes and demonstrates an 8.4-million-agent New York City simulation. It formalizes the scale-expressiveness trade-off that motivates CityAgency's controlled micro scale. |
 
 ## 08 Route-Planning & Mobility Agents
 
-*Archived: 2026-07-01 — expanded literature scan.*
+*Identified on 2026-07-01; archived and reviewed on 2026-07-03.*
 
 | Local archive | Paper | Source | Why keep it |
 |---|---|---|---|
-| *(not yet downloaded)* | MobilityBench: A Benchmark for Evaluating Route-Planning Agents in Real-World Mobility Scenarios | [arXiv 2602.22638](https://arxiv.org/abs/2602.22638) | 100K real user route queries × 350+ cities; deterministic API-replay sandbox. Core finding: preference-constrained route planning (e.g. "avoid highways, stop by a convenience store en route") is the weak spot for all LLM agents. Closest neighbor to CityAgency's movement validation. Key difference: MobilityBench tests single route-planning requests; CityAgency tests a full multi-step episode with private intentions. |
-| *(not yet downloaded)* | DeliveryBench: Can Agents Earn Profit in Real World? | [arXiv 2512.19234](https://arxiv.org/abs/2512.19234) | Food-delivery agent benchmark: real city maps, order acceptance, route planning, time-window constraints, profitability. Adds "profit feasibility" as a constraint dimension relevant to CityAgency's budget/economic constraints. |
-| *(not yet downloaded)* | TrajGenAgent: A Hierarchical LLM Agent for Human Mobility Trajectory Generation | [arXiv 2606.12657](https://arxiv.org/abs/2606.12657) | Hierarchical LLM agent generates human mobility trajectories. Represents current technical ceiling for LLM-driven trajectory generation. Fits in 05_mobility_realism family alongside MobiSim-Bench and When Plausible Is Not Realistic. |
-| *(not yet downloaded)* | Towards Efficient and Evidence-grounded Mobility Prediction with LLM-Driven Agent (AgentMob) | [arXiv 2606.05130](https://arxiv.org/abs/2606.05130) | Evidence-grounded individual mobility prediction with LLM agent. Adds "evidence grounding" dimension to mobility agent evaluation — agent must cite real-world POI/transport data when predicting movement. Relevant to CityAgency's action-evidence protocol. |
+| `../pdf/08_route_planning_agents/01_MobilityBench_Song2026.pdf` | MobilityBench: A Benchmark for Evaluating Route-Planning Agents in Real-World Mobility Scenarios | [arXiv 2602.22638](https://arxiv.org/abs/2602.22638) | 100,000 real route queries across more than 350 cities and a deterministic API-replay sandbox. Preference-constrained planning is the weak point; CityAgency extends from one request to a persistent episode. |
+| `../pdf/08_route_planning_agents/02_DeliveryBench_Mao2025.pdf` | DeliveryBench: Can Agents Earn Profit in Real World? | [arXiv 2512.19234](https://arxiv.org/abs/2512.19234) | Direct competitor for long-horizon city execution: seven VLM agents and humans operate in nine 3D city settings under deadlines, cost, battery, and interaction constraints. |
+| `../pdf/08_route_planning_agents/03_TrajGenAgent_Li2026.pdf` | TrajGenAgent: A Hierarchical LLM Agent for Human Mobility Trajectory Generation | [arXiv 2606.12657](https://arxiv.org/abs/2606.12657) | Separates evidence-based activity-chain generation from deterministic spatiotemporal grounding and adds individual anomaly diagnostics. |
+| `../pdf/08_route_planning_agents/04_AgentMob_Chen2026.pdf` | Towards Efficient and Evidence-grounded Mobility Prediction with LLM-Driven Agent (AgentMob) | [arXiv 2606.05130](https://arxiv.org/abs/2606.05130) | Tool-using next-location prediction grounded in mobility history. It helps distinguish predictive evidence from CityAgency's post-action state evidence. |
 
-## 09 Surveys & Position Papers
+## 09 Validation, Surveys & Adjacent Urban Applications
 
-*Archived: 2026-07-01 — expanded literature scan.*
+*Expanded and reviewed on 2026-07-03.*
 
 | Local archive | Paper | Source | Why keep it |
 |---|---|---|---|
-| *(not yet downloaded)* | Generative Agents in Agent-Based Modeling: Overview, Validation, and Emerging Challenges | [IEEE TAI 2025](https://ieeexplore.ieee.org/document/10985773) | Comprehensive survey of generative agents in ABMs, with specific focus on validation frameworks and urban science applications. Useful for establishing the GA-for-urban-simulation landscape in related work. |
-| *(not yet downloaded)* | Generative Agents for Urban Mobility: A Cognitive Framework for Realistic Travel Behavior Simulation | [ScienceDirect S1569190X25001698](https://www.sciencedirect.com/science/article/abs/pii/S1569190X25001698) | Cognitive architecture for LLM-based urban mobility agents. Bridges cognitive science and travel behavior modeling. Adjacent to GATSim and the CityAgency cognitive baselines. |
-| *(not yet downloaded)* | Simulating Multi-Stakeholder Decision-Making with Generative Agents in Urban Planning | [SAGE ATDE 2025](https://journals.sagepub.com/doi/full/10.3233/ATDE251076) | LLM-based generative agents for multi-party urban planning deliberation. Adjacent to CityAgency's social-recovery and co-presence scenarios; useful for future multi-stakeholder track. |
+| **Verified; PDF retrieval pending** | Generative Agents in Agent-Based Modeling: Overview, Validation, and Emerging Challenges | [IEEE TAI 2025](https://ieeexplore.ieee.org/document/10985773) | Relevant survey, but the publisher and available author-copy endpoint currently block automated retrieval. It is not counted among the 44 archived PDF packages. |
+| `../pdf/02_citysim_agents/02_GATSim_Liu2025.pdf` | Generative Agents for Urban Mobility: A Cognitive Framework for Realistic Travel Behavior Simulation | [ScienceDirect S1569190X25001698](https://www.sciencedirect.com/science/article/abs/pii/S1569190X25001698) | Published journal version of the already archived GATSim work; retained here as a version link and not counted twice. |
+| `../pdf/09_surveys/02_Multi_Stakeholder_Urban_Planning_Gao2025.pdf` | Simulating Multi-Stakeholder Decision-Making with Generative Agents in Urban Planning | [arXiv 2402.11314](https://arxiv.org/abs/2402.11314); [published article](https://journals.sagepub.com/doi/full/10.3233/ATDE251076) | Eight AutoGen stakeholder agents simulate urban-planning deliberation. Relevant to discursive agency, but not physical execution. |
+| `../pdf/09_surveys/03_Validation_Central_Larooij2026.pdf` | Validation Is the Central Challenge for Generative Social Simulation: A Critical Review of LLMs in Agent-Based Modeling | [DOI 10.1007/s10462-025-11412-6](https://doi.org/10.1007/s10462-025-11412-6) | Systematic review showing that generative ABMs often depend on face validity or outcome measures weakly linked to mechanisms. Central motivation for CityAgency's validation-first design. |
+| `../pdf/09_surveys/04_Mechanism_Plausibility_Zhao2026.pdf` | Mechanism Plausibility in Generative Agent-Based Modeling | [arXiv 2605.12824](https://arxiv.org/abs/2605.12824) | Four-level mechanism-plausibility checklist and evidence that agent-level success is frequently overextended into ABM-level claims. Defines CityAgency's claim boundary. |
 
 ## Updated Reading Order (2026-07-01)
 
 For the expanded set:
 
-7. Read `07_large_scale_urban_sim/GenWorld` and `07_large_scale_urban_sim/Limits_of_Agency` to understand the agency-vs-scale trade-off and where CityAgency's micro-city approach fits.
-8. Read `08_route_planning_agents/MobilityBench` and `08_route_planning_agents/DeliveryBench` to understand the closest constraint-satisfaction agent benchmarks and the "single request vs. full episode" boundary.
-9. Read `09_surveys/GA_in_ABM_Overview` for the GA-for-urban-simulation landscape.
+7. Read `04_social_benchmark_foundations/07_LiveCultureBench_Pham2026.pdf` first because it is the closest small-city goal-and-social-context competitor.
+8. Read `08_route_planning_agents/01_MobilityBench_Song2026.pdf` and `08_route_planning_agents/02_DeliveryBench_Mao2025.pdf` for deterministic route replay and long-horizon constraint execution.
+9. Read `07_large_scale_urban_sim/01_GenWorld_Li2026.pdf` and `07_large_scale_urban_sim/02_Limits_of_Agency_Chopra2025.pdf` for the agency-versus-scale boundary.
+10. Read `09_surveys/03_Validation_Central_Larooij2026.pdf` and `09_surveys/04_Mechanism_Plausibility_Zhao2026.pdf` before making urban-science claims.
 
-## Current Gap Hypothesis (Updated 2026-07-01)
+## Current Gap Hypothesis (Updated 2026-07-03)
 
-Most existing urban benchmarks evaluate urban knowledge, spatiotemporal reasoning,
-planning judgment, multimodal perception, or navigation / QA. Large-scale urban simulators
-(GenWorld, AgentTorch, CitySim) test aggregate mobility realism but trade off individual
-agency for scale. Route-planning benchmarks (MobilityBench, DeliveryBench) test single-request
-constraint satisfaction but not multi-step private-goal episodes.
+The previous gap statement was too broad. LiveCultureBench already combines a small-city
+location graph, resident daily goals, supporting agents, task completion, cultural norms, and
+an uncertainty-aware LLM verifier. DeliveryBench already tests long-horizon urban execution
+under dense temporal, economic, physical, and social constraints. MobilityBench already
+provides deterministic replay for route-agent tools.
 
-The open opportunity is a controlled SOTOPIA-style benchmark for intention-driven city agents:
-private goals, spatial constraints, social relations, environmental perturbations, and verifiable
-trajectory-level scoring — occupying the high-agency, micro-scale end of the agency-vs-scale
-continuum.
+The remaining defensible opportunity is narrower: a framework-comparative benchmark in
+which the environment owns physical truth and emits typed evidence for every state transition,
+allowing researchers to measure the gap between a plausible plan or completion claim and a
+continuous executable trace. CityAgency should claim agent-level execution-mechanism
+validation, not human realism or macro-level urban validity without additional empirical evidence.
 
 

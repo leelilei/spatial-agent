@@ -5,6 +5,7 @@ import json
 import sys
 import tempfile
 import unittest
+import zipfile
 from pathlib import Path
 
 
@@ -18,6 +19,12 @@ from build_human_audit import (  # noqa: E402
     blind_item,
     trace_role_score,
 )
+from check_v1_release import (  # noqa: E402
+    DEFAULT_AUDIT_DIR,
+    DEFAULT_RESULT_DIR,
+    evaluate_release_gate,
+)
+from prepare_human_audit_handoff import build_handoffs  # noqa: E402
 from score_human_audit import cohen_kappa, score_annotations  # noqa: E402
 from run_annotation_dry_run import normalize_label  # noqa: E402
 
@@ -142,10 +149,14 @@ class HumanAuditToolsTest(unittest.TestCase):
             annotation_paths = []
             for suffix in ("a", "b"):
                 path = root / f"{suffix}.csv"
+                rows = [
+                    {**row, "annotator_id": f"annotator_{suffix}"}
+                    for row in annotation_rows
+                ]
                 with path.open("w", encoding="utf-8", newline="") as f:
                     writer = csv.DictWriter(f, fieldnames=ANNOTATION_FIELDS)
                     writer.writeheader()
-                    writer.writerows(annotation_rows)
+                    writer.writerows(rows)
                 annotation_paths.append(path)
             key_path = root / "key.csv"
             with key_path.open("w", encoding="utf-8", newline="") as f:
@@ -186,10 +197,11 @@ class HumanAuditToolsTest(unittest.TestCase):
             annotation_paths = []
             for suffix in ("a", "b"):
                 path = root / f"{suffix}.csv"
+                row = {**annotation, "annotator_id": f"annotator_{suffix}"}
                 with path.open("w", encoding="utf-8", newline="") as f:
                     writer = csv.DictWriter(f, fieldnames=ANNOTATION_FIELDS)
                     writer.writeheader()
-                    writer.writerow(annotation)
+                    writer.writerow(row)
                 annotation_paths.append(path)
             key_path = root / "key.csv"
             with key_path.open("w", encoding="utf-8", newline="") as f:
@@ -224,6 +236,65 @@ class HumanAuditToolsTest(unittest.TestCase):
             ],
             1.0,
         )
+
+    def test_material_findings_expose_human_and_verifier_disagreement(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            common = {
+                "audit_id": "H001",
+                "feasibility_label": "feasible",
+                "replan_label": "not_applicable",
+                "evidence_sufficient": "yes",
+                "first_invalid_step": "",
+                "confidence": "5",
+                "notes": "",
+            }
+            rows = [
+                {**common, "annotator_id": "person_a", "completion_label": "complete"},
+                {
+                    **common,
+                    "annotator_id": "person_b",
+                    "completion_label": "not_complete",
+                },
+            ]
+            annotation_paths = []
+            for suffix, row in zip(("a", "b"), rows):
+                path = root / f"{suffix}.csv"
+                with path.open("w", encoding="utf-8", newline="") as f:
+                    writer = csv.DictWriter(f, fieldnames=ANNOTATION_FIELDS)
+                    writer.writeheader()
+                    writer.writerow(row)
+                annotation_paths.append(path)
+            key_path = root / "key.csv"
+            with key_path.open("w", encoding="utf-8", newline="") as f:
+                writer = csv.DictWriter(
+                    f,
+                    fieldnames=[
+                        "audit_id",
+                        "goal_completion",
+                        "task_completion",
+                        "trace_feasibility",
+                        "replanning_success",
+                    ],
+                )
+                writer.writeheader()
+                writer.writerow(
+                    {
+                        "audit_id": "H001",
+                        "goal_completion": "1.0",
+                        "task_completion": "1.0",
+                        "trace_feasibility": "1.0",
+                        "replanning_success": "",
+                    }
+                )
+
+            result = score_annotations(
+                annotation_paths[0], annotation_paths[1], key_path
+            )
+
+        kinds = {finding["kind"] for finding in result["material_findings"]}
+        self.assertIn("inter_annotator_disagreement", kinds)
+        self.assertIn("human_verifier_disagreement", kinds)
 
     def test_legacy_trace_role_score_uses_scenario_roles(self) -> None:
         scenario = {
@@ -276,6 +347,38 @@ class HumanAuditToolsTest(unittest.TestCase):
             ]
         }
         self.assertEqual(accepted_dwell_minutes(trace), {"library": 10})
+
+    def test_v1_release_gate_rejects_blank_human_annotations(self) -> None:
+        report = evaluate_release_gate(
+            DEFAULT_AUDIT_DIR,
+            DEFAULT_RESULT_DIR,
+            run_runtime_checks=False,
+        )
+
+        self.assertEqual(report["status"], "pending_human_audit")
+        self.assertIn(
+            "two-person human audit incomplete: {'annotator_a': 16, 'annotator_b': 16}",
+            report["blockers"],
+        )
+
+    def test_handoff_archives_exclude_sealed_and_other_annotator(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            output_dir = Path(tmp)
+            manifest = build_handoffs(DEFAULT_AUDIT_DIR, output_dir)
+            self.assertFalse(manifest["sealed_material_included"])
+            for archive_info in manifest["archives"]:
+                archive = output_dir / archive_info["archive"]
+                with zipfile.ZipFile(archive) as zf:
+                    members = zf.namelist()
+                self.assertFalse(any(name.startswith("sealed/") for name in members))
+                own = f"annotations/{archive_info['annotator']}.csv"
+                self.assertIn(own, members)
+                other = (
+                    "annotations/annotator_b.csv"
+                    if archive_info["annotator"] == "annotator_a"
+                    else "annotations/annotator_a.csv"
+                )
+                self.assertNotIn(other, members)
 
 
 if __name__ == "__main__":

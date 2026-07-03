@@ -4,11 +4,11 @@ title: "GATSim: Urban Mobility Simulation with Generative Agents"
 category: 02_citysim_agents
 role: "generative-agent urban mobility simulation"
 decision: must-cite
-source: "https://arxiv.org/abs/2506.23306"
+source: "https://arxiv.org/abs/2506.23306; published version https://doi.org/10.1016/j.simpat.2025.103234"
 pdf: "assets/papers/pdf/02_citysim_agents/02_GATSim_Liu2025.pdf"
 fulltext: "assets/papers/fulltext/02_citysim_agents/02_GATSim_Liu2025.fulltext.md"
 quality_flags: []
-note_status: first_pass
+note_status: reviewed
 ---
 
 # GATSim: Urban Mobility Simulation with Generative Agents
@@ -27,6 +27,8 @@ The paper applies generative agents to urban mobility simulation.
 
 - Generative-agent approach to mobility behavior.
 - Potential baseline for trajectory and movement realism.
+- The ScienceDirect article `S1569190X25001698` is the published journal version,
+  not an additional independent benchmark.
 
 ## City Benchmark Bridge
 

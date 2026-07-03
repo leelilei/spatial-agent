@@ -241,5 +241,30 @@
       "reactive_replanner",
       "memory_reflection"
     ]
+  },
+  "release_gate": {
+    "audit_item_count": 16,
+    "scenario_count": 4,
+    "external_adapter_count": 4,
+    "inter_annotator": {
+      "minimum_exact_agreement": 0.75,
+      "minimum_cohen_kappa": 0.4,
+      "dimensions": [
+        "completion_label",
+        "feasibility_label",
+        "replan_label"
+      ]
+    },
+    "verifier_calibration": {
+      "minimum_exact_agreement": 0.75,
+      "dimensions": [
+        "completion_label",
+        "feasibility_label",
+        "replan_label"
+      ]
+    },
+    "minimum_evidence_sufficient_rate": 0.875,
+    "minimum_mean_confidence": 3.0,
+    "require_disposition_for_all_material_findings": true
   }
 }

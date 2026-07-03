@@ -23,3 +23,19 @@ python 6-city/benchmarks/cityintent_v0/tools/score_human_audit.py ^
 
 The annotation CSVs are intentionally blank in the repository. Sharing labels
 or the sealed key before both independent submissions would invalidate the audit.
+
+## Prepared Handoffs
+
+Generate separate annotator archives with:
+
+```powershell
+python 6-city/benchmarks/cityintent_v0/tools/prepare_human_audit_handoff.py
+```
+
+Each ZIP contains the rubric, blinded packet, world reference, JSONL items, and
+only that person's CSV. `handoff_manifest.json` records archive hashes and confirms
+that sealed material is absent.
+
+After scoring, complete every row in `agreement/material_findings.csv`. A finding
+is resolved only when `status=resolved`, `action` and `rationale` are non-empty,
+and any `action=rerun` row cites `rerun_evidence`.

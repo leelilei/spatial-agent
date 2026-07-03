@@ -307,3 +307,31 @@ CityIntent v1 is not frozen yet. Freeze requires:
 - pre-adjudication agreement and verifier-calibration reports;
 - documented resolution of material disagreements, followed by a final
   regression run and immutable v1 manifest.
+
+Prepare two handoff ZIPs without the sealed key or the other annotator's file:
+
+```powershell
+python tools/prepare_human_audit_handoff.py
+```
+
+After both independent CSVs are returned, score the audit and create the material
+finding disposition template:
+
+```powershell
+python tools/score_human_audit.py `
+  --annotations-a ../../annotation/cityintent_v1_rc1_blind_validation_2026-07-02/annotations/annotator_a.csv `
+  --annotations-b ../../annotation/cityintent_v1_rc1_blind_validation_2026-07-02/annotations/annotator_b.csv `
+  --key ../../annotation/cityintent_v1_rc1_blind_validation_2026-07-02/sealed/audit_key.csv `
+  --output-dir ../../annotation/cityintent_v1_rc1_blind_validation_2026-07-02/agreement
+```
+
+Run the complete release gate from the repository root:
+
+```powershell
+python 6-city/benchmarks/cityintent_v0/tools/check_v1_release.py
+```
+
+Only after the report says `ready_to_freeze` may the same command be rerun with
+`--freeze`. The command then changes the benchmark to `1.0`, sets status to
+`frozen`, and writes an immutable artifact-hash manifest under
+`6-city/releases/cityintent_v1/`.

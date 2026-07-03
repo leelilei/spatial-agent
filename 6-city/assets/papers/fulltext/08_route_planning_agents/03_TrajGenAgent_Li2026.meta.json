@@ -1,0 +1,161 @@
+{
+  "source_pdf": "D:\\0-Research\\6-city\\assets\\papers\\pdf\\08_route_planning_agents\\03_TrajGenAgent_Li2026.pdf",
+  "extractor_backend": "pdfplumber",
+  "extract_time": "2026-07-03T12:08:25+00:00",
+  "title": "TrajGenAgent: A Hierarchical LLM Agent for Human Mobility Trajectory Generation",
+  "author": "Siyu Li; Toan Tran; Lingyi Zhao; Khurram Shafique; Li Xiong",
+  "doi": "",
+  "keywords": [],
+  "subject": "",
+  "page_count": 14,
+  "outline": [
+    {
+      "title": "Introduction",
+      "level": 0,
+      "page_number": 1
+    },
+    {
+      "title": "Related Work",
+      "level": 0,
+      "page_number": 3
+    },
+    {
+      "title": "TrajGenAgent Framework",
+      "level": 0,
+      "page_number": 4
+    },
+    {
+      "title": "Trajectory Representation and Problem Setup",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "TrajGenAgent Overview",
+      "level": 1,
+      "page_number": 4
+    },
+    {
+      "title": "Stage 1: Orchestrator for Activity-Chain Generation",
+      "level": 1,
+      "page_number": 5
+    },
+    {
+      "title": "Evidence construction from individual history",
+      "level": 2,
+      "page_number": 6
+    },
+    {
+      "title": "Evidence-based activity chain generation with verification",
+      "level": 2,
+      "page_number": 6
+    },
+    {
+      "title": "Why evidence-based activity chain generation outperforms fine-tuning for personalization",
+      "level": 2,
+      "page_number": 6
+    },
+    {
+      "title": "Stage 2: Workflow-based Spatiotemporal Grounding",
+      "level": 1,
+      "page_number": 6
+    },
+    {
+      "title": "Location Grounding",
+      "level": 2,
+      "page_number": 6
+    },
+    {
+      "title": "Travel Time",
+      "level": 2,
+      "page_number": 7
+    },
+    {
+      "title": "Duration estimation",
+      "level": 2,
+      "page_number": 7
+    },
+    {
+      "title": "Experiments",
+      "level": 0,
+      "page_number": 7
+    },
+    {
+      "title": "Datasets & Preprocessing",
+      "level": 1,
+      "page_number": 7
+    },
+    {
+      "title": "Baselines",
+      "level": 1,
+      "page_number": 8
+    },
+    {
+      "title": "Evaluation Metrics",
+      "level": 1,
+      "page_number": 8
+    },
+    {
+      "title": "Aggregation-level Spatiotemporal Statistics Metrics",
+      "level": 2,
+      "page_number": 8
+    },
+    {
+      "title": "Anomaly-Detection Evaluation",
+      "level": 2,
+      "page_number": 8
+    },
+    {
+      "title": "Implementation Details",
+      "level": 1,
+      "page_number": 9
+    },
+    {
+      "title": "Aggregation-level Spatiotemporal Statistics",
+      "level": 1,
+      "page_number": 9
+    },
+    {
+      "title": "Anomaly-Detection Evaluation",
+      "level": 1,
+      "page_number": 9
+    },
+    {
+      "title": "Computational Efficiency",
+      "level": 1,
+      "page_number": 10
+    },
+    {
+      "title": "Tool-Invocation Stability: Deterministic Workflow vs. Free-form Tool Calling",
+      "level": 1,
+      "page_number": 10
+    },
+    {
+      "title": "Ablation Study: Kinematics-aware Grounding",
+      "level": 1,
+      "page_number": 11
+    },
+    {
+      "title": "Parameter Study: LLM Sampling Temperature Impacts",
+      "level": 1,
+      "page_number": 11
+    },
+    {
+      "title": "Conclusion",
+      "level": 0,
+      "page_number": 11
+    },
+    {
+      "title": "References",
+      "level": 0,
+      "page_number": 13
+    }
+  ],
+  "text_char_count": 73959,
+  "status": "ok",
+  "warnings": [],
+  "project_root": "D:\\0-Research\\6-city",
+  "relative_pdf": "08_route_planning_agents\\03_TrajGenAgent_Li2026.pdf",
+  "fulltext_path": "assets\\papers\\fulltext\\08_route_planning_agents\\03_TrajGenAgent_Li2026.fulltext.md",
+  "quality_flags": [],
+  "abstract": "—Human mobility data is essential for transportation urban planning, and epidemic control. Yet large-scale trajectory collection is often costly and restricted by privacy concerns motivating the need for realistic synthetic mobility trajectory generation. Recent LLM-based generators typically follow two paradigms: (i) prompt engineering, which provides efficient zero shot generation with general prior knowledge but lacks fine grained spatiotemporal grounding; and (ii) fine-tuning with structured trajectories, which achieves strong spatiotempora precision but incurs substantial computational cost and may weaken general reasoning. Tool-augmented agents are emerging but remain at an early stage and still lack effective coordination between high-level planning and low-level realization. To address these limitations, we propose TrajGenAgent, a semantic-aware hierarchical LLM-agent framework for trajectory generation without model fine-tuning. TrajGenAgent adopts a two-stage orchestrator–worker design that decouples macro-level activity structure from micro-level spatiotemporal dynamics. In the first stage, an LLM synthesizes an activity chain for a given individual and day of the week via in-context learning over historic examples. In the second stage, a deterministic workflow instantiates each activity visit with distance-aware rule-based lo cation retrieval and LLM augmented kinematics-aware tempora generation. Traditional evaluation metrics for synthetic mobility data primarily assess aggregate spatiotemporal statistics, which do not capture behavioral fidelity or realism of individual trajec tories. To address this limitation, we introduce an anomaly detection-based evaluation framework with two complementary anomaly detectors that provide behavior & semantic feedback beyond macro-level statistical consistency. Experiments on both benchmark and large-scale simulation datasets show that TrajGe nAgent outperforms baselines in both spatiotemporal statistica metrics while also improving semantic coherence and individual specific behavior fidelity, all without parameter updates."
+}

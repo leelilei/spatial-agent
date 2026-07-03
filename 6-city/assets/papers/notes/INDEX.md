@@ -1,12 +1,13 @@
 # 6-city Paper Notes Index
 
-> Status: first-pass notes generated from converted fulltext and project literature map.
-> Next step: promote the must-cite papers to `reviewed` after manual PDF checks.
+> Status: 44 archived papers have PDF, extracted fulltext, and a reading note.
+> The 10 papers added on 2026-07-03 were manually checked and marked `reviewed`.
 
 ## Decision Summary
 
-- `must-cite`: 17
-- `cite`: 16
+- `must-cite`: 22
+- `cite`: 20
+- `maybe`: 1
 - `background`: 1
 
 ## Notes
@@ -39,6 +40,7 @@
 | `04_social_benchmark_foundations` | `cite` | Lifelong-SOTOPIA: Evaluating Social Intelligence of Language Agents Over Lifelong Social Interactions | longitudinal social-agent benchmark | `assets/papers/notes/04_social_benchmark_foundations/04_Lifelong_SOTOPIA_2025.md` | `assets/papers/fulltext/04_social_benchmark_foundations/04_Lifelong_SOTOPIA_2025.fulltext.md` |
 | `04_social_benchmark_foundations` | `must-cite` | Is This the Real Life? Is This Just Fantasy? The Misleading Success of Simulating Social Interactions With LLMs | information-asymmetry realism critique | `assets/papers/notes/04_social_benchmark_foundations/05_Misleading_Success_2024.md` | `assets/papers/fulltext/04_social_benchmark_foundations/05_Misleading_Success_2024.fulltext.md` |
 | `04_social_benchmark_foundations` | `must-cite` | Can LLM Agents Simulate Multi-Turn Human Behavior? Evidence from Real Online Customer Behavior Data | empirical step-by-step behavior benchmark | `assets/papers/notes/04_social_benchmark_foundations/06_Can_LLM_Agents_Simulate_Multi_Turn_Human_Behavior_2025.md` | `assets/papers/fulltext/04_social_benchmark_foundations/06_Can_LLM_Agents_Simulate_Multi_Turn_Human_Behavior_2025.fulltext.md` |
+| `04_social_benchmark_foundations` | `must-cite` | LiveCultureBench: a Multi-Agent, Multi-Cultural Benchmark for Large Language Models in Dynamic Social Simulations | closest small-city social-agent benchmark | `assets/papers/notes/04_social_benchmark_foundations/07_LiveCultureBench_Pham2026.md` | `assets/papers/fulltext/04_social_benchmark_foundations/07_LiveCultureBench_Pham2026.fulltext.md` |
 | `05_mobility_realism` | `must-cite` | MobiSim-Bench: A Multi-Perspective Benchmark for Evaluating LLM-Agent-Based Human Mobility Simulation | closest mobility-simulation benchmark | `assets/papers/notes/05_mobility_realism/01_MobiSim_Bench_Zhang2026_OpenReview.md` | `assets/papers/fulltext/05_mobility_realism/01_MobiSim_Bench_Zhang2026_OpenReview.fulltext.md` |
 | `05_mobility_realism` | `must-cite` | When Plausible Is Not Realistic: Evaluating Human Mobility in LLM-Based Urban Simulation | empirical urban-mobility realism critique | `assets/papers/notes/05_mobility_realism/02_When_Plausible_Is_Not_Realistic_Santos2026.md` | `assets/papers/fulltext/05_mobility_realism/02_When_Plausible_Is_Not_Realistic_Santos2026.fulltext.md` |
 | `06_agent_execution_benchmarks` | `must-cite` | ChinaTravel: An Open-Ended Travel Planning Benchmark with Compositional Constraint Validation for Language Agents | compositional travel-plan feasibility benchmark | `assets/papers/notes/06_agent_execution_benchmarks/01_ChinaTravel_Shao2024.md` | `assets/papers/fulltext/06_agent_execution_benchmarks/01_ChinaTravel_Shao2024.fulltext.md` |
@@ -47,3 +49,12 @@
 | `06_agent_execution_benchmarks` | `cite` | AppWorld: A Controllable World of Apps and People for Benchmarking Interactive Coding Agents | executable world with programmatic state tests | `assets/papers/notes/06_agent_execution_benchmarks/04_AppWorld_Trivedi2024.md` | `assets/papers/fulltext/06_agent_execution_benchmarks/04_AppWorld_Trivedi2024.fulltext.md` |
 | `06_agent_execution_benchmarks` | `cite` | WebArena: A Realistic Web Environment for Building Autonomous Agents | reproducible long-horizon environment benchmark | `assets/papers/notes/06_agent_execution_benchmarks/05_WebArena_Zhou2023.md` | `assets/papers/fulltext/06_agent_execution_benchmarks/05_WebArena_Zhou2023.fulltext.md` |
 | `06_agent_execution_benchmarks` | `cite` | TheAgentCompany: Benchmarking LLM Agents on Consequential Real World Tasks | consequential long-horizon agent benchmark | `assets/papers/notes/06_agent_execution_benchmarks/06_TheAgentCompany_Xu2024.md` | `assets/papers/fulltext/06_agent_execution_benchmarks/06_TheAgentCompany_Xu2024.fulltext.md` |
+| `07_large_scale_urban_sim` | `cite` | GenWorld: Empirically Grounded Urban Simulation Infrastructure for Scalable LLM-Agent Studies | empirically grounded large-scale urban simulation | `assets/papers/notes/07_large_scale_urban_sim/01_GenWorld_Li2026.md` | `assets/papers/fulltext/07_large_scale_urban_sim/01_GenWorld_Li2026.fulltext.md` |
+| `07_large_scale_urban_sim` | `cite` | On the Limits of Agency in Agent-Based Models | agency-versus-scale framing and LLM archetypes | `assets/papers/notes/07_large_scale_urban_sim/02_Limits_of_Agency_Chopra2025.md` | `assets/papers/fulltext/07_large_scale_urban_sim/02_Limits_of_Agency_Chopra2025.fulltext.md` |
+| `08_route_planning_agents` | `must-cite` | MobilityBench: A Benchmark for Evaluating Route-Planning Agents in Real-World Mobility Scenarios | closest deterministic route-planning benchmark | `assets/papers/notes/08_route_planning_agents/01_MobilityBench_Song2026.md` | `assets/papers/fulltext/08_route_planning_agents/01_MobilityBench_Song2026.fulltext.md` |
+| `08_route_planning_agents` | `must-cite` | DeliveryBench: Can Agents Earn Profit in Real World? | constraint-dense long-horizon embodied city benchmark | `assets/papers/notes/08_route_planning_agents/02_DeliveryBench_Mao2025.md` | `assets/papers/fulltext/08_route_planning_agents/02_DeliveryBench_Mao2025.fulltext.md` |
+| `08_route_planning_agents` | `cite` | TrajGenAgent: A Hierarchical LLM Agent for Human Mobility Trajectory Generation | hierarchical evidence-grounded trajectory generator | `assets/papers/notes/08_route_planning_agents/03_TrajGenAgent_Li2026.md` | `assets/papers/fulltext/08_route_planning_agents/03_TrajGenAgent_Li2026.fulltext.md` |
+| `08_route_planning_agents` | `cite` | Towards Efficient and Evidence-grounded Mobility Prediction with LLM-Driven Agent | tool-using evidence-grounded mobility predictor | `assets/papers/notes/08_route_planning_agents/04_AgentMob_Chen2026.md` | `assets/papers/fulltext/08_route_planning_agents/04_AgentMob_Chen2026.fulltext.md` |
+| `09_surveys` | `maybe` | Simulating Multi-Stakeholder Decision-Making with Generative Agents in Urban Planning | multi-stakeholder urban deliberation case study | `assets/papers/notes/09_surveys/02_Multi_Stakeholder_Urban_Planning_Gao2025.md` | `assets/papers/fulltext/09_surveys/02_Multi_Stakeholder_Urban_Planning_Gao2025.fulltext.md` |
+| `09_surveys` | `must-cite` | Validation Is the Central Challenge for Generative Social Simulation | systematic review of generative-ABM validation | `assets/papers/notes/09_surveys/03_Validation_Central_Larooij2026.md` | `assets/papers/fulltext/09_surveys/03_Validation_Central_Larooij2026.fulltext.md` |
+| `09_surveys` | `must-cite` | Mechanism Plausibility in Generative Agent-Based Modeling | mechanism-plausibility framework for generative ABMs | `assets/papers/notes/09_surveys/04_Mechanism_Plausibility_Zhao2026.md` | `assets/papers/fulltext/09_surveys/04_Mechanism_Plausibility_Zhao2026.fulltext.md` |

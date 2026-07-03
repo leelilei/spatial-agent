@@ -1,7 +1,7 @@
 # CityAgency Proposal
 
-> Version: v0.3
-> Updated: 2026-06-22
+> Version: v0.4
+> Updated: 2026-07-03
 > Status: draft
 
 ## Title
@@ -32,20 +32,27 @@ mobility patterns such as trip distributions, dwell times, OD flows, activity
 transitions, and temporal rhythms. That line of work is valuable, but it mainly
 tests **macro-level realism**.
 
-What remains under-specified is a benchmark for **micro-level urban agency**:
-the local decision mechanisms that should make macro urban behavior credible in
-the first place. Many systems can answer city questions, plan activities, or
-simulate aggregate mobility, but we still lack a compact and resettable benchmark
-that asks:
+The neighboring space is now more crowded than the earlier proposal assumed.
+LiveCultureBench already places a goal-directed resident and supporting agents in
+a graph-based small city and evaluates task completion, cultural norms, and verifier
+reliability. MobilityBench provides deterministic API replay for real route requests.
+DeliveryBench evaluates long-horizon embodied city work under deadlines, cost,
+battery, and interaction constraints. These papers mean that CityAgency cannot
+claim the first small-city goal benchmark or the first constrained city-execution
+benchmark.
+
+What remains under-standardized is a **cross-framework evidence protocol for
+micro-level urban agency**. Existing systems expose different tasks, action spaces,
+and completion rules. They do not yet provide a shared benchmark that asks:
 
 > Given private goals, social context, and a constrained city environment, can an
 > agent choose actions that remain feasible, goal-directed, spatially sensitive,
 > and adaptive over time?
 
-This is the gap CityAgency targets. The project should not compete by building a
-larger CitySim or by claiming to replace macro mobility-realism benchmarks. It
-should compete by making the micro-mechanisms of city-agent behavior
-**measurable**.
+This is the narrower gap CityAgency targets. The project should not compete by
+building a larger CitySim, recreating LiveCultureBench's cultural evaluation, or
+recreating DeliveryBench's 3D courier domain. It should make the transition from
+plan to trace **comparable, falsifiable, and auditable across agent architectures**.
 
 ## Core Claim
 
@@ -63,20 +70,23 @@ Social-agent benchmarks add another important surface:
 4. **Interactive social intelligence**: hidden goals, dialogue strategy,
    relationship management, and social norm reasoning.
 
-CityAgency targets a missing middle between these surfaces:
+Recent work partially enters the middle between these surfaces. CityAgency targets
+the still-missing common evidence layer:
 
 5. **Verifiable micro-level urban agency**: agents with hidden private goals act in a
    city world where the environment owns truth about location, time, cost,
    co-presence, opening hours, and disruptions.
 
-The benchmark contribution is to separate **what the agent wants** from **what
-the city allows**, and to score the trace where those two meet.
+The benchmark contribution is to separate **what the agent wants**, **what the
+agent claims happened**, and **what the city can prove happened**, then score the
+typed state transitions where those three diverge.
 
 The project should therefore make a precise claim:
 
 > Macro mobility realism tells us whether a simulated city looks statistically
-> realistic. CityAgency diagnoses whether the individual agents have the
-> micro-level agency needed to generate such behavior under urban constraints.
+> realistic. CityAgency provides agent-level evidence about execution mechanisms;
+> it does not by itself prove that those mechanisms reproduce human behavior or
+> generate valid macro urban outcomes.
 
 ## Central Hypothesis: The Plausibility-Feasibility Gap
 
@@ -363,16 +373,19 @@ intention, planning, memory, and environment validation.
 
 CityAgency should claim four contributions:
 
-1. **Microfoundational benchmark formulation**: a scenario-package format for
-   private-goal urban agent episodes that links individual decision mechanisms to
-   city-level behavior questions.
-2. **Plausibility-feasibility evaluation**: a protocol that scores plan
-   plausibility separately from executable trace feasibility.
-3. **Scoring framework**: automatic spatial and temporal validation combined with
-   limited soft judging for believability and social effects.
-4. **Diagnostic findings**: evidence about where current LLM-agent policies fail,
+1. **Framework-comparative benchmark formulation**: one typed action and evidence
+   protocol that lets multiple urban-agent architectures face the same resettable
+   private-goal episodes.
+2. **Claim-trace evaluation**: a protocol that scores plan plausibility, completion
+   claims, and executable trace feasibility as separate objects.
+3. **Evidence ledger and scoring framework**: automatic validation of spatial,
+   temporal, resource, and social state transitions, with limited soft judging for
+   believability and social effects.
+4. **Diagnostic findings with explicit claim limits**: evidence about where
+   current LLM-agent policies fail,
    such as goal drift, spatial insensitivity, invalid action hallucination, or weak
-   replanning after disruption.
+   replanning after disruption, reported as agent-level mechanism evidence rather
+   than proof of human or macro urban realism.
 
 ## Relationship To Prior Work
 
@@ -402,6 +415,17 @@ should not be framed as a SOTOPIA derivative. The right positioning is:
   validation layer: simulated traces should eventually be checked against
   empirical mobility regularities, OD flows, dwell times, temporal rhythms, and
   activity transitions.
+- **LiveCultureBench** is the closest small-city social benchmark neighbor. It
+  already combines daily goals, supporting residents, cultural norms, and an
+  uncertainty-aware verifier, so those components are not CityAgency novelties.
+- **MobilityBench** motivates deterministic replay and process-level diagnosis for
+  real route-planning requests.
+- **DeliveryBench** is the closest constrained urban-execution benchmark. It shows
+  that long-horizon city tasks already expose short-sighted planning and basic
+  constraint violations in current VLM agents.
+- **GenWorld and LLM archetypes** define the opposite end of the design space:
+  empirically grounded, population-scale simulation that trades individual online
+  expressiveness for throughput.
 - **tau-bench, AppWorld, WebArena, and TheAgentCompany** motivate executable
   agent evaluation: environment-owned state, domain rules, repeat trials, and
   task completion judged by state changes rather than by text alone.
@@ -409,13 +433,18 @@ should not be framed as a SOTOPIA derivative. The right positioning is:
   infeasible-task evaluation and false-continue metrics.
 - **Travel-planning benchmarks such as ChinaTravel** motivate compositional
   constraint validation over multi-POI plans with implicit user intent.
+- **Validation Is the Central Challenge** motivates aligning evidence with the
+  intended scientific use of a generative ABM.
+- **Mechanism Plausibility** requires CityAgency to distinguish evidence for an
+  agent-level execution mechanism from evidence for ABM-level urban phenomena.
 
 The novel position is:
 
-> CityAgency evaluates the micro-level agency mechanisms behind urban behavior:
-> intention persistence, feasible action, social recovery, and replanning under
-> city constraints. It complements macro mobility-realism benchmarks, social
-> benchmarks, and general executable-agent benchmarks rather than replacing them.
+> CityAgency compares urban-agent architectures through a shared evidence protocol:
+> whether intention persistence, feasible action, social recovery, replanning, and
+> completion claims survive authoritative city-state execution. It complements
+> LiveCultureBench, MobilityBench, DeliveryBench, macro mobility-realism benchmarks,
+> and general executable-agent benchmarks rather than replacing them.
 
 ## MVP Plan
 
@@ -516,7 +545,8 @@ The paper can be organized as:
 CityAgency should make a modest but sharp claim:
 
 > A city-agent benchmark should not only ask whether agents know cities, generate
-> plausible schedules, or match aggregate mobility statistics. It should test
-> whether plausible plans become executable traces when the city constrains what
-> agents can actually do.
+> plausible schedules, complete one city-specific profession, or match aggregate
+> mobility statistics. It should test, across agent architectures, whether plausible
+> plans and completion claims are supported by continuous executable traces when
+> the city constrains what agents can actually do.
 
