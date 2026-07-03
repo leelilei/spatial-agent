@@ -24,6 +24,7 @@ from check_v1_release import (  # noqa: E402
     DEFAULT_RESULT_DIR,
     evaluate_release_gate,
 )
+from build_human_audit_ui import build_ui  # noqa: E402
 from prepare_human_audit_handoff import build_handoffs  # noqa: E402
 from score_human_audit import cohen_kappa, score_annotations  # noqa: E402
 from run_annotation_dry_run import normalize_label  # noqa: E402
@@ -371,6 +372,7 @@ class HumanAuditToolsTest(unittest.TestCase):
                 with zipfile.ZipFile(archive) as zf:
                     members = zf.namelist()
                 self.assertFalse(any(name.startswith("sealed/") for name in members))
+                self.assertIn("annotator.html", members)
                 own = f"annotations/{archive_info['annotator']}.csv"
                 self.assertIn(own, members)
                 other = (
@@ -379,6 +381,18 @@ class HumanAuditToolsTest(unittest.TestCase):
                     else "annotations/annotator_a.csv"
                 )
                 self.assertNotIn(other, members)
+
+    def test_offline_ui_contains_blinded_items_without_framework_identity(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp) / "annotator.html"
+            build_ui(DEFAULT_AUDIT_DIR, "annotator_a", output)
+            html = output.read_text(encoding="utf-8")
+
+        self.assertIn("H001", html)
+        self.assertIn('const ANNOTATOR="annotator_a"', html)
+        self.assertNotIn("gatsim_official_planner", html)
+        self.assertNotIn("sotopia_official_llm_agent", html)
+        self.assertNotIn("sealed/audit_key.csv", html)
 
 
 if __name__ == "__main__":

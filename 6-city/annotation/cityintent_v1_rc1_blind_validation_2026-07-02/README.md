@@ -32,9 +32,14 @@ Generate separate annotator archives with:
 python 6-city/benchmarks/cityintent_v0/tools/prepare_human_audit_handoff.py
 ```
 
-Each ZIP contains the rubric, blinded packet, world reference, JSONL items, and
-only that person's CSV. `handoff_manifest.json` records archive hashes and confirms
-that sealed material is absent.
+Each ZIP contains the rubric, blinded packet, world reference, JSONL items, only
+that person's CSV, and a self-contained `annotator.html`. Extract the ZIP and open
+`annotator.html` in a modern browser. The page saves progress locally and enables
+the final CSV export only after all 16 rows have required labels.
+
+`handoff_manifest.json` records archive and UI hashes and confirms that sealed
+material is absent. The two standalone HTML files in `handoff/` are equivalent
+local copies for use on this machine.
 
 After scoring, complete every row in `agreement/material_findings.csv`. A finding
 is resolved only when `status=resolved`, `action` and `rationale` are non-empty,

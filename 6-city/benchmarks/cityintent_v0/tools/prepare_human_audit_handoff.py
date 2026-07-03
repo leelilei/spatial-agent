@@ -9,6 +9,8 @@ import zipfile
 from pathlib import Path
 from typing import Any
 
+from build_human_audit_ui import build_ui
+
 
 BENCHMARK_ROOT = Path(__file__).resolve().parents[1]
 REPO_ROOT = BENCHMARK_ROOT.parents[2]
@@ -42,14 +44,19 @@ def build_handoffs(audit_dir: Path, output_dir: Path) -> dict[str, Any]:
     output_dir.mkdir(parents=True, exist_ok=True)
     archives = []
     for annotator in ("annotator_a", "annotator_b"):
-        relative_files = [*COMMON_FILES, f"annotations/{annotator}.csv"]
-        missing = [relative for relative in relative_files if not (audit_dir / relative).exists()]
+        ui_path = build_ui(audit_dir, annotator, output_dir / f"{annotator}.html")
+        archive_files = [
+            *((audit_dir / relative, relative) for relative in COMMON_FILES),
+            (audit_dir / "annotations" / f"{annotator}.csv", f"annotations/{annotator}.csv"),
+            (ui_path, "annotator.html"),
+        ]
+        missing = [arcname for source, arcname in archive_files if not source.exists()]
         if missing:
             raise FileNotFoundError(f"missing handoff files for {annotator}: {missing}")
         archive = output_dir / f"{annotator}_blinded_handoff.zip"
         with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED) as zf:
-            for relative in relative_files:
-                zf.write(audit_dir / relative, arcname=relative)
+            for source, arcname in archive_files:
+                zf.write(source, arcname=arcname)
         with zipfile.ZipFile(archive) as zf:
             members = set(zf.namelist())
         if any(member.startswith("sealed/") for member in members):
@@ -62,6 +69,8 @@ def build_handoffs(audit_dir: Path, output_dir: Path) -> dict[str, Any]:
                 "annotator": annotator,
                 "archive": archive.name,
                 "sha256": binary_sha256(archive),
+                "offline_ui": ui_path.name,
+                "offline_ui_sha256": binary_sha256(ui_path),
                 "members": sorted(members),
             }
         )

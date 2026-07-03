@@ -308,7 +308,9 @@ CityIntent v1 is not frozen yet. Freeze requires:
 - documented resolution of material disagreements, followed by a final
   regression run and immutable v1 manifest.
 
-Prepare two handoff ZIPs without the sealed key or the other annotator's file:
+Prepare two handoff ZIPs without the sealed key or the other annotator's file.
+Each archive includes an offline annotation UI that autosaves progress and exports
+the correctly shaped CSV:
 
 ```powershell
 python tools/prepare_human_audit_handoff.py
