@@ -110,12 +110,55 @@ Local extracted text / metadata copied from `3-SMGA`:
 - NVIDIA Cosmos: [nvidia.com/en-us/ai/cosmos](https://www.nvidia.com/en-us/ai/cosmos/)
 - NVIDIA ENPIRE: [research.nvidia.com/labs/gear/enpire](https://research.nvidia.com/labs/gear/enpire/)
 
-## Current Gap Hypothesis
+## 07 Large-Scale Urban Simulation & Scaling
+
+*Archived: 2026-07-01 — expanded literature scan.*
+
+| Local archive | Paper | Source | Why keep it |
+|---|---|---|---|
+| *(not yet downloaded)* | GenWorld: Empirically Grounded Urban Simulation Infrastructure for Scalable LLM-Agent Studies | [arXiv 2606.27650](https://arxiv.org/abs/2606.27650) | 196K synthetic residents on real Higashi-Hiroshima census + geographic data; LLM decisions compiled offline to lookup policies; city-wide weekday rollout + perturbation response with auditable replanning. Latest large-scale empirically grounded urban sim. CityAgency should compare: GenWorld tests aggregate mobility patterns, CityAgency tests individual private-goal trace feasibility. |
+| *(not yet downloaded)* | On the Limits of Agency in Agent-Based Models | [arXiv 2409.10568](https://arxiv.org/abs/2409.10568) (AAMAS 2025) | Introduces LLM archetypes: group population by demographics, one LLM call per archetype, sample behavior for all agents in group. 8.4M-agent NYC COVID-19 simulation via AgentTorch. Formalizes the agency-vs-scale trade-off — agents' expressiveness and population size are fundamentally in tension. CityAgency occupies the high-agency, micro-scale end of this continuum. |
+
+## 08 Route-Planning & Mobility Agents
+
+*Archived: 2026-07-01 — expanded literature scan.*
+
+| Local archive | Paper | Source | Why keep it |
+|---|---|---|---|
+| *(not yet downloaded)* | MobilityBench: A Benchmark for Evaluating Route-Planning Agents in Real-World Mobility Scenarios | [arXiv 2602.22638](https://arxiv.org/abs/2602.22638) | 100K real user route queries × 350+ cities; deterministic API-replay sandbox. Core finding: preference-constrained route planning (e.g. "avoid highways, stop by a convenience store en route") is the weak spot for all LLM agents. Closest neighbor to CityAgency's movement validation. Key difference: MobilityBench tests single route-planning requests; CityAgency tests a full multi-step episode with private intentions. |
+| *(not yet downloaded)* | DeliveryBench: Can Agents Earn Profit in Real World? | [arXiv 2512.19234](https://arxiv.org/abs/2512.19234) | Food-delivery agent benchmark: real city maps, order acceptance, route planning, time-window constraints, profitability. Adds "profit feasibility" as a constraint dimension relevant to CityAgency's budget/economic constraints. |
+| *(not yet downloaded)* | TrajGenAgent: A Hierarchical LLM Agent for Human Mobility Trajectory Generation | [arXiv 2606.12657](https://arxiv.org/abs/2606.12657) | Hierarchical LLM agent generates human mobility trajectories. Represents current technical ceiling for LLM-driven trajectory generation. Fits in 05_mobility_realism family alongside MobiSim-Bench and When Plausible Is Not Realistic. |
+| *(not yet downloaded)* | Towards Efficient and Evidence-grounded Mobility Prediction with LLM-Driven Agent (AgentMob) | [arXiv 2606.05130](https://arxiv.org/abs/2606.05130) | Evidence-grounded individual mobility prediction with LLM agent. Adds "evidence grounding" dimension to mobility agent evaluation — agent must cite real-world POI/transport data when predicting movement. Relevant to CityAgency's action-evidence protocol. |
+
+## 09 Surveys & Position Papers
+
+*Archived: 2026-07-01 — expanded literature scan.*
+
+| Local archive | Paper | Source | Why keep it |
+|---|---|---|---|
+| *(not yet downloaded)* | Generative Agents in Agent-Based Modeling: Overview, Validation, and Emerging Challenges | [IEEE TAI 2025](https://ieeexplore.ieee.org/document/10985773) | Comprehensive survey of generative agents in ABMs, with specific focus on validation frameworks and urban science applications. Useful for establishing the GA-for-urban-simulation landscape in related work. |
+| *(not yet downloaded)* | Generative Agents for Urban Mobility: A Cognitive Framework for Realistic Travel Behavior Simulation | [ScienceDirect S1569190X25001698](https://www.sciencedirect.com/science/article/abs/pii/S1569190X25001698) | Cognitive architecture for LLM-based urban mobility agents. Bridges cognitive science and travel behavior modeling. Adjacent to GATSim and the CityAgency cognitive baselines. |
+| *(not yet downloaded)* | Simulating Multi-Stakeholder Decision-Making with Generative Agents in Urban Planning | [SAGE ATDE 2025](https://journals.sagepub.com/doi/full/10.3233/ATDE251076) | LLM-based generative agents for multi-party urban planning deliberation. Adjacent to CityAgency's social-recovery and co-presence scenarios; useful for future multi-stakeholder track. |
+
+## Updated Reading Order (2026-07-01)
+
+For the expanded set:
+
+7. Read `07_large_scale_urban_sim/GenWorld` and `07_large_scale_urban_sim/Limits_of_Agency` to understand the agency-vs-scale trade-off and where CityAgency's micro-city approach fits.
+8. Read `08_route_planning_agents/MobilityBench` and `08_route_planning_agents/DeliveryBench` to understand the closest constraint-satisfaction agent benchmarks and the "single request vs. full episode" boundary.
+9. Read `09_surveys/GA_in_ABM_Overview` for the GA-for-urban-simulation landscape.
+
+## Current Gap Hypothesis (Updated 2026-07-01)
 
 Most existing urban benchmarks evaluate urban knowledge, spatiotemporal reasoning,
-planning judgment, multimodal perception, or navigation / QA. The open opportunity is
-a controlled SOTOPIA-style benchmark for intention-driven city agents: private goals,
-spatial constraints, social relations, environmental perturbations, and verifiable
-trajectory-level scoring.
+planning judgment, multimodal perception, or navigation / QA. Large-scale urban simulators
+(GenWorld, AgentTorch, CitySim) test aggregate mobility realism but trade off individual
+agency for scale. Route-planning benchmarks (MobilityBench, DeliveryBench) test single-request
+constraint satisfaction but not multi-step private-goal episodes.
+
+The open opportunity is a controlled SOTOPIA-style benchmark for intention-driven city agents:
+private goals, spatial constraints, social relations, environmental perturbations, and verifiable
+trajectory-level scoring — occupying the high-agency, micro-scale end of the agency-vs-scale
+continuum.
 
 
