@@ -87,42 +87,6 @@
     "material_findings": []
   },
   "threshold_checks": {},
-  "runtime_checks": [
-    {
-      "command": [
-        "C:\\Users\\lee\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
-        "-m",
-        "unittest",
-        "discover",
-        "-s",
-        "D:\\0-Research\\6-city\\benchmarks\\cityintent_v0\\tests",
-        "-p",
-        "test_*.py"
-      ],
-      "returncode": 0,
-      "stdout": "",
-      "stderr": ".......................\n----------------------------------------------------------------------\nRan 23 tests in 0.056s\n\nOK"
-    },
-    {
-      "command": [
-        "C:\\Users\\lee\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
-        "D:\\0-Research\\6-city\\benchmarks\\cityintent_v0\\tools\\validate_cityintent_v0.py"
-      ],
-      "returncode": 0,
-      "stdout": "CityIntent 1.0-rc1 validation passed.\n- worlds: 1\n- scenarios: 12\n- scenario families: {'budget_constraint': 1, 'disruption': 2, 'memory': 1, 'opportunistic_social': 1, 'poi_closure': 2, 'preference_constraint': 1, 'social_spatial_tradeoff': 2, 'time_pressure': 2}\n- agent architectures: llm_direct_actor, memory_reflection, reactive_replanner, utility_planner\n- metric coverage: budget_consistency, constraint_satisfaction, feasibility_violation, goal_completion, intention_consistency, process_success, replanning_success, social_appropriateness, task_completion, travel_efficiency\n- reachability checks: 61",
-      "stderr": ""
-    },
-    {
-      "command": [
-        "C:\\Users\\lee\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
-        "D:\\0-Research\\6-city\\benchmarks\\cityintent_v0\\tools\\validate_external_adapters.py",
-        "--framework",
-        "all"
-      ],
-      "returncode": 0,
-      "stdout": "{\n  \"status\": \"passed\",\n  \"adapters\": [\n    {\n      \"framework\": \"GATSim\",\n      \"agent_id\": \"gatsim_official_planner\",\n      \"source_commit\": \"3dc40248086cdfb1eca38d22b76b0edb5fe53ea6\",\n      \"integration_level\": \"adapted_official_planner\",\n      \"native_backend\": false,\n      \"verified_files\": 3,\n      \"prompt_surfaces\": [\n        \"generate_prompt\",\n        \"generate_daily_activity_plan_v1\"\n      ]\n    },\n    {\n      \"framework\": \"SOTOPIA\",\n      \"agent_id\": \"sotopia_official_llm_agent\",\n      \"source_commit\": \"a0aaafb440e570e5e61b7c44a44e5e417c545383\",\n      \"integration_level\": \"adapted_official_llm_agent\",\n      \"native_backend\": false,\n      \"verified_files\": 3,\n      \"prompt_surfaces\": [\n        \"LLMAgent.aact\",\n        \"agenerate_action\",\n        \"AgentAction\"\n      ]\n    },\n    {\n      \"framework\": \"Generative Agents\",\n      \"agent_id\": \"generative_agents_official_planner\",\n      \"source_commit\": \"fe05a71d3e4ed7d10bf68aa4eda6dd995ec070f4\",\n      \"integration_level\": \"adapted_official_memory_planner\",\n      \"native_backend\": false,\n      \"verified_files\": 6,\n      \"prompt_surfaces\": [\n        \"generate_prompt\",\n        \"daily_planning_v6\",\n        \"new_decomp_schedule_v1\"\n      ]\n    },\n    {\n      \"framework\": \"AgentSociety\",\n      \"agent_id\": \"agentsociety_official_plan_blocks\",\n      \"source_commit\": \"c8001a42409eb37be7cf745395bbe2269e7d83e0\",\n      \"integration_level\": \"adapted_official_plan_blocks\",\n      \"native_backend\": false,\n      \"verified_files\": 4,\n      \"prompt_surfaces\": [\n        \"GUIDANCE_SELECTION_PROMPT\",\n        \"DETAILED_PLAN_PROMPT\",\n        \"PLACE_ANALYSIS_PROMPT\"\n      ]\n    }\n  ]\n}",
-      "stderr": ""
-    }
-  ],
-  "checked_at": "2026-07-03T12:27:52.939233+00:00"
+  "runtime_checks": [],
+  "checked_at": "2026-07-03T15:31:02.425610+00:00"
 }

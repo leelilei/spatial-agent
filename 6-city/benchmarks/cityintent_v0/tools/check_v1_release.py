@@ -362,10 +362,13 @@ def write_report(path: Path, report: dict[str, Any]) -> None:
             f"Material findings: {len(report['human_audit'].get('material_findings', []))}\n\n"
         )
         f.write("## Runtime Checks\n\n")
-        for check in report["runtime_checks"]:
-            f.write(
-                f"- `{check['returncode']}`: `{' '.join(check['command'])}`\n"
-            )
+        if report["runtime_checks"]:
+            for check in report["runtime_checks"]:
+                f.write(
+                    f"- `{check['returncode']}`: `{' '.join(check['command'])}`\n"
+                )
+        else:
+            f.write("- Skipped for this gate check.\n")
 
 
 def release_artifacts() -> list[Path]:

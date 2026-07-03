@@ -44,3 +44,18 @@ local copies for use on this machine.
 After scoring, complete every row in `agreement/material_findings.csv`. A finding
 is resolved only when `status=resolved`, `action` and `rationale` are non-empty,
 and any `action=rerun` row cites `rerun_evidence`.
+
+## Submission Ingest
+
+Do not manually paste rows into the canonical annotation files. After each person
+exports their complete CSV, ingest it from the repository root:
+
+```powershell
+python 6-city/benchmarks/cityintent_v0/tools/ingest_human_annotations.py `
+  --submission D:/path/from/annotator_a.csv
+```
+
+The importer verifies all 16 audit IDs, label values, required fields, and the
+annotator identity. It archives the original submission and SHA-256 manifest. When
+both independent files have been ingested, it automatically writes agreement and
+material-finding reports.

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import json
+import shutil
 import sys
 import tempfile
 import unittest
@@ -26,7 +27,8 @@ from check_v1_release import (  # noqa: E402
 )
 from build_human_audit_ui import build_ui  # noqa: E402
 from prepare_human_audit_handoff import build_handoffs  # noqa: E402
-from score_human_audit import cohen_kappa, score_annotations  # noqa: E402
+from ingest_human_annotations import ingest_submission  # noqa: E402
+from score_human_audit import cohen_kappa, read_csv, score_annotations  # noqa: E402
 from run_annotation_dry_run import normalize_label  # noqa: E402
 
 
@@ -393,6 +395,49 @@ class HumanAuditToolsTest(unittest.TestCase):
         self.assertNotIn("gatsim_official_planner", html)
         self.assertNotIn("sotopia_official_llm_agent", html)
         self.assertNotIn("sealed/audit_key.csv", html)
+
+    def test_ingest_human_submission_validates_and_archives_complete_csv(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            audit_dir = root / "audit"
+            shutil.copytree(DEFAULT_AUDIT_DIR, audit_dir)
+            source_rows = []
+            for row in read_csv(audit_dir / "annotations" / "annotator_a.csv"):
+                source_rows.append(
+                    {
+                        **row,
+                        "completion_label": "complete",
+                        "feasibility_label": "feasible",
+                        "replan_label": "not_applicable",
+                        "evidence_sufficient": "yes",
+                        "confidence": "4",
+                    }
+                )
+            submission = root / "annotator_a.csv"
+            with submission.open("w", encoding="utf-8", newline="") as f:
+                writer = csv.DictWriter(f, fieldnames=ANNOTATION_FIELDS)
+                writer.writeheader()
+                writer.writerows(source_rows)
+
+            manifest = ingest_submission(submission, audit_dir)
+
+            canonical = read_csv(audit_dir / "annotations" / "annotator_a.csv")
+            self.assertEqual(manifest["annotator_id"], "annotator_a")
+            self.assertEqual(manifest["row_count"], 16)
+            self.assertTrue(all(row["completion_label"] == "complete" for row in canonical))
+            self.assertTrue(
+                (audit_dir / "submissions" / "annotator_a.submitted.csv").exists()
+            )
+
+    def test_ingest_human_submission_rejects_incomplete_csv(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            audit_dir = root / "audit"
+            shutil.copytree(DEFAULT_AUDIT_DIR, audit_dir)
+            submission = audit_dir / "annotations" / "annotator_a.csv"
+
+            with self.assertRaisesRegex(ValueError, "missing required labels"):
+                ingest_submission(submission, audit_dir)
 
 
 if __name__ == "__main__":

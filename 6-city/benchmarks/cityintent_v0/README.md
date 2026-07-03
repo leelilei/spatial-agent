@@ -327,6 +327,10 @@ python tools/score_human_audit.py `
   --output-dir ../../annotation/cityintent_v1_rc1_blind_validation_2026-07-02/agreement
 ```
 
+For safer collection, use `tools/ingest_human_annotations.py --submission <csv>`
+for each returned file. It validates and archives the raw submission, then runs the
+same scorer automatically once both files are complete.
+
 Run the complete release gate from the repository root:
 
 ```powershell

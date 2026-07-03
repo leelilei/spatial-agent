@@ -16,6 +16,4 @@ Material findings: 0
 
 ## Runtime Checks
 
-- `0`: `C:\Users\lee\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m unittest discover -s D:\0-Research\6-city\benchmarks\cityintent_v0\tests -p test_*.py`
-- `0`: `C:\Users\lee\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe D:\0-Research\6-city\benchmarks\cityintent_v0\tools\validate_cityintent_v0.py`
-- `0`: `C:\Users\lee\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe D:\0-Research\6-city\benchmarks\cityintent_v0\tools\validate_external_adapters.py --framework all`
+- Skipped for this gate check.
