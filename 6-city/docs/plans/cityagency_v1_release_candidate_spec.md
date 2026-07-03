@@ -78,10 +78,11 @@ pre-adjudication audit. It cannot be waived by writing a disposition.
 ## Freeze Criteria
 
 CityAgency v1 can be frozen only when all tests and package validation pass,
-verified external adapters produce archived v1 traces, both human annotation
-files are complete, agreement/calibration results are archived, and every
-material audit finding has a documented disposition. Until then the status
-must remain `release_candidate_pending_human_audit`.
+verified external adapters produce at least three repeated runs and 48 archived
+v1 traces, both required soft judges have complete provenance manifests, both
+human annotation files are complete, agreement/calibration results are archived,
+and every material audit finding has a documented disposition. Until then the
+status must remain `release_candidate_pending_human_audit`.
 
 The executable gate is `tools/check_v1_release.py`. It writes a machine-readable
 and Markdown report, and `--freeze` refuses to change the benchmark version unless

@@ -409,6 +409,12 @@ def main() -> int:
     parser.add_argument("--scenario-ids", default="")
     parser.add_argument("--limit-scenarios", type=int, default=None)
     parser.add_argument("--llm-config", type=Path, required=True)
+    parser.add_argument(
+        "--judge-config",
+        type=Path,
+        default=None,
+        help="Optional soft-judge config; defaults to --llm-config.",
+    )
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
     parser.add_argument("--skip-existing", action="store_true", help="Reuse existing repeat outputs when present.")
     parser.add_argument("--judge-sleep", type=float, default=0.0)
@@ -421,6 +427,8 @@ def main() -> int:
 
     if args.repeats < 1:
         raise SystemExit("--repeats must be >= 1")
+
+    judge_config = args.judge_config or args.llm_config
 
     runner = ROOT / "tools" / "run_baseline_traces.py"
     judge = ROOT / "tools" / "judge_trace_plausibility.py"
@@ -450,6 +458,7 @@ def main() -> int:
         "scenario_ids": [item.strip() for item in args.scenario_ids.split(",") if item.strip()],
         "limit_scenarios": args.limit_scenarios,
         "llm_config": str(args.llm_config),
+        "judge_config": str(judge_config),
         "output_dir": str(args.output_dir),
         "skip_existing": args.skip_existing,
         "judge_sleep": args.judge_sleep,
@@ -508,7 +517,7 @@ def main() -> int:
                 sys.executable,
                 str(judge),
                 "--llm-config",
-                str(args.llm_config),
+                str(judge_config),
                 "--input",
                 str(traces_path),
                 "--output-dir",

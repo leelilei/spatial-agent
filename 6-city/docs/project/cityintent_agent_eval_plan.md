@@ -1,6 +1,7 @@
 # CityIntent Agent Evaluation Plan
 
 Date: 2026-06-22
+Updated: 2026-07-04
 
 Purpose: define which city-agent policies the first CityAgency / CityIntent
 track should evaluate, and clarify what SOTOPIA actually compared.
@@ -84,23 +85,25 @@ This seven-agent set is enough for a first benchmark paper table. It gives us
 scripted, rule-based, direct-LLM, planning, reactive, memory-based, and oracle
 baselines.
 
-## Literature-Inspired Adapters
+## Verified External Adapters
 
-After the v0 baselines work, add adapters inspired by adjacent city-agent
-systems. These do not need to be full reproductions at first. They can be
-faithful lightweight policies that expose the same CityIntent action interface.
+The project has moved beyond style-only placeholder policies. Four adapters now
+pin and verify official source files and commits, preserve identifiable official
+prompt/control surfaces, and map their proposed decisions into the same typed
+CityIntent executor. They remain adapted decision layers rather than native
+end-to-end framework backends.
 
-| Priority | Adapter | Source inspiration | CityIntent role |
-|---|---|---|---|
-| P1 | CitySimStyleValueAgent | CitySim | Needs, long-term goals, value-driven activity planning, spatial memory, POI choice |
-| P1 | GATSimStyleMobilityAgent | GATSim | Mobility-focused schedule adaptation and travel behavior realism |
-| P1 | ConcordiaStyleComponentAgent | Concordia | Component-based agent state plus game-master-style environment mediation |
-| P2 | CityEQAStyleHierarchicalAgent | CityEQA | Hierarchical planner / manager / actor pattern for embodied-city tasks |
-| P2 | OpenCityScaleAgent | OpenCity / MobileCity | Efficient large-population activity simulation, useful after micro-benchmark validation |
+| Adapter | Pinned source surface | Integration role |
+|---|---|---|
+| GATSim | Daily mobility planning and schedule-update prompts | Mobility plan generation and disruption update |
+| SOTOPIA | `LLMAgent` per-turn private-goal action prompt | Direct observation-to-action social policy |
+| Generative Agents | Daily planning, reflection, and schedule revision prompts | Memory/reflection-oriented planning policy |
+| AgentSociety | TPB guidance, detailed plan, and mobility place-analysis blocks | Structured plan-block policy |
 
-The P1 adapters are most useful because they touch CityIntent's core: intention,
-memory, movement, and environment validation. The P2 adapters are valuable later
-when we add embodied perception or scale.
+Every archived trace records repository, commit, verified files, integration
+level, provider/model metadata, prompt hashes, call success, latency, and token
+usage. Results must be described as evidence about these adapted decision layers,
+not the complete native systems.
 
 ## What Each Agent Must Expose
 
@@ -155,6 +158,41 @@ Recommended representative policies for the model-sensitivity run:
 This keeps cost manageable while showing whether architecture effects survive
 model changes.
 
+## Current Experimental Status
+
+Three complementary external-adapter matrices are complete:
+
+```text
+4 verified adapted decision layers
+x 4 pressure scenarios
+x 3 real-provider repeats
+x 1 fixed agent model (gpt-5.4-mini)
+= 48 traces
+```
+
+```text
+4 verified adapted decision layers
+x all 12 current scenarios
+x 1 real-provider run
+x 1 fixed agent model (gpt-5.4-mini)
+= 48 breadth traces
+```
+
+The breadth matrix reuses repeat 1 for the four overlapping pressure scenarios,
+and a matched 16-trace `gpt-5.4` agent-model screen is also complete. The archive
+therefore contains 112 trace records and 96 unique agent executions. All traces
+have deterministic evidence scores. Two soft evaluators, `gpt-5.4-mini` and
+`gpt-5.4`, independently judged every matrix. The experiments find no
+universal winner, persistent architecture-specific failure signatures, and only
+moderate cross-judge agreement.
+
+The next automatic matrices should be prioritized as:
+
+1. perturbation pairs: matched no-disruption/disruption versions for causal recovery analysis;
+2. repeat model-sensitivity cells whose architecture ranking reversed;
+3. repeat selected broad-scenario cells whose first run changes the architecture ranking;
+4. only then scale repeats beyond three for cells with unstable outcomes.
+
 ## Metrics
 
 CityIntent should combine deterministic metrics and judge-based metrics.
@@ -198,21 +236,13 @@ go one step further by comparing the architectures that make agency possible.
 
 ## Immediate Next Step
 
-The first benchmark smoke package now lives at
-`benchmarks/cityintent_v0/`. It defines the toy world, scenario package format,
-eight seed scenarios, and a dependency-free validator.
+Scenario breadth and the first model-sensitivity screen are complete. The model
+screen changes architecture ordering rather than uniformly improving results,
+which reveals a model-by-architecture interaction. The strongest distinct next
+step is matched perturbation testing: create no-disruption controls for the four
+pressure scenarios, hold the private goal and initial city state fixed, and score
+the causal loss and recovery caused by each disruption.
 
-The next implementation step is to implement the P0 agent interface and run the
-toy world with these scenarios:
-
-1. lunch meeting under time pressure
-2. commute disruption
-3. closed POI and replacement choice
-4. conflicting private goal and social obligation
-5. low-budget errand chain
-6. avoid-crowd preference during public event
-7. memory-dependent place choice
-8. unexpected friend encounter
-
-If the seven P0 agents behave differently on these scenarios, CityIntent has a
-real benchmark signal.
+The separate human-validation task should proceed in parallel. It calibrates the
+construct and soft evidence rubric; it should not delay scenario breadth or model-
+sensitivity experiments, but v1 cannot be frozen without it.

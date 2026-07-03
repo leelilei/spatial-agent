@@ -246,6 +246,17 @@
     "audit_item_count": 16,
     "scenario_count": 4,
     "external_adapter_count": 4,
+    "result_archive": {
+      "minimum_repeats": 3,
+      "minimum_rows": 48,
+      "required_agent_model": "gpt-5.4-mini",
+      "required_judges": {
+        "judged": "gpt-5.4-mini",
+        "judged_gpt54": "gpt-5.4"
+      },
+      "require_verified_adapter_sources": true,
+      "require_complete_provider_usage": true
+    },
     "inter_annotator": {
       "minimum_exact_agreement": 0.75,
       "minimum_cohen_kappa": 0.4,

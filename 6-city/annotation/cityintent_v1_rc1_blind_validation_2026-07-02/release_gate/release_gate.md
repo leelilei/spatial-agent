@@ -16,4 +16,6 @@ Material findings: 0
 
 ## Runtime Checks
 
-- Skipped for this gate check.
+- `0`: `C:\Users\lee\AppData\Local\Programs\Python\Python310\python.exe -m unittest discover -s D:\0-Research\6-city\benchmarks\cityintent_v0\tests -p test_*.py`
+- `0`: `C:\Users\lee\AppData\Local\Programs\Python\Python310\python.exe D:\0-Research\6-city\benchmarks\cityintent_v0\tools\validate_cityintent_v0.py`
+- `0`: `C:\Users\lee\AppData\Local\Programs\Python\Python310\python.exe D:\0-Research\6-city\benchmarks\cityintent_v0\tools\validate_external_adapters.py --framework all`

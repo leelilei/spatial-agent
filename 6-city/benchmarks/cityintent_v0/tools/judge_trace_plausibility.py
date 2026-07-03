@@ -17,9 +17,11 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import sys
 import time
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
@@ -38,9 +40,34 @@ def load_json(path: Path) -> Any:
 
 def write_json(path: Path, value: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8", newline="\n") as f:
+    temp_path = path.with_name(f"{path.name}.tmp")
+    with temp_path.open("w", encoding="utf-8", newline="\n") as f:
         json.dump(value, f, indent=2, ensure_ascii=False)
         f.write("\n")
+
+    # Windows indexers and sync clients can briefly hold the destination file.
+    # Keep the last complete archive intact and retry the atomic replacement.
+    for attempt in range(5):
+        try:
+            temp_path.replace(path)
+            return
+        except OSError:
+            if attempt == 4:
+                raise
+            time.sleep(0.2 * (attempt + 1))
+
+
+def file_sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def sanitized_config(path: Path) -> dict[str, Any]:
+    config = load_json(path)
+    return {
+        key: value
+        for key, value in config.items()
+        if key == "api_key_env" or "key" not in key.lower()
+    }
 
 
 def load_scenarios() -> dict[str, dict[str, Any]]:
@@ -335,6 +362,28 @@ def main() -> int:
             time.sleep(args.sleep)
 
     write_outputs(rows, judged_results, args.output_dir)
+    config = sanitized_config(args.llm_config)
+    write_json(
+        args.output_dir / "judge_manifest.json",
+        {
+            "schema_version": "cityintent_plausibility_judge_v1",
+            "status": "complete",
+            "evaluator_role": "soft_plausibility_only",
+            "judge_provider": config.get("provider"),
+            "judge_model": config.get("model"),
+            "judge_config_path": str(args.llm_config),
+            "judge_config": config,
+            "judge_config_sha256": file_sha256(args.llm_config),
+            "input_path": str(args.input),
+            "input_sha256": file_sha256(args.input),
+            "input_trace_count": len(results),
+            "judged_trace_count": len(judged_results),
+            "agent_filter": sorted(agent_filter),
+            "limit": args.limit,
+            "resume_enabled": not args.no_resume,
+            "generated_at": datetime.now().astimezone().isoformat(timespec="seconds"),
+        },
+    )
     print(f"Wrote judged results to {args.output_dir}")
     return 0
 

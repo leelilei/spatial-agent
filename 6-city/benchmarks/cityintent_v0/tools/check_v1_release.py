@@ -26,7 +26,7 @@ DEFAULT_RESULT_DIR = (
     / "6-city"
     / "results"
     / "cityintent_v1_rc1"
-    / "external_frameworks_4x4x1_gpt54mini_2026-07-02"
+    / "external_frameworks_4x4x3_gpt54mini_2026-07-04"
 )
 DEFAULT_REPORT_DIR = DEFAULT_AUDIT_DIR / "release_gate"
 REQUIRED_OFFICIAL_ADAPTERS = {
@@ -110,7 +110,8 @@ def result_archive_checks(result_dir: Path, gate: dict[str, Any]) -> list[str]:
     manifest = load_json(manifest_path)
     if manifest.get("benchmark_version") != "1.0-rc1":
         blockers.append("external trace archive must identify benchmark_version 1.0-rc1")
-    expected_rows = int(gate["audit_item_count"])
+    archive_gate = gate["result_archive"]
+    expected_rows = int(archive_gate["minimum_rows"])
     if int(manifest.get("row_count", 0)) < expected_rows:
         blockers.append(
             f"external trace archive has {manifest.get('row_count', 0)} rows; "
@@ -122,6 +123,8 @@ def result_archive_checks(result_dir: Path, gate: dict[str, Any]) -> list[str]:
         blockers.append(f"external trace archive missing adapters: {missing_agents}")
     if len(manifest.get("scenario_ids", [])) < int(gate["scenario_count"]):
         blockers.append("external trace archive has too few scenarios")
+    if int(manifest.get("repeats", 0)) < int(archive_gate["minimum_repeats"]):
+        blockers.append("external trace archive has too few repeated runs")
     traces = sorted(result_dir.glob("repeat_*/traces/traces.json"))
     if not traces:
         blockers.append("external trace archive contains no trace JSON")
@@ -132,6 +135,54 @@ def result_archive_checks(result_dir: Path, gate: dict[str, Any]) -> list[str]:
                 f"trace count {trace_count} does not match manifest row_count "
                 f"{manifest.get('row_count')}"
             )
+    expected_model = archive_gate["required_agent_model"]
+    expected_cells = {
+        (scenario_id, agent)
+        for scenario_id in manifest.get("scenario_ids", [])
+        for agent in manifest.get("agents", [])
+    }
+    for trace_path in traces:
+        values = load_json(trace_path)
+        cells = {(value["scenario_id"], value["agent_type"]) for value in values}
+        if cells != expected_cells:
+            blockers.append(f"trace matrix mismatch: {trace_path}")
+        for value in values:
+            model_info = value.get("model_info") or {}
+            if model_info.get("model") != expected_model:
+                blockers.append(
+                    f"unexpected agent model in {trace_path}: {model_info.get('model')}"
+                )
+                break
+            if archive_gate.get("require_verified_adapter_sources") and not model_info.get(
+                "source_verified"
+            ):
+                blockers.append(f"unverified adapter source in {trace_path}")
+                break
+            telemetry = model_info.get("llm_telemetry_summary") or {}
+            if int(telemetry.get("failed_calls", 0)) != 0:
+                blockers.append(f"failed provider calls recorded in {trace_path}")
+                break
+            if archive_gate.get("require_complete_provider_usage") and not telemetry.get(
+                "usage_complete"
+            ):
+                blockers.append(f"incomplete provider usage in {trace_path}")
+                break
+    for judge_dir, judge_model in archive_gate["required_judges"].items():
+        for trace_path in traces:
+            repeat_dir = trace_path.parents[1]
+            judged_path = repeat_dir / judge_dir / "judged_traces.json"
+            judge_manifest_path = repeat_dir / judge_dir / "judge_manifest.json"
+            if not judged_path.exists() or not judge_manifest_path.exists():
+                blockers.append(f"missing judge archive: {repeat_dir / judge_dir}")
+                continue
+            judged = load_json(judged_path)
+            if len(judged) != len(load_json(trace_path)):
+                blockers.append(f"judge trace count mismatch: {judged_path}")
+            judge_manifest = load_json(judge_manifest_path)
+            if judge_manifest.get("judge_model") != judge_model:
+                blockers.append(f"unexpected judge model: {judge_manifest_path}")
+            if judge_manifest.get("input_sha256") != normalized_sha256(trace_path):
+                blockers.append(f"judge input checksum mismatch: {judge_manifest_path}")
     return blockers
 
 

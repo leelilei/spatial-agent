@@ -1,7 +1,7 @@
 # CityAgency Proposal
 
-> Version: v0.4
-> Updated: 2026-07-03
+> Version: v0.5
+> Updated: 2026-07-04
 > Status: draft
 
 ## Title
@@ -356,7 +356,7 @@ Initial baselines:
 The interesting comparison is not only which LLM is stronger. It is whether an
 agent architecture preserves intention while respecting environment constraints.
 
-The expected first-result pattern is:
+The expected first-result pattern was:
 
 - Rule-based agents may be more feasible but brittle and less socially natural.
 - Direct LLM actors may produce plausible rationales but more impossible traces.
@@ -368,6 +368,58 @@ The expected first-result pattern is:
 This comparison supports the paper's main punchline: urban agent quality is not
 only a language-model capability. It depends on architectures that separate
 intention, planning, memory, and environment validation.
+
+## Current Pilot Evidence
+
+Three complementary external-adapter experiments now contain 112 archived trace
+records and 96 unique agent executions:
+
+- a 4-adapter x 4-pressure-scenario x 3-repeat matrix for reliability;
+- a 4-adapter x 12-scenario x 1-run matrix for scenario breadth. Its pressure
+  subset reuses the first repeat above, so there are 80 unique agent executions.
+- a matched 4-adapter x 4-pressure-scenario x 1-run model-sensitivity matrix with
+  `gpt-5.4` as the agent model.
+
+The result is a dissociation rather than a single leaderboard winner:
+
+- AgentSociety has the highest mean face plausibility and mean task score, but
+  only 25% of traces are fully feasible.
+- GATSim has the highest mean feasibility and full-task rate, but low soft
+  trace-believability scores.
+- Generative Agents completes some outcomes but produces no fully feasible trace
+  in this 12-run sample.
+- SOTOPIA produces mostly legal traces but no full task completion; 83.3% of its
+  traces are face-plausible task failures.
+
+Across all traces, face plausibility has near-zero correlation with deterministic
+task completion (Pearson `-0.041`, Spearman `0.055`). The result remains near zero
+after removing scenario-adapter cell means. This is preliminary support for the
+paper's plan-to-trace dissociation hypothesis.
+
+Soft evaluation is itself unstable. `gpt-5.4-mini` and `gpt-5.4` agree on the
+0.70 face-plausibility threshold for 72.9% of traces, with Cohen's kappa `0.373`;
+trace-believability threshold kappa is `0.246`. CityAgency should therefore treat
+LLM judges as sensitivity instruments, not truth sources. The two-person blinded
+audit remains the construct-validity gate for v1.
+
+The 12-scenario breadth result preserves the architecture separation. GATSim has
+the highest full-task (75.0%) and fully feasible (83.3%) rates. AgentSociety is
+face-plausible on 91.7% of traces but fully feasible on only 25.0%. Generative
+Agents is face-plausible but infeasible on 75.0% of scenarios, while SOTOPIA has
+no full task completion despite a 58.3% fully feasible rate. In the broad sample,
+face plausibility again fails to track hard outcomes (Pearson `-0.207` with task
+completion and `-0.166` with feasibility).
+
+Together, these experiments support an architecture-by-scenario diagnostic claim,
+not a native-framework leaderboard or a claim of human urban realism.
+
+The first paired model-sensitivity result also rejects uniform model scaling.
+Relative to matched `gpt-5.4-mini` cells, `gpt-5.4` raises Generative Agents task
+and feasibility by `+0.125` and `+0.315`, and raises SOTOPIA task by `+0.375`.
+At the same time, task completion falls by `-0.250` for both GATSim and
+AgentSociety. CityAgency therefore needs to measure model-by-architecture
+interaction rather than attributing all failures to either the base model or the
+framework alone.
 
 ## Expected Contribution
 
