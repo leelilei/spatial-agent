@@ -12,7 +12,7 @@
 | 框架 | 已有/在先工作 | 判定 |
 |---|---|---|
 | **A. 解离(说≠信)本身** | sycophancy 多篇;**Persona Inconstancy in Multi-Agent LLM(arXiv 2405.03862, 2024-05):agent 群聊说一套、私下问回到原意,归因 conformity** | **灭顶(比我们早一年多,且机制更成熟)** |
-| **B. Agent-society-as-simulator 效度攻击(言≠信不可靠)** | Do Role-Playing Agents Practice What They Preach(2507.02197);When Agents Say One Thing and Do Another(2602.06286);*AI Review* 效度 critical review(Larooij & Törnberg 2025) | 成熟活跃领域 |
+| **B. Agent-society-as-simulator 效度攻击(言≠信不可靠)** | Do Role-Playing Agents Practice What They Preach(2507.02197);~~When Agents Say One Thing and Do Another(2602.06286)~~ **⚠️ FABRICATED**(2026-07-02 修正:此 ID 在 arxiv export API 返回 NOT FOUND,标题短语全文检索零结果——为 WebSearch 注入的伪造文献);*AI Review* 效度 critical review(Larooij & Törnberg 2025) | 成熟活跃领域 |
 | **C. 单源操控集体表达** | Nature Sci Rep persuasion-driven adversarial(单 agent 降准 10–40%、增错误共识 30%+);The Consensus Trap(2604.17139,注入+防御);AgentAuditor(2602.09341) | 完整"操控+防御"弧线已做 |
 
 加上前一轮已确认被占:**provenance 修复**(MemClaw/MemIR/LLM-MAS 综述)、**entrenchment**(Delayed-Verification 2606.27409 有闭式解)、**遗忘解固化**(Thaw H1 自身 n=5 negative)。
@@ -49,3 +49,8 @@
 - **5-Telephone**:作为"首创 excited 论文"的目标**不可达**;待人定"低野心收尾 / 封存"。
 - **7-Thaw**:H1 negative,已关。
 - **下一步**:专门用一轮,以准绳 4 认真"找新赛道"——先找问题、先确认空白,再谈实验。
+
+## 2026-07-02 修正
+
+- **B 行 `2602.06286` 标注为 FABRICATED**。三重验证:arxiv export API `id:2602.06286` → NOT FOUND;标题短语全文检索 → 零结果;topic 检索 "preference falsification" + "pluralistic ignorance" + LLM → 零结果。该文献来自 WebSearch 通道的对抗注入——伪造 ID + 伪造标题 + 伪造 URL。已在行内标记。
+- 此次修正源自 2026-07-02 的 arxiv first-party 验证 + neighbor-verification 扫描(详见 `preference_falsification_scan_2026-07-02.md`)。
