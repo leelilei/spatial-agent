@@ -218,6 +218,13 @@ class BasePolicy:
         raise NotImplementedError
 
     def choose_from_candidates(self, candidates: list[str], state: TraceState, prefer_cost: bool = True) -> str:
+        open_candidates = [
+            candidate
+            for candidate in candidates
+            if self.world.is_open(candidate, state.time, self.scenario)
+        ]
+        if open_candidates:
+            candidates = open_candidates
         scored: list[tuple[float, str]] = []
         for candidate in candidates:
             _, distance = self.world.shortest_path(state.location, candidate, self.scenario, state.time)

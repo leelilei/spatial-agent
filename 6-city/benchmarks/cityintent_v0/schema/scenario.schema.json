@@ -31,6 +31,25 @@
     "family": {
       "type": "string"
     },
+    "perturbation_pair": {
+      "type": "object",
+      "required": ["pair_id", "variant", "treatment_event_types"],
+      "properties": {
+        "pair_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "variant": {
+          "type": "string",
+          "enum": ["control", "treatment"]
+        },
+        "treatment_event_types": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string"}
+        }
+      }
+    },
     "episode": {
       "type": "object",
       "required": ["start_time", "end_time", "max_steps"],

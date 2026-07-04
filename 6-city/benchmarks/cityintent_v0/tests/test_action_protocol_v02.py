@@ -12,6 +12,7 @@ from run_baseline_traces import (  # noqa: E402
     Action,
     CityWorld,
     TraceState,
+    UtilityPlannerPolicy,
     condition_evidence,
     condition_success,
     execute_action,
@@ -60,6 +61,34 @@ class ActionProtocolV02Test(unittest.TestCase):
         state.inside_location = "home"
         record_entry(state, "home", state.time, kind="start")
         return state
+
+    def test_utility_candidate_choice_excludes_event_closed_place(self) -> None:
+        scenario = {
+            **self.scenario,
+            "primary_agent": "aria",
+            "agents": [
+                {
+                    "agent_id": "aria",
+                    "start_location": "home",
+                    "budget": 10,
+                }
+            ],
+            "events": [
+                {
+                    "time": "10:00",
+                    "type": "closure",
+                    "location": "shop",
+                    "effect": {"closed_until": "12:00"},
+                }
+            ],
+            "success_conditions": [],
+        }
+        policy = UtilityPlannerPolicy(self.world, scenario, scenario["agents"][0])
+
+        self.assertEqual(
+            policy.choose_from_candidates(["shop", "cafe"], self.state()),
+            "cafe",
+        )
 
     def test_move_arrival_does_not_enter_spend_or_complete_purchase(self) -> None:
         state = self.state()

@@ -8,6 +8,7 @@ first four agent architectures.
 from __future__ import annotations
 
 import heapq
+import hashlib
 import json
 import sys
 from collections import Counter, defaultdict, deque
@@ -110,6 +111,19 @@ def collect_location_refs(condition: dict[str, Any]) -> list[str]:
     return refs
 
 
+def paired_common_payload(scenario: dict[str, Any]) -> dict[str, Any]:
+    return {
+        key: value
+        for key, value in scenario.items()
+        if key not in {"scenario_id", "events", "perturbation_pair"}
+    }
+
+
+def payload_sha256(value: dict[str, Any]) -> str:
+    encoded = json.dumps(value, sort_keys=True, ensure_ascii=False).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
 def main() -> int:
     errors: list[str] = []
     warnings: list[str] = []
@@ -186,6 +200,7 @@ def main() -> int:
     family_counts: Counter[str] = Counter()
     metric_coverage: set[str] = set()
     reachability_checks = 0
+    perturbation_pairs: dict[str, list[tuple[Path, dict[str, Any]]]] = defaultdict(list)
 
     for path in scenario_paths:
         rel = path.relative_to(ROOT)
@@ -197,6 +212,20 @@ def main() -> int:
         if scenario_id in seen_scenario_ids:
             errors.append(f"{rel}: duplicate scenario_id {scenario_id}")
         seen_scenario_ids.add(scenario_id)
+
+        pair = scenario.get("perturbation_pair")
+        if pair is not None:
+            pair_id = pair.get("pair_id")
+            variant = pair.get("variant")
+            event_types = pair.get("treatment_event_types")
+            if not isinstance(pair_id, str) or not pair_id:
+                errors.append(f"{rel}: perturbation_pair requires pair_id")
+            elif variant not in {"control", "treatment"}:
+                errors.append(f"{rel}: perturbation_pair has invalid variant {variant!r}")
+            elif not isinstance(event_types, list) or not event_types:
+                errors.append(f"{rel}: perturbation_pair requires treatment_event_types")
+            else:
+                perturbation_pairs[pair_id].append((path, scenario))
 
         world_id = scenario.get("world_id")
         if world_id not in worlds_by_id:
@@ -378,6 +407,34 @@ def main() -> int:
     if missing_global_metrics:
         errors.append(f"scenario set does not cover required metrics {missing_global_metrics}")
 
+    for pair_id, members in sorted(perturbation_pairs.items()):
+        variants = {
+            scenario["perturbation_pair"]["variant"]: (path, scenario)
+            for path, scenario in members
+        }
+        if len(members) != 2 or set(variants) != {"control", "treatment"}:
+            errors.append(
+                f"perturbation pair {pair_id!r} must contain exactly one control and one treatment"
+            )
+            continue
+        control_path, control = variants["control"]
+        treatment_path, treatment = variants["treatment"]
+        if payload_sha256(paired_common_payload(control)) != payload_sha256(
+            paired_common_payload(treatment)
+        ):
+            errors.append(
+                f"perturbation pair {pair_id!r} differs outside scenario_id, events, or pair metadata"
+            )
+        if control.get("events"):
+            errors.append(f"{control_path.relative_to(ROOT)}: paired control must have no events")
+        declared = set(treatment["perturbation_pair"]["treatment_event_types"])
+        actual = {event.get("type") for event in treatment.get("events", [])}
+        if not actual or actual != declared:
+            errors.append(
+                f"{treatment_path.relative_to(ROOT)}: treatment events {sorted(actual)} "
+                f"do not match declared types {sorted(declared)}"
+            )
+
     if errors:
         print("CityIntent v0 validation failed:\n")
         for error in errors:
@@ -395,6 +452,7 @@ def main() -> int:
     print(f"- agent architectures: {', '.join(sorted(required_agent_ids))}")
     print(f"- metric coverage: {', '.join(sorted(metric_coverage))}")
     print(f"- reachability checks: {reachability_checks}")
+    print(f"- perturbation pairs: {len(perturbation_pairs)}")
     if warnings:
         print("\nWarnings:")
         for warning in warnings:

@@ -160,7 +160,7 @@ model changes.
 
 ## Current Experimental Status
 
-Three complementary external-adapter matrices are complete:
+Four complementary external-adapter matrices are complete:
 
 ```text
 4 verified adapted decision layers
@@ -180,7 +180,8 @@ x 1 fixed agent model (gpt-5.4-mini)
 
 The breadth matrix reuses repeat 1 for the four overlapping pressure scenarios,
 and a matched 16-trace `gpt-5.4` agent-model screen is also complete. The archive
-therefore contains 112 trace records and 96 unique agent executions. All traces
+therefore contains 136 trace records and 120 unique agent executions after adding
+a 24-trace matched perturbation screen. All traces
 have deterministic evidence scores. Two soft evaluators, `gpt-5.4-mini` and
 `gpt-5.4`, independently judged every matrix. The experiments find no
 universal winner, persistent architecture-specific failure signatures, and only
@@ -188,7 +189,7 @@ moderate cross-judge agreement.
 
 The next automatic matrices should be prioritized as:
 
-1. perturbation pairs: matched no-disruption/disruption versions for causal recovery analysis;
+1. repeat matched perturbation cells with joint-success reversals, prioritizing the study-place pair;
 2. repeat model-sensitivity cells whose architecture ranking reversed;
 3. repeat selected broad-scenario cells whose first run changes the architecture ranking;
 4. only then scale repeats beyond three for cells with unstable outcomes.
@@ -236,12 +237,13 @@ go one step further by comparing the architectures that make agency possible.
 
 ## Immediate Next Step
 
-Scenario breadth and the first model-sensitivity screen are complete. The model
-screen changes architecture ordering rather than uniformly improving results,
-which reveals a model-by-architecture interaction. The strongest distinct next
-step is matched perturbation testing: create no-disruption controls for the four
-pressure scenarios, hold the private goal and initial city state fixed, and score
-the causal loss and recovery caused by each disruption.
+Scenario breadth, model sensitivity, and the first matched perturbation screen are
+complete. The paired screen holds all non-event scenario fields fixed and finds
+architecture-specific feasibility loss under network, facility, and social
+events. The strongest next step is targeted repetition of high-information paired
+cells, especially the study-place closure and adapters whose joint success drops
+from control to treatment. This tests whether the observed event effects survive
+provider sampling before expanding the pair library.
 
 The separate human-validation task should proceed in parallel. It calibrates the
 construct and soft evidence rubric; it should not delay scenario breadth or model-

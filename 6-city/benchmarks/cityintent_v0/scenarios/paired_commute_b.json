@@ -1,0 +1,76 @@
+{
+  "scenario_id": "paired_commute_b",
+  "title": "Paired Reliable Morning Commute",
+  "world_id": "micro_city_v0",
+  "family": "paired_disruption",
+  "perturbation_pair": {
+    "pair_id": "commute_midroute_block",
+    "variant": "treatment",
+    "treatment_event_types": ["service_alert"]
+  },
+  "episode": {
+    "start_time": "08:00",
+    "end_time": "09:30",
+    "max_steps": 8
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Commuter who needs to reach the office and prefers reliable feasible routes over optimistic shortcuts.",
+      "start_location": "home_aria",
+      "budget": 10,
+      "private_intention": "Reach the office before 09:15 using a reliable feasible route.",
+      "known_locations": ["home_aria", "transit_hub", "office", "gym", "park", "quiet_cafe", "library", "cafe_central"],
+      "memory_seeds": [
+        "The transit hub normally provides the fastest office route.",
+        "A longer park-library-cafe route can also reach the office."
+      ]
+    }
+  ],
+  "public_context": "The normal fastest route goes through the transit hub.",
+  "events": [
+    {
+      "time": "08:08",
+      "type": "service_alert",
+      "location": "transit_hub",
+      "visibility": "public",
+      "effect": {
+        "blocked_edge": ["transit_hub", "office"],
+        "until": "08:55"
+      }
+    }
+  ],
+  "critical_locations": ["home_aria", "transit_hub", "office", "gym", "park", "quiet_cafe", "library", "cafe_central"],
+  "success_conditions": [
+    {
+      "id": "reach_office_before_standup",
+      "type": "visit_before",
+      "role": "outcome",
+      "agent": "aria",
+      "location": "office",
+      "deadline": "09:15",
+      "weight": 0.55
+    },
+    {
+      "id": "no_impossible_commute_claim",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.25
+    },
+    {
+      "id": "finish_within_episode",
+      "type": "episode_complete_before",
+      "role": "constraint",
+      "deadline": "09:30",
+      "weight": 0.2
+    }
+  ],
+  "scoring_metrics": ["task_completion", "constraint_satisfaction", "goal_completion", "feasibility_violation", "replanning_success", "travel_efficiency", "intention_consistency"],
+  "architecture_probes": {
+    "utility_planner": "Should choose an efficient route and finish after reaching the office.",
+    "llm_direct_actor": "May continue an initial route even if later observations make it invalid.",
+    "reactive_replanner": "Should change route only when an observed event invalidates the current path.",
+    "memory_reflection": "Should balance the normal fast route against the known fallback route."
+  }
+}

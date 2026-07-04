@@ -371,14 +371,15 @@ intention, planning, memory, and environment validation.
 
 ## Current Pilot Evidence
 
-Three complementary external-adapter experiments now contain 112 archived trace
-records and 96 unique agent executions:
+Four complementary external-adapter experiments now contain 136 archived trace
+records and 120 unique agent executions:
 
 - a 4-adapter x 4-pressure-scenario x 3-repeat matrix for reliability;
 - a 4-adapter x 12-scenario x 1-run matrix for scenario breadth. Its pressure
   subset reuses the first repeat above, so there are 80 unique agent executions.
 - a matched 4-adapter x 4-pressure-scenario x 1-run model-sensitivity matrix with
   `gpt-5.4` as the agent model.
+- a 4-adapter x 3-event-pair x 2-condition x 1-run matched perturbation screen.
 
 The result is a dissociation rather than a single leaderboard winner:
 
@@ -420,6 +421,14 @@ At the same time, task completion falls by `-0.250` for both GATSim and
 AgentSociety. CityAgency therefore needs to measure model-by-architecture
 interaction rather than attributing all failures to either the base model or the
 framework alone.
+
+The matched perturbation screen adds causal structure. GATSim preserves full task
+completion in all three treatment cells and joint success in two. Generative
+Agents and AgentSociety preserve joint success in none of the control-eligible
+treatment cells, despite sometimes preserving or improving task completion.
+Across the three event families, treatment lowers mean trace feasibility by
+`0.159` to `0.188`. This shows why urban-agent resilience must require executable
+traces rather than task outcomes alone.
 
 ## Expected Contribution
 

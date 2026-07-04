@@ -41,7 +41,7 @@ official public implementation that can be pinned and executed.
 
 ## Scenario Set
 
-CityIntent currently has 12 scenarios:
+CityIntent currently has 18 scenarios:
 
 - 8 original seed scenarios covering budget, disruption, memory, POI closure,
   preference, social-spatial tradeoff, opportunistic social interaction, and
@@ -51,10 +51,19 @@ CityIntent currently has 12 scenarios:
   - `closed_study_spot_replacement`
   - `school_pickup_social_detour`
   - `meeting_wait_trap`
+- 3 anonymous matched perturbation pairs, each with a no-event control and a
+  one-event treatment:
+  - `paired_commute_a` / `paired_commute_b`
+  - `paired_study_a` / `paired_study_b`
+  - `paired_pickup_a` / `paired_pickup_b`
 
 The pressure scenarios are intentionally diagnostic. They stress cases where an
 action can sound locally plausible while the full city trace becomes
 unbelievable or deterministically invalid.
+
+The matched pairs support event-effect analysis. The package validator requires
+each pair to have identical non-event scenario fields and exactly one control and
+one treatment variant.
 
 ## Action-Evidence Protocol
 
@@ -101,7 +110,7 @@ The v1 primary completion metric is `task_completion`.
 benchmark_config.json        # benchmark-level metrics and agent architecture list
 schema/scenario.schema.json  # JSON schema for scenario packages
 worlds/micro_city.json       # graph city with POIs, opening hours, prices, and edges
-scenarios/*.json             # twelve seed and pressure scenarios
+scenarios/*.json             # seed, pressure, and matched-pair scenarios
 tools/validate_cityintent_v0.py
 tools/run_baseline_traces.py
 tests/test_action_protocol_v02.py
@@ -277,6 +286,19 @@ The repeated runner creates:
 - `agent_repeated_summary.csv`: agent-level means and sample standard deviations
 - `scenario_agent_repeated_summary.csv`: scenario-agent diagnostics
 - `failure_taxonomy_summary.csv`: failure counts and events per trace
+
+For a matrix containing anonymous matched perturbation pairs, compute treatment
+minus control effects with:
+
+```bash
+python 6-city/benchmarks/cityintent_v0/tools/analyze_perturbation_pairs.py ^
+  --input <experiment-dir>/all_runs.csv ^
+  --scenario-dir 6-city/benchmarks/cityintent_v0/scenarios ^
+  --output-dir <experiment-dir>
+```
+
+The analysis reports paired task and feasibility deltas, joint success, and
+conditional recovery only for cells whose controls succeed.
 
 The first v0.3 real-model matrix is archived at
 `6-city/results/cityintent_v03/external_frameworks_4x4x3_gpt54mini_2026-07-01/`.

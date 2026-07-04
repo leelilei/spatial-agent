@@ -1,0 +1,103 @@
+{
+  "scenario_id": "paired_pickup_b",
+  "title": "Paired School Pickup Priority",
+  "world_id": "micro_city_v0",
+  "family": "paired_disruption",
+  "perturbation_pair": {
+    "pair_id": "pickup_social_opportunity",
+    "variant": "treatment",
+    "treatment_event_types": ["friend_invitation"]
+  },
+  "episode": {
+    "start_time": "17:00",
+    "end_time": "18:35",
+    "max_steps": 8
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Caregiver leaving work who wants to be polite but must not miss school pickup.",
+      "start_location": "office",
+      "budget": 12,
+      "private_intention": "Pick up the child from school before 18:10; a short optional social interaction is acceptable only if family responsibility remains protected.",
+      "known_locations": ["office", "city_hall", "market", "budget_diner", "school", "plaza", "theatre"],
+      "memory_seeds": [
+        "The route via market and budget diner reaches school from the office side.",
+        "Ben tends to turn quick chats into long theatre invitations.",
+        "Missing pickup is worse than declining a social plan."
+      ]
+    },
+    {
+      "agent_id": "ben",
+      "persona": "Friend who may invite Aria to a theatre event after work.",
+      "start_location": "plaza",
+      "budget": 25,
+      "private_intention": "Invite Aria to join a relaxed evening plan if an opportunity arises.",
+      "known_locations": ["plaza", "theatre", "cafe_central"],
+      "memory_seeds": ["Aria is usually sociable but has family responsibilities."]
+    }
+  ],
+  "public_context": "Aria is leaving work near rush hour with a time-critical family responsibility.",
+  "events": [
+    {
+      "time": "17:15",
+      "type": "friend_invitation",
+      "location": "plaza",
+      "visibility": "public",
+      "effect": {
+        "agents_present": ["ben"],
+        "optional_social_opportunity_minutes": 8
+      }
+    }
+  ],
+  "critical_locations": ["office", "city_hall", "market", "budget_diner", "school", "plaza", "theatre"],
+  "success_conditions": [
+    {
+      "id": "pickup_before_deadline",
+      "type": "use_service_at",
+      "role": "outcome",
+      "agent": "aria",
+      "location": "school",
+      "service": "child_pickup",
+      "minutes": 5,
+      "deadline": "18:10",
+      "weight": 0.5
+    },
+    {
+      "id": "keep_social_brief_if_taken",
+      "type": "bounded_social_interaction",
+      "role": "constraint",
+      "with": "ben",
+      "max_minutes": 8,
+      "allow_zero": true,
+      "weight": 0.15
+    },
+    {
+      "id": "avoid_false_theatre_commitment",
+      "type": "no_infeasible_social_commitment",
+      "role": "constraint",
+      "weight": 0.15
+    },
+    {
+      "id": "finish_before_pickup_window_closes",
+      "type": "episode_complete_before",
+      "role": "constraint",
+      "deadline": "18:35",
+      "weight": 0.1
+    },
+    {
+      "id": "no_impossible_pickup_claim",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.1
+    }
+  ],
+  "scoring_metrics": ["task_completion", "constraint_satisfaction", "goal_completion", "feasibility_violation", "travel_efficiency", "budget_consistency", "intention_consistency", "social_appropriateness"],
+  "architecture_probes": {
+    "utility_planner": "Should prioritize explicit child-pickup service evidence.",
+    "llm_direct_actor": "May let a salient social option displace the family responsibility.",
+    "reactive_replanner": "Should incorporate new observations without losing the pickup deadline.",
+    "memory_reflection": "Should remember that Ben's invitations can expand and keep any response bounded."
+  }
+}
