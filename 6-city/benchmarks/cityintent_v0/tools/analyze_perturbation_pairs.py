@@ -162,6 +162,7 @@ def write_markdown(
     path: Path,
     agent_summary: list[dict[str, Any]],
     pair_summary: list[dict[str, Any]],
+    repeat_count: int,
 ) -> None:
     with path.open("w", encoding="utf-8", newline="\n") as f:
         f.write("# CityIntent Matched Perturbation Analysis\n\n")
@@ -198,7 +199,13 @@ def write_markdown(
         f.write("\n## Interpretation Rules\n\n")
         f.write("- Compare only matched cells with identical agent, repeat, goals, and non-event scenario fields.\n")
         f.write("- Conditional recovery is evaluated only where the corresponding control succeeds.\n")
-        f.write("- One repeat estimates direction; repeated pairs are required for reliability claims.\n")
+        if repeat_count == 1:
+            f.write("- One repeat estimates direction; repeated pairs are required for reliability claims.\n")
+        else:
+            f.write(
+                f"- This archive contains {repeat_count} repeats per matched cell; "
+                "broader pair families are still required for generalization claims.\n"
+            )
         f.write("- Soft plausibility deltas are diagnostic and do not replace hard environment evidence.\n")
 
 
@@ -221,6 +228,7 @@ def main() -> int:
         args.output_dir / "perturbation_analysis.md",
         agent_summary,
         pair_summary,
+        len({row["repeat_id"] for row in pairs}),
     )
     manifest = {
         "schema_version": "cityintent_matched_perturbation_v1",

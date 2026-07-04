@@ -1,0 +1,2819 @@
+[
+  {
+    "scenario_id": "paired_study_a",
+    "scenario_title": "Paired Quiet Study Block",
+    "family": "paired_disruption",
+    "agent_type": "gatsim_official_planner",
+    "trace": [
+      {
+        "scenario_id": "paired_study_a",
+        "agent_type": "gatsim_official_planner",
+        "step": 1,
+        "start_time": "14:00",
+        "start_location": "plaza",
+        "action": {
+          "kind": "move",
+          "target": "library",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "follow GATSim official activity-plan destination",
+          "raw_response": "{\n  \"reflection\": \"This week I kept my spending focused and should continue favoring free quiet spaces when I need sustained concentration. For the coming week, the main priority is protecting a long work block without paying for a workspace unless the free options are unavailable. Social and family obligations are light in this episode, so the plan can stay narrow and task-focused. For travel, the short hop from plaza to the library area is the most efficient option for a quiet afternoon, and it is better to avoid unnecessary detours when the goal is a focused study session.\",\n  \"plan\": [\n    [\"library\", \"14:00\", 60, \"transit\", \"shortest\", \"Leave plaza and go to the library for a quiet, uninterrupted focused work block.\"],\n    [\"bookstore\", \"none\", 20, \"transit\", \"shortest\", \"Move to the nearby bookstore if a brief change of setting is needed after the library session, while staying in a quiet workspace.\"],\n    [\"plaza\", \"16:10\", \"none\", \"transit\", \"shortest\", \"Return to the plaza after the study block and finish the afternoon with no added spending.\" ]\n  ],\n  \"concepts\": [\n    [\"Library is the best free quiet option for a focused afternoon block, and the nearby bookstore works as a backup for short continuation periods.\", \"library, bookstore, quiet, free, focus\", \"library, bookstore\", \"14:00-16:30\"],\n    [\"For this benchmark window, staying within the plaza-library-bookstore area minimizes travel overhead and preserves concentration.\", \"plaza, library, bookstore, short travel\", \"plaza, library, bookstore\", \"14:00-16:30\"],\n    [\"Avoid paid workspaces unless the free quiet places are unavailable, because budget matters more than convenience here.\", \"budget, coworking, avoid spending\", \"the town\", \"14:00-16:30\"]\n  ]\n}\n"
+        },
+        "end_time": "14:07",
+        "end_location": "library",
+        "budget": 18.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_a",
+        "agent_type": "gatsim_official_planner",
+        "step": 2,
+        "start_time": "14:07",
+        "start_location": "library",
+        "action": {
+          "kind": "enter",
+          "target": "library",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "enter the GATSim activity destination",
+          "raw_response": "{\n  \"reflection\": \"This week I kept my spending focused and should continue favoring free quiet spaces when I need sustained concentration. For the coming week, the main priority is protecting a long work block without paying for a workspace unless the free options are unavailable. Social and family obligations are light in this episode, so the plan can stay narrow and task-focused. For travel, the short hop from plaza to the library area is the most efficient option for a quiet afternoon, and it is better to avoid unnecessary detours when the goal is a focused study session.\",\n  \"plan\": [\n    [\"library\", \"14:00\", 60, \"transit\", \"shortest\", \"Leave plaza and go to the library for a quiet, uninterrupted focused work block.\"],\n    [\"bookstore\", \"none\", 20, \"transit\", \"shortest\", \"Move to the nearby bookstore if a brief change of setting is needed after the library session, while staying in a quiet workspace.\"],\n    [\"plaza\", \"16:10\", \"none\", \"transit\", \"shortest\", \"Return to the plaza after the study block and finish the afternoon with no added spending.\" ]\n  ],\n  \"concepts\": [\n    [\"Library is the best free quiet option for a focused afternoon block, and the nearby bookstore works as a backup for short continuation periods.\", \"library, bookstore, quiet, free, focus\", \"library, bookstore\", \"14:00-16:30\"],\n    [\"For this benchmark window, staying within the plaza-library-bookstore area minimizes travel overhead and preserves concentration.\", \"plaza, library, bookstore, short travel\", \"plaza, library, bookstore\", \"14:00-16:30\"],\n    [\"Avoid paid workspaces unless the free quiet places are unavailable, because budget matters more than convenience here.\", \"budget, coworking, avoid spending\", \"the town\", \"14:00-16:30\"]\n  ]\n}\n"
+        },
+        "end_time": "14:08",
+        "end_location": "library",
+        "budget": 18.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_a",
+        "agent_type": "gatsim_official_planner",
+        "step": 3,
+        "start_time": "14:08",
+        "start_location": "library",
+        "action": {
+          "kind": "dwell",
+          "target": null,
+          "path": null,
+          "minutes": 50,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "complete the GATSim-planned activity duration required by the private goal",
+          "raw_response": "{\n  \"reflection\": \"This week I kept my spending focused and should continue favoring free quiet spaces when I need sustained concentration. For the coming week, the main priority is protecting a long work block without paying for a workspace unless the free options are unavailable. Social and family obligations are light in this episode, so the plan can stay narrow and task-focused. For travel, the short hop from plaza to the library area is the most efficient option for a quiet afternoon, and it is better to avoid unnecessary detours when the goal is a focused study session.\",\n  \"plan\": [\n    [\"library\", \"14:00\", 60, \"transit\", \"shortest\", \"Leave plaza and go to the library for a quiet, uninterrupted focused work block.\"],\n    [\"bookstore\", \"none\", 20, \"transit\", \"shortest\", \"Move to the nearby bookstore if a brief change of setting is needed after the library session, while staying in a quiet workspace.\"],\n    [\"plaza\", \"16:10\", \"none\", \"transit\", \"shortest\", \"Return to the plaza after the study block and finish the afternoon with no added spending.\" ]\n  ],\n  \"concepts\": [\n    [\"Library is the best free quiet option for a focused afternoon block, and the nearby bookstore works as a backup for short continuation periods.\", \"library, bookstore, quiet, free, focus\", \"library, bookstore\", \"14:00-16:30\"],\n    [\"For this benchmark window, staying within the plaza-library-bookstore area minimizes travel overhead and preserves concentration.\", \"plaza, library, bookstore, short travel\", \"plaza, library, bookstore\", \"14:00-16:30\"],\n    [\"Avoid paid workspaces unless the free quiet places are unavailable, because budget matters more than convenience here.\", \"budget, coworking, avoid spending\", \"the town\", \"14:00-16:30\"]\n  ]\n}\n"
+        },
+        "end_time": "14:58",
+        "end_location": "library",
+        "budget": 18.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_a",
+        "agent_type": "gatsim_official_planner",
+        "step": 4,
+        "start_time": "14:58",
+        "start_location": "library",
+        "action": {
+          "kind": "move",
+          "target": "bookstore",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "follow GATSim official activity-plan destination",
+          "raw_response": "{\n  \"reflection\": \"This week I kept my spending focused and should continue favoring free quiet spaces when I need sustained concentration. For the coming week, the main priority is protecting a long work block without paying for a workspace unless the free options are unavailable. Social and family obligations are light in this episode, so the plan can stay narrow and task-focused. For travel, the short hop from plaza to the library area is the most efficient option for a quiet afternoon, and it is better to avoid unnecessary detours when the goal is a focused study session.\",\n  \"plan\": [\n    [\"library\", \"14:00\", 60, \"transit\", \"shortest\", \"Leave plaza and go to the library for a quiet, uninterrupted focused work block.\"],\n    [\"bookstore\", \"none\", 20, \"transit\", \"shortest\", \"Move to the nearby bookstore if a brief change of setting is needed after the library session, while staying in a quiet workspace.\"],\n    [\"plaza\", \"16:10\", \"none\", \"transit\", \"shortest\", \"Return to the plaza after the study block and finish the afternoon with no added spending.\" ]\n  ],\n  \"concepts\": [\n    [\"Library is the best free quiet option for a focused afternoon block, and the nearby bookstore works as a backup for short continuation periods.\", \"library, bookstore, quiet, free, focus\", \"library, bookstore\", \"14:00-16:30\"],\n    [\"For this benchmark window, staying within the plaza-library-bookstore area minimizes travel overhead and preserves concentration.\", \"plaza, library, bookstore, short travel\", \"plaza, library, bookstore\", \"14:00-16:30\"],\n    [\"Avoid paid workspaces unless the free quiet places are unavailable, because budget matters more than convenience here.\", \"budget, coworking, avoid spending\", \"the town\", \"14:00-16:30\"]\n  ]\n}\n"
+        },
+        "end_time": "15:01",
+        "end_location": "bookstore",
+        "budget": 18.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_a",
+        "agent_type": "gatsim_official_planner",
+        "step": 5,
+        "start_time": "15:01",
+        "start_location": "bookstore",
+        "action": {
+          "kind": "enter",
+          "target": "bookstore",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "enter the GATSim activity destination",
+          "raw_response": "{\n  \"reflection\": \"This week I kept my spending focused and should continue favoring free quiet spaces when I need sustained concentration. For the coming week, the main priority is protecting a long work block without paying for a workspace unless the free options are unavailable. Social and family obligations are light in this episode, so the plan can stay narrow and task-focused. For travel, the short hop from plaza to the library area is the most efficient option for a quiet afternoon, and it is better to avoid unnecessary detours when the goal is a focused study session.\",\n  \"plan\": [\n    [\"library\", \"14:00\", 60, \"transit\", \"shortest\", \"Leave plaza and go to the library for a quiet, uninterrupted focused work block.\"],\n    [\"bookstore\", \"none\", 20, \"transit\", \"shortest\", \"Move to the nearby bookstore if a brief change of setting is needed after the library session, while staying in a quiet workspace.\"],\n    [\"plaza\", \"16:10\", \"none\", \"transit\", \"shortest\", \"Return to the plaza after the study block and finish the afternoon with no added spending.\" ]\n  ],\n  \"concepts\": [\n    [\"Library is the best free quiet option for a focused afternoon block, and the nearby bookstore works as a backup for short continuation periods.\", \"library, bookstore, quiet, free, focus\", \"library, bookstore\", \"14:00-16:30\"],\n    [\"For this benchmark window, staying within the plaza-library-bookstore area minimizes travel overhead and preserves concentration.\", \"plaza, library, bookstore, short travel\", \"plaza, library, bookstore\", \"14:00-16:30\"],\n    [\"Avoid paid workspaces unless the free quiet places are unavailable, because budget matters more than convenience here.\", \"budget, coworking, avoid spending\", \"the town\", \"14:00-16:30\"]\n  ]\n}\n"
+        },
+        "end_time": "15:02",
+        "end_location": "bookstore",
+        "budget": 18.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_a",
+        "agent_type": "gatsim_official_planner",
+        "step": 6,
+        "start_time": "15:02",
+        "start_location": "bookstore",
+        "action": {
+          "kind": "use_service",
+          "target": "bookstore",
+          "path": null,
+          "minutes": 5,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "workspace_access",
+          "reason": "pay for access before the GATSim-planned activity",
+          "raw_response": "{\n  \"reflection\": \"This week I kept my spending focused and should continue favoring free quiet spaces when I need sustained concentration. For the coming week, the main priority is protecting a long work block without paying for a workspace unless the free options are unavailable. Social and family obligations are light in this episode, so the plan can stay narrow and task-focused. For travel, the short hop from plaza to the library area is the most efficient option for a quiet afternoon, and it is better to avoid unnecessary detours when the goal is a focused study session.\",\n  \"plan\": [\n    [\"library\", \"14:00\", 60, \"transit\", \"shortest\", \"Leave plaza and go to the library for a quiet, uninterrupted focused work block.\"],\n    [\"bookstore\", \"none\", 20, \"transit\", \"shortest\", \"Move to the nearby bookstore if a brief change of setting is needed after the library session, while staying in a quiet workspace.\"],\n    [\"plaza\", \"16:10\", \"none\", \"transit\", \"shortest\", \"Return to the plaza after the study block and finish the afternoon with no added spending.\" ]\n  ],\n  \"concepts\": [\n    [\"Library is the best free quiet option for a focused afternoon block, and the nearby bookstore works as a backup for short continuation periods.\", \"library, bookstore, quiet, free, focus\", \"library, bookstore\", \"14:00-16:30\"],\n    [\"For this benchmark window, staying within the plaza-library-bookstore area minimizes travel overhead and preserves concentration.\", \"plaza, library, bookstore, short travel\", \"plaza, library, bookstore\", \"14:00-16:30\"],\n    [\"Avoid paid workspaces unless the free quiet places are unavailable, because budget matters more than convenience here.\", \"budget, coworking, avoid spending\", \"the town\", \"14:00-16:30\"]\n  ]\n}\n"
+        },
+        "end_time": "15:07",
+        "end_location": "bookstore",
+        "budget": 11.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_a",
+        "agent_type": "gatsim_official_planner",
+        "step": 7,
+        "start_time": "15:07",
+        "start_location": "bookstore",
+        "action": {
+          "kind": "dwell",
+          "target": null,
+          "path": null,
+          "minutes": 50,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "complete the GATSim-planned activity duration required by the private goal",
+          "raw_response": "{\n  \"reflection\": \"This week I kept my spending focused and should continue favoring free quiet spaces when I need sustained concentration. For the coming week, the main priority is protecting a long work block without paying for a workspace unless the free options are unavailable. Social and family obligations are light in this episode, so the plan can stay narrow and task-focused. For travel, the short hop from plaza to the library area is the most efficient option for a quiet afternoon, and it is better to avoid unnecessary detours when the goal is a focused study session.\",\n  \"plan\": [\n    [\"library\", \"14:00\", 60, \"transit\", \"shortest\", \"Leave plaza and go to the library for a quiet, uninterrupted focused work block.\"],\n    [\"bookstore\", \"none\", 20, \"transit\", \"shortest\", \"Move to the nearby bookstore if a brief change of setting is needed after the library session, while staying in a quiet workspace.\"],\n    [\"plaza\", \"16:10\", \"none\", \"transit\", \"shortest\", \"Return to the plaza after the study block and finish the afternoon with no added spending.\" ]\n  ],\n  \"concepts\": [\n    [\"Library is the best free quiet option for a focused afternoon block, and the nearby bookstore works as a backup for short continuation periods.\", \"library, bookstore, quiet, free, focus\", \"library, bookstore\", \"14:00-16:30\"],\n    [\"For this benchmark window, staying within the plaza-library-bookstore area minimizes travel overhead and preserves concentration.\", \"plaza, library, bookstore, short travel\", \"plaza, library, bookstore\", \"14:00-16:30\"],\n    [\"Avoid paid workspaces unless the free quiet places are unavailable, because budget matters more than convenience here.\", \"budget, coworking, avoid spending\", \"the town\", \"14:00-16:30\"]\n  ]\n}\n"
+        },
+        "end_time": "15:57",
+        "end_location": "bookstore",
+        "budget": 11.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_a",
+        "agent_type": "gatsim_official_planner",
+        "step": 8,
+        "start_time": "15:57",
+        "start_location": "bookstore",
+        "action": {
+          "kind": "move",
+          "target": "plaza",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "follow GATSim official activity-plan destination",
+          "raw_response": "{\n  \"reflection\": \"This week I kept my spending focused and should continue favoring free quiet spaces when I need sustained concentration. For the coming week, the main priority is protecting a long work block without paying for a workspace unless the free options are unavailable. Social and family obligations are light in this episode, so the plan can stay narrow and task-focused. For travel, the short hop from plaza to the library area is the most efficient option for a quiet afternoon, and it is better to avoid unnecessary detours when the goal is a focused study session.\",\n  \"plan\": [\n    [\"library\", \"14:00\", 60, \"transit\", \"shortest\", \"Leave plaza and go to the library for a quiet, uninterrupted focused work block.\"],\n    [\"bookstore\", \"none\", 20, \"transit\", \"shortest\", \"Move to the nearby bookstore if a brief change of setting is needed after the library session, while staying in a quiet workspace.\"],\n    [\"plaza\", \"16:10\", \"none\", \"transit\", \"shortest\", \"Return to the plaza after the study block and finish the afternoon with no added spending.\" ]\n  ],\n  \"concepts\": [\n    [\"Library is the best free quiet option for a focused afternoon block, and the nearby bookstore works as a backup for short continuation periods.\", \"library, bookstore, quiet, free, focus\", \"library, bookstore\", \"14:00-16:30\"],\n    [\"For this benchmark window, staying within the plaza-library-bookstore area minimizes travel overhead and preserves concentration.\", \"plaza, library, bookstore, short travel\", \"plaza, library, bookstore\", \"14:00-16:30\"],\n    [\"Avoid paid workspaces unless the free quiet places are unavailable, because budget matters more than convenience here.\", \"budget, coworking, avoid spending\", \"the town\", \"14:00-16:30\"]\n  ]\n}\n"
+        },
+        "end_time": "16:07",
+        "end_location": "plaza",
+        "budget": 11.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      }
+    ],
+    "visits": [
+      {
+        "location": "plaza",
+        "time": 840,
+        "kind": "start"
+      },
+      {
+        "location": "library",
+        "time": 847,
+        "kind": "arrival"
+      },
+      {
+        "location": "library",
+        "time": 898,
+        "kind": "dwell"
+      },
+      {
+        "location": "bookstore",
+        "time": 901,
+        "kind": "arrival"
+      },
+      {
+        "location": "bookstore",
+        "time": 957,
+        "kind": "dwell"
+      },
+      {
+        "location": "library",
+        "time": 960,
+        "kind": "pass_through"
+      },
+      {
+        "location": "plaza",
+        "time": 967,
+        "kind": "arrival"
+      }
+    ],
+    "traversals": [
+      {
+        "from": "plaza",
+        "to": "library",
+        "arrive_time": 847,
+        "minutes": 7
+      },
+      {
+        "from": "library",
+        "to": "bookstore",
+        "arrive_time": 901,
+        "minutes": 3
+      },
+      {
+        "from": "bookstore",
+        "to": "library",
+        "arrive_time": 960,
+        "minutes": 3
+      },
+      {
+        "from": "library",
+        "to": "plaza",
+        "arrive_time": 967,
+        "minutes": 7
+      }
+    ],
+    "route_interruptions": [],
+    "replans": [],
+    "messages": [],
+    "interactions": [],
+    "entries": [
+      {
+        "location": "plaza",
+        "time": 840,
+        "kind": "start"
+      },
+      {
+        "location": "library",
+        "time": 848,
+        "kind": "enter"
+      },
+      {
+        "location": "bookstore",
+        "time": 902,
+        "kind": "enter"
+      }
+    ],
+    "services": [
+      {
+        "location": "bookstore",
+        "time": 907,
+        "cost": 7.0,
+        "budget_after": 11.0,
+        "service": "workspace_access"
+      }
+    ],
+    "purchases": [],
+    "abandonments": [],
+    "model_info": {
+      "provider": "fhl",
+      "model": "gpt-5.4-mini",
+      "wire_api": "responses",
+      "base_url": "https://www.fhl.mom",
+      "framework": "GATSim",
+      "framework_agent": "gatsim_official_planner",
+      "source_verified": true,
+      "source_repo": "https://github.com/qiliuchn/gatsim.git",
+      "source_commit": "3dc40248086cdfb1eca38d22b76b0edb5fe53ea6",
+      "integration_level": "adapted_official_planner",
+      "native_backend": false,
+      "verified_files": [
+        "gatsim/agent/llm_modules/llm.py",
+        "gatsim/agent/llm_modules/prompt_templates/generate_daily_activity_plan_v1.txt",
+        "gatsim/agent/llm_modules/prompt_templates/update_daily_activity_plan_v1.txt"
+      ],
+      "llm_telemetry_summary": {
+        "calls": 1,
+        "successful_calls": 1,
+        "failed_calls": 0,
+        "latency_seconds": 8.97,
+        "provider_usage_calls": 1,
+        "input_tokens": 8890,
+        "output_tokens": 404,
+        "total_tokens": 9294,
+        "usage_complete": true
+      }
+    },
+    "llm_telemetry": [
+      {
+        "call_index": 1,
+        "prompt_sha256": "1b8369d051f15fcd1964dccabd10e0ecff8f8650ae03f41dbfb63b222ec152ff",
+        "attempts": 1,
+        "latency_seconds": 8.97,
+        "input_chars": 14808,
+        "output_chars": 1747,
+        "input_tokens": 8890,
+        "output_tokens": 404,
+        "total_tokens": 9294,
+        "usage_source": "provider",
+        "success": true
+      }
+    ],
+    "metrics": {
+      "plan_plausibility": 1.0,
+      "trace_feasibility": 1.0,
+      "plausibility_feasibility_gap": 0.0,
+      "impossible_trace_rate": 0.0,
+      "city_false_continue": 0.0,
+      "goal_completion": 1.0,
+      "task_completion": 1.0,
+      "constraint_satisfaction": 1.0,
+      "process_success": null,
+      "feasibility_violation": 0.0,
+      "replanning_success": null,
+      "travel_efficiency": 0.35,
+      "budget_consistency": 1.0,
+      "intention_consistency": 1.0,
+      "social_appropriateness": null,
+      "done_state_loop_rate": 0.0,
+      "social_derailment_rate": 0.0
+    },
+    "conditions": [
+      {
+        "id": "choose_open_quiet_place",
+        "type": "visit_open_location",
+        "score": 1.0,
+        "weight": 0.35,
+        "role": "outcome",
+        "evidence": [
+          {
+            "location": "library",
+            "time": 848,
+            "kind": "presence"
+          },
+          {
+            "location": "library",
+            "time": 898,
+            "kind": "presence"
+          },
+          {
+            "location": "bookstore",
+            "time": 902,
+            "kind": "presence"
+          },
+          {
+            "location": "bookstore",
+            "time": 957,
+            "kind": "presence"
+          }
+        ]
+      },
+      {
+        "id": "complete_focus_block",
+        "type": "dwell_minutes",
+        "score": 1.0,
+        "weight": 0.3,
+        "role": "outcome",
+        "evidence": [
+          {
+            "location": "library",
+            "minutes": 50
+          },
+          {
+            "location": "bookstore",
+            "minutes": 50
+          }
+        ]
+      },
+      {
+        "id": "no_impossible_study_claim",
+        "type": "no_feasibility_violation",
+        "score": 1.0,
+        "weight": 0.2,
+        "role": "constraint",
+        "evidence": []
+      },
+      {
+        "id": "stay_within_budget",
+        "type": "budget_at_least",
+        "score": 1.0,
+        "weight": 0.15,
+        "role": "constraint",
+        "evidence": []
+      }
+    ],
+    "failure_taxonomy": {},
+    "final_state": {
+      "time": "16:07",
+      "location": "plaza",
+      "inside_location": null,
+      "budget": 11.0,
+      "entries": [
+        {
+          "location": "plaza",
+          "time": 840,
+          "kind": "start"
+        },
+        {
+          "location": "library",
+          "time": 848,
+          "kind": "enter"
+        },
+        {
+          "location": "bookstore",
+          "time": 902,
+          "kind": "enter"
+        }
+      ],
+      "services": [
+        {
+          "location": "bookstore",
+          "time": 907,
+          "cost": 7.0,
+          "budget_after": 11.0,
+          "service": "workspace_access"
+        }
+      ],
+      "purchases": [],
+      "abandonments": [],
+      "route_interruptions": [],
+      "replans": [],
+      "violations": []
+    }
+  },
+  {
+    "scenario_id": "paired_study_a",
+    "scenario_title": "Paired Quiet Study Block",
+    "family": "paired_disruption",
+    "agent_type": "generative_agents_official_planner",
+    "trace": [
+      {
+        "scenario_id": "paired_study_a",
+        "agent_type": "generative_agents_official_planner",
+        "step": 1,
+        "start_time": "14:00",
+        "start_location": "plaza",
+        "action": {
+          "kind": "move",
+          "target": "library",
+          "path": [
+            "plaza",
+            "library"
+          ],
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Generative Agents official adapter action",
+          "raw_response": "{\"reflection\":\"The library is the best free quiet option and should satisfy the focused work goal while preserving budget. I will go there within the allowed window and stay long enough to cover the required focus block.\",\"plan\":[{\"time\":\"14:00\",\"activity\":\"walk to library\",\"kind\":\"move\",\"target\":\"library\",\"path\":[\"plaza\",\"library\"]},{\"time\":\"14:07\",\"activity\":\"enter library\",\"kind\":\"enter\",\"target\":\"library\"},{\"time\":\"14:10\",\"activity\":\"focus on work\",\"kind\":\"dwell\",\"minutes\":70}]}"
+        },
+        "end_time": "14:07",
+        "end_location": "library",
+        "budget": 18.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_a",
+        "agent_type": "generative_agents_official_planner",
+        "step": 2,
+        "start_time": "14:07",
+        "start_location": "library",
+        "action": {
+          "kind": "enter",
+          "target": "library",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Generative Agents official adapter action",
+          "raw_response": "{\"reflection\":\"The library is the best free quiet option and should satisfy the focused work goal while preserving budget. I will go there within the allowed window and stay long enough to cover the required focus block.\",\"plan\":[{\"time\":\"14:00\",\"activity\":\"walk to library\",\"kind\":\"move\",\"target\":\"library\",\"path\":[\"plaza\",\"library\"]},{\"time\":\"14:07\",\"activity\":\"enter library\",\"kind\":\"enter\",\"target\":\"library\"},{\"time\":\"14:10\",\"activity\":\"focus on work\",\"kind\":\"dwell\",\"minutes\":70}]}"
+        },
+        "end_time": "14:08",
+        "end_location": "library",
+        "budget": 18.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_a",
+        "agent_type": "generative_agents_official_planner",
+        "step": 3,
+        "start_time": "14:08",
+        "start_location": "library",
+        "action": {
+          "kind": "dwell",
+          "target": null,
+          "path": null,
+          "minutes": 70,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Generative Agents official adapter action",
+          "raw_response": "{\"reflection\":\"The library is the best free quiet option and should satisfy the focused work goal while preserving budget. I will go there within the allowed window and stay long enough to cover the required focus block.\",\"plan\":[{\"time\":\"14:00\",\"activity\":\"walk to library\",\"kind\":\"move\",\"target\":\"library\",\"path\":[\"plaza\",\"library\"]},{\"time\":\"14:07\",\"activity\":\"enter library\",\"kind\":\"enter\",\"target\":\"library\"},{\"time\":\"14:10\",\"activity\":\"focus on work\",\"kind\":\"dwell\",\"minutes\":70}]}"
+        },
+        "end_time": "15:18",
+        "end_location": "library",
+        "budget": 18.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_a",
+        "agent_type": "generative_agents_official_planner",
+        "step": 4,
+        "start_time": "15:18",
+        "start_location": "library",
+        "action": {
+          "kind": "finish",
+          "target": null,
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Generative Agents adapted official plan exhausted",
+          "raw_response": "{\"reflection\":\"The library is the best free quiet option and should satisfy the focused work goal while preserving budget. I will go there within the allowed window and stay long enough to cover the required focus block.\",\"plan\":[{\"time\":\"14:00\",\"activity\":\"walk to library\",\"kind\":\"move\",\"target\":\"library\",\"path\":[\"plaza\",\"library\"]},{\"time\":\"14:07\",\"activity\":\"enter library\",\"kind\":\"enter\",\"target\":\"library\"},{\"time\":\"14:10\",\"activity\":\"focus on work\",\"kind\":\"dwell\",\"minutes\":70}]}"
+        },
+        "end_time": "15:18",
+        "end_location": "library",
+        "budget": 18.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      }
+    ],
+    "visits": [
+      {
+        "location": "plaza",
+        "time": 840,
+        "kind": "start"
+      },
+      {
+        "location": "library",
+        "time": 847,
+        "kind": "arrival"
+      },
+      {
+        "location": "library",
+        "time": 918,
+        "kind": "dwell"
+      }
+    ],
+    "traversals": [
+      {
+        "from": "plaza",
+        "to": "library",
+        "arrive_time": 847,
+        "minutes": 7
+      }
+    ],
+    "route_interruptions": [],
+    "replans": [],
+    "messages": [],
+    "interactions": [],
+    "entries": [
+      {
+        "location": "plaza",
+        "time": 840,
+        "kind": "start"
+      },
+      {
+        "location": "library",
+        "time": 848,
+        "kind": "enter"
+      }
+    ],
+    "services": [],
+    "purchases": [],
+    "abandonments": [],
+    "model_info": {
+      "provider": "fhl",
+      "model": "gpt-5.4-mini",
+      "wire_api": "responses",
+      "base_url": "https://www.fhl.mom",
+      "framework": "Generative Agents",
+      "framework_agent": "generative_agents_official_planner",
+      "source_verified": true,
+      "source_repo": "https://github.com/joonspk-research/generative_agents.git",
+      "source_commit": "fe05a71d3e4ed7d10bf68aa4eda6dd995ec070f4",
+      "integration_level": "adapted_official_memory_planner",
+      "native_backend": false,
+      "verified_files": [
+        "reverie/backend_server/persona/cognitive_modules/plan.py",
+        "reverie/backend_server/persona/prompt_template/gpt_structure.py",
+        "reverie/backend_server/persona/prompt_template/run_gpt_prompt.py",
+        "reverie/backend_server/persona/prompt_template/v2/daily_planning_v6.txt",
+        "reverie/backend_server/persona/prompt_template/v2/new_decomp_schedule_v1.txt",
+        "reverie/backend_server/persona/prompt_template/v2/insight_and_evidence_v1.txt"
+      ],
+      "llm_telemetry_summary": {
+        "calls": 1,
+        "successful_calls": 1,
+        "failed_calls": 0,
+        "latency_seconds": 10.947,
+        "provider_usage_calls": 1,
+        "input_tokens": 6646,
+        "output_tokens": 117,
+        "total_tokens": 6763,
+        "usage_complete": true
+      }
+    },
+    "llm_telemetry": [
+      {
+        "call_index": 1,
+        "prompt_sha256": "e7af602bfee5edefa0cb85a1e444ab9bff39b6fa21b42976c0f30ebfe42bddd0",
+        "attempts": 1,
+        "latency_seconds": 10.947,
+        "input_chars": 5012,
+        "output_chars": 487,
+        "input_tokens": 6646,
+        "output_tokens": 117,
+        "total_tokens": 6763,
+        "usage_source": "provider",
+        "success": true
+      }
+    ],
+    "metrics": {
+      "plan_plausibility": 1.0,
+      "trace_feasibility": 1.0,
+      "plausibility_feasibility_gap": 0.0,
+      "impossible_trace_rate": 0.0,
+      "city_false_continue": 0.0,
+      "goal_completion": 1.0,
+      "task_completion": 1.0,
+      "constraint_satisfaction": 1.0,
+      "process_success": null,
+      "feasibility_violation": 0.0,
+      "replanning_success": null,
+      "travel_efficiency": 1.0,
+      "budget_consistency": 1.0,
+      "intention_consistency": 1.0,
+      "social_appropriateness": null,
+      "done_state_loop_rate": 0.0,
+      "social_derailment_rate": 0.0
+    },
+    "conditions": [
+      {
+        "id": "choose_open_quiet_place",
+        "type": "visit_open_location",
+        "score": 1.0,
+        "weight": 0.35,
+        "role": "outcome",
+        "evidence": [
+          {
+            "location": "library",
+            "time": 848,
+            "kind": "presence"
+          },
+          {
+            "location": "library",
+            "time": 918,
+            "kind": "presence"
+          }
+        ]
+      },
+      {
+        "id": "complete_focus_block",
+        "type": "dwell_minutes",
+        "score": 1.0,
+        "weight": 0.3,
+        "role": "outcome",
+        "evidence": [
+          {
+            "location": "library",
+            "minutes": 70
+          }
+        ]
+      },
+      {
+        "id": "no_impossible_study_claim",
+        "type": "no_feasibility_violation",
+        "score": 1.0,
+        "weight": 0.2,
+        "role": "constraint",
+        "evidence": []
+      },
+      {
+        "id": "stay_within_budget",
+        "type": "budget_at_least",
+        "score": 1.0,
+        "weight": 0.15,
+        "role": "constraint",
+        "evidence": []
+      }
+    ],
+    "failure_taxonomy": {},
+    "final_state": {
+      "time": "15:18",
+      "location": "library",
+      "inside_location": "library",
+      "budget": 18.0,
+      "entries": [
+        {
+          "location": "plaza",
+          "time": 840,
+          "kind": "start"
+        },
+        {
+          "location": "library",
+          "time": 848,
+          "kind": "enter"
+        }
+      ],
+      "services": [],
+      "purchases": [],
+      "abandonments": [],
+      "route_interruptions": [],
+      "replans": [],
+      "violations": []
+    }
+  },
+  {
+    "scenario_id": "paired_study_a",
+    "scenario_title": "Paired Quiet Study Block",
+    "family": "paired_disruption",
+    "agent_type": "agentsociety_official_plan_blocks",
+    "trace": [
+      {
+        "scenario_id": "paired_study_a",
+        "agent_type": "agentsociety_official_plan_blocks",
+        "step": 1,
+        "start_time": "14:00",
+        "start_location": "plaza",
+        "action": {
+          "kind": "move",
+          "target": "library",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "AgentSociety official plan step: Walk to the library from the plaza",
+          "raw_response": "{\n  \"plan\": {\n    \"target\": \"library\",\n    \"steps\": [\n      {\n        \"intention\": \"Walk to the library from the plaza\",\n        \"type\": \"mobility\",\n        \"action\": {\n          \"kind\": \"move\",\n          \"target\": \"library\",\n          \"path\": null\n        }\n      },\n      {\n        \"intention\": \"Enter the library\",\n        \"type\": \"mobility\",\n        \"action\": {\n          \"kind\": \"enter\",\n          \"target\": \"library\"\n        }\n      },\n      {\n        \"intention\": \"Work quietly for at least 50 minutes\",\n        \"type\": \"other\",\n        \"action\": {\n          \"kind\": \"dwell\",\n          \"minutes\": 50\n        }\n      }\n    ]\n  }\n}\n"
+        },
+        "end_time": "14:07",
+        "end_location": "library",
+        "budget": 18.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_a",
+        "agent_type": "agentsociety_official_plan_blocks",
+        "step": 2,
+        "start_time": "14:07",
+        "start_location": "library",
+        "action": {
+          "kind": "enter",
+          "target": "library",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "AgentSociety official plan step: Enter the library",
+          "raw_response": "{\n  \"plan\": {\n    \"target\": \"library\",\n    \"steps\": [\n      {\n        \"intention\": \"Walk to the library from the plaza\",\n        \"type\": \"mobility\",\n        \"action\": {\n          \"kind\": \"move\",\n          \"target\": \"library\",\n          \"path\": null\n        }\n      },\n      {\n        \"intention\": \"Enter the library\",\n        \"type\": \"mobility\",\n        \"action\": {\n          \"kind\": \"enter\",\n          \"target\": \"library\"\n        }\n      },\n      {\n        \"intention\": \"Work quietly for at least 50 minutes\",\n        \"type\": \"other\",\n        \"action\": {\n          \"kind\": \"dwell\",\n          \"minutes\": 50\n        }\n      }\n    ]\n  }\n}\n"
+        },
+        "end_time": "14:08",
+        "end_location": "library",
+        "budget": 18.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_a",
+        "agent_type": "agentsociety_official_plan_blocks",
+        "step": 3,
+        "start_time": "14:08",
+        "start_location": "library",
+        "action": {
+          "kind": "dwell",
+          "target": null,
+          "path": null,
+          "minutes": 50,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "AgentSociety official plan step: Work quietly for at least 50 minutes",
+          "raw_response": "{\n  \"plan\": {\n    \"target\": \"library\",\n    \"steps\": [\n      {\n        \"intention\": \"Walk to the library from the plaza\",\n        \"type\": \"mobility\",\n        \"action\": {\n          \"kind\": \"move\",\n          \"target\": \"library\",\n          \"path\": null\n        }\n      },\n      {\n        \"intention\": \"Enter the library\",\n        \"type\": \"mobility\",\n        \"action\": {\n          \"kind\": \"enter\",\n          \"target\": \"library\"\n        }\n      },\n      {\n        \"intention\": \"Work quietly for at least 50 minutes\",\n        \"type\": \"other\",\n        \"action\": {\n          \"kind\": \"dwell\",\n          \"minutes\": 50\n        }\n      }\n    ]\n  }\n}\n"
+        },
+        "end_time": "14:58",
+        "end_location": "library",
+        "budget": 18.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_a",
+        "agent_type": "agentsociety_official_plan_blocks",
+        "step": 4,
+        "start_time": "14:58",
+        "start_location": "library",
+        "action": {
+          "kind": "finish",
+          "target": null,
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "AgentSociety adapted official plan exhausted",
+          "raw_response": "{\n  \"plan\": {\n    \"target\": \"library\",\n    \"steps\": [\n      {\n        \"intention\": \"Walk to the library from the plaza\",\n        \"type\": \"mobility\",\n        \"action\": {\n          \"kind\": \"move\",\n          \"target\": \"library\",\n          \"path\": null\n        }\n      },\n      {\n        \"intention\": \"Enter the library\",\n        \"type\": \"mobility\",\n        \"action\": {\n          \"kind\": \"enter\",\n          \"target\": \"library\"\n        }\n      },\n      {\n        \"intention\": \"Work quietly for at least 50 minutes\",\n        \"type\": \"other\",\n        \"action\": {\n          \"kind\": \"dwell\",\n          \"minutes\": 50\n        }\n      }\n    ]\n  }\n}\n"
+        },
+        "end_time": "14:58",
+        "end_location": "library",
+        "budget": 18.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      }
+    ],
+    "visits": [
+      {
+        "location": "plaza",
+        "time": 840,
+        "kind": "start"
+      },
+      {
+        "location": "library",
+        "time": 847,
+        "kind": "arrival"
+      },
+      {
+        "location": "library",
+        "time": 898,
+        "kind": "dwell"
+      }
+    ],
+    "traversals": [
+      {
+        "from": "plaza",
+        "to": "library",
+        "arrive_time": 847,
+        "minutes": 7
+      }
+    ],
+    "route_interruptions": [],
+    "replans": [],
+    "messages": [],
+    "interactions": [],
+    "entries": [
+      {
+        "location": "plaza",
+        "time": 840,
+        "kind": "start"
+      },
+      {
+        "location": "library",
+        "time": 848,
+        "kind": "enter"
+      }
+    ],
+    "services": [],
+    "purchases": [],
+    "abandonments": [],
+    "model_info": {
+      "provider": "fhl",
+      "model": "gpt-5.4-mini",
+      "wire_api": "responses",
+      "base_url": "https://www.fhl.mom",
+      "framework": "AgentSociety",
+      "framework_agent": "agentsociety_official_plan_blocks",
+      "source_verified": true,
+      "source_repo": "https://github.com/tsinghua-fib-lab/AgentSociety.git",
+      "source_commit": "c8001a42409eb37be7cf745395bbe2269e7d83e0",
+      "integration_level": "adapted_official_plan_blocks",
+      "native_backend": false,
+      "verified_files": [
+        "packages/agentsociety/agentsociety/agent/prompt.py",
+        "packages/agentsociety/agentsociety/cityagent/blocks/plan_block.py",
+        "packages/agentsociety/agentsociety/cityagent/blocks/mobility_block.py",
+        "packages/agentsociety/agentsociety/cityagent/blocks/needs_block.py"
+      ],
+      "llm_telemetry_summary": {
+        "calls": 2,
+        "successful_calls": 2,
+        "failed_calls": 0,
+        "latency_seconds": 14.603,
+        "provider_usage_calls": 2,
+        "input_tokens": 13736,
+        "output_tokens": 311,
+        "total_tokens": 14047,
+        "usage_complete": true
+      }
+    },
+    "llm_telemetry": [
+      {
+        "call_index": 1,
+        "prompt_sha256": "b5746d05c5a53cbf52a7a2009528456662eb2fdf2608a4f4d1fdf4dedec9430f",
+        "attempts": 1,
+        "latency_seconds": 9.055,
+        "input_chars": 6012,
+        "output_chars": 528,
+        "input_tokens": 6920,
+        "output_tokens": 140,
+        "total_tokens": 7060,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 2,
+        "prompt_sha256": "51a148f7f53be05f11f020517de9ccf11c5d0905ef5a619a9be39784965cf680",
+        "attempts": 1,
+        "latency_seconds": 5.548,
+        "input_chars": 5985,
+        "output_chars": 637,
+        "input_tokens": 6816,
+        "output_tokens": 171,
+        "total_tokens": 6987,
+        "usage_source": "provider",
+        "success": true
+      }
+    ],
+    "metrics": {
+      "plan_plausibility": 1.0,
+      "trace_feasibility": 1.0,
+      "plausibility_feasibility_gap": 0.0,
+      "impossible_trace_rate": 0.0,
+      "city_false_continue": 0.0,
+      "goal_completion": 1.0,
+      "task_completion": 1.0,
+      "constraint_satisfaction": 1.0,
+      "process_success": null,
+      "feasibility_violation": 0.0,
+      "replanning_success": null,
+      "travel_efficiency": 1.0,
+      "budget_consistency": 1.0,
+      "intention_consistency": 1.0,
+      "social_appropriateness": null,
+      "done_state_loop_rate": 0.0,
+      "social_derailment_rate": 0.0
+    },
+    "conditions": [
+      {
+        "id": "choose_open_quiet_place",
+        "type": "visit_open_location",
+        "score": 1.0,
+        "weight": 0.35,
+        "role": "outcome",
+        "evidence": [
+          {
+            "location": "library",
+            "time": 848,
+            "kind": "presence"
+          },
+          {
+            "location": "library",
+            "time": 898,
+            "kind": "presence"
+          }
+        ]
+      },
+      {
+        "id": "complete_focus_block",
+        "type": "dwell_minutes",
+        "score": 1.0,
+        "weight": 0.3,
+        "role": "outcome",
+        "evidence": [
+          {
+            "location": "library",
+            "minutes": 50
+          }
+        ]
+      },
+      {
+        "id": "no_impossible_study_claim",
+        "type": "no_feasibility_violation",
+        "score": 1.0,
+        "weight": 0.2,
+        "role": "constraint",
+        "evidence": []
+      },
+      {
+        "id": "stay_within_budget",
+        "type": "budget_at_least",
+        "score": 1.0,
+        "weight": 0.15,
+        "role": "constraint",
+        "evidence": []
+      }
+    ],
+    "failure_taxonomy": {},
+    "final_state": {
+      "time": "14:58",
+      "location": "library",
+      "inside_location": "library",
+      "budget": 18.0,
+      "entries": [
+        {
+          "location": "plaza",
+          "time": 840,
+          "kind": "start"
+        },
+        {
+          "location": "library",
+          "time": 848,
+          "kind": "enter"
+        }
+      ],
+      "services": [],
+      "purchases": [],
+      "abandonments": [],
+      "route_interruptions": [],
+      "replans": [],
+      "violations": []
+    }
+  },
+  {
+    "scenario_id": "paired_study_b",
+    "scenario_title": "Paired Quiet Study Block",
+    "family": "paired_disruption",
+    "agent_type": "gatsim_official_planner",
+    "trace": [
+      {
+        "scenario_id": "paired_study_b",
+        "agent_type": "gatsim_official_planner",
+        "step": 1,
+        "start_time": "14:00",
+        "start_location": "plaza",
+        "action": {
+          "kind": "move",
+          "target": "bookstore",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "follow GATSim official activity-plan destination",
+          "raw_response": "{\"reflection\":\"The planned 14:00 library work block is no longer feasible because the library is closed until 16:00. I still need a quiet, free option to preserve the focused work goal, so I should switch to another open quiet facility now rather than wait and risk losing the required 50-minute block.\",\"plan\":[[\"bookstore\",\"14:00\",\"60\",\"transit\",\"shortest\",\"Go from the plaza to the bookstore and begin a focused work block in a quiet setting.\"],[\"bookstore\",\"15:00\",\"60\",\"transit\",\"none\",\"Continue focused work at the bookstore to complete at least 50 minutes of uninterrupted study.\"],[\"plaza\",\"16:05\",\"none\",\"transit\",\"shortest\",\"Return to the plaza after the work block finishes.\" ]],\"concepts\":[[\"Library closure makes bookstore the best nearby free quiet fallback during the afternoon\",\"library, bookstore, quiet fallback\",\"library, bookstore\",\"14:00-16:00\"]]} \n"
+        },
+        "end_time": "14:23",
+        "end_location": "bookstore",
+        "budget": 18.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_b",
+        "agent_type": "gatsim_official_planner",
+        "step": 2,
+        "start_time": "14:23",
+        "start_location": "bookstore",
+        "action": {
+          "kind": "enter",
+          "target": "bookstore",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "enter the GATSim activity destination",
+          "raw_response": "{\"reflection\":\"The planned 14:00 library work block is no longer feasible because the library is closed until 16:00. I still need a quiet, free option to preserve the focused work goal, so I should switch to another open quiet facility now rather than wait and risk losing the required 50-minute block.\",\"plan\":[[\"bookstore\",\"14:00\",\"60\",\"transit\",\"shortest\",\"Go from the plaza to the bookstore and begin a focused work block in a quiet setting.\"],[\"bookstore\",\"15:00\",\"60\",\"transit\",\"none\",\"Continue focused work at the bookstore to complete at least 50 minutes of uninterrupted study.\"],[\"plaza\",\"16:05\",\"none\",\"transit\",\"shortest\",\"Return to the plaza after the work block finishes.\" ]],\"concepts\":[[\"Library closure makes bookstore the best nearby free quiet fallback during the afternoon\",\"library, bookstore, quiet fallback\",\"library, bookstore\",\"14:00-16:00\"]]} \n"
+        },
+        "end_time": "14:24",
+        "end_location": "bookstore",
+        "budget": 18.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_b",
+        "agent_type": "gatsim_official_planner",
+        "step": 3,
+        "start_time": "14:24",
+        "start_location": "bookstore",
+        "action": {
+          "kind": "use_service",
+          "target": "bookstore",
+          "path": null,
+          "minutes": 5,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "workspace_access",
+          "reason": "pay for access before the GATSim-planned activity",
+          "raw_response": "{\"reflection\":\"The planned 14:00 library work block is no longer feasible because the library is closed until 16:00. I still need a quiet, free option to preserve the focused work goal, so I should switch to another open quiet facility now rather than wait and risk losing the required 50-minute block.\",\"plan\":[[\"bookstore\",\"14:00\",\"60\",\"transit\",\"shortest\",\"Go from the plaza to the bookstore and begin a focused work block in a quiet setting.\"],[\"bookstore\",\"15:00\",\"60\",\"transit\",\"none\",\"Continue focused work at the bookstore to complete at least 50 minutes of uninterrupted study.\"],[\"plaza\",\"16:05\",\"none\",\"transit\",\"shortest\",\"Return to the plaza after the work block finishes.\" ]],\"concepts\":[[\"Library closure makes bookstore the best nearby free quiet fallback during the afternoon\",\"library, bookstore, quiet fallback\",\"library, bookstore\",\"14:00-16:00\"]]} \n"
+        },
+        "end_time": "14:29",
+        "end_location": "bookstore",
+        "budget": 11.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_b",
+        "agent_type": "gatsim_official_planner",
+        "step": 4,
+        "start_time": "14:29",
+        "start_location": "bookstore",
+        "action": {
+          "kind": "dwell",
+          "target": null,
+          "path": null,
+          "minutes": 50,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "complete the GATSim-planned activity duration required by the private goal",
+          "raw_response": "{\"reflection\":\"The planned 14:00 library work block is no longer feasible because the library is closed until 16:00. I still need a quiet, free option to preserve the focused work goal, so I should switch to another open quiet facility now rather than wait and risk losing the required 50-minute block.\",\"plan\":[[\"bookstore\",\"14:00\",\"60\",\"transit\",\"shortest\",\"Go from the plaza to the bookstore and begin a focused work block in a quiet setting.\"],[\"bookstore\",\"15:00\",\"60\",\"transit\",\"none\",\"Continue focused work at the bookstore to complete at least 50 minutes of uninterrupted study.\"],[\"plaza\",\"16:05\",\"none\",\"transit\",\"shortest\",\"Return to the plaza after the work block finishes.\" ]],\"concepts\":[[\"Library closure makes bookstore the best nearby free quiet fallback during the afternoon\",\"library, bookstore, quiet fallback\",\"library, bookstore\",\"14:00-16:00\"]]} \n"
+        },
+        "end_time": "15:19",
+        "end_location": "bookstore",
+        "budget": 11.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_b",
+        "agent_type": "gatsim_official_planner",
+        "step": 5,
+        "start_time": "15:19",
+        "start_location": "bookstore",
+        "action": {
+          "kind": "move",
+          "target": "plaza",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "follow GATSim official activity-plan destination",
+          "raw_response": "{\"reflection\":\"The planned 14:00 library work block is no longer feasible because the library is closed until 16:00. I still need a quiet, free option to preserve the focused work goal, so I should switch to another open quiet facility now rather than wait and risk losing the required 50-minute block.\",\"plan\":[[\"bookstore\",\"14:00\",\"60\",\"transit\",\"shortest\",\"Go from the plaza to the bookstore and begin a focused work block in a quiet setting.\"],[\"bookstore\",\"15:00\",\"60\",\"transit\",\"none\",\"Continue focused work at the bookstore to complete at least 50 minutes of uninterrupted study.\"],[\"plaza\",\"16:05\",\"none\",\"transit\",\"shortest\",\"Return to the plaza after the work block finishes.\" ]],\"concepts\":[[\"Library closure makes bookstore the best nearby free quiet fallback during the afternoon\",\"library, bookstore, quiet fallback\",\"library, bookstore\",\"14:00-16:00\"]]} \n"
+        },
+        "end_time": "15:42",
+        "end_location": "plaza",
+        "budget": 11.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_b",
+        "agent_type": "gatsim_official_planner",
+        "step": 6,
+        "start_time": "15:42",
+        "start_location": "plaza",
+        "action": {
+          "kind": "enter",
+          "target": "plaza",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "enter the GATSim activity destination",
+          "raw_response": "{\"reflection\":\"The planned 14:00 library work block is no longer feasible because the library is closed until 16:00. I still need a quiet, free option to preserve the focused work goal, so I should switch to another open quiet facility now rather than wait and risk losing the required 50-minute block.\",\"plan\":[[\"bookstore\",\"14:00\",\"60\",\"transit\",\"shortest\",\"Go from the plaza to the bookstore and begin a focused work block in a quiet setting.\"],[\"bookstore\",\"15:00\",\"60\",\"transit\",\"none\",\"Continue focused work at the bookstore to complete at least 50 minutes of uninterrupted study.\"],[\"plaza\",\"16:05\",\"none\",\"transit\",\"shortest\",\"Return to the plaza after the work block finishes.\" ]],\"concepts\":[[\"Library closure makes bookstore the best nearby free quiet fallback during the afternoon\",\"library, bookstore, quiet fallback\",\"library, bookstore\",\"14:00-16:00\"]]} \n"
+        },
+        "end_time": "15:43",
+        "end_location": "plaza",
+        "budget": 11.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_b",
+        "agent_type": "gatsim_official_planner",
+        "step": 7,
+        "start_time": "15:43",
+        "start_location": "plaza",
+        "action": {
+          "kind": "finish",
+          "target": null,
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "GATSim official activity plan exhausted",
+          "raw_response": "{\"reflection\":\"The planned 14:00 library work block is no longer feasible because the library is closed until 16:00. I still need a quiet, free option to preserve the focused work goal, so I should switch to another open quiet facility now rather than wait and risk losing the required 50-minute block.\",\"plan\":[[\"bookstore\",\"14:00\",\"60\",\"transit\",\"shortest\",\"Go from the plaza to the bookstore and begin a focused work block in a quiet setting.\"],[\"bookstore\",\"15:00\",\"60\",\"transit\",\"none\",\"Continue focused work at the bookstore to complete at least 50 minutes of uninterrupted study.\"],[\"plaza\",\"16:05\",\"none\",\"transit\",\"shortest\",\"Return to the plaza after the work block finishes.\" ]],\"concepts\":[[\"Library closure makes bookstore the best nearby free quiet fallback during the afternoon\",\"library, bookstore, quiet fallback\",\"library, bookstore\",\"14:00-16:00\"]]} \n"
+        },
+        "end_time": "15:43",
+        "end_location": "plaza",
+        "budget": 11.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      }
+    ],
+    "visits": [
+      {
+        "location": "plaza",
+        "time": 840,
+        "kind": "start"
+      },
+      {
+        "location": "cafe_central",
+        "time": 844,
+        "kind": "pass_through"
+      },
+      {
+        "location": "office",
+        "time": 850,
+        "kind": "pass_through"
+      },
+      {
+        "location": "coworking",
+        "time": 858,
+        "kind": "pass_through"
+      },
+      {
+        "location": "bookstore",
+        "time": 863,
+        "kind": "arrival"
+      },
+      {
+        "location": "bookstore",
+        "time": 919,
+        "kind": "dwell"
+      },
+      {
+        "location": "coworking",
+        "time": 924,
+        "kind": "pass_through"
+      },
+      {
+        "location": "office",
+        "time": 932,
+        "kind": "pass_through"
+      },
+      {
+        "location": "cafe_central",
+        "time": 938,
+        "kind": "pass_through"
+      },
+      {
+        "location": "plaza",
+        "time": 942,
+        "kind": "arrival"
+      }
+    ],
+    "traversals": [
+      {
+        "from": "plaza",
+        "to": "cafe_central",
+        "arrive_time": 844,
+        "minutes": 4
+      },
+      {
+        "from": "cafe_central",
+        "to": "office",
+        "arrive_time": 850,
+        "minutes": 6
+      },
+      {
+        "from": "office",
+        "to": "coworking",
+        "arrive_time": 858,
+        "minutes": 8
+      },
+      {
+        "from": "coworking",
+        "to": "bookstore",
+        "arrive_time": 863,
+        "minutes": 5
+      },
+      {
+        "from": "bookstore",
+        "to": "coworking",
+        "arrive_time": 924,
+        "minutes": 5
+      },
+      {
+        "from": "coworking",
+        "to": "office",
+        "arrive_time": 932,
+        "minutes": 8
+      },
+      {
+        "from": "office",
+        "to": "cafe_central",
+        "arrive_time": 938,
+        "minutes": 6
+      },
+      {
+        "from": "cafe_central",
+        "to": "plaza",
+        "arrive_time": 942,
+        "minutes": 4
+      }
+    ],
+    "route_interruptions": [],
+    "replans": [],
+    "messages": [],
+    "interactions": [],
+    "entries": [
+      {
+        "location": "plaza",
+        "time": 840,
+        "kind": "start"
+      },
+      {
+        "location": "bookstore",
+        "time": 864,
+        "kind": "enter"
+      },
+      {
+        "location": "plaza",
+        "time": 943,
+        "kind": "enter"
+      }
+    ],
+    "services": [
+      {
+        "location": "bookstore",
+        "time": 869,
+        "cost": 7.0,
+        "budget_after": 11.0,
+        "service": "workspace_access"
+      }
+    ],
+    "purchases": [],
+    "abandonments": [],
+    "model_info": {
+      "provider": "fhl",
+      "model": "gpt-5.4-mini",
+      "wire_api": "responses",
+      "base_url": "https://www.fhl.mom",
+      "framework": "GATSim",
+      "framework_agent": "gatsim_official_planner",
+      "source_verified": true,
+      "source_repo": "https://github.com/qiliuchn/gatsim.git",
+      "source_commit": "3dc40248086cdfb1eca38d22b76b0edb5fe53ea6",
+      "integration_level": "adapted_official_planner",
+      "native_backend": false,
+      "verified_files": [
+        "gatsim/agent/llm_modules/llm.py",
+        "gatsim/agent/llm_modules/prompt_templates/generate_daily_activity_plan_v1.txt",
+        "gatsim/agent/llm_modules/prompt_templates/update_daily_activity_plan_v1.txt"
+      ],
+      "llm_telemetry_summary": {
+        "calls": 2,
+        "successful_calls": 2,
+        "failed_calls": 0,
+        "latency_seconds": 14.765,
+        "provider_usage_calls": 2,
+        "input_tokens": 18204,
+        "output_tokens": 618,
+        "total_tokens": 18822,
+        "usage_complete": true
+      }
+    },
+    "llm_telemetry": [
+      {
+        "call_index": 1,
+        "prompt_sha256": "1b8369d051f15fcd1964dccabd10e0ecff8f8650ae03f41dbfb63b222ec152ff",
+        "attempts": 1,
+        "latency_seconds": 8.861,
+        "input_chars": 14808,
+        "output_chars": 1693,
+        "input_tokens": 8890,
+        "output_tokens": 413,
+        "total_tokens": 9303,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 2,
+        "prompt_sha256": "dcc0ac0359097c833f96655e2665ab6225901b0ad5be1d81d4247b53b50efcca",
+        "attempts": 1,
+        "latency_seconds": 5.904,
+        "input_chars": 16535,
+        "output_chars": 870,
+        "input_tokens": 9314,
+        "output_tokens": 205,
+        "total_tokens": 9519,
+        "usage_source": "provider",
+        "success": true
+      }
+    ],
+    "metrics": {
+      "plan_plausibility": 1.0,
+      "trace_feasibility": 1.0,
+      "plausibility_feasibility_gap": 0.0,
+      "impossible_trace_rate": 0.0,
+      "city_false_continue": 0.0,
+      "goal_completion": 1.0,
+      "task_completion": 1.0,
+      "constraint_satisfaction": 1.0,
+      "process_success": null,
+      "feasibility_violation": 0.0,
+      "replanning_success": null,
+      "travel_efficiency": 0.152,
+      "budget_consistency": 1.0,
+      "intention_consistency": 1.0,
+      "social_appropriateness": null,
+      "done_state_loop_rate": 0.0,
+      "social_derailment_rate": 0.0
+    },
+    "conditions": [
+      {
+        "id": "choose_open_quiet_place",
+        "type": "visit_open_location",
+        "score": 1.0,
+        "weight": 0.35,
+        "role": "outcome",
+        "evidence": [
+          {
+            "location": "bookstore",
+            "time": 864,
+            "kind": "presence"
+          },
+          {
+            "location": "bookstore",
+            "time": 919,
+            "kind": "presence"
+          }
+        ]
+      },
+      {
+        "id": "complete_focus_block",
+        "type": "dwell_minutes",
+        "score": 1.0,
+        "weight": 0.3,
+        "role": "outcome",
+        "evidence": [
+          {
+            "location": "bookstore",
+            "minutes": 50
+          }
+        ]
+      },
+      {
+        "id": "no_impossible_study_claim",
+        "type": "no_feasibility_violation",
+        "score": 1.0,
+        "weight": 0.2,
+        "role": "constraint",
+        "evidence": []
+      },
+      {
+        "id": "stay_within_budget",
+        "type": "budget_at_least",
+        "score": 1.0,
+        "weight": 0.15,
+        "role": "constraint",
+        "evidence": []
+      }
+    ],
+    "failure_taxonomy": {},
+    "final_state": {
+      "time": "15:43",
+      "location": "plaza",
+      "inside_location": "plaza",
+      "budget": 11.0,
+      "entries": [
+        {
+          "location": "plaza",
+          "time": 840,
+          "kind": "start"
+        },
+        {
+          "location": "bookstore",
+          "time": 864,
+          "kind": "enter"
+        },
+        {
+          "location": "plaza",
+          "time": 943,
+          "kind": "enter"
+        }
+      ],
+      "services": [
+        {
+          "location": "bookstore",
+          "time": 869,
+          "cost": 7.0,
+          "budget_after": 11.0,
+          "service": "workspace_access"
+        }
+      ],
+      "purchases": [],
+      "abandonments": [],
+      "route_interruptions": [],
+      "replans": [],
+      "violations": []
+    }
+  },
+  {
+    "scenario_id": "paired_study_b",
+    "scenario_title": "Paired Quiet Study Block",
+    "family": "paired_disruption",
+    "agent_type": "generative_agents_official_planner",
+    "trace": [
+      {
+        "scenario_id": "paired_study_b",
+        "agent_type": "generative_agents_official_planner",
+        "step": 1,
+        "start_time": "14:00",
+        "start_location": "plaza",
+        "action": {
+          "kind": "move",
+          "target": "bookstore",
+          "path": [
+            "plaza"
+          ],
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Generative Agents official adapter action",
+          "raw_response": "{\"reflection\":\"The library is closed until 16:00, so the schedule should avoid it at the start. A nearby open quiet place is the best choice for the first focus block, then I can continue there long enough to satisfy the study goal while staying within budget.\",\"plan\":[{\"time\":\"14:00\",\"activity\":\"walk to bookstore\",\"kind\":\"move\",\"target\":\"bookstore\",\"path\":[\"plaza\"]},{\"time\":\"14:05\",\"activity\":\"enter bookstore\",\"kind\":\"enter\",\"target\":\"bookstore\"},{\"time\":\"14:05\",\"activity\":\"focus work at bookstore\",\"kind\":\"dwell\",\"minutes\":55}]}"
+        },
+        "end_time": "14:00",
+        "end_location": "plaza",
+        "budget": 18.0,
+        "violations": [
+          {
+            "kind": "invalid_explicit_path",
+            "from": "plaza",
+            "to": "bookstore",
+            "path": [
+              "plaza"
+            ]
+          }
+        ],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_b",
+        "agent_type": "generative_agents_official_planner",
+        "step": 2,
+        "start_time": "14:00",
+        "start_location": "plaza",
+        "action": {
+          "kind": "move",
+          "target": "bookstore",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Generative Agents official adapter action",
+          "raw_response": "{\"reflection\":\"The library is closed until 16:00, so aria should use the nearest reliable quiet fallback first and avoid any invalid path assumptions.\",\"plan\":[{\"time\":\"14:00\",\"activity\":\"walk to bookstore via a valid route\",\"kind\":\"move\",\"target\":\"bookstore\",\"path\":null},{\"time\":\"14:10\",\"activity\":\"enter bookstore\",\"kind\":\"enter\",\"target\":\"bookstore\"},{\"time\":\"14:15\",\"activity\":\"dwell quietly at bookstore\",\"kind\":\"dwell\",\"minutes\":50},{\"time\":\"15:05\",\"activity\":\"continue quiet work at bookstore\",\"kind\":\"dwell\",\"minutes\":55},{\"time\":\"16:00\",\"activity\":\"reassess availability and remain if still focused\",\"kind\":\"dwell\",\"minutes\":30}]}"
+        },
+        "end_time": "14:23",
+        "end_location": "bookstore",
+        "budget": 18.0,
+        "violations": [
+          {
+            "kind": "invalid_explicit_path",
+            "from": "plaza",
+            "to": "bookstore",
+            "path": [
+              "plaza"
+            ]
+          }
+        ],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_b",
+        "agent_type": "generative_agents_official_planner",
+        "step": 3,
+        "start_time": "14:23",
+        "start_location": "bookstore",
+        "action": {
+          "kind": "enter",
+          "target": "bookstore",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Generative Agents official adapter action",
+          "raw_response": "{\"reflection\":\"The library is closed until 16:00, so aria should use the nearest reliable quiet fallback first and avoid any invalid path assumptions.\",\"plan\":[{\"time\":\"14:00\",\"activity\":\"walk to bookstore via a valid route\",\"kind\":\"move\",\"target\":\"bookstore\",\"path\":null},{\"time\":\"14:10\",\"activity\":\"enter bookstore\",\"kind\":\"enter\",\"target\":\"bookstore\"},{\"time\":\"14:15\",\"activity\":\"dwell quietly at bookstore\",\"kind\":\"dwell\",\"minutes\":50},{\"time\":\"15:05\",\"activity\":\"continue quiet work at bookstore\",\"kind\":\"dwell\",\"minutes\":55},{\"time\":\"16:00\",\"activity\":\"reassess availability and remain if still focused\",\"kind\":\"dwell\",\"minutes\":30}]}"
+        },
+        "end_time": "14:24",
+        "end_location": "bookstore",
+        "budget": 18.0,
+        "violations": [
+          {
+            "kind": "invalid_explicit_path",
+            "from": "plaza",
+            "to": "bookstore",
+            "path": [
+              "plaza"
+            ]
+          }
+        ],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_b",
+        "agent_type": "generative_agents_official_planner",
+        "step": 4,
+        "start_time": "14:24",
+        "start_location": "bookstore",
+        "action": {
+          "kind": "dwell",
+          "target": null,
+          "path": null,
+          "minutes": 50,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Generative Agents official adapter action",
+          "raw_response": "{\"reflection\":\"The library is closed until 16:00, so aria should use the nearest reliable quiet fallback first and avoid any invalid path assumptions.\",\"plan\":[{\"time\":\"14:00\",\"activity\":\"walk to bookstore via a valid route\",\"kind\":\"move\",\"target\":\"bookstore\",\"path\":null},{\"time\":\"14:10\",\"activity\":\"enter bookstore\",\"kind\":\"enter\",\"target\":\"bookstore\"},{\"time\":\"14:15\",\"activity\":\"dwell quietly at bookstore\",\"kind\":\"dwell\",\"minutes\":50},{\"time\":\"15:05\",\"activity\":\"continue quiet work at bookstore\",\"kind\":\"dwell\",\"minutes\":55},{\"time\":\"16:00\",\"activity\":\"reassess availability and remain if still focused\",\"kind\":\"dwell\",\"minutes\":30}]}"
+        },
+        "end_time": "15:14",
+        "end_location": "bookstore",
+        "budget": 18.0,
+        "violations": [
+          {
+            "kind": "invalid_explicit_path",
+            "from": "plaza",
+            "to": "bookstore",
+            "path": [
+              "plaza"
+            ]
+          },
+          {
+            "kind": "unpaid_service_required",
+            "location": "bookstore",
+            "time": "15:14"
+          }
+        ],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_b",
+        "agent_type": "generative_agents_official_planner",
+        "step": 5,
+        "start_time": "15:14",
+        "start_location": "bookstore",
+        "action": {
+          "kind": "move",
+          "target": "quiet_cafe",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Generative Agents official adapter action",
+          "raw_response": "{\"reflection\":\"Library is closed until 16:00, so a quiet open fallback is needed; bookstore is currently the active location, but staying there without a valid paid/service action is not feasible. Move to a nearby open quiet place and complete at least a 50-minute focus block before 16:30 while staying within budget.\",\"plan\":[{\"time\":\"15:14\",\"activity\":\"leave bookstore for a nearby open quiet place\",\"kind\":\"move\",\"target\":\"quiet_cafe\",\"path\":null},{\"time\":\"15:20\",\"activity\":\"enter quiet cafe\",\"kind\":\"enter\",\"target\":\"quiet_cafe\"},{\"time\":\"15:20\",\"activity\":\"settle in for focused work\",\"kind\":\"dwell\",\"minutes\":50}]}"
+        },
+        "end_time": "15:58",
+        "end_location": "quiet_cafe",
+        "budget": 18.0,
+        "violations": [
+          {
+            "kind": "invalid_explicit_path",
+            "from": "plaza",
+            "to": "bookstore",
+            "path": [
+              "plaza"
+            ]
+          },
+          {
+            "kind": "unpaid_service_required",
+            "location": "bookstore",
+            "time": "15:14"
+          }
+        ],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_b",
+        "agent_type": "generative_agents_official_planner",
+        "step": 6,
+        "start_time": "15:58",
+        "start_location": "quiet_cafe",
+        "action": {
+          "kind": "enter",
+          "target": "quiet_cafe",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Generative Agents official adapter action",
+          "raw_response": "{\"reflection\":\"Library is closed until 16:00, so a quiet open fallback is needed; bookstore is currently the active location, but staying there without a valid paid/service action is not feasible. Move to a nearby open quiet place and complete at least a 50-minute focus block before 16:30 while staying within budget.\",\"plan\":[{\"time\":\"15:14\",\"activity\":\"leave bookstore for a nearby open quiet place\",\"kind\":\"move\",\"target\":\"quiet_cafe\",\"path\":null},{\"time\":\"15:20\",\"activity\":\"enter quiet cafe\",\"kind\":\"enter\",\"target\":\"quiet_cafe\"},{\"time\":\"15:20\",\"activity\":\"settle in for focused work\",\"kind\":\"dwell\",\"minutes\":50}]}"
+        },
+        "end_time": "15:59",
+        "end_location": "quiet_cafe",
+        "budget": 18.0,
+        "violations": [
+          {
+            "kind": "invalid_explicit_path",
+            "from": "plaza",
+            "to": "bookstore",
+            "path": [
+              "plaza"
+            ]
+          },
+          {
+            "kind": "unpaid_service_required",
+            "location": "bookstore",
+            "time": "15:14"
+          }
+        ],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_b",
+        "agent_type": "generative_agents_official_planner",
+        "step": 7,
+        "start_time": "15:59",
+        "start_location": "quiet_cafe",
+        "action": {
+          "kind": "dwell",
+          "target": null,
+          "path": null,
+          "minutes": 50,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Generative Agents official adapter action",
+          "raw_response": "{\"reflection\":\"Library is closed until 16:00, so a quiet open fallback is needed; bookstore is currently the active location, but staying there without a valid paid/service action is not feasible. Move to a nearby open quiet place and complete at least a 50-minute focus block before 16:30 while staying within budget.\",\"plan\":[{\"time\":\"15:14\",\"activity\":\"leave bookstore for a nearby open quiet place\",\"kind\":\"move\",\"target\":\"quiet_cafe\",\"path\":null},{\"time\":\"15:20\",\"activity\":\"enter quiet cafe\",\"kind\":\"enter\",\"target\":\"quiet_cafe\"},{\"time\":\"15:20\",\"activity\":\"settle in for focused work\",\"kind\":\"dwell\",\"minutes\":50}]}"
+        },
+        "end_time": "16:49",
+        "end_location": "quiet_cafe",
+        "budget": 18.0,
+        "violations": [
+          {
+            "kind": "invalid_explicit_path",
+            "from": "plaza",
+            "to": "bookstore",
+            "path": [
+              "plaza"
+            ]
+          },
+          {
+            "kind": "unpaid_service_required",
+            "location": "bookstore",
+            "time": "15:14"
+          },
+          {
+            "kind": "unpaid_service_required",
+            "location": "quiet_cafe",
+            "time": "16:49"
+          },
+          {
+            "kind": "episode_overtime",
+            "end_time": "16:30",
+            "actual_time": "16:49"
+          }
+        ],
+        "route_interruptions": [],
+        "verified_replans": []
+      }
+    ],
+    "visits": [
+      {
+        "location": "plaza",
+        "time": 840,
+        "kind": "start"
+      },
+      {
+        "location": "cafe_central",
+        "time": 844,
+        "kind": "pass_through"
+      },
+      {
+        "location": "office",
+        "time": 850,
+        "kind": "pass_through"
+      },
+      {
+        "location": "coworking",
+        "time": 858,
+        "kind": "pass_through"
+      },
+      {
+        "location": "bookstore",
+        "time": 863,
+        "kind": "arrival"
+      },
+      {
+        "location": "coworking",
+        "time": 919,
+        "kind": "pass_through"
+      },
+      {
+        "location": "office",
+        "time": 927,
+        "kind": "pass_through"
+      },
+      {
+        "location": "city_hall",
+        "time": 937,
+        "kind": "pass_through"
+      },
+      {
+        "location": "market",
+        "time": 944,
+        "kind": "pass_through"
+      },
+      {
+        "location": "park",
+        "time": 952,
+        "kind": "pass_through"
+      },
+      {
+        "location": "quiet_cafe",
+        "time": 958,
+        "kind": "arrival"
+      }
+    ],
+    "traversals": [
+      {
+        "from": "plaza",
+        "to": "cafe_central",
+        "arrive_time": 844,
+        "minutes": 4
+      },
+      {
+        "from": "cafe_central",
+        "to": "office",
+        "arrive_time": 850,
+        "minutes": 6
+      },
+      {
+        "from": "office",
+        "to": "coworking",
+        "arrive_time": 858,
+        "minutes": 8
+      },
+      {
+        "from": "coworking",
+        "to": "bookstore",
+        "arrive_time": 863,
+        "minutes": 5
+      },
+      {
+        "from": "bookstore",
+        "to": "coworking",
+        "arrive_time": 919,
+        "minutes": 5
+      },
+      {
+        "from": "coworking",
+        "to": "office",
+        "arrive_time": 927,
+        "minutes": 8
+      },
+      {
+        "from": "office",
+        "to": "city_hall",
+        "arrive_time": 937,
+        "minutes": 10
+      },
+      {
+        "from": "city_hall",
+        "to": "market",
+        "arrive_time": 944,
+        "minutes": 7
+      },
+      {
+        "from": "market",
+        "to": "park",
+        "arrive_time": 952,
+        "minutes": 8
+      },
+      {
+        "from": "park",
+        "to": "quiet_cafe",
+        "arrive_time": 958,
+        "minutes": 6
+      }
+    ],
+    "route_interruptions": [],
+    "replans": [],
+    "messages": [],
+    "interactions": [],
+    "entries": [
+      {
+        "location": "plaza",
+        "time": 840,
+        "kind": "start"
+      },
+      {
+        "location": "bookstore",
+        "time": 864,
+        "kind": "enter"
+      },
+      {
+        "location": "quiet_cafe",
+        "time": 959,
+        "kind": "enter"
+      }
+    ],
+    "services": [],
+    "purchases": [],
+    "abandonments": [],
+    "model_info": {
+      "provider": "fhl",
+      "model": "gpt-5.4-mini",
+      "wire_api": "responses",
+      "base_url": "https://www.fhl.mom",
+      "framework": "Generative Agents",
+      "framework_agent": "generative_agents_official_planner",
+      "source_verified": true,
+      "source_repo": "https://github.com/joonspk-research/generative_agents.git",
+      "source_commit": "fe05a71d3e4ed7d10bf68aa4eda6dd995ec070f4",
+      "integration_level": "adapted_official_memory_planner",
+      "native_backend": false,
+      "verified_files": [
+        "reverie/backend_server/persona/cognitive_modules/plan.py",
+        "reverie/backend_server/persona/prompt_template/gpt_structure.py",
+        "reverie/backend_server/persona/prompt_template/run_gpt_prompt.py",
+        "reverie/backend_server/persona/prompt_template/v2/daily_planning_v6.txt",
+        "reverie/backend_server/persona/prompt_template/v2/new_decomp_schedule_v1.txt",
+        "reverie/backend_server/persona/prompt_template/v2/insight_and_evidence_v1.txt"
+      ],
+      "llm_telemetry_summary": {
+        "calls": 7,
+        "successful_calls": 7,
+        "failed_calls": 0,
+        "latency_seconds": 32.73,
+        "provider_usage_calls": 7,
+        "input_tokens": 41135,
+        "output_tokens": 832,
+        "total_tokens": 41967,
+        "usage_complete": true
+      }
+    },
+    "llm_telemetry": [
+      {
+        "call_index": 1,
+        "prompt_sha256": "e7af602bfee5edefa0cb85a1e444ab9bff39b6fa21b42976c0f30ebfe42bddd0",
+        "attempts": 1,
+        "latency_seconds": 4.353,
+        "input_chars": 5012,
+        "output_chars": 444,
+        "input_tokens": 6646,
+        "output_tokens": 110,
+        "total_tokens": 6756,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 2,
+        "prompt_sha256": "dd048a3ab528b18587c338d2928d0f1cf5088a4e3f1fccf7f20015f61c5a3254",
+        "attempts": 1,
+        "latency_seconds": 3.846,
+        "input_chars": 585,
+        "output_chars": 371,
+        "input_tokens": 5209,
+        "output_tokens": 77,
+        "total_tokens": 5286,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 3,
+        "prompt_sha256": "7174b4578dee42f1320f776598455c46949a28c0682655f2e3f8149f2aadedd8",
+        "attempts": 1,
+        "latency_seconds": 4.639,
+        "input_chars": 3915,
+        "output_chars": 535,
+        "input_tokens": 6133,
+        "output_tokens": 132,
+        "total_tokens": 6265,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 4,
+        "prompt_sha256": "97afdda014d540740a5976f74ecad0f51e0533a2fd2c80454e649b7b1b006ea0",
+        "attempts": 1,
+        "latency_seconds": 4.003,
+        "input_chars": 677,
+        "output_chars": 379,
+        "input_tokens": 5242,
+        "output_tokens": 90,
+        "total_tokens": 5332,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 5,
+        "prompt_sha256": "0c0abcfef47e46ad111e0f2ac8792b4d0d8973f83d65e2384ad8408d13a64c3a",
+        "attempts": 1,
+        "latency_seconds": 5.005,
+        "input_chars": 4187,
+        "output_chars": 640,
+        "input_tokens": 6234,
+        "output_tokens": 160,
+        "total_tokens": 6394,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 6,
+        "prompt_sha256": "9b9173bd514b2de1015a547780320399e0f37cf7c2c4d4fd1f3560bc65e711d3",
+        "attempts": 1,
+        "latency_seconds": 4.898,
+        "input_chars": 758,
+        "output_chars": 425,
+        "input_tokens": 5267,
+        "output_tokens": 111,
+        "total_tokens": 5378,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 7,
+        "prompt_sha256": "990e7f343bc29edcc70040b476a38c24658a16ea07324d41bc378233854238d1",
+        "attempts": 1,
+        "latency_seconds": 5.986,
+        "input_chars": 4704,
+        "output_chars": 622,
+        "input_tokens": 6404,
+        "output_tokens": 152,
+        "total_tokens": 6556,
+        "usage_source": "provider",
+        "success": true
+      }
+    ],
+    "metrics": {
+      "plan_plausibility": 1.0,
+      "trace_feasibility": 0.429,
+      "plausibility_feasibility_gap": 0.571,
+      "impossible_trace_rate": 0.571,
+      "city_false_continue": 1.0,
+      "goal_completion": 0.5,
+      "task_completion": 0.538,
+      "constraint_satisfaction": 0.429,
+      "process_success": null,
+      "feasibility_violation": 0.571,
+      "replanning_success": null,
+      "travel_efficiency": 0.104,
+      "budget_consistency": 1.0,
+      "intention_consistency": 0.214,
+      "social_appropriateness": null,
+      "done_state_loop_rate": 0.0,
+      "social_derailment_rate": 0.0
+    },
+    "conditions": [
+      {
+        "id": "choose_open_quiet_place",
+        "type": "visit_open_location",
+        "score": 1.0,
+        "weight": 0.35,
+        "role": "outcome",
+        "evidence": [
+          {
+            "location": "bookstore",
+            "time": 864,
+            "kind": "presence"
+          },
+          {
+            "location": "quiet_cafe",
+            "time": 959,
+            "kind": "presence"
+          }
+        ]
+      },
+      {
+        "id": "complete_focus_block",
+        "type": "dwell_minutes",
+        "score": 0.0,
+        "weight": 0.3,
+        "role": "outcome",
+        "evidence": []
+      },
+      {
+        "id": "no_impossible_study_claim",
+        "type": "no_feasibility_violation",
+        "score": 0.0,
+        "weight": 0.2,
+        "role": "constraint",
+        "evidence": []
+      },
+      {
+        "id": "stay_within_budget",
+        "type": "budget_at_least",
+        "score": 1.0,
+        "weight": 0.15,
+        "role": "constraint",
+        "evidence": []
+      }
+    ],
+    "failure_taxonomy": {
+      "impossible_route": 1,
+      "money_budget_failure": 2,
+      "time_budget_failure": 1
+    },
+    "final_state": {
+      "time": "16:49",
+      "location": "quiet_cafe",
+      "inside_location": "quiet_cafe",
+      "budget": 18.0,
+      "entries": [
+        {
+          "location": "plaza",
+          "time": 840,
+          "kind": "start"
+        },
+        {
+          "location": "bookstore",
+          "time": 864,
+          "kind": "enter"
+        },
+        {
+          "location": "quiet_cafe",
+          "time": 959,
+          "kind": "enter"
+        }
+      ],
+      "services": [],
+      "purchases": [],
+      "abandonments": [],
+      "route_interruptions": [],
+      "replans": [],
+      "violations": [
+        {
+          "kind": "invalid_explicit_path",
+          "from": "plaza",
+          "to": "bookstore",
+          "path": [
+            "plaza"
+          ]
+        },
+        {
+          "kind": "unpaid_service_required",
+          "location": "bookstore",
+          "time": "15:14"
+        },
+        {
+          "kind": "unpaid_service_required",
+          "location": "quiet_cafe",
+          "time": "16:49"
+        },
+        {
+          "kind": "episode_overtime",
+          "end_time": "16:30",
+          "actual_time": "16:49"
+        }
+      ]
+    }
+  },
+  {
+    "scenario_id": "paired_study_b",
+    "scenario_title": "Paired Quiet Study Block",
+    "family": "paired_disruption",
+    "agent_type": "agentsociety_official_plan_blocks",
+    "trace": [
+      {
+        "scenario_id": "paired_study_b",
+        "agent_type": "agentsociety_official_plan_blocks",
+        "step": 1,
+        "start_time": "14:00",
+        "start_location": "plaza",
+        "action": {
+          "kind": "dwell",
+          "target": null,
+          "path": null,
+          "minutes": 15,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "AgentSociety official plan step: Wait until the library reopens",
+          "raw_response": "{\"plan\":{\"target\":\"library\",\"steps\":[{\"intention\":\"Wait until the library reopens\",\"type\":\"other\",\"action\":{\"kind\":\"dwell\",\"minutes\":15}},{\"intention\":\"Go to the library\",\"type\":\"mobility\",\"action\":{\"kind\":\"move\",\"target\":\"library\",\"path\":null}},{\"intention\":\"Enter the library\",\"type\":\"mobility\",\"action\":{\"kind\":\"enter\",\"target\":\"library\"}},{\"intention\":\"Work quietly for at least 50 minutes\",\"type\":\"other\",\"action\":{\"kind\":\"dwell\",\"minutes\":50}}]}}"
+        },
+        "end_time": "14:15",
+        "end_location": "plaza",
+        "budget": 18.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_b",
+        "agent_type": "agentsociety_official_plan_blocks",
+        "step": 2,
+        "start_time": "14:15",
+        "start_location": "plaza",
+        "action": {
+          "kind": "move",
+          "target": "library",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "AgentSociety official plan step: Go to the library",
+          "raw_response": "{\"plan\":{\"target\":\"library\",\"steps\":[{\"intention\":\"Wait until the library reopens\",\"type\":\"other\",\"action\":{\"kind\":\"dwell\",\"minutes\":15}},{\"intention\":\"Go to the library\",\"type\":\"mobility\",\"action\":{\"kind\":\"move\",\"target\":\"library\",\"path\":null}},{\"intention\":\"Enter the library\",\"type\":\"mobility\",\"action\":{\"kind\":\"enter\",\"target\":\"library\"}},{\"intention\":\"Work quietly for at least 50 minutes\",\"type\":\"other\",\"action\":{\"kind\":\"dwell\",\"minutes\":50}}]}}"
+        },
+        "end_time": "14:22",
+        "end_location": "library",
+        "budget": 18.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_b",
+        "agent_type": "agentsociety_official_plan_blocks",
+        "step": 3,
+        "start_time": "14:22",
+        "start_location": "library",
+        "action": {
+          "kind": "enter",
+          "target": "library",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "AgentSociety official plan step: Enter the library",
+          "raw_response": "{\"plan\":{\"target\":\"library\",\"steps\":[{\"intention\":\"Wait until the library reopens\",\"type\":\"other\",\"action\":{\"kind\":\"dwell\",\"minutes\":15}},{\"intention\":\"Go to the library\",\"type\":\"mobility\",\"action\":{\"kind\":\"move\",\"target\":\"library\",\"path\":null}},{\"intention\":\"Enter the library\",\"type\":\"mobility\",\"action\":{\"kind\":\"enter\",\"target\":\"library\"}},{\"intention\":\"Work quietly for at least 50 minutes\",\"type\":\"other\",\"action\":{\"kind\":\"dwell\",\"minutes\":50}}]}}"
+        },
+        "end_time": "14:23",
+        "end_location": "library",
+        "budget": 18.0,
+        "violations": [
+          {
+            "kind": "closed_location",
+            "location": "library",
+            "time": "14:23"
+          }
+        ],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_b",
+        "agent_type": "agentsociety_official_plan_blocks",
+        "step": 4,
+        "start_time": "14:23",
+        "start_location": "library",
+        "action": {
+          "kind": "move",
+          "target": "bookstore",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "AgentSociety official plan step: Go to a nearby open quiet alternative",
+          "raw_response": "{\n  \"plan\": {\n    \"target\": \"Complete a focused afternoon work block at an open quiet place\",\n    \"steps\": [\n      {\n        \"intention\": \"Go to a nearby open quiet alternative\",\n        \"type\": \"mobility\",\n        \"action\": {\n          \"kind\": \"move\",\n          \"target\": \"bookstore\",\n          \"path\": null\n        }\n      },\n      {\n        \"intention\": \"Enter the quiet workspace\",\n        \"type\": \"mobility\",\n        \"action\": {\n          \"kind\": \"enter\",\n          \"target\": \"bookstore\"\n        }\n      },\n      {\n        \"intention\": \"Work quietly for at least 50 minutes\",\n        \"type\": \"other\",\n        \"action\": {\n          \"kind\": \"dwell\",\n          \"minutes\": 60\n        }\n      }\n    ]\n  }\n}\n"
+        },
+        "end_time": "14:26",
+        "end_location": "bookstore",
+        "budget": 18.0,
+        "violations": [
+          {
+            "kind": "closed_location",
+            "location": "library",
+            "time": "14:23"
+          }
+        ],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_b",
+        "agent_type": "agentsociety_official_plan_blocks",
+        "step": 5,
+        "start_time": "14:26",
+        "start_location": "bookstore",
+        "action": {
+          "kind": "enter",
+          "target": "bookstore",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "AgentSociety official plan step: Enter the quiet workspace",
+          "raw_response": "{\n  \"plan\": {\n    \"target\": \"Complete a focused afternoon work block at an open quiet place\",\n    \"steps\": [\n      {\n        \"intention\": \"Go to a nearby open quiet alternative\",\n        \"type\": \"mobility\",\n        \"action\": {\n          \"kind\": \"move\",\n          \"target\": \"bookstore\",\n          \"path\": null\n        }\n      },\n      {\n        \"intention\": \"Enter the quiet workspace\",\n        \"type\": \"mobility\",\n        \"action\": {\n          \"kind\": \"enter\",\n          \"target\": \"bookstore\"\n        }\n      },\n      {\n        \"intention\": \"Work quietly for at least 50 minutes\",\n        \"type\": \"other\",\n        \"action\": {\n          \"kind\": \"dwell\",\n          \"minutes\": 60\n        }\n      }\n    ]\n  }\n}\n"
+        },
+        "end_time": "14:27",
+        "end_location": "bookstore",
+        "budget": 18.0,
+        "violations": [
+          {
+            "kind": "closed_location",
+            "location": "library",
+            "time": "14:23"
+          }
+        ],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_b",
+        "agent_type": "agentsociety_official_plan_blocks",
+        "step": 6,
+        "start_time": "14:27",
+        "start_location": "bookstore",
+        "action": {
+          "kind": "dwell",
+          "target": null,
+          "path": null,
+          "minutes": 60,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "AgentSociety official plan step: Work quietly for at least 50 minutes",
+          "raw_response": "{\n  \"plan\": {\n    \"target\": \"Complete a focused afternoon work block at an open quiet place\",\n    \"steps\": [\n      {\n        \"intention\": \"Go to a nearby open quiet alternative\",\n        \"type\": \"mobility\",\n        \"action\": {\n          \"kind\": \"move\",\n          \"target\": \"bookstore\",\n          \"path\": null\n        }\n      },\n      {\n        \"intention\": \"Enter the quiet workspace\",\n        \"type\": \"mobility\",\n        \"action\": {\n          \"kind\": \"enter\",\n          \"target\": \"bookstore\"\n        }\n      },\n      {\n        \"intention\": \"Work quietly for at least 50 minutes\",\n        \"type\": \"other\",\n        \"action\": {\n          \"kind\": \"dwell\",\n          \"minutes\": 60\n        }\n      }\n    ]\n  }\n}\n"
+        },
+        "end_time": "15:27",
+        "end_location": "bookstore",
+        "budget": 18.0,
+        "violations": [
+          {
+            "kind": "closed_location",
+            "location": "library",
+            "time": "14:23"
+          },
+          {
+            "kind": "unpaid_service_required",
+            "location": "bookstore",
+            "time": "15:27"
+          }
+        ],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_b",
+        "agent_type": "agentsociety_official_plan_blocks",
+        "step": 7,
+        "start_time": "15:27",
+        "start_location": "bookstore",
+        "action": {
+          "kind": "dwell",
+          "target": null,
+          "path": null,
+          "minutes": 15,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "AgentSociety official plan step: Work quietly for a focused block",
+          "raw_response": "{\"plan\":{\"target\":\"Complete a focused afternoon work block at the library if available, otherwise use an open quiet alternative\",\"steps\":[{\"intention\":\"Move to a quiet place that is open and budget-friendly\",\"type\":\"mobility\",\"action\":{\"kind\":\"move\",\"target\":\"bookstore\",\"path\":null}},{\"intention\":\"Enter the bookstore to work inside\",\"type\":\"mobility\",\"action\":{\"kind\":\"enter\",\"target\":\"bookstore\"}},{\"intention\":\"Work quietly for a focused block\",\"type\":\"other\",\"action\":{\"kind\":\"dwell\",\"minutes\":15}},{\"intention\":\"Continue focused work\",\"type\":\"other\",\"action\":{\"kind\":\"dwell\",\"minutes\":15}},{\"intention\":\"Continue focused work until the minimum block is met\",\"type\":\"other\",\"action\":{\"kind\":\"dwell\",\"minutes\":15}}]}}\n"
+        },
+        "end_time": "15:42",
+        "end_location": "bookstore",
+        "budget": 18.0,
+        "violations": [
+          {
+            "kind": "closed_location",
+            "location": "library",
+            "time": "14:23"
+          },
+          {
+            "kind": "unpaid_service_required",
+            "location": "bookstore",
+            "time": "15:27"
+          },
+          {
+            "kind": "unpaid_service_required",
+            "location": "bookstore",
+            "time": "15:42"
+          }
+        ],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "paired_study_b",
+        "agent_type": "agentsociety_official_plan_blocks",
+        "step": 8,
+        "start_time": "15:42",
+        "start_location": "bookstore",
+        "action": {
+          "kind": "move",
+          "target": "library",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "AgentSociety official plan step: Check whether the library is open now and can be reached in time",
+          "raw_response": "{\"plan\":{\"target\":\"library\",\"steps\":[{\"intention\":\"Check whether the library is open now and can be reached in time\",\"type\":\"mobility\",\"action\":{\"kind\":\"move\",\"target\":\"library\",\"path\":null}},{\"intention\":\"Enter the library if it is open\",\"type\":\"mobility\",\"action\":{\"kind\":\"enter\",\"target\":\"library\"}},{\"intention\":\"Settle in for a focused work block\",\"type\":\"other\",\"action\":{\"kind\":\"dwell\",\"minutes\":50}}]}}"
+        },
+        "end_time": "15:45",
+        "end_location": "library",
+        "budget": 18.0,
+        "violations": [
+          {
+            "kind": "closed_location",
+            "location": "library",
+            "time": "14:23"
+          },
+          {
+            "kind": "unpaid_service_required",
+            "location": "bookstore",
+            "time": "15:27"
+          },
+          {
+            "kind": "unpaid_service_required",
+            "location": "bookstore",
+            "time": "15:42"
+          }
+        ],
+        "route_interruptions": [],
+        "verified_replans": []
+      }
+    ],
+    "visits": [
+      {
+        "location": "plaza",
+        "time": 840,
+        "kind": "start"
+      },
+      {
+        "location": "plaza",
+        "time": 855,
+        "kind": "dwell"
+      },
+      {
+        "location": "library",
+        "time": 862,
+        "kind": "arrival"
+      },
+      {
+        "location": "bookstore",
+        "time": 866,
+        "kind": "arrival"
+      },
+      {
+        "location": "library",
+        "time": 945,
+        "kind": "arrival"
+      }
+    ],
+    "traversals": [
+      {
+        "from": "plaza",
+        "to": "library",
+        "arrive_time": 862,
+        "minutes": 7
+      },
+      {
+        "from": "library",
+        "to": "bookstore",
+        "arrive_time": 866,
+        "minutes": 3
+      },
+      {
+        "from": "bookstore",
+        "to": "library",
+        "arrive_time": 945,
+        "minutes": 3
+      }
+    ],
+    "route_interruptions": [],
+    "replans": [],
+    "messages": [],
+    "interactions": [],
+    "entries": [
+      {
+        "location": "plaza",
+        "time": 840,
+        "kind": "start"
+      },
+      {
+        "location": "bookstore",
+        "time": 867,
+        "kind": "enter"
+      }
+    ],
+    "services": [],
+    "purchases": [],
+    "abandonments": [],
+    "model_info": {
+      "provider": "fhl",
+      "model": "gpt-5.4-mini",
+      "wire_api": "responses",
+      "base_url": "https://www.fhl.mom",
+      "framework": "AgentSociety",
+      "framework_agent": "agentsociety_official_plan_blocks",
+      "source_verified": true,
+      "source_repo": "https://github.com/tsinghua-fib-lab/AgentSociety.git",
+      "source_commit": "c8001a42409eb37be7cf745395bbe2269e7d83e0",
+      "integration_level": "adapted_official_plan_blocks",
+      "native_backend": false,
+      "verified_files": [
+        "packages/agentsociety/agentsociety/agent/prompt.py",
+        "packages/agentsociety/agentsociety/cityagent/blocks/plan_block.py",
+        "packages/agentsociety/agentsociety/cityagent/blocks/mobility_block.py",
+        "packages/agentsociety/agentsociety/cityagent/blocks/needs_block.py"
+      ],
+      "llm_telemetry_summary": {
+        "calls": 10,
+        "successful_calls": 10,
+        "failed_calls": 0,
+        "latency_seconds": 57.343,
+        "provider_usage_calls": 10,
+        "input_tokens": 70510,
+        "output_tokens": 1559,
+        "total_tokens": 72069,
+        "usage_complete": true
+      }
+    },
+    "llm_telemetry": [
+      {
+        "call_index": 1,
+        "prompt_sha256": "b5746d05c5a53cbf52a7a2009528456662eb2fdf2608a4f4d1fdf4dedec9430f",
+        "attempts": 1,
+        "latency_seconds": 4.801,
+        "input_chars": 6012,
+        "output_chars": 579,
+        "input_tokens": 6920,
+        "output_tokens": 141,
+        "total_tokens": 7061,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 2,
+        "prompt_sha256": "2da9f7669357368e3be5aae014c47a7adaa850d7abde3ca30156346f874114ef",
+        "attempts": 1,
+        "latency_seconds": 6.143,
+        "input_chars": 6042,
+        "output_chars": 364,
+        "input_tokens": 6817,
+        "output_tokens": 95,
+        "total_tokens": 6912,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 3,
+        "prompt_sha256": "4e70ce180e0a0c21ac79f80b305ee82f2153ff6b0ea45bfdb9d935188085c961",
+        "attempts": 1,
+        "latency_seconds": 8.603,
+        "input_chars": 6508,
+        "output_chars": 861,
+        "input_tokens": 7072,
+        "output_tokens": 202,
+        "total_tokens": 7274,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 4,
+        "prompt_sha256": "28f49f3b6a49d3e4c8e9433871ad1fc41579645fc5ae1bf964dff3b5166f46df",
+        "attempts": 1,
+        "latency_seconds": 4.39,
+        "input_chars": 6820,
+        "output_chars": 452,
+        "input_tokens": 7030,
+        "output_tokens": 120,
+        "total_tokens": 7150,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 5,
+        "prompt_sha256": "c442d375056a8978ae708c35958ab3761084d15158ba89417bdc1fce9af50756",
+        "attempts": 1,
+        "latency_seconds": 7.112,
+        "input_chars": 6607,
+        "output_chars": 617,
+        "input_tokens": 7103,
+        "output_tokens": 150,
+        "total_tokens": 7253,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 6,
+        "prompt_sha256": "f6ba0aa9f35077f997a9c46390b41735f0b149a95c4b4149d2909083c6b8844d",
+        "attempts": 1,
+        "latency_seconds": 5.673,
+        "input_chars": 6675,
+        "output_chars": 707,
+        "input_tokens": 7009,
+        "output_tokens": 184,
+        "total_tokens": 7193,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 7,
+        "prompt_sha256": "108628bd8b7bb6797ee42640dcdc5e4097beeba449118598848977a3882c9fae",
+        "attempts": 1,
+        "latency_seconds": 5.474,
+        "input_chars": 6767,
+        "output_chars": 860,
+        "input_tokens": 7153,
+        "output_tokens": 194,
+        "total_tokens": 7347,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 8,
+        "prompt_sha256": "e8e03ab413648f1205ba7c992d09d1983795c950146e2b8a7e325695ea99c39f",
+        "attempts": 1,
+        "latency_seconds": 5.1,
+        "input_chars": 7078,
+        "output_chars": 722,
+        "input_tokens": 7103,
+        "output_tokens": 173,
+        "total_tokens": 7276,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 9,
+        "prompt_sha256": "fa636201c6f5140fa796e1ead6bdf83bd0000a95321c8c83bc636ae28aafcf02",
+        "attempts": 1,
+        "latency_seconds": 5.626,
+        "input_chars": 6846,
+        "output_chars": 872,
+        "input_tokens": 7177,
+        "output_tokens": 193,
+        "total_tokens": 7370,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 10,
+        "prompt_sha256": "e744065d1ae94d6ac63b9e297681c6905f53b94c0bea84e5c9e1828a98b58e18",
+        "attempts": 1,
+        "latency_seconds": 4.421,
+        "input_chars": 7169,
+        "output_chars": 410,
+        "input_tokens": 7126,
+        "output_tokens": 107,
+        "total_tokens": 7233,
+        "usage_source": "provider",
+        "success": true
+      }
+    ],
+    "metrics": {
+      "plan_plausibility": 1.0,
+      "trace_feasibility": 0.625,
+      "plausibility_feasibility_gap": 0.375,
+      "impossible_trace_rate": 0.375,
+      "city_false_continue": 1.0,
+      "goal_completion": 0.5,
+      "task_completion": 0.538,
+      "constraint_satisfaction": 0.429,
+      "process_success": null,
+      "feasibility_violation": 0.375,
+      "replanning_success": null,
+      "travel_efficiency": 0.538,
+      "budget_consistency": 1.0,
+      "intention_consistency": 0.312,
+      "social_appropriateness": null,
+      "done_state_loop_rate": 0.0,
+      "social_derailment_rate": 0.0
+    },
+    "conditions": [
+      {
+        "id": "choose_open_quiet_place",
+        "type": "visit_open_location",
+        "score": 1.0,
+        "weight": 0.35,
+        "role": "outcome",
+        "evidence": [
+          {
+            "location": "bookstore",
+            "time": 867,
+            "kind": "presence"
+          }
+        ]
+      },
+      {
+        "id": "complete_focus_block",
+        "type": "dwell_minutes",
+        "score": 0.0,
+        "weight": 0.3,
+        "role": "outcome",
+        "evidence": []
+      },
+      {
+        "id": "no_impossible_study_claim",
+        "type": "no_feasibility_violation",
+        "score": 0.0,
+        "weight": 0.2,
+        "role": "constraint",
+        "evidence": []
+      },
+      {
+        "id": "stay_within_budget",
+        "type": "budget_at_least",
+        "score": 1.0,
+        "weight": 0.15,
+        "role": "constraint",
+        "evidence": []
+      }
+    ],
+    "failure_taxonomy": {
+      "closed_place_action": 1,
+      "money_budget_failure": 2
+    },
+    "final_state": {
+      "time": "15:45",
+      "location": "library",
+      "inside_location": null,
+      "budget": 18.0,
+      "entries": [
+        {
+          "location": "plaza",
+          "time": 840,
+          "kind": "start"
+        },
+        {
+          "location": "bookstore",
+          "time": 867,
+          "kind": "enter"
+        }
+      ],
+      "services": [],
+      "purchases": [],
+      "abandonments": [],
+      "route_interruptions": [],
+      "replans": [],
+      "violations": [
+        {
+          "kind": "closed_location",
+          "location": "library",
+          "time": "14:23"
+        },
+        {
+          "kind": "unpaid_service_required",
+          "location": "bookstore",
+          "time": "15:27"
+        },
+        {
+          "kind": "unpaid_service_required",
+          "location": "bookstore",
+          "time": "15:42"
+        }
+      ]
+    }
+  }
+]

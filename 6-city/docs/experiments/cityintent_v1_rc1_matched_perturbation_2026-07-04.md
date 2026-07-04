@@ -95,6 +95,15 @@ high-information cells, not repeated causal-effect reliability. The next run
 should repeat the study-place pair and the architecture cells with joint-success
 reversals before generalizing effect sizes.
 
+## Targeted Repeat Follow-Up
+
+The study-place pair was subsequently repeated three times for GATSim, Generative
+Agents, and AgentSociety. All nine control traces are joint successes. GATSim
+retains 3/3 treatment joint success, while Generative Agents and AgentSociety each
+retain 0/3. The targeted follow-up therefore confirms the first-screen ordering
+for this facility-closure pair. See
+`cityintent_v1_rc1_study_closure_3x2x3_2026-07-04.md`.
+
 ## Archive
 
 Real traces and paired analysis:

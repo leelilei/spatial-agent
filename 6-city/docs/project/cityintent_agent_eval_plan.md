@@ -160,7 +160,7 @@ model changes.
 
 ## Current Experimental Status
 
-Four complementary external-adapter matrices are complete:
+Five complementary external-adapter matrices are complete:
 
 ```text
 4 verified adapted decision layers
@@ -180,8 +180,9 @@ x 1 fixed agent model (gpt-5.4-mini)
 
 The breadth matrix reuses repeat 1 for the four overlapping pressure scenarios,
 and a matched 16-trace `gpt-5.4` agent-model screen is also complete. The archive
-therefore contains 136 trace records and 120 unique agent executions after adding
-a 24-trace matched perturbation screen. All traces
+therefore contains 154 trace records and 138 unique agent executions after adding
+a 24-trace matched perturbation screen and an 18-trace targeted closure repeat.
+All traces
 have deterministic evidence scores. Two soft evaluators, `gpt-5.4-mini` and
 `gpt-5.4`, independently judged every matrix. The experiments find no
 universal winner, persistent architecture-specific failure signatures, and only
@@ -189,10 +190,10 @@ moderate cross-judge agreement.
 
 The next automatic matrices should be prioritized as:
 
-1. repeat matched perturbation cells with joint-success reversals, prioritizing the study-place pair;
+1. repeat the remaining network and social perturbation pairs for architectures with informative controls;
 2. repeat model-sensitivity cells whose architecture ranking reversed;
 3. repeat selected broad-scenario cells whose first run changes the architecture ranking;
-4. only then scale repeats beyond three for cells with unstable outcomes.
+4. only then expand the matched-pair library to new urban mechanisms.
 
 ## Metrics
 
@@ -240,10 +241,11 @@ go one step further by comparing the architectures that make agency possible.
 Scenario breadth, model sensitivity, and the first matched perturbation screen are
 complete. The paired screen holds all non-event scenario fields fixed and finds
 architecture-specific feasibility loss under network, facility, and social
-events. The strongest next step is targeted repetition of high-information paired
-cells, especially the study-place closure and adapters whose joint success drops
-from control to treatment. This tests whether the observed event effects survive
-provider sampling before expanding the pair library.
+events. The facility-closure follow-up now confirms a stable architecture split:
+GATSim retains 3/3 joint recovery, while Generative Agents and AgentSociety retain
+0/3 despite perfect controls. The strongest next step is to repeat the network and
+social pairs for architectures whose controls are informative, testing whether
+the facility result generalizes to other urban shock mechanisms.
 
 The separate human-validation task should proceed in parallel. It calibrates the
 construct and soft evidence rubric; it should not delay scenario breadth or model-
