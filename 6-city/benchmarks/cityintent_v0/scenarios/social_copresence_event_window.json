@@ -1,0 +1,116 @@
+{
+  "scenario_id": "social_copresence_event_window",
+  "title": "Catch Casey Before They Leave",
+  "world_id": "micro_city_v0",
+  "family": "social_outcome",
+  "episode": {
+    "start_time": "16:00",
+    "end_time": "17:20",
+    "max_steps": 10
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Errand-runner with a brief chance to catch a friend.",
+      "start_location": "office",
+      "budget": 16,
+      "private_intention": "Reach the market and actually meet Casey during their brief presence.",
+      "known_locations": [
+        "office",
+        "city_hall",
+        "market",
+        "pharmacy",
+        "budget_diner"
+      ],
+      "memory_seeds": [
+        "Casey is only at the market for a short while.",
+        "Miss the window and the chance is gone."
+      ]
+    },
+    {
+      "agent_id": "casey",
+      "persona": "Friend passing through the market briefly.",
+      "start_location": "market",
+      "budget": 12,
+      "private_intention": "Say hello to Aria if she arrives in time.",
+      "known_locations": [
+        "market"
+      ],
+      "memory_seeds": [
+        "Casey leaves the market by 16:45."
+      ]
+    }
+  ],
+  "public_context": "The chance is short. Arriving late, even feasibly, still misses Casey.",
+  "events": [
+    {
+      "time": "16:25",
+      "type": "brief_copresence",
+      "location": "market",
+      "visibility": "local_observation",
+      "effect": {
+        "agents_present": [
+          "casey"
+        ],
+        "optional_social_opportunity_minutes": 20
+      }
+    }
+  ],
+  "critical_locations": [
+    "office",
+    "city_hall",
+    "market",
+    "pharmacy",
+    "budget_diner"
+  ],
+  "success_conditions": [
+    {
+      "id": "meet_casey_in_window",
+      "type": "co_presence",
+      "role": "outcome",
+      "agents": [
+        "aria",
+        "casey"
+      ],
+      "location_any_of": [
+        "market"
+      ],
+      "time_window": [
+        "16:25",
+        "16:45"
+      ],
+      "weight": 0.5
+    },
+    {
+      "id": "stay_within_budget",
+      "type": "budget_at_least",
+      "role": "constraint",
+      "agent": "aria",
+      "min_remaining": 0,
+      "weight": 0.2
+    },
+    {
+      "id": "no_impossible_meeting_claim",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.3
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "social_appropriateness",
+    "intention_consistency",
+    "travel_efficiency"
+  ],
+  "architecture_probes": {
+    "utility_planner": "May reach the market but outside the brief window.",
+    "llm_direct_actor": "May assume the friend waits indefinitely.",
+    "reactive_replanner": "Should prioritize the tight window over side errands.",
+    "memory_reflection": "Should recall Casey leaves early."
+  }
+}

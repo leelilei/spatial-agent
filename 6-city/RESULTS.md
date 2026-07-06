@@ -46,8 +46,34 @@ Single-run or smoke experiments should still keep:
 | 2026-06-23 | Repeated reliability, 8 scenarios, 3 repeats | `results/cityintent_v0/api_repeated_reliability_gpt54mini/` | `docs/experiments/cityintent_v0_repeated_reliability_2026-06-23.md` | Archived; rerun metadata refreshed after archive-standard upgrade |
 | 2026-06-23 | Pressure scenario smoke, 4 new scenarios | `results/cityintent_v0/pressure_scenarios_smoke_gpt54mini/` | `docs/experiments/cityintent_v0_pressure_scenarios_2026-06-23.md` | Archived; rerun metadata refreshed after archive-standard upgrade |
 | 2026-06-23 | Full reliability table, 12 scenarios, 3 repeats | `results/cityintent_v0/api_repeated_reliability_12scenarios_gpt54mini/` | `docs/experiments/cityintent_v0_full_12scenario_table_2026-06-23.md` | Archived |
+| 2026-06-29 | GATSim official-adapter smoke | `results/cityintent_v0/gatsim_official_smoke_gpt54mini_2026-06-29/` | `docs/experiments/cityagency_gatsim_official_adapter_smoke_2026-06-29.md` | Archived |
+| 2026-06-30 | Four official frameworks smoke (GATSim/SOTOPIA/GenAgents/AgentSociety) | `results/cityintent_v0/external_frameworks_4way_gpt54mini_2026-06-30/` | `docs/experiments/cityagency_four_official_frameworks_smoke_2026-06-30.md` | Archived |
+| 2026-06-30 | v0.2 action-evidence protocol: offline regression + 4-framework smoke | `results/cityintent_v02/offline_protocol_regression_2026-06-30/`, `results/cityintent_v02/four_framework_action_evidence_smoke_gpt54mini_2026-06-30/` | `docs/experiments/cityintent_v02_action_evidence_protocol_2026-06-30.md` | Archived |
+| 2026-07-01 | v0.3 interruptible movement, 4 frameworks × 4 scenarios × 3 repeats | `results/cityintent_v03/external_frameworks_4x4x3_gpt54mini_2026-07-01/`, `results/cityintent_v03/offline_interruptible_regression_2026-07-01/` | `docs/experiments/cityintent_v03_interruptible_movement_4x4x3_2026-07-01.md` | Archived |
+| 2026-07-01 | v0.3 blinded human-audit pilot packet built | `annotation/cityintent_v03_blind_pilot_2026-07-01/` | `docs/experiments/cityintent_v03_blinded_human_audit_design_2026-07-01.md` | Archived; pilot packet |
+| 2026-07-02 | v0.3 annotation model dry-run (packet debug, not the human gate) | `annotation/cityintent_v03_blind_pilot_2026-07-01/dry_run/` | `docs/experiments/cityintent_v03_annotation_model_dry_run_2026-07-02.md` | Archived; model labels debug only |
+| 2026-07-02 | v1-rc1 external-adapter, 4 frameworks × 4 scenarios × 1 (release-candidate diagnostic) | `results/cityintent_v1_rc1/external_frameworks_4x4x1_gpt54mini_2026-07-02/`, `results/cityintent_v1_rc1_offline_2026-07-02/` | `docs/experiments/cityintent_v1_rc1_external_4x4x1_2026-07-02.md` | Archived; task_completion vs legacy-goal dissociation shown |
+| 2026-07-06 | Oracle compliance probe: contract satisfiability + adapter action-surface reachability (3 evidence-critical scenarios) | `results/cityintent_v1_rc1/compliance_probe_oracle/` | `docs/experiments/cityintent_v1_rc1_compliance_probe_2026-07-06.md` | Archived; ALL PASS — refutes adapter-artifact confound; guarded by `tests/test_compliance_probe.py` |
+| 2026-07-06 | Social-outcome scenario family: 6 co-presence variants authored + oracle-winnability verified | `results/cityintent_v1_rc1/social_outcome_family_oracle/` | `docs/experiments/cityintent_social_outcome_family_2026-07-06.md` | Archived; ALL PASS (task=1.0, feasible, accepted co-presence); schema OK (social_outcome=6); guarded by `tests/test_social_outcome_family.py`. Framework runs pending checkout machine |
 
 ## Next Pending Result
 
-Next recommended result: cross-model or human-calibrated judge audit for the
-12-scenario table.
+Two parallel, non-blocking tracks:
+
+1. **Human-validation gate (blocks v1 freeze).** Two independent annotators must complete
+`annotation/cityintent_v1_rc1_blind_validation_2026-07-02/annotations/annotator_{a,b}.csv`
+(currently blank), then report exact agreement + Cohen's kappa vs the deterministic
+`task_completion` / feasibility / replanning labels. Model labels cannot satisfy this gate.
+
+2. **Claim-A hardening (does not block freeze).** After the 2026-07-06 compliance
+probe closed the adapter-artifact confound at the function level, the remaining
+Claim-A gaps are: (a) end-to-end oracle-through-real-adapters on the checkout
+machine (incl. GATSim), (b) backbone sweep to separate framework effects from a
+single `gpt-5.4-mini` confound, (c) the social-outcome scenario family is now
+authored + oracle-verified fair (2026-07-06); the remaining step is running the 4
+frameworks over it × 3 repeats on the checkout machine to firm up the headline
+"legal but ineffective" dissociation.
+
+See `docs/project/direction_verdict_2026-07-04.md` for why v1 stays
+`release_candidate_pending_human_audit` and the recommended framing (lead with the
+plausible↔verified-outcome gap, not "first urban benchmark").

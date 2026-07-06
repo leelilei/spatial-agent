@@ -94,6 +94,7 @@ verifiable evaluation.
 | `../pdf/06_agent_execution_benchmarks/04_AppWorld_Trivedi2024.pdf` | AppWorld: A Controllable World of Apps and People for Benchmarking Interactive Coding Agents | [arXiv 2407.18901](https://arxiv.org/abs/2407.18901) | Executable app-world benchmark with programmatic state validation and collateral-damage checks. |
 | `../pdf/06_agent_execution_benchmarks/05_WebArena_Zhou2023.pdf` | WebArena: A Realistic Web Environment for Building Autonomous Agents | [arXiv 2307.13854](https://arxiv.org/abs/2307.13854) | Reproducible web environment and functional task correctness; useful evaluation design precedent. |
 | `../pdf/06_agent_execution_benchmarks/06_TheAgentCompany_Xu2024.pdf` | TheAgentCompany: Benchmarking LLM Agents on Consequential Real World Tasks | [arXiv 2412.14161](https://arxiv.org/abs/2412.14161) | Long-horizon workplace-agent benchmark; useful comparison for consequential, stateful agent evaluation. |
+| `../pdf/06_agent_execution_benchmarks/07_STT_Arena_2026.pdf` | STT-Arena: A More Realistic Environment for Tool-Using with Spatio-Temporal Dynamics | [arXiv 2605.18548](https://arxiv.org/abs/2605.18548) | *Archived 2026-07-04.* 227 executable tasks, 9 spatio-temporal conflict types, 4 solvability levels; injected triggers abruptly invalidate an ongoing plan, forcing detect→revise→verify. Frontier models (incl. Claude-4.6-Opus) score <40%. Failure modes: Stale-State Execution, Misdiagnosis of Dynamic Triggers, **Missing Post-Adaptation Verification**. **Closest neighbor to CityAgency's disruption→replanning→verification spine, but tool-use (no urban movement / private-resident goals / social layer) and not city-grounded.** Confirms the axis is hot; does not occupy the city-resident + evidence-contract cell. |
 
 Local extracted text / metadata copied from `3-SMGA`:
 
@@ -121,8 +122,8 @@ Local extracted text / metadata copied from `3-SMGA`:
 
 | Local archive | Paper | Source | Why keep it |
 |---|---|---|---|
-| `../pdf/07_large_scale_urban_sim/01_GenWorld_Li2026.pdf` | GenWorld: Empirically Grounded Urban Simulation Infrastructure for Scalable LLM-Agent Studies | [arXiv 2606.27650](https://arxiv.org/abs/2606.27650) | 196,608 synthetic residents grounded in Higashihiroshima census, buildings, POIs, roads, and mobility evidence; LLM decisions are compiled offline for population-scale rollout. CityAgency instead diagnoses individual online execution. |
-| `../pdf/07_large_scale_urban_sim/02_Limits_of_Agency_Chopra2025.pdf` | On the Limits of Agency in Agent-Based Models | [arXiv 2409.10568](https://arxiv.org/abs/2409.10568) (AAMAS 2025) | Introduces LLM archetypes and demonstrates an 8.4-million-agent New York City simulation. It formalizes the scale-expressiveness trade-off that motivates CityAgency's controlled micro scale. |
+| `../pdf/02_citysim_agents/09_GenWorld_2026.pdf` | GenWorld: Empirically Grounded Urban Simulation Infrastructure for Scalable LLM-Agent Studies | [arXiv 2606.27650](https://arxiv.org/abs/2606.27650) | 196K synthetic residents on real Higashi-Hiroshima census + geographic data; LLM decisions compiled offline to lookup policies; city-wide weekday rollout + perturbation response with auditable replanning. Latest large-scale empirically grounded urban sim. CityAgency should compare: GenWorld tests aggregate mobility patterns, CityAgency tests individual private-goal trace feasibility. |
+| `../pdf/02_citysim_agents/10_Limits_of_Agency_2024.pdf` | On the Limits of Agency in Agent-Based Models | [arXiv 2409.10568](https://arxiv.org/abs/2409.10568) (AAMAS 2025) | Introduces LLM archetypes: group population by demographics, one LLM call per archetype, sample behavior for all agents in group. 8.4M-agent NYC COVID-19 simulation via AgentTorch. Formalizes the agency-vs-scale trade-off — agents' expressiveness and population size are fundamentally in tension. CityAgency occupies the high-agency, micro-scale end of this continuum. |
 
 ## 08 Route-Planning & Mobility Agents
 
@@ -130,10 +131,11 @@ Local extracted text / metadata copied from `3-SMGA`:
 
 | Local archive | Paper | Source | Why keep it |
 |---|---|---|---|
-| `../pdf/08_route_planning_agents/01_MobilityBench_Song2026.pdf` | MobilityBench: A Benchmark for Evaluating Route-Planning Agents in Real-World Mobility Scenarios | [arXiv 2602.22638](https://arxiv.org/abs/2602.22638) | 100,000 real route queries across more than 350 cities and a deterministic API-replay sandbox. Preference-constrained planning is the weak point; CityAgency extends from one request to a persistent episode. |
-| `../pdf/08_route_planning_agents/02_DeliveryBench_Mao2025.pdf` | DeliveryBench: Can Agents Earn Profit in Real World? | [arXiv 2512.19234](https://arxiv.org/abs/2512.19234) | Direct competitor for long-horizon city execution: seven VLM agents and humans operate in nine 3D city settings under deadlines, cost, battery, and interaction constraints. |
-| `../pdf/08_route_planning_agents/03_TrajGenAgent_Li2026.pdf` | TrajGenAgent: A Hierarchical LLM Agent for Human Mobility Trajectory Generation | [arXiv 2606.12657](https://arxiv.org/abs/2606.12657) | Separates evidence-based activity-chain generation from deterministic spatiotemporal grounding and adds individual anomaly diagnostics. |
-| `../pdf/08_route_planning_agents/04_AgentMob_Chen2026.pdf` | Towards Efficient and Evidence-grounded Mobility Prediction with LLM-Driven Agent (AgentMob) | [arXiv 2606.05130](https://arxiv.org/abs/2606.05130) | Tool-using next-location prediction grounded in mobility history. It helps distinguish predictive evidence from CityAgency's post-action state evidence. |
+| `../pdf/05_mobility_realism/03_MobilityBench_2026.pdf` | MobilityBench: A Benchmark for Evaluating Route-Planning Agents in Real-World Mobility Scenarios | [arXiv 2602.22638](https://arxiv.org/abs/2602.22638) | 100K real user route queries × 350+ cities; deterministic API-replay sandbox. Core finding: preference-constrained route planning (e.g. "avoid highways, stop by a convenience store en route") is the weak spot for all LLM agents. Closest neighbor to CityAgency's movement validation. Key difference: MobilityBench tests single route-planning requests; CityAgency tests a full multi-step episode with private intentions. |
+| `../pdf/05_mobility_realism/04_DeliveryBench_2025.pdf` | DeliveryBench: Can Agents Earn Profit in Real World? | [arXiv 2512.19234](https://arxiv.org/abs/2512.19234) | Food-delivery agent benchmark: real city maps, order acceptance, route planning, time-window constraints, profitability. Adds "profit feasibility" as a constraint dimension relevant to CityAgency's budget/economic constraints. |
+| `../pdf/05_mobility_realism/05_TrajGenAgent_2026.pdf` | TrajGenAgent: A Hierarchical LLM Agent for Human Mobility Trajectory Generation | [arXiv 2606.12657](https://arxiv.org/abs/2606.12657) | Hierarchical LLM agent generates human mobility trajectories. Represents current technical ceiling for LLM-driven trajectory generation. Fits in 05_mobility_realism family alongside MobiSim-Bench and When Plausible Is Not Realistic. |
+| `../pdf/05_mobility_realism/06_AgentMob_2026.pdf` | Towards Efficient and Evidence-grounded Mobility Prediction with LLM-Driven Agent (AgentMob) | [arXiv 2606.05130](https://arxiv.org/abs/2606.05130) | Evidence-grounded individual mobility prediction with LLM agent. Adds "evidence grounding" dimension to mobility agent evaluation — agent must cite real-world POI/transport data when predicting movement. Relevant to CityAgency's action-evidence protocol. |
+| `../pdf/06_agent_execution_benchmarks/08_TripPlus_2026.pdf` | Trip+: Benchmarking Agents in Personalized Interactive Travel Planning | [arXiv 2606.21169](https://arxiv.org/abs/2606.21169) | *Archived 2026-07-04.* Minute-level itinerary generation and revision under evolving preferences and environment-driven disruptions; 18 LMs; finds models favor technically-feasible-but-exhausting itineraries far from profiled preferences. Overlaps CityAgency's feasibility + replanning + preference axes, **but scores plan-level experience via an LLM simulator (subjective metrics like fatigue) — the exact LLM-judge-as-verifier stance CityAgency's environment-owned evidence contract rejects.** A contrast, not an occupant of the cell. |
 
 ## 09 Validation, Surveys & Adjacent Urban Applications
 
@@ -141,11 +143,9 @@ Local extracted text / metadata copied from `3-SMGA`:
 
 | Local archive | Paper | Source | Why keep it |
 |---|---|---|---|
-| **Verified; PDF retrieval pending** | Generative Agents in Agent-Based Modeling: Overview, Validation, and Emerging Challenges | [IEEE TAI 2025](https://ieeexplore.ieee.org/document/10985773) | Relevant survey, but the publisher and available author-copy endpoint currently block automated retrieval. It is not counted among the 44 archived PDF packages. |
-| `../pdf/02_citysim_agents/02_GATSim_Liu2025.pdf` | Generative Agents for Urban Mobility: A Cognitive Framework for Realistic Travel Behavior Simulation | [ScienceDirect S1569190X25001698](https://www.sciencedirect.com/science/article/abs/pii/S1569190X25001698) | Published journal version of the already archived GATSim work; retained here as a version link and not counted twice. |
-| `../pdf/09_surveys/02_Multi_Stakeholder_Urban_Planning_Gao2025.pdf` | Simulating Multi-Stakeholder Decision-Making with Generative Agents in Urban Planning | [arXiv 2402.11314](https://arxiv.org/abs/2402.11314); [published article](https://journals.sagepub.com/doi/full/10.3233/ATDE251076) | Eight AutoGen stakeholder agents simulate urban-planning deliberation. Relevant to discursive agency, but not physical execution. |
-| `../pdf/09_surveys/03_Validation_Central_Larooij2026.pdf` | Validation Is the Central Challenge for Generative Social Simulation: A Critical Review of LLMs in Agent-Based Modeling | [DOI 10.1007/s10462-025-11412-6](https://doi.org/10.1007/s10462-025-11412-6) | Systematic review showing that generative ABMs often depend on face validity or outcome measures weakly linked to mechanisms. Central motivation for CityAgency's validation-first design. |
-| `../pdf/09_surveys/04_Mechanism_Plausibility_Zhao2026.pdf` | Mechanism Plausibility in Generative Agent-Based Modeling | [arXiv 2605.12824](https://arxiv.org/abs/2605.12824) | Four-level mechanism-plausibility checklist and evidence that agent-level success is frequently overextended into ABM-level claims. Defines CityAgency's claim boundary. |
+| *(paywalled — no arxiv PDF)* | Generative Agents in Agent-Based Modeling: Overview, Validation, and Emerging Challenges | [IEEE TAI 2025](https://ieeexplore.ieee.org/document/10985773) | Comprehensive survey of generative agents in ABMs, with specific focus on validation frameworks and urban science applications. Useful for establishing the GA-for-urban-simulation landscape in related work. |
+| *(paywalled — no arxiv PDF)* | Generative Agents for Urban Mobility: A Cognitive Framework for Realistic Travel Behavior Simulation | [ScienceDirect S1569190X25001698](https://www.sciencedirect.com/science/article/abs/pii/S1569190X25001698) | Cognitive architecture for LLM-based urban mobility agents. Bridges cognitive science and travel behavior modeling. Adjacent to GATSim and the CityAgency cognitive baselines. |
+| *(paywalled — no arxiv PDF)* | Simulating Multi-Stakeholder Decision-Making with Generative Agents in Urban Planning | [SAGE ATDE 2025](https://journals.sagepub.com/doi/full/10.3233/ATDE251076) | LLM-based generative agents for multi-party urban planning deliberation. Adjacent to CityAgency's social-recovery and co-presence scenarios; useful for future multi-stakeholder track. |
 
 ## Updated Reading Order (2026-07-01)
 
@@ -169,5 +169,18 @@ which the environment owns physical truth and emits typed evidence for every sta
 allowing researchers to measure the gap between a plausible plan or completion claim and a
 continuous executable trace. CityAgency should claim agent-level execution-mechanism
 validation, not human realism or macro-level urban validity without additional empirical evidence.
+
+### 2026-07-04 neighbor check (first-hand arxiv)
+
+Three fresh 2026 concurrent works were checked against the exact CityAgency cell; each shares
+one axis but none occupies the cell (private urban resident + hidden intentions + movement/feasibility
++ deterministic environment-owned outcome evidence + graded replanning + social co-presence):
+
+- **STT-Arena (2605.18548)** — owns disruption→replan→verify, but tool-use, not city-grounded.
+- **GenWorld (2606.27650)** — owns grounded controllable urban sim, but population-scale aggregate, not individual evidence contract.
+- **Trip+ (2606.21169)** — owns feasibility+preference+replanning travel planning, but uses LLM-simulator scoring, the stance CityAgency rejects.
+
+Conclusion: the region is hot (evidence the problem is recognized), but the exact combination cell
+remains open. See `docs/project/direction_verdict_2026-07-04.md`.
 
 
