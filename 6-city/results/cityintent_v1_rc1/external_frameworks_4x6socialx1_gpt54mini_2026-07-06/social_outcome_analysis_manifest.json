@@ -1,0 +1,22 @@
+{
+  "schema_version": "cityintent_social_outcome_analysis_v1",
+  "experiment_dir": "6-city\\results\\cityintent_v1_rc1\\external_frameworks_4x6socialx1_gpt54mini_2026-07-06",
+  "scenario_dir": "6-city\\benchmarks\\cityintent_v0\\scenarios",
+  "trace_count": 72,
+  "repeat_count": 3,
+  "agents": [
+    "agentsociety_official_plan_blocks",
+    "gatsim_official_planner",
+    "generative_agents_official_planner",
+    "sotopia_official_llm_agent"
+  ],
+  "scenarios": [
+    "social_copresence_decoy_location",
+    "social_copresence_event_window",
+    "social_copresence_message_gated",
+    "social_copresence_open_meet",
+    "social_copresence_two_party",
+    "social_copresence_with_errand"
+  ],
+  "generated_at": "2026-07-06T21:17:41+08:00"
+}

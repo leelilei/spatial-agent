@@ -61,6 +61,9 @@ The **divergence** between task_completion and goal_completion is the finding.
 - rc1: `task_completion` **systematically diverges** from legacy goal — SOTOPIA
   agents message throughout but **no framework produces an environment-accepted
   meeting interaction**. This is the plausible↔verified gap, measured.
+- The 72-trace social-outcome family turns that anecdote into a repeated effect:
+  GATSim completes 15/21 required co-presence outcomes, AgentSociety 4/21,
+  Generative Agents 2/21, and SOTOPIA 0/21 despite 61.1% fully feasible traces.
 
 **Validation pipeline**
 - blinded audit packet + RUBRIC + sealed key; 16 items awaiting human annotation
@@ -71,7 +74,7 @@ The **divergence** between task_completion and goal_completion is the finding.
   index, per-paper notes, direction verdict
 
 **Discipline**
-- RESULTS.md ledger (synced, 13 rows); "log every run" rule now covers 6-city
+- RESULTS.md ledger (synced, 16 rows); "log every run" rule now covers 6-city
 
 ## 4. The goal
 

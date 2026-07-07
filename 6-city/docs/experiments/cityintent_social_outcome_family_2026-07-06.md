@@ -56,9 +56,12 @@ Archived: `results/cityintent_v1_rc1/social_outcome_family_oracle/`.
   interruptible-movement runs; scenario #5 was reframed to the errand-vs-meeting
   trade-off to keep this family cleanly about the *social outcome*.
 
-## Next (checkout machine)
+## Framework Run Completed
 
-Run the four official framework adapters over this family (× 3 repeats) where the
-`tmp/external/` checkouts exist, to convert the headline into a family-level
-plausible↔verified gap with reliability bands. Scenarios and their fairness are
-now pre-verified, so that run is turnkey.
+The four official decision-layer adapters were run over all six scenarios for
+three repeats on the checkout machine (72 real provider-backed traces). GATSim
+accepts 15/21 co-presence outcomes; AgentSociety 4/21; Generative Agents 2/21;
+SOTOPIA 0/21 despite 61.1% fully feasible traces. The full result is archived at
+`results/cityintent_v1_rc1/external_frameworks_4x6socialx1_gpt54mini_2026-07-06/`
+and interpreted in
+`docs/experiments/cityintent_v1_rc1_social_outcome_4x6x3_2026-07-06.md`.

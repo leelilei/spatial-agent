@@ -101,7 +101,7 @@
       ],
       "returncode": 0,
       "stdout": "",
-      "stderr": "...................................\n----------------------------------------------------------------------\nRan 35 tests in 0.275s\n\nOK"
+      "stderr": ".....................................\n----------------------------------------------------------------------\nRan 37 tests in 0.298s\n\nOK"
     },
     {
       "command": [
@@ -109,7 +109,7 @@
         "D:\\0-Research\\6-city\\benchmarks\\cityintent_v0\\tools\\validate_cityintent_v0.py"
       ],
       "returncode": 0,
-      "stdout": "CityIntent 1.0-rc1 validation passed.\n- worlds: 1\n- scenarios: 18\n- scenario families: {'budget_constraint': 1, 'disruption': 2, 'memory': 1, 'opportunistic_social': 1, 'paired_disruption': 6, 'poi_closure': 2, 'preference_constraint': 1, 'social_spatial_tradeoff': 2, 'time_pressure': 2}\n- agent architectures: llm_direct_actor, memory_reflection, reactive_replanner, utility_planner\n- metric coverage: budget_consistency, constraint_satisfaction, feasibility_violation, goal_completion, intention_consistency, process_success, replanning_success, social_appropriateness, task_completion, travel_efficiency\n- reachability checks: 101\n- perturbation pairs: 3",
+      "stdout": "CityIntent 1.0-rc1 validation passed.\n- worlds: 1\n- scenarios: 24\n- scenario families: {'budget_constraint': 1, 'disruption': 2, 'memory': 1, 'opportunistic_social': 1, 'paired_disruption': 6, 'poi_closure': 2, 'preference_constraint': 1, 'social_outcome': 6, 'social_spatial_tradeoff': 2, 'time_pressure': 2}\n- agent architectures: llm_direct_actor, memory_reflection, reactive_replanner, utility_planner\n- metric coverage: budget_consistency, constraint_satisfaction, feasibility_violation, goal_completion, intention_consistency, process_success, replanning_success, social_appropriateness, task_completion, travel_efficiency\n- reachability checks: 131\n- perturbation pairs: 3",
       "stderr": ""
     },
     {
@@ -124,5 +124,5 @@
       "stderr": ""
     }
   ],
-  "checked_at": "2026-07-04T03:32:56.551737+00:00"
+  "checked_at": "2026-07-07T15:10:23.204951+00:00"
 }

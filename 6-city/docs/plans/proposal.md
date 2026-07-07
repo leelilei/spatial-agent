@@ -371,8 +371,8 @@ intention, planning, memory, and environment validation.
 
 ## Current Pilot Evidence
 
-Five complementary external-adapter experiments now contain 154 archived trace
-records and 138 unique agent executions:
+Six complementary external-adapter experiments now contain 226 archived trace
+records and 210 unique agent executions:
 
 - a 4-adapter x 4-pressure-scenario x 3-repeat matrix for reliability;
 - a 4-adapter x 12-scenario x 1-run matrix for scenario breadth. Its pressure
@@ -381,6 +381,7 @@ records and 138 unique agent executions:
   `gpt-5.4` as the agent model.
 - a 4-adapter x 3-event-pair x 2-condition x 1-run matched perturbation screen.
 - a targeted 3-adapter x 1-facility-pair x 3-repeat reliability experiment.
+- a 4-adapter x 6-social-outcome-scenario x 3-repeat family experiment.
 
 The result is a dissociation rather than a single leaderboard winner:
 
@@ -437,6 +438,14 @@ Generative Agents and AgentSociety preserve it in none. Generative Agents loses
 `0.462` task and `0.468` feasibility on average, while AgentSociety loses `0.308`
 and `0.375`. The difference persists across three independent provider runs and
 is expressed through distinct budget, time, route, and closed-place failures.
+
+The repeated social-outcome family supplies the strongest current Claim-A
+evidence. Across 21 required co-presence outcomes per adapter, GATSim completes
+15, AgentSociety 4, Generative Agents 2, and SOTOPIA 0. SOTOPIA nevertheless
+produces 61.1% fully feasible traces and is face-plausible on 88.9% of traces.
+The legal-but-ineffective pattern therefore persists across six oracle-winnable
+social mechanisms and three independent repeats rather than resting on one
+meeting anecdote.
 
 ## Expected Contribution
 

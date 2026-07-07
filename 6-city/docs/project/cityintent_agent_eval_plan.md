@@ -160,7 +160,7 @@ model changes.
 
 ## Current Experimental Status
 
-Five complementary external-adapter matrices are complete:
+Six complementary external-adapter matrices are complete:
 
 ```text
 4 verified adapted decision layers
@@ -180,8 +180,9 @@ x 1 fixed agent model (gpt-5.4-mini)
 
 The breadth matrix reuses repeat 1 for the four overlapping pressure scenarios,
 and a matched 16-trace `gpt-5.4` agent-model screen is also complete. The archive
-therefore contains 154 trace records and 138 unique agent executions after adding
-a 24-trace matched perturbation screen and an 18-trace targeted closure repeat.
+therefore contains 226 trace records and 210 unique agent executions after adding
+a 24-trace matched perturbation screen, an 18-trace targeted closure repeat, and
+a 72-trace social-outcome family.
 All traces
 have deterministic evidence scores. Two soft evaluators, `gpt-5.4-mini` and
 `gpt-5.4`, independently judged every matrix. The experiments find no
@@ -190,9 +191,9 @@ moderate cross-judge agreement.
 
 The next automatic matrices should be prioritized as:
 
-1. repeat the remaining network and social perturbation pairs for architectures with informative controls;
-2. repeat model-sensitivity cells whose architecture ranking reversed;
-3. repeat selected broad-scenario cells whose first run changes the architecture ranking;
+1. run a targeted backbone sweep on representative social-outcome cells;
+2. run end-to-end oracle plans through the real adapter action surfaces, including GATSim;
+3. repeat the remaining network perturbation pairs for architectures with informative controls;
 4. only then expand the matched-pair library to new urban mechanisms.
 
 ## Metrics
@@ -238,14 +239,12 @@ go one step further by comparing the architectures that make agency possible.
 
 ## Immediate Next Step
 
-Scenario breadth, model sensitivity, and the first matched perturbation screen are
-complete. The paired screen holds all non-event scenario fields fixed and finds
-architecture-specific feasibility loss under network, facility, and social
-events. The facility-closure follow-up now confirms a stable architecture split:
-GATSim retains 3/3 joint recovery, while Generative Agents and AgentSociety retain
-0/3 despite perfect controls. The strongest next step is to repeat the network and
-social pairs for architectures whose controls are informative, testing whether
-the facility result generalizes to other urban shock mechanisms.
+Scenario breadth, model sensitivity, matched perturbations, and the repeated
+social-outcome family are complete. In the social family, GATSim completes 15/21
+required co-presence outcomes, AgentSociety 4/21, Generative Agents 2/21, and
+SOTOPIA 0/21 despite 61.1% fully feasible traces. The strongest next automatic
+step is a small backbone sweep on representative social cells, followed by an
+end-to-end oracle-through-adapter confirmation that includes GATSim.
 
 The separate human-validation task should proceed in parallel. It calibrates the
 construct and soft evidence rubric; it should not delay scenario breadth or model-

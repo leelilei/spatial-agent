@@ -55,6 +55,7 @@ Single-run or smoke experiments should still keep:
 | 2026-07-02 | v1-rc1 external-adapter, 4 frameworks × 4 scenarios × 1 (release-candidate diagnostic) | `results/cityintent_v1_rc1/external_frameworks_4x4x1_gpt54mini_2026-07-02/`, `results/cityintent_v1_rc1_offline_2026-07-02/` | `docs/experiments/cityintent_v1_rc1_external_4x4x1_2026-07-02.md` | Archived; task_completion vs legacy-goal dissociation shown |
 | 2026-07-06 | Oracle compliance probe: contract satisfiability + adapter action-surface reachability (3 evidence-critical scenarios) | `results/cityintent_v1_rc1/compliance_probe_oracle/` | `docs/experiments/cityintent_v1_rc1_compliance_probe_2026-07-06.md` | Archived; ALL PASS — refutes adapter-artifact confound; guarded by `tests/test_compliance_probe.py` |
 | 2026-07-06 | Social-outcome scenario family: 6 co-presence variants authored + oracle-winnability verified | `results/cityintent_v1_rc1/social_outcome_family_oracle/` | `docs/experiments/cityintent_social_outcome_family_2026-07-06.md` | Archived; ALL PASS (task=1.0, feasible, accepted co-presence); schema OK (social_outcome=6); guarded by `tests/test_social_outcome_family.py`. Framework runs pending checkout machine |
+| 2026-07-06 | Social-outcome family, 4 official adapters x 6 scenarios x 3 repeats | `results/cityintent_v1_rc1/external_frameworks_4x6socialx1_gpt54mini_2026-07-06/` | `docs/experiments/cityintent_v1_rc1_social_outcome_4x6x3_2026-07-06.md` | Archived; 72 real traces; GATSim 15/21 accepted co-presence outcomes, AgentSociety 4/21, Generative Agents 2/21, SOTOPIA 0/21 with 61.1% fully feasible traces |
 
 ## Next Pending Result
 
@@ -65,14 +66,12 @@ Two parallel, non-blocking tracks:
 (currently blank), then report exact agreement + Cohen's kappa vs the deterministic
 `task_completion` / feasibility / replanning labels. Model labels cannot satisfy this gate.
 
-2. **Claim-A hardening (does not block freeze).** After the 2026-07-06 compliance
-probe closed the adapter-artifact confound at the function level, the remaining
-Claim-A gaps are: (a) end-to-end oracle-through-real-adapters on the checkout
-machine (incl. GATSim), (b) backbone sweep to separate framework effects from a
-single `gpt-5.4-mini` confound, (c) the social-outcome scenario family is now
-authored + oracle-verified fair (2026-07-06); the remaining step is running the 4
-frameworks over it × 3 repeats on the checkout machine to firm up the headline
-"legal but ineffective" dissociation.
+2. **Claim-A hardening (does not block freeze).** The compliance probe closes the
+strongest adapter-artifact confound, and the 72-trace social-outcome family run now
+establishes the repeated "legal but ineffective" effect. Remaining gaps are (a)
+end-to-end oracle-through-real-adapters, including GATSim, and (b) a targeted
+backbone sweep to separate framework effects from a single `gpt-5.4-mini`
+configuration.
 
 See `docs/project/direction_verdict_2026-07-04.md` for why v1 stays
 `release_candidate_pending_human_audit` and the recommended framing (lead with the
