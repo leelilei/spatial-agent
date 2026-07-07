@@ -4,6 +4,7 @@ Living notes for direction finding, paper comparison, benchmark design, and deci
 
 - `citysim-agent-projects.md`: comparison table for related systems and benchmarks.
 - `cityintent_agent_eval_plan.md`: agent architectures and SOTOPIA comparison plan for the first CityAgency / CityIntent track.
+- `cityagency_paper_backed_baseline_pool_2026-07-07.md`: paper-backed baseline pool, naming rules, and next adapter expansion priorities.
 - `cityagency-related-work-broad-scan-2026-06-22.md`: broad related-work search around CityAgency, mobility realism, social-agent benchmarks, and feasibility validation.
 - `cityagency-reference-benchmark-comparison-2026-06-27.md`: reference table comparing benchmark goals, tested agent architectures/models, test methods, metrics, urban-research significance, findings, and the remaining CityAgency gap.
 - `cityagency-reference-benchmark-comparison-2026-06-27.zh-CN.md`: Chinese edition of the benchmark comparison, ending with a CityAgency (ours) row under the same evaluation framework.

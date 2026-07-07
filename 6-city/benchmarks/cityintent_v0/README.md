@@ -10,19 +10,19 @@ proposed benchmark object is concrete enough to support agent comparisons.
 ## What This Tests
 
 CityIntent includes four offline architecture probes, three generic
-API-backed policies, and four verified external-framework adapters:
+API-backed policies, and four verified external-framework decision adapters:
 
 | Agent id | Architecture | Purpose |
 |---|---|---|
 | `utility_planner` | `UtilityPlannerAgent` | Deterministic non-LLM baseline using time, distance, cost, needs, and relationships |
-| `llm_direct_actor` | `LLMDirectActor` | SOTOPIA-like direct next-action policy |
+| `llm_direct_actor` | `LLMDirectActor` | SOTOPIA-style direct next-action policy |
 | `reactive_replanner` | `ReactiveReplannerAgent` | Observe each step and replan after disruption |
 | `memory_reflection` | `MemoryReflectionAgent` | Generative-agent-style memory, reflection, and planning |
 | `api_llm_direct_actor` | `APILLMDirectActor` | Real provider-backed direct next-action policy |
 | `api_llm_plan_then_act` | `APILLMPlanThenAct` | Real provider-backed initial-plan-then-execute policy |
 | `api_llm_reactive_replanner` | `APILLMReactiveReplanner` | Real provider-backed observe-update-act replanner |
 | `gatsim_official_planner` | `GATSimOfficialPlannerAdapter` | Pinned official GATSim planning code/templates adapted to the CityIntent world |
-| `sotopia_official_llm_agent` | `SOTOPIAOfficialLLMAgentAdapter` | Pinned official SOTOPIA per-turn private-goal action policy |
+| `sotopia_official_llm_agent` | `SOTOPIAOfficialLLMAgentAdapter` | Pinned official SOTOPIA `LLMAgent`-style per-turn private-goal action policy |
 | `generative_agents_official_planner` | `GenerativeAgentsOfficialPlannerAdapter` | Pinned official Smallville daily planning, reflection, and revision prompts |
 | `agentsociety_official_plan_blocks` | `AgentSocietyOfficialPlanBlocksAdapter` | Pinned official AgentSociety TPB guidance, detailed-plan, and place-analysis blocks |
 
@@ -39,9 +39,13 @@ labelled `adapted_official_*`, not native full-backend results. CitySim is not
 listed as an official adapter because its paper does not currently provide an
 official public implementation that can be pinned and executed.
 
+SOTOPIA should be read especially carefully in result tables: SOTOPIA itself is
+a benchmark. The runnable CityIntent object is the adapted `LLMAgent` decision
+policy from that benchmark lineage, not the SOTOPIA benchmark as a whole.
+
 ## Scenario Set
 
-CityIntent currently has 18 scenarios:
+CityIntent currently has 24 scenarios:
 
 - 8 original seed scenarios covering budget, disruption, memory, POI closure,
   preference, social-spatial tradeoff, opportunistic social interaction, and
@@ -56,6 +60,8 @@ CityIntent currently has 18 scenarios:
   - `paired_commute_a` / `paired_commute_b`
   - `paired_study_a` / `paired_study_b`
   - `paired_pickup_a` / `paired_pickup_b`
+- 6 social-outcome scenarios that require verifiable co-presence, messaging, or
+  event-window outcomes rather than merely plausible social intent.
 
 The pressure scenarios are intentionally diagnostic. They stress cases where an
 action can sound locally plausible while the full city trace becomes
@@ -201,10 +207,10 @@ python 6-city/benchmarks/cityintent_v0/tools/run_baseline_traces.py ^
 
 The trace `model_info` records `framework`, `source_repo`, `source_commit`,
 `source_verified`, `integration_level`, `native_backend`, and the actual LLM.
-GATSim's explicit activity-plan paths are preserved; SOTOPIA keeps its
-per-turn `AgentAction`; Generative Agents keeps daily planning, reflection, and
-schedule revision; AgentSociety keeps TPB guidance, typed plan steps, and place
-analysis.
+GATSim's explicit activity-plan paths are preserved; the SOTOPIA-style adapter
+keeps its per-turn `AgentAction`; Generative Agents keeps daily planning,
+reflection, and schedule revision; AgentSociety keeps TPB guidance, typed plan
+steps, and place analysis.
 
 Provider-backed runs also archive per-call latency, retries, prompt hashes, and
 provider token usage (or a labelled character estimate). Totals are written to

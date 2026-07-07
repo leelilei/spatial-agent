@@ -391,8 +391,8 @@ The result is a dissociation rather than a single leaderboard winner:
   trace-believability scores.
 - Generative Agents completes some outcomes but produces no fully feasible trace
   in this 12-run sample.
-- SOTOPIA produces mostly legal traces but no full task completion; 83.3% of its
-  traces are face-plausible task failures.
+- The SOTOPIA-style `LLMAgent` adapter produces mostly legal traces but no full
+  task completion; 83.3% of its traces are face-plausible task failures.
 
 Across all traces, face plausibility has near-zero correlation with deterministic
 task completion (Pearson `-0.041`, Spearman `0.055`). The result remains near zero
@@ -408,21 +408,25 @@ audit remains the construct-validity gate for v1.
 The 12-scenario breadth result preserves the architecture separation. GATSim has
 the highest full-task (75.0%) and fully feasible (83.3%) rates. AgentSociety is
 face-plausible on 91.7% of traces but fully feasible on only 25.0%. Generative
-Agents is face-plausible but infeasible on 75.0% of scenarios, while SOTOPIA has
-no full task completion despite a 58.3% fully feasible rate. In the broad sample,
-face plausibility again fails to track hard outcomes (Pearson `-0.207` with task
-completion and `-0.166` with feasibility).
+Agents is face-plausible but infeasible on 75.0% of scenarios, while the
+SOTOPIA-style `LLMAgent` adapter has no full task completion despite a 58.3%
+fully feasible rate. In the broad sample, face plausibility again fails to track
+hard outcomes (Pearson `-0.207` with task completion and `-0.166` with
+feasibility).
 
 Together, these experiments support an architecture-by-scenario diagnostic claim,
-not a native-framework leaderboard or a claim of human urban realism.
+not a native-framework leaderboard or a claim of human urban realism. The
+baseline labels should therefore name adapted decision policies, such as a
+`SOTOPIA-style LLMAgent adapter`, rather than implying that a benchmark such as
+SOTOPIA is itself the variable under test.
 
 The first paired model-sensitivity result also rejects uniform model scaling.
 Relative to matched `gpt-5.4-mini` cells, `gpt-5.4` raises Generative Agents task
-and feasibility by `+0.125` and `+0.315`, and raises SOTOPIA task by `+0.375`.
-At the same time, task completion falls by `-0.250` for both GATSim and
-AgentSociety. CityAgency therefore needs to measure model-by-architecture
-interaction rather than attributing all failures to either the base model or the
-framework alone.
+and feasibility by `+0.125` and `+0.315`, and raises the SOTOPIA-style
+`LLMAgent` adapter's task score by `+0.375`. At the same time, task completion
+falls by `-0.250` for both GATSim and AgentSociety. CityAgency therefore needs
+to measure model-by-architecture interaction rather than attributing all failures
+to either the base model or the framework alone.
 
 The matched perturbation screen adds causal structure. GATSim preserves full task
 completion in all three treatment cells and joint success in two. Generative
@@ -464,6 +468,13 @@ CityAgency should claim four contributions:
    such as goal drift, spatial insensitivity, invalid action hallucination, or weak
    replanning after disruption, reported as agent-level mechanism evidence rather
    than proof of human or macro urban realism.
+
+The next baseline expansion will be deliberately paper-backed rather than
+prompt-invented: add a ReAct-style tool-use policy and a Plan-and-Execute policy
+first, then consider FeasiGen/ChinaTravel-style feasibility-aware planning,
+MobilityBench-style route-tool use, and TrajGenAgent/AgentMob-style mobility
+grounding. This keeps the benchmark comparable to existing agent-evaluation
+work while preserving CityAgency's city-specific trace verifier.
 
 ## Relationship To Prior Work
 

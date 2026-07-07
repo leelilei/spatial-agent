@@ -13,8 +13,8 @@ family of city episodes?
 - Six oracle-winnable `social_outcome` scenarios: open meeting, message-gated
   meeting, event-window meeting, two-party sequential meetings, meeting plus
   errand, and a decoy-location test.
-- Four pinned adapted official decision layers: GATSim, SOTOPIA, Generative
-  Agents, and AgentSociety.
+- Four pinned adapted official decision layers: GATSim, a SOTOPIA-style
+  `LLMAgent` policy, Generative Agents, and AgentSociety.
 - Agent model: provider-backed `gpt-5.4-mini`.
 - Repeats: 3 per scenario-adapter cell.
 - Coverage: 4 adapters x 6 scenarios x 3 repeats = 72 traces.
@@ -33,19 +33,22 @@ family of city episodes?
 | AgentSociety | 4/21 | 0.190 | 0.222 | 0.167 | 0.222 | 0.278 | 0.167 | 0.111 | 0.778 |
 | GATSim | 15/21 | 0.714 | 0.667 | 0.667 | 0.667 | 0.500 | 0.500 | 0.000 | 0.278 |
 | Generative Agents | 2/21 | 0.095 | 0.111 | 0.000 | 0.056 | 0.056 | 0.000 | 0.056 | 0.667 |
-| SOTOPIA | 0/21 | 0.000 | 0.000 | 0.000 | 0.000 | 0.611 | 0.000 | 0.611 | 0.889 |
+| SOTOPIA-style LLMAgent | 0/21 | 0.000 | 0.000 | 0.000 | 0.000 | 0.611 | 0.000 | 0.611 | 0.889 |
 
 `Social pass^3` is the fraction of scenario-adapter cells where every repeat
 accepts all required co-presence outcomes. Joint success requires full task
 completion and full trace feasibility.
 
+SOTOPIA is a benchmark, not an agent architecture. The row above names the
+adapted `LLMAgent`-style decision policy used inside CityIntent.
+
 ## Core Finding: Legal But Ineffective Is A Family Effect
 
-SOTOPIA produces no accepted co-presence outcome in 21 opportunities and no full
-task success, while 61.1% of its traces are fully feasible. The mini judge marks
-88.9% as face-plausible. This extends the earlier meeting anecdote into a repeated
-six-scenario family effect: legal and plausible coordination behavior is not
-evidence that a meeting occurred.
+The SOTOPIA-style LLMAgent adapter produces no accepted co-presence outcome in
+21 opportunities and no full task success, while 61.1% of its traces are fully
+feasible. The mini judge marks 88.9% as face-plausible. This extends the earlier
+meeting anecdote into a repeated six-scenario family effect: legal and plausible
+coordination behavior is not evidence that a meeting occurred.
 
 The result is not caused by an impossible family or an unreachable action type:
 
@@ -67,9 +70,9 @@ The result is not caused by an impossible family or an unreachable action type:
 - **Generative Agents** accepts only 2/21 outcomes, one in the decoy scenario and
   one in meeting plus errand. No scenario reaches social `pass^3`, and no trace is
   a joint success.
-- **SOTOPIA** sends counterpart-directed messages without a successful meeting in
-  61.1% of traces. It demonstrates coordination language without environment-
-  accepted co-presence.
+- **SOTOPIA-style LLMAgent** sends counterpart-directed messages without a
+  successful meeting in 61.1% of traces. It demonstrates coordination language
+  without environment-accepted co-presence.
 
 ## Evidence-Gap Diagnostics
 
@@ -78,12 +81,13 @@ The result is not caused by an impossible family or an unreachable action type:
 | AgentSociety | 0.333 | 0.333 | 0.611 | 0.325 | 0.615 | 0.903 |
 | GATSim | 0.000 | 0.333 | 0.333 | 0.667 | 0.819 | 0.776 |
 | Generative Agents | 0.333 | 0.056 | 0.722 | 0.220 | 0.666 | 0.772 |
-| SOTOPIA | 0.611 | 0.056 | 0.111 | 0.103 | 0.913 | 0.813 |
+| SOTOPIA-style LLMAgent | 0.611 | 0.056 | 0.111 | 0.103 | 0.913 | 0.813 |
 
-The architectures fail at different stages: SOTOPIA often communicates but does
-not establish joint state; Generative Agents and AgentSociety often reach relevant
-places without producing accepted interaction evidence; GATSim attempts some
-interactions that fail a location, timing, or coordination gate.
+The decision policies fail at different stages: the SOTOPIA-style LLMAgent often
+communicates but does not establish joint state; Generative Agents and
+AgentSociety often reach relevant places without producing accepted interaction
+evidence; GATSim attempts some interactions that fail a location, timing, or
+coordination gate.
 
 ## Plausibility-Judge Robustness
 

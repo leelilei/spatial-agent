@@ -63,7 +63,8 @@ The **divergence** between task_completion and goal_completion is the finding.
   meeting interaction**. This is the plausible↔verified gap, measured.
 - The 72-trace social-outcome family turns that anecdote into a repeated effect:
   GATSim completes 15/21 required co-presence outcomes, AgentSociety 4/21,
-  Generative Agents 2/21, and SOTOPIA 0/21 despite 61.1% fully feasible traces.
+  Generative Agents 2/21, and the SOTOPIA-style `LLMAgent` adapter 0/21 despite
+  61.1% fully feasible traces.
 
 **Validation pipeline**
 - blinded audit packet + RUBRIC + sealed key; 16 items awaiting human annotation

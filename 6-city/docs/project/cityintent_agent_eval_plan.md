@@ -1,7 +1,7 @@
 # CityIntent Agent Evaluation Plan
 
 Date: 2026-06-22
-Updated: 2026-07-04
+Updated: 2026-07-07
 
 Purpose: define which city-agent policies the first CityAgency / CityIntent
 track should evaluate, and clarify what SOTOPIA actually compared.
@@ -24,8 +24,9 @@ with humans added on SOTOPIA-hard as a comparison point. The paper explicitly
 leaves richer prompting / control methods such as Chain-of-Thought and ReAct as
 future work.
 
-This creates the opening for CityIntent: we can make **agent architecture** a
-first-class benchmark axis, not only the underlying LLM.
+This creates the opening for CityIntent: we can make **paper-backed agent
+decision architecture** a first-class benchmark axis, not only the underlying
+LLM.
 
 ## What SOTOPIA Evaluated
 
@@ -75,7 +76,7 @@ These are the agents we should implement or wrap first.
 |---|---|---|---|
 | P0 | FixedScheduleAgent | Script-following baseline | Shows how much performance comes from prewritten routines rather than agency |
 | P0 | UtilityPlannerAgent | Non-LLM decision baseline | Gives a deterministic floor using time, distance, cost, need, and relationship weights |
-| P0 | LLMDirectActor | SOTOPIA-like direct action prompt | Closest analogue to SOTOPIA's main agent policy |
+| P0 | LLMDirectActor | SOTOPIA-style direct action prompt | Closest analogue to SOTOPIA's main agent policy |
 | P0 | LLMPlanThenActAgent | Initial plan commitment | Tests whether one-shot planning survives spatial constraints and disruptions |
 | P0 | LLMReactiveReplanner | Observe-update-act loop | Tests short-horizon adaptation when routes, POIs, or social opportunities change |
 | P0 | GenerativeAgentMemoryAgent | Memory + reflection + planning | Tests the classic generative-agent claim: stable intent across time and space |
@@ -96,7 +97,7 @@ end-to-end framework backends.
 | Adapter | Pinned source surface | Integration role |
 |---|---|---|
 | GATSim | Daily mobility planning and schedule-update prompts | Mobility plan generation and disruption update |
-| SOTOPIA | `LLMAgent` per-turn private-goal action prompt | Direct observation-to-action social policy |
+| SOTOPIA-style LLMAgent adapter | `LLMAgent` per-turn private-goal action prompt | Direct observation-to-action social policy derived from the SOTOPIA benchmark lineage |
 | Generative Agents | Daily planning, reflection, and schedule revision prompts | Memory/reflection-oriented planning policy |
 | AgentSociety | TPB guidance, detailed plan, and mobility place-analysis blocks | Structured plan-block policy |
 
@@ -104,6 +105,40 @@ Every archived trace records repository, commit, verified files, integration
 level, provider/model metadata, prompt hashes, call success, latency, and token
 usage. Results must be described as evidence about these adapted decision layers,
 not the complete native systems.
+
+This naming distinction is most important for SOTOPIA. SOTOPIA is a benchmark;
+CityIntent evaluates an adapted `LLMAgent`-style decision policy from that
+benchmark lineage. It should not be reported as if the SOTOPIA benchmark itself
+were an agent architecture.
+
+## Paper-Backed Baseline Expansion
+
+The next baseline expansion should use architectures with citable paper or
+benchmark lineage. Custom local agents remain useful as controls, but the main
+paper table should privilege source-backed decision policies.
+
+| Priority | Candidate | Source lineage | Why add it now |
+|---|---|---|---|
+| P0 | ReAct-style tool-use policy | ReAct, tau-bench, ChinaTravel, AppWorld | Standard execution-agent baseline; tests whether city/social adapters fail because they lack observe-act tool use |
+| P0 | Plan-and-Execute policy | AppWorld | Separates high-level planning from stepwise execution; we already have `api_llm_plan_then_act` as a candidate surface |
+| P1 | Feasibility-aware planner-executor | FeasiGen, ChinaTravel | Directly targets false-continue and impossible-trace failures |
+| P1 | MobilityBench-style route-tool agent | MobilityBench | Adds a mobility-benchmark-backed tool baseline beyond GATSim |
+| P1 | TrajGenAgent-style hierarchical grounder | TrajGenAgent | Tests whether deterministic grounding of activity chains improves continuous traces |
+| P2 | AgentMob-style evidence-grounded mobility policy | AgentMob | Brings a next-location prediction lineage, with careful framing because prediction evidence is not completion evidence |
+
+The immediate matrix should add only the first two to the existing four adapted
+decision layers:
+
+```text
+4 current adapted decision layers
++ ReAct-style tool-use policy
++ Plan-and-Execute policy
+x representative social-outcome and disruption cells
+x 3 repeats
+```
+
+The detailed pool is archived in
+`docs/project/cityagency_paper_backed_baseline_pool_2026-07-07.md`.
 
 ## What Each Agent Must Expose
 
@@ -191,10 +226,14 @@ moderate cross-judge agreement.
 
 The next automatic matrices should be prioritized as:
 
-1. run a targeted backbone sweep on representative social-outcome cells;
-2. run end-to-end oracle plans through the real adapter action surfaces, including GATSim;
-3. repeat the remaining network perturbation pairs for architectures with informative controls;
-4. only then expand the matched-pair library to new urban mechanisms.
+1. run a small paper-backed architecture expansion with ReAct-style and
+   Plan-and-Execute policies on representative social-outcome cells;
+2. run a targeted backbone sweep on the same cells;
+3. run end-to-end oracle plans through the real adapter action surfaces,
+   including GATSim;
+4. repeat the remaining network perturbation pairs for architectures with
+   informative controls;
+5. only then expand the matched-pair library to new urban mechanisms.
 
 ## Metrics
 
@@ -242,9 +281,14 @@ go one step further by comparing the architectures that make agency possible.
 Scenario breadth, model sensitivity, matched perturbations, and the repeated
 social-outcome family are complete. In the social family, GATSim completes 15/21
 required co-presence outcomes, AgentSociety 4/21, Generative Agents 2/21, and
-SOTOPIA 0/21 despite 61.1% fully feasible traces. The strongest next automatic
-step is a small backbone sweep on representative social cells, followed by an
-end-to-end oracle-through-adapter confirmation that includes GATSim.
+the SOTOPIA-style `LLMAgent` adapter 0/21 despite 61.1% fully feasible traces.
+The strongest next automatic step is a small backbone sweep on representative
+social cells, followed by an end-to-end oracle-through-adapter confirmation that
+includes GATSim.
+Before broadening the scenario library, add two paper-backed execution baselines:
+ReAct-style tool use and Plan-and-Execute. This directly answers whether the
+observed SOTOPIA-style and citysim-adapter failures are architecture-specific or
+shared by standard execution-agent designs.
 
 The separate human-validation task should proceed in parallel. It calibrates the
 construct and soft evidence rubric; it should not delay scenario breadth or model-
