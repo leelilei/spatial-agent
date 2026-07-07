@@ -861,6 +861,9 @@ class APILLMPlanThenAct(APILLMDirectActor):
             "Return exactly one JSON object with key plan, whose value is a list of action objects. "
             "Allowed action kinds: move, enter, use_service, buy, dwell, message, interact, finish, abandon. "
             "Use only location ids and agent ids from the scenario. "
+            "Hard protocol: move only changes location; after move you must enter before dwell, use_service, buy, or interact. "
+            "At paid venues, include use_service or buy before any dwell or interact action. "
+            "For co_presence goals, interact must occur inside the allowed location and time_window. "
             "Do not include markdown."
         )
         user = json.dumps(self.build_plan_observation(), ensure_ascii=False, indent=2)
@@ -897,8 +900,30 @@ class APILLMPlanThenAct(APILLMDirectActor):
                     "tags": loc.get("tags", []),
                     "open": loc.get("open"),
                     "typical_cost": loc.get("typical_cost", 0),
+                    "requires_service_before_dwell_or_interact": self.world.location_cost(location_id) > 0,
                     "shortest_path_from_start_minutes": None if minutes == float("inf") else minutes,
                     "path_from_start": path,
+                }
+            )
+        social_recipes = []
+        for condition in self.scenario.get("success_conditions", []):
+            if condition.get("type") != "co_presence":
+                continue
+            social_recipes.append(
+                {
+                    "condition_id": condition.get("id"),
+                    "required_sequence": [
+                        "message first if the scenario requires confirmation",
+                        "move to one allowed location",
+                        "enter the allowed location",
+                        "if the location has typical_cost > 0, use_service or buy before waiting",
+                        "dwell/wait only until the time_window starts",
+                        "interact with the counterpart during the time_window",
+                        "finish only after accepted interaction evidence",
+                    ],
+                    "allowed_locations": condition.get("location_any_of", []),
+                    "time_window": condition.get("time_window"),
+                    "agents": condition.get("agents", []),
                 }
             )
         return {
@@ -926,6 +951,13 @@ class APILLMPlanThenAct(APILLMDirectActor):
                 "events": self.scenario.get("events", []),
                 "success_conditions": self.scenario.get("success_conditions", []),
             },
+            "hard_protocol_guidance": [
+                "A plan with dwell or interact at a paid location before use_service/buy will be infeasible.",
+                "A plan with interact before enter will be infeasible.",
+                "A plan with interact before the co_presence time_window will fail target availability.",
+                "Use finish only after the plan has explicit evidence-producing actions.",
+            ],
+            "social_success_recipes": social_recipes,
             "primary_agent": {
                 "id": self.primary["agent_id"],
                 "persona": self.primary["persona"],
@@ -1030,11 +1062,90 @@ class APILLMReActToolPolicy(APILLMDirectActor):
             "result before choosing the next action. "
             "Return exactly one JSON object and no markdown. "
             "Use either {\"thought\": \"...\", \"action\": {...}} or a direct action object. "
+            "If react_state.required_next_action is not null, choose that action exactly "
+            "unless it is impossible under the current observation. "
             "The action must use one allowed kind: move, enter, use_service, buy, dwell, "
             "message, interact, finish, abandon. "
             "Never claim that a meeting, purchase, service, or entry happened unless "
             "the previous environment state already contains that evidence."
         )
+
+    def _last_observation(self, state: TraceState) -> dict[str, Any] | None:
+        if not state.actions:
+            return None
+        last = state.actions[-1]
+        previous_violation_count = 0
+        if len(state.actions) >= 2:
+            previous_violation_count = len(state.actions[-2].get("violations", []))
+        violations = last.get("violations", [])
+        return {
+            "step": last.get("step"),
+            "action": last.get("action", {}),
+            "start_time": last.get("start_time"),
+            "end_time": last.get("end_time"),
+            "end_location": last.get("end_location"),
+            "new_violations": violations[previous_violation_count:],
+        }
+
+    def _required_next_action(self, state: TraceState) -> dict[str, Any] | None:
+        last_observation = self._last_observation(state)
+        if last_observation:
+            new_violation_kinds = {
+                violation.get("kind")
+                for violation in last_observation.get("new_violations", [])
+            }
+            if new_violation_kinds & {"interaction_without_entry", "dwell_without_entry"}:
+                return {
+                    "kind": "enter",
+                    "target": state.location,
+                    "reason": "repair the previous invalid action by entering the current venue before dwell/interact",
+                }
+
+        for condition in self.scenario["success_conditions"]:
+            if condition.get("type") != "co_presence":
+                continue
+            if condition_success(condition, state, self.scenario) >= 1.0:
+                continue
+            locations = condition.get("location_any_of", [])
+            if state.location not in locations:
+                continue
+            start, end = [parse_time(v) for v in condition["time_window"]]
+            if state.inside_location != state.location:
+                return {
+                    "kind": "enter",
+                    "target": state.location,
+                    "reason": "co-presence requires entering the shared venue before interaction",
+                }
+            if self.world.location_cost(state.location) > 0 and not (
+                has_used_service(state, state.location)
+                or has_purchased(state, state.location)
+            ):
+                return {
+                    "kind": "use_service",
+                    "target": state.location,
+                    "service": "meeting_refreshment",
+                    "minutes": 5,
+                    "reason": "paid venues require service or purchase evidence before waiting or interacting",
+                }
+            if state.time < start:
+                return {
+                    "kind": "dwell",
+                    "minutes": max(1, start - state.time),
+                    "reason": "wait inside the venue until the co-presence time window opens",
+                }
+            if state.time <= end:
+                other_agents = [
+                    agent
+                    for agent in condition.get("agents", [])
+                    if agent != state.agent_id
+                ]
+                return {
+                    "kind": "interact",
+                    "to": other_agents[0] if other_agents else None,
+                    "minutes": 5,
+                    "reason": "create accepted co-presence evidence inside the time window",
+                }
+        return None
 
     def build_observation(self, state: TraceState) -> dict[str, Any]:
         observation = super().build_observation(state)
@@ -1055,6 +1166,8 @@ class APILLMReActToolPolicy(APILLMDirectActor):
                 "The environment will validate and update location, time, budget, entry, purchases, services, messages, and interactions.",
                 "Use the next observation rather than assuming an action succeeded.",
             ],
+            "required_next_action": self._required_next_action(state),
+            "last_observation": self._last_observation(state),
             "available_tools": {
                 "move": "travel to a known location by id; does not enter or complete tasks",
                 "enter": "enter current or target POI when open",
@@ -1071,11 +1184,13 @@ class APILLMReActToolPolicy(APILLMDirectActor):
             "failure_taxonomy_so_far": failure_taxonomy_counts(state),
         }
         observation["action_guidance"] = [
+            "If react_state.required_next_action is present, return it as the next action.",
             "Follow a thought-action-observation loop: do not skip the city action that would create evidence.",
             "Prefer actions that create missing evidence for unfinished_conditions.",
             "For social goals, message can coordinate but only interact can create accepted co-presence evidence.",
             "Before interact, enter the shared venue; moving to the venue is not enough.",
             "Check co_presence time_window values; if early, enter then dwell/wait until the window before interacting.",
+            "At a paid venue, use_service or buy before dwell/interact.",
             "For errands, move and enter are preparation; buy/use_service/dwell create task evidence.",
             "If an action failed earlier, choose a different tool call or abandon honestly.",
             *observation.get("action_guidance", []),

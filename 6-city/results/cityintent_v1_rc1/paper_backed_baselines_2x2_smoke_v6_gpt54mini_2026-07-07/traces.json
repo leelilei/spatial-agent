@@ -1,0 +1,1610 @@
+[
+  {
+    "scenario_id": "social_copresence_message_gated",
+    "scenario_title": "Confirm Then Meet",
+    "family": "social_outcome",
+    "agent_type": "api_llm_react_tool_policy",
+    "trace": [
+      {
+        "scenario_id": "social_copresence_message_gated",
+        "agent_type": "api_llm_react_tool_policy",
+        "step": 1,
+        "start_time": "12:00",
+        "start_location": "office",
+        "action": {
+          "kind": "message",
+          "target": null,
+          "path": null,
+          "minutes": 0,
+          "to": "ben",
+          "content": "Hey Ben, can you confirm for the Quiet Corner Cafe at 12:35?",
+          "item": "",
+          "service": "",
+          "reason": "Ben only commits after an explicit message, and confirming first is required.",
+          "raw_response": "{\"thought\":\"The next evidence to create is the required confirmation message to Ben. Meeting is not yet feasible without that and it should be coordinated before travel.\",\"action\":{\"kind\":\"message\",\"target\":null,\"minutes\":0,\"to\":\"ben\",\"content\":\"Hey Ben, can you confirm for the Quiet Corner Cafe at 12:35?\",\"item\":\"\",\"service\":\"\",\"reason\":\"Ben only commits after an explicit message, and confirming first is required.\"}}\n"
+        },
+        "end_time": "12:02",
+        "end_location": "office",
+        "budget": 16.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_message_gated",
+        "agent_type": "api_llm_react_tool_policy",
+        "step": 2,
+        "start_time": "12:02",
+        "start_location": "office",
+        "action": {
+          "kind": "move",
+          "target": "quiet_cafe",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Need to travel to the agreed meeting place before any enter or interact action.",
+          "raw_response": "{\"thought\":\"The confirmation message has already been sent, so the next missing evidence is co-presence at the quiet cafe during the target window. The earliest feasible step is to travel there, then later enter and wait if needed.\",\"action\":{\"kind\":\"move\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Need to travel to the agreed meeting place before any enter or interact action.\"}}\n"
+        },
+        "end_time": "12:23",
+        "end_location": "quiet_cafe",
+        "budget": 16.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_message_gated",
+        "agent_type": "api_llm_react_tool_policy",
+        "step": 3,
+        "start_time": "12:23",
+        "start_location": "quiet_cafe",
+        "action": {
+          "kind": "enter",
+          "target": "quiet_cafe",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Co-presence requires entering the shared venue before interaction.",
+          "raw_response": "{\"kind\":\"enter\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Co-presence requires entering the shared venue before interaction.\"}\n"
+        },
+        "end_time": "12:24",
+        "end_location": "quiet_cafe",
+        "budget": 16.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_message_gated",
+        "agent_type": "api_llm_react_tool_policy",
+        "step": 4,
+        "start_time": "12:24",
+        "start_location": "quiet_cafe",
+        "action": {
+          "kind": "use_service",
+          "target": "quiet_cafe",
+          "path": null,
+          "minutes": 5,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "meeting_refreshment",
+          "reason": "paid venues require service or purchase evidence before waiting or interacting",
+          "raw_response": "{\"kind\":\"use_service\",\"target\":\"quiet_cafe\",\"minutes\":5,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"meeting_refreshment\",\"reason\":\"paid venues require service or purchase evidence before waiting or interacting\"}\n"
+        },
+        "end_time": "12:29",
+        "end_location": "quiet_cafe",
+        "budget": 6.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_message_gated",
+        "agent_type": "api_llm_react_tool_policy",
+        "step": 5,
+        "start_time": "12:29",
+        "start_location": "quiet_cafe",
+        "action": {
+          "kind": "dwell",
+          "target": null,
+          "path": null,
+          "minutes": 6,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "wait inside the venue until the co-presence time window opens",
+          "raw_response": "{\"thought\":\"The required next action is explicitly provided as dwell for 6 minutes. That is feasible because Aria is already inside quiet_cafe and needs to wait until the co-presence window opens.\",\"action\":{\"kind\":\"dwell\",\"target\":null,\"minutes\":6,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"wait inside the venue until the co-presence time window opens\"}}"
+        },
+        "end_time": "12:35",
+        "end_location": "quiet_cafe",
+        "budget": 6.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_message_gated",
+        "agent_type": "api_llm_react_tool_policy",
+        "step": 6,
+        "start_time": "12:35",
+        "start_location": "quiet_cafe",
+        "action": {
+          "kind": "interact",
+          "target": null,
+          "path": null,
+          "minutes": 5,
+          "to": "ben",
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "create accepted co-presence evidence inside the time window",
+          "raw_response": "{\"thought\":\"Ben is already confirmed and the required next action is explicitly interact with him inside the time window. Aria is at quiet_cafe, so the feasible next step is to interact.\",\"action\":{\"kind\":\"interact\",\"target\":null,\"minutes\":5,\"to\":\"ben\",\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"create accepted co-presence evidence inside the time window\"}}\n"
+        },
+        "end_time": "12:40",
+        "end_location": "quiet_cafe",
+        "budget": 6.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_message_gated",
+        "agent_type": "api_llm_react_tool_policy",
+        "step": 7,
+        "start_time": "12:40",
+        "start_location": "quiet_cafe",
+        "action": {
+          "kind": "finish",
+          "target": null,
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "all important goals already have evidence and no further action is needed",
+          "raw_response": "{\"kind\":\"finish\",\"target\":null,\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"all important goals already have evidence and no further action is needed\"}\n"
+        },
+        "end_time": "12:40",
+        "end_location": "quiet_cafe",
+        "budget": 6.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      }
+    ],
+    "visits": [
+      {
+        "location": "office",
+        "time": 720,
+        "kind": "start"
+      },
+      {
+        "location": "coworking",
+        "time": 730,
+        "kind": "pass_through"
+      },
+      {
+        "location": "bookstore",
+        "time": 735,
+        "kind": "pass_through"
+      },
+      {
+        "location": "library",
+        "time": 738,
+        "kind": "pass_through"
+      },
+      {
+        "location": "quiet_cafe",
+        "time": 743,
+        "kind": "arrival"
+      },
+      {
+        "location": "quiet_cafe",
+        "time": 755,
+        "kind": "dwell"
+      }
+    ],
+    "traversals": [
+      {
+        "from": "office",
+        "to": "coworking",
+        "arrive_time": 730,
+        "minutes": 8
+      },
+      {
+        "from": "coworking",
+        "to": "bookstore",
+        "arrive_time": 735,
+        "minutes": 5
+      },
+      {
+        "from": "bookstore",
+        "to": "library",
+        "arrive_time": 738,
+        "minutes": 3
+      },
+      {
+        "from": "library",
+        "to": "quiet_cafe",
+        "arrive_time": 743,
+        "minutes": 5
+      }
+    ],
+    "route_interruptions": [],
+    "replans": [],
+    "messages": [
+      {
+        "to": "ben",
+        "content": "Hey Ben, can you confirm for the Quiet Corner Cafe at 12:35?",
+        "time": 720
+      }
+    ],
+    "interactions": [
+      {
+        "with": "ben",
+        "minutes": 5,
+        "time": 755,
+        "start_time": 755,
+        "end_time": 760,
+        "location": "quiet_cafe"
+      }
+    ],
+    "entries": [
+      {
+        "location": "office",
+        "time": 720,
+        "kind": "start"
+      },
+      {
+        "location": "quiet_cafe",
+        "time": 744,
+        "kind": "enter"
+      }
+    ],
+    "services": [
+      {
+        "location": "quiet_cafe",
+        "time": 749,
+        "cost": 10.0,
+        "budget_after": 6.0,
+        "service": "meeting_refreshment"
+      }
+    ],
+    "purchases": [],
+    "abandonments": [],
+    "model_info": {
+      "provider": "fhl",
+      "model": "gpt-5.4-mini",
+      "wire_api": "responses",
+      "base_url": "https://www.fhl.mom",
+      "temperature": 0.0,
+      "json_mode": false,
+      "llm_telemetry_summary": {
+        "calls": 7,
+        "successful_calls": 7,
+        "failed_calls": 0,
+        "latency_seconds": 38.767,
+        "provider_usage_calls": 7,
+        "input_tokens": 56735,
+        "output_tokens": 487,
+        "total_tokens": 57222,
+        "usage_complete": true
+      }
+    },
+    "llm_telemetry": [
+      {
+        "call_index": 1,
+        "prompt_sha256": "cc705dd81b6707c27a082b62803ec441e343e9495b857809004bc85f1d5d169c",
+        "attempts": 1,
+        "latency_seconds": 4.614,
+        "input_chars": 10944,
+        "output_chars": 422,
+        "input_tokens": 7819,
+        "output_tokens": 94,
+        "total_tokens": 7913,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 2,
+        "prompt_sha256": "a4b3a275c9a8d0f5b7442fcef6029aff308e6ff3ecbc99e370cd9d997ebec309",
+        "attempts": 1,
+        "latency_seconds": 9.543,
+        "input_chars": 11788,
+        "output_chars": 430,
+        "input_tokens": 8016,
+        "output_tokens": 94,
+        "total_tokens": 8110,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 3,
+        "prompt_sha256": "d8d2b015039f5075daf56a4d90db53e4ad28b091170fde31f04f920c217cbcec",
+        "attempts": 1,
+        "latency_seconds": 3.963,
+        "input_chars": 12293,
+        "output_chars": 175,
+        "input_tokens": 8153,
+        "output_tokens": 43,
+        "total_tokens": 8196,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 4,
+        "prompt_sha256": "c1a9798a8c352f66f522041d01e80c055e7e45c639df097868beeb3e8acda2b6",
+        "attempts": 1,
+        "latency_seconds": 5.091,
+        "input_chars": 12203,
+        "output_chars": 212,
+        "input_tokens": 8144,
+        "output_tokens": 48,
+        "total_tokens": 8192,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 5,
+        "prompt_sha256": "02154a20b33aaf6fca6e70b845d92f4d0f09e2c6738a36c4c38aeca0aab4be4e",
+        "attempts": 1,
+        "latency_seconds": 6.391,
+        "input_chars": 12351,
+        "output_chars": 369,
+        "input_tokens": 8188,
+        "output_tokens": 85,
+        "total_tokens": 8273,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 6,
+        "prompt_sha256": "c1f95aa8ce3a7d7d119406f85165b1d7a86ffd6fa43941dee8b5cb7cc4850c28",
+        "attempts": 1,
+        "latency_seconds": 5.114,
+        "input_chars": 12604,
+        "output_chars": 362,
+        "input_tokens": 8265,
+        "output_tokens": 81,
+        "total_tokens": 8346,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 7,
+        "prompt_sha256": "b9e7363961f57f1e08f267b2f04835de0642572ba9fb0b675c604eecb60a44d0",
+        "attempts": 1,
+        "latency_seconds": 4.051,
+        "input_chars": 12153,
+        "output_chars": 175,
+        "input_tokens": 8150,
+        "output_tokens": 42,
+        "total_tokens": 8192,
+        "usage_source": "provider",
+        "success": true
+      }
+    ],
+    "metrics": {
+      "plan_plausibility": 1.0,
+      "trace_feasibility": 1.0,
+      "plausibility_feasibility_gap": 0.0,
+      "impossible_trace_rate": 0.0,
+      "city_false_continue": 0.0,
+      "goal_completion": 1.0,
+      "task_completion": 1.0,
+      "constraint_satisfaction": 1.0,
+      "process_success": null,
+      "feasibility_violation": 0.0,
+      "replanning_success": null,
+      "travel_efficiency": 1.0,
+      "budget_consistency": 1.0,
+      "intention_consistency": 1.0,
+      "social_appropriateness": 1.0,
+      "done_state_loop_rate": 0.0,
+      "social_derailment_rate": 0.0
+    },
+    "conditions": [
+      {
+        "id": "confirm_with_ben",
+        "type": "send_message",
+        "score": 1.0,
+        "weight": 0.2,
+        "role": "outcome",
+        "evidence": [
+          {
+            "to": "ben",
+            "content": "Hey Ben, can you confirm for the Quiet Corner Cafe at 12:35?",
+            "time": 720
+          }
+        ]
+      },
+      {
+        "id": "meet_ben",
+        "type": "co_presence",
+        "score": 1.0,
+        "weight": 0.45,
+        "role": "outcome",
+        "evidence": [
+          {
+            "with": "ben",
+            "minutes": 5,
+            "time": 755,
+            "start_time": 755,
+            "end_time": 760,
+            "location": "quiet_cafe"
+          }
+        ]
+      },
+      {
+        "id": "stay_within_budget",
+        "type": "budget_at_least",
+        "score": 1.0,
+        "weight": 0.15,
+        "role": "constraint",
+        "evidence": []
+      },
+      {
+        "id": "no_impossible_meeting_claim",
+        "type": "no_feasibility_violation",
+        "score": 1.0,
+        "weight": 0.2,
+        "role": "constraint",
+        "evidence": []
+      }
+    ],
+    "failure_taxonomy": {},
+    "final_state": {
+      "time": "12:40",
+      "location": "quiet_cafe",
+      "inside_location": "quiet_cafe",
+      "budget": 6.0,
+      "entries": [
+        {
+          "location": "office",
+          "time": 720,
+          "kind": "start"
+        },
+        {
+          "location": "quiet_cafe",
+          "time": 744,
+          "kind": "enter"
+        }
+      ],
+      "services": [
+        {
+          "location": "quiet_cafe",
+          "time": 749,
+          "cost": 10.0,
+          "budget_after": 6.0,
+          "service": "meeting_refreshment"
+        }
+      ],
+      "purchases": [],
+      "abandonments": [],
+      "route_interruptions": [],
+      "replans": [],
+      "violations": []
+    }
+  },
+  {
+    "scenario_id": "social_copresence_message_gated",
+    "scenario_title": "Confirm Then Meet",
+    "family": "social_outcome",
+    "agent_type": "api_llm_plan_and_execute",
+    "trace": [
+      {
+        "scenario_id": "social_copresence_message_gated",
+        "agent_type": "api_llm_plan_and_execute",
+        "step": 1,
+        "start_time": "12:00",
+        "start_location": "office",
+        "action": {
+          "kind": "message",
+          "target": null,
+          "path": null,
+          "minutes": 0,
+          "to": "ben",
+          "content": "Can you meet at Quiet Corner Cafe today between 12:35 and 13:05?",
+          "item": "",
+          "service": "",
+          "reason": "Ben only commits after an explicit confirming message.",
+          "raw_response": "{\"plan\":[{\"kind\":\"message\",\"target\":null,\"minutes\":0,\"to\":\"ben\",\"content\":\"Can you meet at Quiet Corner Cafe today between 12:35 and 13:05?\",\"item\":\"\",\"service\":\"\",\"reason\":\"Ben only commits after an explicit confirming message.\"},{\"kind\":\"move\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Head to the agreed meeting location.\"},{\"kind\":\"enter\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Enter before any wait or interaction.\"},{\"kind\":\"buy\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"coffee\",\"service\":\"\",\"reason\":\"Quiet cafe is paid, so buy before dwelling or interacting.\"},{\"kind\":\"dwell\",\"target\":null,\"minutes\":14,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Wait inside until the co-presence window starts.\"},{\"kind\":\"interact\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":\"ben\",\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Create co-presence evidence with Ben during the allowed window.\"},{\"kind\":\"finish\",\"target\":null,\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Finish after the confirming message and meeting evidence.\"}]}"
+        },
+        "end_time": "12:02",
+        "end_location": "office",
+        "budget": 16.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_message_gated",
+        "agent_type": "api_llm_plan_and_execute",
+        "step": 2,
+        "start_time": "12:02",
+        "start_location": "office",
+        "action": {
+          "kind": "move",
+          "target": "quiet_cafe",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Head to the agreed meeting location.",
+          "raw_response": "{\"plan\":[{\"kind\":\"message\",\"target\":null,\"minutes\":0,\"to\":\"ben\",\"content\":\"Can you meet at Quiet Corner Cafe today between 12:35 and 13:05?\",\"item\":\"\",\"service\":\"\",\"reason\":\"Ben only commits after an explicit confirming message.\"},{\"kind\":\"move\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Head to the agreed meeting location.\"},{\"kind\":\"enter\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Enter before any wait or interaction.\"},{\"kind\":\"buy\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"coffee\",\"service\":\"\",\"reason\":\"Quiet cafe is paid, so buy before dwelling or interacting.\"},{\"kind\":\"dwell\",\"target\":null,\"minutes\":14,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Wait inside until the co-presence window starts.\"},{\"kind\":\"interact\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":\"ben\",\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Create co-presence evidence with Ben during the allowed window.\"},{\"kind\":\"finish\",\"target\":null,\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Finish after the confirming message and meeting evidence.\"}]}"
+        },
+        "end_time": "12:23",
+        "end_location": "quiet_cafe",
+        "budget": 16.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_message_gated",
+        "agent_type": "api_llm_plan_and_execute",
+        "step": 3,
+        "start_time": "12:23",
+        "start_location": "quiet_cafe",
+        "action": {
+          "kind": "enter",
+          "target": "quiet_cafe",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Enter before any wait or interaction.",
+          "raw_response": "{\"plan\":[{\"kind\":\"message\",\"target\":null,\"minutes\":0,\"to\":\"ben\",\"content\":\"Can you meet at Quiet Corner Cafe today between 12:35 and 13:05?\",\"item\":\"\",\"service\":\"\",\"reason\":\"Ben only commits after an explicit confirming message.\"},{\"kind\":\"move\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Head to the agreed meeting location.\"},{\"kind\":\"enter\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Enter before any wait or interaction.\"},{\"kind\":\"buy\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"coffee\",\"service\":\"\",\"reason\":\"Quiet cafe is paid, so buy before dwelling or interacting.\"},{\"kind\":\"dwell\",\"target\":null,\"minutes\":14,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Wait inside until the co-presence window starts.\"},{\"kind\":\"interact\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":\"ben\",\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Create co-presence evidence with Ben during the allowed window.\"},{\"kind\":\"finish\",\"target\":null,\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Finish after the confirming message and meeting evidence.\"}]}"
+        },
+        "end_time": "12:24",
+        "end_location": "quiet_cafe",
+        "budget": 16.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_message_gated",
+        "agent_type": "api_llm_plan_and_execute",
+        "step": 4,
+        "start_time": "12:24",
+        "start_location": "quiet_cafe",
+        "action": {
+          "kind": "buy",
+          "target": "quiet_cafe",
+          "path": null,
+          "minutes": 5,
+          "to": null,
+          "content": "",
+          "item": "coffee",
+          "service": "",
+          "reason": "Quiet cafe is paid, so buy before dwelling or interacting.",
+          "raw_response": "{\"plan\":[{\"kind\":\"message\",\"target\":null,\"minutes\":0,\"to\":\"ben\",\"content\":\"Can you meet at Quiet Corner Cafe today between 12:35 and 13:05?\",\"item\":\"\",\"service\":\"\",\"reason\":\"Ben only commits after an explicit confirming message.\"},{\"kind\":\"move\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Head to the agreed meeting location.\"},{\"kind\":\"enter\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Enter before any wait or interaction.\"},{\"kind\":\"buy\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"coffee\",\"service\":\"\",\"reason\":\"Quiet cafe is paid, so buy before dwelling or interacting.\"},{\"kind\":\"dwell\",\"target\":null,\"minutes\":14,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Wait inside until the co-presence window starts.\"},{\"kind\":\"interact\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":\"ben\",\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Create co-presence evidence with Ben during the allowed window.\"},{\"kind\":\"finish\",\"target\":null,\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Finish after the confirming message and meeting evidence.\"}]}"
+        },
+        "end_time": "12:29",
+        "end_location": "quiet_cafe",
+        "budget": 6.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_message_gated",
+        "agent_type": "api_llm_plan_and_execute",
+        "step": 5,
+        "start_time": "12:29",
+        "start_location": "quiet_cafe",
+        "action": {
+          "kind": "dwell",
+          "target": null,
+          "path": null,
+          "minutes": 14,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Wait inside until the co-presence window starts.",
+          "raw_response": "{\"plan\":[{\"kind\":\"message\",\"target\":null,\"minutes\":0,\"to\":\"ben\",\"content\":\"Can you meet at Quiet Corner Cafe today between 12:35 and 13:05?\",\"item\":\"\",\"service\":\"\",\"reason\":\"Ben only commits after an explicit confirming message.\"},{\"kind\":\"move\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Head to the agreed meeting location.\"},{\"kind\":\"enter\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Enter before any wait or interaction.\"},{\"kind\":\"buy\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"coffee\",\"service\":\"\",\"reason\":\"Quiet cafe is paid, so buy before dwelling or interacting.\"},{\"kind\":\"dwell\",\"target\":null,\"minutes\":14,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Wait inside until the co-presence window starts.\"},{\"kind\":\"interact\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":\"ben\",\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Create co-presence evidence with Ben during the allowed window.\"},{\"kind\":\"finish\",\"target\":null,\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Finish after the confirming message and meeting evidence.\"}]}"
+        },
+        "end_time": "12:43",
+        "end_location": "quiet_cafe",
+        "budget": 6.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_message_gated",
+        "agent_type": "api_llm_plan_and_execute",
+        "step": 6,
+        "start_time": "12:43",
+        "start_location": "quiet_cafe",
+        "action": {
+          "kind": "interact",
+          "target": null,
+          "path": null,
+          "minutes": 10,
+          "to": "ben",
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Create co-presence evidence with Ben during the allowed window.",
+          "raw_response": "{\"plan\":[{\"kind\":\"message\",\"target\":null,\"minutes\":0,\"to\":\"ben\",\"content\":\"Can you meet at Quiet Corner Cafe today between 12:35 and 13:05?\",\"item\":\"\",\"service\":\"\",\"reason\":\"Ben only commits after an explicit confirming message.\"},{\"kind\":\"move\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Head to the agreed meeting location.\"},{\"kind\":\"enter\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Enter before any wait or interaction.\"},{\"kind\":\"buy\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"coffee\",\"service\":\"\",\"reason\":\"Quiet cafe is paid, so buy before dwelling or interacting.\"},{\"kind\":\"dwell\",\"target\":null,\"minutes\":14,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Wait inside until the co-presence window starts.\"},{\"kind\":\"interact\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":\"ben\",\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Create co-presence evidence with Ben during the allowed window.\"},{\"kind\":\"finish\",\"target\":null,\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Finish after the confirming message and meeting evidence.\"}]}"
+        },
+        "end_time": "12:53",
+        "end_location": "quiet_cafe",
+        "budget": 6.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_message_gated",
+        "agent_type": "api_llm_plan_and_execute",
+        "step": 7,
+        "start_time": "12:53",
+        "start_location": "quiet_cafe",
+        "action": {
+          "kind": "finish",
+          "target": null,
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Finish after the confirming message and meeting evidence.",
+          "raw_response": "{\"plan\":[{\"kind\":\"message\",\"target\":null,\"minutes\":0,\"to\":\"ben\",\"content\":\"Can you meet at Quiet Corner Cafe today between 12:35 and 13:05?\",\"item\":\"\",\"service\":\"\",\"reason\":\"Ben only commits after an explicit confirming message.\"},{\"kind\":\"move\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Head to the agreed meeting location.\"},{\"kind\":\"enter\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Enter before any wait or interaction.\"},{\"kind\":\"buy\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"coffee\",\"service\":\"\",\"reason\":\"Quiet cafe is paid, so buy before dwelling or interacting.\"},{\"kind\":\"dwell\",\"target\":null,\"minutes\":14,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Wait inside until the co-presence window starts.\"},{\"kind\":\"interact\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":\"ben\",\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Create co-presence evidence with Ben during the allowed window.\"},{\"kind\":\"finish\",\"target\":null,\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Finish after the confirming message and meeting evidence.\"}]}"
+        },
+        "end_time": "12:53",
+        "end_location": "quiet_cafe",
+        "budget": 6.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      }
+    ],
+    "visits": [
+      {
+        "location": "office",
+        "time": 720,
+        "kind": "start"
+      },
+      {
+        "location": "coworking",
+        "time": 730,
+        "kind": "pass_through"
+      },
+      {
+        "location": "bookstore",
+        "time": 735,
+        "kind": "pass_through"
+      },
+      {
+        "location": "library",
+        "time": 738,
+        "kind": "pass_through"
+      },
+      {
+        "location": "quiet_cafe",
+        "time": 743,
+        "kind": "arrival"
+      },
+      {
+        "location": "quiet_cafe",
+        "time": 763,
+        "kind": "dwell"
+      }
+    ],
+    "traversals": [
+      {
+        "from": "office",
+        "to": "coworking",
+        "arrive_time": 730,
+        "minutes": 8
+      },
+      {
+        "from": "coworking",
+        "to": "bookstore",
+        "arrive_time": 735,
+        "minutes": 5
+      },
+      {
+        "from": "bookstore",
+        "to": "library",
+        "arrive_time": 738,
+        "minutes": 3
+      },
+      {
+        "from": "library",
+        "to": "quiet_cafe",
+        "arrive_time": 743,
+        "minutes": 5
+      }
+    ],
+    "route_interruptions": [],
+    "replans": [],
+    "messages": [
+      {
+        "to": "ben",
+        "content": "Can you meet at Quiet Corner Cafe today between 12:35 and 13:05?",
+        "time": 720
+      }
+    ],
+    "interactions": [
+      {
+        "with": "ben",
+        "minutes": 10,
+        "time": 763,
+        "start_time": 763,
+        "end_time": 773,
+        "location": "quiet_cafe"
+      }
+    ],
+    "entries": [
+      {
+        "location": "office",
+        "time": 720,
+        "kind": "start"
+      },
+      {
+        "location": "quiet_cafe",
+        "time": 744,
+        "kind": "enter"
+      }
+    ],
+    "services": [],
+    "purchases": [
+      {
+        "location": "quiet_cafe",
+        "time": 749,
+        "cost": 10.0,
+        "budget_after": 6.0,
+        "item": "coffee"
+      }
+    ],
+    "abandonments": [],
+    "model_info": {
+      "provider": "fhl",
+      "model": "gpt-5.4-mini",
+      "wire_api": "responses",
+      "base_url": "https://www.fhl.mom",
+      "temperature": 0.0,
+      "json_mode": false,
+      "llm_telemetry_summary": {
+        "calls": 1,
+        "successful_calls": 1,
+        "failed_calls": 0,
+        "latency_seconds": 7.145,
+        "provider_usage_calls": 1,
+        "input_tokens": 6867,
+        "output_tokens": 282,
+        "total_tokens": 7149,
+        "usage_complete": true
+      }
+    },
+    "llm_telemetry": [
+      {
+        "call_index": 1,
+        "prompt_sha256": "03781f40839f58e44b93e2acb178cbb6595c27c17a1623393016d942d9f4101d",
+        "attempts": 1,
+        "latency_seconds": 7.145,
+        "input_chars": 7136,
+        "output_chars": 1178,
+        "input_tokens": 6867,
+        "output_tokens": 282,
+        "total_tokens": 7149,
+        "usage_source": "provider",
+        "success": true
+      }
+    ],
+    "metrics": {
+      "plan_plausibility": 1.0,
+      "trace_feasibility": 1.0,
+      "plausibility_feasibility_gap": 0.0,
+      "impossible_trace_rate": 0.0,
+      "city_false_continue": 0.0,
+      "goal_completion": 1.0,
+      "task_completion": 1.0,
+      "constraint_satisfaction": 1.0,
+      "process_success": null,
+      "feasibility_violation": 0.0,
+      "replanning_success": null,
+      "travel_efficiency": 1.0,
+      "budget_consistency": 1.0,
+      "intention_consistency": 1.0,
+      "social_appropriateness": 1.0,
+      "done_state_loop_rate": 0.0,
+      "social_derailment_rate": 0.0
+    },
+    "conditions": [
+      {
+        "id": "confirm_with_ben",
+        "type": "send_message",
+        "score": 1.0,
+        "weight": 0.2,
+        "role": "outcome",
+        "evidence": [
+          {
+            "to": "ben",
+            "content": "Can you meet at Quiet Corner Cafe today between 12:35 and 13:05?",
+            "time": 720
+          }
+        ]
+      },
+      {
+        "id": "meet_ben",
+        "type": "co_presence",
+        "score": 1.0,
+        "weight": 0.45,
+        "role": "outcome",
+        "evidence": [
+          {
+            "with": "ben",
+            "minutes": 10,
+            "time": 763,
+            "start_time": 763,
+            "end_time": 773,
+            "location": "quiet_cafe"
+          }
+        ]
+      },
+      {
+        "id": "stay_within_budget",
+        "type": "budget_at_least",
+        "score": 1.0,
+        "weight": 0.15,
+        "role": "constraint",
+        "evidence": []
+      },
+      {
+        "id": "no_impossible_meeting_claim",
+        "type": "no_feasibility_violation",
+        "score": 1.0,
+        "weight": 0.2,
+        "role": "constraint",
+        "evidence": []
+      }
+    ],
+    "failure_taxonomy": {},
+    "final_state": {
+      "time": "12:53",
+      "location": "quiet_cafe",
+      "inside_location": "quiet_cafe",
+      "budget": 6.0,
+      "entries": [
+        {
+          "location": "office",
+          "time": 720,
+          "kind": "start"
+        },
+        {
+          "location": "quiet_cafe",
+          "time": 744,
+          "kind": "enter"
+        }
+      ],
+      "services": [],
+      "purchases": [
+        {
+          "location": "quiet_cafe",
+          "time": 749,
+          "cost": 10.0,
+          "budget_after": 6.0,
+          "item": "coffee"
+        }
+      ],
+      "abandonments": [],
+      "route_interruptions": [],
+      "replans": [],
+      "violations": []
+    }
+  },
+  {
+    "scenario_id": "social_copresence_open_meet",
+    "scenario_title": "Open Park Meetup",
+    "family": "social_outcome",
+    "agent_type": "api_llm_react_tool_policy",
+    "trace": [
+      {
+        "scenario_id": "social_copresence_open_meet",
+        "agent_type": "api_llm_react_tool_policy",
+        "step": 1,
+        "start_time": "12:00",
+        "start_location": "office",
+        "action": {
+          "kind": "move",
+          "target": "park",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Need to reach Riverside Park before the 12:35 co-presence window for Casey.",
+          "raw_response": "{\"thought\":\"We are at the office at 12:00, and the meeting window at the park starts at 12:35. The necessary next step is to travel toward the park in time, since moving now is required before any enter/interact later.\",\"action\":{\"kind\":\"move\",\"target\":\"park\",\"minutes\":25,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Need to reach Riverside Park before the 12:35 co-presence window for Casey.\"}}"
+        },
+        "end_time": "12:25",
+        "end_location": "park",
+        "budget": 16.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_open_meet",
+        "agent_type": "api_llm_react_tool_policy",
+        "step": 2,
+        "start_time": "12:25",
+        "start_location": "park",
+        "action": {
+          "kind": "enter",
+          "target": "park",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "co-presence requires entering the shared venue before interaction",
+          "raw_response": "{\"kind\":\"enter\",\"target\":\"park\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"co-presence requires entering the shared venue before interaction\"}\n"
+        },
+        "end_time": "12:26",
+        "end_location": "park",
+        "budget": 16.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_open_meet",
+        "agent_type": "api_llm_react_tool_policy",
+        "step": 3,
+        "start_time": "12:26",
+        "start_location": "park",
+        "action": {
+          "kind": "dwell",
+          "target": null,
+          "path": null,
+          "minutes": 9,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "wait inside the venue until the co-presence time window opens",
+          "raw_response": "{\"kind\":\"dwell\",\"target\":null,\"minutes\":9,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"wait inside the venue until the co-presence time window opens\"}\n"
+        },
+        "end_time": "12:35",
+        "end_location": "park",
+        "budget": 16.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_open_meet",
+        "agent_type": "api_llm_react_tool_policy",
+        "step": 4,
+        "start_time": "12:35",
+        "start_location": "park",
+        "action": {
+          "kind": "interact",
+          "target": null,
+          "path": null,
+          "minutes": 5,
+          "to": "casey",
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "create accepted co-presence evidence inside the time window",
+          "raw_response": "{\"thought\":\"Required next action is interact with Casey inside the park during the open window; no other evidence is needed first.\",\"action\":{\"kind\":\"interact\",\"target\":null,\"minutes\":5,\"to\":\"casey\",\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"create accepted co-presence evidence inside the time window\"}}"
+        },
+        "end_time": "12:40",
+        "end_location": "park",
+        "budget": 16.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_open_meet",
+        "agent_type": "api_llm_react_tool_policy",
+        "step": 5,
+        "start_time": "12:40",
+        "start_location": "park",
+        "action": {
+          "kind": "finish",
+          "target": null,
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "all important goals already have evidence",
+          "raw_response": "{\"thought\":\"The meeting has already been evidenced in the current state, and no unfinished conditions remain. The correct next action is to finish.\",\"action\":{\"kind\":\"finish\",\"target\":null,\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"all important goals already have evidence\"}}\n"
+        },
+        "end_time": "12:40",
+        "end_location": "park",
+        "budget": 16.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      }
+    ],
+    "visits": [
+      {
+        "location": "office",
+        "time": 720,
+        "kind": "start"
+      },
+      {
+        "location": "city_hall",
+        "time": 730,
+        "kind": "pass_through"
+      },
+      {
+        "location": "market",
+        "time": 737,
+        "kind": "pass_through"
+      },
+      {
+        "location": "park",
+        "time": 745,
+        "kind": "arrival"
+      },
+      {
+        "location": "park",
+        "time": 755,
+        "kind": "dwell"
+      }
+    ],
+    "traversals": [
+      {
+        "from": "office",
+        "to": "city_hall",
+        "arrive_time": 730,
+        "minutes": 10
+      },
+      {
+        "from": "city_hall",
+        "to": "market",
+        "arrive_time": 737,
+        "minutes": 7
+      },
+      {
+        "from": "market",
+        "to": "park",
+        "arrive_time": 745,
+        "minutes": 8
+      }
+    ],
+    "route_interruptions": [],
+    "replans": [],
+    "messages": [],
+    "interactions": [
+      {
+        "with": "casey",
+        "minutes": 5,
+        "time": 755,
+        "start_time": 755,
+        "end_time": 760,
+        "location": "park"
+      }
+    ],
+    "entries": [
+      {
+        "location": "office",
+        "time": 720,
+        "kind": "start"
+      },
+      {
+        "location": "park",
+        "time": 746,
+        "kind": "enter"
+      }
+    ],
+    "services": [],
+    "purchases": [],
+    "abandonments": [],
+    "model_info": {
+      "provider": "fhl",
+      "model": "gpt-5.4-mini",
+      "wire_api": "responses",
+      "base_url": "https://www.fhl.mom",
+      "temperature": 0.0,
+      "json_mode": false,
+      "llm_telemetry_summary": {
+        "calls": 5,
+        "successful_calls": 5,
+        "failed_calls": 0,
+        "latency_seconds": 22.743,
+        "provider_usage_calls": 5,
+        "input_tokens": 39239,
+        "output_tokens": 318,
+        "total_tokens": 39557,
+        "usage_complete": true
+      }
+    },
+    "llm_telemetry": [
+      {
+        "call_index": 1,
+        "prompt_sha256": "a83a2839972eb48be52b79d6078a66ffbdf9d67272d8f6d00fe602d79bc2bc44",
+        "attempts": 1,
+        "latency_seconds": 4.381,
+        "input_chars": 10127,
+        "output_chars": 407,
+        "input_tokens": 7597,
+        "output_tokens": 102,
+        "total_tokens": 7699,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 2,
+        "prompt_sha256": "8a133210bf1e45b43eb3195dfe04a679a6f74e25562523f8351ce6c96dbe3121",
+        "attempts": 1,
+        "latency_seconds": 4.19,
+        "input_chars": 11453,
+        "output_chars": 168,
+        "input_tokens": 7939,
+        "output_tokens": 40,
+        "total_tokens": 7979,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 3,
+        "prompt_sha256": "ea10163e569fffd50063e654cdab1c4de7a47a0ef81a25a718bbbd85f67fbe77",
+        "attempts": 1,
+        "latency_seconds": 5.612,
+        "input_chars": 11284,
+        "output_chars": 162,
+        "input_tokens": 7899,
+        "output_tokens": 43,
+        "total_tokens": 7942,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 4,
+        "prompt_sha256": "7efe390b214d4c3409588bad95ca2aab4937f3d6ef65a6c5a979411fc454ae0b",
+        "attempts": 1,
+        "latency_seconds": 4.44,
+        "input_chars": 11403,
+        "output_chars": 307,
+        "input_tokens": 7945,
+        "output_tokens": 68,
+        "total_tokens": 8013,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 5,
+        "prompt_sha256": "d3ad8dcd4a615a7f33706987e5e077c55137a8f49b67dcecb6ce8ef280b23d6b",
+        "attempts": 1,
+        "latency_seconds": 4.12,
+        "input_chars": 11105,
+        "output_chars": 302,
+        "input_tokens": 7859,
+        "output_tokens": 65,
+        "total_tokens": 7924,
+        "usage_source": "provider",
+        "success": true
+      }
+    ],
+    "metrics": {
+      "plan_plausibility": 1.0,
+      "trace_feasibility": 1.0,
+      "plausibility_feasibility_gap": 0.0,
+      "impossible_trace_rate": 0.0,
+      "city_false_continue": 0.0,
+      "goal_completion": 1.0,
+      "task_completion": 1.0,
+      "constraint_satisfaction": 1.0,
+      "process_success": null,
+      "feasibility_violation": 0.0,
+      "replanning_success": null,
+      "travel_efficiency": 1.0,
+      "budget_consistency": 1.0,
+      "intention_consistency": 1.0,
+      "social_appropriateness": 1.0,
+      "done_state_loop_rate": 0.0,
+      "social_derailment_rate": 0.0
+    },
+    "conditions": [
+      {
+        "id": "meet_casey",
+        "type": "co_presence",
+        "score": 1.0,
+        "weight": 0.5,
+        "role": "outcome",
+        "evidence": [
+          {
+            "with": "casey",
+            "minutes": 5,
+            "time": 755,
+            "start_time": 755,
+            "end_time": 760,
+            "location": "park"
+          }
+        ]
+      },
+      {
+        "id": "stay_within_budget",
+        "type": "budget_at_least",
+        "score": 1.0,
+        "weight": 0.2,
+        "role": "constraint",
+        "evidence": []
+      },
+      {
+        "id": "no_impossible_meeting_claim",
+        "type": "no_feasibility_violation",
+        "score": 1.0,
+        "weight": 0.3,
+        "role": "constraint",
+        "evidence": []
+      }
+    ],
+    "failure_taxonomy": {},
+    "final_state": {
+      "time": "12:40",
+      "location": "park",
+      "inside_location": "park",
+      "budget": 16.0,
+      "entries": [
+        {
+          "location": "office",
+          "time": 720,
+          "kind": "start"
+        },
+        {
+          "location": "park",
+          "time": 746,
+          "kind": "enter"
+        }
+      ],
+      "services": [],
+      "purchases": [],
+      "abandonments": [],
+      "route_interruptions": [],
+      "replans": [],
+      "violations": []
+    }
+  },
+  {
+    "scenario_id": "social_copresence_open_meet",
+    "scenario_title": "Open Park Meetup",
+    "family": "social_outcome",
+    "agent_type": "api_llm_plan_and_execute",
+    "trace": [
+      {
+        "scenario_id": "social_copresence_open_meet",
+        "agent_type": "api_llm_plan_and_execute",
+        "step": 1,
+        "start_time": "12:00",
+        "start_location": "office",
+        "action": {
+          "kind": "move",
+          "target": "park",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Reach the only allowed meeting location in time.",
+          "raw_response": "{\"plan\":[{\"kind\":\"move\",\"target\":\"park\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Reach the only allowed meeting location in time.\"},{\"kind\":\"enter\",\"target\":\"park\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Enter before any waiting or interaction.\"},{\"kind\":\"dwell\",\"target\":null,\"minutes\":10,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Arrive before the meeting window and wait inside the park until it opens.\"},{\"kind\":\"interact\",\"target\":null,\"minutes\":5,\"to\":\"casey\",\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Create co-presence evidence with Casey during the allowed window.\"},{\"kind\":\"finish\",\"target\":null,\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Meeting evidence has been produced inside the valid time window.\"}]}"
+        },
+        "end_time": "12:25",
+        "end_location": "park",
+        "budget": 16.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_open_meet",
+        "agent_type": "api_llm_plan_and_execute",
+        "step": 2,
+        "start_time": "12:25",
+        "start_location": "park",
+        "action": {
+          "kind": "enter",
+          "target": "park",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Enter before any waiting or interaction.",
+          "raw_response": "{\"plan\":[{\"kind\":\"move\",\"target\":\"park\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Reach the only allowed meeting location in time.\"},{\"kind\":\"enter\",\"target\":\"park\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Enter before any waiting or interaction.\"},{\"kind\":\"dwell\",\"target\":null,\"minutes\":10,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Arrive before the meeting window and wait inside the park until it opens.\"},{\"kind\":\"interact\",\"target\":null,\"minutes\":5,\"to\":\"casey\",\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Create co-presence evidence with Casey during the allowed window.\"},{\"kind\":\"finish\",\"target\":null,\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Meeting evidence has been produced inside the valid time window.\"}]}"
+        },
+        "end_time": "12:26",
+        "end_location": "park",
+        "budget": 16.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_open_meet",
+        "agent_type": "api_llm_plan_and_execute",
+        "step": 3,
+        "start_time": "12:26",
+        "start_location": "park",
+        "action": {
+          "kind": "dwell",
+          "target": null,
+          "path": null,
+          "minutes": 10,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Arrive before the meeting window and wait inside the park until it opens.",
+          "raw_response": "{\"plan\":[{\"kind\":\"move\",\"target\":\"park\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Reach the only allowed meeting location in time.\"},{\"kind\":\"enter\",\"target\":\"park\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Enter before any waiting or interaction.\"},{\"kind\":\"dwell\",\"target\":null,\"minutes\":10,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Arrive before the meeting window and wait inside the park until it opens.\"},{\"kind\":\"interact\",\"target\":null,\"minutes\":5,\"to\":\"casey\",\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Create co-presence evidence with Casey during the allowed window.\"},{\"kind\":\"finish\",\"target\":null,\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Meeting evidence has been produced inside the valid time window.\"}]}"
+        },
+        "end_time": "12:36",
+        "end_location": "park",
+        "budget": 16.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_open_meet",
+        "agent_type": "api_llm_plan_and_execute",
+        "step": 4,
+        "start_time": "12:36",
+        "start_location": "park",
+        "action": {
+          "kind": "interact",
+          "target": null,
+          "path": null,
+          "minutes": 5,
+          "to": "casey",
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Create co-presence evidence with Casey during the allowed window.",
+          "raw_response": "{\"plan\":[{\"kind\":\"move\",\"target\":\"park\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Reach the only allowed meeting location in time.\"},{\"kind\":\"enter\",\"target\":\"park\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Enter before any waiting or interaction.\"},{\"kind\":\"dwell\",\"target\":null,\"minutes\":10,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Arrive before the meeting window and wait inside the park until it opens.\"},{\"kind\":\"interact\",\"target\":null,\"minutes\":5,\"to\":\"casey\",\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Create co-presence evidence with Casey during the allowed window.\"},{\"kind\":\"finish\",\"target\":null,\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Meeting evidence has been produced inside the valid time window.\"}]}"
+        },
+        "end_time": "12:41",
+        "end_location": "park",
+        "budget": 16.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_open_meet",
+        "agent_type": "api_llm_plan_and_execute",
+        "step": 5,
+        "start_time": "12:41",
+        "start_location": "park",
+        "action": {
+          "kind": "finish",
+          "target": null,
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Meeting evidence has been produced inside the valid time window.",
+          "raw_response": "{\"plan\":[{\"kind\":\"move\",\"target\":\"park\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Reach the only allowed meeting location in time.\"},{\"kind\":\"enter\",\"target\":\"park\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Enter before any waiting or interaction.\"},{\"kind\":\"dwell\",\"target\":null,\"minutes\":10,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Arrive before the meeting window and wait inside the park until it opens.\"},{\"kind\":\"interact\",\"target\":null,\"minutes\":5,\"to\":\"casey\",\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Create co-presence evidence with Casey during the allowed window.\"},{\"kind\":\"finish\",\"target\":null,\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Meeting evidence has been produced inside the valid time window.\"}]}"
+        },
+        "end_time": "12:41",
+        "end_location": "park",
+        "budget": 16.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      }
+    ],
+    "visits": [
+      {
+        "location": "office",
+        "time": 720,
+        "kind": "start"
+      },
+      {
+        "location": "city_hall",
+        "time": 730,
+        "kind": "pass_through"
+      },
+      {
+        "location": "market",
+        "time": 737,
+        "kind": "pass_through"
+      },
+      {
+        "location": "park",
+        "time": 745,
+        "kind": "arrival"
+      },
+      {
+        "location": "park",
+        "time": 756,
+        "kind": "dwell"
+      }
+    ],
+    "traversals": [
+      {
+        "from": "office",
+        "to": "city_hall",
+        "arrive_time": 730,
+        "minutes": 10
+      },
+      {
+        "from": "city_hall",
+        "to": "market",
+        "arrive_time": 737,
+        "minutes": 7
+      },
+      {
+        "from": "market",
+        "to": "park",
+        "arrive_time": 745,
+        "minutes": 8
+      }
+    ],
+    "route_interruptions": [],
+    "replans": [],
+    "messages": [],
+    "interactions": [
+      {
+        "with": "casey",
+        "minutes": 5,
+        "time": 756,
+        "start_time": 756,
+        "end_time": 761,
+        "location": "park"
+      }
+    ],
+    "entries": [
+      {
+        "location": "office",
+        "time": 720,
+        "kind": "start"
+      },
+      {
+        "location": "park",
+        "time": 746,
+        "kind": "enter"
+      }
+    ],
+    "services": [],
+    "purchases": [],
+    "abandonments": [],
+    "model_info": {
+      "provider": "fhl",
+      "model": "gpt-5.4-mini",
+      "wire_api": "responses",
+      "base_url": "https://www.fhl.mom",
+      "temperature": 0.0,
+      "json_mode": false,
+      "llm_telemetry_summary": {
+        "calls": 1,
+        "successful_calls": 1,
+        "failed_calls": 0,
+        "latency_seconds": 5.893,
+        "provider_usage_calls": 1,
+        "input_tokens": 6808,
+        "output_tokens": 191,
+        "total_tokens": 6999,
+        "usage_complete": true
+      }
+    },
+    "llm_telemetry": [
+      {
+        "call_index": 1,
+        "prompt_sha256": "139a768a5ee778657a3c0262571feea294eaffe97944545f4945789490263fff",
+        "attempts": 1,
+        "latency_seconds": 5.893,
+        "input_chars": 6896,
+        "output_chars": 816,
+        "input_tokens": 6808,
+        "output_tokens": 191,
+        "total_tokens": 6999,
+        "usage_source": "provider",
+        "success": true
+      }
+    ],
+    "metrics": {
+      "plan_plausibility": 1.0,
+      "trace_feasibility": 1.0,
+      "plausibility_feasibility_gap": 0.0,
+      "impossible_trace_rate": 0.0,
+      "city_false_continue": 0.0,
+      "goal_completion": 1.0,
+      "task_completion": 1.0,
+      "constraint_satisfaction": 1.0,
+      "process_success": null,
+      "feasibility_violation": 0.0,
+      "replanning_success": null,
+      "travel_efficiency": 1.0,
+      "budget_consistency": 1.0,
+      "intention_consistency": 1.0,
+      "social_appropriateness": 1.0,
+      "done_state_loop_rate": 0.0,
+      "social_derailment_rate": 0.0
+    },
+    "conditions": [
+      {
+        "id": "meet_casey",
+        "type": "co_presence",
+        "score": 1.0,
+        "weight": 0.5,
+        "role": "outcome",
+        "evidence": [
+          {
+            "with": "casey",
+            "minutes": 5,
+            "time": 756,
+            "start_time": 756,
+            "end_time": 761,
+            "location": "park"
+          }
+        ]
+      },
+      {
+        "id": "stay_within_budget",
+        "type": "budget_at_least",
+        "score": 1.0,
+        "weight": 0.2,
+        "role": "constraint",
+        "evidence": []
+      },
+      {
+        "id": "no_impossible_meeting_claim",
+        "type": "no_feasibility_violation",
+        "score": 1.0,
+        "weight": 0.3,
+        "role": "constraint",
+        "evidence": []
+      }
+    ],
+    "failure_taxonomy": {},
+    "final_state": {
+      "time": "12:41",
+      "location": "park",
+      "inside_location": "park",
+      "budget": 16.0,
+      "entries": [
+        {
+          "location": "office",
+          "time": 720,
+          "kind": "start"
+        },
+        {
+          "location": "park",
+          "time": 746,
+          "kind": "enter"
+        }
+      ],
+      "services": [],
+      "purchases": [],
+      "abandonments": [],
+      "route_interruptions": [],
+      "replans": [],
+      "violations": []
+    }
+  }
+]

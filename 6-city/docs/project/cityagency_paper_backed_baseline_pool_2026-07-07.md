@@ -99,8 +99,6 @@ Two runnable provider-backed policy adapters have been added:
 
 The first smoke test is archived in
 `docs/experiments/cityintent_paper_backed_baselines_2x2_smoke_2026-07-07.md`.
-The headline is mixed: Plan-and-Execute succeeds on the simplest open-meeting
-cell after action-protocol guidance is strengthened, but ReAct-style tool use
-still fails that sanity cell by repeating non-evidential or invalid interaction
-actions. The full 6-scenario repeated matrix should wait until ReAct exposes and
-uses last-action failure evidence more reliably.
+After the v6 action-discipline update, both baselines pass the open-meeting and
+message-gated sanity cells with task, feasibility, and social scores all equal
+to 1.0. The next step can be the 6-scenario repeated social-outcome matrix.

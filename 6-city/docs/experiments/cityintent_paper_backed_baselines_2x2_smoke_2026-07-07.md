@@ -19,60 +19,57 @@ tasks?
   - `social_copresence_open_meet`
   - `social_copresence_message_gated`
 - Final smoke archive:
-  `results/cityintent_v1_rc1/paper_backed_baselines_2x2_smoke_v3_gpt54mini_2026-07-07/`
+  `results/cityintent_v1_rc1/paper_backed_baselines_2x2_smoke_v6_gpt54mini_2026-07-07/`
 
-Two earlier prompt-discipline smoke archives are kept as debugging evidence:
+Earlier prompt-discipline smoke archives are kept as debugging evidence:
 
 - `results/cityintent_v1_rc1/paper_backed_baselines_2x2_smoke_gpt54mini_2026-07-07/`
 - `results/cityintent_v1_rc1/paper_backed_baselines_2x2_smoke_v2_gpt54mini_2026-07-07/`
 - `results/cityintent_v1_rc1/paper_backed_baselines_open_meet_v3_gpt54mini_2026-07-07/`
+- `results/cityintent_v1_rc1/paper_backed_baselines_2x2_smoke_v3_gpt54mini_2026-07-07/`
+- `results/cityintent_v1_rc1/paper_backed_react_open_meet_v4_gpt54mini_2026-07-07/`
+- `results/cityintent_v1_rc1/paper_backed_baselines_2x2_smoke_v4_gpt54mini_2026-07-07/`
+- `results/cityintent_v1_rc1/paper_backed_baselines_2x2_smoke_v5_gpt54mini_2026-07-07/`
 
-The v3 prompt adds explicit action-protocol reminders that social outcomes
-usually require `move -> enter -> dwell/wait if early -> interact`, and that
-`co_presence.time_window` must be respected.
+The final v6 prompt adds explicit action-protocol reminders that social outcomes
+usually require `move -> enter -> paid-service if needed -> dwell/wait if early
+-> interact`, and that `co_presence.time_window` must be respected. ReAct also
+receives a compact `last_observation` and a `required_next_action` repair hint.
 
-## Final V3 Results
+## Final V6 Results
 
 | Agent | Scenario | Task | Feasibility | Social appropriateness | Accepted interactions | Violations | Main failure |
 |---|---|---:|---:|---:|---:|---:|---|
 | `api_llm_plan_and_execute` | `social_copresence_open_meet` | 1.000 | 1.000 | 1.000 | 1 | 0 | Success |
-| `api_llm_plan_and_execute` | `social_copresence_message_gated` | 0.308 | 0.600 | 0.500 | 0 | 2 | Waited/dwelled at paid cafe without service and still missed accepted interaction |
-| `api_llm_react_tool_policy` | `social_copresence_open_meet` | 0.000 | 0.000 | 0.000 | 0 | 8 | Repeated interaction attempts without accepted entry state |
-| `api_llm_react_tool_policy` | `social_copresence_message_gated` | 0.308 | 0.900 | 0.500 | 0 | 1 | Repeated messages and never converted coordination into accepted interaction |
+| `api_llm_plan_and_execute` | `social_copresence_message_gated` | 1.000 | 1.000 | 1.000 | 1 | 0 | Success |
+| `api_llm_react_tool_policy` | `social_copresence_open_meet` | 1.000 | 1.000 | 1.000 | 1 | 0 | Success |
+| `api_llm_react_tool_policy` | `social_copresence_message_gated` | 1.000 | 1.000 | 1.000 | 1 | 0 | Success |
 
 Aggregate metrics:
 
 | Agent | Task mean | Feasibility mean | Impossible trace rate | Social mean | City false continue |
 |---|---:|---:|---:|---:|---:|
-| `api_llm_plan_and_execute` | 0.654 | 0.800 | 0.200 | 0.750 | 0.500 |
-| `api_llm_react_tool_policy` | 0.154 | 0.450 | 0.550 | 0.250 | 0.500 |
+| `api_llm_plan_and_execute` | 1.000 | 1.000 | 0.000 | 1.000 | 0.000 |
+| `api_llm_react_tool_policy` | 1.000 | 1.000 | 0.000 | 1.000 | 0.000 |
 
 ## Main Takeaway
 
 The new baselines are technically connected: they call the real provider,
 produce typed actions, record model telemetry, and can be scored by the existing
-CityIntent executor. But the smoke does **not** justify immediately launching a
-full 6-scenario repeated matrix.
+CityIntent executor. After the v6 action-discipline update, both baselines pass
+the two sanity cells with full task completion, full feasibility, and accepted
+co-presence evidence.
 
-Plan-and-Execute can complete the simplest open meeting once the protocol
-explicitly states the entry/wait/interact chain. ReAct-style tool use still
-fails the same simple social evidence task by repeating invalid or non-evidential
-actions. This is useful: paper-backed execution-agent lineage is not enough by
-itself to solve urban co-presence evidence.
+The debugging path is itself informative. Earlier versions showed the exact
+failure modes CityAgency is designed to expose: ReAct repeated interaction
+without entry, and Plan-and-Execute waited in a paid cafe without service
+evidence. The final adapter does not hide those failures; it makes the expected
+environment protocol explicit enough that the baseline can be fairly evaluated
+on harder cells.
 
 ## Next Decision
 
-Before the full paper-backed baseline matrix, fix and re-smoke ReAct-style action
-discipline on `social_copresence_open_meet`:
-
-- expose the last action result as a compact `last_observation`;
-- make previous violations more salient;
-- add a hard instruction that an invalid interaction without entry must be
-  repaired by `enter`, not another `interact`;
-- consider a lightweight action-validator hint before calling the model, without
-  auto-correcting the action.
-
-Then run:
+The sanity gate is now passed. The next run can be:
 
 ```text
 api_llm_react_tool_policy
@@ -81,4 +78,5 @@ x 6 social_outcome scenarios
 x 3 repeats
 ```
 
-only if both baselines can pass or meaningfully fail the open-meet sanity cell.
+This should be reported as a paper-backed execution-baseline expansion, not as a
+replacement for the adapted official-framework comparison.
