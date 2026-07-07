@@ -780,6 +780,8 @@ class APILLMDirectActor(BasePolicy):
                 "Prefer feasible actions over merely plausible narration.",
                 "Move only changes location; it never enters a POI, pays, buys, or completes an errand.",
                 "After moving, use enter before dwell, buy, or use_service.",
+                "Use enter before interact; co-presence evidence requires an accepted interact action from inside the shared venue.",
+                "For co_presence goals, read the required time_window; if you arrive early, enter and dwell/wait until the window before interact.",
                 "Use buy for item evidence and use_service for meals, tickets, or paid access.",
                 "Only buy/use_service deducts typical_cost; pass-through and arrival are free.",
                 "If a place is closed, do not enter it; choose an alternative.",
@@ -942,6 +944,15 @@ class APILLMPlanThenAct(APILLMDirectActor):
                 for agent in self.scenario.get("agents", [])
                 if agent["agent_id"] != self.primary["agent_id"]
             ],
+            "action_guidance": [
+                "Move only changes outdoor location; it never enters a POI or proves a social meeting.",
+                "After moving, use enter before dwell, buy, use_service, or interact.",
+                "For social goals, message may coordinate but interact is the only action that can create co-presence evidence.",
+                "A valid meeting usually needs move -> enter -> interact within the allowed time and location.",
+                "If the co_presence time_window has not started, wait/dwell inside the venue until it starts before interact.",
+                "For paid places, buy/use_service before dwell.",
+                "Finish only after success_conditions have evidence.",
+            ],
         }
 
     def next_action(self, state: TraceState) -> Action:
@@ -1006,6 +1017,74 @@ class APILLMReactiveReplanner(APILLMDirectActor):
             *observation.get("action_guidance", []),
         ]
         return observation
+
+
+class APILLMReActToolPolicy(APILLMDirectActor):
+    agent_id = "api_llm_react_tool_policy"
+
+    def system_prompt(self) -> str:
+        return (
+            "You are a ReAct-style tool-using city agent inside CityIntent. "
+            "At each step, reason briefly about the current observation, select one "
+            "available city action as the tool call, and wait for the environment "
+            "result before choosing the next action. "
+            "Return exactly one JSON object and no markdown. "
+            "Use either {\"thought\": \"...\", \"action\": {...}} or a direct action object. "
+            "The action must use one allowed kind: move, enter, use_service, buy, dwell, "
+            "message, interact, finish, abandon. "
+            "Never claim that a meeting, purchase, service, or entry happened unless "
+            "the previous environment state already contains that evidence."
+        )
+
+    def build_observation(self, state: TraceState) -> dict[str, Any]:
+        observation = super().build_observation(state)
+        condition_status = []
+        for condition in self.scenario["success_conditions"]:
+            condition_status.append(
+                {
+                    "id": condition["id"],
+                    "type": condition["type"],
+                    "score_now": condition_success(condition, state, self.scenario),
+                    "condition": condition,
+                }
+            )
+        observation["react_state"] = {
+            "thought_action_observation_contract": [
+                "Think about unfinished goals and constraints.",
+                "Choose exactly one typed city action as the next tool call.",
+                "The environment will validate and update location, time, budget, entry, purchases, services, messages, and interactions.",
+                "Use the next observation rather than assuming an action succeeded.",
+            ],
+            "available_tools": {
+                "move": "travel to a known location by id; does not enter or complete tasks",
+                "enter": "enter current or target POI when open",
+                "use_service": "use a service at an entered POI and create service evidence",
+                "buy": "buy an item at an entered POI and create purchase evidence",
+                "dwell": "spend minutes inside an entered location",
+                "message": "send a message to another agent",
+                "interact": "attempt environment-validated co-presence interaction",
+                "finish": "stop only when important goals have evidence",
+                "abandon": "stop honestly when goals are infeasible",
+            },
+            "condition_status": condition_status,
+            "unfinished_conditions": [item for item in condition_status if item["score_now"] < 1.0],
+            "failure_taxonomy_so_far": failure_taxonomy_counts(state),
+        }
+        observation["action_guidance"] = [
+            "Follow a thought-action-observation loop: do not skip the city action that would create evidence.",
+            "Prefer actions that create missing evidence for unfinished_conditions.",
+            "For social goals, message can coordinate but only interact can create accepted co-presence evidence.",
+            "Before interact, enter the shared venue; moving to the venue is not enough.",
+            "Check co_presence time_window values; if early, enter then dwell/wait until the window before interacting.",
+            "For errands, move and enter are preparation; buy/use_service/dwell create task evidence.",
+            "If an action failed earlier, choose a different tool call or abandon honestly.",
+            *observation.get("action_guidance", []),
+        ]
+        return observation
+
+
+class APILLMPlanAndExecute(APILLMPlanThenAct):
+    agent_id = "api_llm_plan_and_execute"
 
 
 class ReactiveReplannerPolicy(UtilityPlannerPolicy):
@@ -1907,7 +1986,9 @@ def run_trace(world: CityWorld, scenario: dict[str, Any], agent_type: str, llm_c
         "memory_reflection": MemoryReflectionPolicy,
         "api_llm_direct_actor": APILLMDirectActor,
         "api_llm_plan_then_act": APILLMPlanThenAct,
+        "api_llm_plan_and_execute": APILLMPlanAndExecute,
         "api_llm_reactive_replanner": APILLMReactiveReplanner,
+        "api_llm_react_tool_policy": APILLMReActToolPolicy,
     }
     if agent_type == "gatsim_official_planner":
         if str(ROOT) not in sys.path:
@@ -2234,7 +2315,9 @@ def main() -> int:
         "memory_reflection",
         "api_llm_direct_actor",
         "api_llm_plan_then_act",
+        "api_llm_plan_and_execute",
         "api_llm_reactive_replanner",
+        "api_llm_react_tool_policy",
         "gatsim_official_planner",
         "sotopia_official_llm_agent",
         "generative_agents_official_planner",

@@ -72,7 +72,32 @@
       "name": "APILLMPlanThenAct",
       "priority": "P0",
       "requires_llm": true,
-      "role": "Real provider-backed policy that commits to an initial full-episode plan before acting."
+      "role": "Historical provider-backed policy that commits to an initial full-episode plan before acting. Prefer api_llm_plan_and_execute for paper-backed reporting."
+    },
+    {
+      "id": "api_llm_plan_and_execute",
+      "name": "APILLMPlanAndExecute",
+      "priority": "P0",
+      "requires_llm": true,
+      "paper_lineage": [
+        "AppWorld"
+      ],
+      "implementation": "paper_backed_policy_adapter",
+      "role": "Provider-backed Plan-and-Execute policy with an initial executable city plan followed by stepwise execution under the CityIntent executor."
+    },
+    {
+      "id": "api_llm_react_tool_policy",
+      "name": "APILLMReActToolPolicy",
+      "priority": "P0",
+      "requires_llm": true,
+      "paper_lineage": [
+        "ReAct",
+        "tau-bench",
+        "ChinaTravel",
+        "AppWorld"
+      ],
+      "implementation": "paper_backed_policy_adapter",
+      "role": "Provider-backed ReAct-style thought-action-observation policy that treats each typed CityIntent action as an environment tool call."
     },
     {
       "id": "api_llm_reactive_replanner",

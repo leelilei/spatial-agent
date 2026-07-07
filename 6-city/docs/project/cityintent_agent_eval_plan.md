@@ -140,6 +140,13 @@ x 3 repeats
 The detailed pool is archived in
 `docs/project/cityagency_paper_backed_baseline_pool_2026-07-07.md`.
 
+Implementation update on 2026-07-07: both `api_llm_react_tool_policy` and
+`api_llm_plan_and_execute` are runnable. A 2-agent x 2-social-scenario smoke
+shows that Plan-and-Execute can solve the open-meeting sanity cell, while
+ReAct-style tool use still fails that cell by repeating invalid or non-evidential
+actions. The full repeated social matrix should wait for one more ReAct
+discipline pass.
+
 ## What Each Agent Must Expose
 
 Every agent should implement the same episode contract:

@@ -9,8 +9,8 @@ proposed benchmark object is concrete enough to support agent comparisons.
 
 ## What This Tests
 
-CityIntent includes four offline architecture probes, three generic
-API-backed policies, and four verified external-framework decision adapters:
+CityIntent includes four offline architecture probes, five generic API-backed
+policies, and four verified external-framework decision adapters:
 
 | Agent id | Architecture | Purpose |
 |---|---|---|
@@ -19,7 +19,9 @@ API-backed policies, and four verified external-framework decision adapters:
 | `reactive_replanner` | `ReactiveReplannerAgent` | Observe each step and replan after disruption |
 | `memory_reflection` | `MemoryReflectionAgent` | Generative-agent-style memory, reflection, and planning |
 | `api_llm_direct_actor` | `APILLMDirectActor` | Real provider-backed direct next-action policy |
-| `api_llm_plan_then_act` | `APILLMPlanThenAct` | Real provider-backed initial-plan-then-execute policy |
+| `api_llm_plan_then_act` | `APILLMPlanThenAct` | Historical provider-backed initial-plan-then-execute policy |
+| `api_llm_plan_and_execute` | `APILLMPlanAndExecute` | Paper-backed Plan-and-Execute policy lineage |
+| `api_llm_react_tool_policy` | `APILLMReActToolPolicy` | Paper-backed ReAct-style thought-action-observation tool policy |
 | `api_llm_reactive_replanner` | `APILLMReactiveReplanner` | Real provider-backed observe-update-act replanner |
 | `gatsim_official_planner` | `GATSimOfficialPlannerAdapter` | Pinned official GATSim planning code/templates adapted to the CityIntent world |
 | `sotopia_official_llm_agent` | `SOTOPIAOfficialLLMAgentAdapter` | Pinned official SOTOPIA `LLMAgent`-style per-turn private-goal action policy |
@@ -172,6 +174,8 @@ The current offline runner supports:
 - `memory_reflection`
 - `api_llm_direct_actor` for a real configured provider
 - `api_llm_plan_then_act` for a real configured provider
+- `api_llm_plan_and_execute` for a paper-backed Plan-and-Execute baseline
+- `api_llm_react_tool_policy` for a paper-backed ReAct-style baseline
 - `api_llm_reactive_replanner` for a real configured provider
 - the four verified external adapters after setting up their pinned checkouts
 
