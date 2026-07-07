@@ -451,6 +451,15 @@ The legal-but-ineffective pattern therefore persists across six oracle-winnable
 social mechanisms and three independent repeats rather than resting on one
 meeting anecdote.
 
+The paper-backed execution baseline expansion shows that the social-outcome
+family is not simply unwinnable or over-penalized. On the same six scenarios and
+three repeats, a ReAct-style tool-use policy accepts 21/21 required co-presence
+outcomes, while a Plan-and-Execute policy accepts 18/21 and mainly fails on
+two-party simultaneous co-presence. This makes the result sharper: the gap is
+not only between better and worse language models, but between architectures
+that merely describe plausible intent and architectures that maintain evidence-
+grounded action discipline in the city.
+
 ## Expected Contribution
 
 CityAgency should claim four contributions:
@@ -469,12 +478,13 @@ CityAgency should claim four contributions:
    replanning after disruption, reported as agent-level mechanism evidence rather
    than proof of human or macro urban realism.
 
-The next baseline expansion will be deliberately paper-backed rather than
-prompt-invented: add a ReAct-style tool-use policy and a Plan-and-Execute policy
-first, then consider FeasiGen/ChinaTravel-style feasibility-aware planning,
-MobilityBench-style route-tool use, and TrajGenAgent/AgentMob-style mobility
-grounding. This keeps the benchmark comparable to existing agent-evaluation
-work while preserving CityAgency's city-specific trace verifier.
+The baseline expansion is deliberately paper-backed rather than prompt-invented.
+The first added pair is now running: a ReAct-style tool-use policy and a
+Plan-and-Execute policy. The next candidates should be
+FeasiGen/ChinaTravel-style feasibility-aware planning, MobilityBench-style route-
+tool use, and TrajGenAgent/AgentMob-style mobility grounding. This keeps the
+benchmark comparable to existing agent-evaluation work while preserving
+CityAgency's city-specific trace verifier.
 
 ## Relationship To Prior Work
 

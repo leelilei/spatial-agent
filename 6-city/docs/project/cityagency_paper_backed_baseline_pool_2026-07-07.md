@@ -52,8 +52,8 @@ not native end-to-end executions of the original systems.
 
 ## Recommended Next Matrix
 
-Do not expand to every candidate at once. The next runnable matrix should add
-two paper-backed execution baselines to the current four adapted decision layers:
+Do not expand to every candidate at once. The first runnable expansion adds two
+paper-backed execution baselines to the current four adapted decision layers:
 
 ```text
 4 current adapted decision layers
@@ -101,4 +101,14 @@ The first smoke test is archived in
 `docs/experiments/cityintent_paper_backed_baselines_2x2_smoke_2026-07-07.md`.
 After the v6 action-discipline update, both baselines pass the open-meeting and
 message-gated sanity cells with task, feasibility, and social scores all equal
-to 1.0. The next step can be the 6-scenario repeated social-outcome matrix.
+to 1.0.
+
+The full 2-agent x 6-social-scenario x 3-repeat matrix is archived in
+`docs/experiments/cityintent_paper_backed_baselines_2x6x3_2026-07-07.md` and
+`results/cityintent_v1_rc1/paper_backed_baselines_2x6socialx3_gpt54mini_2026-07-07/`.
+It contains 36 provider-backed traces. ReAct accepts 21/21 required co-presence
+outcomes, while Plan-and-Execute accepts 18/21 and mainly fails on two-party
+simultaneous co-presence. This gives the benchmark a stronger baseline story:
+generic execution-agent architectures can solve much of the social-outcome
+family, so the lower adapted-framework scores are not an artifact of impossible
+tasks or an over-strict verifier.

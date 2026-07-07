@@ -1,0 +1,90 @@
+{
+  "benchmark": "cityintent_v0",
+  "benchmark_version": "1.0-rc1",
+  "benchmark_status": "release_candidate_pending_human_audit",
+  "script": "D:\\0-Research\\6-city\\benchmarks\\cityintent_v0\\tools\\run_repeated_experiment.py",
+  "repeats": 3,
+  "agents": [
+    "api_llm_react_tool_policy",
+    "api_llm_plan_and_execute"
+  ],
+  "scenario_ids": [
+    "social_copresence_open_meet",
+    "social_copresence_message_gated",
+    "social_copresence_event_window",
+    "social_copresence_two_party",
+    "social_copresence_with_errand",
+    "social_copresence_decoy_location"
+  ],
+  "limit_scenarios": null,
+  "llm_config": "6-city\\benchmarks\\cityintent_v0\\configs\\fhl_gpt54mini.json",
+  "judge_config": "6-city\\benchmarks\\cityintent_v0\\configs\\fhl_gpt54mini.json",
+  "output_dir": "6-city\\results\\cityintent_v1_rc1\\paper_backed_baselines_2x6socialx3_gpt54mini_2026-07-07",
+  "skip_existing": true,
+  "judge_sleep": 0.0,
+  "skip_judge": false,
+  "timestamp": "2026-07-07T23:49:50+08:00",
+  "updated_at": "2026-07-07T23:49:50+08:00",
+  "core_metrics": [
+    "task_completion",
+    "goal_completion",
+    "trace_feasibility",
+    "intention_consistency",
+    "replanning_success",
+    "judge_face_plausibility",
+    "judge_trace_believability",
+    "face_believability_gap",
+    "impossible_trace_rate",
+    "done_state_loop_rate",
+    "social_derailment_rate"
+  ],
+  "extra_metrics": [
+    "constraint_satisfaction",
+    "process_success",
+    "plan_plausibility",
+    "plausibility_feasibility_gap",
+    "travel_efficiency",
+    "budget_consistency",
+    "social_appropriateness",
+    "feasibility_violation",
+    "city_false_continue",
+    "face_feasibility_gap"
+  ],
+  "execution_metrics": [
+    "route_interruption_count",
+    "verified_replan_count",
+    "llm_calls",
+    "llm_latency_seconds",
+    "llm_total_tokens"
+  ],
+  "row_count": 36,
+  "run_records": [
+    {
+      "repeat_id": 1,
+      "traces_dir": "6-city\\results\\cityintent_v1_rc1\\paper_backed_baselines_2x6socialx3_gpt54mini_2026-07-07\\repeat_01\\traces",
+      "judged_dir": "6-city\\results\\cityintent_v1_rc1\\paper_backed_baselines_2x6socialx3_gpt54mini_2026-07-07\\repeat_01\\judged",
+      "trace_count": 12,
+      "judged_count": 12,
+      "traces_json": "6-city\\results\\cityintent_v1_rc1\\paper_backed_baselines_2x6socialx3_gpt54mini_2026-07-07\\repeat_01\\traces\\traces.json",
+      "judged_traces_json": "6-city\\results\\cityintent_v1_rc1\\paper_backed_baselines_2x6socialx3_gpt54mini_2026-07-07\\repeat_01\\judged\\judged_traces.json"
+    },
+    {
+      "repeat_id": 2,
+      "traces_dir": "6-city\\results\\cityintent_v1_rc1\\paper_backed_baselines_2x6socialx3_gpt54mini_2026-07-07\\repeat_02\\traces",
+      "judged_dir": "6-city\\results\\cityintent_v1_rc1\\paper_backed_baselines_2x6socialx3_gpt54mini_2026-07-07\\repeat_02\\judged",
+      "trace_count": 12,
+      "judged_count": 12,
+      "traces_json": "6-city\\results\\cityintent_v1_rc1\\paper_backed_baselines_2x6socialx3_gpt54mini_2026-07-07\\repeat_02\\traces\\traces.json",
+      "judged_traces_json": "6-city\\results\\cityintent_v1_rc1\\paper_backed_baselines_2x6socialx3_gpt54mini_2026-07-07\\repeat_02\\judged\\judged_traces.json"
+    },
+    {
+      "repeat_id": 3,
+      "traces_dir": "6-city\\results\\cityintent_v1_rc1\\paper_backed_baselines_2x6socialx3_gpt54mini_2026-07-07\\repeat_03\\traces",
+      "judged_dir": "6-city\\results\\cityintent_v1_rc1\\paper_backed_baselines_2x6socialx3_gpt54mini_2026-07-07\\repeat_03\\judged",
+      "trace_count": 12,
+      "judged_count": 12,
+      "traces_json": "6-city\\results\\cityintent_v1_rc1\\paper_backed_baselines_2x6socialx3_gpt54mini_2026-07-07\\repeat_03\\traces\\traces.json",
+      "judged_traces_json": "6-city\\results\\cityintent_v1_rc1\\paper_backed_baselines_2x6socialx3_gpt54mini_2026-07-07\\repeat_03\\judged\\judged_traces.json"
+    }
+  ]
+}

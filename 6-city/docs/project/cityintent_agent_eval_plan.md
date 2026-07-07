@@ -143,8 +143,10 @@ The detailed pool is archived in
 Implementation update on 2026-07-07: both `api_llm_react_tool_policy` and
 `api_llm_plan_and_execute` are runnable. After the v6 action-discipline pass,
 both solve the open-meeting and message-gated sanity cells with full task,
-feasibility, and social scores. The full repeated social matrix is now the next
-appropriate experiment.
+feasibility, and social scores. The full 2-agent x 6-social-scenario x 3-repeat
+matrix is also complete: ReAct accepts 21/21 required co-presence outcomes, and
+Plan-and-Execute accepts 18/21, with its main weakness in two-party simultaneous
+co-presence.
 
 ## What Each Agent Must Expose
 
@@ -232,14 +234,17 @@ moderate cross-judge agreement.
 
 The next automatic matrices should be prioritized as:
 
-1. run a small paper-backed architecture expansion with ReAct-style and
-   Plan-and-Execute policies on representative social-outcome cells;
-2. run a targeted backbone sweep on the same cells;
-3. run end-to-end oracle plans through the real adapter action surfaces,
+1. integrate the paper-backed 2x6x3 social matrix into the main comparison
+   table alongside the four adapted official decision layers;
+2. rerun the same evidence archive with a stronger judge or audit subset to
+   check soft-score sensitivity while keeping deterministic co-presence as the
+   anchor;
+3. run a targeted backbone sweep on the same cells;
+4. run end-to-end oracle plans through the real adapter action surfaces,
    including GATSim;
-4. repeat the remaining network perturbation pairs for architectures with
+5. repeat the remaining network perturbation pairs for architectures with
    informative controls;
-5. only then expand the matched-pair library to new urban mechanisms.
+6. only then expand the matched-pair library to new urban mechanisms.
 
 ## Metrics
 
@@ -288,13 +293,17 @@ Scenario breadth, model sensitivity, matched perturbations, and the repeated
 social-outcome family are complete. In the social family, GATSim completes 15/21
 required co-presence outcomes, AgentSociety 4/21, Generative Agents 2/21, and
 the SOTOPIA-style `LLMAgent` adapter 0/21 despite 61.1% fully feasible traces.
-The strongest next automatic step is a small backbone sweep on representative
-social cells, followed by an end-to-end oracle-through-adapter confirmation that
-includes GATSim.
-Before broadening the scenario library, add two paper-backed execution baselines:
-ReAct-style tool use and Plan-and-Execute. This directly answers whether the
-observed SOTOPIA-style and citysim-adapter failures are architecture-specific or
-shared by standard execution-agent designs.
+The paper-backed execution expansion is also complete: ReAct-style tool use
+completes 21/21 required co-presence outcomes, and Plan-and-Execute completes
+18/21. This directly answers whether the observed SOTOPIA-style and
+citysim-adapter failures are architecture-specific or shared by standard
+execution-agent designs. They are not universal LLM failures; action discipline
+and observation loops matter.
+
+The strongest next automatic step is to produce the unified six-policy social
+table, then run a small backbone or judge-sensitivity sweep on the same cells.
+After that, run an end-to-end oracle-through-adapter confirmation that includes
+GATSim.
 
 The separate human-validation task should proceed in parallel. It calibrates the
 construct and soft evidence rubric; it should not delay scenario breadth or model-

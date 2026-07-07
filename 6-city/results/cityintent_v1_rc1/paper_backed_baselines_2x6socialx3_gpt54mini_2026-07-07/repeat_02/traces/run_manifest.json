@@ -1,0 +1,44 @@
+{
+  "timestamp": "2026-07-07T23:55:11+08:00",
+  "updated_at": "2026-07-07T23:58:59+08:00",
+  "status": "complete",
+  "benchmark_id": "cityintent_v0",
+  "benchmark_version": "1.0-rc1",
+  "runner": "D:\\0-Research\\6-city\\benchmarks\\cityintent_v0\\tools\\run_baseline_traces.py",
+  "agents": [
+    "api_llm_react_tool_policy",
+    "api_llm_plan_and_execute"
+  ],
+  "scenario_ids": [
+    "social_copresence_decoy_location",
+    "social_copresence_event_window",
+    "social_copresence_message_gated",
+    "social_copresence_open_meet",
+    "social_copresence_two_party",
+    "social_copresence_with_errand"
+  ],
+  "llm_config_path": "6-city\\benchmarks\\cityintent_v0\\configs\\fhl_gpt54mini.json",
+  "llm_config": {
+    "provider": "fhl",
+    "model": "gpt-5.4-mini",
+    "wire_api": "responses",
+    "base_url": "https://www.fhl.mom",
+    "temperature": 0,
+    "omit_temperature": true,
+    "timeout": 120,
+    "sleep": 3,
+    "max_concurrency": 1,
+    "retries": 2,
+    "retry_sleep": 5,
+    "json_mode": false,
+    "transport": "curl",
+    "responses_input_mode": "string",
+    "disable_response_storage": true,
+    "api_key_env": "FHL_API_KEY"
+  },
+  "results_dir": "6-city\\results\\cityintent_v1_rc1\\paper_backed_baselines_2x6socialx3_gpt54mini_2026-07-07\\repeat_02\\traces",
+  "overwrite": false,
+  "resume": false,
+  "completed_traces": 12,
+  "expected_traces": 12
+}
