@@ -300,10 +300,13 @@ citysim-adapter failures are architecture-specific or shared by standard
 execution-agent designs. They are not universal LLM failures; action discipline
 and observation loops matter.
 
-The strongest next automatic step is to produce the unified six-policy social
-table, then run a small backbone or judge-sensitivity sweep on the same cells.
-After that, run an end-to-end oracle-through-adapter confirmation that includes
-GATSim.
+The unified six-policy social table is now complete. It combines the four
+adapted official decision layers with the two paper-backed execution baselines:
+ReAct 21/21, Plan-and-Execute 18/21, GATSim 15/21, AgentSociety 4/21, Generative
+Agents 2/21, and the SOTOPIA-style adapter 0/21 accepted co-presence outcomes.
+The strongest next automatic step is a small judge-sensitivity or backbone sweep
+on these same cells. After that, run an end-to-end oracle-through-adapter
+confirmation that includes GATSim.
 
 The separate human-validation task should proceed in parallel. It calibrates the
 construct and soft evidence rubric; it should not delay scenario breadth or model-

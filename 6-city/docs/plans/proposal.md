@@ -460,6 +460,13 @@ not only between better and worse language models, but between architectures
 that merely describe plausible intent and architectures that maintain evidence-
 grounded action discipline in the city.
 
+The first unified six-policy table now gives the paper its cleanest headline:
+ReAct 21/21, Plan-and-Execute 18/21, GATSim 15/21, AgentSociety 4/21, Generative
+Agents 2/21, and SOTOPIA-style `LLMAgent` 0/21 accepted co-presence outcomes.
+Because every row uses the same oracle-winnable social scenarios and the same
+CityIntent verifier, this table turns the project from a collection of case
+studies into a benchmark comparison.
+
 ## Expected Contribution
 
 CityAgency should claim four contributions:
