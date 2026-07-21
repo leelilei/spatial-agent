@@ -59,6 +59,8 @@ Single-run or smoke experiments should still keep:
 | 2026-07-07 | Paper-backed baselines 2x2 smoke | `results/cityintent_v1_rc1/paper_backed_baselines_2x2_smoke_v6_gpt54mini_2026-07-07/` | `docs/experiments/cityintent_paper_backed_baselines_2x2_smoke_2026-07-07.md` | Archived; after action-discipline v6, ReAct-style and Plan-and-Execute both pass `open_meet` and `message_gated` with task/feasibility/social = 1.0 |
 | 2026-07-07 | Paper-backed baselines 2 agents x 6 social scenarios x 3 repeats | `results/cityintent_v1_rc1/paper_backed_baselines_2x6socialx3_gpt54mini_2026-07-07/` | `docs/experiments/cityintent_paper_backed_baselines_2x6x3_2026-07-07.md` | Archived; 36 real traces; ReAct accepts 21/21 required co-presence outcomes, Plan-and-Execute 18/21; strongest gap is two-party co-presence |
 | 2026-07-08 | Unified six-policy social-outcome table | `results/cityintent_v1_rc1/unified_six_policy_social_table_2026-07-08/` | `docs/experiments/cityintent_v1_rc1_unified_six_policy_social_table_2026-07-08.md` | Archived; reproducible table across 6 policies; accepted co-presence outcomes: ReAct 21/21, Plan-and-Execute 18/21, GATSim 15/21, AgentSociety 4/21, Generative Agents 2/21, SOTOPIA-style 0/21 |
+| 2026-07-09 | Social-outcome HARD family (E1): 6 scenarios authored + two-sided verification (oracle winnable AND plausible-greedy fails) | `results/cityintent_v1_rc1/social_outcome_hard_family_oracle/` | `docs/experiments/cityintent_social_outcome_hard_family_2026-07-09.md` | Archived; ALL PASS 6/6 — oracle task/feas = 1.0/1.0 everywhere, greedy task 0.0–0.769 (mean headroom ≈ 0.51); restores dynamic range above ReAct's 21/21 ceiling for the backbone sweep; guarded by `tests/test_social_outcome_hard_family.py`; first relay oracle failed on a hand-computed path (25' vs 27'), caught by the verifier — two-sided gating is mandatory for new scenarios |
+| 2026-07-09 | Paper-backed baselines on HARD family (E2 baseline side): 2 baselines x 6 hard scenarios x 3 repeats | `results/cityintent_v1_rc1/paper_backed_baselines_2x6hardx3_gpt54mini_2026-07-09/` | `docs/experiments/cityintent_paper_backed_hard_baselines_2x6x3_2026-07-09.md` | Archived; 36 real traces; **ceiling broken** — ReAct task 1.0(easy)→0.726(hard), Plan-Exec 0.857→0.534, feasibility stays ~0.91 (legal-but-ineffective now in strongest baselines); failures mechanism-legible (Plan-Exec dies on relay 0.333 / budget 0.385; ReAct on evening-chain 0.643 / overlapping-windows 0.500 feas=1.0); neither dominates → E3 backbone sweep now justified |
 
 ## Next Pending Result
 
@@ -71,10 +73,14 @@ Two parallel, non-blocking tracks:
 
 2. **Claim-A hardening (does not block freeze).** The compliance probe closes the
 strongest adapter-artifact confound, and the 72-trace social-outcome family run now
-establishes the repeated "legal but ineffective" effect. Remaining gaps are (a)
-end-to-end oracle-through-real-adapters, including GATSim, and (b) a targeted
-backbone sweep to separate framework effects from a single `gpt-5.4-mini`
-configuration.
+establishes the repeated "legal but ineffective" effect. The hard tier (E1,
+2026-07-09) is authored and two-sided-verified, restoring headroom above ReAct's
+21/21 ceiling. Remaining gaps are (a) run the 6 policies over
+`social_outcome` + `social_outcome_hard` (12 scenarios × 3 repeats; baselines
+anywhere with a provider config, official adapters on the checkout machine),
+(b) backbone sweep over the combined family to separate framework effects from a
+single `gpt-5.4-mini` configuration, and (c) end-to-end
+oracle-through-real-adapters, including GATSim.
 
 See `docs/project/direction_verdict_2026-07-04.md` for why v1 stays
 `release_candidate_pending_human_audit` and the recommended framing (lead with the
