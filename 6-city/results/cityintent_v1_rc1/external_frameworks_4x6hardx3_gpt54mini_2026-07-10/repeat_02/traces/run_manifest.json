@@ -1,0 +1,46 @@
+{
+  "timestamp": "2026-07-21T17:32:32+08:00",
+  "updated_at": "2026-07-21T23:11:29+08:00",
+  "status": "complete",
+  "benchmark_id": "cityintent_v0",
+  "benchmark_version": "1.0-rc1",
+  "runner": "/Users/mac/Documents/6-Research/6-city/benchmarks/cityintent_v0/tools/run_baseline_traces.py",
+  "agents": [
+    "gatsim_official_planner",
+    "sotopia_official_llm_agent",
+    "generative_agents_official_planner",
+    "agentsociety_official_plan_blocks"
+  ],
+  "scenario_ids": [
+    "hard_budget_entangled_meet",
+    "hard_deadline_then_meet",
+    "hard_full_evening_chain",
+    "hard_overlapping_windows",
+    "hard_stale_plan_override",
+    "hard_three_meeting_relay"
+  ],
+  "llm_config_path": "/Users/mac/Documents/6-Research/6-city/benchmarks/cityintent_v0/configs/fhl_gpt54mini.json",
+  "llm_config": {
+    "provider": "fhl",
+    "model": "gpt-5.4-mini",
+    "wire_api": "responses",
+    "base_url": "https://www.fhl.mom",
+    "temperature": 0,
+    "omit_temperature": true,
+    "timeout": 120,
+    "sleep": 3,
+    "max_concurrency": 1,
+    "retries": 2,
+    "retry_sleep": 5,
+    "json_mode": false,
+    "transport": "curl",
+    "responses_input_mode": "string",
+    "disable_response_storage": true,
+    "api_key_env": "FHL_API_KEY"
+  },
+  "results_dir": "/Users/mac/Documents/6-Research/6-city/results/cityintent_v1_rc1/external_frameworks_4x6hardx3_gpt54mini_2026-07-10/repeat_02/traces",
+  "overwrite": false,
+  "resume": true,
+  "completed_traces": 24,
+  "expected_traces": 24
+}

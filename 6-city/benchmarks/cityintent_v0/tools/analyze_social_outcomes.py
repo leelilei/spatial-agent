@@ -259,7 +259,7 @@ def main() -> int:
         repeat_ids.append(repeat_id)
         for item in load_json(judged_path):
             scenario = scenarios[item["scenario_id"]]
-            if scenario.get("family") == "social_outcome":
+            if str(scenario.get("family", "")).startswith("social_outcome"):
                 rows.append(classify_trace(item, scenario, repeat_id))
     if not rows:
         raise SystemExit("no judged social_outcome traces found")
