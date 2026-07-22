@@ -6,6 +6,7 @@ import argparse
 import csv
 import hashlib
 import json
+import re
 import random
 from collections import defaultdict
 from pathlib import Path
@@ -24,6 +25,26 @@ DEFAULT_SOURCE = (
 DEFAULT_OUTPUT = (
     REPO_ROOT / "6-city" / "annotation" / "cityintent_v03_blind_pilot_2026-07-01"
 )
+
+
+FRAMEWORK_NAMES = re.compile(
+    r"(GATSim|SOTOPIA|Generative[ _-]?Agents|AgentSociety|ReAct|Plan[- ]and[- ]Execute)",
+    re.IGNORECASE,
+)
+
+
+def blind_text(value: Any) -> Any:
+    """Strip source-framework identity from free text copied into a blinded packet.
+
+    The rubric forbids annotators from seeing framework names; agent `reason`
+    strings otherwise carry them (e.g. "follow GATSim official activity-plan
+    destination"), which de-blinds every item.
+    """
+    if not isinstance(value, str):
+        return value
+    text = FRAMEWORK_NAMES.sub("planner", value)
+    text = re.sub(r"\bofficial\b", "", text, flags=re.IGNORECASE)
+    return re.sub(r"\s{2,}", " ", text).strip()
 
 
 def load_json(path: Path) -> Any:
@@ -112,7 +133,7 @@ def compact_action(
         "start_time": step.get("start_time"),
         "start_location": step.get("start_location"),
         "action": {
-            key: action.get(key)
+            key: (blind_text(action.get(key)) if key == "reason" else action.get(key))
             for key in (
                 "kind",
                 "target",

@@ -3,6 +3,10 @@
 Annotate independently. Do not inspect `sealed/`, source traces, framework
 names, benchmark scores, or another annotator's file before submission.
 
+New annotators: read `ANNOTATION_GUIDE.md` first — it gives worked examples of
+the rules below (especially arrival ≠ entry, and that goal-incompletion is not
+infeasibility), which are the two definitions most often misapplied.
+
 ## Labels
 
 `completion_label`
