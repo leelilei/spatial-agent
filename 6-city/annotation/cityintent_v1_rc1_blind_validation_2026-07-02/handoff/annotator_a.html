@@ -59,6 +59,35 @@ main{min-width:0}.topbar{height:58px;border-bottom:1px solid var(--line);backgro
 .obs2 .none{font-size:12.5px;color:var(--muted)}
 .obs2 b{color:var(--ink)}
 </style>
+
+<style>
+/* two-column layout injected 2026-07-10 */
+@media(min-width:1120px){
+  .content{max-width:1680px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(420px,0.95fr);
+           gap:20px;align-items:start;padding-bottom:28px}
+  .col-data{min-width:0}
+  .col-judge{position:sticky;top:76px;max-height:calc(100vh - 92px);overflow:auto;min-width:0;
+             padding-right:4px}
+  .col-judge .section{margin-bottom:14px}
+  /* the derived-value form leaves the fixed bottom bar and joins the right column */
+  .col-judge .form{position:static;left:auto;right:auto;bottom:auto;border-top:1px solid var(--line);
+                   padding:12px;border-radius:7px;background:#fff}
+  .col-judge .form-inner{grid-template-columns:repeat(2,minmax(0,1fr));opacity:1;max-width:none}
+  .col-judge .form-inner .field:nth-child(7){grid-column:1 / -1}
+  .col-data .table-wrap{max-height:420px}
+  .col-judge h2{position:sticky;top:0;background:var(--paper);z-index:1;margin:0 0 10px;padding:2px 0}
+}
+</style>
+
+<style>
+/* auto-check panel injected 2026-07-10 */
+.autochk{background:#f4f8f5;border:1px solid var(--line);border-radius:6px;padding:9px 11px;margin-bottom:9px}
+.autochk .t{font-size:11.5px;font-weight:700;color:var(--muted);margin-bottom:5px}
+.autochk ul{margin:0;padding-left:16px}
+.autochk li{font-size:12.5px;line-height:1.7}
+.autochk .warn{color:var(--warn);font-weight:700}
+.autochk .ok{color:var(--accent)}
+</style>
 </head>
 <body>
 <div class="app">
@@ -224,7 +253,7 @@ fields.forEach(f=>document.getElementById(f).addEventListener('change',storeForm
     VIOL.forEach(([k,t])=>{
       h += `<label><input type="checkbox" data-viol="${k}" ${g.viol[k]?'checked':''}> ${t}</label>`;
     });
-    h += `<label><input type="checkbox" data-viol="unk" ${g.viol.unk?'checked':''}> 看不出（信息不足）</label>`;
+    h += `<label><input type="checkbox" data-viol="unk" ${g.viol.unk?'checked':''}> <span style="color:var(--warn)">看不出</span> — 仅当<b>包里真的缺少</b>判断所需信息时勾（请在备注写明缺什么）</label>`;
     h += `<label style="margin-top:6px;border-top:1px dashed #e6ebe7;padding-top:6px"><input type="checkbox" data-viol="checked" ${g.viol.checked?'checked':''}> <b>我已逐项检查完毕</b>（勾上才会给出结论）</label>`;
     h += '</div>';
     if (g.viol.checked){
@@ -374,6 +403,96 @@ fields.forEach(f=>document.getElementById(f).addEventListener('change',storeForm
   const _r = render;
   render = function(){ _r.apply(this, arguments); renderConditions(); renderOutcomes(); };
   render();
+})();
+</script>
+
+<script>
+/* ---- two-column layout (injected 2026-07-10) ---- */
+(function(){
+  const content = document.querySelector('.content');
+  if (!content || content.querySelector('.col-data')) return;
+  const guided = document.getElementById('guidedPanel');
+  const form   = document.querySelector('.form');
+  const note   = document.querySelector('.derivedNote');
+
+  const dataCol  = document.createElement('div'); dataCol.className  = 'col-data';
+  const judgeCol = document.createElement('div'); judgeCol.className = 'col-judge';
+
+  // everything that is not the guided panel is evidence
+  Array.from(content.children).forEach(el => { if (el !== guided) dataCol.appendChild(el); });
+  content.appendChild(dataCol);
+  content.appendChild(judgeCol);
+  if (guided) judgeCol.appendChild(guided);
+  if (note)   judgeCol.appendChild(note);
+  if (form)   judgeCol.appendChild(form);
+})();
+</script>
+
+<script>
+/* ---- auto-computed feasibility facts (injected 2026-07-10) ---- */
+(function(){
+  const mins = t => { if(t==null) return null; const s=String(t); if(!s.includes(':')) return parseInt(s,10);
+                      const [h,m]=s.split(':').map(Number); return h*60+m; };
+  const hhmm = v => v==null?'—':String(Math.floor(v/60)).padStart(2,'0')+':'+String(v%60).padStart(2,'0');
+
+  window.__autoCheck = function(x){
+    const o = x.observable_outcomes||{}, steps = x.action_trace||[];
+    const out = [];
+
+    // 1. episode overrun
+    const lim = mins(x.scenario.episode.end_time), fin = mins(o.final_time);
+    if (lim!=null && fin!=null){
+      const over = fin - lim;
+      out.push(over>0
+        ? `episode 上限 <b>${hhmm(lim)}</b> · 轨迹最后 <b>${hhmm(fin)}</b> → <span class="warn">⚠ 超出 ${over} 分钟</span>`
+        : `episode 上限 <b>${hhmm(lim)}</b> · 轨迹最后 <b>${hhmm(fin)}</b> → <span class="ok">未超时</span>`);
+    }
+
+    // 2. minimum budget
+    const bs = steps.map(s=>s.budget_after).filter(v=>v!=null && !isNaN(v)).map(Number);
+    if (o.final_budget!=null && !isNaN(o.final_budget)) bs.push(Number(o.final_budget));
+    if (bs.length){
+      const mn = Math.min(...bs);
+      out.push(mn<0 ? `最低余额 <b>${mn}</b> → <span class="warn">⚠ 预算变负</span>`
+                    : `最低余额 <b>${mn}</b> → <span class="ok">未变负</span>`);
+    }
+
+    // 3. duplicate consumption
+    const keys = [].concat(
+      (o.services||[]).map(s=>`service:${s.location}:${s.service}`),
+      (o.purchases||[]).map(p=>`buy:${p.location}:${p.item}`));
+    const dup = keys.filter((k,i)=>keys.indexOf(k)!==i);
+    out.push(dup.length ? `重复消费 → <span class="warn">⚠ ${[...new Set(dup)].join('、')}</span>`
+                        : `重复消费 → <span class="ok">未发现</span>`);
+
+    // 4. claimed evidence-producing actions vs accepted records
+    const claimed = steps.filter(s=>['enter','buy','use_service','interact'].includes((s.action||{}).kind)).length;
+    const accepted = (o.entries||[]).filter(e=>e.kind!=='start').length
+                   + (o.purchases||[]).length + (o.services||[]).length + (o.interactions||[]).length;
+    out.push(claimed>accepted
+      ? `声称的 enter/buy/use_service/interact <b>${claimed}</b> 个 · 接受结果中 <b>${accepted}</b> 个 → <span class="warn">⚠ 有 ${claimed-accepted} 个未被接受</span>`
+      : `声称的 enter/buy/use_service/interact <b>${claimed}</b> 个 · 接受结果中 <b>${accepted}</b> 个 → <span class="ok">均被接受</span>`);
+
+    return `<div class="autochk"><div class="t">自动核对（纯事实，判断仍由你做）</div><ul>${
+      out.map(s=>`<li>${s}</li>`).join('')}</ul></div>`;
+  };
+
+  // re-render the guided panel with the auto-check block inserted into section ②
+  const host = () => document.getElementById('guidedPanel');
+  function insert(){
+    const h = host(); if(!h) return;
+    if (h.querySelector('.autochk')) return;
+    const boxes = h.querySelectorAll('.gbox');
+    if (boxes.length < 2) return;
+    const feas = boxes[1];                       // ② 可行性
+    const chk  = feas.querySelector('.check');
+    if (chk) chk.insertAdjacentHTML('beforebegin', window.__autoCheck(DATA.items[index]));
+  }
+  const _r = render;
+  render = function(){ _r.apply(this, arguments); insert(); };
+  // guided panel also re-renders on every change
+  document.addEventListener('change', ()=>setTimeout(insert,0), true);
+  insert();
 })();
 </script>
 </body>
