@@ -1,0 +1,332 @@
+{
+  "tiers": {
+    "easy": {
+      "per_policy": {
+        "plan_and_execute": {
+          "window_overrun": 1,
+          "interact_rejected": 2
+        },
+        "gatsim": {
+          "interact_rejected": 6
+        },
+        "sotopia": {
+          "no_venue_entry": 19,
+          "entered_no_interact": 2
+        },
+        "agentsociety": {
+          "entered_no_interact": 8,
+          "interact_rejected": 2,
+          "no_venue_entry": 6,
+          "window_overrun": 1
+        },
+        "generative_agents": {
+          "entered_no_interact": 12,
+          "no_venue_entry": 6,
+          "window_overrun": 1
+        }
+      },
+      "totals": {
+        "react_tool_policy": {
+          "failed": 0,
+          "total": 21
+        },
+        "plan_and_execute": {
+          "failed": 3,
+          "total": 21
+        },
+        "gatsim": {
+          "failed": 6,
+          "total": 21
+        },
+        "sotopia": {
+          "failed": 21,
+          "total": 21
+        },
+        "generative_agents": {
+          "failed": 19,
+          "total": 21
+        },
+        "agentsociety": {
+          "failed": 17,
+          "total": 21
+        }
+      }
+    },
+    "hard": {
+      "per_policy": {
+        "plan_and_execute": {
+          "interact_rejected": 7,
+          "window_overrun": 9,
+          "entered_no_interact": 1
+        },
+        "react_tool_policy": {
+          "window_overrun": 4,
+          "interact_rejected": 1,
+          "entered_no_interact": 1
+        },
+        "sotopia": {
+          "no_venue_entry": 22,
+          "entered_no_interact": 5
+        },
+        "generative_agents": {
+          "no_venue_entry": 4,
+          "entered_no_interact": 12,
+          "window_overrun": 3,
+          "interact_rejected": 5
+        },
+        "agentsociety": {
+          "no_venue_entry": 10,
+          "entered_no_interact": 5,
+          "interact_rejected": 7,
+          "window_overrun": 1
+        },
+        "gatsim": {
+          "window_overrun": 3,
+          "interact_rejected": 3
+        }
+      },
+      "totals": {
+        "react_tool_policy": {
+          "failed": 6,
+          "total": 27
+        },
+        "plan_and_execute": {
+          "failed": 17,
+          "total": 27
+        },
+        "gatsim": {
+          "failed": 6,
+          "total": 27
+        },
+        "sotopia": {
+          "failed": 27,
+          "total": 27
+        },
+        "generative_agents": {
+          "failed": 24,
+          "total": 27
+        },
+        "agentsociety": {
+          "failed": 23,
+          "total": 27
+        }
+      }
+    }
+  },
+  "exemplars": [
+    {
+      "tier": "easy",
+      "scenario": "social_copresence_two_party",
+      "policy": "plan_and_execute",
+      "outcome": "meet_ben",
+      "reason": "interact_rejected",
+      "feasibility": 0.875,
+      "messages": 0,
+      "entered_venues": [
+        "cafe_central"
+      ],
+      "n_interact_actions": 1,
+      "accepted_interactions": [
+        {
+          "with": "casey",
+          "minutes": 5,
+          "time": 756,
+          "start_time": 756,
+          "end_time": 761,
+          "location": "park"
+        }
+      ]
+    },
+    {
+      "tier": "easy",
+      "scenario": "social_copresence_two_party",
+      "policy": "plan_and_execute",
+      "outcome": "meet_ben",
+      "reason": "interact_rejected",
+      "feasibility": 0.778,
+      "messages": 0,
+      "entered_venues": [
+        "cafe_central"
+      ],
+      "n_interact_actions": 2,
+      "accepted_interactions": [
+        {
+          "with": "casey",
+          "minutes": 5,
+          "time": 766,
+          "start_time": 766,
+          "end_time": 771,
+          "location": "park"
+        }
+      ]
+    },
+    {
+      "tier": "easy",
+      "scenario": "social_copresence_decoy_location",
+      "policy": "gatsim",
+      "outcome": "meet_ben_quiet",
+      "reason": "interact_rejected",
+      "feasibility": 0.4,
+      "messages": 0,
+      "entered_venues": [
+        "quiet_cafe"
+      ],
+      "n_interact_actions": 6,
+      "accepted_interactions": []
+    },
+    {
+      "tier": "easy",
+      "scenario": "social_copresence_decoy_location",
+      "policy": "agentsociety",
+      "outcome": "meet_ben_quiet",
+      "reason": "entered_no_interact",
+      "feasibility": 0.7,
+      "messages": 4,
+      "entered_venues": [
+        "quiet_cafe"
+      ],
+      "n_interact_actions": 0,
+      "accepted_interactions": []
+    },
+    {
+      "tier": "easy",
+      "scenario": "social_copresence_event_window",
+      "policy": "generative_agents",
+      "outcome": "meet_casey_in_window",
+      "reason": "entered_no_interact",
+      "feasibility": 0.4,
+      "messages": 0,
+      "entered_venues": [
+        "market"
+      ],
+      "n_interact_actions": 0,
+      "accepted_interactions": []
+    },
+    {
+      "tier": "easy",
+      "scenario": "social_copresence_event_window",
+      "policy": "agentsociety",
+      "outcome": "meet_casey_in_window",
+      "reason": "interact_rejected",
+      "feasibility": 0.3,
+      "messages": 0,
+      "entered_venues": [
+        "market"
+      ],
+      "n_interact_actions": 1,
+      "accepted_interactions": []
+    },
+    {
+      "tier": "easy",
+      "scenario": "social_copresence_message_gated",
+      "policy": "gatsim",
+      "outcome": "meet_ben",
+      "reason": "interact_rejected",
+      "feasibility": 0.75,
+      "messages": 0,
+      "entered_venues": [
+        "quiet_cafe"
+      ],
+      "n_interact_actions": 1,
+      "accepted_interactions": []
+    },
+    {
+      "tier": "easy",
+      "scenario": "social_copresence_message_gated",
+      "policy": "agentsociety",
+      "outcome": "meet_ben",
+      "reason": "entered_no_interact",
+      "feasibility": 1.0,
+      "messages": 1,
+      "entered_venues": [
+        "quiet_cafe"
+      ],
+      "n_interact_actions": 0,
+      "accepted_interactions": []
+    },
+    {
+      "tier": "easy",
+      "scenario": "social_copresence_open_meet",
+      "policy": "generative_agents",
+      "outcome": "meet_casey",
+      "reason": "entered_no_interact",
+      "feasibility": 0.778,
+      "messages": 0,
+      "entered_venues": [
+        "park"
+      ],
+      "n_interact_actions": 0,
+      "accepted_interactions": []
+    },
+    {
+      "tier": "easy",
+      "scenario": "social_copresence_open_meet",
+      "policy": "agentsociety",
+      "outcome": "meet_casey",
+      "reason": "interact_rejected",
+      "feasibility": 0.75,
+      "messages": 0,
+      "entered_venues": [
+        "park"
+      ],
+      "n_interact_actions": 1,
+      "accepted_interactions": []
+    },
+    {
+      "tier": "easy",
+      "scenario": "social_copresence_with_errand",
+      "policy": "generative_agents",
+      "outcome": "meet_casey",
+      "reason": "entered_no_interact",
+      "feasibility": 0.778,
+      "messages": 0,
+      "entered_venues": [
+        "market"
+      ],
+      "n_interact_actions": 0,
+      "accepted_interactions": []
+    },
+    {
+      "tier": "easy",
+      "scenario": "social_copresence_decoy_location",
+      "policy": "gatsim",
+      "outcome": "meet_ben_quiet",
+      "reason": "interact_rejected",
+      "feasibility": 0.4,
+      "messages": 0,
+      "entered_venues": [
+        "quiet_cafe"
+      ],
+      "n_interact_actions": 6,
+      "accepted_interactions": []
+    },
+    {
+      "tier": "easy",
+      "scenario": "social_copresence_decoy_location",
+      "policy": "generative_agents",
+      "outcome": "meet_ben_quiet",
+      "reason": "entered_no_interact",
+      "feasibility": 0.714,
+      "messages": 1,
+      "entered_venues": [
+        "quiet_cafe"
+      ],
+      "n_interact_actions": 0,
+      "accepted_interactions": []
+    },
+    {
+      "tier": "easy",
+      "scenario": "social_copresence_decoy_location",
+      "policy": "agentsociety",
+      "outcome": "meet_ben_quiet",
+      "reason": "entered_no_interact",
+      "feasibility": 0.5,
+      "messages": 4,
+      "entered_venues": [
+        "quiet_cafe"
+      ],
+      "n_interact_actions": 0,
+      "accepted_interactions": []
+    }
+  ]
+}

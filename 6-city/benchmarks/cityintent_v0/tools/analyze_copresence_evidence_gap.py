@@ -33,11 +33,19 @@ REPO_ROOT = ROOT.parents[2]
 RESULTS = REPO_ROOT / "6-city" / "results" / "cityintent_v1_rc1"
 SCENARIO_DIR = ROOT / "scenarios"
 
+# All six policies per tier: the two paper-backed baselines plus the four
+# adapted official decision layers.
 RUNS = {
-    "easy": RESULTS / "paper_backed_baselines_2x6socialx3_gpt54mini_2026-07-07",
-    "hard": RESULTS / "paper_backed_baselines_2x6hardx3_gpt54mini_2026-07-09",
+    "easy": [
+        RESULTS / "paper_backed_baselines_2x6socialx3_gpt54mini_2026-07-07",
+        RESULTS / "external_frameworks_4x6socialx1_gpt54mini_2026-07-06",
+    ],
+    "hard": [
+        RESULTS / "paper_backed_baselines_2x6hardx3_gpt54mini_2026-07-09",
+        RESULTS / "external_frameworks_4x6hardx3_gpt54mini_2026-07-10",
+    ],
 }
-OUTPUT_DIR = RESULTS / "copresence_evidence_gap_2026-07-10"
+OUTPUT_DIR = RESULTS / "copresence_evidence_gap_six_policy_2026-07-10"
 
 
 def load_json(path: Path) -> Any:
@@ -107,16 +115,22 @@ def classify_failure(trace: dict[str, Any], spec: dict[str, Any]) -> str:
 def analyze() -> dict[str, Any]:
     report: dict[str, Any] = {"tiers": {}}
     exemplars: list[dict[str, Any]] = []
-    for tier, run_dir in RUNS.items():
-        if not run_dir.exists():
-            continue
+    for tier, run_dirs in RUNS.items():
         per_policy: dict[str, Counter] = defaultdict(Counter)
         totals: dict[str, dict[str, int]] = defaultdict(lambda: {"failed": 0, "total": 0})
-        for judged in sorted(run_dir.glob("repeat_*/judged/judged_traces.json")):
+        judged_paths = [
+            p
+            for run_dir in run_dirs
+            if run_dir.exists()
+            for p in sorted(run_dir.glob("repeat_*/judged/judged_traces.json"))
+        ]
+        for judged in judged_paths:
             for trace in load_json(judged):
                 scenario = load_json(SCENARIO_DIR / f"{trace['scenario_id']}.json")
                 specs = scenario_copresence_specs(scenario)
-                policy = trace["agent_type"].replace("api_llm_", "")
+                policy = (trace["agent_type"].replace("api_llm_", "")
+                           .replace("_official_planner", "").replace("_official_llm_agent", "")
+                           .replace("_official_plan_blocks", ""))
                 for cond in trace["conditions"]:
                     if cond["type"] != "co_presence" or cond.get("role") != "outcome":
                         continue
@@ -129,7 +143,7 @@ def analyze() -> dict[str, Any]:
                     totals[policy]["failed"] += 1
                     reason = classify_failure(trace, spec)
                     per_policy[policy][reason] += 1
-                    if reason in {"entered_no_interact", "interact_rejected"} and len(exemplars) < 8:
+                    if reason in {"entered_no_interact", "interact_rejected"} and len(exemplars) < 14:
                         exemplars.append({
                             "tier": tier,
                             "scenario": trace["scenario_id"],
