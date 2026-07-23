@@ -351,7 +351,7 @@ class HumanAuditToolsTest(unittest.TestCase):
         }
         self.assertEqual(accepted_dwell_minutes(trace), {"library": 10})
 
-    def test_v1_release_gate_rejects_blank_human_annotations(self) -> None:
+    def test_v1_release_gate_rejects_incomplete_two_person_audit(self) -> None:
         report = evaluate_release_gate(
             DEFAULT_AUDIT_DIR,
             DEFAULT_RESULT_DIR,
@@ -360,8 +360,11 @@ class HumanAuditToolsTest(unittest.TestCase):
 
         self.assertEqual(report["status"], "pending_human_audit")
         self.assertIn(
-            "two-person human audit incomplete: {'annotator_a': 16, 'annotator_b': 16}",
+            "two-person human audit incomplete: {'annotator_a': 0, 'annotator_b': 16}",
             report["blockers"],
+        )
+        self.assertFalse(
+            any("checksum changed" in blocker for blocker in report["blockers"])
         )
 
     def test_handoff_archives_exclude_sealed_and_other_annotator(self) -> None:
@@ -402,7 +405,7 @@ class HumanAuditToolsTest(unittest.TestCase):
             audit_dir = root / "audit"
             shutil.copytree(DEFAULT_AUDIT_DIR, audit_dir)
             source_rows = []
-            for row in read_csv(audit_dir / "annotations" / "annotator_a.csv"):
+            for row in read_csv(audit_dir / "annotations" / "annotator_b.csv"):
                 source_rows.append(
                     {
                         **row,
@@ -413,7 +416,7 @@ class HumanAuditToolsTest(unittest.TestCase):
                         "confidence": "4",
                     }
                 )
-            submission = root / "annotator_a.csv"
+            submission = root / "annotator_b.csv"
             with submission.open("w", encoding="utf-8", newline="") as f:
                 writer = csv.DictWriter(f, fieldnames=ANNOTATION_FIELDS)
                 writer.writeheader()
@@ -421,12 +424,12 @@ class HumanAuditToolsTest(unittest.TestCase):
 
             manifest = ingest_submission(submission, audit_dir)
 
-            canonical = read_csv(audit_dir / "annotations" / "annotator_a.csv")
-            self.assertEqual(manifest["annotator_id"], "annotator_a")
+            canonical = read_csv(audit_dir / "annotations" / "annotator_b.csv")
+            self.assertEqual(manifest["annotator_id"], "annotator_b")
             self.assertEqual(manifest["row_count"], 16)
             self.assertTrue(all(row["completion_label"] == "complete" for row in canonical))
             self.assertTrue(
-                (audit_dir / "submissions" / "annotator_a.submitted.csv").exists()
+                (audit_dir / "submissions" / "annotator_b.submitted.csv").exists()
             )
 
     def test_ingest_human_submission_rejects_incomplete_csv(self) -> None:
@@ -434,7 +437,7 @@ class HumanAuditToolsTest(unittest.TestCase):
             root = Path(tmp)
             audit_dir = root / "audit"
             shutil.copytree(DEFAULT_AUDIT_DIR, audit_dir)
-            submission = audit_dir / "annotations" / "annotator_a.csv"
+            submission = audit_dir / "annotations" / "annotator_b.csv"
 
             with self.assertRaisesRegex(ValueError, "missing required labels"):
                 ingest_submission(submission, audit_dir)

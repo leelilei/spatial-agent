@@ -1,3 +1,10 @@
+# CityIntent Repeated Experiment Archive
+
+Timestamp: 2026-07-23T14:42:57+08:00
+
+## Config
+
+```json
 {
   "benchmark": "cityintent_v0",
   "benchmark_version": "1.0-rc1",
@@ -30,3 +37,24 @@
   "timestamp": "2026-07-23T14:42:57+08:00",
   "updated_at": "2026-07-23T16:15:32+08:00"
 }
+```
+
+## Completed Runs
+
+| Repeat | Traces | Judged | Traces dir | Judged dir |
+|---:|---:|---:|---|---|
+| 1 | 36 | 36 | `/Users/mac/Documents/6-Research/6-city/results/cityintent_v1_rc1/e3c_easy_luna_6x6easyx3_2026-07-10/repeat_01/traces` | `/Users/mac/Documents/6-Research/6-city/results/cityintent_v1_rc1/e3c_easy_luna_6x6easyx3_2026-07-10/repeat_01/judged` |
+| 2 | 36 | 36 | `/Users/mac/Documents/6-Research/6-city/results/cityintent_v1_rc1/e3c_easy_luna_6x6easyx3_2026-07-10/repeat_02/traces` | `/Users/mac/Documents/6-Research/6-city/results/cityintent_v1_rc1/e3c_easy_luna_6x6easyx3_2026-07-10/repeat_02/judged` |
+| 3 | 36 | 36 | `/Users/mac/Documents/6-Research/6-city/results/cityintent_v1_rc1/e3c_easy_luna_6x6easyx3_2026-07-10/repeat_03/traces` | `/Users/mac/Documents/6-Research/6-city/results/cityintent_v1_rc1/e3c_easy_luna_6x6easyx3_2026-07-10/repeat_03/judged` |
+
+## Derived Files
+
+- row count: 108
+- `repeated_summary.md`
+- `all_runs.csv`
+- `agent_repeated_summary.csv`
+- `scenario_agent_repeated_summary.csv`
+- `failure_taxonomy_summary.csv`
+- `manifest.json`
+- `run_config.json`
+- `runs.json`

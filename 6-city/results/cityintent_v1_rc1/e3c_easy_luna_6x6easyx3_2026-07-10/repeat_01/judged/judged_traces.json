@@ -493,7 +493,18 @@
       "route_interruptions": [],
       "replans": [],
       "violations": []
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.97,
+      "trace_believability": 0.74,
+      "rationale_alignment": 0.96,
+      "urban_common_sense": 0.88,
+      "main_issue": "overly procedural venue logic",
+      "brief_reason": "The trace follows the stated intent well and reaches the right cafe on time, but the service/enter/interaction sequence feels a bit over-scripted compared with ordinary urban behavior.",
+      "raw_response": "{\"face_plausibility\":0.97,\"trace_believability\":0.74,\"rationale_alignment\":0.96,\"urban_common_sense\":0.88,\"main_issue\":\"overly procedural venue logic\",\"brief_reason\":\"The trace follows the stated intent well and reaches the right cafe on time, but the service/enter/interaction sequence feels a bit over-scripted compared with ordinary urban behavior.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.23
   },
   {
     "scenario_id": "social_copresence_decoy_location",
@@ -911,7 +922,18 @@
       "route_interruptions": [],
       "replans": [],
       "violations": []
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.96,
+      "trace_believability": 0.91,
+      "rationale_alignment": 0.98,
+      "urban_common_sense": 0.88,
+      "main_issue": "slight over-explanation",
+      "brief_reason": "The agent’s message, route choice, waiting, and in-person contact all fit the scenario well, with only minor narrative awkwardness in how explicitly it frames the meeting confirmation and service use.",
+      "raw_response": "{\"face_plausibility\":0.96,\"trace_believability\":0.91,\"rationale_alignment\":0.98,\"urban_common_sense\":0.88,\"main_issue\":\"slight over-explanation\",\"brief_reason\":\"The agent’s message, route choice, waiting, and in-person contact all fit the scenario well, with only minor narrative awkwardness in how explicitly it frames the meeting confirmation and service use.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.05
   },
   {
     "scenario_id": "social_copresence_decoy_location",
@@ -1576,7 +1598,18 @@
           "time": "13:10"
         }
       ]
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.72,
+      "trace_believability": 0.28,
+      "rationale_alignment": 0.33,
+      "urban_common_sense": 0.41,
+      "main_issue": "scripted plan drift",
+      "brief_reason": "The trace reaches the right cafe and time window, but the repeated self-referential reasons, missing explicit confirmation with Ben, and awkward looping dwell/interact sequence make the full behavior feel scripted rather than natural.",
+      "raw_response": "{\"face_plausibility\":0.72,\"trace_believability\":0.28,\"rationale_alignment\":0.33,\"urban_common_sense\":0.41,\"main_issue\":\"scripted plan drift\",\"brief_reason\":\"The trace reaches the right cafe and time window, but the repeated self-referential reasons, missing explicit confirmation with Ben, and awkward looping dwell/interact sequence make the full behavior feel scripted rather than natural.\"}\n"
+    },
+    "face_feasibility_gap": 0.164,
+    "face_believability_gap": 0.44
   },
   {
     "scenario_id": "social_copresence_decoy_location",
@@ -2249,7 +2282,18 @@
           "time": "12:30"
         }
       ]
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.89,
+      "trace_believability": 0.58,
+      "rationale_alignment": 0.76,
+      "urban_common_sense": 0.8,
+      "main_issue": "redundant final messaging",
+      "brief_reason": "The agent follows a believable plan by contacting Ben and reaching the quiet cafe on time, but the sequence becomes slightly repetitive and drifted by repeated messages and an unnecessary buy/interact pattern.",
+      "raw_response": "{\"face_plausibility\":0.89,\"trace_believability\":0.58,\"rationale_alignment\":0.76,\"urban_common_sense\":0.8,\"main_issue\":\"redundant final messaging\",\"brief_reason\":\"The agent follows a believable plan by contacting Ben and reaching the quiet cafe on time, but the sequence becomes slightly repetitive and drifted by repeated messages and an unnecessary buy/interact pattern.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.31
   },
   {
     "scenario_id": "social_copresence_decoy_location",
@@ -2755,7 +2799,18 @@
       "route_interruptions": [],
       "replans": [],
       "violations": []
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.91,
+      "trace_believability": 0.52,
+      "rationale_alignment": 0.88,
+      "urban_common_sense": 0.7,
+      "main_issue": "unnecessary detour through wrong cafe",
+      "brief_reason": "The plan to message Ben and end up at the quiet cafe is plausible, but the sequence needlessly visits the central cafe and other intermediate locations, which makes the full trace feel less believable as a coherent urban errand.",
+      "raw_response": "{\"face_plausibility\":0.91,\"trace_believability\":0.52,\"rationale_alignment\":0.88,\"urban_common_sense\":0.7,\"main_issue\":\"unnecessary detour through wrong cafe\",\"brief_reason\":\"The plan to message Ben and end up at the quiet cafe is plausible, but the sequence needlessly visits the central cafe and other intermediate locations, which makes the full trace feel less believable as a coherent urban errand.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.39
   },
   {
     "scenario_id": "social_copresence_decoy_location",
@@ -3285,7 +3340,18 @@
           "time": "12:29"
         }
       ]
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.92,
+      "trace_believability": 0.87,
+      "rationale_alignment": 0.98,
+      "urban_common_sense": 0.9,
+      "main_issue": "slightly scripted plan blocks",
+      "brief_reason": "The actions and reasons are coherent, match the stated intent, and describe a believable trip-and-meet sequence, though the trace reads a bit mechanically as an execution of prewritten steps.",
+      "raw_response": "{\"face_plausibility\":0.92,\"trace_believability\":0.87,\"rationale_alignment\":0.98,\"urban_common_sense\":0.9,\"main_issue\":\"slightly scripted plan blocks\",\"brief_reason\":\"The actions and reasons are coherent, match the stated intent, and describe a believable trip-and-meet sequence, though the trace reads a bit mechanically as an execution of prewritten steps.\"}\n"
+    },
+    "face_feasibility_gap": 0.063,
+    "face_believability_gap": 0.05
   },
   {
     "scenario_id": "social_copresence_event_window",
@@ -3701,7 +3767,18 @@
       "route_interruptions": [],
       "replans": [],
       "violations": []
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.95,
+      "trace_believability": 0.88,
+      "rationale_alignment": 0.97,
+      "urban_common_sense": 0.9,
+      "main_issue": "minor over-explanation",
+      "brief_reason": "The trace reads like a reasonable, goal-directed attempt to reach and meet Casey in time, with the only slight weakness being that it spells out success too explicitly at the end.",
+      "raw_response": "{\"face_plausibility\":0.95,\"trace_believability\":0.88,\"rationale_alignment\":0.97,\"urban_common_sense\":0.9,\"main_issue\":\"minor over-explanation\",\"brief_reason\":\"The trace reads like a reasonable, goal-directed attempt to reach and meet Casey in time, with the only slight weakness being that it spells out success too explicitly at the end.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.07
   },
   {
     "scenario_id": "social_copresence_event_window",
@@ -4052,7 +4129,18 @@
       "route_interruptions": [],
       "replans": [],
       "violations": []
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.93,
+      "trace_believability": 0.61,
+      "rationale_alignment": 0.98,
+      "urban_common_sense": 0.82,
+      "main_issue": "premature timing and redundant steps",
+      "brief_reason": "The plan sounds locally reasonable and the reasons match the actions, but it reaches the market very early, adds unnecessary dwell/enter/buy steps, and the trace is a bit over-scripted for a short social window.",
+      "raw_response": "{\"face_plausibility\":0.93,\"trace_believability\":0.61,\"rationale_alignment\":0.98,\"urban_common_sense\":0.82,\"main_issue\":\"premature timing and redundant steps\",\"brief_reason\":\"The plan sounds locally reasonable and the reasons match the actions, but it reaches the market very early, adds unnecessary dwell/enter/buy steps, and the trace is a bit over-scripted for a short social window.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.32
   },
   {
     "scenario_id": "social_copresence_event_window",
@@ -4413,7 +4501,18 @@
       "route_interruptions": [],
       "replans": [],
       "violations": []
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.88,
+      "trace_believability": 0.42,
+      "rationale_alignment": 0.93,
+      "urban_common_sense": 0.62,
+      "main_issue": "late arrival misses the window",
+      "brief_reason": "The plan sounds locally coherent and the reasons match the actions, but the trace spends too long on unrelated steps and reaches Casey only at the edge of or after the short meeting window.",
+      "raw_response": "{\"face_plausibility\":0.88,\"trace_believability\":0.42,\"rationale_alignment\":0.93,\"urban_common_sense\":0.62,\"main_issue\":\"late arrival misses the window\",\"brief_reason\":\"The plan sounds locally coherent and the reasons match the actions, but the trace spends too long on unrelated steps and reaches Casey only at the edge of or after the short meeting window.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.46
   },
   {
     "scenario_id": "social_copresence_event_window",
@@ -4891,7 +4990,18 @@
           "time": "16:45"
         }
       ]
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.9,
+      "trace_believability": 0.35,
+      "rationale_alignment": 0.2,
+      "urban_common_sense": 0.4,
+      "main_issue": "generic physical-action filler",
+      "brief_reason": "The movement to the market in time is plausible, but the trace is dominated by placeholder actions and the reasons do not explain any actual attempt to meet Casey.",
+      "raw_response": "{\"face_plausibility\":0.9,\"trace_believability\":0.35,\"rationale_alignment\":0.2,\"urban_common_sense\":0.4,\"main_issue\":\"generic physical-action filler\",\"brief_reason\":\"The movement to the market in time is plausible, but the trace is dominated by placeholder actions and the reasons do not explain any actual attempt to meet Casey.\"}\n"
+    },
+    "face_feasibility_gap": 0.067,
+    "face_believability_gap": 0.55
   },
   {
     "scenario_id": "social_copresence_event_window",
@@ -5281,7 +5391,18 @@
           "time": "16:23"
         }
       ]
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.87,
+      "trace_believability": 0.28,
+      "rationale_alignment": 0.72,
+      "urban_common_sense": 0.31,
+      "main_issue": "adapter-driven drift and late sequence",
+      "brief_reason": "The actions sound like a reasonable trip to the market and meeting Casey, but the trace is undermined by generic adapter reasons, an odd detour to city hall, and a sequence that looks more like scripted fallback than purposeful city behavior.",
+      "raw_response": "{\"face_plausibility\":0.87,\"trace_believability\":0.28,\"rationale_alignment\":0.72,\"urban_common_sense\":0.31,\"main_issue\":\"adapter-driven drift and late sequence\",\"brief_reason\":\"The actions sound like a reasonable trip to the market and meeting Casey, but the trace is undermined by generic adapter reasons, an odd detour to city hall, and a sequence that looks more like scripted fallback than purposeful city behavior.\"}\n"
+    },
+    "face_feasibility_gap": 0.07,
+    "face_believability_gap": 0.59
   },
   {
     "scenario_id": "social_copresence_event_window",
@@ -5646,7 +5767,18 @@
       "route_interruptions": [],
       "replans": [],
       "violations": []
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.91,
+      "trace_believability": 0.56,
+      "rationale_alignment": 0.98,
+      "urban_common_sense": 0.72,
+      "main_issue": "late-arrival window drift",
+      "brief_reason": "The plan to travel to the market and meet Casey is locally sensible and the reasons match the actions, but the sequence is more of a scripted transit chain than natural city behavior and it barely uses the brief social window.",
+      "raw_response": "{\"face_plausibility\":0.91,\"trace_believability\":0.56,\"rationale_alignment\":0.98,\"urban_common_sense\":0.72,\"main_issue\":\"late-arrival window drift\",\"brief_reason\":\"The plan to travel to the market and meet Casey is locally sensible and the reasons match the actions, but the sequence is more of a scripted transit chain than natural city behavior and it barely uses the brief social window.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.35
   },
   {
     "scenario_id": "social_copresence_message_gated",
@@ -6142,7 +6274,18 @@
       "route_interruptions": [],
       "replans": [],
       "violations": []
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.86,
+      "trace_believability": 0.81,
+      "rationale_alignment": 0.98,
+      "urban_common_sense": 0.84,
+      "main_issue": "slightly over-scripted meeting sequence",
+      "brief_reason": "The trace matches the stated goal and scenario well, with a realistic confirm-then-meet flow, though the service/interaction steps feel a bit overly formalized for ordinary urban behavior.",
+      "raw_response": "{\"face_plausibility\":0.86,\"trace_believability\":0.81,\"rationale_alignment\":0.98,\"urban_common_sense\":0.84,\"main_issue\":\"slightly over-scripted meeting sequence\",\"brief_reason\":\"The trace matches the stated goal and scenario well, with a realistic confirm-then-meet flow, though the service/interaction steps feel a bit overly formalized for ordinary urban behavior.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.05
   },
   {
     "scenario_id": "social_copresence_message_gated",
@@ -6560,7 +6703,18 @@
       "route_interruptions": [],
       "replans": [],
       "violations": []
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.83,
+      "trace_believability": 0.56,
+      "rationale_alignment": 0.92,
+      "urban_common_sense": 0.64,
+      "main_issue": "overlong cafe wait before meetup",
+      "brief_reason": "The sequence makes sense at a surface level because Aria messages Ben first and then goes to the agreed cafe, but the trace is a bit clumsy because it arrives very early, spends time on a service step, and the interaction evidence is thin relative to the stated meeting intent.",
+      "raw_response": "{\"face_plausibility\":0.83,\"trace_believability\":0.56,\"rationale_alignment\":0.92,\"urban_common_sense\":0.64,\"main_issue\":\"overlong cafe wait before meetup\",\"brief_reason\":\"The sequence makes sense at a surface level because Aria messages Ben first and then goes to the agreed cafe, but the trace is a bit clumsy because it arrives very early, spends time on a service step, and the interaction evidence is thin relative to the stated meeting intent.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.27
   },
   {
     "scenario_id": "social_copresence_message_gated",
@@ -7312,7 +7466,18 @@
           "actual_time": "13:21"
         }
       ]
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.91,
+      "trace_believability": 0.22,
+      "rationale_alignment": 0.18,
+      "urban_common_sense": 0.24,
+      "main_issue": "repetitive goal drift",
+      "brief_reason": "The trace starts with a plausible trip to the agreed cafe, but it never sends the confirmatory message and then loops through repeated interactions before ending back at the office, which does not fit the stated intent or the scenario.",
+      "raw_response": "{\"face_plausibility\":0.91,\"trace_believability\":0.22,\"rationale_alignment\":0.18,\"urban_common_sense\":0.24,\"main_issue\":\"repetitive goal drift\",\"brief_reason\":\"The trace starts with a plausible trip to the agreed cafe, but it never sends the confirmatory message and then loops through repeated interactions before ending back at the office, which does not fit the stated intent or the scenario.\"}\n"
+    },
+    "face_feasibility_gap": 0.51,
+    "face_believability_gap": 0.69
   },
   {
     "scenario_id": "social_copresence_message_gated",
@@ -7733,7 +7898,18 @@
       "route_interruptions": [],
       "replans": [],
       "violations": []
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.83,
+      "trace_believability": 0.38,
+      "rationale_alignment": 0.74,
+      "urban_common_sense": 0.42,
+      "main_issue": "aimless detour",
+      "brief_reason": "The initial message and decision to head to the quiet cafe fit the scenario, but the long wandering through unrelated locations before stopping makes the full trace feel only weakly believable as purposeful city behavior.",
+      "raw_response": "{\"face_plausibility\":0.83,\"trace_believability\":0.38,\"rationale_alignment\":0.74,\"urban_common_sense\":0.42,\"main_issue\":\"aimless detour\",\"brief_reason\":\"The initial message and decision to head to the quiet cafe fit the scenario, but the long wandering through unrelated locations before stopping makes the full trace feel only weakly believable as purposeful city behavior.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.45
   },
   {
     "scenario_id": "social_copresence_message_gated",
@@ -8140,7 +8316,18 @@
       "route_interruptions": [],
       "replans": [],
       "violations": []
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.93,
+      "trace_believability": 0.62,
+      "rationale_alignment": 0.88,
+      "urban_common_sense": 0.74,
+      "main_issue": "overly adapter-like sequencing",
+      "brief_reason": "The trace follows the intended confirm-then-meet pattern and the timing works, but the action labels and repetitive official-adapter style make the full sequence feel more scripted than natural city behavior.",
+      "raw_response": "{\"face_plausibility\":0.93,\"trace_believability\":0.62,\"rationale_alignment\":0.88,\"urban_common_sense\":0.74,\"main_issue\":\"overly adapter-like sequencing\",\"brief_reason\":\"The trace follows the intended confirm-then-meet pattern and the timing works, but the action labels and repetitive official-adapter style make the full sequence feel more scripted than natural city behavior.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.31
   },
   {
     "scenario_id": "social_copresence_message_gated",
@@ -8586,7 +8773,18 @@
       "route_interruptions": [],
       "replans": [],
       "violations": []
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.97,
+      "trace_believability": 0.91,
+      "rationale_alignment": 0.98,
+      "urban_common_sense": 0.93,
+      "main_issue": "none",
+      "brief_reason": "The trace follows the stated intent closely: Aria confirms Ben, travels to the agreed cafe, and meets within the time window with no obvious feasibility problems.",
+      "raw_response": "{\"face_plausibility\":0.97,\"trace_believability\":0.91,\"rationale_alignment\":0.98,\"urban_common_sense\":0.93,\"main_issue\":\"none\",\"brief_reason\":\"The trace follows the stated intent closely: Aria confirms Ben, travels to the agreed cafe, and meets within the time window with no obvious feasibility problems.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.06
   },
   {
     "scenario_id": "social_copresence_open_meet",
@@ -8959,7 +9157,18 @@
       "route_interruptions": [],
       "replans": [],
       "violations": []
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.96,
+      "trace_believability": 0.83,
+      "rationale_alignment": 0.98,
+      "urban_common_sense": 0.91,
+      "main_issue": "over-explicit success scripting",
+      "brief_reason": "The actions read like a reasonable lunch-time meetup plan, though the trace is a bit too scripted and optimized in how it narrates the co-presence proof.",
+      "raw_response": "{\"face_plausibility\":0.96,\"trace_believability\":0.83,\"rationale_alignment\":0.98,\"urban_common_sense\":0.91,\"main_issue\":\"over-explicit success scripting\",\"brief_reason\":\"The actions read like a reasonable lunch-time meetup plan, though the trace is a bit too scripted and optimized in how it narrates the co-presence proof.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.13
   },
   {
     "scenario_id": "social_copresence_open_meet",
@@ -9280,7 +9489,18 @@
       "route_interruptions": [],
       "replans": [],
       "violations": []
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.97,
+      "trace_believability": 0.93,
+      "rationale_alignment": 0.98,
+      "urban_common_sense": 0.96,
+      "main_issue": "none",
+      "brief_reason": "The agent follows a straightforward, realistic lunch meetup plan: travel to the park, wait for the window, then interact with Casey there, with no budget or feasibility problems.",
+      "raw_response": "{\"face_plausibility\":0.97,\"trace_believability\":0.93,\"rationale_alignment\":0.98,\"urban_common_sense\":0.96,\"main_issue\":\"none\",\"brief_reason\":\"The agent follows a straightforward, realistic lunch meetup plan: travel to the park, wait for the window, then interact with Casey there, with no budget or feasibility problems.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.04
   },
   {
     "scenario_id": "social_copresence_open_meet",
@@ -9704,7 +9924,18 @@
       "route_interruptions": [],
       "replans": [],
       "violations": []
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.77,
+      "trace_believability": 0.34,
+      "rationale_alignment": 0.92,
+      "urban_common_sense": 0.28,
+      "main_issue": "mechanical planner script",
+      "brief_reason": "The trace sounds like a reasonable demo of going to a park meetup, but the repeated GATSim boilerplate, awkward detour back to the office, and lack of a natural social end state make the full sequence feel less like ordinary city behavior.",
+      "raw_response": "{\"face_plausibility\":0.77,\"trace_believability\":0.34,\"rationale_alignment\":0.92,\"urban_common_sense\":0.28,\"main_issue\":\"mechanical planner script\",\"brief_reason\":\"The trace sounds like a reasonable demo of going to a park meetup, but the repeated GATSim boilerplate, awkward detour back to the office, and lack of a natural social end state make the full sequence feel less like ordinary city behavior.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.43
   },
   {
     "scenario_id": "social_copresence_open_meet",
@@ -10411,7 +10642,18 @@
           "time": "12:41"
         }
       ]
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.82,
+      "trace_believability": 0.68,
+      "rationale_alignment": 0.93,
+      "urban_common_sense": 0.79,
+      "main_issue": "repetitive idle interactions",
+      "brief_reason": "The trace reads like a normal park meetup and the stated actions match the goal, but the repeated interact steps at the end add some behavioral drift without undermining the basic plausibility.",
+      "raw_response": "{\"face_plausibility\":0.82,\"trace_believability\":0.68,\"rationale_alignment\":0.93,\"urban_common_sense\":0.79,\"main_issue\":\"repetitive idle interactions\",\"brief_reason\":\"The trace reads like a normal park meetup and the stated actions match the goal, but the repeated interact steps at the end add some behavioral drift without undermining the basic plausibility.\"}\n"
+    },
+    "face_feasibility_gap": 0.32,
+    "face_believability_gap": 0.14
   },
   {
     "scenario_id": "social_copresence_open_meet",
@@ -10911,7 +11153,18 @@
       "route_interruptions": [],
       "replans": [],
       "violations": []
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.78,
+      "trace_believability": 0.32,
+      "rationale_alignment": 0.12,
+      "urban_common_sense": 0.45,
+      "main_issue": "unexplained wandering",
+      "brief_reason": "The route to the park is superficially city-like, but the sequence meanders through unrelated stops with no meeting-oriented rationale, making the full trace feel implausible for a planned social meetup.",
+      "raw_response": "{\"face_plausibility\":0.78,\"trace_believability\":0.32,\"rationale_alignment\":0.12,\"urban_common_sense\":0.45,\"main_issue\":\"unexplained wandering\",\"brief_reason\":\"The route to the park is superficially city-like, but the sequence meanders through unrelated stops with no meeting-oriented rationale, making the full trace feel implausible for a planned social meetup.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.46
   },
   {
     "scenario_id": "social_copresence_open_meet",
@@ -11452,7 +11705,18 @@
           "time": "12:31"
         }
       ]
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.84,
+      "trace_believability": 0.41,
+      "rationale_alignment": 0.58,
+      "urban_common_sense": 0.62,
+      "main_issue": "meandering plan and weak co-presence",
+      "brief_reason": "The trace sounds like a plausible city outing at the surface, but it wanders through unnecessary locations, never clearly establishes Casey’s actual presence, and ends with only a claim of arrival rather than a convincing meeting.",
+      "raw_response": "{\"face_plausibility\":0.84,\"trace_believability\":0.41,\"rationale_alignment\":0.58,\"urban_common_sense\":0.62,\"main_issue\":\"meandering plan and weak co-presence\",\"brief_reason\":\"The trace sounds like a plausible city outing at the surface, but it wanders through unnecessary locations, never clearly establishes Casey’s actual presence, and ends with only a claim of arrival rather than a convincing meeting.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.43
   },
   {
     "scenario_id": "social_copresence_two_party",
@@ -12018,7 +12282,18 @@
       "route_interruptions": [],
       "replans": [],
       "violations": []
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.95,
+      "trace_believability": 0.92,
+      "rationale_alignment": 0.97,
+      "urban_common_sense": 0.9,
+      "main_issue": "none",
+      "brief_reason": "The agent sequences two short meetings in the right places and windows, with coherent travel, venue entry, and budget remaining positive.",
+      "raw_response": "{\"face_plausibility\":0.95,\"trace_believability\":0.92,\"rationale_alignment\":0.97,\"urban_common_sense\":0.9,\"main_issue\":\"none\",\"brief_reason\":\"The agent sequences two short meetings in the right places and windows, with coherent travel, venue entry, and budget remaining positive.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.03
   },
   {
     "scenario_id": "social_copresence_two_party",
@@ -12493,7 +12768,18 @@
       "route_interruptions": [],
       "replans": [],
       "violations": []
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.93,
+      "trace_believability": 0.88,
+      "rationale_alignment": 0.97,
+      "urban_common_sense": 0.9,
+      "main_issue": "minor over-specification of service stop",
+      "brief_reason": "The sequence reads like a reasonable city-day plan: Aria goes to the park, meets Casey in window, then reaches the cafe in time for Ben, with the only slight oddity being the unnecessary service step before the second meeting.",
+      "raw_response": "{\"face_plausibility\":0.93,\"trace_believability\":0.88,\"rationale_alignment\":0.97,\"urban_common_sense\":0.9,\"main_issue\":\"minor over-specification of service stop\",\"brief_reason\":\"The sequence reads like a reasonable city-day plan: Aria goes to the park, meets Casey in window, then reaches the cafe in time for Ben, with the only slight oddity being the unnecessary service step before the second meeting.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.05
   },
   {
     "scenario_id": "social_copresence_two_party",
@@ -12978,7 +13264,18 @@
       "route_interruptions": [],
       "replans": [],
       "violations": []
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.9,
+      "trace_believability": 0.45,
+      "rationale_alignment": 0.72,
+      "urban_common_sense": 0.78,
+      "main_issue": "generic planner boilerplate and compressed sequencing",
+      "brief_reason": "The itinerary itself is locally sensible for meeting Casey at the park and then Ben at the cafe, but the repeated template-like reasons and the abrupt finish make the full trace feel engineered rather than naturally lived.",
+      "raw_response": "{\"face_plausibility\":0.9,\"trace_believability\":0.45,\"rationale_alignment\":0.72,\"urban_common_sense\":0.78,\"main_issue\":\"generic planner boilerplate and compressed sequencing\",\"brief_reason\":\"The itinerary itself is locally sensible for meeting Casey at the park and then Ben at the cafe, but the repeated template-like reasons and the abrupt finish make the full trace feel engineered rather than naturally lived.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.45
   },
   {
     "scenario_id": "social_copresence_two_party",
@@ -13857,7 +14154,18 @@
           "time": "12:27"
         }
       ]
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.56,
+      "trace_believability": 0.33,
+      "rationale_alignment": 0.42,
+      "urban_common_sense": 0.38,
+      "main_issue": "repetitive and muddled sequencing",
+      "brief_reason": "The trace has a plausible high-level meeting itinerary, but the repeated Casey interactions, odd detour through unrelated locations, and weak linkage between reasons and actions make the full behavior feel shaky.",
+      "raw_response": "{\"face_plausibility\":0.56,\"trace_believability\":0.33,\"rationale_alignment\":0.42,\"urban_common_sense\":0.38,\"main_issue\":\"repetitive and muddled sequencing\",\"brief_reason\":\"The trace has a plausible high-level meeting itinerary, but the repeated Casey interactions, odd detour through unrelated locations, and weak linkage between reasons and actions make the full behavior feel shaky.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.23
   },
   {
     "scenario_id": "social_copresence_two_party",
@@ -14473,7 +14781,18 @@
       "route_interruptions": [],
       "replans": [],
       "violations": []
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.72,
+      "trace_believability": 0.42,
+      "rationale_alignment": 0.18,
+      "urban_common_sense": 0.58,
+      "main_issue": "unexplained wandering and missed stated meeting",
+      "brief_reason": "The sequence looks like a generic urban movement trace at first, but it never clearly supports the stated Casey meeting, then drifts through unrelated locations before ending at the cafe without any Ben interaction.",
+      "raw_response": "{\"face_plausibility\":0.72,\"trace_believability\":0.42,\"rationale_alignment\":0.18,\"urban_common_sense\":0.58,\"main_issue\":\"unexplained wandering and missed stated meeting\",\"brief_reason\":\"The sequence looks like a generic urban movement trace at first, but it never clearly supports the stated Casey meeting, then drifts through unrelated locations before ending at the cafe without any Ben interaction.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.3
   },
   {
     "scenario_id": "social_copresence_two_party",
@@ -14972,7 +15291,18 @@
       "route_interruptions": [],
       "replans": [],
       "violations": []
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.91,
+      "trace_believability": 0.82,
+      "rationale_alignment": 0.96,
+      "urban_common_sense": 0.84,
+      "main_issue": "slight over-structured official-plan tone",
+      "brief_reason": "The sequence is coherent and the timings fit both meetings and the budget, with only minor awkwardness from the repetitive plan-block phrasing and an unnecessary meal purchase after the second meeting.",
+      "raw_response": "{\"face_plausibility\":0.91,\"trace_believability\":0.82,\"rationale_alignment\":0.96,\"urban_common_sense\":0.84,\"main_issue\":\"slight over-structured official-plan tone\",\"brief_reason\":\"The sequence is coherent and the timings fit both meetings and the budget, with only minor awkwardness from the repetitive plan-block phrasing and an unnecessary meal purchase after the second meeting.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.09
   },
   {
     "scenario_id": "social_copresence_with_errand",
@@ -15555,7 +15885,18 @@
           "budget": -5.0
         }
       ]
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.78,
+      "trace_believability": 0.28,
+      "rationale_alignment": 0.62,
+      "urban_common_sense": 0.55,
+      "main_issue": "budget violation and task drift",
+      "brief_reason": "The individual actions sound like a plausible errand-plus-meeting routine, but the sequence detours into odd task ordering and ends with an unrepaired negative budget, which hurts full-trace believability.",
+      "raw_response": "{\"face_plausibility\":0.78,\"trace_believability\":0.28,\"rationale_alignment\":0.62,\"urban_common_sense\":0.55,\"main_issue\":\"budget violation and task drift\",\"brief_reason\":\"The individual actions sound like a plausible errand-plus-meeting routine, but the sequence detours into odd task ordering and ends with an unrepaired negative budget, which hurts full-trace believability.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.5
   },
   {
     "scenario_id": "social_copresence_with_errand",
@@ -16035,7 +16376,18 @@
           "budget": -5.0
         }
       ]
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.72,
+      "trace_believability": 0.28,
+      "rationale_alignment": 0.81,
+      "urban_common_sense": 0.55,
+      "main_issue": "budget violation",
+      "brief_reason": "The actions sound locally reasonable for combining a meeting and an errand, but the sequence overspends the budget and oddly inserts a paid-market service before the meeting, which makes the full trace hard to believe as ordinary city behavior.",
+      "raw_response": "{\"face_plausibility\":0.72,\"trace_believability\":0.28,\"rationale_alignment\":0.81,\"urban_common_sense\":0.55,\"main_issue\":\"budget violation\",\"brief_reason\":\"The actions sound locally reasonable for combining a meeting and an errand, but the sequence overspends the budget and oddly inserts a paid-market service before the meeting, which makes the full trace hard to believe as ordinary city behavior.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.44
   },
   {
     "scenario_id": "social_copresence_with_errand",
@@ -16544,7 +16896,18 @@
           "budget": -5.0
         }
       ]
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.82,
+      "trace_believability": 0.22,
+      "rationale_alignment": 0.9,
+      "urban_common_sense": 0.35,
+      "main_issue": "budget violation and plan drift",
+      "brief_reason": "The intent to buy medicine and then meet Casey at the market sounds locally reasonable, but the trace spends the budget into the negative and the sequence looks like a rigid scripted plan rather than believable city behavior.",
+      "raw_response": "{\"face_plausibility\":0.82,\"trace_believability\":0.22,\"rationale_alignment\":0.9,\"urban_common_sense\":0.35,\"main_issue\":\"budget violation and plan drift\",\"brief_reason\":\"The intent to buy medicine and then meet Casey at the market sounds locally reasonable, but the trace spends the budget into the negative and the sequence looks like a rigid scripted plan rather than believable city behavior.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.6
   },
   {
     "scenario_id": "social_copresence_with_errand",
@@ -17339,7 +17702,18 @@
           "time": "17:48"
         }
       ]
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.44,
+      "trace_believability": 0.28,
+      "rationale_alignment": 0.18,
+      "urban_common_sense": 0.52,
+      "main_issue": "generic placeholder actions",
+      "brief_reason": "The sequence superficially resembles a resident combining a meeting and a pharmacy errand, but the repeated generic actions, lack of explicit intent, and drifting through unrelated locations make the full trace feel weak and poorly aligned with the stated goals.",
+      "raw_response": "{\"face_plausibility\":0.44,\"trace_believability\":0.28,\"rationale_alignment\":0.18,\"urban_common_sense\":0.52,\"main_issue\":\"generic placeholder actions\",\"brief_reason\":\"The sequence superficially resembles a resident combining a meeting and a pharmacy errand, but the repeated generic actions, lack of explicit intent, and drifting through unrelated locations make the full trace feel weak and poorly aligned with the stated goals.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.16
   },
   {
     "scenario_id": "social_copresence_with_errand",
@@ -17821,7 +18195,18 @@
       "route_interruptions": [],
       "replans": [],
       "violations": []
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.84,
+      "trace_believability": 0.44,
+      "rationale_alignment": 0.93,
+      "urban_common_sense": 0.68,
+      "main_issue": "meeting dropped after errand",
+      "brief_reason": "The plan to meet Casey at the market and then buy medicine is locally reasonable, but the sequence ends immediately after the errand with no evidence the meeting was actually completed or sustained.",
+      "raw_response": "{\"face_plausibility\":0.84,\"trace_believability\":0.44,\"rationale_alignment\":0.93,\"urban_common_sense\":0.68,\"main_issue\":\"meeting dropped after errand\",\"brief_reason\":\"The plan to meet Casey at the market and then buy medicine is locally reasonable, but the sequence ends immediately after the errand with no evidence the meeting was actually completed or sustained.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.4
   },
   {
     "scenario_id": "social_copresence_with_errand",
@@ -18508,6 +18893,17 @@
           "time": "17:29"
         }
       ]
-    }
+    },
+    "plausibility_judgment": {
+      "face_plausibility": 0.68,
+      "trace_believability": 0.42,
+      "rationale_alignment": 0.78,
+      "urban_common_sense": 0.65,
+      "main_issue": "redundant looping and order drift",
+      "brief_reason": "The actions sound like a reasonable errand-and-meeting trip, but the trace repeats the market visit and ends after exhausting steps rather than cleanly reflecting both goals as completed.",
+      "raw_response": "{\"face_plausibility\":0.68,\"trace_believability\":0.42,\"rationale_alignment\":0.78,\"urban_common_sense\":0.65,\"main_issue\":\"redundant looping and order drift\",\"brief_reason\":\"The actions sound like a reasonable errand-and-meeting trip, but the trace repeats the market visit and ends after exhausting steps rather than cleanly reflecting both goals as completed.\"}\n"
+    },
+    "face_feasibility_gap": 0.0,
+    "face_believability_gap": 0.26
   }
 ]

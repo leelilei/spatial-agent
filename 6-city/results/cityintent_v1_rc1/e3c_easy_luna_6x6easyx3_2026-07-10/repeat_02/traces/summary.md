@@ -10,12 +10,12 @@ Controlled agents without `model_info` remain offline architecture proxies, not 
 
 | agent_type | plan_plausibility | trace_feasibility | plausibility_feasibility_gap | impossible_trace_rate | city_false_continue | goal_completion | task_completion | constraint_satisfaction | process_success | feasibility_violation | replanning_success | travel_efficiency | budget_consistency | intention_consistency | social_appropriateness | done_state_loop_rate | social_derailment_rate |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| agentsociety_official_plan_blocks | 1.0 | 0.944 | 0.056 | 0.056 | 0.0 | 0.8 | 0.833 | 0.721 |  | 0.056 |  | 0.812 | 1.0 | 0.765 | 0.833 | 0.0 | 0.0 |
-| api_llm_plan_and_execute | 1.0 | 0.976 | 0.024 | 0.024 | 0.0 | 0.933 | 1.0 | 0.833 |  | 0.024 |  | 1.0 | 0.833 | 0.919 | 1.0 | 0.0 | 0.0 |
+| agentsociety_official_plan_blocks | 0.833 | 0.951 | 0.049 | 0.049 | 0.0 | 0.758 | 0.736 | 0.817 |  | 0.049 |  | 0.82 | 1.0 | 0.729 | 0.667 | 0.0 | 0.0 |
+| api_llm_plan_and_execute | 1.0 | 0.979 | 0.021 | 0.021 | 0.167 | 0.933 | 1.0 | 0.833 |  | 0.021 |  | 1.0 | 0.833 | 0.921 | 1.0 | 0.0 | 0.0 |
 | api_llm_react_tool_policy | 1.0 | 0.976 | 0.024 | 0.024 | 0.0 | 0.933 | 1.0 | 0.833 |  | 0.024 |  | 1.0 | 0.833 | 0.919 | 1.0 | 0.0 | 0.0 |
-| gatsim_official_planner | 1.0 | 0.802 | 0.198 | 0.198 | 0.333 | 0.65 | 0.667 | 0.643 |  | 0.198 |  | 0.833 | 0.833 | 0.61 | 0.667 | 0.0 | 0.0 |
-| generative_agents_official_planner | 1.0 | 0.967 | 0.033 | 0.033 | 0.0 | 0.733 | 0.583 | 0.9 |  | 0.033 |  | 0.882 | 1.0 | 0.727 | 0.583 | 0.0 | 0.167 |
-| sotopia_official_llm_agent | 1.0 | 0.817 | 0.183 | 0.183 | 0.333 | 0.5 | 0.454 | 0.538 |  | 0.183 |  | 0.89 | 1.0 | 0.435 | 0.417 | 0.0 | 0.0 |
+| gatsim_official_planner | 1.0 | 0.783 | 0.217 | 0.217 | 0.167 | 0.592 | 0.57 | 0.643 |  | 0.217 |  | 0.917 | 0.833 | 0.557 | 0.5 | 0.0 | 0.0 |
+| generative_agents_official_planner | 1.0 | 0.958 | 0.042 | 0.042 | 0.0 | 0.792 | 0.718 | 0.9 |  | 0.042 |  | 0.942 | 1.0 | 0.783 | 0.75 | 0.0 | 0.0 |
+| sotopia_official_llm_agent | 1.0 | 0.839 | 0.161 | 0.161 | 0.333 | 0.633 | 0.648 | 0.622 |  | 0.161 |  | 0.906 | 1.0 | 0.565 | 0.75 | 0.0 | 0.167 |
 
 ## Scenario-Level Rows
 
@@ -25,9 +25,9 @@ See `summary.csv` and `traces.jsonl` in this directory.
 
 | agent_type | calls | latency_seconds | input_tokens | output_tokens | total_tokens | provider_usage_complete |
 |---|---:|---:|---:|---:|---:|---|
-| agentsociety_official_plan_blocks | 18 | 211.413 | 124241 | 25688 | 149929 | True |
-| api_llm_plan_and_execute | 6 | 79.003 | 41338 | 9880 | 51218 | True |
-| api_llm_react_tool_policy | 41 | 257.744 | 330929 | 35241 | 366170 | True |
-| gatsim_official_planner | 16 | 205.173 | 148867 | 26260 | 175127 | True |
-| generative_agents_official_planner | 8 | 101.141 | 50788 | 10615 | 61403 | True |
-| sotopia_official_llm_agent | 58 | 403.556 | 402006 | 59355 | 461361 | True |
+| agentsociety_official_plan_blocks | 16 | 183.786 | 110031 | 19271 | 129302 | True |
+| api_llm_plan_and_execute | 6 | 91.121 | 41338 | 10324 | 51662 | True |
+| api_llm_react_tool_policy | 41 | 341.815 | 330836 | 36275 | 367111 | True |
+| gatsim_official_planner | 17 | 295.396 | 158627 | 23995 | 182622 | True |
+| generative_agents_official_planner | 8 | 134.305 | 50688 | 10698 | 61386 | True |
+| sotopia_official_llm_agent | 54 | 439.916 | 373139 | 54857 | 427996 | True |

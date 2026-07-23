@@ -2,23 +2,23 @@
   "status": "pending_human_audit",
   "benchmark_version": "1.0-rc1",
   "benchmark_status": "release_candidate_pending_human_audit",
-  "audit_dir": "D:\\0-Research\\6-city\\annotation\\cityintent_v1_rc1_blind_validation_2026-07-02",
-  "result_dir": "D:\\0-Research\\6-city\\results\\cityintent_v1_rc1\\external_frameworks_4x4x3_gpt54mini_2026-07-04",
+  "audit_dir": "/Users/mac/Documents/6-Research/6-city/annotation/cityintent_v1_rc1_blind_validation_2026-07-02",
+  "result_dir": "/Users/mac/Documents/6-Research/6-city/results/cityintent_v1_rc1/external_frameworks_4x4x3_gpt54mini_2026-07-04",
   "blockers": [
-    "two-person human audit incomplete: {'annotator_a': 16, 'annotator_b': 16}"
+    "two-person human audit incomplete: {'annotator_a': 0, 'annotator_b': 16}"
   ],
   "warnings": [],
   "audit_input_sha256": {
-    "RUBRIC.md": "b94143504a181764ea933cad599add0a30b8dcf2b91b956af082446949d2355b",
-    "blinded/audit_items.jsonl": "90f4c1459cc3cfb06568f8f9aebb3ed8e36ec22a2077101b2c4e56fadec5dd50",
-    "blinded/audit_packet.md": "74da997910775df1321c33b60174cb1419562a1410180cde704e7303041ef4bd",
+    "RUBRIC.md": "ebb72093a2520c08da10c1eb0d544566bd6a98fe4bd52364b40ccc4d6cfe210e",
+    "blinded/audit_items.jsonl": "77603a7a598ab4789ad5d02ef8407e1305494d7b28b63527692958c2a4c6bce2",
+    "blinded/audit_packet.md": "d98715d67ed8da3352cc4a2b314b74b6c7454fb0322d9765e9e4724c54286371",
     "blinded/world_reference.json": "92347faf2a7771a18bfe8059f01f9506da1fb9e4d70b21779eab3b4275c1dab9",
     "sealed/audit_key.csv": "a8bf2646da3001de38c2b9c314c76ee4c2aafe945eefd4012edb5291d7f3a405"
   },
   "human_audit": {
     "audit_item_count": 16,
     "pending_rows": {
-      "annotator_a": 16,
+      "annotator_a": 0,
       "annotator_b": 16
     },
     "inter_annotator_agreement": {
@@ -51,14 +51,26 @@
     "verifier_calibration": {
       "annotator_a": {
         "completion_label": {
-          "n": 0,
-          "exact_agreement": null,
-          "confusion": {}
+          "n": 16,
+          "exact_agreement": 0.625,
+          "confusion": {
+            "human=complete|verifier=complete": 5,
+            "human=complete|verifier=not_complete": 1,
+            "human=complete|verifier=partial": 1,
+            "human=not_complete|verifier=not_complete": 2,
+            "human=partial|verifier=complete": 3,
+            "human=partial|verifier=not_complete": 1,
+            "human=partial|verifier=partial": 3
+          }
         },
         "feasibility_label": {
-          "n": 0,
-          "exact_agreement": null,
-          "confusion": {}
+          "n": 16,
+          "exact_agreement": 0.688,
+          "confusion": {
+            "human=feasible|verifier=feasible": 7,
+            "human=feasible|verifier=infeasible": 5,
+            "human=infeasible|verifier=infeasible": 4
+          }
         },
         "replan_label": {
           "n": 0,
@@ -90,32 +102,32 @@
   "runtime_checks": [
     {
       "command": [
-        "C:\\Users\\lee\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
+        "/opt/anaconda3/bin/python",
         "-m",
         "unittest",
         "discover",
         "-s",
-        "D:\\0-Research\\6-city\\benchmarks\\cityintent_v0\\tests",
+        "/Users/mac/Documents/6-Research/6-city/benchmarks/cityintent_v0/tests",
         "-p",
         "test_*.py"
       ],
       "returncode": 0,
       "stdout": "",
-      "stderr": ".....................................\n----------------------------------------------------------------------\nRan 37 tests in 0.298s\n\nOK"
+      "stderr": ".....................................\n----------------------------------------------------------------------\nRan 37 tests in 0.079s\n\nOK"
     },
     {
       "command": [
-        "C:\\Users\\lee\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
-        "D:\\0-Research\\6-city\\benchmarks\\cityintent_v0\\tools\\validate_cityintent_v0.py"
+        "/opt/anaconda3/bin/python",
+        "/Users/mac/Documents/6-Research/6-city/benchmarks/cityintent_v0/tools/validate_cityintent_v0.py"
       ],
       "returncode": 0,
-      "stdout": "CityIntent 1.0-rc1 validation passed.\n- worlds: 1\n- scenarios: 24\n- scenario families: {'budget_constraint': 1, 'disruption': 2, 'memory': 1, 'opportunistic_social': 1, 'paired_disruption': 6, 'poi_closure': 2, 'preference_constraint': 1, 'social_outcome': 6, 'social_spatial_tradeoff': 2, 'time_pressure': 2}\n- agent architectures: llm_direct_actor, memory_reflection, reactive_replanner, utility_planner\n- metric coverage: budget_consistency, constraint_satisfaction, feasibility_violation, goal_completion, intention_consistency, process_success, replanning_success, social_appropriateness, task_completion, travel_efficiency\n- reachability checks: 131\n- perturbation pairs: 3",
+      "stdout": "CityIntent 1.0-rc1 validation passed.\n- worlds: 1\n- scenarios: 30\n- scenario families: {'budget_constraint': 1, 'disruption': 2, 'memory': 1, 'opportunistic_social': 1, 'paired_disruption': 6, 'poi_closure': 2, 'preference_constraint': 1, 'social_outcome': 6, 'social_outcome_hard': 6, 'social_spatial_tradeoff': 2, 'time_pressure': 2}\n- agent architectures: llm_direct_actor, memory_reflection, reactive_replanner, utility_planner\n- metric coverage: budget_consistency, constraint_satisfaction, feasibility_violation, goal_completion, intention_consistency, process_success, replanning_success, social_appropriateness, task_completion, travel_efficiency\n- reachability checks: 165\n- perturbation pairs: 3",
       "stderr": ""
     },
     {
       "command": [
-        "C:\\Users\\lee\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
-        "D:\\0-Research\\6-city\\benchmarks\\cityintent_v0\\tools\\validate_external_adapters.py",
+        "/opt/anaconda3/bin/python",
+        "/Users/mac/Documents/6-Research/6-city/benchmarks/cityintent_v0/tools/validate_external_adapters.py",
         "--framework",
         "all"
       ],
@@ -124,5 +136,5 @@
       "stderr": ""
     }
   ],
-  "checked_at": "2026-07-07T15:10:23.204951+00:00"
+  "checked_at": "2026-07-23T13:47:30.270981+00:00"
 }

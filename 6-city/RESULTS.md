@@ -71,26 +71,22 @@ Single-run or smoke experiments should still keep:
 | 2026-07-10 | E3b adapters on stronger backbone: 4 official adapters x 6 hard x 3 on gpt-5.6-luna | `results/cityintent_v1_rc1/e3b_adapters_luna_4x6hardx3_2026-07-10/` | `docs/experiments/cityintent_e3b_adapters_backbone_2026-07-10.md` | Archived; 72 traces, one attempt. **Prediction refuted**: SOTOPIA-style is NOT immune to capability — task 0.158→0.527, 'never arrives' 22/27→6/27, so tier-1 of the failure ladder is largely a weak-model deficit, not architectural (corrects the earlier over-attribution). **Gains inversely ordered by mini score** (SOTOPIA +0.369, AgentSociety +0.351, GenAgents +0.219, GATSim −0.049) — independently replicates E3's baseline-side result: scaffolding substitutes for model capability and its value falls as capability rises. GATSim, the most engineered scaffold, is the only regression |
 | 2026-07-10 | Backbone-effect significance testing (permutation + bootstrap CI) | `results/cityintent_v1_rc1/backbone_significance_2026-07-10/` | same dir `significance.md` | Archived; zero-API. **Corrects two over-readings**: ReAct's +0.071 'gap narrows' is p=0.36 CI[-0.078,+0.216] NOT significant; GATSim's -0.049 'engineered-scaffold regression' is p=0.83, noise. Corrected claim is stronger — the 4 weaker policies improve significantly (p<0.02) while the 2 strongest do not move at all: a capability ceiling, with ReAct still missing ~20% of provably winnable outcomes |
 | 2026-07-10 | Scenario discrimination / item analysis across all 30 scenarios | `results/cityintent_v1_rc1/scenario_discrimination_2026-07-10/` | same dir `scenario_discrimination.md` | Archived; zero-API. **No dead items** — 30/30 discriminate, none at ceiling or floor. **Red flag: `meeting_wait_trap` item-total r = −0.759** (ranks policies against the overall ordering, lowest range 0.308); likely because its co-presence is gated behind send_message which GATSim's adapter cannot emit at all (E4) — it tests action-surface coverage, not decision quality. Three weakly-correlated items suggest the benchmark may not be unidimensional. Tool `analyze_scenario_discrimination.py` |
+| 2026-07-23 | E3c easy-tier stronger-backbone closure: 6 policies x 6 social scenarios x 3 on gpt-5.6-luna | `results/cityintent_v1_rc1/e3c_easy_luna_6x6easyx3_2026-07-10/` | `docs/experiments/cityintent_e3c_easy_backbone_luna_2026-07-23.md` | Archived; 108/108 judged traces. ReAct and Plan-Exec reach task 1.0; the three weakest mini policies gain sharply (AgentSociety +0.532, GenAgents +0.492, SOTOPIA +0.476), replicating the hard-tier capability/scaffold interaction. GATSim is descriptively unchanged (−0.033). Positive face↔trace-believability gaps remain for all six policies. |
 
 ## Next Pending Result
 
-Two parallel, non-blocking tracks:
+Two remaining tracks:
 
 1. **Human-validation gate (blocks v1 freeze).** Two independent annotators must complete
 `annotation/cityintent_v1_rc1_blind_validation_2026-07-02/annotations/annotator_{a,b}.csv`
-(currently blank), then report exact agreement + Cohen's kappa vs the deterministic
-`task_completion` / feasibility / replanning labels. Model labels cannot satisfy this gate.
+(annotator A complete; annotator B has 16 rows pending), then report exact
+agreement + Cohen's kappa vs deterministic `task_completion` / feasibility /
+replanning labels. Model labels cannot satisfy this gate.
 
-2. **Claim-A hardening (does not block freeze).** The compliance probe closes the
-strongest adapter-artifact confound, and the 72-trace social-outcome family run now
-establishes the repeated "legal but ineffective" effect. The hard tier (E1,
-2026-07-09) is authored and two-sided-verified, restoring headroom above ReAct's
-21/21 ceiling. Remaining gaps are (a) run the 6 policies over
-`social_outcome` + `social_outcome_hard` (12 scenarios × 3 repeats; baselines
-anywhere with a provider config, official adapters on the checkout machine),
-(b) backbone sweep over the combined family to separate framework effects from a
-single `gpt-5.4-mini` configuration, and (c) end-to-end
-oracle-through-real-adapters, including GATSim.
+2. **Cross-vendor robustness (does not block freeze).** E3/E3b/E3c complete the
+mini→luna backbone sweep across both social tiers. The remaining active run is
+E3d: the two paper-backed baselines on the six hard scenarios using
+DeepSeek-v4-flash, three repeats, with the mini judge held fixed.
 
 See `docs/project/direction_verdict_2026-07-04.md` for why v1 stays
 `release_candidate_pending_human_audit` and the recommended framing (lead with the

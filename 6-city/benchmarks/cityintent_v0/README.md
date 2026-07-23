@@ -47,7 +47,7 @@ policy from that benchmark lineage, not the SOTOPIA benchmark as a whole.
 
 ## Scenario Set
 
-CityIntent currently has 24 scenarios:
+CityIntent currently has 30 scenarios:
 
 - 8 original seed scenarios covering budget, disruption, memory, POI closure,
   preference, social-spatial tradeoff, opportunistic social interaction, and
@@ -64,6 +64,8 @@ CityIntent currently has 24 scenarios:
   - `paired_pickup_a` / `paired_pickup_b`
 - 6 social-outcome scenarios that require verifiable co-presence, messaging, or
   event-window outcomes rather than merely plausible social intent.
+- 6 hard social-outcome scenarios that add chained meetings, overlapping
+  windows, irreversible budget choices, deadlines, and stale-plan traps.
 
 The pressure scenarios are intentionally diagnostic. They stress cases where an
 action can sound locally plausible while the full city trace becomes
