@@ -1,0 +1,916 @@
+[
+  {
+    "scenario_id": "social_copresence_decoy_location",
+    "scenario_title": "Right Cafe, Not the Near One",
+    "family": "social_outcome",
+    "agent_type": "api_llm_react_tool_policy",
+    "trace": [
+      {
+        "scenario_id": "social_copresence_decoy_location",
+        "agent_type": "api_llm_react_tool_policy",
+        "step": 1,
+        "start_time": "12:00",
+        "start_location": "office",
+        "action": {
+          "kind": "message",
+          "target": null,
+          "path": null,
+          "minutes": 0,
+          "to": "ben",
+          "content": "Hi Ben, confirming that we should meet at Quiet Corner Cafe between 12:30 and 13:10.",
+          "item": "",
+          "service": "",
+          "reason": "Send the required confirmation before traveling to the quiet cafe.",
+          "raw_response": "{\"thought\":\"The confirmation condition is unfinished, and messaging Ben is feasible immediately from the office without claiming that the meeting has occurred.\",\"action\":{\"kind\":\"message\",\"target\":null,\"minutes\":0,\"to\":\"ben\",\"content\":\"Hi Ben, confirming that we should meet at Quiet Corner Cafe between 12:30 and 13:10.\",\"item\":\"\",\"service\":\"\",\"reason\":\"Send the required confirmation before traveling to the quiet cafe.\"}}\n"
+        },
+        "end_time": "12:02",
+        "end_location": "office",
+        "budget": 16.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_decoy_location",
+        "agent_type": "api_llm_react_tool_policy",
+        "step": 2,
+        "start_time": "12:02",
+        "start_location": "office",
+        "action": {
+          "kind": "move",
+          "target": "quiet_cafe",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Travel to the confirmed quiet cafe for the planned co-presence meeting.",
+          "raw_response": "{\"thought\":\"The confirmation is complete. I should travel directly to Quiet Corner Cafe, where Ben will be, rather than the closer Central Cafe; the 21-minute trip arrives at 12:23, before the meeting window, so I can enter and wait there next.\",\"action\":{\"kind\":\"move\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Travel to the confirmed quiet cafe for the planned co-presence meeting.\"}}\n"
+        },
+        "end_time": "12:23",
+        "end_location": "quiet_cafe",
+        "budget": 16.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_decoy_location",
+        "agent_type": "api_llm_react_tool_policy",
+        "step": 3,
+        "start_time": "12:23",
+        "start_location": "quiet_cafe",
+        "action": {
+          "kind": "enter",
+          "target": "quiet_cafe",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "co-presence requires entering the shared venue before interaction",
+          "raw_response": "{\"kind\":\"enter\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"co-presence requires entering the shared venue before interaction\"}\n"
+        },
+        "end_time": "12:24",
+        "end_location": "quiet_cafe",
+        "budget": 16.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_decoy_location",
+        "agent_type": "api_llm_react_tool_policy",
+        "step": 4,
+        "start_time": "12:24",
+        "start_location": "quiet_cafe",
+        "action": {
+          "kind": "use_service",
+          "target": "quiet_cafe",
+          "path": null,
+          "minutes": 5,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "meeting_refreshment",
+          "reason": "paid venues require service or purchase evidence before waiting or interacting",
+          "raw_response": "{\"kind\":\"use_service\",\"target\":\"quiet_cafe\",\"minutes\":5,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"meeting_refreshment\",\"reason\":\"paid venues require service or purchase evidence before waiting or interacting\"}\n"
+        },
+        "end_time": "12:29",
+        "end_location": "quiet_cafe",
+        "budget": 6.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_decoy_location",
+        "agent_type": "api_llm_react_tool_policy",
+        "step": 5,
+        "start_time": "12:29",
+        "start_location": "quiet_cafe",
+        "action": {
+          "kind": "dwell",
+          "target": null,
+          "path": null,
+          "minutes": 1,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "wait inside the venue until the co-presence time window opens",
+          "raw_response": "{\"kind\":\"dwell\",\"target\":null,\"minutes\":1,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"wait inside the venue until the co-presence time window opens\"}\n"
+        },
+        "end_time": "12:30",
+        "end_location": "quiet_cafe",
+        "budget": 6.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_decoy_location",
+        "agent_type": "api_llm_react_tool_policy",
+        "step": 6,
+        "start_time": "12:30",
+        "start_location": "quiet_cafe",
+        "action": {
+          "kind": "interact",
+          "target": null,
+          "path": null,
+          "minutes": 5,
+          "to": "ben",
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "create accepted co-presence evidence inside the time window",
+          "raw_response": "{\"kind\":\"interact\",\"target\":null,\"minutes\":5,\"to\":\"ben\",\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"create accepted co-presence evidence inside the time window\"}\n"
+        },
+        "end_time": "12:35",
+        "end_location": "quiet_cafe",
+        "budget": 6.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_decoy_location",
+        "agent_type": "api_llm_react_tool_policy",
+        "step": 7,
+        "start_time": "12:35",
+        "start_location": "quiet_cafe",
+        "action": {
+          "kind": "finish",
+          "target": null,
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "All success conditions are complete: Ben was messaged, accepted co-presence was recorded at quiet_cafe within the time window, the remaining budget is nonnegative, and there are no violations.",
+          "raw_response": "{\"kind\":\"finish\",\"target\":null,\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"All success conditions are complete: Ben was messaged, accepted co-presence was recorded at quiet_cafe within the time window, the remaining budget is nonnegative, and there are no violations.\"}\n"
+        },
+        "end_time": "12:35",
+        "end_location": "quiet_cafe",
+        "budget": 6.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      }
+    ],
+    "visits": [
+      {
+        "location": "office",
+        "time": 720,
+        "kind": "start"
+      },
+      {
+        "location": "coworking",
+        "time": 730,
+        "kind": "pass_through"
+      },
+      {
+        "location": "bookstore",
+        "time": 735,
+        "kind": "pass_through"
+      },
+      {
+        "location": "library",
+        "time": 738,
+        "kind": "pass_through"
+      },
+      {
+        "location": "quiet_cafe",
+        "time": 743,
+        "kind": "arrival"
+      },
+      {
+        "location": "quiet_cafe",
+        "time": 750,
+        "kind": "dwell"
+      }
+    ],
+    "traversals": [
+      {
+        "from": "office",
+        "to": "coworking",
+        "arrive_time": 730,
+        "minutes": 8
+      },
+      {
+        "from": "coworking",
+        "to": "bookstore",
+        "arrive_time": 735,
+        "minutes": 5
+      },
+      {
+        "from": "bookstore",
+        "to": "library",
+        "arrive_time": 738,
+        "minutes": 3
+      },
+      {
+        "from": "library",
+        "to": "quiet_cafe",
+        "arrive_time": 743,
+        "minutes": 5
+      }
+    ],
+    "route_interruptions": [],
+    "replans": [],
+    "messages": [
+      {
+        "to": "ben",
+        "content": "Hi Ben, confirming that we should meet at Quiet Corner Cafe between 12:30 and 13:10.",
+        "time": 720
+      }
+    ],
+    "interactions": [
+      {
+        "with": "ben",
+        "minutes": 5,
+        "time": 750,
+        "start_time": 750,
+        "end_time": 755,
+        "location": "quiet_cafe"
+      }
+    ],
+    "entries": [
+      {
+        "location": "office",
+        "time": 720,
+        "kind": "start"
+      },
+      {
+        "location": "quiet_cafe",
+        "time": 744,
+        "kind": "enter"
+      }
+    ],
+    "services": [
+      {
+        "location": "quiet_cafe",
+        "time": 749,
+        "cost": 10.0,
+        "budget_after": 6.0,
+        "service": "meeting_refreshment"
+      }
+    ],
+    "purchases": [],
+    "abandonments": [],
+    "model_info": {
+      "provider": "fhl",
+      "model": "gpt-5.6-luna",
+      "wire_api": "responses",
+      "base_url": "https://www.fhl.mom",
+      "temperature": 0.0,
+      "json_mode": false,
+      "llm_telemetry_summary": {
+        "calls": 7,
+        "successful_calls": 7,
+        "failed_calls": 0,
+        "latency_seconds": 53.249,
+        "provider_usage_calls": 7,
+        "input_tokens": 56761,
+        "output_tokens": 6143,
+        "total_tokens": 62904,
+        "usage_complete": true
+      }
+    },
+    "llm_telemetry": [
+      {
+        "call_index": 1,
+        "prompt_sha256": "25830b0e0c2a2b85697fccefd39df43e7c4f6f132308251c6707111cb2bb7419",
+        "attempts": 1,
+        "latency_seconds": 5.858,
+        "input_chars": 10948,
+        "output_chars": 425,
+        "input_tokens": 7829,
+        "output_tokens": 862,
+        "total_tokens": 8691,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 2,
+        "prompt_sha256": "c0e21f06a6217c73b9d7aad897acf2b7f117e82fc50572e00dc7e985c04fe129",
+        "attempts": 1,
+        "latency_seconds": 7.006,
+        "input_chars": 11832,
+        "output_chars": 435,
+        "input_tokens": 8034,
+        "output_tokens": 883,
+        "total_tokens": 8917,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 3,
+        "prompt_sha256": "976d24c344c90966b89eb03e013424a63aa91ba382da27af773ca8ee06b70af4",
+        "attempts": 1,
+        "latency_seconds": 7.763,
+        "input_chars": 12318,
+        "output_chars": 174,
+        "input_tokens": 8176,
+        "output_tokens": 791,
+        "total_tokens": 8967,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 4,
+        "prompt_sha256": "0aa95e19120fae49fa5ded9e8d1944355554cdc06b908601af9fb63cc11f336c",
+        "attempts": 1,
+        "latency_seconds": 7.114,
+        "input_chars": 12229,
+        "output_chars": 212,
+        "input_tokens": 8160,
+        "output_tokens": 1009,
+        "total_tokens": 9169,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 5,
+        "prompt_sha256": "77fd85c29f1e7b4d39b0334989706168a83869cd88fa1a5bbaa6ea14977d6f28",
+        "attempts": 1,
+        "latency_seconds": 7.848,
+        "input_chars": 12379,
+        "output_chars": 162,
+        "input_tokens": 8204,
+        "output_tokens": 977,
+        "total_tokens": 9181,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 6,
+        "prompt_sha256": "e09bdf6e5b622425b89d836b4cf18317290caf9fb96cb12a2e09fe9d0fdb4f9b",
+        "attempts": 1,
+        "latency_seconds": 7.107,
+        "input_chars": 12420,
+        "output_chars": 164,
+        "input_tokens": 8238,
+        "output_tokens": 813,
+        "total_tokens": 9051,
+        "usage_source": "provider",
+        "success": true
+      },
+      {
+        "call_index": 7,
+        "prompt_sha256": "42438e78dd18e032055e7e75f2fbbd1176fe4060966f755aee15960588a7c65a",
+        "attempts": 1,
+        "latency_seconds": 10.553,
+        "input_chars": 11965,
+        "output_chars": 294,
+        "input_tokens": 8120,
+        "output_tokens": 808,
+        "total_tokens": 8928,
+        "usage_source": "provider",
+        "success": true
+      }
+    ],
+    "metrics": {
+      "plan_plausibility": 1.0,
+      "trace_feasibility": 1.0,
+      "plausibility_feasibility_gap": 0.0,
+      "impossible_trace_rate": 0.0,
+      "city_false_continue": 0.0,
+      "goal_completion": 1.0,
+      "task_completion": 1.0,
+      "constraint_satisfaction": 1.0,
+      "process_success": null,
+      "feasibility_violation": 0.0,
+      "replanning_success": null,
+      "travel_efficiency": 1.0,
+      "budget_consistency": 1.0,
+      "intention_consistency": 1.0,
+      "social_appropriateness": 1.0,
+      "done_state_loop_rate": 0.0,
+      "social_derailment_rate": 0.0
+    },
+    "conditions": [
+      {
+        "id": "confirm_with_ben",
+        "type": "send_message",
+        "score": 1.0,
+        "weight": 0.2,
+        "role": "outcome",
+        "evidence": [
+          {
+            "to": "ben",
+            "content": "Hi Ben, confirming that we should meet at Quiet Corner Cafe between 12:30 and 13:10.",
+            "time": 720
+          }
+        ]
+      },
+      {
+        "id": "meet_ben_quiet",
+        "type": "co_presence",
+        "score": 1.0,
+        "weight": 0.45,
+        "role": "outcome",
+        "evidence": [
+          {
+            "with": "ben",
+            "minutes": 5,
+            "time": 750,
+            "start_time": 750,
+            "end_time": 755,
+            "location": "quiet_cafe"
+          }
+        ]
+      },
+      {
+        "id": "stay_within_budget",
+        "type": "budget_at_least",
+        "score": 1.0,
+        "weight": 0.15,
+        "role": "constraint",
+        "evidence": []
+      },
+      {
+        "id": "no_impossible_meeting_claim",
+        "type": "no_feasibility_violation",
+        "score": 1.0,
+        "weight": 0.2,
+        "role": "constraint",
+        "evidence": []
+      }
+    ],
+    "failure_taxonomy": {},
+    "final_state": {
+      "time": "12:35",
+      "location": "quiet_cafe",
+      "inside_location": "quiet_cafe",
+      "budget": 6.0,
+      "entries": [
+        {
+          "location": "office",
+          "time": 720,
+          "kind": "start"
+        },
+        {
+          "location": "quiet_cafe",
+          "time": 744,
+          "kind": "enter"
+        }
+      ],
+      "services": [
+        {
+          "location": "quiet_cafe",
+          "time": 749,
+          "cost": 10.0,
+          "budget_after": 6.0,
+          "service": "meeting_refreshment"
+        }
+      ],
+      "purchases": [],
+      "abandonments": [],
+      "route_interruptions": [],
+      "replans": [],
+      "violations": []
+    }
+  },
+  {
+    "scenario_id": "social_copresence_decoy_location",
+    "scenario_title": "Right Cafe, Not the Near One",
+    "family": "social_outcome",
+    "agent_type": "api_llm_plan_and_execute",
+    "trace": [
+      {
+        "scenario_id": "social_copresence_decoy_location",
+        "agent_type": "api_llm_plan_and_execute",
+        "step": 1,
+        "start_time": "12:00",
+        "start_location": "office",
+        "action": {
+          "kind": "message",
+          "target": null,
+          "path": null,
+          "minutes": 0,
+          "to": "ben",
+          "content": "I am heading to the quiet cafe and will meet you there around 12:30.",
+          "item": "",
+          "service": "",
+          "reason": "Confirm the meeting before traveling.",
+          "raw_response": "{\"plan\":[{\"kind\":\"message\",\"target\":null,\"minutes\":0,\"to\":\"ben\",\"content\":\"I am heading to the quiet cafe and will meet you there around 12:30.\",\"item\":\"\",\"service\":\"\",\"reason\":\"Confirm the meeting before traveling.\"},{\"kind\":\"move\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Go directly to the only location where Ben is present and the meeting can succeed.\"},{\"kind\":\"enter\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Enter the cafe before using its services or interacting.\"},{\"kind\":\"use_service\",\"target\":\"quiet_cafe\",\"minutes\":5,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"coffee\",\"reason\":\"Use the paid cafe service before waiting or interacting; the 10-unit cost remains within the 16-unit budget.\"},{\"kind\":\"dwell\",\"target\":null,\"minutes\":4,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Wait inside until the co-presence window begins at 12:30.\"},{\"kind\":\"interact\",\"target\":null,\"minutes\":1,\"to\":\"ben\",\"content\":\"Meet Ben at the quiet cafe.\",\"item\":\"\",\"service\":\"\",\"reason\":\"Create co-presence evidence with Ben at the allowed location during the required time window.\"},{\"kind\":\"finish\",\"target\":null,\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Finish after confirming the meeting through message and in-person interaction.\"}]} \n"
+        },
+        "end_time": "12:02",
+        "end_location": "office",
+        "budget": 16.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_decoy_location",
+        "agent_type": "api_llm_plan_and_execute",
+        "step": 2,
+        "start_time": "12:02",
+        "start_location": "office",
+        "action": {
+          "kind": "move",
+          "target": "quiet_cafe",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Go directly to the only location where Ben is present and the meeting can succeed.",
+          "raw_response": "{\"plan\":[{\"kind\":\"message\",\"target\":null,\"minutes\":0,\"to\":\"ben\",\"content\":\"I am heading to the quiet cafe and will meet you there around 12:30.\",\"item\":\"\",\"service\":\"\",\"reason\":\"Confirm the meeting before traveling.\"},{\"kind\":\"move\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Go directly to the only location where Ben is present and the meeting can succeed.\"},{\"kind\":\"enter\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Enter the cafe before using its services or interacting.\"},{\"kind\":\"use_service\",\"target\":\"quiet_cafe\",\"minutes\":5,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"coffee\",\"reason\":\"Use the paid cafe service before waiting or interacting; the 10-unit cost remains within the 16-unit budget.\"},{\"kind\":\"dwell\",\"target\":null,\"minutes\":4,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Wait inside until the co-presence window begins at 12:30.\"},{\"kind\":\"interact\",\"target\":null,\"minutes\":1,\"to\":\"ben\",\"content\":\"Meet Ben at the quiet cafe.\",\"item\":\"\",\"service\":\"\",\"reason\":\"Create co-presence evidence with Ben at the allowed location during the required time window.\"},{\"kind\":\"finish\",\"target\":null,\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Finish after confirming the meeting through message and in-person interaction.\"}]} \n"
+        },
+        "end_time": "12:23",
+        "end_location": "quiet_cafe",
+        "budget": 16.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_decoy_location",
+        "agent_type": "api_llm_plan_and_execute",
+        "step": 3,
+        "start_time": "12:23",
+        "start_location": "quiet_cafe",
+        "action": {
+          "kind": "enter",
+          "target": "quiet_cafe",
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Enter the cafe before using its services or interacting.",
+          "raw_response": "{\"plan\":[{\"kind\":\"message\",\"target\":null,\"minutes\":0,\"to\":\"ben\",\"content\":\"I am heading to the quiet cafe and will meet you there around 12:30.\",\"item\":\"\",\"service\":\"\",\"reason\":\"Confirm the meeting before traveling.\"},{\"kind\":\"move\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Go directly to the only location where Ben is present and the meeting can succeed.\"},{\"kind\":\"enter\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Enter the cafe before using its services or interacting.\"},{\"kind\":\"use_service\",\"target\":\"quiet_cafe\",\"minutes\":5,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"coffee\",\"reason\":\"Use the paid cafe service before waiting or interacting; the 10-unit cost remains within the 16-unit budget.\"},{\"kind\":\"dwell\",\"target\":null,\"minutes\":4,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Wait inside until the co-presence window begins at 12:30.\"},{\"kind\":\"interact\",\"target\":null,\"minutes\":1,\"to\":\"ben\",\"content\":\"Meet Ben at the quiet cafe.\",\"item\":\"\",\"service\":\"\",\"reason\":\"Create co-presence evidence with Ben at the allowed location during the required time window.\"},{\"kind\":\"finish\",\"target\":null,\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Finish after confirming the meeting through message and in-person interaction.\"}]} \n"
+        },
+        "end_time": "12:24",
+        "end_location": "quiet_cafe",
+        "budget": 16.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_decoy_location",
+        "agent_type": "api_llm_plan_and_execute",
+        "step": 4,
+        "start_time": "12:24",
+        "start_location": "quiet_cafe",
+        "action": {
+          "kind": "use_service",
+          "target": "quiet_cafe",
+          "path": null,
+          "minutes": 5,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "coffee",
+          "reason": "Use the paid cafe service before waiting or interacting; the 10-unit cost remains within the 16-unit budget.",
+          "raw_response": "{\"plan\":[{\"kind\":\"message\",\"target\":null,\"minutes\":0,\"to\":\"ben\",\"content\":\"I am heading to the quiet cafe and will meet you there around 12:30.\",\"item\":\"\",\"service\":\"\",\"reason\":\"Confirm the meeting before traveling.\"},{\"kind\":\"move\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Go directly to the only location where Ben is present and the meeting can succeed.\"},{\"kind\":\"enter\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Enter the cafe before using its services or interacting.\"},{\"kind\":\"use_service\",\"target\":\"quiet_cafe\",\"minutes\":5,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"coffee\",\"reason\":\"Use the paid cafe service before waiting or interacting; the 10-unit cost remains within the 16-unit budget.\"},{\"kind\":\"dwell\",\"target\":null,\"minutes\":4,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Wait inside until the co-presence window begins at 12:30.\"},{\"kind\":\"interact\",\"target\":null,\"minutes\":1,\"to\":\"ben\",\"content\":\"Meet Ben at the quiet cafe.\",\"item\":\"\",\"service\":\"\",\"reason\":\"Create co-presence evidence with Ben at the allowed location during the required time window.\"},{\"kind\":\"finish\",\"target\":null,\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Finish after confirming the meeting through message and in-person interaction.\"}]} \n"
+        },
+        "end_time": "12:29",
+        "end_location": "quiet_cafe",
+        "budget": 6.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_decoy_location",
+        "agent_type": "api_llm_plan_and_execute",
+        "step": 5,
+        "start_time": "12:29",
+        "start_location": "quiet_cafe",
+        "action": {
+          "kind": "dwell",
+          "target": null,
+          "path": null,
+          "minutes": 4,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Wait inside until the co-presence window begins at 12:30.",
+          "raw_response": "{\"plan\":[{\"kind\":\"message\",\"target\":null,\"minutes\":0,\"to\":\"ben\",\"content\":\"I am heading to the quiet cafe and will meet you there around 12:30.\",\"item\":\"\",\"service\":\"\",\"reason\":\"Confirm the meeting before traveling.\"},{\"kind\":\"move\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Go directly to the only location where Ben is present and the meeting can succeed.\"},{\"kind\":\"enter\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Enter the cafe before using its services or interacting.\"},{\"kind\":\"use_service\",\"target\":\"quiet_cafe\",\"minutes\":5,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"coffee\",\"reason\":\"Use the paid cafe service before waiting or interacting; the 10-unit cost remains within the 16-unit budget.\"},{\"kind\":\"dwell\",\"target\":null,\"minutes\":4,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Wait inside until the co-presence window begins at 12:30.\"},{\"kind\":\"interact\",\"target\":null,\"minutes\":1,\"to\":\"ben\",\"content\":\"Meet Ben at the quiet cafe.\",\"item\":\"\",\"service\":\"\",\"reason\":\"Create co-presence evidence with Ben at the allowed location during the required time window.\"},{\"kind\":\"finish\",\"target\":null,\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Finish after confirming the meeting through message and in-person interaction.\"}]} \n"
+        },
+        "end_time": "12:33",
+        "end_location": "quiet_cafe",
+        "budget": 6.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_decoy_location",
+        "agent_type": "api_llm_plan_and_execute",
+        "step": 6,
+        "start_time": "12:33",
+        "start_location": "quiet_cafe",
+        "action": {
+          "kind": "interact",
+          "target": null,
+          "path": null,
+          "minutes": 1,
+          "to": "ben",
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Create co-presence evidence with Ben at the allowed location during the required time window.",
+          "raw_response": "{\"plan\":[{\"kind\":\"message\",\"target\":null,\"minutes\":0,\"to\":\"ben\",\"content\":\"I am heading to the quiet cafe and will meet you there around 12:30.\",\"item\":\"\",\"service\":\"\",\"reason\":\"Confirm the meeting before traveling.\"},{\"kind\":\"move\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Go directly to the only location where Ben is present and the meeting can succeed.\"},{\"kind\":\"enter\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Enter the cafe before using its services or interacting.\"},{\"kind\":\"use_service\",\"target\":\"quiet_cafe\",\"minutes\":5,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"coffee\",\"reason\":\"Use the paid cafe service before waiting or interacting; the 10-unit cost remains within the 16-unit budget.\"},{\"kind\":\"dwell\",\"target\":null,\"minutes\":4,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Wait inside until the co-presence window begins at 12:30.\"},{\"kind\":\"interact\",\"target\":null,\"minutes\":1,\"to\":\"ben\",\"content\":\"Meet Ben at the quiet cafe.\",\"item\":\"\",\"service\":\"\",\"reason\":\"Create co-presence evidence with Ben at the allowed location during the required time window.\"},{\"kind\":\"finish\",\"target\":null,\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Finish after confirming the meeting through message and in-person interaction.\"}]} \n"
+        },
+        "end_time": "12:34",
+        "end_location": "quiet_cafe",
+        "budget": 6.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      },
+      {
+        "scenario_id": "social_copresence_decoy_location",
+        "agent_type": "api_llm_plan_and_execute",
+        "step": 7,
+        "start_time": "12:34",
+        "start_location": "quiet_cafe",
+        "action": {
+          "kind": "finish",
+          "target": null,
+          "path": null,
+          "minutes": 0,
+          "to": null,
+          "content": "",
+          "item": "",
+          "service": "",
+          "reason": "Finish after confirming the meeting through message and in-person interaction.",
+          "raw_response": "{\"plan\":[{\"kind\":\"message\",\"target\":null,\"minutes\":0,\"to\":\"ben\",\"content\":\"I am heading to the quiet cafe and will meet you there around 12:30.\",\"item\":\"\",\"service\":\"\",\"reason\":\"Confirm the meeting before traveling.\"},{\"kind\":\"move\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Go directly to the only location where Ben is present and the meeting can succeed.\"},{\"kind\":\"enter\",\"target\":\"quiet_cafe\",\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Enter the cafe before using its services or interacting.\"},{\"kind\":\"use_service\",\"target\":\"quiet_cafe\",\"minutes\":5,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"coffee\",\"reason\":\"Use the paid cafe service before waiting or interacting; the 10-unit cost remains within the 16-unit budget.\"},{\"kind\":\"dwell\",\"target\":null,\"minutes\":4,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Wait inside until the co-presence window begins at 12:30.\"},{\"kind\":\"interact\",\"target\":null,\"minutes\":1,\"to\":\"ben\",\"content\":\"Meet Ben at the quiet cafe.\",\"item\":\"\",\"service\":\"\",\"reason\":\"Create co-presence evidence with Ben at the allowed location during the required time window.\"},{\"kind\":\"finish\",\"target\":null,\"minutes\":0,\"to\":null,\"content\":\"\",\"item\":\"\",\"service\":\"\",\"reason\":\"Finish after confirming the meeting through message and in-person interaction.\"}]} \n"
+        },
+        "end_time": "12:34",
+        "end_location": "quiet_cafe",
+        "budget": 6.0,
+        "violations": [],
+        "route_interruptions": [],
+        "verified_replans": []
+      }
+    ],
+    "visits": [
+      {
+        "location": "office",
+        "time": 720,
+        "kind": "start"
+      },
+      {
+        "location": "coworking",
+        "time": 730,
+        "kind": "pass_through"
+      },
+      {
+        "location": "bookstore",
+        "time": 735,
+        "kind": "pass_through"
+      },
+      {
+        "location": "library",
+        "time": 738,
+        "kind": "pass_through"
+      },
+      {
+        "location": "quiet_cafe",
+        "time": 743,
+        "kind": "arrival"
+      },
+      {
+        "location": "quiet_cafe",
+        "time": 753,
+        "kind": "dwell"
+      }
+    ],
+    "traversals": [
+      {
+        "from": "office",
+        "to": "coworking",
+        "arrive_time": 730,
+        "minutes": 8
+      },
+      {
+        "from": "coworking",
+        "to": "bookstore",
+        "arrive_time": 735,
+        "minutes": 5
+      },
+      {
+        "from": "bookstore",
+        "to": "library",
+        "arrive_time": 738,
+        "minutes": 3
+      },
+      {
+        "from": "library",
+        "to": "quiet_cafe",
+        "arrive_time": 743,
+        "minutes": 5
+      }
+    ],
+    "route_interruptions": [],
+    "replans": [],
+    "messages": [
+      {
+        "to": "ben",
+        "content": "I am heading to the quiet cafe and will meet you there around 12:30.",
+        "time": 720
+      }
+    ],
+    "interactions": [
+      {
+        "with": "ben",
+        "minutes": 1,
+        "time": 753,
+        "start_time": 753,
+        "end_time": 754,
+        "location": "quiet_cafe"
+      }
+    ],
+    "entries": [
+      {
+        "location": "office",
+        "time": 720,
+        "kind": "start"
+      },
+      {
+        "location": "quiet_cafe",
+        "time": 744,
+        "kind": "enter"
+      }
+    ],
+    "services": [
+      {
+        "location": "quiet_cafe",
+        "time": 749,
+        "cost": 10.0,
+        "budget_after": 6.0,
+        "service": "coffee"
+      }
+    ],
+    "purchases": [],
+    "abandonments": [],
+    "model_info": {
+      "provider": "fhl",
+      "model": "gpt-5.6-luna",
+      "wire_api": "responses",
+      "base_url": "https://www.fhl.mom",
+      "temperature": 0.0,
+      "json_mode": false,
+      "llm_telemetry_summary": {
+        "calls": 1,
+        "successful_calls": 1,
+        "failed_calls": 0,
+        "latency_seconds": 12.579,
+        "provider_usage_calls": 1,
+        "input_tokens": 6871,
+        "output_tokens": 1353,
+        "total_tokens": 8224,
+        "usage_complete": true
+      }
+    },
+    "llm_telemetry": [
+      {
+        "call_index": 1,
+        "prompt_sha256": "1650654f799fd80a8158448ff40c0cc207e8fc0c8f5fc9f9ab7c55cafe0f4026",
+        "attempts": 1,
+        "latency_seconds": 12.579,
+        "input_chars": 7122,
+        "output_chars": 1368,
+        "input_tokens": 6871,
+        "output_tokens": 1353,
+        "total_tokens": 8224,
+        "usage_source": "provider",
+        "success": true
+      }
+    ],
+    "metrics": {
+      "plan_plausibility": 1.0,
+      "trace_feasibility": 1.0,
+      "plausibility_feasibility_gap": 0.0,
+      "impossible_trace_rate": 0.0,
+      "city_false_continue": 0.0,
+      "goal_completion": 1.0,
+      "task_completion": 1.0,
+      "constraint_satisfaction": 1.0,
+      "process_success": null,
+      "feasibility_violation": 0.0,
+      "replanning_success": null,
+      "travel_efficiency": 1.0,
+      "budget_consistency": 1.0,
+      "intention_consistency": 1.0,
+      "social_appropriateness": 1.0,
+      "done_state_loop_rate": 0.0,
+      "social_derailment_rate": 0.0
+    },
+    "conditions": [
+      {
+        "id": "confirm_with_ben",
+        "type": "send_message",
+        "score": 1.0,
+        "weight": 0.2,
+        "role": "outcome",
+        "evidence": [
+          {
+            "to": "ben",
+            "content": "I am heading to the quiet cafe and will meet you there around 12:30.",
+            "time": 720
+          }
+        ]
+      },
+      {
+        "id": "meet_ben_quiet",
+        "type": "co_presence",
+        "score": 1.0,
+        "weight": 0.45,
+        "role": "outcome",
+        "evidence": [
+          {
+            "with": "ben",
+            "minutes": 1,
+            "time": 753,
+            "start_time": 753,
+            "end_time": 754,
+            "location": "quiet_cafe"
+          }
+        ]
+      },
+      {
+        "id": "stay_within_budget",
+        "type": "budget_at_least",
+        "score": 1.0,
+        "weight": 0.15,
+        "role": "constraint",
+        "evidence": []
+      },
+      {
+        "id": "no_impossible_meeting_claim",
+        "type": "no_feasibility_violation",
+        "score": 1.0,
+        "weight": 0.2,
+        "role": "constraint",
+        "evidence": []
+      }
+    ],
+    "failure_taxonomy": {},
+    "final_state": {
+      "time": "12:34",
+      "location": "quiet_cafe",
+      "inside_location": "quiet_cafe",
+      "budget": 6.0,
+      "entries": [
+        {
+          "location": "office",
+          "time": 720,
+          "kind": "start"
+        },
+        {
+          "location": "quiet_cafe",
+          "time": 744,
+          "kind": "enter"
+        }
+      ],
+      "services": [
+        {
+          "location": "quiet_cafe",
+          "time": 749,
+          "cost": 10.0,
+          "budget_after": 6.0,
+          "service": "coffee"
+        }
+      ],
+      "purchases": [],
+      "abandonments": [],
+      "route_interruptions": [],
+      "replans": [],
+      "violations": []
+    }
+  }
+]
