@@ -24,7 +24,7 @@ import urllib.error
 import urllib.request
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Protocol
+from typing import Any, Protocol, Iterator
 
 
 DEFAULT_PROVIDER = "mock"
@@ -55,6 +55,8 @@ class LLMConfig:
     max_concurrency: int = 1
     omit_temperature: bool = False
     reasoning_effort: str | None = None
+    max_output_tokens: int | None = None
+    stream: bool = False
     service_tier: str | None = None
     store: bool | None = None
     responses_input_mode: str = "messages"
@@ -111,6 +113,35 @@ class OpenAICompatibleChatClient:
         return content
 
 
+def stream_sse_events(
+    url: str, payload: dict[str, Any], api_key: str, timeout: int
+) -> "Iterator[dict[str, Any]]":
+    """Yield parsed SSE `data:` events from a streaming Responses call."""
+    body = json.dumps(payload).encode("utf-8")
+    request = urllib.request.Request(
+        url,
+        data=body,
+        headers={
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+            "Accept": "text/event-stream",
+        },
+        method="POST",
+    )
+    with urllib.request.urlopen(request, timeout=timeout) as response:
+        for raw in response:
+            line = raw.decode("utf-8", errors="replace").strip()
+            if not line.startswith("data:"):
+                continue
+            chunk = line[5:].strip()
+            if not chunk or chunk == "[DONE]":
+                continue
+            try:
+                yield json.loads(chunk)
+            except json.JSONDecodeError:
+                continue
+
+
 @dataclass(frozen=True)
 class OpenAICompatibleResponsesClient:
     config: LLMConfig
@@ -118,6 +149,8 @@ class OpenAICompatibleResponsesClient:
 
     def complete(self, prompt: dict[str, Any]) -> str:
         payload = build_responses_payload(prompt, self.config)
+        if self.config.stream:
+            return self._complete_streaming(payload)
         if self.config.transport == "curl":
             data = post_json_with_curl(
                 normalize_endpoint(self.config.base_url, "responses"),
@@ -138,6 +171,35 @@ class OpenAICompatibleResponsesClient:
         content = extract_responses_text(data)
         if not isinstance(content, str):
             raise RuntimeError(f"responses response has no text content: {data}")
+        return content
+
+    def _complete_streaming(self, payload: dict[str, Any]) -> str:
+        """Read the answer from the SSE delta stream.
+
+        Some reasoning-model deployments (e.g. the Codex-relay gpt-5.6-*
+        variants) emit their text ONLY as `response.output_text.delta` events:
+        the terminal `response.completed` object still contains just a bare
+        `reasoning` item with encrypted content and no `message`, while
+        reporting status "completed". A non-streaming client therefore loses the
+        answer entirely with no error, so those models require streaming.
+        """
+        request = dict(payload)
+        request["stream"] = True
+        url = normalize_endpoint(self.config.base_url, "responses")
+        text_parts: list[str] = []
+        usage: dict[str, Any] | None = None
+        for event in stream_sse_events(url, request, self.api_key, self.config.timeout):
+            kind = event.get("type", "")
+            if kind == "response.output_text.delta":
+                text_parts.append(str(event.get("delta", "")))
+            elif kind in {"response.completed", "response.incomplete"}:
+                usage = (event.get("response") or {}).get("usage")
+            elif kind == "error" or kind.endswith(".error"):
+                raise RuntimeError(f"streaming responses error: {event}")
+        object.__setattr__(self, "last_usage", usage)
+        content = "".join(text_parts)
+        if not content.strip():
+            raise RuntimeError("streaming responses produced no output_text deltas")
         return content
 
 
@@ -317,6 +379,10 @@ def config_from_dict(data: dict[str, Any]) -> LLMConfig:
         max_concurrency=max(1, int(data.get("max_concurrency", 1))),
         omit_temperature=bool(data.get("omit_temperature", False)),
         reasoning_effort=optional_str(data.get("reasoning_effort", data.get("model_reasoning_effort"))),
+        max_output_tokens=(
+            int(data["max_output_tokens"]) if data.get("max_output_tokens") else None
+        ),
+        stream=bool(data.get("stream", False)),
         service_tier=optional_str(data.get("service_tier")),
         store=None if store is None else bool(store),
         responses_input_mode=str(data.get("responses_input_mode", "messages")),
@@ -403,6 +469,13 @@ def build_responses_payload(prompt: dict[str, Any], config: LLMConfig) -> dict[s
         payload["text"] = {"format": {"type": "json_object"}}
     if config.reasoning_effort:
         payload["reasoning"] = {"effort": config.reasoning_effort}
+    if config.max_output_tokens:
+        # Reasoning variants (e.g. gpt-5.6-luna / -terra) silently return a bare
+        # `reasoning` item with no `message` when the output budget is too small
+        # to finish — and still report status "completed" with no
+        # incomplete_details, so the truncation is invisible. An explicit budget
+        # is required for those models to emit an answer at all.
+        payload["max_output_tokens"] = config.max_output_tokens
     if config.service_tier:
         payload["service_tier"] = config.service_tier
     if config.store is not None:

@@ -1,0 +1,21 @@
+{
+  "provider": "fhl",
+  "model": "gpt-5.6-luna",
+  "wire_api": "responses",
+  "base_url": "https://www.fhl.mom",
+  "temperature": 0,
+  "omit_temperature": true,
+  "timeout": 120,
+  "sleep": 3,
+  "max_concurrency": 1,
+  "retries": 2,
+  "retry_sleep": 5,
+  "json_mode": false,
+  "transport": "urllib",
+  "responses_input_mode": "string",
+  "disable_response_storage": true,
+  "api_key_env": "FHL_API_KEY",
+  "reasoning_effort": "low",
+  "max_output_tokens": 16000,
+  "stream": true
+}
