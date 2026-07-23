@@ -47,9 +47,10 @@ the weaker model simply did not choose it.
 
 ## Finding 2 — capability compresses scaffold differences (independent replication)
 
-The gain from upgrading is almost perfectly inversely ordered by the mini-tier
-score: SOTOPIA 0.158→+0.369, AgentSociety 0.314→+0.351, GenAgents 0.410→+0.219,
-GATSim 0.750→−0.049. The weakest scaffolds gain most; the strongest gains nothing.
+The four weaker policies gain significantly (SOTOPIA +0.369, AgentSociety +0.351,
+GenAgents +0.219; all p < 0.02) while the strongest gains nothing (GATSim −0.049,
+p = 0.83, not significant). The weakest scaffolds gain most; the strongest does
+not move.
 
 This independently replicates the E3 baseline-side result (Plan-and-Execute +0.371
 overtaking ReAct's +0.071) in a completely different policy family. Across six
@@ -58,13 +59,17 @@ policies and two experiments the same regularity holds:
 > **Scaffolding substitutes for model capability, and its value falls as
 > capability rises.**
 
-## Finding 3 — the best-engineered scaffold is the one that regresses
+## Finding 3 — a ceiling, not a regression (corrected)
 
-GATSim is the only adapter that gets *worse* (−0.049), and it is precisely the one
-with a hand-built explicit evidence synthesiser. On a weak model that machinery is
-a crutch that wins; on a strong model its hard-coded procedure becomes a
-constraint on what the model would otherwise do. Worth stating explicitly in the
-paper: engineered scaffolding can invert from asset to liability as models improve.
+An earlier version of this note read GATSim's −0.049 as an engineered-scaffold
+regression with design implications. **That was noise**: permutation p = 0.83,
+95% CI [−0.293, +0.194].
+
+The statistically supported statement is a *ceiling*: the four weaker policies
+improve significantly (p < 0.02), while the two strongest — GATSim (0.750) and
+ReAct (0.726) — do not move at all. A stronger backbone lifts weak scaffolds and
+leaves good ones untouched. See
+`results/cityintent_v1_rc1/backbone_significance_2026-07-10/`.
 
 ## Caveat
 

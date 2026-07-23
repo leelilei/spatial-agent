@@ -38,10 +38,14 @@ Per scenario (task_completion, mini → luna):
 
 ## Findings
 
-1. **The gap narrows but does not close.** A much stronger backbone lifts ReAct
-   only 0.726 → 0.797; a fifth of the required outcomes are still not achieved
-   on tasks that are provably winnable. The plausible↔verified gap is therefore
-   **not** an artefact of a weak model.
+1. **The gap does not respond to capability at all for the strongest policy.**
+   ReAct goes 0.726 → 0.797, but a permutation test puts this at **p = 0.36,
+   95% CI [−0.078, +0.216] — not significant** (see
+   `results/cityintent_v1_rc1/backbone_significance_2026-07-10/`). An earlier
+   version of this note read it as "the gap narrows"; that was an over-reading.
+   The correct statement is stronger: a much more capable backbone leaves the
+   best policy statistically where it was, still missing ~20% of provably
+   winnable outcomes. The plausible↔verified gap is **not** a small-model artefact.
 
 2. **The scaffold advantage collapses when the model is strong — and inverts.**
    Plan-and-Execute gains +0.371 (0.534 → 0.905) versus ReAct's +0.071, and ends
