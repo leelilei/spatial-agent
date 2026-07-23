@@ -19,6 +19,7 @@ import hashlib
 import json
 import os
 import subprocess
+import tempfile
 import time
 import urllib.error
 import urllib.request
@@ -97,12 +98,23 @@ class OpenAICompatibleChatClient:
             payload["temperature"] = self.config.temperature
         if self.config.json_mode:
             payload["response_format"] = {"type": "json_object"}
-        data = post_json(
-            normalize_endpoint(self.config.base_url, "chat_completions"),
-            payload,
-            self.api_key,
-            self.config.timeout,
-        )
+        url = normalize_endpoint(self.config.base_url, "chat_completions")
+        if self.config.transport == "curl":
+            data = post_json_with_curl(
+                url,
+                payload,
+                self.api_key,
+                self.config.timeout,
+            )
+        elif self.config.transport == "urllib":
+            data = post_json(
+                url,
+                payload,
+                self.api_key,
+                self.config.timeout,
+            )
+        else:
+            raise ValueError(f"unsupported transport: {self.config.transport}")
         object.__setattr__(self, "last_usage", data.get("usage"))
         choices = data.get("choices")
         if not choices:
@@ -507,16 +519,29 @@ def post_json(url: str, payload: dict[str, Any], api_key: str, timeout: int) -> 
 
 
 def post_json_with_curl(url: str, payload: dict[str, Any], api_key: str, timeout: int) -> dict[str, Any]:
+    config_path: str | None = None
     try:
+        escaped_key = api_key.replace("\\", "\\\\").replace('"', '\\"')
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="utf-8",
+            prefix="llm-curl-",
+            suffix=".conf",
+            delete=False,
+        ) as config_file:
+            config_path = config_file.name
+            os.chmod(config_path, 0o600)
+            config_file.write(
+                f'header = "Authorization: Bearer {escaped_key}"\n'
+                'header = "Content-Type: application/json"\n'
+            )
         completed = subprocess.run(
             [
                 "curl",
                 "-sS",
                 url,
-                "-H",
-                f"Authorization: Bearer {api_key}",
-                "-H",
-                "Content-Type: application/json",
+                "--config",
+                config_path,
                 "--data-binary",
                 "@-",
                 "--write-out",
@@ -534,6 +559,9 @@ def post_json_with_curl(url: str, payload: dict[str, Any], api_key: str, timeout
         raise RuntimeError(
             f"provider curl request timed out after {timeout} seconds"
         ) from None
+    finally:
+        if config_path is not None:
+            Path(config_path).unlink(missing_ok=True)
     if completed.returncode != 0:
         raise RuntimeError(f"curl request failed: {completed.stderr.strip()}")
     body, separator, status_text = (completed.stdout or "").rpartition("\n")
