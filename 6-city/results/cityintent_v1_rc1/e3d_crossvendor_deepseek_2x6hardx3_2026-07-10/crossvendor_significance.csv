@@ -1,0 +1,8 @@
+comparison_type,policy,display_name,group_a,group_b,mean_a,mean_b,delta,ci_low,ci_high,p_value,significant_0_05
+backbone,api_llm_react_tool_policy,ReAct,deepseek-v4-flash,gpt-5.4-mini,0.856222,0.726,0.130222,-0.010111,0.2675,0.086696,False
+backbone,api_llm_react_tool_policy,ReAct,deepseek-v4-flash,gpt-5.6-luna,0.856222,0.797278,0.058944,-0.08,0.199944,0.425479,False
+backbone,api_llm_plan_and_execute,Plan-and-Execute,deepseek-v4-flash,gpt-5.4-mini,0.626111,0.533722,0.092389,-0.105611,0.284889,0.386831,False
+backbone,api_llm_plan_and_execute,Plan-and-Execute,deepseek-v4-flash,gpt-5.6-luna,0.626111,0.904556,-0.278444,-0.454389,-0.099,0.0051,True
+scaffold,react_minus_plan_and_execute,ReAct − Plan-and-Execute,gpt-5.4-mini/ReAct,gpt-5.4-mini/Plan-and-Execute,0.726,0.533722,0.192278,0.029278,0.349333,0.026449,True
+scaffold,react_minus_plan_and_execute,ReAct − Plan-and-Execute,gpt-5.6-luna/ReAct,gpt-5.6-luna/Plan-and-Execute,0.797278,0.904556,-0.107278,-0.238167,0.026722,0.140193,False
+scaffold,react_minus_plan_and_execute,ReAct − Plan-and-Execute,deepseek-v4-flash/ReAct,deepseek-v4-flash/Plan-and-Execute,0.856222,0.626111,0.230111,0.049,0.410444,0.020499,True

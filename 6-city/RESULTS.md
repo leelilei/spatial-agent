@@ -72,6 +72,7 @@ Single-run or smoke experiments should still keep:
 | 2026-07-10 | Backbone-effect significance testing (permutation + bootstrap CI) | `results/cityintent_v1_rc1/backbone_significance_2026-07-10/` | same dir `significance.md` | Archived; zero-API. **Corrects two over-readings**: ReAct's +0.071 'gap narrows' is p=0.36 CI[-0.078,+0.216] NOT significant; GATSim's -0.049 'engineered-scaffold regression' is p=0.83, noise. Corrected claim is stronger — the 4 weaker policies improve significantly (p<0.02) while the 2 strongest do not move at all: a capability ceiling, with ReAct still missing ~20% of provably winnable outcomes |
 | 2026-07-10 | Scenario discrimination / item analysis across all 30 scenarios | `results/cityintent_v1_rc1/scenario_discrimination_2026-07-10/` | same dir `scenario_discrimination.md` | Archived; zero-API. **No dead items** — 30/30 discriminate, none at ceiling or floor. **Red flag: `meeting_wait_trap` item-total r = −0.759** (ranks policies against the overall ordering, lowest range 0.308); likely because its co-presence is gated behind send_message which GATSim's adapter cannot emit at all (E4) — it tests action-surface coverage, not decision quality. Three weakly-correlated items suggest the benchmark may not be unidimensional. Tool `analyze_scenario_discrimination.py` |
 | 2026-07-23 | E3c easy-tier stronger-backbone closure: 6 policies x 6 social scenarios x 3 on gpt-5.6-luna | `results/cityintent_v1_rc1/e3c_easy_luna_6x6easyx3_2026-07-10/` | `docs/experiments/cityintent_e3c_easy_backbone_luna_2026-07-23.md` | Archived; 108/108 judged traces. ReAct and Plan-Exec reach task 1.0; the three weakest mini policies gain sharply (AgentSociety +0.532, GenAgents +0.492, SOTOPIA +0.476), replicating the hard-tier capability/scaffold interaction. GATSim is descriptively unchanged (−0.033). Positive face↔trace-believability gaps remain for all six policies. |
+| 2026-07-24 | E3d cross-vendor hard-tier replication: 2 policies x 6 hard scenarios x 3 on deepseek-v4-flash | `results/cityintent_v1_rc1/e3d_crossvendor_deepseek_2x6hardx3_2026-07-10/` | `docs/experiments/cityintent_e3d_crossvendor_deepseek_2026-07-24.md` | Archived; 36/36 judged traces. The evidence gap crosses vendors: DeepSeek ReAct task 0.856 vs feasibility 0.986 with face↔trace-believability gap 0.297; Plan-Exec task 0.626 with gap 0.349. ReAct is backbone-robust (DeepSeek vs mini/luna not significant), while Plan-Exec is model-sensitive (Luna beats DeepSeek by 0.278, p=0.0051). Corrects the earlier descriptive Luna inversion: it is not significant; ReAct significantly leads Plan-Exec on mini and DeepSeek. |
 
 ## Next Pending Result
 
@@ -83,10 +84,10 @@ Two remaining tracks:
 agreement + Cohen's kappa vs deterministic `task_completion` / feasibility /
 replanning labels. Model labels cannot satisfy this gate.
 
-2. **Cross-vendor robustness (does not block freeze).** E3/E3b/E3c complete the
-mini→luna backbone sweep across both social tiers. The remaining active run is
-E3d: the two paper-backed baselines on the six hard scenarios using
-DeepSeek-v4-flash, three repeats, with the mini judge held fixed.
+2. **Paper assembly (does not block freeze).** E3/E3b/E3c complete the
+mini→luna backbone sweep and E3d adds the cross-vendor DeepSeek replication.
+The remaining research task is claim selection and paper assembly, not another
+model/scenario matrix.
 
 See `docs/project/direction_verdict_2026-07-04.md` for why v1 stays
 `release_candidate_pending_human_audit` and the recommended framing (lead with the

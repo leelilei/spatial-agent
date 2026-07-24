@@ -1,0 +1,36 @@
+{
+  "api_llm_plan_and_execute": {
+    "plan_plausibility": 1.0,
+    "trace_feasibility": 0.909,
+    "plausibility_feasibility_gap": 0.091,
+    "impossible_trace_rate": 0.091,
+    "city_false_continue": 0.167,
+    "goal_completion": 0.783,
+    "task_completion": 0.75,
+    "constraint_satisfaction": 0.833,
+    "feasibility_violation": 0.091,
+    "travel_efficiency": 1.0,
+    "budget_consistency": 1.0,
+    "intention_consistency": 0.758,
+    "social_appropriateness": 0.667,
+    "done_state_loop_rate": 0.0,
+    "social_derailment_rate": 0.0
+  },
+  "api_llm_react_tool_policy": {
+    "plan_plausibility": 1.0,
+    "trace_feasibility": 1.0,
+    "plausibility_feasibility_gap": 0.0,
+    "impossible_trace_rate": 0.0,
+    "city_false_continue": 0.0,
+    "goal_completion": 0.9,
+    "task_completion": 0.845,
+    "constraint_satisfaction": 1.0,
+    "feasibility_violation": 0.0,
+    "travel_efficiency": 1.0,
+    "budget_consistency": 1.0,
+    "intention_consistency": 0.9,
+    "social_appropriateness": 0.917,
+    "done_state_loop_rate": 0.0,
+    "social_derailment_rate": 0.333
+  }
+}
