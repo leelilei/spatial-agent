@@ -1,0 +1,43 @@
+{
+  "experiment_id": "PAT-C-260728-003",
+  "title": "Limited backbone-adaptation Oracle gate",
+  "frozen_at": "2026-07-28T11:18:00+08:00",
+  "status": "PRE_REGISTERED_BEFORE_MODEL_PREDICTIONS",
+  "data": {
+    "train_manifest": "PAT-C-260728-001 train manifest and folds",
+    "images": 1600,
+    "classes": 20,
+    "validation_access": "forbidden",
+    "test_access": "forbidden"
+  },
+  "encoder": {
+    "model": "OpenAI CLIP ViT-B/16 QuickGELU",
+    "trainable": ["last visual transformer residual block", "visual ln_post"],
+    "frozen": "all remaining encoder parameters",
+    "input": "official deterministic 224px OpenAI CLIP preprocessing"
+  },
+  "arms": {
+    "ADAPTED_GLOBAL": "Normalized CLIP image embedding plus linear classifier.",
+    "ADAPTED_PRPOOL_ORACLE": "Four supervised plus one complementary 3x3-convolution sigmoid attention maps over final patch tokens, concatenated attention-weighted average pooling, one classifier, full train masks."
+  },
+  "optimization": {
+    "head_learning_rate": 0.003,
+    "backbone_learning_rate": 0.00003,
+    "weight_decay": 0.001,
+    "part_loss_weight": 1.0,
+    "complementary_regularizer_weight": 0.1,
+    "batch_size": 64,
+    "maximum_epochs": 20,
+    "early_stopping_patience": 4,
+    "folds": 5,
+    "seeds_by_fold": [5207, 5208, 5209, 5210, 5211],
+    "selection": "No hyperparameter search; constants frozen from PAT-C-260728-002 selected head plus a 100x lower encoder rate."
+  },
+  "go_no_go": {
+    "adapted_prpool_gain_pp_over_adapted_global_at_least": 2.5,
+    "worst_class_delta_pp_at_least": -2.0,
+    "validation_required_for_this_gate": false,
+    "on_go": "Freeze the adapted mechanism, then design an independent validation audit before missingness arms.",
+    "on_no_go": "Stop PartImageNet mechanism development; do not run MCAR/MAR/MNAR corrections."
+  }
+}

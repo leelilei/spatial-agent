@@ -196,6 +196,11 @@ def run_one(
     forget_rate: float,
     args: argparse.Namespace,
 ) -> dict[str, Any]:
+    usage_before = (
+        llm.usage_snapshot()
+        if llm is not None and hasattr(llm, "usage_snapshot")
+        else {"logical_calls": 0, "transport_attempts": 0, "successful_calls": 0}
+    )
     if args.mock:
         converse = context_relay_converse if args.context_relay_mock else mock_converse
     else:
@@ -263,10 +268,23 @@ def run_one(
     })
     tally = tally_currency(interview_results)
     unsupported_specific = count_unsupported_specific(interview_results)
+    usage_after = (
+        llm.usage_snapshot()
+        if llm is not None and hasattr(llm, "usage_snapshot")
+        else usage_before
+    )
+    usage = {
+        key: int(usage_after.get(key, 0)) - int(usage_before.get(key, 0))
+        for key in ("logical_calls", "transport_attempts", "successful_calls")
+    }
+    usage["logical_calls_per_agent"] = (
+        usage["logical_calls"] / args.agent_count if args.agent_count else 0.0
+    )
 
     summary["currency_interview"] = tally
     summary["unsupported_specific"] = unsupported_specific
     summary["social_rehearsal"] = rehearsal["totals"]
+    summary["llm_usage"] = usage
     write_json(run_dir / "sim_summary.json", summary)
 
     return {
@@ -283,6 +301,7 @@ def run_one(
         "currency_interview": tally,
         "unsupported_specific": unsupported_specific,
         "social_rehearsal": rehearsal["totals"],
+        "llm_usage": usage,
     }
 
 
@@ -300,6 +319,9 @@ def aggregate(rows: list[dict[str, Any]]) -> dict[str, Any]:
             "stale": 0,
             "unknown": 0,
             "unsupported_specific": 0,
+            "logical_calls": 0,
+            "transport_attempts": 0,
+            "successful_calls": 0,
             "per_run_current_rate": [],
             "per_run_unsupported_rate": [],
         })
@@ -311,6 +333,10 @@ def aggregate(rows: list[dict[str, Any]]) -> dict[str, Any]:
             group[verdict] += int(tally.get(verdict, 0))
         unsupported = int(row.get("unsupported_specific", 0))
         group["unsupported_specific"] += unsupported
+        usage = row.get("llm_usage") or {}
+        group["logical_calls"] += int(usage.get("logical_calls", 0))
+        group["transport_attempts"] += int(usage.get("transport_attempts", 0))
+        group["successful_calls"] += int(usage.get("successful_calls", 0))
         group["per_run_current_rate"].append((int(tally.get("current", 0)) / total) if total else 0.0)
         group["per_run_unsupported_rate"].append((unsupported / total) if total else 0.0)
 
@@ -324,6 +350,9 @@ def aggregate(rows: list[dict[str, Any]]) -> dict[str, Any]:
         unsupported_mean = sum(unsupported_rates) / len(unsupported_rates) if unsupported_rates else 0.0
         group["current_rate"] = (int(group["current"]) / total) if total else 0.0
         group["unsupported_specific_rate"] = (int(group["unsupported_specific"]) / total) if total else 0.0
+        group["logical_calls_per_agent"] = (
+            int(group["logical_calls"]) / total if total else 0.0
+        )
         group["mean_run_current_rate"] = mean
         group["mean_run_unsupported_specific_rate"] = unsupported_mean
         group["min_run_current_rate"] = min(rates) if rates else 0.0

@@ -1,0 +1,65 @@
+{
+  "experiment_id": "PAT-B-260727-003",
+  "dataset": "WikiChurches-4",
+  "global_branch": "Tip-Adapter-F",
+  "local_branch": "Positive-only dense-token box-anchor retrieval",
+  "auxiliary_region_bank": "All official boxes from canonical train split only; fixed across few-shot settings.",
+  "auxiliary_supervision_boundary": "The auxiliary bank uses additional train-split image style labels and region boxes. Random-box banks use exactly the same source images, style labels, and number of anchors.",
+  "resolution": 448,
+  "patch_grid": 28,
+  "box_context": 0.15,
+  "anchors_per_style": 16,
+  "anchor_selection": "deterministic cosine farthest-point sampling with equal anchors per style",
+  "topk_patch_ratios": [
+    0.01,
+    0.025,
+    0.05,
+    0.1
+  ],
+  "fusion_gamma_grid": [
+    0.0,
+    1.0,
+    2.0,
+    5.0,
+    10.0,
+    20.0,
+    50.0,
+    100.0
+  ],
+  "shots": [
+    1,
+    4,
+    16
+  ],
+  "development_seeds": [
+    1,
+    2,
+    3
+  ],
+  "confirmation_seeds": [
+    7,
+    8,
+    9
+  ],
+  "tip_f_train_epoch": 20,
+  "tip_f_batch_size": 16,
+  "selection": {
+    "metric": "mean paired validation accuracy delta minus 0.5 sample SD",
+    "test_loader_policy": "No test loader, features, dense tokens, or logits may be constructed during selection."
+  },
+  "validation_go_rule": {
+    "all_conditions_required": true,
+    "positive_robust_score_shots_at_least": 2,
+    "official_better_than_random_shots_at_least": 2,
+    "official_paired_wins_at_least": 5,
+    "total_pairs": 9
+  },
+  "confirmation_go_rule": {
+    "all_conditions_required": true,
+    "positive_mean_shots_at_least": 2,
+    "official_paired_wins_at_least": 5,
+    "official_overall_mean_delta_greater_than_random": true,
+    "minimum_allowed_shot_mean_delta": -1.0,
+    "total_pairs": 9
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "protocol": {
+    "dataset": "wikichurches",
+    "shots": [1, 4, 16],
+    "development_seeds": [1, 2, 3],
+    "train_epoch": 20,
+    "batch_size": 16,
+    "selection_metric": "mean paired validation delta vs c0 minus 0.5 sample SD",
+    "test_policy": "test loader/features must not be constructed, loaded, or evaluated"
+  },
+  "candidates": {
+    "c0_baseline": {
+      "lr": 0.001,
+      "init_delta": 1.0,
+      "lambda_teacher": 0.5,
+      "pooling_ratio": 0.25,
+      "dropout_rate": 0.5,
+      "focal_loss_gamma": 2.0
+    },
+    "c1_lr_low": {
+      "lr": 0.0003,
+      "init_delta": 1.0,
+      "lambda_teacher": 0.5,
+      "pooling_ratio": 0.25,
+      "dropout_rate": 0.5,
+      "focal_loss_gamma": 2.0
+    },
+    "c2_lr_high": {
+      "lr": 0.003,
+      "init_delta": 1.0,
+      "lambda_teacher": 0.5,
+      "pooling_ratio": 0.25,
+      "dropout_rate": 0.5,
+      "focal_loss_gamma": 2.0
+    },
+    "c3_teacher_weak": {
+      "lr": 0.001,
+      "init_delta": 0.5,
+      "lambda_teacher": 0.3,
+      "pooling_ratio": 0.25,
+      "dropout_rate": 0.5,
+      "focal_loss_gamma": 2.0
+    },
+    "c4_teacher_strong": {
+      "lr": 0.001,
+      "init_delta": 2.0,
+      "lambda_teacher": 0.8,
+      "pooling_ratio": 0.25,
+      "dropout_rate": 0.5,
+      "focal_loss_gamma": 2.0
+    },
+    "c5_pool_sparse": {
+      "lr": 0.001,
+      "init_delta": 1.0,
+      "lambda_teacher": 0.5,
+      "pooling_ratio": 0.1,
+      "dropout_rate": 0.5,
+      "focal_loss_gamma": 2.0
+    },
+    "c6_pool_broad": {
+      "lr": 0.001,
+      "init_delta": 1.0,
+      "lambda_teacher": 0.5,
+      "pooling_ratio": 0.75,
+      "dropout_rate": 0.5,
+      "focal_loss_gamma": 2.0
+    },
+    "c7_dropout_low": {
+      "lr": 0.001,
+      "init_delta": 1.0,
+      "lambda_teacher": 0.5,
+      "pooling_ratio": 0.25,
+      "dropout_rate": 0.3,
+      "focal_loss_gamma": 2.0
+    }
+  }
+}

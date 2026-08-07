@@ -1,0 +1,35 @@
+{
+  "schedule_seed": 44,
+  "manifest": {
+    "source_run": "/Users/mac/Documents/6-Research/5-Telephone/sim/runs/prov_fair/prov/gpt-5.4-mini/prov/run_003",
+    "schedule_seed": 44,
+    "agent_count": 25,
+    "rounds": 5,
+    "event_observations": 681,
+    "provenance_observations": 67,
+    "provenance_receivers": 15,
+    "reconstruction_matches_original": true
+  },
+  "conditions": {
+    "prov": {
+      "counts": {
+        "current": 15,
+        "stale": 1,
+        "unknown": 9
+      },
+      "current_rate": 0.6,
+      "stale_rate": 0.04,
+      "unknown_rate": 0.36
+    },
+    "ga": {
+      "counts": {
+        "current": 7,
+        "stale": 1,
+        "unknown": 17
+      },
+      "current_rate": 0.28,
+      "stale_rate": 0.04,
+      "unknown_rate": 0.68
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "experiment_id": "PAT-C-260728-002",
+  "title": "Privileged-Pooling-inspired mechanism gate on frozen CLIP patches",
+  "frozen_at": "2026-07-28T11:08:00+08:00",
+  "status": "PRE_REGISTERED_BEFORE_NEW_MODEL_PREDICTIONS",
+  "purpose": "Determine whether replacing additive local logits by canonical supervised attention pooling creates a sufficient full-part Oracle ceiling before any MNAR correction.",
+  "data": {
+    "train_manifest": "PAT-C-260728-001 train_manifest_frozen.jsonl",
+    "images": 1600,
+    "classes": 20,
+    "folds": 5,
+    "validation_access": "Forbidden in PAT-C-260728-002 mechanism selection.",
+    "test_images_allowed_to_decode_or_encode": 0
+  },
+  "reference": {
+    "paper": "Rodriguez et al., Fine-grained Species Recognition with Privileged Pooling, TPAMI 2023",
+    "local_pdf": "references/papers/Rodriguez_2023_TPAMI_Privileged_Pooling.pdf",
+    "adaptation_not_exact_reproduction": true
+  },
+  "shared_representation": {
+    "encoder": "OpenAI CLIP ViT-B/16 QuickGELU",
+    "encoder_state": "frozen",
+    "patch_grid": [14, 14],
+    "patch_dimension": 768
+  },
+  "arms": {
+    "CLIP_CLS_GLOBAL": "Reuse train-only OOF predictions from PAT-C-260728-001 as the strongest existing global reference.",
+    "PATCH_AVG": "Mean pool the same final patch tokens and train one linear classifier.",
+    "PRPOOL_ORACLE": "Predict four supervised and one complementary sigmoid attention maps with a 3x3 convolutional head; average-pool and L2-normalize each attention-weighted feature; concatenate the five vectors; use a single classifier with no additive global or local residual."
+  },
+  "attention": {
+    "head": "Conv3x3(768,256)-ReLU-Conv3x3(256,5)",
+    "supervised_maps": ["Head", "Body", "Foot", "Tail"],
+    "complementary_maps": 1,
+    "activation": "independent sigmoid",
+    "part_loss": "mean BCE over max-pooled scales with kernel sizes 1,2,4,7",
+    "complementary_regularizer": "maximize a_bar*(1-a_bar) to avoid constant maps",
+    "validation_masks_as_inputs": false
+  },
+  "optimization": {
+    "classification_learning_rate": [0.001, 0.003],
+    "weight_decay": [0.0001, 0.001],
+    "part_loss_weight": [0.1, 0.3, 1.0],
+    "complementary_regularizer_weight": [0.01, 0.1],
+    "maximum_epochs": 80,
+    "early_stopping_patience": 10,
+    "batch_size": 128,
+    "selection_hierarchy": [
+      "Select PATCH_AVG learning rate and weight decay by five-fold train OOF.",
+      "Hold those settings fixed and select PRPOOL_ORACLE part and complementary regularizer weights by five-fold train OOF.",
+      "If objectives tie within 1e-8, choose lower part-loss weight and then lower regularizer weight."
+    ]
+  },
+  "go_no_go": {
+    "reference": "max(CLIP_CLS_GLOBAL, PATCH_AVG) train-OOF balanced accuracy",
+    "prpool_gain_pp_at_least": 2.5,
+    "worst_class_delta_pp_at_least": -2.0,
+    "reason_for_2_5pp_margin": "PAT-C-260728-001 showed that a 2pp OOF gain shrank to 0.74pp on validation; the new mechanism must clear a larger train-only margin.",
+    "on_go": "Freeze the chosen architecture and only then define a new validation audit; do not use validation to change the mechanism.",
+    "on_no_go": "Frozen CLIP patch-head mechanisms are exhausted; next admissible change is limited end-to-end backbone adaptation or stopping PartImageNet method development."
+  }
+}

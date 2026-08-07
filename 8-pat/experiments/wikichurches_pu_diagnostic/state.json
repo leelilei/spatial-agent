@@ -1,0 +1,16 @@
+{
+  "mode": "experiment",
+  "stage": "positive_expansion_no_go_unadjudicated_search_frozen",
+  "dataset_record": "zenodo:5166987",
+  "seed": 20260725,
+  "status": "in_progress",
+  "technical_debts": [
+    "two independent architectural annotators are required for Oracle and real missing-positive-rate estimates",
+    "candidate-sampling IPW has a reproducible AUC effect across 8 sampler seeds but absolute FullPool-gap CIs still cross zero",
+    "conservative positive expansion is below Ignore for both AUC and AP across all 8 sampler seeds",
+    "FullPool nnPU remains below Ignore on known-label evaluation",
+    "official-positive annotation propensity and U class prior are unidentified",
+    "unlabeled candidate regions have no human truth",
+    "region-level improvements have not yet been connected to few-shot classification"
+  ]
+}

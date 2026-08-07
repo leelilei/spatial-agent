@@ -1,0 +1,64 @@
+{
+  "experiment_id": "PAT-H-260729-001",
+  "title": "DINOv2 foundation gate and confusion-aware sparse anchor screen",
+  "frozen_at": "2026-07-29T00:30:00+08:00",
+  "status": "EXPLORATORY_SCREEN_PRE_REGISTERED_BEFORE_FEATURE_EXTRACTION",
+  "purpose": "Test whether a stronger frozen dense representation creates a viable accuracy regime and whether one keypoint-annotated image per class can improve it through semantic part propagation and confusion-aware reranking.",
+  "data": {
+    "dataset": "CUB-200-2011",
+    "episode": 1,
+    "source": "frozen PAT-D-260728-009 episode 1",
+    "images": 2000,
+    "classes": 200,
+    "shots_per_class": 10,
+    "outer_folds": 5,
+    "official_test_access": "forbidden"
+  },
+  "features": {
+    "backbone": "official facebookresearch/dinov2 dinov2_vitb14",
+    "backbone_frozen": true,
+    "input": "deterministic direct resize to 392x392 and ImageNet normalization",
+    "patch_grid": "28x28",
+    "feature_cache": "CLS float32, mean patch float32, dense patch tokens float16"
+  },
+  "foundation_arms": {
+    "CLS_PROTO": "L2-normalized CLS nearest class centroid",
+    "CLS_RIDGE": "L2-normalized CLS with RidgeClassifier alpha 1",
+    "CLS_PATCH_RIDGE": "normalized concatenated CLS and mean-patch feature with RidgeClassifier alpha 1",
+    "CLS_PATCH_LOGREG": "same concatenated feature with multinomial logistic regression C 1"
+  },
+  "foundation_gate": {
+    "primary_arm": "CLS_PATCH_LOGREG",
+    "pass_if": "five-fold OOF balanced accuracy is at least 76.0%",
+    "on_fail": "stop before sparse-anchor development"
+  },
+  "sparse_anchor": {
+    "budget": "reuse one frozen Random-K1 selected fold-training image per class",
+    "anchor": "sample the DINOv2 patch token at each visible semantic keypoint; use a fold-training global semantic-part fallback only when that selected keypoint is invisible",
+    "propagation": "within each known training class, retrieve the maximum-similarity patch for every semantic anchor and average retrieved tokens into class-part prototypes",
+    "confusion_set": "ten nearest other class centroids computed from fold-training global features",
+    "part_reliability": "normalized product of within-class propagation consistency and distance from confusing-class part prototypes",
+    "inference": "global primary arm proposes top 10 classes; no query keypoints are read; candidate class-part prototypes retrieve query patches and rerank candidates"
+  },
+  "screen_grid": {
+    "local_temperature": 0.07,
+    "fusion_alphas": [0.25, 0.5, 1.0, 2.0],
+    "arms": [
+      "equal-part reranking",
+      "confusion-aware reliability reranking"
+    ],
+    "interpretation": "exploratory surface on episode 1 only; any winner must be frozen and confirmed on episodes 2 and 3"
+  },
+  "screen_success": {
+    "absolute": "best confusion-aware arm improves at least 1.0 pp over CLS_PATCH_LOGREG",
+    "mechanism": "best confusion-aware arm improves at least 0.5 pp over the best equal-part arm",
+    "on_success": "freeze the selected alpha and run untouched confirmation on episodes 2 and 3",
+    "on_fail": "retain DINOv2 as a stronger baseline but do not claim sparse-anchor value"
+  },
+  "data_controls": {
+    "selection_and_anchor_construction": "fold-training only",
+    "outer_fold_keypoints": "metrics only; prohibited from anchor construction and inference",
+    "official_test_images_decoded_or_encoded": 0,
+    "complete_features_predictions_logs_and_hashes_required": true
+  }
+}

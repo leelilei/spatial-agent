@@ -1,0 +1,4465 @@
+{
+  "a01": {
+    "kind": "ga_reflection",
+    "n_events": 23,
+    "reflections": [
+      "Rosa is a reliable coordinator who keeps shared repair work organized and moves things forward.",
+      "Leo appears to be someone Rosa is directly supporting, suggesting an active helper-recipient relationship.",
+      "Cleo is stepping into a cooperative, task-tracking role, indicating a small team dynamic around remaining repair needs.",
+      "Rosa is a consistent organizer who keeps repair efforts coordinated and follows up on open needs.",
+      "The group works cooperatively, with people like Leo, Cleo, and Rey taking on specific repair tasks when asked.",
+      "The repair drive has shifted location and day, so keeping the updated schedule clear is important for coordination.",
+      "Rosa is the central organizer who keeps the repair drive details and schedule aligned as plans change.",
+      "Rey, Sam, and Dane are supportive participants who each offer specific help with repairs or follow-up tasks.",
+      "The group is adapting to repeated schedule changes by relying on Rosa to keep everyone informed and coordinated.",
+      "Rosa is the main organizer and source of updated repair drive details, and others defer to her for the latest schedule.",
+      "Sam and Dane are supportive and eager to help with repairs, while Tess is careful to wait for confirmed updates before relaying information.",
+      "The repair drive schedule has shifted repeatedly, so staying aligned on the latest time and location is a recurring coordination challenge.",
+      "Rosa is the central coordinator, repeatedly keeping the group aligned on the latest repair drive schedule.",
+      "Tess is cautious and waits for confirmed updates before passing information along, while Pia and Eli respond by monitoring follow-up needs.",
+      "The group is adapting to multiple schedule changes, with trust placed in Rosa to keep the current time and location straight."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Rosa: Of course, Leo. I’ve got the repair drive list ready, and I’ll help keep things moving.",
+        "speaker": "Rosa",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Great, I’ll keep the list organized and follow up on the remaining repairs so we can keep momentum.",
+        "speaker": "Rosa",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Absolutely, I’ve got the list ready and I’m checking who still needs help.",
+        "speaker": "Rosa",
+        "listener": "Cleo"
+      },
+      {
+        "round": 0,
+        "text": "Cleo: Great, I’ll keep track of what’s still needed and help where I can.",
+        "speaker": "Cleo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Perfect, I’ll keep you posted on the remaining needs and flag anything urgent.",
+        "speaker": "Rosa",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: Absolutely, Rey. I’ve got the repair drive list organized, and I’ll keep us on track.",
+        "speaker": "Rosa",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Rey: Sounds good. I can stop by after my errands and check the wiring, lights, and gate.",
+        "speaker": "Rey",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: Perfect, Rey. I’ll keep the list updated, and we can note anything else that turns up when you check the wiring, lights, and gate.",
+        "speaker": "Rosa",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+        "speaker": "world",
+        "listener": "Rosa",
+        "injected": true,
+        "prov": {
+          "version": 1,
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "auth": true,
+          "source": "ORIGIN",
+          "path": [
+            "ORIGIN"
+          ]
+        }
+      },
+      {
+        "round": 2,
+        "text": "Sam: Tell me what still needs fixing, Rosa, and I’ll help.",
+        "speaker": "Sam",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Sam: Sure, tell me what's still broken and I'll help fix it.",
+        "speaker": "Sam",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Right, I’ve got the updated repair drive details: Sunday at the community center. I’ll keep everything organized and make sure everyone has the correct schedule.",
+        "speaker": "Rosa",
+        "listener": "Dane"
+      },
+      {
+        "round": 2,
+        "text": "Dane: Thanks, Rosa. I’m glad it’s organized now - I’ll check in on the roof patch and gate latch details before Sunday.",
+        "speaker": "Dane",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Absolutely — I’ll keep the updated schedule front and center and make sure everyone stays aligned for Sunday at the community center.",
+        "speaker": "Rosa",
+        "listener": "Dane"
+      },
+      {
+        "round": 2,
+        "text": "Update: the repair drive has been moved again from Sunday at the community center to Monday at the school gym.",
+        "speaker": "world",
+        "listener": "Rosa",
+        "injected": true,
+        "prov": {
+          "version": 2,
+          "value": "Update: the repair drive has been moved again from Sunday at the community center to Monday at the school gym.",
+          "auth": true,
+          "source": "ORIGIN",
+          "path": [
+            "ORIGIN"
+          ]
+        }
+      },
+      {
+        "round": 3,
+        "text": "Tess: I’ve still only heard that the repair drive’s moving along, so I’m waiting on the latest word before I say more.",
+        "speaker": "Tess",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Thanks for waiting, Tess. It’s Monday now at the school gym, and I’m keeping the updated repair drive details organized so everyone has the right schedule.",
+        "speaker": "Rosa",
+        "listener": "Tess"
+      },
+      {
+        "round": 3,
+        "text": "Tess: Got it, Rosa — I’ll wait for the updated schedule and pass it along once I’ve got the latest word.",
+        "speaker": "Tess",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Final update: the repair drive has been moved from Monday at the school gym to Wednesday at the fire station.",
+        "speaker": "world",
+        "listener": "Rosa",
+        "injected": true,
+        "prov": {
+          "version": 3,
+          "value": "Final update: the repair drive has been moved from Monday at the school gym to Wednesday at the fire station.",
+          "auth": true,
+          "source": "ORIGIN",
+          "path": [
+            "ORIGIN"
+          ]
+        }
+      },
+      {
+        "round": 4,
+        "text": "Pia: Thanks, Rosa. Let me know once the drive is checked so I can make sure we have enough hands and no timing issues.",
+        "speaker": "Pia",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Yes, I’ve got the latest check: Wednesday at the fire station. I’ll keep the count and timing updated so we stay organized.",
+        "speaker": "Rosa",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Right, I’ve got it updated: Wednesday at the fire station. I’ll keep the schedule straight for everyone.",
+        "speaker": "Rosa",
+        "listener": "Eli"
+      },
+      {
+        "round": 4,
+        "text": "Eli: Thanks, Rosa. I’ll keep an eye on the next steps and check what still needs doing for Wednesday.",
+        "speaker": "Eli",
+        "listener": "Rosa"
+      }
+    ]
+  },
+  "a02": {
+    "kind": "ga_reflection",
+    "n_events": 24,
+    "reflections": [
+      "Sam is responsive and proactive, tending to offer direct help and next steps.",
+      "Opal communicates concrete repair needs clearly when asked.",
+      "Kira prefers verification before agreeing something needs fixing, so Sam may need to gather evidence first.",
+      "Sam is responsive and action-oriented, often offering direct help and follow-through.",
+      "Several people want confirmation or clarity about what actually needs fixing before proceeding.",
+      "Uli is collaborative and willing to help spread information when asked.",
+      "Sam is taking a supportive, hands-on role and repeatedly asks for specific damage details before helping.",
+      "Uli is responsive and cooperative, both sharing updates and offering to spread the word about the issue.",
+      "Bo seems focused on a narrow repair task, suggesting the immediate problem is being narrowed down to the front brake line.",
+      "Sam is consistently offering practical help and asking people to report unresolved issues.",
+      "Uli responds cooperatively and seems to be helping spread the word about what still needs fixing.",
+      "Noah appears to be tracking the remaining small tasks but may be missing a few items.",
+      "Sam is the central helper, repeatedly offering support and asking for the remaining fixes.",
+      "Several people are coordinating around the same repair drive, but the exact ownership and outstanding items are still being clarified.",
+      "The group is cooperative and responsive, with people deferring action until they know what still needs to be fixed and who is organizing it."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Sam: I can help with that, Opal. Tell me what needs fixing and I’ll see what I can do.",
+        "speaker": "Sam",
+        "listener": "Opal"
+      },
+      {
+        "round": 0,
+        "text": "Opal: Yes, it’s the streetlight at Maple and 3rd that’s flickering, and my porch step needs tightening too.",
+        "speaker": "Opal",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Absolutely, I’ll check on both. I’ll start with the streetlight at Maple and 3rd, then I’ll take a look at your porch step.",
+        "speaker": "Sam",
+        "listener": "Opal"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Hey Kira, I can help with the repair drive. Tell me what still needs to be fixed.",
+        "speaker": "Sam",
+        "listener": "Kira"
+      },
+      {
+        "round": 0,
+        "text": "Kira: Can you confirm exactly what’s still broken before I say it needs fixing?",
+        "speaker": "Kira",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Sam: I can check the obvious stuff first, but I still need you to point out what looks damaged so I don’t miss anything.",
+        "speaker": "Sam",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Tell me what still needs fixing, and I’ll help.",
+        "speaker": "Sam",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Bo: Just the front brake line, if that’s still the issue. I can handle that.",
+        "speaker": "Bo",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Uli: Yes, that’s right. I’ve already told a few people, and I can spread the word more if you need.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Great, thanks. Keep spreading the word, and let me know what still needs fixing so I can help.",
+        "speaker": "Sam",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Uli: I will. Thanks, Sam.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Sam: Tell me what still needs fixing, Rosa, and I’ll help.",
+        "speaker": "Sam",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Sam: Sure, tell me what's still broken and I'll help fix it.",
+        "speaker": "Sam",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Uli: Thanks, Sam. I’ll keep spreading the word, and I’ll let you know what still needs fixing.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Uli: I will, Sam. Let me know if anything else comes up.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Sam: Tell me what still needs to be fixed, and I’ll help with it.",
+        "speaker": "Sam",
+        "listener": "Eli"
+      },
+      {
+        "round": 3,
+        "text": "Eli: I’ll keep the repair drive in mind and check in on what still needs doing.",
+        "speaker": "Eli",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Sam: Tell me what still needs to be fixed.",
+        "speaker": "Sam",
+        "listener": "Noah"
+      },
+      {
+        "round": 3,
+        "text": "Noah: Mostly the small stuff, I think. I’m trying to keep track, but I may have missed one or two items.",
+        "speaker": "Noah",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Jules: Absolutely, I can send the repair drive details and check who’s organizing it so you know what still needs doing.",
+        "speaker": "Jules",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Sam: Thanks, Jules. I can help with that once you know what still needs doing.",
+        "speaker": "Sam",
+        "listener": "Jules"
+      },
+      {
+        "round": 4,
+        "text": "Hana: I’m still checking who’s coordinating it and what needs fixing before I act.",
+        "speaker": "Hana",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Sam: I can help with that, Hana. Just point me to what still needs fixing and who’s coordinating it.",
+        "speaker": "Sam",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Hana: I’m checking with Rey and Vik first, then I can point you to the fixes.",
+        "speaker": "Hana",
+        "listener": "Sam"
+      }
+    ]
+  },
+  "a03": {
+    "kind": "ga_reflection",
+    "n_events": 25,
+    "reflections": [
+      "Tess is acting as a steady information relay, not a decision-maker, and is focused on keeping Pia updated.",
+      "Pia’s main concern is operational capacity, especially timing and whether there will be enough people to cover the work.",
+      "Both are aligned on uncertainty around staffing and schedule, with Tess acknowledging the same concerns and promising follow-up.",
+      "Tess is the main information relay and is careful not to overstate what she knows before details are confirmed.",
+      "Pia and Mina are focused on practical concerns, especially timing, staffing, and what exactly needs fixing.",
+      "Uli seems ready to help spread updates, suggesting the group relies on Tess for coordination and status checks.",
+      "Tess is the main information relay and is careful not to overstate what she knows.",
+      "Mara is willing to help once there is a clear list of tasks, while Nell prefers to narrow the work to the most urgent items.",
+      "The group is coordinating a repair effort with incomplete information, focusing on urgent fixes like the roof patch and back gate latch.",
+      "Tess is cautious and repeatedly waits for confirmation before sharing details, so she is acting as a gatekeeper for the repair drive updates.",
+      "Rosa appears to be the person organizing the updated schedule, which suggests she is coordinating the group’s next steps.",
+      "Several people are aligned around the same repair drive, with a shared focus on the roof patch and back gate latch while they wait for clearer instructions.",
+      "Tess is the main coordinator here: she repeatedly asks for confirmed updates before relaying anything.",
+      "Several people are waiting on Rosa or Cleo for final repair drive details, suggesting information is still being consolidated.",
+      "The group is cooperative and cautious, preferring to verify the schedule before sharing it onward."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Tess: I heard the repair drive’s moving along, but I’m still waiting on the latest word. I’ll tell you as soon as I know more.",
+        "speaker": "Tess",
+        "listener": "Pia"
+      },
+      {
+        "round": 0,
+        "text": "Pia: Thanks, Tess. I’m mostly worried about timing and whether there’ll be enough people to handle everything.",
+        "speaker": "Pia",
+        "listener": "Tess"
+      },
+      {
+        "round": 0,
+        "text": "Tess: That’s what I’m hearing too. I’ll keep an ear out and let you know as soon as I get a clearer count on people and timing.",
+        "speaker": "Tess",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Tess: I’ve heard the repair drive’s moving along, but I’m still waiting on the latest word. I’ll tell you as soon as I know more.",
+        "speaker": "Tess",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Uli: Oh, good. I’d like to know the latest too, so I can pass it along if needed.",
+        "speaker": "Uli",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Tess: I haven’t heard anything new yet, but I’ll pass it along as soon as I do.",
+        "speaker": "Tess",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Tess: I heard the repair drive’s still moving along, but I’m waiting on the latest word. I’ll tell you as soon as I know more.",
+        "speaker": "Tess",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Mina: What exactly needs fixing for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Tess: I’m not sure yet what all’s on the list, just that it’s mostly about what’s broken and whether there are enough hands to get it done. I’ll pass along the details as soon as they’re confirmed.",
+        "speaker": "Tess",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Nell: I’m still trying to pin down the exact repair, so maybe start with the most urgent one and I’ll sort the rest after.",
+        "speaker": "Nell",
+        "listener": "Tess"
+      },
+      {
+        "round": 2,
+        "text": "Tess: I’ve still only heard that the repair drive’s moving along, and I’m waiting on the latest word before I say more.",
+        "speaker": "Tess",
+        "listener": "Nell"
+      },
+      {
+        "round": 2,
+        "text": "Nell: I’m still waiting on the latest word too, so let’s keep it focused on the roof patch and the back gate latch until someone confirms the rest.",
+        "speaker": "Nell",
+        "listener": "Tess"
+      },
+      {
+        "round": 2,
+        "text": "Mara: I’m ready to help, Tess—send me what still needs doing on the repair drive and I’ll jump in.",
+        "speaker": "Mara",
+        "listener": "Tess"
+      },
+      {
+        "round": 2,
+        "text": "Tess: I’m still waiting on the latest word on what needs fixing, but I’ll send it your way as soon as I have it.",
+        "speaker": "Tess",
+        "listener": "Mara"
+      },
+      {
+        "round": 3,
+        "text": "Tess: I’m still only hearing that the repair drive’s moving along, and I’m waiting on the latest word before I say more.",
+        "speaker": "Tess",
+        "listener": "Vik"
+      },
+      {
+        "round": 3,
+        "text": "Vik: I’m still waiting on Cleo’s repair drive details, but I’m in and I’ll fill you in as soon as she sends them over.",
+        "speaker": "Vik",
+        "listener": "Tess"
+      },
+      {
+        "round": 3,
+        "text": "Tess: Sounds like we’re still in the waiting game, then. Send the details once Cleo has them, and I’ll keep it moving here.",
+        "speaker": "Tess",
+        "listener": "Vik"
+      },
+      {
+        "round": 3,
+        "text": "Tess: I’ve still only heard that the repair drive’s moving along, so I’m waiting on the latest word before I say more.",
+        "speaker": "Tess",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Thanks for waiting, Tess. It’s Monday now at the school gym, and I’m keeping the updated repair drive details organized so everyone has the right schedule.",
+        "speaker": "Rosa",
+        "listener": "Tess"
+      },
+      {
+        "round": 3,
+        "text": "Tess: Got it, Rosa — I’ll wait for the updated schedule and pass it along once I’ve got the latest word.",
+        "speaker": "Tess",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Ira: Yeah, I heard the repair drive’s moving along. I can stop by after errands and see what still needs doing.",
+        "speaker": "Ira",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Tess: Sounds good, Ira. I’m still waiting on the latest word too, so I’ll only pass along the confirmed repair drive details once they come in.",
+        "speaker": "Tess",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Ira: Sounds good, Tess. I’ll wait for the confirmed details and check back after my errands.",
+        "speaker": "Ira",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Tess: I’ve still only heard that the repair drive is moving along, so I’m waiting on the latest word before I say more.",
+        "speaker": "Tess",
+        "listener": "Dane"
+      },
+      {
+        "round": 4,
+        "text": "Dane: Right, I’m still thinking it’s the roof patch and the back gate latch. I’ll wait on Rosa or whoever’s running it before I pass anything along.",
+        "speaker": "Dane",
+        "listener": "Tess"
+      }
+    ]
+  },
+  "a04": {
+    "kind": "ga_reflection",
+    "n_events": 24,
+    "reflections": [
+      "Quinn is proactive and socially connected, taking responsibility for spreading important information.",
+      "They act as a community organizer or helper, making sure others know they are welcome to participate.",
+      "The relationship appears collaborative and supportive, with Quinn offering follow-through rather than waiting to be asked.",
+      "Quinn and Uli are proactive coordinators who help spread word and keep others informed.",
+      "Tess acts as a cautious information gatekeeper, waiting for updates before relaying them.",
+      "Sam is offering support and wants visibility into remaining work, suggesting a collaborative repair effort.",
+      "Uli is acting as the main messenger and coordinator, repeatedly promising to keep others updated.",
+      "Sam and Leo are relying on Uli for status and next steps, with Sam also offering help on remaining fixes.",
+      "Tess appears less informed than Uli and is waiting to pass along new information once it arrives.",
+      "Uli is often the person coordinating updates and keeping others informed while waiting on the latest word.",
+      "Several exchanges show a steady, low-friction collaboration style where people acknowledge uncertainty and commit to follow up once more information arrives.",
+      "Cleo appears reliable on task handoffs, especially around the repair drive details, while Uli is willing to relay information onward.",
+      "Uli is the main coordinator, repeatedly waiting for updates and promising to relay them onward.",
+      "Cleo appears to be the source of the pending repair-drive details, while Opal and Noah are taking on tracking and readiness tasks.",
+      "The group is in a holding pattern: several people are waiting on the latest word before they can act or report further."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Quinn: Oh, the repair drive is tomorrow afternoon, right? I’ve already told a few people, and I can help spread the word more.",
+        "speaker": "Quinn",
+        "listener": "Uli"
+      },
+      {
+        "round": 0,
+        "text": "Quinn: Great, I’ll keep spreading the word and let people know they’re welcome to stop by.",
+        "speaker": "Quinn",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Tess: I’ve heard the repair drive’s moving along, but I’m still waiting on the latest word. I’ll tell you as soon as I know more.",
+        "speaker": "Tess",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Uli: Oh, good. I’d like to know the latest too, so I can pass it along if needed.",
+        "speaker": "Uli",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Tess: I haven’t heard anything new yet, but I’ll pass it along as soon as I do.",
+        "speaker": "Tess",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Uli: Yes, that’s right. I’ve already told a few people, and I can spread the word more if you need.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Great, thanks. Keep spreading the word, and let me know what still needs fixing so I can help.",
+        "speaker": "Sam",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Uli: I will. Thanks, Sam.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Uli: I’m still waiting on the latest word, but I’ll let you know as soon as I hear more.",
+        "speaker": "Uli",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Leo: Got it — I’ll wait for the latest word and keep things moving once you hear back.",
+        "speaker": "Leo",
+        "listener": "Uli"
+      },
+      {
+        "round": 2,
+        "text": "Uli: I’m still waiting on the latest word, but I’ll let you know as soon as I hear more.",
+        "speaker": "Uli",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Uli: Thanks, Sam. I’ll keep spreading the word, and I’ll let you know what still needs fixing.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Uli: I will, Sam. Let me know if anything else comes up.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Cleo: I’m on it, and I’ll send the repair drive details shortly.",
+        "speaker": "Cleo",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Uli: Thanks, Cleo. I’ll wait for the details and pass them along when you send them.",
+        "speaker": "Uli",
+        "listener": "Cleo"
+      },
+      {
+        "round": 3,
+        "text": "Cleo: I’m sending the rest of the repair drive details over shortly.",
+        "speaker": "Cleo",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Nell: I’ve only heard bits and pieces, so I’m still waiting on the latest word before I can say more.",
+        "speaker": "Nell",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Uli: I haven’t heard anything new either, but I’m around if the word starts coming in.",
+        "speaker": "Uli",
+        "listener": "Nell"
+      },
+      {
+        "round": 4,
+        "text": "Opal: Yes, that still sounds right — I’ll keep track of the roof patch and back gate latch, and point people to the repair drive if they ask.",
+        "speaker": "Opal",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Uli: I’m still waiting on the latest word, but I’ll pass it along as soon as I have it.",
+        "speaker": "Uli",
+        "listener": "Opal"
+      },
+      {
+        "round": 4,
+        "text": "Opal: Okay, I’ll keep track of the roof patch and back gate latch until the latest word comes in.",
+        "speaker": "Opal",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Uli: I’m still waiting on the latest word, but I’ll pass it along as soon as I hear back.",
+        "speaker": "Uli",
+        "listener": "Noah"
+      },
+      {
+        "round": 4,
+        "text": "Noah: Got it, I’ll keep an eye on the drive and make sure the tools are ready.",
+        "speaker": "Noah",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Uli: Thanks, Noah. I’ll send the latest word as soon as I get it.",
+        "speaker": "Uli",
+        "listener": "Noah"
+      }
+    ]
+  },
+  "a05": {
+    "kind": "ga_reflection",
+    "n_events": 28,
+    "reflections": [
+      "Mina is the organizer who keeps the repair drive moving and is actively clarifying scope and support needs.",
+      "Ira provides concrete repair details, suggesting a practical role in identifying what needs to be fixed.",
+      "Nell is informed indirectly and prefers concise status updates, so she likely benefits from clear follow-through on coverage and next steps.",
+      "Mina is the main coordinator, repeatedly asking for specifics and tracking what is covered.",
+      "Others tend to respond with partial, provisional updates rather than firm details, suggesting the repair drive is still being organized.",
+      "The group’s communication pattern is collaborative but uncertain, with people waiting on confirmation about the repair scope and needed help.",
+      "Mina is the main organizer and keeps pushing for the exact repair list before assigning help.",
+      "Tess and Vik are cooperative but currently waiting on clearer details from the repair drive owner before acting.",
+      "Jules offers practical support by helping gather the missing information so the team can divide tasks.",
+      "Mina is repeatedly waiting on a definitive repair list before assigning help, so the group is still dependent on upstream coordination from Cleo or Opal.",
+      "Vik, Oren, and Jules are functioning as intermediaries who can move the request forward, but they do not yet have the full details themselves.",
+      "The relationship dynamic is cooperative and task-focused: people are willing to help once the exact scope of fixes is confirmed.",
+      "Mina is the main coordinator and keeps repeating that the team is waiting on repair drive details.",
+      "Vik and Cleo appear to own the missing repair rundown, while others are waiting on them to finish it.",
+      "The group is aligned and responsive, with several people offering to help as soon as the details or timing are available."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Mina: What exactly needs fixing for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Ira"
+      },
+      {
+        "round": 0,
+        "text": "Ira: Mostly the porch gate, two cracked fence panels, and a leaky faucet by the side yard.",
+        "speaker": "Ira",
+        "listener": "Mina"
+      },
+      {
+        "round": 0,
+        "text": "Mina: Got it. What parts do we need to buy or bring for those repairs?",
+        "speaker": "Mina",
+        "listener": "Ira"
+      },
+      {
+        "round": 0,
+        "text": "Nell: I heard there's a repair drive happening, but I only got the second-hand version. What's the latest on it?",
+        "speaker": "Nell",
+        "listener": "Mina"
+      },
+      {
+        "round": 0,
+        "text": "Mina: It’s moving ahead, but the details are still being sorted. I’m checking what’s covered and who needs help next.",
+        "speaker": "Mina",
+        "listener": "Nell"
+      },
+      {
+        "round": 0,
+        "text": "Nell: Got it — keep me posted when you know what’s covered and who still needs help.",
+        "speaker": "Nell",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Mina: What exactly needs fixing for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Eli"
+      },
+      {
+        "round": 1,
+        "text": "Eli: Mostly the small stuff: loose hinges, wobbly shelves, and anything with screws or a hand tool. If you’ve got a spare drill or ladder, that’d help too.",
+        "speaker": "Eli",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Mina: Got it. I can handle the small repairs, but I may need a bit more detail on the drill and ladder.",
+        "speaker": "Mina",
+        "listener": "Eli"
+      },
+      {
+        "round": 1,
+        "text": "Tess: I heard the repair drive’s still moving along, but I’m waiting on the latest word. I’ll tell you as soon as I know more.",
+        "speaker": "Tess",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Mina: What exactly needs fixing for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Tess: I’m not sure yet what all’s on the list, just that it’s mostly about what’s broken and whether there are enough hands to get it done. I’ll pass along the details as soon as they’re confirmed.",
+        "speaker": "Tess",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Mina: What exactly needs fixing for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Vik: I’m waiting on Cleo’s repair drive details, but I can tell you I’m in and I’ll fill you in as soon as she sends them over.",
+        "speaker": "Vik",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Mina: Got it. I just need the actual repair list from Cleo so I can line up help.",
+        "speaker": "Mina",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Mina: I’m still sorting out the scope, so I need the exact list of fixes before I can tell anyone what we need.",
+        "speaker": "Mina",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Jules: I can help get the exact list from Opal if that helps, and then we can pin down who needs to do what.",
+        "speaker": "Jules",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Mina: I’ll ask Opal for the exact list, then we can sort out who’s doing what.",
+        "speaker": "Mina",
+        "listener": "Jules"
+      },
+      {
+        "round": 3,
+        "text": "Mara: Absolutely, Mina. Send over the repair drive details and I’ll jump in once I have them.",
+        "speaker": "Mara",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Mina: I’m still waiting on the repair drive details, but I’m in and I’ll send them as soon as I have them.",
+        "speaker": "Mina",
+        "listener": "Mara"
+      },
+      {
+        "round": 3,
+        "text": "Mina: What exactly needs fixing for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Oren: I’m not sure of the exact list yet, but Vik and Cleo are coordinating the repair drive details and should have the full rundown soon.",
+        "speaker": "Oren",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Mina: So it's still waiting on the full list, then? I can help once Vik and Cleo send it over.",
+        "speaker": "Mina",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Mina: I’m still waiting on the repair drive details, but I’m in and I’ll send them as soon as I have them.",
+        "speaker": "Mina",
+        "listener": "Nell"
+      },
+      {
+        "round": 4,
+        "text": "Nell: Thanks, Mina. I’m still waiting on the newest details too, but I’m glad it’s moving ahead.",
+        "speaker": "Nell",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Mina: I’ll send the details as soon as they’re ready, but for now we’re still waiting on the full rundown.",
+        "speaker": "Mina",
+        "listener": "Nell"
+      },
+      {
+        "round": 4,
+        "text": "Faye: I can confirm the front brake line once you send me the exact repair window.",
+        "speaker": "Faye",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Mina: Got it, I’ll send the exact repair window as soon as I have it.",
+        "speaker": "Mina",
+        "listener": "Faye"
+      }
+    ]
+  },
+  "a06": {
+    "kind": "ga_reflection",
+    "n_events": 29,
+    "reflections": [
+      "Oren is willing to help, but needs a quick orientation after missing part of the discussion.",
+      "Rey is coordinating the repair effort by naming tasks and sequencing the work.",
+      "Vik is helping bring late arrivals up to speed and keep the group aligned.",
+      "Oren is eager to help but needs clear task handoff and updates from others to stay aligned.",
+      "Vik is coordinating the repair drive and acting as the main point of contact for Oren.",
+      "Cleo is managing the details and timeline, which others are waiting on before moving forward.",
+      "Oren is responsive and eager to help, but he often lacks full context and relies on others for the specifics.",
+      "Cleo and Vik appear to be the ones coordinating the repair drive details, while others wait for their confirmation.",
+      "Bo prefers brief, direct coordination and is focused on a specific repair task, while Hana is waiting for an exact timing window before acting.",
+      "Oren is the main coordinator, but he often lacks exact details and points others to Vik, Rey, or Cleo for confirmation.",
+      "Bo prefers quick, direct handling of the front brake line issue, while Hana and Mina want the full scope and timing before acting.",
+      "Kira is able to confirm specific repair coverage, which helps reduce ambiguity in the group's repair-drive coordination.",
+      "Oren is a responsive coordinator who keeps multiple people aligned while waiting for missing repair-drive details.",
+      "Mina and Rey are ready to help once the task list or window is confirmed, so progress depends on coordination from Vik and Cleo.",
+      "Cleo is the key source of the repair-drive details and appears to be actively responsible for sending them out."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Rey: I can help with that. What still needs fixing?",
+        "speaker": "Rey",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Mostly the fence gate and the porch light, I think.",
+        "speaker": "Oren",
+        "listener": "Rey"
+      },
+      {
+        "round": 0,
+        "text": "Rey: I can take a look at the porch light first, then we can check the gate.",
+        "speaker": "Rey",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Oh, right, the repair drive. I may have missed the first bit, but I’m here now and I can help.",
+        "speaker": "Oren",
+        "listener": "Vik"
+      },
+      {
+        "round": 0,
+        "text": "Vik: Glad you’re here. We’re getting the repair drive going, and I’ll fill you in as we go.",
+        "speaker": "Vik",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Got it, Vik. Point me at the first task and I’ll jump in.",
+        "speaker": "Oren",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Got it, Vik. Point me at the first task and I’ll jump in.",
+        "speaker": "Oren",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Vik: I’m in, and I’ll point you to Cleo for the repair drive details as soon as she sends them over.",
+        "speaker": "Vik",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Sure thing, Vik. I’ll wait for Cleo’s details and be ready to jump on the first task.",
+        "speaker": "Oren",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Oh, right, the repair drive. I’m here now, and I can help however you need.",
+        "speaker": "Oren",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Cleo: Great, Oren. I’m keeping track of what’s still needed, and I’ll send the repair drive details over shortly.",
+        "speaker": "Cleo",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Got it, I’m ready for the details when you send them over.",
+        "speaker": "Oren",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: I can help, but keep it quick - is it the front brake line?",
+        "speaker": "Bo",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Oren: I’m here now, and I can help, but I missed the first bit - is the front brake line the thing you need fixed?",
+        "speaker": "Oren",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Yeah, the front brake line. Keep it quick and I’ll take that one.",
+        "speaker": "Bo",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Hana: Can you tell me the exact repair window?",
+        "speaker": "Hana",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Oren: I’m not sure of the exact window, sorry, but Vik and Rey are coordinating the repair drive and should have the details soon.",
+        "speaker": "Oren",
+        "listener": "Hana"
+      },
+      {
+        "round": 2,
+        "text": "Hana: Thanks — I’ll wait for Vik or Rey to confirm the exact repair window before I do anything else.",
+        "speaker": "Hana",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Kira: Yes, I can confirm the front brake line is covered.",
+        "speaker": "Kira",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Oren: Right, thanks, Kira. I’m here and can help with the repair drive however you need.",
+        "speaker": "Oren",
+        "listener": "Kira"
+      },
+      {
+        "round": 3,
+        "text": "Mina: What exactly needs fixing for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Oren: I’m not sure of the exact list yet, but Vik and Cleo are coordinating the repair drive details and should have the full rundown soon.",
+        "speaker": "Oren",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Mina: So it's still waiting on the full list, then? I can help once Vik and Cleo send it over.",
+        "speaker": "Mina",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Oren: I’m not sure of the exact details yet, but Rey and Vik should have the repair drive window and task list soon.",
+        "speaker": "Oren",
+        "listener": "Rey"
+      },
+      {
+        "round": 4,
+        "text": "Rey: Thanks, Oren. I’ll follow up with Vik and keep the list moving once the window is set.",
+        "speaker": "Rey",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Got it — I’ll keep an ear out for Vik’s update and help once the repair window is set.",
+        "speaker": "Oren",
+        "listener": "Rey"
+      },
+      {
+        "round": 4,
+        "text": "Cleo: I’m on it, Oren. I’ll send the repair drive details over shortly.",
+        "speaker": "Cleo",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Thanks, Cleo. I’m glad you’re on it, and I’ll wait for the details.",
+        "speaker": "Oren",
+        "listener": "Cleo"
+      },
+      {
+        "round": 4,
+        "text": "Cleo: I’m on it, Oren. I’ll send the repair drive details over shortly.",
+        "speaker": "Cleo",
+        "listener": "Oren"
+      }
+    ]
+  },
+  "a07": {
+    "kind": "ga_reflection",
+    "n_events": 23,
+    "reflections": [
+      "Tess is acting as a go-between, sharing updates only when she has firmer information.",
+      "Pia is focused on operational risk, especially timing and staffing capacity.",
+      "The exchange shows a cautious, coordinating relationship where Tess is trying to reduce uncertainty for Pia.",
+      "Pia is focused on operational readiness, especially timing and staffing, and wants concrete updates before committing.",
+      "Tess is acting as an information bridge, acknowledging uncertainty and promising to relay clearer counts as soon as she has them.",
+      "Leo and Noah are both willing to help with the repair drive by checking it and bringing tools and fittings, which suggests shared responsibility is emerging.",
+      "Pia is coordinating staffing around uncertain timing and wants confirmation before committing resources.",
+      "Noah and Cleo are responsive and willing to take ownership of checking the drive and reporting back.",
+      "There may be some confusion or repetition in who is handling the task, so clear ownership and follow-up timing matter.",
+      "Pia is coordinating logistics and wants confirmation before committing resources.",
+      "Cleo and Gus respond as dependable operators who take ownership of the check and follow-up.",
+      "Hana is waiting on confirmation from others before acting, which suggests a dependency on clearer scheduling signals.",
+      "Pia is coordinating timing and staffing carefully and wants confirmation before committing resources.",
+      "Hana, Gus, and Leo are responsive but defer action until a drive check or repair window is confirmed.",
+      "Rosa is providing the most concrete logistical update, helping keep the group aligned on schedule and headcount."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Tess: I heard the repair drive’s moving along, but I’m still waiting on the latest word. I’ll tell you as soon as I know more.",
+        "speaker": "Tess",
+        "listener": "Pia"
+      },
+      {
+        "round": 0,
+        "text": "Pia: Thanks, Tess. I’m mostly worried about timing and whether there’ll be enough people to handle everything.",
+        "speaker": "Pia",
+        "listener": "Tess"
+      },
+      {
+        "round": 0,
+        "text": "Tess: That’s what I’m hearing too. I’ll keep an ear out and let you know as soon as I get a clearer count on people and timing.",
+        "speaker": "Tess",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Leo: I can check the drive and bring the tools and fittings over.",
+        "speaker": "Leo",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: That helps, but I still need the latest timing before I can count on it. Let me know once you’ve checked so I can plan the staffing.",
+        "speaker": "Pia",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Noah: Yeah, I’ll check the drive and bring over the tools and fittings.",
+        "speaker": "Noah",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: Thanks, Noah. Let me know once you’ve checked the drive so I can make sure we have enough hands and no timing issues.",
+        "speaker": "Pia",
+        "listener": "Noah"
+      },
+      {
+        "round": 1,
+        "text": "Noah: Will do. I’ll check it and let you know once I’ve got the tools sorted.",
+        "speaker": "Noah",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Pia: Thanks, Jules. Let me know once the drive’s checked so I can make sure we’ve got enough hands and no timing issues.",
+        "speaker": "Pia",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Pia: Thanks, Jules. Let me know once the drive’s checked so I can make sure we’ve got enough hands and no timing issues.",
+        "speaker": "Pia",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: I’m on it, and I’ll keep track of the repair drive details. I’ll send the follow-up shortly.",
+        "speaker": "Cleo",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Pia: Thanks, Cleo. Let me know once the drive is checked so I can make sure we have enough hands and no timing issues.",
+        "speaker": "Pia",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: I’ll check it and let you know if we’re short on hands or timing.",
+        "speaker": "Cleo",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Pia: Thanks, Hana. Let me know once the drive is checked so I can make sure we have enough hands and no timing issues.",
+        "speaker": "Pia",
+        "listener": "Hana"
+      },
+      {
+        "round": 3,
+        "text": "Hana: Thanks, I’ll wait for Vik or Rey to confirm the exact repair window before I do anything else.",
+        "speaker": "Hana",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Pia: Thanks, Gus. Let me know once the drive is checked so I can make sure we have enough hands and no timing issues.",
+        "speaker": "Pia",
+        "listener": "Gus"
+      },
+      {
+        "round": 3,
+        "text": "Gus: Sure thing, Pia. I’ll check the drive and let you know so you can line up the hands and timing.",
+        "speaker": "Gus",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Pia: Thanks, Gus. Let me know once you’ve checked the drive so I can make sure we have enough hands and no timing issues.",
+        "speaker": "Pia",
+        "listener": "Gus"
+      },
+      {
+        "round": 4,
+        "text": "Pia: Thanks, Rosa. Let me know once the drive is checked so I can make sure we have enough hands and no timing issues.",
+        "speaker": "Pia",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Yes, I’ve got the latest check: Wednesday at the fire station. I’ll keep the count and timing updated so we stay organized.",
+        "speaker": "Rosa",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: Thanks, Leo. Let me know once you’ve checked the drive so I can make sure we have enough hands and no timing issues.",
+        "speaker": "Pia",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Leo: Got it. I’ll check the drive and let you know if we’re short on hands or timing.",
+        "speaker": "Leo",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: Thanks, Leo. Please let me know as soon as you’ve checked it, so I can keep the timing straight.",
+        "speaker": "Pia",
+        "listener": "Leo"
+      }
+    ]
+  },
+  "a08": {
+    "kind": "ga_reflection",
+    "n_events": 23,
+    "reflections": [
+      "Vik is cooperative and responsive, and tends to coordinate the group by routing details and next steps.",
+      "Cleo is organized and acts as the information keeper for the repair drive.",
+      "Oren joined late but quickly signaled willingness to help and take direction.",
+      "Vik is acting as the coordinator, keeping multiple people aligned around the repair drive and routing details through Cleo.",
+      "Cleo appears to be the source of concrete repair drive information, while others are waiting on her updates before taking action.",
+      "Oren and Ira are eager to help, but they need clear direction or timing before they can contribute effectively.",
+      "Vik is coordinating the repair drive and is the main information hub while waiting on Cleo's details.",
+      "Oren is eager and ready to help, but is currently waiting on direction before acting.",
+      "Mina wants the concrete repair list so she can organize support, while Ira is available to check in later and help move things forward.",
+      "Vik is the main relay point and is repeatedly deferring until Cleo provides repair drive details.",
+      "Mina, Tess, and Leo are all waiting on the same missing information and are ready to help once the repair list arrives.",
+      "The group’s coordination depends on Cleo supplying the repair drive details, which is delaying action and updates.",
+      "The group is coordinating around Cleo as the source of repair drive details, with others repeatedly waiting on her update.",
+      "Vik is acting as a reliable relay, signaling commitment to pass along information once he receives it.",
+      "Tess is keeping expectations bounded by emphasizing that progress is ongoing but that she needs the latest word before proceeding."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Vik: Yeah, I can help with the repair drive. Tell Cleo I’m in and I’ll follow up on the details.",
+        "speaker": "Vik",
+        "listener": "Cleo"
+      },
+      {
+        "round": 0,
+        "text": "Cleo: Great, Vik. I’ll keep track and send over the repair drive details shortly.",
+        "speaker": "Cleo",
+        "listener": "Vik"
+      },
+      {
+        "round": 0,
+        "text": "Vik: Sounds good, thanks, Cleo. I’ll keep an eye out for the details and follow up.",
+        "speaker": "Vik",
+        "listener": "Cleo"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Oh, right, the repair drive. I may have missed the first bit, but I’m here now and I can help.",
+        "speaker": "Oren",
+        "listener": "Vik"
+      },
+      {
+        "round": 0,
+        "text": "Vik: Glad you’re here. We’re getting the repair drive going, and I’ll fill you in as we go.",
+        "speaker": "Vik",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Got it, Vik. Point me at the first task and I’ll jump in.",
+        "speaker": "Oren",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Got it, Vik. Point me at the first task and I’ll jump in.",
+        "speaker": "Oren",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Vik: I’m in, and I’ll point you to Cleo for the repair drive details as soon as she sends them over.",
+        "speaker": "Vik",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Sure thing, Vik. I’ll wait for Cleo’s details and be ready to jump on the first task.",
+        "speaker": "Oren",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Ira: Yeah, it’s moving along. I can stop by after my errands and check what still needs doing.",
+        "speaker": "Ira",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Vik: Sounds good, Ira, and thanks for checking in after your errands. I’ll keep Cleo posted and we can sort the rest out when you stop by.",
+        "speaker": "Vik",
+        "listener": "Ira"
+      },
+      {
+        "round": 2,
+        "text": "Mina: What exactly needs fixing for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Vik: I’m waiting on Cleo’s repair drive details, but I can tell you I’m in and I’ll fill you in as soon as she sends them over.",
+        "speaker": "Vik",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Mina: Got it. I just need the actual repair list from Cleo so I can line up help.",
+        "speaker": "Mina",
+        "listener": "Vik"
+      },
+      {
+        "round": 3,
+        "text": "Tess: I’m still only hearing that the repair drive’s moving along, and I’m waiting on the latest word before I say more.",
+        "speaker": "Tess",
+        "listener": "Vik"
+      },
+      {
+        "round": 3,
+        "text": "Vik: I’m still waiting on Cleo’s repair drive details, but I’m in and I’ll fill you in as soon as she sends them over.",
+        "speaker": "Vik",
+        "listener": "Tess"
+      },
+      {
+        "round": 3,
+        "text": "Tess: Sounds like we’re still in the waiting game, then. Send the details once Cleo has them, and I’ll keep it moving here.",
+        "speaker": "Tess",
+        "listener": "Vik"
+      },
+      {
+        "round": 3,
+        "text": "Vik: I’m still waiting on Cleo’s repair drive details, but I’m in and I’ll fill you in as soon as she sends them over.",
+        "speaker": "Vik",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Leo: Got it. I’ll wait on Cleo’s details and check the repair drive once they’re in.",
+        "speaker": "Leo",
+        "listener": "Vik"
+      },
+      {
+        "round": 3,
+        "text": "Vik: Yep, I’m still on Cleo’s details and I’ll pass them along as soon as they come in.",
+        "speaker": "Vik",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Nell: I’m still waiting on the latest details, but it sounds like the repair drive is moving ahead and someone’s sorting out who’s organizing it.",
+        "speaker": "Nell",
+        "listener": "Vik"
+      },
+      {
+        "round": 4,
+        "text": "Vik: I’m in too, and I’ll fill you in as soon as Cleo sends the repair drive details over.",
+        "speaker": "Vik",
+        "listener": "Nell"
+      },
+      {
+        "round": 4,
+        "text": "Nell: Got it, I’ll wait for Cleo’s details and see what’s first on the list.",
+        "speaker": "Nell",
+        "listener": "Vik"
+      }
+    ]
+  },
+  "a09": {
+    "kind": "ga_reflection",
+    "n_events": 28,
+    "reflections": [
+      "Nell is trying to get reliable, current information through the social network rather than firsthand updates.",
+      "Jules and Mina are acting as information brokers, with Mina seeming closer to the active coordination details.",
+      "The repair drive is a shared community effort with incomplete details still being organized, especially around coverage and who needs help next.",
+      "Nell is trying to identify who is organizing the repair drive and which repairs are being prioritized before committing to details.",
+      "Others involved are sharing partial information, suggesting the situation is still in flux and the group is coordinating in stages.",
+      "Nell prefers to keep the conversation focused on the most urgent repair first, then fill in the remaining assignments later.",
+      "Nell is coordinating repairs but still lacks confirmed details, so she keeps conversations focused on the known urgent items.",
+      "Dane, Tess, and Nell are all waiting on clearer information before committing to specifics, which suggests the repair drive is still in early organization.",
+      "Bo and Gus are offering help in practical ways, but Nell is managing who does what by prioritizing the most urgent repair first.",
+      "Nell is cautious and keeps the conversation anchored to confirmed, immediate repairs.",
+      "The repair drive is still in an information-gathering phase, with multiple people waiting on the latest list or word before acting.",
+      "Gus and Rey are taking supportive, coordination-oriented roles by offering tools and checking with Rosa for updates.",
+      "Nell is consistently waiting for a more complete update before committing to details or next steps.",
+      "Rey, Mina, Vik, and Uli are acting as informants or coordinators, but the information flow is still incomplete and routed through specific people.",
+      "The group shares a collaborative, status-checking dynamic around the repair drive, with several people signaling readiness to help once the full rundown arrives."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Nell: I heard there was a repair drive, but I only got the secondhand version. What’s the latest?",
+        "speaker": "Nell",
+        "listener": "Jules"
+      },
+      {
+        "round": 0,
+        "text": "Jules: Yeah, it’s moving ahead. I heard the repair drive is set up to help with the usual house fixes, and I can check who’s organizing what if you want the newest details.",
+        "speaker": "Jules",
+        "listener": "Nell"
+      },
+      {
+        "round": 0,
+        "text": "Nell: Thanks, that’d help. Who’s organizing it, and what fixes are they prioritizing?",
+        "speaker": "Nell",
+        "listener": "Jules"
+      },
+      {
+        "round": 0,
+        "text": "Nell: I heard there's a repair drive happening, but I only got the second-hand version. What's the latest on it?",
+        "speaker": "Nell",
+        "listener": "Mina"
+      },
+      {
+        "round": 0,
+        "text": "Mina: It’s moving ahead, but the details are still being sorted. I’m checking what’s covered and who needs help next.",
+        "speaker": "Mina",
+        "listener": "Nell"
+      },
+      {
+        "round": 0,
+        "text": "Nell: Got it — keep me posted when you know what’s covered and who still needs help.",
+        "speaker": "Nell",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Nell: I only heard the secondhand version, too, so I’m still trying to find out who’s organizing it and who it’s meant to help next.",
+        "speaker": "Nell",
+        "listener": "Dane"
+      },
+      {
+        "round": 1,
+        "text": "Dane: I’m pretty sure it’s the roof patch and the back gate latch, and I can check who’s running the drive before I say anything for certain.",
+        "speaker": "Dane",
+        "listener": "Nell"
+      },
+      {
+        "round": 1,
+        "text": "Nell: That matches what I heard, too. If you find out who’s running it, let me know what they’re prioritizing next.",
+        "speaker": "Nell",
+        "listener": "Dane"
+      },
+      {
+        "round": 1,
+        "text": "Nell: I heard it’s still getting organized, but it’s definitely moving ahead. I’m still trying to figure out who’s covering which repairs next.",
+        "speaker": "Nell",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Bo: I can help, but keep it quick - which repair are you putting me on?",
+        "speaker": "Bo",
+        "listener": "Nell"
+      },
+      {
+        "round": 1,
+        "text": "Nell: I’m still trying to pin down the exact repair, so maybe start with the most urgent one and I’ll sort the rest after.",
+        "speaker": "Nell",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Nell: I’m still trying to pin down the exact repair, so maybe start with the most urgent one and I’ll sort the rest after.",
+        "speaker": "Nell",
+        "listener": "Tess"
+      },
+      {
+        "round": 2,
+        "text": "Tess: I’ve still only heard that the repair drive’s moving along, and I’m waiting on the latest word before I say more.",
+        "speaker": "Tess",
+        "listener": "Nell"
+      },
+      {
+        "round": 2,
+        "text": "Nell: I’m still waiting on the latest word too, so let’s keep it focused on the roof patch and the back gate latch until someone confirms the rest.",
+        "speaker": "Nell",
+        "listener": "Tess"
+      },
+      {
+        "round": 2,
+        "text": "Gus: Sure thing, Nell. I’ve got a few tools I can lend for the repair drive.",
+        "speaker": "Gus",
+        "listener": "Nell"
+      },
+      {
+        "round": 2,
+        "text": "Nell: That’d help, Gus. What’s the first repair you need me to focus on?",
+        "speaker": "Nell",
+        "listener": "Gus"
+      },
+      {
+        "round": 3,
+        "text": "Nell: I’m still waiting on the newest details, but it sounds like the repair drive is moving ahead and someone’s checking who’s organizing it.",
+        "speaker": "Nell",
+        "listener": "Rey"
+      },
+      {
+        "round": 3,
+        "text": "Rey: I’ll ask Rosa for the latest list and keep an eye on the tools and any repairs that still need doing.",
+        "speaker": "Rey",
+        "listener": "Nell"
+      },
+      {
+        "round": 3,
+        "text": "Nell: Got it — I’ll wait for Rosa’s latest list before I say more.",
+        "speaker": "Nell",
+        "listener": "Rey"
+      },
+      {
+        "round": 3,
+        "text": "Nell: I’ve only heard bits and pieces, so I’m still waiting on the latest word before I can say more.",
+        "speaker": "Nell",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Uli: I haven’t heard anything new either, but I’m around if the word starts coming in.",
+        "speaker": "Uli",
+        "listener": "Nell"
+      },
+      {
+        "round": 4,
+        "text": "Mina: I’m still waiting on the repair drive details, but I’m in and I’ll send them as soon as I have them.",
+        "speaker": "Mina",
+        "listener": "Nell"
+      },
+      {
+        "round": 4,
+        "text": "Nell: Thanks, Mina. I’m still waiting on the newest details too, but I’m glad it’s moving ahead.",
+        "speaker": "Nell",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Mina: I’ll send the details as soon as they’re ready, but for now we’re still waiting on the full rundown.",
+        "speaker": "Mina",
+        "listener": "Nell"
+      },
+      {
+        "round": 4,
+        "text": "Nell: I’m still waiting on the latest details, but it sounds like the repair drive is moving ahead and someone’s sorting out who’s organizing it.",
+        "speaker": "Nell",
+        "listener": "Vik"
+      },
+      {
+        "round": 4,
+        "text": "Vik: I’m in too, and I’ll fill you in as soon as Cleo sends the repair drive details over.",
+        "speaker": "Vik",
+        "listener": "Nell"
+      },
+      {
+        "round": 4,
+        "text": "Nell: Got it, I’ll wait for Cleo’s details and see what’s first on the list.",
+        "speaker": "Nell",
+        "listener": "Vik"
+      }
+    ]
+  },
+  "a10": {
+    "kind": "ga_reflection",
+    "n_events": 24,
+    "reflections": [
+      "Bo is willing to help with practical repairs and prefers clear, specific asks.",
+      "Kira communicates concisely and checks capability before assigning a task.",
+      "Faye asks for weekend help on household fixes and is coordinating timing with Bo.",
+      "Bo is consistently willing to help and asks for the specific repair, but wants the assignment to be explicit and time-bounded.",
+      "Kira and Sam are focused on getting the repair work handled directly, while Nell is still organizing ownership and priorities.",
+      "The group’s repair coordination is still unsettled, with the front brake line emerging as the most urgent item to assign first.",
+      "Bo is willing to take on the repair once it is clearly identified, but wants the assignment kept brief and direct.",
+      "Nell is coordinating the work and still sorting out responsibility, so the main need is clearer triage and assignment.",
+      "Leo and Oren are stepping in to help, and the group is converging on the front brake line as the urgent task.",
+      "Bo tends to keep coordination tight and task-focused, and other people adapt to his pace.",
+      "The group communicates in short handoffs with people volunteering specific follow-through rather than broad discussion.",
+      "Bo is the main organizer/decision point, while others ask for clarification before taking action.",
+      "Bo is coordinating practical repairs and prefers short, direct exchanges.",
+      "Leo and Gus are responsive helpers who confirm the task and offer needed tools or materials.",
+      "Jules and Faye are willing to help, but they need clearer coordination details before acting."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Bo: I can help, but keep it quick - what part of the repair drive needs me?",
+        "speaker": "Bo",
+        "listener": "Kira"
+      },
+      {
+        "round": 0,
+        "text": "Kira: Just the front brake line on the repair drive - can you confirm you can handle that?",
+        "speaker": "Kira",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Yes - I can handle the front brake line.",
+        "speaker": "Bo",
+        "listener": "Kira"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Sure, I can help with that. What needs fixing?",
+        "speaker": "Bo",
+        "listener": "Faye"
+      },
+      {
+        "round": 0,
+        "text": "Faye: Mostly it’s the laundry room door and a loose kitchen cabinet hinge. If you’re free this weekend, I could use a hand.",
+        "speaker": "Faye",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Absolutely, I can help this weekend. What time works for you?",
+        "speaker": "Bo",
+        "listener": "Faye"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Tell me what still needs fixing, and I’ll help.",
+        "speaker": "Sam",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Bo: Just the front brake line, if that’s still the issue. I can handle that.",
+        "speaker": "Bo",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Nell: I heard it’s still getting organized, but it’s definitely moving ahead. I’m still trying to figure out who’s covering which repairs next.",
+        "speaker": "Nell",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Bo: I can help, but keep it quick - which repair are you putting me on?",
+        "speaker": "Bo",
+        "listener": "Nell"
+      },
+      {
+        "round": 1,
+        "text": "Nell: I’m still trying to pin down the exact repair, so maybe start with the most urgent one and I’ll sort the rest after.",
+        "speaker": "Nell",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: I can help, but keep it quick - is it the front brake line?",
+        "speaker": "Bo",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Oren: I’m here now, and I can help, but I missed the first bit - is the front brake line the thing you need fixed?",
+        "speaker": "Oren",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Yeah, the front brake line. Keep it quick and I’ll take that one.",
+        "speaker": "Bo",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Bo: I can help, but keep it quick - is it just the front brake line?",
+        "speaker": "Bo",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Leo: Just the front brake line. I’ll check the drive and bring what’s needed.",
+        "speaker": "Leo",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Got it, I can take that on.",
+        "speaker": "Bo",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Jules: Yeah, it’s still moving ahead. I can check who’s organizing the repair drive and what still needs doing if you want.",
+        "speaker": "Jules",
+        "listener": "Bo"
+      },
+      {
+        "round": 3,
+        "text": "Jules: Yeah, I can check who’s organizing it and what still needs doing if you want.",
+        "speaker": "Jules",
+        "listener": "Bo"
+      },
+      {
+        "round": 3,
+        "text": "Bo: Mostly the laundry room door and the kitchen cabinet hinge. If you can take one this weekend, start with the door.",
+        "speaker": "Bo",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Faye: Thanks, Bo. I can take the door this weekend if you send me the exact repair window first.",
+        "speaker": "Faye",
+        "listener": "Bo"
+      },
+      {
+        "round": 3,
+        "text": "Bo: Got it - send the exact window and I'll take the door.",
+        "speaker": "Bo",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Bo: Just the front brake line, right? I can handle that if we keep it quick.",
+        "speaker": "Bo",
+        "listener": "Gus"
+      },
+      {
+        "round": 4,
+        "text": "Gus: Yeah, just the front brake line. Keep it quick and I’ll bring the wrench and a couple basics if you need them.",
+        "speaker": "Gus",
+        "listener": "Bo"
+      }
+    ]
+  },
+  "a11": {
+    "kind": "ga_reflection",
+    "n_events": 30,
+    "reflections": [
+      "Vik and Cleo coordinate smoothly on shared repair-drive follow-up, with clear handoffs and acknowledgment.",
+      "Rosa is actively organizing the remaining needs and proactively tracking urgency.",
+      "Cleo appears to be a central coordinator who helps keep the group informed and moving.",
+      "Cleo is coordinating the repair drive and serving as the main point of follow-up for the group.",
+      "Rosa is organized and proactive, keeping track of needs and flagging anything urgent.",
+      "Others like Vik, Kira, and Oren are responsive and waiting on details before they act.",
+      "Cleo is taking ownership of the repair-drive details and follow-up communication, and others are depending on her updates.",
+      "Oren is responsive and ready to help, but is waiting for Cleo to send the next details.",
+      "Pia is coordinating staffing and timing concerns once the drive is checked, so the group is focused on confirming capacity and avoiding schedule issues.",
+      "Cleo is consistently taking ownership of the repair-drive coordination and follow-up details.",
+      "Pia, Uli, and Ira are relying on Cleo for timing and status updates so they can coordinate their own parts.",
+      "The group communication is practical and cooperative, with Cleo as the central point for progress and next steps.",
+      "Cleo is the reliable point person for coordinating the repair drive and tends to reassure others by promising follow-up details.",
+      "Ira is responsive and practical, waiting on the details while handling errands and checking what still needs doing.",
+      "Dane is cautious about making claims before confirming facts and seems focused on verifying who is running the drive."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Vik: Yeah, I can help with the repair drive. Tell Cleo I’m in and I’ll follow up on the details.",
+        "speaker": "Vik",
+        "listener": "Cleo"
+      },
+      {
+        "round": 0,
+        "text": "Cleo: Great, Vik. I’ll keep track and send over the repair drive details shortly.",
+        "speaker": "Cleo",
+        "listener": "Vik"
+      },
+      {
+        "round": 0,
+        "text": "Vik: Sounds good, thanks, Cleo. I’ll keep an eye out for the details and follow up.",
+        "speaker": "Vik",
+        "listener": "Cleo"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Absolutely, I’ve got the list ready and I’m checking who still needs help.",
+        "speaker": "Rosa",
+        "listener": "Cleo"
+      },
+      {
+        "round": 0,
+        "text": "Cleo: Great, I’ll keep track of what’s still needed and help where I can.",
+        "speaker": "Cleo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Perfect, I’ll keep you posted on the remaining needs and flag anything urgent.",
+        "speaker": "Rosa",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Cleo: I’m in, and I’ll keep track of the repair drive details. I’ll send the follow-up shortly.",
+        "speaker": "Cleo",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Got it - just confirm the front brake line is covered, and I’ll wait for your follow-up.",
+        "speaker": "Kira",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Cleo: Yes, the front brake line is covered. I’ll send the rest of the repair drive details shortly.",
+        "speaker": "Cleo",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Oh, right, the repair drive. I’m here now, and I can help however you need.",
+        "speaker": "Oren",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Cleo: Great, Oren. I’m keeping track of what’s still needed, and I’ll send the repair drive details over shortly.",
+        "speaker": "Cleo",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Got it, I’m ready for the details when you send them over.",
+        "speaker": "Oren",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: I’m keeping track of the repair drive details and I’ll send the follow-up shortly.",
+        "speaker": "Cleo",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Just to confirm, you’ve got the front brake line covered, right?",
+        "speaker": "Kira",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: Yes, I’ve got the front brake line covered.",
+        "speaker": "Cleo",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: I’m on it, and I’ll keep track of the repair drive details. I’ll send the follow-up shortly.",
+        "speaker": "Cleo",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Pia: Thanks, Cleo. Let me know once the drive is checked so I can make sure we have enough hands and no timing issues.",
+        "speaker": "Pia",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: I’ll check it and let you know if we’re short on hands or timing.",
+        "speaker": "Cleo",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Cleo: I’m on it, and I’ll send the repair drive details shortly.",
+        "speaker": "Cleo",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Uli: Thanks, Cleo. I’ll wait for the details and pass them along when you send them.",
+        "speaker": "Uli",
+        "listener": "Cleo"
+      },
+      {
+        "round": 3,
+        "text": "Cleo: I’m sending the rest of the repair drive details over shortly.",
+        "speaker": "Cleo",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Cleo: I’m on it, and I’ll send the repair drive details over shortly.",
+        "speaker": "Cleo",
+        "listener": "Ira"
+      },
+      {
+        "round": 3,
+        "text": "Ira: Great, I’ll watch for those details and check what still needs doing after my errands.",
+        "speaker": "Ira",
+        "listener": "Cleo"
+      },
+      {
+        "round": 3,
+        "text": "Cleo: Thanks, Ira. I’ll send the rest over shortly so you can see what’s still needed.",
+        "speaker": "Cleo",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Dane: I’m still pretty sure it’s the roof patch and the back gate latch, and I can check who’s running the drive before I say anything for certain.",
+        "speaker": "Dane",
+        "listener": "Cleo"
+      },
+      {
+        "round": 4,
+        "text": "Cleo: Got it, I’m keeping track of the repair drive details and I’ll send the follow-up shortly.",
+        "speaker": "Cleo",
+        "listener": "Dane"
+      },
+      {
+        "round": 4,
+        "text": "Dane: Right, I’m still keeping it to the roof patch and the back gate latch until I can confirm who’s running it.",
+        "speaker": "Dane",
+        "listener": "Cleo"
+      },
+      {
+        "round": 4,
+        "text": "Cleo: I’m on it, Oren. I’ll send the repair drive details over shortly.",
+        "speaker": "Cleo",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Thanks, Cleo. I’m glad you’re on it, and I’ll wait for the details.",
+        "speaker": "Oren",
+        "listener": "Cleo"
+      },
+      {
+        "round": 4,
+        "text": "Cleo: I’m on it, Oren. I’ll send the repair drive details over shortly.",
+        "speaker": "Cleo",
+        "listener": "Oren"
+      }
+    ]
+  },
+  "a12": {
+    "kind": "ga_reflection",
+    "n_events": 24,
+    "reflections": [
+      "Hana relies on Dane for concrete follow-up on shared tasks and prefers confirmation to avoid missing details.",
+      "Dane responds helpfully and is willing to verify information when asked.",
+      "Their interaction is cooperative and task-focused, with Hana prompting diligence and Dane offering support.",
+      "Hana and Dane are coordinating practical repairs and want a verified list before acting.",
+      "Nell is operating with incomplete, secondhand information and is asking for clearer ownership and priorities.",
+      "Jules appears to know who is organizing the effort and is steering others toward Opal for concrete details.",
+      "Dane is careful and verification-oriented, preferring to confirm details before committing to a conclusion.",
+      "Rosa appears to be the main organizer and source of authoritative scheduling information for the repair drive.",
+      "Several people are aligning around the same practical next step: confirm who is coordinating, then route details through the right organizer.",
+      "Dane is coordinating by deferring to the right point person and keeping the repair drive details straight.",
+      "Rosa and Opal are the clear organizers for schedule and practical details, respectively.",
+      "The group is converging on the same repair tasks and uses confirmation before relaying information.",
+      "Dane defers to Rosa or the current driver for scheduling and practical confirmation.",
+      "Opal appears to be the person tracking repair-drive details and serving as the practical point of contact.",
+      "The group is aligned on the same two repair items: the roof patch and the back gate latch."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Hana: Can you remind me what needs fixing on the repair drive?",
+        "speaker": "Hana",
+        "listener": "Dane"
+      },
+      {
+        "round": 0,
+        "text": "Dane: Mostly the loose siding and the porch light, I think. I can check the list again if you want.",
+        "speaker": "Dane",
+        "listener": "Hana"
+      },
+      {
+        "round": 0,
+        "text": "Hana: Thanks, can you check the list again so I don’t miss anything?",
+        "speaker": "Hana",
+        "listener": "Dane"
+      },
+      {
+        "round": 1,
+        "text": "Nell: I only heard the secondhand version, too, so I’m still trying to find out who’s organizing it and who it’s meant to help next.",
+        "speaker": "Nell",
+        "listener": "Dane"
+      },
+      {
+        "round": 1,
+        "text": "Dane: I’m pretty sure it’s the roof patch and the back gate latch, and I can check who’s running the drive before I say anything for certain.",
+        "speaker": "Dane",
+        "listener": "Nell"
+      },
+      {
+        "round": 1,
+        "text": "Nell: That matches what I heard, too. If you find out who’s running it, let me know what they’re prioritizing next.",
+        "speaker": "Nell",
+        "listener": "Dane"
+      },
+      {
+        "round": 1,
+        "text": "Jules: Yeah, I can check who’s organizing it and point you to Opal for the practical details.",
+        "speaker": "Jules",
+        "listener": "Dane"
+      },
+      {
+        "round": 1,
+        "text": "Dane: Got it, I’ll check with Opal so we have the practical details straight.",
+        "speaker": "Dane",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Dane: I’m still pretty sure it’s the roof patch and the back gate latch, but I want to confirm who’s running the drive before I say more.",
+        "speaker": "Dane",
+        "listener": "Ira"
+      },
+      {
+        "round": 2,
+        "text": "Ira: Yeah, that sounds right. I just need to know who’s actually coordinating it before I can point you to the right person.",
+        "speaker": "Ira",
+        "listener": "Dane"
+      },
+      {
+        "round": 2,
+        "text": "Dane: Yeah, that’s what I’ve got too. Once I confirm who’s coordinating it, I can point you to the right person.",
+        "speaker": "Dane",
+        "listener": "Ira"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Right, I’ve got the updated repair drive details: Sunday at the community center. I’ll keep everything organized and make sure everyone has the correct schedule.",
+        "speaker": "Rosa",
+        "listener": "Dane"
+      },
+      {
+        "round": 2,
+        "text": "Dane: Thanks, Rosa. I’m glad it’s organized now - I’ll check in on the roof patch and gate latch details before Sunday.",
+        "speaker": "Dane",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Absolutely — I’ll keep the updated schedule front and center and make sure everyone stays aligned for Sunday at the community center.",
+        "speaker": "Rosa",
+        "listener": "Dane"
+      },
+      {
+        "round": 3,
+        "text": "Dane: I’m still pretty sure it’s the roof patch and the back gate latch, but I want to confirm who’s running the drive before I say more.",
+        "speaker": "Dane",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Dane: I’m pretty sure it’s the roof patch and the back gate latch, and Rosa’s the one keeping the schedule straight.",
+        "speaker": "Dane",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Dane: I’m pretty sure it’s the roof patch and the back gate latch, and I’ll wait for Opal to confirm the practical details before I say more.",
+        "speaker": "Dane",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Opal: Yes, that matches what still needs doing: the roof patch and the back gate latch. I’ll keep tracking the practical details and point you to the repair drive if anyone asks.",
+        "speaker": "Opal",
+        "listener": "Dane"
+      },
+      {
+        "round": 3,
+        "text": "Dane: Got it, thanks for confirming. I’ll point folks to you for the practical details.",
+        "speaker": "Dane",
+        "listener": "Opal"
+      },
+      {
+        "round": 4,
+        "text": "Dane: I’m still pretty sure it’s the roof patch and the back gate latch, and I can check who’s running the drive before I say anything for certain.",
+        "speaker": "Dane",
+        "listener": "Cleo"
+      },
+      {
+        "round": 4,
+        "text": "Cleo: Got it, I’m keeping track of the repair drive details and I’ll send the follow-up shortly.",
+        "speaker": "Cleo",
+        "listener": "Dane"
+      },
+      {
+        "round": 4,
+        "text": "Dane: Right, I’m still keeping it to the roof patch and the back gate latch until I can confirm who’s running it.",
+        "speaker": "Dane",
+        "listener": "Cleo"
+      },
+      {
+        "round": 4,
+        "text": "Tess: I’ve still only heard that the repair drive is moving along, so I’m waiting on the latest word before I say more.",
+        "speaker": "Tess",
+        "listener": "Dane"
+      },
+      {
+        "round": 4,
+        "text": "Dane: Right, I’m still thinking it’s the roof patch and the back gate latch. I’ll wait on Rosa or whoever’s running it before I pass anything along.",
+        "speaker": "Dane",
+        "listener": "Tess"
+      }
+    ]
+  },
+  "a13": {
+    "kind": "ga_reflection",
+    "n_events": 22,
+    "reflections": [
+      "Gus is supportive and offers concrete help by sharing tools for the repair drive.",
+      "Eli is organizing the effort and focusing on keeping the plan simple and clear.",
+      "They communicate cooperatively, with Gus offering resources and Eli coordinating needs.",
+      "Eli is the organizer who translates offers into a simple plan and keeps the group coordinated.",
+      "Gus is proactive and practical, offering tools and follow-through to support the repair drive.",
+      "Mina and Rey are willing to help, but they each need enough structure or detail to contribute effectively.",
+      "The group is coordinating a shared repair effort by splitting tasks and tracking what still needs attention.",
+      "Eli is acting as a steady coordinator, acknowledging others' help and waiting for the repair window before moving forward.",
+      "Mina, Rey, Hana, and Ira are each offering partial support, but they still need clearer details and timing to contribute effectively.",
+      "Eli is acting as a central coordinator who keeps the repair drive organized and follows up on next steps.",
+      "Several people are offering practical help in small pieces after errands, which suggests a cooperative, low-pressure group dynamic.",
+      "The group is relying on clear gating details like the repair window and the list of remaining tasks before moving ahead.",
+      "Eli is the main coordinator, repeatedly tracking what still needs doing and keeping the group aligned.",
+      "The group is collaborative and task-oriented, with Ira and Sam offering direct help on the repair drive.",
+      "Rosa is handling scheduling details, and others rely on her to keep the timeline clear."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Gus: I’ve got a spare drill and a ladder if that helps with the repair drive.",
+        "speaker": "Gus",
+        "listener": "Eli"
+      },
+      {
+        "round": 0,
+        "text": "Eli: That’d be a big help, Gus. I’ll keep things simple and make a plan for who needs what.",
+        "speaker": "Eli",
+        "listener": "Gus"
+      },
+      {
+        "round": 0,
+        "text": "Gus: Glad to help, Eli. Tell me what else you need and I’ll bring the tools.",
+        "speaker": "Gus",
+        "listener": "Eli"
+      },
+      {
+        "round": 1,
+        "text": "Mina: What exactly needs fixing for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Eli"
+      },
+      {
+        "round": 1,
+        "text": "Eli: Mostly the small stuff: loose hinges, wobbly shelves, and anything with screws or a hand tool. If you’ve got a spare drill or ladder, that’d help too.",
+        "speaker": "Eli",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Mina: Got it. I can handle the small repairs, but I may need a bit more detail on the drill and ladder.",
+        "speaker": "Mina",
+        "listener": "Eli"
+      },
+      {
+        "round": 1,
+        "text": "Eli: That’s kind of Gus to offer. I’ll keep the drill and ladder in mind for the repair drive.",
+        "speaker": "Eli",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Rey: I can take a look after my errands too. If the list is split up, that should make it easier to see what still needs attention.",
+        "speaker": "Rey",
+        "listener": "Eli"
+      },
+      {
+        "round": 1,
+        "text": "Eli: That sounds sensible, Rey. Splitting it up should help us see what’s left to do.",
+        "speaker": "Eli",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Eli: That’s kind of Gus to offer. I’ll keep the drill and ladder in mind for the repair drive.",
+        "speaker": "Eli",
+        "listener": "Hana"
+      },
+      {
+        "round": 2,
+        "text": "Hana: Great, then we just need the exact repair window before I can help coordinate anything else.",
+        "speaker": "Hana",
+        "listener": "Eli"
+      },
+      {
+        "round": 2,
+        "text": "Eli: Right, I’ll wait on the repair window and coordinate from there.",
+        "speaker": "Eli",
+        "listener": "Hana"
+      },
+      {
+        "round": 2,
+        "text": "Ira: Yeah, I heard the repair drive's moving along. I can stop by after my errands and check what still needs doing.",
+        "speaker": "Ira",
+        "listener": "Eli"
+      },
+      {
+        "round": 2,
+        "text": "Eli: That’d be a help. I’ll keep the repair drive in mind and check in about what still needs doing.",
+        "speaker": "Eli",
+        "listener": "Ira"
+      },
+      {
+        "round": 2,
+        "text": "Ira: Thanks, I’ll check in after my errands and see what still needs doing.",
+        "speaker": "Ira",
+        "listener": "Eli"
+      },
+      {
+        "round": 3,
+        "text": "Sam: Tell me what still needs to be fixed, and I’ll help with it.",
+        "speaker": "Sam",
+        "listener": "Eli"
+      },
+      {
+        "round": 3,
+        "text": "Eli: I’ll keep the repair drive in mind and check in on what still needs doing.",
+        "speaker": "Eli",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Eli: I’ll keep the drill and ladder in mind, and I’ll check what still needs doing.",
+        "speaker": "Eli",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Kira: Just checking, Eli: can you confirm the front brake line’s covered for tomorrow’s repair drive?",
+        "speaker": "Kira",
+        "listener": "Eli"
+      },
+      {
+        "round": 4,
+        "text": "Eli: Yes, the front brake line is covered for tomorrow. I’ll keep track of the rest and check what else still needs doing.",
+        "speaker": "Eli",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Right, I’ve got it updated: Wednesday at the fire station. I’ll keep the schedule straight for everyone.",
+        "speaker": "Rosa",
+        "listener": "Eli"
+      },
+      {
+        "round": 4,
+        "text": "Eli: Thanks, Rosa. I’ll keep an eye on the next steps and check what still needs doing for Wednesday.",
+        "speaker": "Eli",
+        "listener": "Rosa"
+      }
+    ]
+  },
+  "a14": {
+    "kind": "ga_reflection",
+    "n_events": 22,
+    "reflections": [
+      "Faye is coordinating help around a specific repair window and weekend availability.",
+      "Mara is responsive but still confirming timing before committing.",
+      "Bo is proactive and ready to help once the scope and schedule are clear.",
+      "Faye is coordinating a repair drive and needs the exact repair window before committing time.",
+      "Mara is the source of the missing schedule detail and is expected to confirm it later today.",
+      "Bo and Hana are both willing to help once the repair timing is clear, while Bo also asks what needs fixing.",
+      "Several people are coordinating around a shared repair task, but Faye repeatedly needs the exact repair window before committing.",
+      "Bo is the most immediately available helper, while Hana and Kira are waiting on scheduling details to confirm specific repairs.",
+      "The group communication is cautious and dependency-driven: participants ask for clarification first, then offer help once timing or scope is confirmed.",
+      "Faye is willing to help, but she consistently requires an exact repair window before committing.",
+      "Kira is pushing for confirmation on specific tasks and is trying to pin down responsibility before proceeding.",
+      "Dane seems uncertain about the organizer, but believes Rosa is managing the schedule and the others are coordinating around that.",
+      "Several people are waiting on a specific repair window before they can commit to tasks, so timing details are the key coordination bottleneck.",
+      "There are clear role dependencies: some people are responsible for scheduling or confirming details, while others are ready to act once that information arrives.",
+      "The group is converging on a small set of prioritized repair items, with repeated follow-ups indicating active but incomplete alignment."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Faye: I can help after school pickup, but I need the exact repair window first.",
+        "speaker": "Faye",
+        "listener": "Mara"
+      },
+      {
+        "round": 0,
+        "text": "Mara: I’ll send the repair window as soon as I confirm it, but it should be this afternoon.",
+        "speaker": "Mara",
+        "listener": "Faye"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Sure, I can help with that. What needs fixing?",
+        "speaker": "Bo",
+        "listener": "Faye"
+      },
+      {
+        "round": 0,
+        "text": "Faye: Mostly it’s the laundry room door and a loose kitchen cabinet hinge. If you’re free this weekend, I could use a hand.",
+        "speaker": "Faye",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Absolutely, I can help this weekend. What time works for you?",
+        "speaker": "Bo",
+        "listener": "Faye"
+      },
+      {
+        "round": 1,
+        "text": "Hana: Can you remind me what needs fixing on the repair drive?",
+        "speaker": "Hana",
+        "listener": "Faye"
+      },
+      {
+        "round": 1,
+        "text": "Faye: I can help after school pickup, but I need the exact repair window first.",
+        "speaker": "Faye",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Hana: I can help once I know the exact repair window, too. Can you tell me the time?",
+        "speaker": "Hana",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Rey: Thanks, Rosa. I’ll keep an eye on the wiring and gate, and let me know if you want me to check anything specific.",
+        "speaker": "Rey",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Faye: I can help after school pickup, but I still need the exact repair window before I can commit.",
+        "speaker": "Faye",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Just checking, you can confirm you’ve got the front brake line covered for the repair drive?",
+        "speaker": "Kira",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Faye: I can confirm the front brake line only after you send me the exact repair window.",
+        "speaker": "Faye",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Kira: What’s the exact repair window? Then I can confirm the front brake line.",
+        "speaker": "Kira",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Dane: I’m still pretty sure it’s the roof patch and the back gate latch, but I want to confirm who’s running the drive before I say more.",
+        "speaker": "Dane",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Dane: I’m pretty sure it’s the roof patch and the back gate latch, and Rosa’s the one keeping the schedule straight.",
+        "speaker": "Dane",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Bo: Mostly the laundry room door and the kitchen cabinet hinge. If you can take one this weekend, start with the door.",
+        "speaker": "Bo",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Faye: Thanks, Bo. I can take the door this weekend if you send me the exact repair window first.",
+        "speaker": "Faye",
+        "listener": "Bo"
+      },
+      {
+        "round": 3,
+        "text": "Bo: Got it - send the exact window and I'll take the door.",
+        "speaker": "Bo",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Mara: Absolutely, Faye. Send me the repair drive details and I’ll jump in as soon as I have them.",
+        "speaker": "Mara",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Mara: Absolutely, Faye. Send me the repair drive details and I’ll jump in as soon as I have them.",
+        "speaker": "Mara",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Faye: I can confirm the front brake line once you send me the exact repair window.",
+        "speaker": "Faye",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Mina: Got it, I’ll send the exact repair window as soon as I have it.",
+        "speaker": "Mina",
+        "listener": "Faye"
+      }
+    ]
+  },
+  "a15": {
+    "kind": "ga_reflection",
+    "n_events": 25,
+    "reflections": [
+      "Gus is dependable and proactive, offering practical help and equipment for repair work.",
+      "Noah and Eli both rely on Gus's support, suggesting he is trusted in the group.",
+      "Eli tends to organize and coordinate tasks, while Gus focuses on supplying what is needed.",
+      "Gus is the main helper and resource provider, consistently offering tools and practical support for the repair drive.",
+      "Eli and Mara are organizing the work, focusing on coordination, planning, and keeping the drive moving.",
+      "Noah is also willing to contribute, and the group is building a cooperative, task-focused repair effort.",
+      "Gus is a reliable helper who repeatedly offers tools and hands-on support across the group.",
+      "Mara appears to be coordinating the repair drive and keeping the work organized while waiting on input from Quinn.",
+      "Noah and Nell are engaged and responsive, with Noah ready to proceed and Nell asking for the first task to focus on.",
+      "Gus is a reliable helper who responds quickly with practical tools and follow-through.",
+      "Noah, Nell, Leo, and Pia each rely on Gus for coordinated repair work and timing updates.",
+      "Pia is focused on resource and schedule coordination, while Leo is handling the specific front brake line task.",
+      "Gus is a reliable helper who offers tools and follows through on repair tasks.",
+      "Leo and Bo are focused on a specific repair need, the front brake line, and prefer to keep the work quick and scoped.",
+      "Pia is coordinating capacity and timing, making sure the repair drive has enough hands and no scheduling issues."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Gus: Sure thing, Noah. I’ve got a few tools I can lend for the repair drive.",
+        "speaker": "Gus",
+        "listener": "Noah"
+      },
+      {
+        "round": 0,
+        "text": "Noah: Oh, that’d help a lot, thanks. I might need a wrench and whatever else you’ve got.",
+        "speaker": "Noah",
+        "listener": "Gus"
+      },
+      {
+        "round": 0,
+        "text": "Gus: You got it, I can lend you a wrench and a few other basics too. I’ll bring them over for the repair drive.",
+        "speaker": "Gus",
+        "listener": "Noah"
+      },
+      {
+        "round": 0,
+        "text": "Gus: I’ve got a spare drill and a ladder if that helps with the repair drive.",
+        "speaker": "Gus",
+        "listener": "Eli"
+      },
+      {
+        "round": 0,
+        "text": "Eli: That’d be a big help, Gus. I’ll keep things simple and make a plan for who needs what.",
+        "speaker": "Eli",
+        "listener": "Gus"
+      },
+      {
+        "round": 0,
+        "text": "Gus: Glad to help, Eli. Tell me what else you need and I’ll bring the tools.",
+        "speaker": "Gus",
+        "listener": "Eli"
+      },
+      {
+        "round": 1,
+        "text": "Gus: Sure thing, Noah. I’ll bring over the wrench and a few other basics for the repair drive.",
+        "speaker": "Gus",
+        "listener": "Noah"
+      },
+      {
+        "round": 1,
+        "text": "Noah: Yeah, I can help with that. I’ve got a few tools around here too, and I’ll check the drive.",
+        "speaker": "Noah",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Gus: Absolutely, Noah. I’ll bring over the wrench and a couple other basics, and we can see what else the drive needs.",
+        "speaker": "Gus",
+        "listener": "Noah"
+      },
+      {
+        "round": 1,
+        "text": "Gus: Sure thing, Mara. I’ve got a spare drill and a ladder if that helps with the repair drive.",
+        "speaker": "Gus",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Mara: That helps a lot, Gus. I’ll keep the repair drive moving and wait for Quinn’s list so we can line up the rest.",
+        "speaker": "Mara",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Gus: Absolutely, Mara. I’ll bring over the drill and ladder, and I can throw in a wrench and a few basics when you’re ready.",
+        "speaker": "Gus",
+        "listener": "Mara"
+      },
+      {
+        "round": 2,
+        "text": "Noah: Yeah, I’m still on it. Tell Gus I’m ready when he is.",
+        "speaker": "Noah",
+        "listener": "Gus"
+      },
+      {
+        "round": 2,
+        "text": "Gus: Absolutely, Noah. I’ll bring the wrench and a couple other basics over now.",
+        "speaker": "Gus",
+        "listener": "Noah"
+      },
+      {
+        "round": 2,
+        "text": "Noah: Great, tell him I’m ready when he gets here.",
+        "speaker": "Noah",
+        "listener": "Gus"
+      },
+      {
+        "round": 2,
+        "text": "Gus: Sure thing, Nell. I’ve got a few tools I can lend for the repair drive.",
+        "speaker": "Gus",
+        "listener": "Nell"
+      },
+      {
+        "round": 2,
+        "text": "Nell: That’d help, Gus. What’s the first repair you need me to focus on?",
+        "speaker": "Nell",
+        "listener": "Gus"
+      },
+      {
+        "round": 3,
+        "text": "Gus: Sure thing, Leo. I can lend a wrench and a few basics for the repair drive.",
+        "speaker": "Gus",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Leo: Thanks, Gus. I just need the front brake line, and I’ll check the drive for the rest.",
+        "speaker": "Leo",
+        "listener": "Gus"
+      },
+      {
+        "round": 3,
+        "text": "Gus: Sure thing, Leo. I’ll bring over the wrench and a few basics so you can finish that front brake line.",
+        "speaker": "Gus",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Pia: Thanks, Gus. Let me know once the drive is checked so I can make sure we have enough hands and no timing issues.",
+        "speaker": "Pia",
+        "listener": "Gus"
+      },
+      {
+        "round": 3,
+        "text": "Gus: Sure thing, Pia. I’ll check the drive and let you know so you can line up the hands and timing.",
+        "speaker": "Gus",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Pia: Thanks, Gus. Let me know once you’ve checked the drive so I can make sure we have enough hands and no timing issues.",
+        "speaker": "Pia",
+        "listener": "Gus"
+      },
+      {
+        "round": 4,
+        "text": "Bo: Just the front brake line, right? I can handle that if we keep it quick.",
+        "speaker": "Bo",
+        "listener": "Gus"
+      },
+      {
+        "round": 4,
+        "text": "Gus: Yeah, just the front brake line. Keep it quick and I’ll bring the wrench and a couple basics if you need them.",
+        "speaker": "Gus",
+        "listener": "Bo"
+      }
+    ]
+  },
+  "a16": {
+    "kind": "ga_reflection",
+    "n_events": 25,
+    "reflections": [
+      "Hana relies on Dane for concrete maintenance details and wants him to double-check the list before acting.",
+      "Dane is helpful and tentative, offering to verify the repair list rather than assuming he has every detail.",
+      "Their interaction is practical and task-focused, with Hana prioritizing completeness and accuracy.",
+      "Hana is coordinating a repair drive and is proactively gathering details before acting.",
+      "Dane and Jules are responsive helpers; Jules is especially willing to take initiative and check organization details.",
+      "Faye wants to help but needs specific timing information first, so Hana is seeking the exact repair window to coordinate participation.",
+      "Hana is waiting on a single missing detail, the exact repair window, before she can help or coordinate.",
+      "Eli is being proactive and aligned with the repair drive, but is deferring action until the timing is confirmed.",
+      "Vik and Rey appear to be the key coordinators, with Oren indicating they likely have the needed details soon.",
+      "Hana is being cautious and coordination-focused, waiting for the exact repair window before taking further action.",
+      "Rey and Vik appear to be the main coordinators for the repair drive, with others deferring to them for timing details.",
+      "The group is aligning around a practical repair checklist, especially the drill, ladder, and smaller fixes, to avoid timing and staffing issues.",
+      "Hana is being cautious and wants confirmation from the coordinators before acting.",
+      "Rey and Vik appear to be the key people for repair-drive coordination and status updates.",
+      "Quinn and Sam are offering practical help, while Pia is focused on staffing and timing readiness."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Hana: Can you remind me what needs fixing on the repair drive?",
+        "speaker": "Hana",
+        "listener": "Dane"
+      },
+      {
+        "round": 0,
+        "text": "Dane: Mostly the loose siding and the porch light, I think. I can check the list again if you want.",
+        "speaker": "Dane",
+        "listener": "Hana"
+      },
+      {
+        "round": 0,
+        "text": "Hana: Thanks, can you check the list again so I don’t miss anything?",
+        "speaker": "Hana",
+        "listener": "Dane"
+      },
+      {
+        "round": 1,
+        "text": "Jules: I can help with that repair drive if you need another hand, Hana. If you want, I can check who’s organizing it and what still needs doing.",
+        "speaker": "Jules",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Hana: Yes, please check who’s organizing it and what still needs doing.",
+        "speaker": "Hana",
+        "listener": "Jules"
+      },
+      {
+        "round": 1,
+        "text": "Jules: Sure thing — I’ll check and get back to you with the latest.",
+        "speaker": "Jules",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Hana: Can you remind me what needs fixing on the repair drive?",
+        "speaker": "Hana",
+        "listener": "Faye"
+      },
+      {
+        "round": 1,
+        "text": "Faye: I can help after school pickup, but I need the exact repair window first.",
+        "speaker": "Faye",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Hana: I can help once I know the exact repair window, too. Can you tell me the time?",
+        "speaker": "Hana",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Eli: That’s kind of Gus to offer. I’ll keep the drill and ladder in mind for the repair drive.",
+        "speaker": "Eli",
+        "listener": "Hana"
+      },
+      {
+        "round": 2,
+        "text": "Hana: Great, then we just need the exact repair window before I can help coordinate anything else.",
+        "speaker": "Hana",
+        "listener": "Eli"
+      },
+      {
+        "round": 2,
+        "text": "Eli: Right, I’ll wait on the repair window and coordinate from there.",
+        "speaker": "Eli",
+        "listener": "Hana"
+      },
+      {
+        "round": 2,
+        "text": "Hana: Can you tell me the exact repair window?",
+        "speaker": "Hana",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Oren: I’m not sure of the exact window, sorry, but Vik and Rey are coordinating the repair drive and should have the details soon.",
+        "speaker": "Oren",
+        "listener": "Hana"
+      },
+      {
+        "round": 2,
+        "text": "Hana: Thanks — I’ll wait for Vik or Rey to confirm the exact repair window before I do anything else.",
+        "speaker": "Hana",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Pia: Thanks, Hana. Let me know once the drive is checked so I can make sure we have enough hands and no timing issues.",
+        "speaker": "Pia",
+        "listener": "Hana"
+      },
+      {
+        "round": 3,
+        "text": "Hana: Thanks, I’ll wait for Vik or Rey to confirm the exact repair window before I do anything else.",
+        "speaker": "Hana",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Hana: Could you remind me what still needs fixing on the repair drive?",
+        "speaker": "Hana",
+        "listener": "Rey"
+      },
+      {
+        "round": 3,
+        "text": "Rey: We still need to check the drill, ladder, and a few smaller fixes. I can help sort the list if you want.",
+        "speaker": "Rey",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: Absolutely, I’m still spreading the word tonight so everyone knows the repair drive is tomorrow afternoon.",
+        "speaker": "Quinn",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Hana: Thanks, Quinn. What still needs fixing on the drive?",
+        "speaker": "Hana",
+        "listener": "Quinn"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: Mostly the front brake line is already covered for tomorrow afternoon, and I’m still spreading the word tonight so people know where to show up.",
+        "speaker": "Quinn",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Hana: I’m still checking who’s coordinating it and what needs fixing before I act.",
+        "speaker": "Hana",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Sam: I can help with that, Hana. Just point me to what still needs fixing and who’s coordinating it.",
+        "speaker": "Sam",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Hana: I’m checking with Rey and Vik first, then I can point you to the fixes.",
+        "speaker": "Hana",
+        "listener": "Sam"
+      }
+    ]
+  },
+  "a17": {
+    "kind": "ga_reflection",
+    "n_events": 29,
+    "reflections": [
+      "Ira is dependable and willing to help with practical repair tasks.",
+      "Mina is coordinating the work by clarifying needs and materials.",
+      "Rey is relying on Ira for support with the repair drive's checklist and wiring.",
+      "Ira is the main follow-through person, repeatedly offering to check in after errands and help with the remaining repairs.",
+      "The group is coordinating a repair drive with task division: some people are handling supplies, some are spreading the word, and others are checking the work list and wiring.",
+      "The tone is cooperative and practical, with people thanking each other and confirming timing rather than debating the plan.",
+      "Ira is consistently responsive and willing to check in after errands, suggesting a practical, follow-through role.",
+      "Quinn, Vik, and Eli are coordinating communication and keeping others updated while the work moves forward.",
+      "Dane is trying to verify responsibility before directing people, which points to some uncertainty around who is coordinating the repair drive.",
+      "Ira is consistently offering follow-up help and checking on the repair drive after errands, suggesting reliable support and a practical role.",
+      "Cleo appears to be the person with the repair drive details, and others are waiting on her updates to know what remains.",
+      "Dane seems to be coordinating or routing people to the right contact, implying an organizer or connector role.",
+      "Ira tends to follow up later and avoid guessing until details are confirmed.",
+      "Cleo and Tess are the main sources of repair-drive status updates, with Cleo sharing logistics and Tess emphasizing confirmation.",
+      "The group is coordinating a repair drive around specific coverage questions, especially the front brake line for tomorrow."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Mina: What exactly needs fixing for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Ira"
+      },
+      {
+        "round": 0,
+        "text": "Ira: Mostly the porch gate, two cracked fence panels, and a leaky faucet by the side yard.",
+        "speaker": "Ira",
+        "listener": "Mina"
+      },
+      {
+        "round": 0,
+        "text": "Mina: Got it. What parts do we need to buy or bring for those repairs?",
+        "speaker": "Mina",
+        "listener": "Ira"
+      },
+      {
+        "round": 0,
+        "text": "Ira: I heard the repair drive's moving along. I can swing by after errands and see what still needs doing.",
+        "speaker": "Ira",
+        "listener": "Rey"
+      },
+      {
+        "round": 0,
+        "text": "Rey: Thanks, Ira. I could use a hand checking the list and the loose wiring.",
+        "speaker": "Rey",
+        "listener": "Ira"
+      },
+      {
+        "round": 0,
+        "text": "Ira: Absolutely, I’ll help with the list and check the loose wiring after I’m done running errands.",
+        "speaker": "Ira",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Quinn: Yes, tomorrow afternoon should work. I’ve already started spreading the word and I’ll keep going tonight.",
+        "speaker": "Quinn",
+        "listener": "Ira"
+      },
+      {
+        "round": 1,
+        "text": "Ira: Good, I’ll check in after errands and see what still needs doing.",
+        "speaker": "Ira",
+        "listener": "Quinn"
+      },
+      {
+        "round": 1,
+        "text": "Quinn: Great, thanks. I’ll keep spreading the word tonight, and after your errands let me know what still needs doing.",
+        "speaker": "Quinn",
+        "listener": "Ira"
+      },
+      {
+        "round": 1,
+        "text": "Ira: Yeah, it’s moving along. I can stop by after my errands and check what still needs doing.",
+        "speaker": "Ira",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Vik: Sounds good, Ira, and thanks for checking in after your errands. I’ll keep Cleo posted and we can sort the rest out when you stop by.",
+        "speaker": "Vik",
+        "listener": "Ira"
+      },
+      {
+        "round": 2,
+        "text": "Dane: I’m still pretty sure it’s the roof patch and the back gate latch, but I want to confirm who’s running the drive before I say more.",
+        "speaker": "Dane",
+        "listener": "Ira"
+      },
+      {
+        "round": 2,
+        "text": "Ira: Yeah, that sounds right. I just need to know who’s actually coordinating it before I can point you to the right person.",
+        "speaker": "Ira",
+        "listener": "Dane"
+      },
+      {
+        "round": 2,
+        "text": "Dane: Yeah, that’s what I’ve got too. Once I confirm who’s coordinating it, I can point you to the right person.",
+        "speaker": "Dane",
+        "listener": "Ira"
+      },
+      {
+        "round": 2,
+        "text": "Ira: Yeah, I heard the repair drive's moving along. I can stop by after my errands and check what still needs doing.",
+        "speaker": "Ira",
+        "listener": "Eli"
+      },
+      {
+        "round": 2,
+        "text": "Eli: That’d be a help. I’ll keep the repair drive in mind and check in about what still needs doing.",
+        "speaker": "Eli",
+        "listener": "Ira"
+      },
+      {
+        "round": 2,
+        "text": "Ira: Thanks, I’ll check in after my errands and see what still needs doing.",
+        "speaker": "Ira",
+        "listener": "Eli"
+      },
+      {
+        "round": 3,
+        "text": "Ira: Yeah, I heard it’s moving along. I can stop by after my errands and check what still needs doing.",
+        "speaker": "Ira",
+        "listener": "Noah"
+      },
+      {
+        "round": 3,
+        "text": "Noah: Great, that helps. I’ll keep an eye on it and let you know what still needs doing.",
+        "speaker": "Noah",
+        "listener": "Ira"
+      },
+      {
+        "round": 3,
+        "text": "Ira: Sounds good, I’ll check in after my errands and see what still needs doing.",
+        "speaker": "Ira",
+        "listener": "Noah"
+      },
+      {
+        "round": 3,
+        "text": "Cleo: I’m on it, and I’ll send the repair drive details over shortly.",
+        "speaker": "Cleo",
+        "listener": "Ira"
+      },
+      {
+        "round": 3,
+        "text": "Ira: Great, I’ll watch for those details and check what still needs doing after my errands.",
+        "speaker": "Ira",
+        "listener": "Cleo"
+      },
+      {
+        "round": 3,
+        "text": "Cleo: Thanks, Ira. I’ll send the rest over shortly so you can see what’s still needed.",
+        "speaker": "Cleo",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Ira: Yeah, I heard the repair drive’s moving along. I can stop by after errands and see what still needs doing.",
+        "speaker": "Ira",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Tess: Sounds good, Ira. I’m still waiting on the latest word too, so I’ll only pass along the confirmed repair drive details once they come in.",
+        "speaker": "Tess",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Ira: Sounds good, Tess. I’ll wait for the confirmed details and check back after my errands.",
+        "speaker": "Ira",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Ira: Yeah, I heard it’s moving along. I can stop by after errands and see what still needs doing.",
+        "speaker": "Ira",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Kira: Just checking, can you confirm the front brake line’s covered for tomorrow’s repair drive?",
+        "speaker": "Kira",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Ira: I can check, but I don’t want to guess if it’s already set for tomorrow.",
+        "speaker": "Ira",
+        "listener": "Kira"
+      }
+    ]
+  },
+  "a18": {
+    "kind": "ga_reflection",
+    "n_events": 25,
+    "reflections": [
+      "Jules is cooperative and eager to help organize community repair work, and Opal is the person with the practical details.",
+      "Nell is seeking updated information through secondhand channels, suggesting she is not yet directly connected to the organizers.",
+      "The repair drive appears to be a shared community effort that can attract extra volunteers once someone points people to the right contact.",
+      "Jules is the main coordinator/helper, often offering to check details and recruit extra help.",
+      "Opal appears to be the practical point of contact for the repair drive and can direct people to what still needs doing.",
+      "The group is collaborative and focused on organizing hands-on help for house repairs, with multiple people checking in through Jules and Opal.",
+      "Jules is a practical coordinator who offers to check details, connect people to the right contact, and keep work moving.",
+      "Hana and Mina prefer concrete next steps and exact information before they can act.",
+      "Pia and Dane are focused on making sure the repair drive is organized, staffed, and clear on logistics.",
+      "Jules is acting as a coordination hub, helping others gather practical details and align on responsibilities.",
+      "Pia and Mina are each waiting on concrete information before they can commit resources or define scope.",
+      "The group is collaboratively progressing the repair drive, with repeated requests for status, ownership, and next steps.",
+      "Jules is the main coordination point for the repair drive and is keeping others updated on details and remaining tasks.",
+      "Mina, Mara, Sam, and Quinn are all willing to help once responsibilities and logistics are clarified.",
+      "The group is working collaboratively, but they still need a clear organizer and a concrete task list before everyone can divide the work effectively."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Nell: I heard there was a repair drive, but I only got the secondhand version. What’s the latest?",
+        "speaker": "Nell",
+        "listener": "Jules"
+      },
+      {
+        "round": 0,
+        "text": "Jules: Yeah, it’s moving ahead. I heard the repair drive is set up to help with the usual house fixes, and I can check who’s organizing what if you want the newest details.",
+        "speaker": "Jules",
+        "listener": "Nell"
+      },
+      {
+        "round": 0,
+        "text": "Nell: Thanks, that’d help. Who’s organizing it, and what fixes are they prioritizing?",
+        "speaker": "Nell",
+        "listener": "Jules"
+      },
+      {
+        "round": 0,
+        "text": "Jules: I can help with that repair drive if you need another hand, Opal. I’ve got a few friends who might be able to pitch in too.",
+        "speaker": "Jules",
+        "listener": "Opal"
+      },
+      {
+        "round": 0,
+        "text": "Opal: That’d be a big help. I can point you to the repair drive and let you know what still needs doing.",
+        "speaker": "Opal",
+        "listener": "Jules"
+      },
+      {
+        "round": 0,
+        "text": "Jules: Great, send me to it and I’ll round up a couple more people who can help.",
+        "speaker": "Jules",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Jules: I can help with that repair drive if you need another hand, Hana. If you want, I can check who’s organizing it and what still needs doing.",
+        "speaker": "Jules",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Hana: Yes, please check who’s organizing it and what still needs doing.",
+        "speaker": "Hana",
+        "listener": "Jules"
+      },
+      {
+        "round": 1,
+        "text": "Jules: Sure thing — I’ll check and get back to you with the latest.",
+        "speaker": "Jules",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Jules: Yeah, I can check who’s organizing it and point you to Opal for the practical details.",
+        "speaker": "Jules",
+        "listener": "Dane"
+      },
+      {
+        "round": 1,
+        "text": "Dane: Got it, I’ll check with Opal so we have the practical details straight.",
+        "speaker": "Dane",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Pia: Thanks, Jules. Let me know once the drive’s checked so I can make sure we’ve got enough hands and no timing issues.",
+        "speaker": "Pia",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Pia: Thanks, Jules. Let me know once the drive’s checked so I can make sure we’ve got enough hands and no timing issues.",
+        "speaker": "Pia",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Mina: I’m still sorting out the scope, so I need the exact list of fixes before I can tell anyone what we need.",
+        "speaker": "Mina",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Jules: I can help get the exact list from Opal if that helps, and then we can pin down who needs to do what.",
+        "speaker": "Jules",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Mina: I’ll ask Opal for the exact list, then we can sort out who’s doing what.",
+        "speaker": "Mina",
+        "listener": "Jules"
+      },
+      {
+        "round": 3,
+        "text": "Jules: Yeah, it’s still moving ahead. I can check who’s organizing the repair drive and what still needs doing if you want.",
+        "speaker": "Jules",
+        "listener": "Bo"
+      },
+      {
+        "round": 3,
+        "text": "Jules: Yeah, I can check who’s organizing it and what still needs doing if you want.",
+        "speaker": "Jules",
+        "listener": "Bo"
+      },
+      {
+        "round": 3,
+        "text": "Mara: Absolutely, Jules, send me the repair drive details when you can, and I’ll jump in as soon as I have them.",
+        "speaker": "Mara",
+        "listener": "Jules"
+      },
+      {
+        "round": 3,
+        "text": "Jules: Absolutely, I’ll send the repair drive details and check who’s organizing it so you know what still needs doing.",
+        "speaker": "Jules",
+        "listener": "Mara"
+      },
+      {
+        "round": 4,
+        "text": "Jules: Absolutely, I can send the repair drive details and check who’s organizing it so you know what still needs doing.",
+        "speaker": "Jules",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Sam: Thanks, Jules. I can help with that once you know what still needs doing.",
+        "speaker": "Sam",
+        "listener": "Jules"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: Absolutely — I’ve been spreading the word, and I’ll make sure folks know the repair drive is tomorrow afternoon.",
+        "speaker": "Quinn",
+        "listener": "Jules"
+      },
+      {
+        "round": 4,
+        "text": "Jules: Great, that helps — I can check who’s organizing it and what still needs doing if you want.",
+        "speaker": "Jules",
+        "listener": "Quinn"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: Absolutely — I can check who’s organizing it and what still needs doing.",
+        "speaker": "Quinn",
+        "listener": "Jules"
+      }
+    ]
+  },
+  "a19": {
+    "kind": "ga_reflection",
+    "n_events": 28,
+    "reflections": [
+      "Kira is coordinating repair work and wants people to confirm specifics before committing to action.",
+      "Bo is direct and task-focused, and he can handle the front brake line without further clarification.",
+      "Sam is willing to help but is being asked to be more specific about what is damaged before proceeding.",
+      "Kira is verifying responsibility before accepting a repair claim, so she values clear confirmation over assumptions.",
+      "Sam and Cleo are taking coordination roles: Sam is helping diagnose, while Cleo is organizing follow-up details.",
+      "Quinn is actively promoting the repair drive and confirming specific coverage, suggesting the group is converging on shared task ownership.",
+      "Quinn is proactive about coordination and keeps others informed by spreading the word early.",
+      "Kira is focused on getting explicit confirmation before treating the front brake line as covered.",
+      "Cleo and Quinn both reassure the group that the front brake line is handled, while Faye wants the exact repair window before confirming.",
+      "Kira is persistently checking for explicit confirmation and may be coordinating the repair drive details tightly.",
+      "Cleo and Quinn are providing direct status updates and assurances about the front brake line coverage.",
+      "Faye is cautious about confirming details without the exact repair window, suggesting timeline-specific information matters to her.",
+      "Kira is repeatedly verifying the same repair detail and seems to be coordinating for tomorrow's drive.",
+      "Eli and Quinn are responding as helpers who are tracking tasks, supplies, and follow-up work rather than leading the decision.",
+      "Ira is cautious about confirming details without checking, which suggests the group is still sorting out the final status."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Bo: I can help, but keep it quick - what part of the repair drive needs me?",
+        "speaker": "Bo",
+        "listener": "Kira"
+      },
+      {
+        "round": 0,
+        "text": "Kira: Just the front brake line on the repair drive - can you confirm you can handle that?",
+        "speaker": "Kira",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Yes - I can handle the front brake line.",
+        "speaker": "Bo",
+        "listener": "Kira"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Hey Kira, I can help with the repair drive. Tell me what still needs to be fixed.",
+        "speaker": "Sam",
+        "listener": "Kira"
+      },
+      {
+        "round": 0,
+        "text": "Kira: Can you confirm exactly what’s still broken before I say it needs fixing?",
+        "speaker": "Kira",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Sam: I can check the obvious stuff first, but I still need you to point out what looks damaged so I don’t miss anything.",
+        "speaker": "Sam",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Cleo: I’m in, and I’ll keep track of the repair drive details. I’ll send the follow-up shortly.",
+        "speaker": "Cleo",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Got it - just confirm the front brake line is covered, and I’ll wait for your follow-up.",
+        "speaker": "Kira",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Cleo: Yes, the front brake line is covered. I’ll send the rest of the repair drive details shortly.",
+        "speaker": "Cleo",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Quinn: Absolutely — I’ve already started telling people, and I’ll spread the word more tonight so the repair drive is set for tomorrow afternoon.",
+        "speaker": "Quinn",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Can you confirm that you’ve got the front brake line covered?",
+        "speaker": "Kira",
+        "listener": "Quinn"
+      },
+      {
+        "round": 1,
+        "text": "Quinn: Yes, the front brake line is covered.",
+        "speaker": "Quinn",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: I’m keeping track of the repair drive details and I’ll send the follow-up shortly.",
+        "speaker": "Cleo",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Just to confirm, you’ve got the front brake line covered, right?",
+        "speaker": "Kira",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: Yes, I’ve got the front brake line covered.",
+        "speaker": "Cleo",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Just checking, you can confirm you’ve got the front brake line covered for the repair drive?",
+        "speaker": "Kira",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Faye: I can confirm the front brake line only after you send me the exact repair window.",
+        "speaker": "Faye",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Kira: What’s the exact repair window? Then I can confirm the front brake line.",
+        "speaker": "Kira",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Kira: Yes, I can confirm the front brake line is covered.",
+        "speaker": "Kira",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Oren: Right, thanks, Kira. I’m here and can help with the repair drive however you need.",
+        "speaker": "Oren",
+        "listener": "Kira"
+      },
+      {
+        "round": 3,
+        "text": "Kira: Just checking: you can confirm the front brake line’s covered for tomorrow’s repair drive?",
+        "speaker": "Kira",
+        "listener": "Quinn"
+      },
+      {
+        "round": 3,
+        "text": "Quinn: Yes, the front brake line is covered for tomorrow. I’ve already got people lined up, and I’ll keep spreading the word tonight.",
+        "speaker": "Quinn",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Eli: I’ll keep the drill and ladder in mind, and I’ll check what still needs doing.",
+        "speaker": "Eli",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Kira: Just checking, Eli: can you confirm the front brake line’s covered for tomorrow’s repair drive?",
+        "speaker": "Kira",
+        "listener": "Eli"
+      },
+      {
+        "round": 4,
+        "text": "Eli: Yes, the front brake line is covered for tomorrow. I’ll keep track of the rest and check what else still needs doing.",
+        "speaker": "Eli",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Ira: Yeah, I heard it’s moving along. I can stop by after errands and see what still needs doing.",
+        "speaker": "Ira",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Kira: Just checking, can you confirm the front brake line’s covered for tomorrow’s repair drive?",
+        "speaker": "Kira",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Ira: I can check, but I don’t want to guess if it’s already set for tomorrow.",
+        "speaker": "Ira",
+        "listener": "Kira"
+      }
+    ]
+  },
+  "a20": {
+    "kind": "ga_reflection",
+    "n_events": 28,
+    "reflections": [
+      "Rosa tends to organize and sustain group efforts by keeping lists updated and following through on remaining tasks.",
+      "Noah is willing to contribute practical help when asked and can supply needed items from what he already has.",
+      "Leo is making a concrete request for repair-drive supplies, which helps others respond with targeted support.",
+      "Rosa tends to take a coordinating role, keeping the repair drive organized and follow-ups moving.",
+      "Leo is a practical contributor who focuses on collecting and checking the needed tools and fittings.",
+      "Pia needs timely updates before she can commit resources, so clear timing communication matters for coordination.",
+      "Leo and Opal are coordinating hands-on repair work, with Leo taking a responsive, follow-through role and Opal helping route him to the right resource.",
+      "Pia and Uli both want timely updates before committing to action, which suggests the group is operating under uncertainty and relies on status checks to plan work.",
+      "Bo is willing to help, but only once the task is scoped tightly, so concise, specific requests get quicker commitment.",
+      "Leo is coordinating a repair and is focused on the front brake line, while relying on others for parts and details.",
+      "Bo and Gus are responsive helpers who offer direct hands-on support and keep the repair moving.",
+      "Vik is acting as an information relay for Cleo’s repair drive details, which others are waiting on before proceeding.",
+      "Leo is coordinating around Cleo’s missing repair-drive details and is waiting to act until they arrive.",
+      "Vik and Noah are both tracking the same unresolved details and plan to relay or follow up once they come in.",
+      "Pia is managing timing and staffing, relying on Leo to confirm the drive status before she finalizes coordination."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Rosa: Of course, Leo. I’ve got the repair drive list ready, and I’ll help keep things moving.",
+        "speaker": "Rosa",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Great, I’ll keep the list organized and follow up on the remaining repairs so we can keep momentum.",
+        "speaker": "Rosa",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Noah: Yeah, I can help with that. What do you need from the repair drive?",
+        "speaker": "Noah",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: Just the tools and fittings, if you have them.",
+        "speaker": "Leo",
+        "listener": "Noah"
+      },
+      {
+        "round": 0,
+        "text": "Noah: Sure, I think I’ve got those lying around. I’ll check the drive and bring over the tools and fittings.",
+        "speaker": "Noah",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: I can check the drive and bring the tools and fittings over.",
+        "speaker": "Leo",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: That helps, but I still need the latest timing before I can count on it. Let me know once you’ve checked so I can plan the staffing.",
+        "speaker": "Pia",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Opal: That’d be a big help, Leo. I can point you to the repair drive and let you know what still needs doing.",
+        "speaker": "Opal",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Thanks, Opal. I’ll grab the repair drive and check what’s left.",
+        "speaker": "Leo",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Opal: Thanks, Leo. I’ll point you to the drive and check what still needs doing.",
+        "speaker": "Opal",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Uli: I’m still waiting on the latest word, but I’ll let you know as soon as I hear more.",
+        "speaker": "Uli",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Leo: Got it — I’ll wait for the latest word and keep things moving once you hear back.",
+        "speaker": "Leo",
+        "listener": "Uli"
+      },
+      {
+        "round": 2,
+        "text": "Uli: I’m still waiting on the latest word, but I’ll let you know as soon as I hear more.",
+        "speaker": "Uli",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: I can help, but keep it quick - is it just the front brake line?",
+        "speaker": "Bo",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Leo: Just the front brake line. I’ll check the drive and bring what’s needed.",
+        "speaker": "Leo",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Got it, I can take that on.",
+        "speaker": "Bo",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Gus: Sure thing, Leo. I can lend a wrench and a few basics for the repair drive.",
+        "speaker": "Gus",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Leo: Thanks, Gus. I just need the front brake line, and I’ll check the drive for the rest.",
+        "speaker": "Leo",
+        "listener": "Gus"
+      },
+      {
+        "round": 3,
+        "text": "Gus: Sure thing, Leo. I’ll bring over the wrench and a few basics so you can finish that front brake line.",
+        "speaker": "Gus",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Vik: I’m still waiting on Cleo’s repair drive details, but I’m in and I’ll fill you in as soon as she sends them over.",
+        "speaker": "Vik",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Leo: Got it. I’ll wait on Cleo’s details and check the repair drive once they’re in.",
+        "speaker": "Leo",
+        "listener": "Vik"
+      },
+      {
+        "round": 3,
+        "text": "Vik: Yep, I’m still on Cleo’s details and I’ll pass them along as soon as they come in.",
+        "speaker": "Vik",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Leo: I’ll wait on Cleo’s details and check the repair drive once they’re in.",
+        "speaker": "Leo",
+        "listener": "Noah"
+      },
+      {
+        "round": 4,
+        "text": "Noah: Okay, I’ll check in once Cleo’s details are in and keep an eye on the repair drive.",
+        "speaker": "Noah",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Leo: Got it, I’ll check back once Cleo’s details are in.",
+        "speaker": "Leo",
+        "listener": "Noah"
+      },
+      {
+        "round": 4,
+        "text": "Pia: Thanks, Leo. Let me know once you’ve checked the drive so I can make sure we have enough hands and no timing issues.",
+        "speaker": "Pia",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Leo: Got it. I’ll check the drive and let you know if we’re short on hands or timing.",
+        "speaker": "Leo",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: Thanks, Leo. Please let me know as soon as you’ve checked it, so I can keep the timing straight.",
+        "speaker": "Pia",
+        "listener": "Leo"
+      }
+    ]
+  },
+  "a21": {
+    "kind": "ga_reflection",
+    "n_events": 22,
+    "reflections": [
+      "Mara is cooperative and responsive, especially when others give her concrete details or a clear next step.",
+      "Quinn is coordinating the repair drive and depends on others to send information before moving it forward.",
+      "Faye is willing to help, but needs specific timing information before committing.",
+      "Mara is consistently willing to help with the repair drive and responds quickly to coordination requests.",
+      "Quinn appears to be organizing the repair drive and circulating the task list.",
+      "Gus is supportive and contributes concrete tools and supplies to help the repair effort.",
+      "Mara is the main coordinator and is actively trying to keep the repair drive moving by collecting details and aligning help.",
+      "Gus is responsive and willing to contribute practical tools and supplies, which makes him a useful supporter for the effort.",
+      "Opal and Tess are acting as information sources or coordinators, but the group is still waiting on the final list of what needs fixing.",
+      "Mara is consistently ready to help with the repair drive and waits for concrete details before acting.",
+      "Gus, Opal, and Jules position themselves as helpful coordinators by offering tools, updates, or organization details.",
+      "Tess and Mina are still waiting on the latest repair information, so the group is dependent on whoever can confirm the outstanding tasks.",
+      "Mara is consistently proactive and ready to help, but is waiting on concrete repair-drive details before acting.",
+      "Several people are coordinating around the repair drive, and the main bottleneck is missing or pending information about what still needs doing.",
+      "The exchanges are repetitive and confirm a collaborative, responsive dynamic, with people promising to pass along details as soon as they have them."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Faye: I can help after school pickup, but I need the exact repair window first.",
+        "speaker": "Faye",
+        "listener": "Mara"
+      },
+      {
+        "round": 0,
+        "text": "Mara: I’ll send the repair window as soon as I confirm it, but it should be this afternoon.",
+        "speaker": "Mara",
+        "listener": "Faye"
+      },
+      {
+        "round": 0,
+        "text": "Mara: Absolutely, I can help with the repair drive. Tell me what still needs doing and I’ll pitch in.",
+        "speaker": "Mara",
+        "listener": "Quinn"
+      },
+      {
+        "round": 0,
+        "text": "Quinn: Great, thanks, Mara. I’ll send around the list tonight so we can get the repair drive moving.",
+        "speaker": "Quinn",
+        "listener": "Mara"
+      },
+      {
+        "round": 0,
+        "text": "Mara: Perfect, send it over when you can and I’ll take a look.",
+        "speaker": "Mara",
+        "listener": "Quinn"
+      },
+      {
+        "round": 1,
+        "text": "Mara: Absolutely, I can help with the repair drive. Tell me what still needs doing and I’ll pitch in.",
+        "speaker": "Mara",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Opal: Great, thank you. I’ll point you to the repair drive and let you know what still needs doing.",
+        "speaker": "Opal",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Mara: Absolutely, send me the repair drive details when you can, and I’ll jump in as soon as I have them.",
+        "speaker": "Mara",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Gus: Sure thing, Mara. I’ve got a spare drill and a ladder if that helps with the repair drive.",
+        "speaker": "Gus",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Mara: That helps a lot, Gus. I’ll keep the repair drive moving and wait for Quinn’s list so we can line up the rest.",
+        "speaker": "Mara",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Gus: Absolutely, Mara. I’ll bring over the drill and ladder, and I can throw in a wrench and a few basics when you’re ready.",
+        "speaker": "Gus",
+        "listener": "Mara"
+      },
+      {
+        "round": 2,
+        "text": "Mara: Absolutely, send me the repair drive details when you can, and I’ll jump in as soon as I have them.",
+        "speaker": "Mara",
+        "listener": "Opal"
+      },
+      {
+        "round": 2,
+        "text": "Opal: Absolutely, Mara. I’ll send over the repair drive details and point you to what still needs doing.",
+        "speaker": "Opal",
+        "listener": "Mara"
+      },
+      {
+        "round": 2,
+        "text": "Mara: Thanks, Opal. I’ll watch for the details and be ready to help once you send them.",
+        "speaker": "Mara",
+        "listener": "Opal"
+      },
+      {
+        "round": 2,
+        "text": "Mara: I’m ready to help, Tess—send me what still needs doing on the repair drive and I’ll jump in.",
+        "speaker": "Mara",
+        "listener": "Tess"
+      },
+      {
+        "round": 2,
+        "text": "Tess: I’m still waiting on the latest word on what needs fixing, but I’ll send it your way as soon as I have it.",
+        "speaker": "Tess",
+        "listener": "Mara"
+      },
+      {
+        "round": 3,
+        "text": "Mara: Absolutely, Mina. Send over the repair drive details and I’ll jump in once I have them.",
+        "speaker": "Mara",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Mina: I’m still waiting on the repair drive details, but I’m in and I’ll send them as soon as I have them.",
+        "speaker": "Mina",
+        "listener": "Mara"
+      },
+      {
+        "round": 3,
+        "text": "Mara: Absolutely, Jules, send me the repair drive details when you can, and I’ll jump in as soon as I have them.",
+        "speaker": "Mara",
+        "listener": "Jules"
+      },
+      {
+        "round": 3,
+        "text": "Jules: Absolutely, I’ll send the repair drive details and check who’s organizing it so you know what still needs doing.",
+        "speaker": "Jules",
+        "listener": "Mara"
+      },
+      {
+        "round": 4,
+        "text": "Mara: Absolutely, Faye. Send me the repair drive details and I’ll jump in as soon as I have them.",
+        "speaker": "Mara",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Mara: Absolutely, Faye. Send me the repair drive details and I’ll jump in as soon as I have them.",
+        "speaker": "Mara",
+        "listener": "Faye"
+      }
+    ]
+  },
+  "a22": {
+    "kind": "ga_reflection",
+    "n_events": 29,
+    "reflections": [
+      "Noah is cooperative and willing to help with shared repair tasks.",
+      "Gus is supportive and offers practical help by lending tools.",
+      "The group is coordinating around the repair drive with an emphasis on shared resources and follow-through.",
+      "Noah is taking a coordinating role by checking the drive, gathering tools, and keeping Pia updated.",
+      "Gus and Noah are cooperating closely on the repair drive, with both offering to bring basic tools and fittings.",
+      "Pia is focused on timing and staffing, suggesting the repair effort needs coordination as much as supplies.",
+      "Noah is a central coordinator who keeps others updated and ready on the drive and tool status.",
+      "Gus is responsive and provides practical support by bringing needed basics like the wrench.",
+      "Pia and Rey help manage coordination and scope by tracking timing, hands, wiring, lighting, and gate checks.",
+      "Noah is acting as the organizer and status tracker, keeping everyone aligned on what still needs doing.",
+      "Rey and Ira are contributing in a cooperative, low-friction way by taking on specific checks and follow-up.",
+      "The group’s relationship looks practical and task-focused, with people volunteering small pieces of the work rather than debating larger plans.",
+      "Noah is the main coordination point and keeps others updated on remaining work.",
+      "Several people are waiting on missing details or the latest update before they can finish their part.",
+      "The group communication is cooperative and follow-up oriented, with people promising to check back or pass along information as soon as they have it."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Gus: Sure thing, Noah. I’ve got a few tools I can lend for the repair drive.",
+        "speaker": "Gus",
+        "listener": "Noah"
+      },
+      {
+        "round": 0,
+        "text": "Noah: Oh, that’d help a lot, thanks. I might need a wrench and whatever else you’ve got.",
+        "speaker": "Noah",
+        "listener": "Gus"
+      },
+      {
+        "round": 0,
+        "text": "Gus: You got it, I can lend you a wrench and a few other basics too. I’ll bring them over for the repair drive.",
+        "speaker": "Gus",
+        "listener": "Noah"
+      },
+      {
+        "round": 0,
+        "text": "Noah: Yeah, I can help with that. What do you need from the repair drive?",
+        "speaker": "Noah",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: Just the tools and fittings, if you have them.",
+        "speaker": "Leo",
+        "listener": "Noah"
+      },
+      {
+        "round": 0,
+        "text": "Noah: Sure, I think I’ve got those lying around. I’ll check the drive and bring over the tools and fittings.",
+        "speaker": "Noah",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Gus: Sure thing, Noah. I’ll bring over the wrench and a few other basics for the repair drive.",
+        "speaker": "Gus",
+        "listener": "Noah"
+      },
+      {
+        "round": 1,
+        "text": "Noah: Yeah, I can help with that. I’ve got a few tools around here too, and I’ll check the drive.",
+        "speaker": "Noah",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Gus: Absolutely, Noah. I’ll bring over the wrench and a couple other basics, and we can see what else the drive needs.",
+        "speaker": "Gus",
+        "listener": "Noah"
+      },
+      {
+        "round": 1,
+        "text": "Noah: Yeah, I’ll check the drive and bring over the tools and fittings.",
+        "speaker": "Noah",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: Thanks, Noah. Let me know once you’ve checked the drive so I can make sure we have enough hands and no timing issues.",
+        "speaker": "Pia",
+        "listener": "Noah"
+      },
+      {
+        "round": 1,
+        "text": "Noah: Will do. I’ll check it and let you know once I’ve got the tools sorted.",
+        "speaker": "Noah",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Noah: Yeah, I’m still on it. Tell Gus I’m ready when he is.",
+        "speaker": "Noah",
+        "listener": "Gus"
+      },
+      {
+        "round": 2,
+        "text": "Gus: Absolutely, Noah. I’ll bring the wrench and a couple other basics over now.",
+        "speaker": "Gus",
+        "listener": "Noah"
+      },
+      {
+        "round": 2,
+        "text": "Noah: Great, tell him I’m ready when he gets here.",
+        "speaker": "Noah",
+        "listener": "Gus"
+      },
+      {
+        "round": 2,
+        "text": "Rey: Thanks, I’ll keep track of the wiring, lighting, and gate checks.",
+        "speaker": "Rey",
+        "listener": "Noah"
+      },
+      {
+        "round": 2,
+        "text": "Noah: Got it, I’ll keep an eye on the drive and make sure the tools are ready.",
+        "speaker": "Noah",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Rey: Thanks, Noah. If you spot anything missing, let me know and I’ll take care of it.",
+        "speaker": "Rey",
+        "listener": "Noah"
+      },
+      {
+        "round": 3,
+        "text": "Ira: Yeah, I heard it’s moving along. I can stop by after my errands and check what still needs doing.",
+        "speaker": "Ira",
+        "listener": "Noah"
+      },
+      {
+        "round": 3,
+        "text": "Noah: Great, that helps. I’ll keep an eye on it and let you know what still needs doing.",
+        "speaker": "Noah",
+        "listener": "Ira"
+      },
+      {
+        "round": 3,
+        "text": "Ira: Sounds good, I’ll check in after my errands and see what still needs doing.",
+        "speaker": "Ira",
+        "listener": "Noah"
+      },
+      {
+        "round": 3,
+        "text": "Sam: Tell me what still needs to be fixed.",
+        "speaker": "Sam",
+        "listener": "Noah"
+      },
+      {
+        "round": 3,
+        "text": "Noah: Mostly the small stuff, I think. I’m trying to keep track, but I may have missed one or two items.",
+        "speaker": "Noah",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Leo: I’ll wait on Cleo’s details and check the repair drive once they’re in.",
+        "speaker": "Leo",
+        "listener": "Noah"
+      },
+      {
+        "round": 4,
+        "text": "Noah: Okay, I’ll check in once Cleo’s details are in and keep an eye on the repair drive.",
+        "speaker": "Noah",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Leo: Got it, I’ll check back once Cleo’s details are in.",
+        "speaker": "Leo",
+        "listener": "Noah"
+      },
+      {
+        "round": 4,
+        "text": "Uli: I’m still waiting on the latest word, but I’ll pass it along as soon as I hear back.",
+        "speaker": "Uli",
+        "listener": "Noah"
+      },
+      {
+        "round": 4,
+        "text": "Noah: Got it, I’ll keep an eye on the drive and make sure the tools are ready.",
+        "speaker": "Noah",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Uli: Thanks, Noah. I’ll send the latest word as soon as I get it.",
+        "speaker": "Uli",
+        "listener": "Noah"
+      }
+    ]
+  },
+  "a23": {
+    "kind": "ga_reflection",
+    "n_events": 30,
+    "reflections": [
+      "Sam takes a proactive, service-oriented role and follows through on practical fixes.",
+      "Opal coordinates needs clearly and is willing to mobilize others once support is offered.",
+      "Jules is community-minded and ready to expand help by recruiting more people for the repair effort.",
+      "Opal is acting as a hub for coordinating repair work and directing people to next steps.",
+      "Jules, Mara, and Leo are receptive and willing to help, often offering to recruit others or follow up on details.",
+      "The interaction pattern is collaborative and practical, with Opal providing direction while others volunteer labor and checklists.",
+      "Opal is a coordinator who points people to the repair drive and keeps track of remaining tasks.",
+      "Mara and Leo are ready to help once they have the repair drive details, suggesting a cooperative, task-oriented dynamic.",
+      "Quinn is actively spreading the word to get the repair drive ready by tomorrow afternoon, indicating shared momentum around the event.",
+      "Quinn is the main coordinator for spreading word about the repair drive and is taking initiative on outreach.",
+      "Opal is the practical organizer who tracks remaining tasks and confirms details for others.",
+      "Mara and Dane both prefer to wait for details from Opal before helping, which makes Opal a central point of coordination.",
+      "Opal is the central coordinator for the repair details and repeatedly redirects people to the repair drive.",
+      "Dane and Rey are focused on keeping the repair information accurate and clearly deferred to Opal for confirmation.",
+      "Quinn is acting as an information spreader, while Uli is waiting for updates before passing them along."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Sam: I can help with that, Opal. Tell me what needs fixing and I’ll see what I can do.",
+        "speaker": "Sam",
+        "listener": "Opal"
+      },
+      {
+        "round": 0,
+        "text": "Opal: Yes, it’s the streetlight at Maple and 3rd that’s flickering, and my porch step needs tightening too.",
+        "speaker": "Opal",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Absolutely, I’ll check on both. I’ll start with the streetlight at Maple and 3rd, then I’ll take a look at your porch step.",
+        "speaker": "Sam",
+        "listener": "Opal"
+      },
+      {
+        "round": 0,
+        "text": "Jules: I can help with that repair drive if you need another hand, Opal. I’ve got a few friends who might be able to pitch in too.",
+        "speaker": "Jules",
+        "listener": "Opal"
+      },
+      {
+        "round": 0,
+        "text": "Opal: That’d be a big help. I can point you to the repair drive and let you know what still needs doing.",
+        "speaker": "Opal",
+        "listener": "Jules"
+      },
+      {
+        "round": 0,
+        "text": "Jules: Great, send me to it and I’ll round up a couple more people who can help.",
+        "speaker": "Jules",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Mara: Absolutely, I can help with the repair drive. Tell me what still needs doing and I’ll pitch in.",
+        "speaker": "Mara",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Opal: Great, thank you. I’ll point you to the repair drive and let you know what still needs doing.",
+        "speaker": "Opal",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Mara: Absolutely, send me the repair drive details when you can, and I’ll jump in as soon as I have them.",
+        "speaker": "Mara",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Opal: That’d be a big help, Leo. I can point you to the repair drive and let you know what still needs doing.",
+        "speaker": "Opal",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Thanks, Opal. I’ll grab the repair drive and check what’s left.",
+        "speaker": "Leo",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Opal: Thanks, Leo. I’ll point you to the drive and check what still needs doing.",
+        "speaker": "Opal",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Mara: Absolutely, send me the repair drive details when you can, and I’ll jump in as soon as I have them.",
+        "speaker": "Mara",
+        "listener": "Opal"
+      },
+      {
+        "round": 2,
+        "text": "Opal: Absolutely, Mara. I’ll send over the repair drive details and point you to what still needs doing.",
+        "speaker": "Opal",
+        "listener": "Mara"
+      },
+      {
+        "round": 2,
+        "text": "Mara: Thanks, Opal. I’ll watch for the details and be ready to help once you send them.",
+        "speaker": "Mara",
+        "listener": "Opal"
+      },
+      {
+        "round": 2,
+        "text": "Quinn: Absolutely, I’ve already started telling people, and I’ll spread the word more tonight so the repair drive is set for tomorrow afternoon.",
+        "speaker": "Quinn",
+        "listener": "Opal"
+      },
+      {
+        "round": 2,
+        "text": "Opal: Great, Quinn. I’ll keep an eye on what still needs doing and point people to the repair drive if they ask.",
+        "speaker": "Opal",
+        "listener": "Quinn"
+      },
+      {
+        "round": 2,
+        "text": "Quinn: Thanks, Opal. I’ll keep pushing the word tonight so everything’s lined up for tomorrow afternoon.",
+        "speaker": "Quinn",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Quinn: Absolutely, I’ve already started telling people, and I’ll spread the word more tonight so the repair drive is set for tomorrow afternoon.",
+        "speaker": "Quinn",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Opal: Great, Quinn. I’ll keep track of what still needs doing and point people to the repair drive if they ask.",
+        "speaker": "Opal",
+        "listener": "Quinn"
+      },
+      {
+        "round": 3,
+        "text": "Quinn: Perfect, I’ll keep spreading the word tonight and make sure people know the repair drive is tomorrow afternoon.",
+        "speaker": "Quinn",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Dane: I’m pretty sure it’s the roof patch and the back gate latch, and I’ll wait for Opal to confirm the practical details before I say more.",
+        "speaker": "Dane",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Opal: Yes, that matches what still needs doing: the roof patch and the back gate latch. I’ll keep tracking the practical details and point you to the repair drive if anyone asks.",
+        "speaker": "Opal",
+        "listener": "Dane"
+      },
+      {
+        "round": 3,
+        "text": "Dane: Got it, thanks for confirming. I’ll point folks to you for the practical details.",
+        "speaker": "Dane",
+        "listener": "Opal"
+      },
+      {
+        "round": 4,
+        "text": "Opal: Yes, that still sounds right — I’ll keep track of the roof patch and back gate latch, and point people to the repair drive if they ask.",
+        "speaker": "Opal",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Uli: I’m still waiting on the latest word, but I’ll pass it along as soon as I have it.",
+        "speaker": "Uli",
+        "listener": "Opal"
+      },
+      {
+        "round": 4,
+        "text": "Opal: Okay, I’ll keep track of the roof patch and back gate latch until the latest word comes in.",
+        "speaker": "Opal",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Opal: Yes, that still sounds right to me. I’m keeping track of the roof patch and the back gate latch, and I’ll point people to the repair drive if they ask.",
+        "speaker": "Opal",
+        "listener": "Rey"
+      },
+      {
+        "round": 4,
+        "text": "Rey: That covers it well. I’ll keep checking who’s coordinating the remaining fixes and make sure the list stays straight.",
+        "speaker": "Rey",
+        "listener": "Opal"
+      },
+      {
+        "round": 4,
+        "text": "Opal: That sounds right. I’ll keep tracking the roof patch and back gate latch, and send people toward the repair drive if they ask.",
+        "speaker": "Opal",
+        "listener": "Rey"
+      }
+    ]
+  },
+  "a24": {
+    "kind": "ga_reflection",
+    "n_events": 25,
+    "reflections": [
+      "Quinn is the organizer here and is taking initiative to coordinate the repair drive and spread the word.",
+      "Mara is supportive and responsive, offering help once she is told what still needs doing.",
+      "Their interaction is cooperative and practical, with Quinn handling outreach and Mara waiting for the task list to contribute effectively.",
+      "Quinn is reliably taking initiative and coordinating others, which makes them a central organizer in the group.",
+      "Mara and Ira respond with concrete offers to help, suggesting a cooperative relationship and good follow-through.",
+      "Kira is checking specific task coverage, and Quinn is confirming responsibility clearly, indicating practical task coordination and accountability.",
+      "Quinn is taking initiative and coordinating a repair drive by spreading the word and confirming key work is covered.",
+      "The group is collaborative and task-oriented, with different people checking on remaining work and offering follow-up support.",
+      "Communication is upbeat and confirmatory, with Quinn acting as a central organizer while others help keep progress moving.",
+      "Quinn is the main coordinator for getting the repair drive word out and seems reliable on follow-through.",
+      "Kira is checking for confirmation on a specific task, while Opal is tracking remaining work and redirecting people as needed.",
+      "The group is aligned around the repair drive happening tomorrow afternoon, with repeated confirmation focused on the front brake line being covered.",
+      "Quinn is the main coordination point and keeps repeating the same status updates, especially about the repair drive timing and the front brake line.",
+      "Other people are using Quinn to confirm logistics and hand off responsibilities, which suggests Quinn is trusted to keep the group informed.",
+      "The group is focused on practical planning for tomorrow's repair drive, with communication centered on what is covered, what still needs doing, and who is organizing it."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Quinn: Oh, the repair drive is tomorrow afternoon, right? I’ve already told a few people, and I can help spread the word more.",
+        "speaker": "Quinn",
+        "listener": "Uli"
+      },
+      {
+        "round": 0,
+        "text": "Quinn: Great, I’ll keep spreading the word and let people know they’re welcome to stop by.",
+        "speaker": "Quinn",
+        "listener": "Uli"
+      },
+      {
+        "round": 0,
+        "text": "Mara: Absolutely, I can help with the repair drive. Tell me what still needs doing and I’ll pitch in.",
+        "speaker": "Mara",
+        "listener": "Quinn"
+      },
+      {
+        "round": 0,
+        "text": "Quinn: Great, thanks, Mara. I’ll send around the list tonight so we can get the repair drive moving.",
+        "speaker": "Quinn",
+        "listener": "Mara"
+      },
+      {
+        "round": 0,
+        "text": "Mara: Perfect, send it over when you can and I’ll take a look.",
+        "speaker": "Mara",
+        "listener": "Quinn"
+      },
+      {
+        "round": 1,
+        "text": "Quinn: Yes, tomorrow afternoon should work. I’ve already started spreading the word and I’ll keep going tonight.",
+        "speaker": "Quinn",
+        "listener": "Ira"
+      },
+      {
+        "round": 1,
+        "text": "Ira: Good, I’ll check in after errands and see what still needs doing.",
+        "speaker": "Ira",
+        "listener": "Quinn"
+      },
+      {
+        "round": 1,
+        "text": "Quinn: Great, thanks. I’ll keep spreading the word tonight, and after your errands let me know what still needs doing.",
+        "speaker": "Quinn",
+        "listener": "Ira"
+      },
+      {
+        "round": 1,
+        "text": "Quinn: Absolutely — I’ve already started telling people, and I’ll spread the word more tonight so the repair drive is set for tomorrow afternoon.",
+        "speaker": "Quinn",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Can you confirm that you’ve got the front brake line covered?",
+        "speaker": "Kira",
+        "listener": "Quinn"
+      },
+      {
+        "round": 1,
+        "text": "Quinn: Yes, the front brake line is covered.",
+        "speaker": "Quinn",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Quinn: Absolutely, I’ve already started telling people, and I’ll spread the word more tonight so the repair drive is set for tomorrow afternoon.",
+        "speaker": "Quinn",
+        "listener": "Opal"
+      },
+      {
+        "round": 2,
+        "text": "Opal: Great, Quinn. I’ll keep an eye on what still needs doing and point people to the repair drive if they ask.",
+        "speaker": "Opal",
+        "listener": "Quinn"
+      },
+      {
+        "round": 2,
+        "text": "Quinn: Thanks, Opal. I’ll keep pushing the word tonight so everything’s lined up for tomorrow afternoon.",
+        "speaker": "Quinn",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Quinn: Absolutely, I’ve already started telling people, and I’ll spread the word more tonight so the repair drive is set for tomorrow afternoon.",
+        "speaker": "Quinn",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Opal: Great, Quinn. I’ll keep track of what still needs doing and point people to the repair drive if they ask.",
+        "speaker": "Opal",
+        "listener": "Quinn"
+      },
+      {
+        "round": 3,
+        "text": "Quinn: Perfect, I’ll keep spreading the word tonight and make sure people know the repair drive is tomorrow afternoon.",
+        "speaker": "Quinn",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Kira: Just checking: you can confirm the front brake line’s covered for tomorrow’s repair drive?",
+        "speaker": "Kira",
+        "listener": "Quinn"
+      },
+      {
+        "round": 3,
+        "text": "Quinn: Yes, the front brake line is covered for tomorrow. I’ve already got people lined up, and I’ll keep spreading the word tonight.",
+        "speaker": "Quinn",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: Absolutely, I’m still spreading the word tonight so everyone knows the repair drive is tomorrow afternoon.",
+        "speaker": "Quinn",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Hana: Thanks, Quinn. What still needs fixing on the drive?",
+        "speaker": "Hana",
+        "listener": "Quinn"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: Mostly the front brake line is already covered for tomorrow afternoon, and I’m still spreading the word tonight so people know where to show up.",
+        "speaker": "Quinn",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: Absolutely — I’ve been spreading the word, and I’ll make sure folks know the repair drive is tomorrow afternoon.",
+        "speaker": "Quinn",
+        "listener": "Jules"
+      },
+      {
+        "round": 4,
+        "text": "Jules: Great, that helps — I can check who’s organizing it and what still needs doing if you want.",
+        "speaker": "Jules",
+        "listener": "Quinn"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: Absolutely — I can check who’s organizing it and what still needs doing.",
+        "speaker": "Quinn",
+        "listener": "Jules"
+      }
+    ]
+  },
+  "a25": {
+    "kind": "ga_reflection",
+    "n_events": 28,
+    "reflections": [
+      "Rey is taking the lead on coordinating repairs and assigning specific tasks.",
+      "Ira is offering practical follow-through support, especially after errands.",
+      "The group is focused on dividing the repair list into concrete checks like wiring, lighting, and the gate.",
+      "Rey is coordinating practical repair tasks and is open to shared responsibility.",
+      "Ira and Rosa are supportive collaborators who help organize and follow through on the repair drive.",
+      "The group works best when tasks are split up and the list is kept current.",
+      "Rey is dependable and proactive, taking ownership of checks and following through on specific repair tasks.",
+      "Rosa helps coordinate the effort by keeping the list updated and inviting new findings into the plan.",
+      "Eli, Faye, and Noah are supportive collaborators, each contributing in practical ways but with different constraints on timing and resources.",
+      "Rey is the main organizer and coordinator, often following up on lists, checks, and repair details.",
+      "Several people are willing to help, but they want clearer timing or the latest list before committing.",
+      "The group is managing a practical repair drive with shared responsibilities around tools, wiring, lighting, and remaining fixes.",
+      "Rey is taking an active coordination role, repeatedly following up on the repair list and keeping the work moving.",
+      "Oren and Opal are supportive but defer to updates from others, especially Vik and Rosa, before acting.",
+      "The group seems to share a repair-drive workflow where people track specific tasks and direct others to the current list or coordinator."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Rey: I can help with that. What still needs fixing?",
+        "speaker": "Rey",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Mostly the fence gate and the porch light, I think.",
+        "speaker": "Oren",
+        "listener": "Rey"
+      },
+      {
+        "round": 0,
+        "text": "Rey: I can take a look at the porch light first, then we can check the gate.",
+        "speaker": "Rey",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Ira: I heard the repair drive's moving along. I can swing by after errands and see what still needs doing.",
+        "speaker": "Ira",
+        "listener": "Rey"
+      },
+      {
+        "round": 0,
+        "text": "Rey: Thanks, Ira. I could use a hand checking the list and the loose wiring.",
+        "speaker": "Rey",
+        "listener": "Ira"
+      },
+      {
+        "round": 0,
+        "text": "Ira: Absolutely, I’ll help with the list and check the loose wiring after I’m done running errands.",
+        "speaker": "Ira",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: Absolutely, Rey. I’ve got the repair drive list organized, and I’ll keep us on track.",
+        "speaker": "Rosa",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Rey: Sounds good. I can stop by after my errands and check the wiring, lights, and gate.",
+        "speaker": "Rey",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: Perfect, Rey. I’ll keep the list updated, and we can note anything else that turns up when you check the wiring, lights, and gate.",
+        "speaker": "Rosa",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Eli: That’s kind of Gus to offer. I’ll keep the drill and ladder in mind for the repair drive.",
+        "speaker": "Eli",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Rey: I can take a look after my errands too. If the list is split up, that should make it easier to see what still needs attention.",
+        "speaker": "Rey",
+        "listener": "Eli"
+      },
+      {
+        "round": 1,
+        "text": "Eli: That sounds sensible, Rey. Splitting it up should help us see what’s left to do.",
+        "speaker": "Eli",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Rey: Thanks, Rosa. I’ll keep an eye on the wiring and gate, and let me know if you want me to check anything specific.",
+        "speaker": "Rey",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Faye: I can help after school pickup, but I still need the exact repair window before I can commit.",
+        "speaker": "Faye",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Rey: Thanks, I’ll keep track of the wiring, lighting, and gate checks.",
+        "speaker": "Rey",
+        "listener": "Noah"
+      },
+      {
+        "round": 2,
+        "text": "Noah: Got it, I’ll keep an eye on the drive and make sure the tools are ready.",
+        "speaker": "Noah",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Rey: Thanks, Noah. If you spot anything missing, let me know and I’ll take care of it.",
+        "speaker": "Rey",
+        "listener": "Noah"
+      },
+      {
+        "round": 3,
+        "text": "Nell: I’m still waiting on the newest details, but it sounds like the repair drive is moving ahead and someone’s checking who’s organizing it.",
+        "speaker": "Nell",
+        "listener": "Rey"
+      },
+      {
+        "round": 3,
+        "text": "Rey: I’ll ask Rosa for the latest list and keep an eye on the tools and any repairs that still need doing.",
+        "speaker": "Rey",
+        "listener": "Nell"
+      },
+      {
+        "round": 3,
+        "text": "Nell: Got it — I’ll wait for Rosa’s latest list before I say more.",
+        "speaker": "Nell",
+        "listener": "Rey"
+      },
+      {
+        "round": 3,
+        "text": "Hana: Could you remind me what still needs fixing on the repair drive?",
+        "speaker": "Hana",
+        "listener": "Rey"
+      },
+      {
+        "round": 3,
+        "text": "Rey: We still need to check the drill, ladder, and a few smaller fixes. I can help sort the list if you want.",
+        "speaker": "Rey",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Oren: I’m not sure of the exact details yet, but Rey and Vik should have the repair drive window and task list soon.",
+        "speaker": "Oren",
+        "listener": "Rey"
+      },
+      {
+        "round": 4,
+        "text": "Rey: Thanks, Oren. I’ll follow up with Vik and keep the list moving once the window is set.",
+        "speaker": "Rey",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Got it — I’ll keep an ear out for Vik’s update and help once the repair window is set.",
+        "speaker": "Oren",
+        "listener": "Rey"
+      },
+      {
+        "round": 4,
+        "text": "Opal: Yes, that still sounds right to me. I’m keeping track of the roof patch and the back gate latch, and I’ll point people to the repair drive if they ask.",
+        "speaker": "Opal",
+        "listener": "Rey"
+      },
+      {
+        "round": 4,
+        "text": "Rey: That covers it well. I’ll keep checking who’s coordinating the remaining fixes and make sure the list stays straight.",
+        "speaker": "Rey",
+        "listener": "Opal"
+      },
+      {
+        "round": 4,
+        "text": "Opal: That sounds right. I’ll keep tracking the roof patch and back gate latch, and send people toward the repair drive if they ask.",
+        "speaker": "Opal",
+        "listener": "Rey"
+      }
+    ]
+  }
+}

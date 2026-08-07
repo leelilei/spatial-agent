@@ -1,0 +1,62 @@
+{
+  "experiment_id": "PAT-H-260729-011",
+  "title": "Nested-OOF class-safe selective correction screen",
+  "status": "frozen_before_run",
+  "created_at": "2026-07-29T00:00:00+08:00",
+  "hypothesis": "A conservative correction policy learned only from fold-training OOF predictions can improve a strong frozen DINOv2 RBF classifier without harming any class.",
+  "data": {
+    "development_episode": 1,
+    "samples": 2000,
+    "classes": 200,
+    "outer_folds": 5,
+    "inner_folds_per_outer_fold": 4,
+    "official_test_images_decoded_or_encoded": 0
+  },
+  "features": "Frozen official DINOv2 ViT-B/14 CLS, L2 normalized",
+  "reference": {
+    "method": "sklearn RBF SVC C=3 gamma=scale using SVC.predict",
+    "episode_1_balanced_accuracy": 0.862
+  },
+  "leakage_control": {
+    "outer_evaluation": "Each original fold is predicted by models and a correction policy fitted without any image or label from that fold.",
+    "inner_oof": "Within each outer training split, each of the four remaining original folds is predicted from the other three folds.",
+    "policy_fit": "Thresholds and ordered confusion-pair reliability are learned only from inner-OOF predictions and labels.",
+    "forbidden_inputs": [
+      "outer evaluation labels",
+      "official test images or labels",
+      "keypoints",
+      "episode 2 or 3 results for tuning"
+    ]
+  },
+  "candidate_evidence": {
+    "rbf_confidence": "top-1 minus top-2 SVC decision-function margin",
+    "prototype": "nearest L2-normalized class mean by cosine similarity",
+    "knn": "cosine k-nearest-neighbor majority with similarity-sum tie breaking",
+    "eligible_action": "prototype and kNN agree on the same class and disagree with RBF"
+  },
+  "policy_search_inside_each_outer_fold": {
+    "knn_k": [3, 5],
+    "rbf_low_margin_quantile": [0.1, 0.2, 0.3, 0.4],
+    "minimum_local_purity": [0.6, 0.8, 1.0],
+    "ordered_pair_acceptance": "at least 2 inner-OOF wins and exactly 0 inner-OOF harms",
+    "minimum_inner_net_gain": 2,
+    "tie_breaking": "higher net gain, then more wins, fewer actions, lower margin quantile, higher purity, smaller k",
+    "fallback": "retain all RBF predictions when no configuration qualifies"
+  },
+  "selection_rule": {
+    "primary_arm": "CLASS_SAFE_SELECTIVE_CORRECTION",
+    "gain_over_rbf_pp_at_least": 0.5,
+    "negative_class_count_at_most": 0,
+    "worst_class_recall_drop_at_least": 0.0,
+    "confirmation": "Only if all gates pass, freeze the complete policy and generate untouched train-only episodes 4 and 5. Official test remains locked."
+  },
+  "reporting": [
+    "standard SVC.predict baseline",
+    "balanced accuracy and paired gain",
+    "changed predictions split into wins, harms, and neutral changes",
+    "positive and negative class counts",
+    "worst class recall delta",
+    "per-outer-fold selected configuration and action count",
+    "complete per-sample predictions"
+  ]
+}

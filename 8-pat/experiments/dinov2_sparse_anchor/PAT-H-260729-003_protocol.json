@@ -1,0 +1,37 @@
+{
+  "experiment_id": "PAT-H-260729-003",
+  "title": "Frozen DINOv2 classifier and global-local kernel screen",
+  "status": "frozen_before_run",
+  "created_at": "2026-07-29T00:00:00+08:00",
+  "purpose": "Determine whether classifier geometry, rather than sparse-part evidence, is the current performance bottleneck before spending GPU time on representation fine-tuning.",
+  "data": {
+    "episode": "PAT-D-260728-009 episode 1",
+    "samples": 2000,
+    "classes": 200,
+    "folds": 5,
+    "official_test_images_decoded_or_encoded": 0
+  },
+  "inputs": {
+    "features": "Frozen official DINOv2 ViT-B/14 CLS and mean-patch features cached by PAT-H-260729-001",
+    "labels": "Official CUB train labels only",
+    "keypoints_used": false
+  },
+  "arms": {
+    "ridge_cls_alpha": [0.01, 0.03, 0.1, 0.3, 1.0, 3.0, 10.0, 30.0, 100.0],
+    "rbf_svc_cls_C": [1.0, 3.0, 10.0, 30.0],
+    "rbf_svc_gamma": ["scale"],
+    "global_local_rbf_fusion_patch_weight": [0.1, 0.25, 0.5, 0.75],
+    "prototype_ridge_fusion_weight": [0.1, 0.25, 0.5, 0.75]
+  },
+  "selection_rule": {
+    "primary_metric": "balanced_accuracy",
+    "reference": "PAT-H-260729-001 CLS_RIDGE = 84.60%",
+    "screen_success": "best arm improves by at least 0.50 percentage points",
+    "confirmation": "Any selected arm remains exploratory until evaluated unchanged on episodes 2 and 3."
+  },
+  "known_before_run": {
+    "PAT-H-260729-001_CLS_RIDGE_BA": 0.846,
+    "PAT-H-260729-002_best_BA": 0.847,
+    "PAT-H-260729-002_screen_success": false
+  }
+}

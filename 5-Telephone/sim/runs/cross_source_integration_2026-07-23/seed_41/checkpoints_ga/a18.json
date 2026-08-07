@@ -1,0 +1,259 @@
+{
+  "agent_id": "a18",
+  "interview": {
+    "name": "Jules",
+    "answer": "The repair drive is at the community center parking lot, but no time is specified.",
+    "verdict": "current"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 30,
+    "reflections": [
+      "Nell is supportive and willing to help without taking over the coordination.",
+      "Jules acts as the main organizer and relay for the repair drive, handling updates and outreach.",
+      "Opal provides the concrete event details Jules needs to share, suggesting a simple, cooperative coordination chain.",
+      "Jules is a reliable coordinator who repeatedly relays updates and follows through on requests.",
+      "The group values practical help and clear logistics, especially for the repair drive.",
+      "Hana and Dane depend on Jules to help circulate complete information to others.",
+      "Jules is the main coordinator, relaying details and confirming logistics for the repair drive.",
+      "The others are focused on practical execution: Dane wants the repair list, Pia is checking timing, and Mina is gathering the date and needs list.",
+      "The group communication is collaborative and cautious, with repeated emphasis on clear timing and location so people are not left waiting or showing up at the wrong time.",
+      "Jules is acting as a coordinator, repeatedly relaying timing and location details while helping spread the word.",
+      "Mina is the information gatherer, asking around for the date and needs list and promising updates when confirmed.",
+      "The group is aligned and cooperative, with several people relying on Jules to keep communication flowing so attendance happens smoothly.",
+      "Jules is a reliable coordinator who repeatedly helps spread updates and keep people informed.",
+      "Mara, Sam, and Quinn all depend on Jules for communication support and seem to appreciate that help.",
+      "The repair drive is a shared community effort centered on logistics, volunteers, supplies, and timing updates."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Nell: Oh, I heard the repair drive’s getting a good turnout. If there’s anything I can help with, just let me know.",
+        "speaker": "Nell",
+        "listener": "Jules"
+      },
+      {
+        "round": 0,
+        "text": "Jules: That’s so kind, Nell — I might take you up on that. We’re still sorting a few odds and ends, so I’ll let you know where you’d be most helpful.",
+        "speaker": "Jules",
+        "listener": "Nell"
+      },
+      {
+        "round": 0,
+        "text": "Nell: Of course — just send me a quick update when you know. I’m happy to pitch in wherever you need me.",
+        "speaker": "Nell",
+        "listener": "Jules"
+      },
+      {
+        "round": 0,
+        "text": "Jules: I’m happy to help connect folks for the repair drive—what do you need me to spread the word about?",
+        "speaker": "Jules",
+        "listener": "Opal"
+      },
+      {
+        "round": 0,
+        "text": "Opal: Thanks, Jules — please spread the word that we’re meeting at the community center parking lot for the repair drive.",
+        "speaker": "Opal",
+        "listener": "Jules",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 0,
+        "text": "Jules: Absolutely — I’ll spread the word that the repair drive meets at the community center parking lot.",
+        "speaker": "Jules",
+        "listener": "Opal",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Jules",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Jules: Thanks, Hana — I’ll keep spreading the word, and I’ll let everyone know the repair drive is at the community center parking lot.",
+        "speaker": "Jules",
+        "listener": "Hana",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Jules",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Hana: Thanks, Jules — that helps. I’ll resend the repair list and exact time so everyone has the full details.",
+        "speaker": "Hana",
+        "listener": "Jules"
+      },
+      {
+        "round": 1,
+        "text": "Jules: Perfect — send it over and I’ll pass along the full details too.",
+        "speaker": "Jules",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Jules: Absolutely — I’ll spread the word that the repair drive meets at the community center parking lot.",
+        "speaker": "Jules",
+        "listener": "Dane",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Jules",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Dane: Thanks, Jules — that works for me. Could you also send the repair list again when you get a chance?",
+        "speaker": "Dane",
+        "listener": "Jules"
+      },
+      {
+        "round": 1,
+        "text": "Jules: Absolutely — I’ll send the repair list again as soon as I can.",
+        "speaker": "Jules",
+        "listener": "Dane"
+      },
+      {
+        "round": 2,
+        "text": "Pia: Thanks, Jules — I’m mostly watching the timing so folks aren’t left waiting with their things. If you see the drop-off or pickup window posted clearly, please let me know.",
+        "speaker": "Pia",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Jules: Absolutely — I’ll keep an eye out and let you know as soon as I see the drop-off or pickup window posted clearly.",
+        "speaker": "Jules",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Pia: Thanks, Jules — that would really help keep things moving smoothly. I’m just trying to avoid everyone showing up at the wrong time.",
+        "speaker": "Pia",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Mina: I haven’t got the date yet, but I’m asking around for it and the needs list now. I’ll pass along anything solid as soon as I hear back.",
+        "speaker": "Mina",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Jules: Thanks, Mina — I’ll keep spreading the word about the repair drive, and I’ll share the community center parking lot meeting spot too.",
+        "speaker": "Jules",
+        "listener": "Mina",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Jules",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Mina: Great, thanks, Jules — I’ll keep asking around for the date and needs list, and I’ll let you know as soon as I get something solid.",
+        "speaker": "Mina",
+        "listener": "Jules"
+      },
+      {
+        "round": 3,
+        "text": "Jules: Absolutely — I’ll keep spreading the word that the repair drive meets at the community center parking lot.",
+        "speaker": "Jules",
+        "listener": "Bo",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Jules",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Bo: Perfect — I’ve got Saturday morning at the community center parking lot. Just send me the time and what to bring, and I’m set.",
+        "speaker": "Bo",
+        "listener": "Jules"
+      },
+      {
+        "round": 3,
+        "text": "Jules: Great — I’ll send the time and a quick list of what to bring as soon as I have it.",
+        "speaker": "Jules",
+        "listener": "Bo"
+      },
+      {
+        "round": 3,
+        "text": "Jules: Thanks, Mara — I’ll keep helping spread the word about the repair drive. If you have any specific needs or timing updates, send them my way.",
+        "speaker": "Jules",
+        "listener": "Mara"
+      },
+      {
+        "round": 3,
+        "text": "Mara: Thanks, Jules — I’ll send along the final time and any updates as soon as I have them. Really appreciate you helping spread the word.",
+        "speaker": "Mara",
+        "listener": "Jules"
+      },
+      {
+        "round": 3,
+        "text": "Jules: Of course — I’ll keep an ear out for the final time and share it with folks once you send it over.",
+        "speaker": "Jules",
+        "listener": "Mara"
+      },
+      {
+        "round": 4,
+        "text": "Jules: Absolutely — I’ll keep spreading the word that the repair drive meets at the community center parking lot.",
+        "speaker": "Jules",
+        "listener": "Sam",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Jules",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Sam: Thanks, Jules — I’ll help keep things organized with volunteers and supplies. Just let me know if anything else would be useful.",
+        "speaker": "Sam",
+        "listener": "Jules"
+      },
+      {
+        "round": 4,
+        "text": "Jules: Thanks, Sam — I’ll do that, and I’ll send along any updates if the time or needs list changes.",
+        "speaker": "Jules",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: Hey Jules — I’m spreading the word about the repair drive, and it’d be great if you could stop by or help share it with neighbors.",
+        "speaker": "Quinn",
+        "listener": "Jules"
+      },
+      {
+        "round": 4,
+        "text": "Jules: Absolutely — I’ll keep spreading the word about the repair drive meeting at the community center parking lot.",
+        "speaker": "Jules",
+        "listener": "Quinn",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Jules",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Quinn: Thanks, Jules — that helps a lot. If you hear anyone who can volunteer or bring tools, send them my way!",
+        "speaker": "Quinn",
+        "listener": "Jules"
+      }
+    ]
+  }
+}

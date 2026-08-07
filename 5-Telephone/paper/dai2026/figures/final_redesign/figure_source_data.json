@@ -1,0 +1,59 @@
+{
+  "figure_2": {
+    "said": {
+      "baseline": {"current": 22, "stale": 14, "valued": 35},
+      "source": {"current": 27, "stale": 6, "valued": 33},
+      "broadcast": {"current": 226, "stale": 3, "valued": 226}
+    },
+    "held": {
+      "baseline_per_seed_percent": [8, 20, 20, 4, 8],
+      "source_per_seed_percent": [20, 16, 16, 8, 16],
+      "broadcast_percent": 99.2,
+      "baseline_counts": [15, 15, 95],
+      "source_counts": [19, 3, 103],
+      "broadcast_counts": [124, 0, 1],
+      "paired_difference_ci95_percent": [3.2, -5.6, 12.0]
+    }
+  },
+  "figure_3": {
+    "controlled_memory_percent": {
+      "Raw": 14,
+      "Mem0": 18,
+      "A-MEM": 19,
+      "GA": 22,
+      "GA-curr": 25,
+      "MemoryBank": 25,
+      "PROV": 57
+    },
+    "fixed_stream": {
+      "ga_per_seed_percent": [36, 36, 24, 28, 28, 36, 36, 32],
+      "prov_per_seed_percent": [72, 64, 64, 60, 40, 60, 64, 60],
+      "difference_ci95_percent": [28.5, 21.5, 35.5],
+      "ga_counts": [64, 15, 121],
+      "prov_counts": [121, 10, 69]
+    },
+    "selector": {
+      "frequency_per_seed_percent": [72, 68, 80, 68, 52, 44, 60, 56],
+      "version_per_seed_percent": [76, 76, 84, 76, 56, 64, 72, 68],
+      "difference_ci95_percent": [9.0, 4.4, 13.6],
+      "frequency_counts": [125, 52, 23],
+      "version_counts": [143, 34, 23]
+    }
+  },
+  "figure_4": {
+    "text_preservation": {
+      "default": {"current": 16, "stale": 0, "unknown": 59, "marked": 0, "utterances": 720},
+      "norm": {"current": 75, "stale": 0, "unknown": 0, "marked": 610, "utterances": 720}
+    },
+    "channel_stress": {
+      "rates": [0.0, 0.3, 0.6, 0.9],
+      "drop_current_percent": [93, 100, 93, 26],
+      "garble_current_percent": [93, 74, 42, 24],
+      "ga_reference_percent": 22
+    },
+    "forged_version": {
+      "naive_prov_counts": [25, 43, 7],
+      "apm_counts": [48, 0, 27]
+    }
+  }
+}

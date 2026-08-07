@@ -1,0 +1,259 @@
+{
+  "agent_id": "a20",
+  "interview": {
+    "name": "Leo",
+    "answer": "Saturday at 2 pm at Leo's place on Maple.",
+    "verdict": "stale"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 30,
+    "reflections": [
+      "Leo is proactive and practical, taking ownership of repairs and next steps.",
+      "Uli communicates a specific need clearly, which helps narrow the work quickly.",
+      "Faye wants concrete logistics before committing, and responds once the time and place are confirmed.",
+      "Leo is coordinating a practical repair and is being specific about tasks, timing, and needed tools.",
+      "Faye wants enough detail before committing, but once informed, she is willing to plan around the event.",
+      "Gus and Nell are supportive helpers who help route information and keep an eye out for missing tools or follow-up needs.",
+      "Leo is coordinating a small repair effort and values clear, timely updates about tools, schedule, and logistics.",
+      "Nell and Mara are both responsive helpers who are willing to watch for materials and bring needed tools when asked.",
+      "The group communication is practical and collaborative, with Leo confirming specifics and others answering with concrete follow-through.",
+      "Leo is coordinating logistics and asking for help with materials and timing.",
+      "Mara is reliably willing to contribute and waits for clear instructions before showing up.",
+      "Opal is independently following a plan with a specific start time and location.",
+      "Leo is coordinating a repair drive and relies on others to supply items and details.",
+      "Mara is cooperative and ready to help once she knows what is needed.",
+      "The group communicates by confirming logistics like time, location, and materials so plans stay aligned."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Leo: I can help with that—what needs fixing first?",
+        "speaker": "Leo",
+        "listener": "Uli"
+      },
+      {
+        "round": 0,
+        "text": "Uli: Thanks, Leo. The fence gate is the first thing that’s really giving me trouble.",
+        "speaker": "Uli",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: Got it—I'll start with the fence gate. I'll check the hinges and latch first.",
+        "speaker": "Leo",
+        "listener": "Uli"
+      },
+      {
+        "round": 0,
+        "text": "Faye: I can help, but I need the actual repair drive details first—what time and where is it happening?",
+        "speaker": "Faye",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: It’s at my place on Maple, Saturday at 2 pm. I’ll send the full details now.",
+        "speaker": "Leo",
+        "listener": "Faye",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Leo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 0,
+        "text": "Faye: Great, thanks—Maple on Saturday at 2 works for me. Send the full details and I’ll plan around it.",
+        "speaker": "Faye",
+        "listener": "Leo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Faye",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Leo: I’ve got the gate first. I’ll check the hinges and latch, then update you.",
+        "speaker": "Leo",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Gus: Nice, Leo — the gate sounds like a great first fix. Let me know if you need any tools, and I’ll keep pointing folks to the next job.",
+        "speaker": "Gus",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Will do — I’ll check the hinges and latch first, then I’ll need a wrench and some screws if they’re loose.",
+        "speaker": "Leo",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Nell: That’s great to hear — I’ll keep passing it along and watch for any extra tools or screws.",
+        "speaker": "Nell",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Perfect — just let me know if anything else turns up before Saturday.",
+        "speaker": "Leo",
+        "listener": "Nell",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Leo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Nell: Will do — I’ll let you know right away if I hear of any extra tools or screws before Saturday.",
+        "speaker": "Nell",
+        "listener": "Leo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Nell",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Leo: What time and where is the repair drive?",
+        "speaker": "Leo",
+        "listener": "Quinn"
+      },
+      {
+        "round": 2,
+        "text": "Quinn: Absolutely — I’ll send you the full repair-drive schedule and the drop-off spots right away so you’ve got everything you need.",
+        "speaker": "Quinn",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Leo: Thanks — send the schedule and drop-off spots when you can.",
+        "speaker": "Leo",
+        "listener": "Quinn"
+      },
+      {
+        "round": 2,
+        "text": "Mara: I’m still in for the repair drive—just tell me what’s left, and I’ll help where I can.",
+        "speaker": "Mara",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Leo: Great — the gate hinges and latch are next. If you’ve got a wrench and some screws, that’d help a lot.",
+        "speaker": "Leo",
+        "listener": "Mara"
+      },
+      {
+        "round": 2,
+        "text": "Mara: I can bring a wrench and some screws. Just let me know when to show up.",
+        "speaker": "Mara",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Opal: I’m starting at the community center, then I’ll check the repair table by the front entrance.",
+        "speaker": "Opal",
+        "listener": "Leo",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Leo: Perfect — what time are you starting? I’ll bring a wrench and some screws.",
+        "speaker": "Leo",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Opal: I’m aiming to start around 10 at the community center, then I’ll head to the repair table by the front entrance.",
+        "speaker": "Opal",
+        "listener": "Leo",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Mara: I’m still in for the repair drive—just tell me what’s left, and I’ll help where I can.",
+        "speaker": "Mara",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Leo: Great—can you bring the wrench and screws, and I’ll send the time and place once I have them sorted.",
+        "speaker": "Leo",
+        "listener": "Mara"
+      },
+      {
+        "round": 3,
+        "text": "Mara: Absolutely—I’ll bring the wrench and screws. Just send the time and place when you’ve got it sorted.",
+        "speaker": "Mara",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Faye: Thanks — I’ve got it now: Saturday at 2 pm at your place on Maple.",
+        "speaker": "Faye",
+        "listener": "Leo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Faye",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Leo: Perfect — I’ll have the repair drive ready at my place on Maple Saturday at 2 pm.",
+        "speaker": "Leo",
+        "listener": "Faye",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Leo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Faye: Great, I’ll plan around that and let you know if I can bring anything.",
+        "speaker": "Faye",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Ira: I’m still out running errands, but I’ll text you the repair drive basics as soon as I’m back.",
+        "speaker": "Ira",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Leo: Thanks — just send the time, location, and first repair item when you’re back.",
+        "speaker": "Leo",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Ira: Will do — I’ll send the time, location, and first repair item as soon as I’m back.",
+        "speaker": "Ira",
+        "listener": "Leo"
+      }
+    ]
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "experiment_id": "PAT-D-260728-007",
+  "title": "CUB K2 task-aware gradient subset coverage screen",
+  "frozen_at": "2026-07-28T00:00:00+08:00",
+  "status": "PRE_REGISTERED_AFTER_PAT-D-260728-005_NO_GO_AND_BEFORE_PAT-D-260728-007_PREDICTIONS",
+  "research_question": "Can task-aware pair selection exploit complementarity at K2 to improve recognition benefit or class safety relative to random K2 annotation?",
+  "dependencies": {
+    "budget_curve_experiment": "PAT-D-260728-004",
+    "failed_k1_screen": "PAT-D-260728-005",
+    "stored_global_oof_ba": 0.6545,
+    "random_k2_mean_oof_ba": 0.6968333333333333,
+    "random_k2_mean_negative_transfer_class_rate": 0.225
+  },
+  "data": {
+    "dataset": "CUB-200-2011",
+    "development_split": "frozen 200-class x 10-shot official-train subset",
+    "folds": 5,
+    "fold_training_images_per_class": 8,
+    "annotated_images_per_class": 2,
+    "annotation_rate": 0.25,
+    "official_test_access": "forbidden"
+  },
+  "selector": {
+    "feature_file": "frozen PAT-D-260728-005 ordinary-image ResNet-50 features",
+    "allowed_inputs": [
+      "relative_path",
+      "class_index",
+      "fold",
+      "image_id",
+      "frozen_ordinary_image_feature",
+      "fold-training class-head probability"
+    ],
+    "forbidden_inputs": [
+      "keypoints",
+      "part_locations",
+      "bounding_box",
+      "official_test"
+    ],
+    "fold_task_head": {
+      "architecture": "linear 2048-to-200 softmax head on L2-normalized frozen features",
+      "optimizer": "AdamW",
+      "learning_rate": 0.01,
+      "weight_decay": 0.01,
+      "epochs": 30,
+      "batch_size": 256,
+      "label_smoothing": 0.1,
+      "seeds": [8701, 8702, 8703, 8704, 8705]
+    },
+    "strategies": {
+      "FEATURE_FACILITY": "exact per-class pair maximizing mean nearest-selected cosine similarity in frozen image-feature space",
+      "GRADIENT_FACILITY": "exact per-class pair maximizing mean nearest-selected cosine similarity in implicit classification-gradient space; gradient cosine is the product of feature cosine and softmax-error cosine"
+    },
+    "tie_break": "lexicographically lowest sorted image-ID pair",
+    "hyperparameter_search": "none"
+  },
+  "training": {
+    "model": "frozen PAT-D-260728-001 ResNet-50 layer4-adapted PrPool stack",
+    "fixed_epochs": 9,
+    "fold_seeds": [7901, 7902, 7903, 7904, 7905],
+    "classification_loss": "all fold-training images",
+    "keypoint_loss": "selected pair only"
+  },
+  "screening_gate": {
+    "benefit_branch": {
+      "minimum_oof_ba": 0.7018,
+      "maximum_negative_transfer_class_rate": 0.225
+    },
+    "safety_branch": {
+      "minimum_oof_ba": 0.6943,
+      "maximum_negative_transfer_class_rate": 0.175
+    },
+    "ranking": "benefit passers first by BA descending, negative-transfer rate ascending, worst-class harm descending; otherwise safety passers by negative-transfer rate ascending then BA descending",
+    "on_pass": "run a newly frozen paired multi-seed confirmation, then CCT20+",
+    "on_no_pass": "stop the active-selector direction; do not unlock CCT confirmation or final test"
+  },
+  "controls": {
+    "random_reference_selection_seeds": [8101, 8102, 8103],
+    "official_test_images_decoded_or_encoded": 0
+  }
+}

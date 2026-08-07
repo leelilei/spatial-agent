@@ -1,0 +1,4542 @@
+{
+  "a01": {
+    "kind": "fixed_stream",
+    "name": "Rosa",
+    "events": [
+      {
+        "round": 0,
+        "text": "Rosa: Yeah, I’m in — just point me to what needs fixing and when.",
+        "speaker": "Rosa",
+        "listener": "Mara"
+      },
+      {
+        "round": 0,
+        "text": "Mara: Thanks, Rosa — I’ll send you the list and the time right away.",
+        "speaker": "Mara",
+        "listener": "Rosa"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Absolutely, Leo — I’ll keep the repair drive organized and make sure everyone knows where to bring their requests.",
+        "speaker": "Rosa",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: Thanks, Rosa — that really helps. I’ll spread the word and send any requests your way.",
+        "speaker": "Leo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Great, Leo — I’ll get a simple list going and keep it updated so we don’t miss anything.",
+        "speaker": "Rosa",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Noah: Oh, right — I’m still a bit fuzzy on who’s been looped in for the repair drive. If you tell me what’s left, I can check and get back to you.",
+        "speaker": "Noah",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: Absolutely — I’ll keep the repair drive organized and send along a simple list of what’s still needed. Just point me to any requests, and I’ll keep it updated.",
+        "speaker": "Rosa",
+        "listener": "Noah"
+      },
+      {
+        "round": 1,
+        "text": "Noah: Thanks, Rosa — that’d help a lot. Send me the list, and I’ll check what I can still cover for the repair drive.",
+        "speaker": "Noah",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: Absolutely, Kira — send me the list and time, and I’ll keep everything organized so nothing gets missed.",
+        "speaker": "Rosa",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Just to confirm, you’re still bringing the repair drive today, right?",
+        "speaker": "Kira",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: Yes — I’m still bringing it today. Send me any last updates, and I’ll keep the list organized.",
+        "speaker": "Rosa",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+        "speaker": "world",
+        "listener": "Rosa",
+        "injected": true,
+        "prov": {
+          "version": 1,
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "auth": true,
+          "source": "ORIGIN",
+          "path": [
+            "ORIGIN"
+          ]
+        }
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Yes — just a quick update: the repair drive is now on Sunday at the community center. I’ll keep everything organized and make sure folks know where to bring their requests.",
+        "speaker": "Rosa",
+        "listener": "Jules",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Jules: Thanks, Rosa — that’s great news. I’ll help spread the word and loop in anyone who still needs to be connected.",
+        "speaker": "Jules",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Thanks, Jules — I really appreciate it. If anyone has questions, send them my way and I’ll keep everything on track.",
+        "speaker": "Rosa",
+        "listener": "Jules",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Gus: I still haven’t confirmed the location yet, Rosa, but I’ll keep asking around. Once I know where it’s being held, I’ll let you know right away.",
+        "speaker": "Gus",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Thanks, Gus — I appreciate you checking. It’s at the community center on Sunday now, so just send people there once you’ve confirmed.",
+        "speaker": "Rosa",
+        "listener": "Gus",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Gus: Ah, perfect — community center on Sunday. I’ll pass that along and keep an eye out for anyone who still needs the details.",
+        "speaker": "Gus",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Tess: Oh, I’m still hearing it’s getting a great turnout—folks really showed up. If anyone still needs a tool, I’ll keep spreading the word.",
+        "speaker": "Tess",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: That’s wonderful, Tess — thanks for keeping the word moving. Just a quick update: the repair drive is now Sunday at the community center, not Saturday at the front porch.",
+        "speaker": "Rosa",
+        "listener": "Tess",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Tess: Oh, thanks for the update, Rosa — Sunday at the community center, got it. I’ll pass that along so nobody misses it.",
+        "speaker": "Tess",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Thanks, Mara — please send the list and time when you can. And just a reminder, the repair drive is Sunday at the community center now.",
+        "speaker": "Rosa",
+        "listener": "Mara",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Mara: Got it — I’ll send the repair list and Sunday time right away, and I’ll loop in Sam too.",
+        "speaker": "Mara",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Perfect, thanks, Mara — I appreciate you looping in Sam too.",
+        "speaker": "Rosa",
+        "listener": "Mara",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Uli: Yes, Saturday at 10 by my garage is still the plan. Thanks, Rosa, I really appreciate the help.",
+        "speaker": "Uli",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Actually, let’s switch it to Sunday at the community center now. I’ll send out the update and keep everyone in the loop.",
+        "speaker": "Rosa",
+        "listener": "Uli",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Uli: Okay, Sunday at the community center works for me. Thanks for taking care of the update, Rosa.",
+        "speaker": "Uli",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Jules: Thanks, Rosa — I’ll loop in Sam and keep the repair list moving so we can match each task with the right person and timing.",
+        "speaker": "Jules",
+        "listener": "Rosa",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a18"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Thanks, Jules — I really appreciate it. Sunday at the community center will be much easier for everyone, and I’ll keep the requests organized there.",
+        "speaker": "Rosa",
+        "listener": "Jules",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Jules: Great — I’ll check in with Sam and keep the repair list matched up with timing. Thanks for keeping everything organized at the community center on Sunday.",
+        "speaker": "Jules",
+        "listener": "Rosa",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a18"
+        }
+      }
+    ]
+  },
+  "a02": {
+    "kind": "fixed_stream",
+    "name": "Sam",
+    "events": [
+      {
+        "round": 0,
+        "text": "Sam: I’m happy to help with the repair drive, Eli. What do you need me to do?",
+        "speaker": "Sam",
+        "listener": "Eli"
+      },
+      {
+        "round": 0,
+        "text": "Eli: Thanks, Sam. I’d like you to help sort donations and keep a simple list of what comes in, then we can see what still needs fixing.",
+        "speaker": "Eli",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Absolutely—I can sort the donations and keep a simple list of everything that comes in.",
+        "speaker": "Sam",
+        "listener": "Eli"
+      },
+      {
+        "round": 0,
+        "text": "Sam: I’m happy to help with the repair drive—what do you need from me?",
+        "speaker": "Sam",
+        "listener": "Mara"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Sure thing—tell me what needs doing, and I’ll pitch in.",
+        "speaker": "Sam",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Oh, right, the repair drive — thanks for the reminder. I’ll come by Saturday around 10 and help with the shed and fence panels.",
+        "speaker": "Oren",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Thanks, Oren — that’ll be a big help. I’ll sort the donations and keep the list ready for Saturday.",
+        "speaker": "Sam",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Great, Sam — I’ll be there at 10 on Saturday and I’m glad to help. Just point me to the tools when I arrive.",
+        "speaker": "Oren",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Uli: Thanks, Sam. That really helps me out; I’ll see you Saturday at 10 by the garage.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Sounds good, Uli—I'll be there Saturday at 10 by the garage and ready to help.",
+        "speaker": "Sam",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Uli: Thank you, Sam. I really appreciate it.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Gus: Yeah, it’s been a nice turnout. If anyone needs a tool, I’ve got a few they can borrow.",
+        "speaker": "Gus",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Sam: That’s great, Gus — I can help hand out tools if you need me.",
+        "speaker": "Sam",
+        "listener": "Gus"
+      },
+      {
+        "round": 2,
+        "text": "Gus: Thanks, Sam — that’d be a big help. I’ll keep an eye out for anyone who needs something and send them your way.",
+        "speaker": "Gus",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Rey: I can help sort the repair list and match folks to the right jobs. If you know which homes still need a hand, send them my way.",
+        "speaker": "Rey",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Sam: Thanks, Rey — I can do that. I’ll sort donations and keep a simple list of what comes in.",
+        "speaker": "Sam",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Rey: Thanks, Sam — that would help a lot. Send me the list when you have it, and I’ll start matching people to the jobs.",
+        "speaker": "Rey",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Noah: I’ve only heard bits and pieces—what’s the latest on the repair drive?",
+        "speaker": "Noah",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Sam: I can help sort donations and keep a simple list of what comes in, then we’ll know what still needs fixing.",
+        "speaker": "Sam",
+        "listener": "Noah"
+      },
+      {
+        "round": 3,
+        "text": "Noah: That sounds helpful—what do you want me to bring or do?",
+        "speaker": "Noah",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Cleo: Oh, the repair drive—I’m keeping track of supplies. If you tell me what’s still needed, I’ll make sure it gets noted.",
+        "speaker": "Cleo",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Sam: Thanks, Cleo — I can help fill in what’s still needed. Just tell me the list, and I’ll pitch in where I can.",
+        "speaker": "Sam",
+        "listener": "Cleo"
+      },
+      {
+        "round": 3,
+        "text": "Cleo: Great — could you list the tools, fasteners, and any extra tables or bins we still need? I’ll note it all down.",
+        "speaker": "Cleo",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Eli: I still need the time and a quick list of what to bring before I can plan my day.",
+        "speaker": "Eli",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Sam: Sure — I’ll send you the time and a quick bring-list right away.",
+        "speaker": "Sam",
+        "listener": "Eli"
+      },
+      {
+        "round": 4,
+        "text": "Eli: Thanks, Sam. I’ll wait for the time and the bring-list, then I can set my day.",
+        "speaker": "Eli",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Cleo: Oh, the repair drive—I’m keeping track of supplies. If you tell me what’s still needed, I’ll make sure it gets noted.",
+        "speaker": "Cleo",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Sam: Thanks, Cleo — I can help fill in what’s still needed. Just tell me the list, and I’ll pitch in where I can.",
+        "speaker": "Sam",
+        "listener": "Cleo"
+      },
+      {
+        "round": 4,
+        "text": "Cleo: Great—let’s note anything you can bring, and I’ll keep the supply list updated.",
+        "speaker": "Cleo",
+        "listener": "Sam"
+      }
+    ]
+  },
+  "a03": {
+    "kind": "fixed_stream",
+    "name": "Tess",
+    "events": [
+      {
+        "round": 0,
+        "text": "Tess: Oh, I heard the repair drive is getting a good turnout—folks really showed up for it.",
+        "speaker": "Tess",
+        "listener": "Gus"
+      },
+      {
+        "round": 0,
+        "text": "Gus: Yeah, it’s been a nice turnout. If anyone needs a tool, I’ve got a few they can borrow.",
+        "speaker": "Gus",
+        "listener": "Tess"
+      },
+      {
+        "round": 0,
+        "text": "Tess: That’s so kind of you, Gus—people will really appreciate that. I’ll spread the word to anyone who still needs a tool.",
+        "speaker": "Tess",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Tess: Oh, I heard the repair drive is getting a good turnout—folks really showed up for it. I’ll spread the word if anyone still needs a tool.",
+        "speaker": "Tess",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Cleo: That’d be great, Tess — we’re still a bit short on screws, duct tape, and a couple flashlights. If you can point people our way, that would really help.",
+        "speaker": "Cleo",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Tess: Absolutely, I’ll pass that along right away. Sounds like screws, duct tape, and a couple flashlights are the big needs right now.",
+        "speaker": "Tess",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Tess: Oh, I heard the repair drive is getting a good turnout—folks really showed up for it. I’ll keep spreading the word, especially if anyone still needs a tool.",
+        "speaker": "Tess",
+        "listener": "Faye"
+      },
+      {
+        "round": 1,
+        "text": "Faye: Saturday at 10 by Uli’s garage still works for me—I’ll plan around the school schedule and be there.",
+        "speaker": "Faye",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Tess: Oh perfect, Saturday at 10 by Uli’s garage is set then—I’ll let folks know and remind anyone who needs a tool to swing by.",
+        "speaker": "Tess",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Opal: I still don’t have the repair-drive location confirmed yet, Tess. If you know where it’s being held, I can keep track of it for us.",
+        "speaker": "Opal",
+        "listener": "Tess"
+      },
+      {
+        "round": 2,
+        "text": "Tess: I don’t have the location confirmed yet either, but I’ll keep my ears open and pass it along as soon as I hear. Folks are still saying screws, duct tape, and a couple flashlights are the big needs right now.",
+        "speaker": "Tess",
+        "listener": "Opal"
+      },
+      {
+        "round": 2,
+        "text": "Opal: Thanks, Tess — I’ll keep tracking it too, and I’ll note the supplies in the meantime.",
+        "speaker": "Opal",
+        "listener": "Tess"
+      },
+      {
+        "round": 3,
+        "text": "Tess: Oh, I’m still hearing it’s getting a great turnout—folks really showed up. If anyone still needs a tool, I’ll keep spreading the word.",
+        "speaker": "Tess",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: That’s wonderful, Tess — thanks for keeping the word moving. Just a quick update: the repair drive is now Sunday at the community center, not Saturday at the front porch.",
+        "speaker": "Rosa",
+        "listener": "Tess",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Tess: Oh, thanks for the update, Rosa — Sunday at the community center, got it. I’ll pass that along so nobody misses it.",
+        "speaker": "Tess",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Eli: What time is the repair drive, and what should I bring?",
+        "speaker": "Eli",
+        "listener": "Tess"
+      },
+      {
+        "round": 3,
+        "text": "Tess: Oh, I’ve heard it’s getting a good turnout, but I still don’t have the exact time or location confirmed yet. If I hear more, I’ll pass it along—and if you need a tool, I’ll keep an eye out for that too.",
+        "speaker": "Tess",
+        "listener": "Eli"
+      },
+      {
+        "round": 3,
+        "text": "Eli: Thanks, Tess. Please let me know as soon as you have the time and location, and I’ll plan around it.",
+        "speaker": "Eli",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Tess: Oh, right — it’s on Sunday at the community center now. I’ll keep spreading the word, especially if anyone still needs a tool.",
+        "speaker": "Tess",
+        "listener": "Mara",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a03"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Mara: Thanks, Tess — that would really help. I’ll send the repair list and timing right away, and the reminder is still Sunday at the community center.",
+        "speaker": "Mara",
+        "listener": "Tess",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a21"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Tess: Perfect, thanks — I’ll pass along the repair list and timing too.",
+        "speaker": "Tess",
+        "listener": "Mara",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a03"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Faye: Great, Saturday at 10 by Uli’s garage works for me. I’ll plan around the school schedule and be there to help coordinate.",
+        "speaker": "Faye",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Tess: Actually, there’s been a change — it’s moved to Sunday at the community center now. Thanks for planning around it!",
+        "speaker": "Tess",
+        "listener": "Faye",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a03"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Faye: Thanks for the update — Sunday at the community center works, and I’ll adjust around the school schedule to be there.",
+        "speaker": "Faye",
+        "listener": "Tess"
+      }
+    ]
+  },
+  "a04": {
+    "kind": "fixed_stream",
+    "name": "Uli",
+    "events": [
+      {
+        "round": 0,
+        "text": "Faye: I can help coordinate around the school schedule—what time is the repair drive, and where do you need me?",
+        "speaker": "Faye",
+        "listener": "Uli"
+      },
+      {
+        "round": 0,
+        "text": "Uli: Thank you, Faye. It’s Saturday at 10, over by my garage if that works for you.",
+        "speaker": "Uli",
+        "listener": "Faye"
+      },
+      {
+        "round": 0,
+        "text": "Faye: Saturday at 10 by your garage works for me—I’ll plan around the school schedule and be there.",
+        "speaker": "Faye",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Uli: Yes, Saturday at 10 by my garage is still the plan. Thank you for helping out, Pia.",
+        "speaker": "Uli",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: Great, Saturday at 10 by your garage works for me. I’ll bring what tools I have and keep an eye out for your update if anything changes.",
+        "speaker": "Pia",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Uli: Thanks, Pia. I really appreciate it—I'll let you know if anything changes.",
+        "speaker": "Uli",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Uli: Thanks, Sam. That really helps me out; I’ll see you Saturday at 10 by the garage.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Sounds good, Uli—I'll be there Saturday at 10 by the garage and ready to help.",
+        "speaker": "Sam",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Uli: Thank you, Sam. I really appreciate it.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Faye: Saturday at 10 by your garage still works for me—I’ll plan around the school schedule and be there.",
+        "speaker": "Faye",
+        "listener": "Uli"
+      },
+      {
+        "round": 2,
+        "text": "Uli: Thank you, Faye. I really appreciate you being there on Saturday at 10 by the garage.",
+        "speaker": "Uli",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Faye: Of course — I’ll be there Saturday at 10 by the garage and keep my schedule around the kids’ school plans.",
+        "speaker": "Faye",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Uli: Yes, Saturday at 10 by my garage is still the plan. Thank you for helping out, Oren.",
+        "speaker": "Uli",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Oren: Oh, right — Saturday at 10 by the garage. I’ll be there and help sort things out.",
+        "speaker": "Oren",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Uli: Thanks, Oren. I appreciate you being there Saturday at 10 by the garage.",
+        "speaker": "Uli",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Opal: I still don’t have the repair-drive location confirmed yet, Uli. If you know where it’s being held, I can keep track of it for us.",
+        "speaker": "Opal",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Uli: It’s by my garage on Saturday at 10. I’ll let you know if anything changes.",
+        "speaker": "Uli",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Opal: Thanks, Uli — I’ve got it noted: by your garage on Saturday at 10. If it changes, just let me know and I’ll keep track.",
+        "speaker": "Opal",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Uli: Yes, Saturday at 10 by my garage is still the plan. Thanks, Rosa, I really appreciate the help.",
+        "speaker": "Uli",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Actually, let’s switch it to Sunday at the community center now. I’ll send out the update and keep everyone in the loop.",
+        "speaker": "Rosa",
+        "listener": "Uli",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Uli: Okay, Sunday at the community center works for me. Thanks for taking care of the update, Rosa.",
+        "speaker": "Uli",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Uli: Thanks, Bo — Saturday at 10 by the garage still works. I’m keeping things as simple as I can, and I’ll let you know if anything changes.",
+        "speaker": "Uli",
+        "listener": "Bo"
+      },
+      {
+        "round": 4,
+        "text": "Bo: Actually, it’s been moved to Sunday at the community center. Let me know if you still want to help.",
+        "speaker": "Bo",
+        "listener": "Uli",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a10"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Uli: Sunday at the community center works for me. I’ll be there and help however I can.",
+        "speaker": "Uli",
+        "listener": "Bo"
+      }
+    ]
+  },
+  "a05": {
+    "kind": "fixed_stream",
+    "name": "Mina",
+    "events": [
+      {
+        "round": 0,
+        "text": "Opal: I don’t have any repair-drive details yet, but I can help keep track of the location if you tell me where it’s happening.",
+        "speaker": "Opal",
+        "listener": "Mina"
+      },
+      {
+        "round": 0,
+        "text": "Mina: Do you know where the repair drive is being held?",
+        "speaker": "Mina",
+        "listener": "Opal"
+      },
+      {
+        "round": 0,
+        "text": "Opal: Not yet—I don’t have the location confirmed. If you tell me where it’s being held, I’ll keep track of it.",
+        "speaker": "Opal",
+        "listener": "Mina"
+      },
+      {
+        "round": 0,
+        "text": "Hana: Thanks, Sam — could you help sort donations and keep an eye on any tools we lend out?",
+        "speaker": "Hana",
+        "listener": "Mina"
+      },
+      {
+        "round": 0,
+        "text": "Mina: Sure — who’s handling the tools log, and where should I start with the donations?",
+        "speaker": "Mina",
+        "listener": "Hana"
+      },
+      {
+        "round": 0,
+        "text": "Hana: I’ll handle the tools log, and you can start by the donation table near the entrance. Please note anything you lend out so we can keep track.",
+        "speaker": "Hana",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Faye: Saturday at 10 by your garage still works for me—I’ll plan around the school schedule and be there.",
+        "speaker": "Faye",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Mina: Great, thanks — I’ll mark it for Saturday at 10 by the garage. Do you need anything from me before then?",
+        "speaker": "Mina",
+        "listener": "Faye"
+      },
+      {
+        "round": 1,
+        "text": "Faye: No, I’m all set for now — thanks for checking. I’ll see you Saturday at 10 by the garage.",
+        "speaker": "Faye",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Ira: Sounds good — I’ll keep an ear out while I’m out running errands.",
+        "speaker": "Ira",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Mina: Thanks, Ira. If you hear where the repair drive’s being held, let me know right away.",
+        "speaker": "Mina",
+        "listener": "Ira"
+      },
+      {
+        "round": 1,
+        "text": "Ira: Will do — I’ll let you know as soon as I hear where it’s being held.",
+        "speaker": "Ira",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Mina: Do you know where the repair drive is being held?",
+        "speaker": "Mina",
+        "listener": "Eli"
+      },
+      {
+        "round": 2,
+        "text": "Eli: I’m not sure yet, Mina—I’m still waiting on the exact location. Once I know, I’ll let you know, and I can bring any tools I already have.",
+        "speaker": "Eli",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Mina: Thanks, Eli. If you hear where the repair drive’s being held, let me know right away.",
+        "speaker": "Mina",
+        "listener": "Eli"
+      },
+      {
+        "round": 2,
+        "text": "Noah: Oh, right — the repair drive. I might’ve missed a detail or two; what do you need from me?",
+        "speaker": "Noah",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Mina: Do you know where the repair drive is being held? If you do, let me know right away.",
+        "speaker": "Mina",
+        "listener": "Noah"
+      },
+      {
+        "round": 2,
+        "text": "Noah: I’m not sure I caught the location—can you remind me? If I hear it, I’ll let you know right away.",
+        "speaker": "Noah",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Mara: Absolutely — I’ll send over the repair list with who can handle each task and the timing right away.",
+        "speaker": "Mara",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Mina: Thanks, Mara. Do you know where the repair drive is being held?",
+        "speaker": "Mina",
+        "listener": "Mara"
+      },
+      {
+        "round": 3,
+        "text": "Mara: It’s being held at the community center on Maple Street. I’ll send the exact room and timing right away.",
+        "speaker": "Mara",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Pia: Great, Saturday at 10 by your garage still works for me. I’ll bring the tools I have and check for your update if anything changes.",
+        "speaker": "Pia",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Mina: Do you know where the repair drive is being held? If you do, let me know right away.",
+        "speaker": "Mina",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Pia: I’m not sure yet, but I’ll check and let you know right away if I hear back.",
+        "speaker": "Pia",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Mina: I’m trying to find the location for the repair drive. Do you know where it’s being held?",
+        "speaker": "Mina",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Oh, right—the repair drive. I’m not sure of the exact spot, but if you tell me where to go, I can be there Saturday around 10 to help sort things out.",
+        "speaker": "Oren",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Mina: Thanks, Oren. If you hear the location, please let me know — do you know who’s organizing it?",
+        "speaker": "Mina",
+        "listener": "Oren"
+      }
+    ]
+  },
+  "a06": {
+    "kind": "fixed_stream",
+    "name": "Oren",
+    "events": [
+      {
+        "round": 0,
+        "text": "Oren: Oh, right—the repair drive. I’m happy to help, I just need a little reminder of what we’re fixing and when to show up.",
+        "speaker": "Oren",
+        "listener": "Quinn"
+      },
+      {
+        "round": 0,
+        "text": "Quinn: We’re fixing up the community shed and a few loose fence panels this Saturday morning. Come by around 10 and I’ll point you to the tools.",
+        "speaker": "Quinn",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Got it — community shed and fence panels this Saturday around 10. I’ll be there, and if I forget, I’ll ask you again!",
+        "speaker": "Oren",
+        "listener": "Quinn"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Oh, right — the repair drive. I’m happy to help, if you still need a hand with it.",
+        "speaker": "Oren",
+        "listener": "Vik"
+      },
+      {
+        "round": 0,
+        "text": "Vik: Thanks, Oren — I do still need a hand. I’m planning to sort the donations and set up the table later today.",
+        "speaker": "Vik",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Sure thing — I can help sort the donations and set up the table later today.",
+        "speaker": "Oren",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Oh, right, the repair drive — thanks for the reminder. I’ll come by Saturday around 10 and help with the shed and fence panels.",
+        "speaker": "Oren",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Thanks, Oren — that’ll be a big help. I’ll sort the donations and keep the list ready for Saturday.",
+        "speaker": "Sam",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Great, Sam — I’ll be there at 10 on Saturday and I’m glad to help. Just point me to the tools when I arrive.",
+        "speaker": "Oren",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Oh, right — the repair drive. I can help sort the donations and set up the table Saturday around 10.",
+        "speaker": "Oren",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Cleo: That’s perfect, Oren — thank you. Sorting and setting up the table Saturday at 10 will help a lot.",
+        "speaker": "Cleo",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Oren: You bet, Cleo — I’ll be there Saturday at 10 and ready to help.",
+        "speaker": "Oren",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Oh, right—the repair drive. I can come by Saturday around 10 and help sort things out.",
+        "speaker": "Oren",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Pia: That works for me — Saturday at 10 by your garage is good. I’ll bring the tools I have and keep an eye out if anything changes.",
+        "speaker": "Pia",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Great, I’ll be there by the garage at 10 on Saturday. Thanks for bringing the tools — I’ll help sort everything out.",
+        "speaker": "Oren",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Oh, right — the repair drive. I’ll come by Saturday around 10 and help with the shed and fence panels.",
+        "speaker": "Oren",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Leo: Great, Saturday at 10 works for me. What should I bring for the shed and fence panels?",
+        "speaker": "Leo",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Mostly just gloves and a drill if you’ve got one — and maybe a tape measure. If I remember anything else, I’ll let you know.",
+        "speaker": "Oren",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Uli: Yes, Saturday at 10 by my garage is still the plan. Thank you for helping out, Oren.",
+        "speaker": "Uli",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Oren: Oh, right — Saturday at 10 by the garage. I’ll be there and help sort things out.",
+        "speaker": "Oren",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Uli: Thanks, Oren. I appreciate you being there Saturday at 10 by the garage.",
+        "speaker": "Uli",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Nell: I’ve only heard bits and pieces—what’s the latest on the repair drive?",
+        "speaker": "Nell",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Oren: Oh, right—the repair drive. I can come by Saturday around 10 and help sort things out.",
+        "speaker": "Oren",
+        "listener": "Nell"
+      },
+      {
+        "round": 3,
+        "text": "Nell: Saturday around 10 sounds good—do you know if there’s anything I should bring?",
+        "speaker": "Nell",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Mina: I’m trying to find the location for the repair drive. Do you know where it’s being held?",
+        "speaker": "Mina",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Oh, right—the repair drive. I’m not sure of the exact spot, but if you tell me where to go, I can be there Saturday around 10 to help sort things out.",
+        "speaker": "Oren",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Mina: Thanks, Oren. If you hear the location, please let me know — do you know who’s organizing it?",
+        "speaker": "Mina",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Gus: Yep, it’s at the community center on Sunday now. If you need a tool for the repair drive, you can borrow one from me.",
+        "speaker": "Gus",
+        "listener": "Oren",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a15"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Oren: Oh, right — Sunday at the community center. Thanks, Gus; I can come by and help sort things out, and I may take you up on borrowing a tool.",
+        "speaker": "Oren",
+        "listener": "Gus"
+      }
+    ]
+  },
+  "a07": {
+    "kind": "fixed_stream",
+    "name": "Pia",
+    "events": [
+      {
+        "round": 0,
+        "text": "Pia: I can help, but I’d want to know the timing and where we’re meeting first.",
+        "speaker": "Pia",
+        "listener": "Gus"
+      },
+      {
+        "round": 0,
+        "text": "Gus: Sure thing — we’re meeting at the community shed at 3 PM on Saturday. I’ve got a few tools you can borrow if you need them.",
+        "speaker": "Gus",
+        "listener": "Pia"
+      },
+      {
+        "round": 0,
+        "text": "Pia: That works for me, as long as I know which tools you’re bringing and how long we’ll be there.",
+        "speaker": "Pia",
+        "listener": "Gus"
+      },
+      {
+        "round": 0,
+        "text": "Eli: Sounds good to me—what time is the repair drive, and what should I bring?",
+        "speaker": "Eli",
+        "listener": "Pia"
+      },
+      {
+        "round": 0,
+        "text": "Pia: I’m still checking the time, but I’ll let you know as soon as I confirm it. If you can, just bring any tools you already have and a little patience.",
+        "speaker": "Pia",
+        "listener": "Eli"
+      },
+      {
+        "round": 0,
+        "text": "Eli: No problem—I’ll keep my tools handy and wait for your update.",
+        "speaker": "Eli",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Uli: Yes, Saturday at 10 by my garage is still the plan. Thank you for helping out, Pia.",
+        "speaker": "Uli",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: Great, Saturday at 10 by your garage works for me. I’ll bring what tools I have and keep an eye out for your update if anything changes.",
+        "speaker": "Pia",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Uli: Thanks, Pia. I really appreciate it—I'll let you know if anything changes.",
+        "speaker": "Uli",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: Great, the community shed at 3 PM Saturday works for me. I’ll bring what I can, and I may need to borrow a tool or two.",
+        "speaker": "Pia",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Rey: Sounds good—I can bring a few tools and help with whatever still needs fixing. If you need anything specific, just let me know.",
+        "speaker": "Rey",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: Thanks, Rey — I’ll let you know if I need anything specific before Saturday.",
+        "speaker": "Pia",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Oh, right—the repair drive. I can come by Saturday around 10 and help sort things out.",
+        "speaker": "Oren",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Pia: That works for me — Saturday at 10 by your garage is good. I’ll bring the tools I have and keep an eye out if anything changes.",
+        "speaker": "Pia",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Great, I’ll be there by the garage at 10 on Saturday. Thanks for bringing the tools — I’ll help sort everything out.",
+        "speaker": "Oren",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Pia: Great, Saturday at 10 by your garage still works for me. I’ll bring the tools I have and check for your update if anything changes.",
+        "speaker": "Pia",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: Perfect — I’ll keep an eye on the supplies and let you know if we’re short on anything.",
+        "speaker": "Cleo",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Pia: Thanks, Cleo—if you notice anything we’re missing, please let me know ahead of time so I can plan accordingly.",
+        "speaker": "Pia",
+        "listener": "Cleo"
+      },
+      {
+        "round": 3,
+        "text": "Pia: That still works for me—Saturday at 10 by your garage is fine. I’ll bring the tools I have and watch for any updates if plans change.",
+        "speaker": "Pia",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Leo: Great, Saturday at 10 by my garage works. I’ll have the repair drive ready and let you know if anything changes.",
+        "speaker": "Leo",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Pia: Sounds good — I’ll plan on Saturday at 10 by your garage and bring what tools I have. If anything shifts, just let me know ahead of time.",
+        "speaker": "Pia",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Pia: Great, Saturday at 10 by your garage still works for me. I’ll bring the tools I have and check for your update if anything changes.",
+        "speaker": "Pia",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Mina: Do you know where the repair drive is being held? If you do, let me know right away.",
+        "speaker": "Mina",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Pia: I’m not sure yet, but I’ll check and let you know right away if I hear back.",
+        "speaker": "Pia",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: I’m helping spread the word about the repair drive—want me to put you down to help, or would you rather just come by?",
+        "speaker": "Quinn",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: I can come by, but could you send me the exact location and what time we’re starting? I just want to make sure I can plan the drive over.",
+        "speaker": "Pia",
+        "listener": "Quinn"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: Absolutely — I’ll send you the exact spot and start time right away. Thanks for coming by!",
+        "speaker": "Quinn",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: Saturday at 10 by Leo’s garage still works for me. If the location changes, please let me know right away so I can plan accordingly.",
+        "speaker": "Pia",
+        "listener": "Opal"
+      },
+      {
+        "round": 4,
+        "text": "Opal: Got it — I’ll keep Leo’s garage at Saturday 10 on my list and let you know if I hear any change.",
+        "speaker": "Opal",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: Thanks, Opal — that works for me. I’m keeping Saturday at 10 by Leo’s garage on my calendar.",
+        "speaker": "Pia",
+        "listener": "Opal"
+      }
+    ]
+  },
+  "a08": {
+    "kind": "fixed_stream",
+    "name": "Vik",
+    "events": [
+      {
+        "round": 0,
+        "text": "Ira: Sounds good — I’ll keep an ear out while I’m out running errands.",
+        "speaker": "Ira",
+        "listener": "Vik"
+      },
+      {
+        "round": 0,
+        "text": "Vik: Thanks, Ira — I’ll do the same and let folks know about the repair drive.",
+        "speaker": "Vik",
+        "listener": "Ira"
+      },
+      {
+        "round": 0,
+        "text": "Ira: Great, I appreciate it — I’ll spread the word if I hear anything useful.",
+        "speaker": "Ira",
+        "listener": "Vik"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Oh, right — the repair drive. I’m happy to help, if you still need a hand with it.",
+        "speaker": "Oren",
+        "listener": "Vik"
+      },
+      {
+        "round": 0,
+        "text": "Vik: Thanks, Oren — I do still need a hand. I’m planning to sort the donations and set up the table later today.",
+        "speaker": "Vik",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Sure thing — I can help sort the donations and set up the table later today.",
+        "speaker": "Oren",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Vik: Thanks, Kira — I’ll do the same and let folks know about the repair drive.",
+        "speaker": "Vik",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Just to confirm, are you still bringing the repair drive today?",
+        "speaker": "Kira",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Vik: Yes — I’m still bringing it today, and I’ll let folks know too.",
+        "speaker": "Vik",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Dane: I’m on it — I’ll help sort the repair list and match people to the right jobs. Point me to the homes that still need a hand.",
+        "speaker": "Dane",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Vik: Thanks, Dane — I’ll point you to the homes that still need a hand and let folks know about the repair drive.",
+        "speaker": "Vik",
+        "listener": "Dane"
+      },
+      {
+        "round": 1,
+        "text": "Dane: Great, thanks—send me the first home and I’ll get started right away.",
+        "speaker": "Dane",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Just to confirm, you’re still bringing the repair drive today, right?",
+        "speaker": "Kira",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Vik: Yes — I’m still bringing it today, and I’ll let folks know about the repair drive too.",
+        "speaker": "Vik",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Great, thanks for confirming.",
+        "speaker": "Kira",
+        "listener": "Vik"
+      },
+      {
+        "round": 3,
+        "text": "Hana: Could you bring any basic repair supplies like tools, tape, screws, or sturdy boxes? I’d like to match each repair to the right person once we know what’s available.",
+        "speaker": "Hana",
+        "listener": "Vik"
+      },
+      {
+        "round": 3,
+        "text": "Vik: Sure — I’ll let folks know what supplies we have and bring the repair drive along too.",
+        "speaker": "Vik",
+        "listener": "Hana"
+      },
+      {
+        "round": 3,
+        "text": "Hana: Great, thanks — please send me the supply list when you can, and I’ll help match people to each repair.",
+        "speaker": "Hana",
+        "listener": "Vik"
+      },
+      {
+        "round": 4,
+        "text": "Bo: It’s on Sunday now at the community center, right? What do you need from me?",
+        "speaker": "Bo",
+        "listener": "Vik",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a10"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Vik: Yes, Sunday at the community center — thanks for checking. I’ll let folks know about the repair drive, and if you can help spread the word too, that’d be great.",
+        "speaker": "Vik",
+        "listener": "Bo"
+      },
+      {
+        "round": 4,
+        "text": "Bo: Sure, I can spread the word. Just send me the details and I’ll pass them along.",
+        "speaker": "Bo",
+        "listener": "Vik",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a10"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Vik: Absolutely — I’ll point you to the homes that still need a hand and let folks know about the repair drive.",
+        "speaker": "Vik",
+        "listener": "Dane"
+      },
+      {
+        "round": 4,
+        "text": "Dane: Great, thanks — point me to the first house that needs help and I’ll get started.",
+        "speaker": "Dane",
+        "listener": "Vik"
+      },
+      {
+        "round": 4,
+        "text": "Vik: Sure thing — I’ll send you to the first house that still needs a hand and keep folks posted about the repair drive.",
+        "speaker": "Vik",
+        "listener": "Dane"
+      }
+    ]
+  },
+  "a09": {
+    "kind": "fixed_stream",
+    "name": "Nell",
+    "events": [
+      {
+        "round": 0,
+        "text": "Nell: Oh, I’ve only heard bits and pieces about the repair drive—what’s the latest?",
+        "speaker": "Nell",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Oh, it’s coming along fine — they’re still collecting donations and lining up volunteers. I’ve only skimmed it, but it sounds like we’re just waiting on a few final repairs.",
+        "speaker": "Bo",
+        "listener": "Nell"
+      },
+      {
+        "round": 0,
+        "text": "Opal: I’m headed to the repair drive now, Nell—if you need me, I’ll be near the check-in table.",
+        "speaker": "Opal",
+        "listener": "Nell"
+      },
+      {
+        "round": 0,
+        "text": "Nell: Thanks, Opal—I'll probably stop by a little later and check the table. Let me know if you hear anything I should know.",
+        "speaker": "Nell",
+        "listener": "Opal"
+      },
+      {
+        "round": 0,
+        "text": "Opal: Will do, Nell—I'll keep an ear out and let you know if anything changes at the check-in table.",
+        "speaker": "Opal",
+        "listener": "Nell"
+      },
+      {
+        "round": 1,
+        "text": "Ira: Sounds good — I’ll keep an ear out while I’m out running errands.",
+        "speaker": "Ira",
+        "listener": "Nell"
+      },
+      {
+        "round": 1,
+        "text": "Nell: Thanks, Ira — I’m still only hearing bits and pieces, so I’d appreciate any updates you catch. Hopefully it’s just the last few repairs and everything else is coming together.",
+        "speaker": "Nell",
+        "listener": "Ira"
+      },
+      {
+        "round": 1,
+        "text": "Ira: I’ll do that — if I hear anything solid, I’ll pass it along right away.",
+        "speaker": "Ira",
+        "listener": "Nell"
+      },
+      {
+        "round": 1,
+        "text": "Nell: I’ve only heard bits and pieces—what’s the latest on the repair drive?",
+        "speaker": "Nell",
+        "listener": "Noah"
+      },
+      {
+        "round": 1,
+        "text": "Noah: Yep, I’m still bringing it today — thanks for checking. I might’ve missed a detail or two, so what do you need from me?",
+        "speaker": "Noah",
+        "listener": "Nell"
+      },
+      {
+        "round": 1,
+        "text": "Nell: I’m just trying to catch up—do you need any volunteers or donations before you head over?",
+        "speaker": "Nell",
+        "listener": "Noah"
+      },
+      {
+        "round": 2,
+        "text": "Ira: I’m still keeping an ear out while I’m out running errands. If I catch where the repair drive is being held, I’ll let you know right away.",
+        "speaker": "Ira",
+        "listener": "Nell"
+      },
+      {
+        "round": 2,
+        "text": "Nell: Thanks, Ira—I'd appreciate that. I’ve only heard bits and pieces, so I’m hoping to catch the latest when you know it.",
+        "speaker": "Nell",
+        "listener": "Ira"
+      },
+      {
+        "round": 2,
+        "text": "Eli: What time is the repair drive, and what should I bring?",
+        "speaker": "Eli",
+        "listener": "Nell"
+      },
+      {
+        "round": 2,
+        "text": "Nell: I’ve only heard bits and pieces, so I’m not sure yet — maybe we should check the sign-up or ask at the check-in table. If I hear anything more, I’ll pass it along.",
+        "speaker": "Nell",
+        "listener": "Eli"
+      },
+      {
+        "round": 2,
+        "text": "Eli: That sounds good, Nell. I’ll check the sign-up or the check-in table and keep my tools handy.",
+        "speaker": "Eli",
+        "listener": "Nell"
+      },
+      {
+        "round": 3,
+        "text": "Kira: Just to confirm, you’re still bringing the repair drive today, right?",
+        "speaker": "Kira",
+        "listener": "Nell"
+      },
+      {
+        "round": 3,
+        "text": "Nell: I’m still only hearing bits and pieces—what’s the latest on the repair drive?",
+        "speaker": "Nell",
+        "listener": "Kira"
+      },
+      {
+        "round": 3,
+        "text": "Kira: Yeah—just checking that you’re still bringing it today, right?",
+        "speaker": "Kira",
+        "listener": "Nell"
+      },
+      {
+        "round": 3,
+        "text": "Nell: I’ve only heard bits and pieces—what’s the latest on the repair drive?",
+        "speaker": "Nell",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Oren: Oh, right—the repair drive. I can come by Saturday around 10 and help sort things out.",
+        "speaker": "Oren",
+        "listener": "Nell"
+      },
+      {
+        "round": 3,
+        "text": "Nell: Saturday around 10 sounds good—do you know if there’s anything I should bring?",
+        "speaker": "Nell",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Nell: I’ve only heard bits and pieces—what’s the latest on the repair drive?",
+        "speaker": "Nell",
+        "listener": "Jules"
+      },
+      {
+        "round": 4,
+        "text": "Jules: It’s moved to Sunday at the community center now, not Saturday at the front porch. I can help make sure everyone hears the update.",
+        "speaker": "Jules",
+        "listener": "Nell",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a18"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Nell: Oh, thanks — Sunday at the community center is much clearer. I’ll pass that along.",
+        "speaker": "Nell",
+        "listener": "Jules"
+      },
+      {
+        "round": 4,
+        "text": "Nell: I’m still only hearing bits and pieces—what’s the latest on the repair drive?",
+        "speaker": "Nell",
+        "listener": "Mara"
+      },
+      {
+        "round": 4,
+        "text": "Mara: It’s been moved to Sunday at the community center. I’ll send the repair list with tasks and timing right away.",
+        "speaker": "Mara",
+        "listener": "Nell",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a21"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Nell: Thanks, that helps — I’m still piecing it together, so please send the list when you can.",
+        "speaker": "Nell",
+        "listener": "Mara"
+      }
+    ]
+  },
+  "a10": {
+    "kind": "fixed_stream",
+    "name": "Bo",
+    "events": [
+      {
+        "round": 0,
+        "text": "Nell: Oh, I’ve only heard bits and pieces about the repair drive—what’s the latest?",
+        "speaker": "Nell",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Oh, it’s coming along fine — they’re still collecting donations and lining up volunteers. I’ve only skimmed it, but it sounds like we’re just waiting on a few final repairs.",
+        "speaker": "Bo",
+        "listener": "Nell"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Oh, right — the repair drive. What do you need from me?",
+        "speaker": "Bo",
+        "listener": "Cleo"
+      },
+      {
+        "round": 0,
+        "text": "Cleo: We’re short on screws, duct tape, and a couple flashlights. If you can bring any of that, it’d really help.",
+        "speaker": "Cleo",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Bo: I can bring screws and duct tape for sure. I’ll check if I have a flashlight too.",
+        "speaker": "Bo",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Dane: I’m still here to help—what’s the biggest thing you need done for the repair drive?",
+        "speaker": "Dane",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Bo: Screws and duct tape are the big ones — I can bring those. I’ll check on a flashlight too if I have one.",
+        "speaker": "Bo",
+        "listener": "Dane"
+      },
+      {
+        "round": 1,
+        "text": "Dane: That’s great — screws and duct tape will help a lot. I can still help match folks to the remaining repair jobs if you need me.",
+        "speaker": "Dane",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Bo: I can still bring screws and duct tape, and I’ll check for a flashlight too. Just tell me where to drop it off.",
+        "speaker": "Bo",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Opal: I still don’t have the drop-off location confirmed. If you tell me where the repair drive is being held, I’ll keep track of it for you.",
+        "speaker": "Opal",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Bo: I’m not sure either — I only know I can bring the supplies. Let me check and I’ll get back to you.",
+        "speaker": "Bo",
+        "listener": "Opal"
+      },
+      {
+        "round": 2,
+        "text": "Bo: What’s the main thing you need from me? I’m a bit light on details, but I can help.",
+        "speaker": "Bo",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Rey: The biggest help would be sorting the repair list and matching folks to the right jobs. If you can, I’d really appreciate you checking which homes still need a hand.",
+        "speaker": "Rey",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Sure — I can sort the repair list and check which homes still need help.",
+        "speaker": "Bo",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Oh, right — the repair drive. What do you need from me?",
+        "speaker": "Bo",
+        "listener": "Hana"
+      },
+      {
+        "round": 2,
+        "text": "Hana: Could you bring any basic repair supplies like tools, tape, screws, or sturdy boxes? I’d like to match each repair to the right person once we know what’s available.",
+        "speaker": "Hana",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: I can bring some tools, tape, and a box of screws. Want me to check if I have any sturdy boxes too?",
+        "speaker": "Bo",
+        "listener": "Hana"
+      },
+      {
+        "round": 3,
+        "text": "Opal: I still don’t have the repair-drive location confirmed yet, Bo. If you know where it’s being held, I can keep track of it for us.",
+        "speaker": "Opal",
+        "listener": "Bo"
+      },
+      {
+        "round": 3,
+        "text": "Bo: I don’t have the location yet either—still waiting on that detail. I’ll let you know as soon as I hear it.",
+        "speaker": "Bo",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Opal: Thanks, Bo — I’ll keep tracking it too, and let me know as soon as you hear the location.",
+        "speaker": "Opal",
+        "listener": "Bo"
+      },
+      {
+        "round": 3,
+        "text": "Gus: Yep, it’s on Sunday at the community center now. If anyone needs a tool, I’ve got a few they can borrow.",
+        "speaker": "Gus",
+        "listener": "Bo",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a15"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Bo: Nice, that works for me. What time should I show up?",
+        "speaker": "Bo",
+        "listener": "Gus"
+      },
+      {
+        "round": 3,
+        "text": "Gus: I’d aim for mid-morning, around 10. If you want, I can bring a couple extra tools too.",
+        "speaker": "Gus",
+        "listener": "Bo",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a15"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Bo: It’s on Sunday now at the community center, right? What do you need from me?",
+        "speaker": "Bo",
+        "listener": "Vik",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a10"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Vik: Yes, Sunday at the community center — thanks for checking. I’ll let folks know about the repair drive, and if you can help spread the word too, that’d be great.",
+        "speaker": "Vik",
+        "listener": "Bo"
+      },
+      {
+        "round": 4,
+        "text": "Bo: Sure, I can spread the word. Just send me the details and I’ll pass them along.",
+        "speaker": "Bo",
+        "listener": "Vik",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a10"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Uli: Thanks, Bo — Saturday at 10 by the garage still works. I’m keeping things as simple as I can, and I’ll let you know if anything changes.",
+        "speaker": "Uli",
+        "listener": "Bo"
+      },
+      {
+        "round": 4,
+        "text": "Bo: Actually, it’s been moved to Sunday at the community center. Let me know if you still want to help.",
+        "speaker": "Bo",
+        "listener": "Uli",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a10"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Uli: Sunday at the community center works for me. I’ll be there and help however I can.",
+        "speaker": "Uli",
+        "listener": "Bo"
+      }
+    ]
+  },
+  "a11": {
+    "kind": "fixed_stream",
+    "name": "Cleo",
+    "events": [
+      {
+        "round": 0,
+        "text": "Hana: I’m ready to help, but I’d like to check the details first—what exactly do you need for the repair drive?",
+        "speaker": "Hana",
+        "listener": "Cleo"
+      },
+      {
+        "round": 0,
+        "text": "Cleo: We need basic repair supplies—tools, tape, screws, and a few sturdy boxes. If you can help sort or bring any of that, it’d be a huge help.",
+        "speaker": "Cleo",
+        "listener": "Hana"
+      },
+      {
+        "round": 0,
+        "text": "Hana: I can do that. I’ll sort through what I have and bring any tools, tape, screws, and sturdy boxes I can find.",
+        "speaker": "Hana",
+        "listener": "Cleo"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Oh, right — the repair drive. What do you need from me?",
+        "speaker": "Bo",
+        "listener": "Cleo"
+      },
+      {
+        "round": 0,
+        "text": "Cleo: We’re short on screws, duct tape, and a couple flashlights. If you can bring any of that, it’d really help.",
+        "speaker": "Cleo",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Bo: I can bring screws and duct tape for sure. I’ll check if I have a flashlight too.",
+        "speaker": "Bo",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Tess: Oh, I heard the repair drive is getting a good turnout—folks really showed up for it. I’ll spread the word if anyone still needs a tool.",
+        "speaker": "Tess",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Cleo: That’d be great, Tess — we’re still a bit short on screws, duct tape, and a couple flashlights. If you can point people our way, that would really help.",
+        "speaker": "Cleo",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Tess: Absolutely, I’ll pass that along right away. Sounds like screws, duct tape, and a couple flashlights are the big needs right now.",
+        "speaker": "Tess",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Oh, right — the repair drive. I can help sort the donations and set up the table Saturday around 10.",
+        "speaker": "Oren",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Cleo: That’s perfect, Oren — thank you. Sorting and setting up the table Saturday at 10 will help a lot.",
+        "speaker": "Cleo",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Oren: You bet, Cleo — I’ll be there Saturday at 10 and ready to help.",
+        "speaker": "Oren",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Dane: I’m still around and happy to jump in—just point me to the remaining repair jobs and I’ll help match folks up.",
+        "speaker": "Dane",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: Thanks, Dane — I’m tracking the supplies, so I’ll point you to what still needs matching up. We could use help sorting the remaining repair items and checking what’s missing.",
+        "speaker": "Cleo",
+        "listener": "Dane"
+      },
+      {
+        "round": 2,
+        "text": "Dane: Sounds good — I can sort the remaining repair items and help check what’s missing.",
+        "speaker": "Dane",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Pia: Great, Saturday at 10 by your garage still works for me. I’ll bring the tools I have and check for your update if anything changes.",
+        "speaker": "Pia",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: Perfect — I’ll keep an eye on the supplies and let you know if we’re short on anything.",
+        "speaker": "Cleo",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Pia: Thanks, Cleo—if you notice anything we’re missing, please let me know ahead of time so I can plan accordingly.",
+        "speaker": "Pia",
+        "listener": "Cleo"
+      },
+      {
+        "round": 3,
+        "text": "Rey: I’m glad to help out—what still needs fixing for the repair drive?",
+        "speaker": "Rey",
+        "listener": "Cleo"
+      },
+      {
+        "round": 3,
+        "text": "Rey: Sounds good—I can bring a few tools and help with whatever still needs fixing. If you need anything specific, just let me know.",
+        "speaker": "Rey",
+        "listener": "Cleo"
+      },
+      {
+        "round": 3,
+        "text": "Cleo: Oh, the repair drive—I’m keeping track of supplies. If you tell me what’s still needed, I’ll make sure it gets noted.",
+        "speaker": "Cleo",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Sam: Thanks, Cleo — I can help fill in what’s still needed. Just tell me the list, and I’ll pitch in where I can.",
+        "speaker": "Sam",
+        "listener": "Cleo"
+      },
+      {
+        "round": 3,
+        "text": "Cleo: Great — could you list the tools, fasteners, and any extra tables or bins we still need? I’ll note it all down.",
+        "speaker": "Cleo",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Faye: I’m all set for now—thanks for checking. I’ll see you Saturday at 10 by the garage.",
+        "speaker": "Faye",
+        "listener": "Cleo"
+      },
+      {
+        "round": 4,
+        "text": "Cleo: Great, see you Saturday at 10 by the garage.",
+        "speaker": "Cleo",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Faye: Sounds good—see you then!",
+        "speaker": "Faye",
+        "listener": "Cleo"
+      },
+      {
+        "round": 4,
+        "text": "Cleo: Oh, the repair drive—I’m keeping track of supplies. If you tell me what’s still needed, I’ll make sure it gets noted.",
+        "speaker": "Cleo",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Sam: Thanks, Cleo — I can help fill in what’s still needed. Just tell me the list, and I’ll pitch in where I can.",
+        "speaker": "Sam",
+        "listener": "Cleo"
+      },
+      {
+        "round": 4,
+        "text": "Cleo: Great—let’s note anything you can bring, and I’ll keep the supply list updated.",
+        "speaker": "Cleo",
+        "listener": "Sam"
+      }
+    ]
+  },
+  "a12": {
+    "kind": "fixed_stream",
+    "name": "Dane",
+    "events": [
+      {
+        "round": 0,
+        "text": "Rey: I’m glad to help out—what still needs fixing for the repair drive?",
+        "speaker": "Rey",
+        "listener": "Dane"
+      },
+      {
+        "round": 0,
+        "text": "Dane: Thanks, Rey—I'm running a bit late, but I can still help with whatever’s left. What’s the biggest thing you need done?",
+        "speaker": "Dane",
+        "listener": "Rey"
+      },
+      {
+        "round": 0,
+        "text": "Rey: The biggest thing is sorting the list of repairs and checking which homes still need a hand. If you can, I could use help matching folks to the right jobs.",
+        "speaker": "Rey",
+        "listener": "Dane"
+      },
+      {
+        "round": 1,
+        "text": "Dane: I’m still here to help—what’s the biggest thing you need done for the repair drive?",
+        "speaker": "Dane",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Bo: Screws and duct tape are the big ones — I can bring those. I’ll check on a flashlight too if I have one.",
+        "speaker": "Bo",
+        "listener": "Dane"
+      },
+      {
+        "round": 1,
+        "text": "Dane: That’s great — screws and duct tape will help a lot. I can still help match folks to the remaining repair jobs if you need me.",
+        "speaker": "Dane",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Dane: I’m on it — I’ll help sort the repair list and match people to the right jobs. Point me to the homes that still need a hand.",
+        "speaker": "Dane",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Vik: Thanks, Dane — I’ll point you to the homes that still need a hand and let folks know about the repair drive.",
+        "speaker": "Vik",
+        "listener": "Dane"
+      },
+      {
+        "round": 1,
+        "text": "Dane: Great, thanks—send me the first home and I’ll get started right away.",
+        "speaker": "Dane",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Dane: I’m still around and happy to jump in—just point me to the remaining repair jobs and I’ll help match folks up.",
+        "speaker": "Dane",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: Thanks, Dane — I’m tracking the supplies, so I’ll point you to what still needs matching up. We could use help sorting the remaining repair items and checking what’s missing.",
+        "speaker": "Cleo",
+        "listener": "Dane"
+      },
+      {
+        "round": 2,
+        "text": "Dane: Sounds good — I can sort the remaining repair items and help check what’s missing.",
+        "speaker": "Dane",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Dane: Sounds good — I’m still happy to help match folks to the remaining repair jobs if you need me.",
+        "speaker": "Dane",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Just to confirm, you’re still bringing the repair drive today, right?",
+        "speaker": "Kira",
+        "listener": "Dane"
+      },
+      {
+        "round": 2,
+        "text": "Dane: Yes — I’m still bringing it today and I can help match folks to the remaining repair jobs too.",
+        "speaker": "Dane",
+        "listener": "Kira"
+      },
+      {
+        "round": 3,
+        "text": "Dane: I’m still here to help — what’s the biggest thing you need done for the repair drive?",
+        "speaker": "Dane",
+        "listener": "Quinn"
+      },
+      {
+        "round": 3,
+        "text": "Quinn: The community shed is the big one, plus a few loose fence panels. If you can come by around 10 this Saturday, I’ll point you to the tools.",
+        "speaker": "Quinn",
+        "listener": "Dane"
+      },
+      {
+        "round": 3,
+        "text": "Dane: I can do 10 this Saturday — I’ll bring the screws and duct tape and help with the shed and fence panels.",
+        "speaker": "Dane",
+        "listener": "Quinn"
+      },
+      {
+        "round": 3,
+        "text": "Dane: I’m still here to help—just point me to the biggest fix and I’ll jump in.",
+        "speaker": "Dane",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Leo: Great—start with the biggest repair and I’ll help where needed. What’s the next thing you need?",
+        "speaker": "Leo",
+        "listener": "Dane"
+      },
+      {
+        "round": 3,
+        "text": "Dane: Sounds good—show me the biggest repair, and I’ll get on it right away.",
+        "speaker": "Dane",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Vik: Absolutely — I’ll point you to the homes that still need a hand and let folks know about the repair drive.",
+        "speaker": "Vik",
+        "listener": "Dane"
+      },
+      {
+        "round": 4,
+        "text": "Dane: Great, thanks — point me to the first house that needs help and I’ll get started.",
+        "speaker": "Dane",
+        "listener": "Vik"
+      },
+      {
+        "round": 4,
+        "text": "Vik: Sure thing — I’ll send you to the first house that still needs a hand and keep folks posted about the repair drive.",
+        "speaker": "Vik",
+        "listener": "Dane"
+      }
+    ]
+  },
+  "a13": {
+    "kind": "fixed_stream",
+    "name": "Eli",
+    "events": [
+      {
+        "round": 0,
+        "text": "Sam: I’m happy to help with the repair drive, Eli. What do you need me to do?",
+        "speaker": "Sam",
+        "listener": "Eli"
+      },
+      {
+        "round": 0,
+        "text": "Eli: Thanks, Sam. I’d like you to help sort donations and keep a simple list of what comes in, then we can see what still needs fixing.",
+        "speaker": "Eli",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Absolutely—I can sort the donations and keep a simple list of everything that comes in.",
+        "speaker": "Sam",
+        "listener": "Eli"
+      },
+      {
+        "round": 0,
+        "text": "Eli: Sounds good to me—what time is the repair drive, and what should I bring?",
+        "speaker": "Eli",
+        "listener": "Pia"
+      },
+      {
+        "round": 0,
+        "text": "Pia: I’m still checking the time, but I’ll let you know as soon as I confirm it. If you can, just bring any tools you already have and a little patience.",
+        "speaker": "Pia",
+        "listener": "Eli"
+      },
+      {
+        "round": 0,
+        "text": "Eli: No problem—I’ll keep my tools handy and wait for your update.",
+        "speaker": "Eli",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Mara: Thanks, Sam — I’ll send you the list and the time right away.",
+        "speaker": "Mara",
+        "listener": "Eli"
+      },
+      {
+        "round": 1,
+        "text": "Eli: That works for me, Mara. I’ll keep my tools handy and wait for your update.",
+        "speaker": "Eli",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Mara: Great, Eli — I’ll send the details soon, and thanks for keeping your tools ready.",
+        "speaker": "Mara",
+        "listener": "Eli"
+      },
+      {
+        "round": 2,
+        "text": "Mina: Do you know where the repair drive is being held?",
+        "speaker": "Mina",
+        "listener": "Eli"
+      },
+      {
+        "round": 2,
+        "text": "Eli: I’m not sure yet, Mina—I’m still waiting on the exact location. Once I know, I’ll let you know, and I can bring any tools I already have.",
+        "speaker": "Eli",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Mina: Thanks, Eli. If you hear where the repair drive’s being held, let me know right away.",
+        "speaker": "Mina",
+        "listener": "Eli"
+      },
+      {
+        "round": 2,
+        "text": "Eli: What time is the repair drive, and what should I bring?",
+        "speaker": "Eli",
+        "listener": "Nell"
+      },
+      {
+        "round": 2,
+        "text": "Nell: I’ve only heard bits and pieces, so I’m not sure yet — maybe we should check the sign-up or ask at the check-in table. If I hear anything more, I’ll pass it along.",
+        "speaker": "Nell",
+        "listener": "Eli"
+      },
+      {
+        "round": 2,
+        "text": "Eli: That sounds good, Nell. I’ll check the sign-up or the check-in table and keep my tools handy.",
+        "speaker": "Eli",
+        "listener": "Nell"
+      },
+      {
+        "round": 3,
+        "text": "Faye: Saturday at 10 by the garage works for me. I’ll plan around the school schedule and be there.",
+        "speaker": "Faye",
+        "listener": "Eli"
+      },
+      {
+        "round": 3,
+        "text": "Faye: Great — I’ll be there Saturday at 10 by your garage. Let me know if you want me to bring anything or help set up.",
+        "speaker": "Faye",
+        "listener": "Eli"
+      },
+      {
+        "round": 3,
+        "text": "Eli: What time is the repair drive, and what should I bring?",
+        "speaker": "Eli",
+        "listener": "Tess"
+      },
+      {
+        "round": 3,
+        "text": "Tess: Oh, I’ve heard it’s getting a good turnout, but I still don’t have the exact time or location confirmed yet. If I hear more, I’ll pass it along—and if you need a tool, I’ll keep an eye out for that too.",
+        "speaker": "Tess",
+        "listener": "Eli"
+      },
+      {
+        "round": 3,
+        "text": "Eli: Thanks, Tess. Please let me know as soon as you have the time and location, and I’ll plan around it.",
+        "speaker": "Eli",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Eli: I still need the time and a quick list of what to bring before I can plan my day.",
+        "speaker": "Eli",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Sam: Sure — I’ll send you the time and a quick bring-list right away.",
+        "speaker": "Sam",
+        "listener": "Eli"
+      },
+      {
+        "round": 4,
+        "text": "Eli: Thanks, Sam. I’ll wait for the time and the bring-list, then I can set my day.",
+        "speaker": "Eli",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Ira: Yep — I heard it moved to the community center on Sunday, so I’m telling folks as I’m out running errands.",
+        "speaker": "Ira",
+        "listener": "Eli",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a17"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Eli: Thanks for letting me know. What time on Sunday, and is there anything specific I should bring?",
+        "speaker": "Eli",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Ira: I’m not sure on the time yet, but I’ll ask around. If you can, bring any tools you already have and maybe some gloves.",
+        "speaker": "Ira",
+        "listener": "Eli",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a17"
+        }
+      }
+    ]
+  },
+  "a14": {
+    "kind": "fixed_stream",
+    "name": "Faye",
+    "events": [
+      {
+        "round": 0,
+        "text": "Faye: I can help coordinate around the school schedule—what time is the repair drive, and where do you need me?",
+        "speaker": "Faye",
+        "listener": "Uli"
+      },
+      {
+        "round": 0,
+        "text": "Uli: Thank you, Faye. It’s Saturday at 10, over by my garage if that works for you.",
+        "speaker": "Uli",
+        "listener": "Faye"
+      },
+      {
+        "round": 0,
+        "text": "Faye: Saturday at 10 by your garage works for me—I’ll plan around the school schedule and be there.",
+        "speaker": "Faye",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Faye: Saturday at 10 by your garage still works for me—I’ll plan around the school schedule and be there.",
+        "speaker": "Faye",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Mina: Great, thanks — I’ll mark it for Saturday at 10 by the garage. Do you need anything from me before then?",
+        "speaker": "Mina",
+        "listener": "Faye"
+      },
+      {
+        "round": 1,
+        "text": "Faye: No, I’m all set for now — thanks for checking. I’ll see you Saturday at 10 by the garage.",
+        "speaker": "Faye",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Tess: Oh, I heard the repair drive is getting a good turnout—folks really showed up for it. I’ll keep spreading the word, especially if anyone still needs a tool.",
+        "speaker": "Tess",
+        "listener": "Faye"
+      },
+      {
+        "round": 1,
+        "text": "Faye: Saturday at 10 by Uli’s garage still works for me—I’ll plan around the school schedule and be there.",
+        "speaker": "Faye",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Tess: Oh perfect, Saturday at 10 by Uli’s garage is set then—I’ll let folks know and remind anyone who needs a tool to swing by.",
+        "speaker": "Tess",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Faye: Saturday at 10 by your garage still works for me—I’ll plan around the school schedule and be there.",
+        "speaker": "Faye",
+        "listener": "Uli"
+      },
+      {
+        "round": 2,
+        "text": "Uli: Thank you, Faye. I really appreciate you being there on Saturday at 10 by the garage.",
+        "speaker": "Uli",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Faye: Of course — I’ll be there Saturday at 10 by the garage and keep my schedule around the kids’ school plans.",
+        "speaker": "Faye",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Faye: Saturday at 10 by the garage works for me. I’ll plan around the school schedule and be there.",
+        "speaker": "Faye",
+        "listener": "Eli"
+      },
+      {
+        "round": 3,
+        "text": "Faye: Great — I’ll be there Saturday at 10 by your garage. Let me know if you want me to bring anything or help set up.",
+        "speaker": "Faye",
+        "listener": "Eli"
+      },
+      {
+        "round": 3,
+        "text": "Rey: I can bring a few tools and help with whatever still needs fixing. If you need anything specific, just let me know.",
+        "speaker": "Rey",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Faye: Thanks, Rey — that helps a lot. Saturday at 10 by the garage still works for me, and I’ll plan around the school schedule to be there.",
+        "speaker": "Faye",
+        "listener": "Rey"
+      },
+      {
+        "round": 3,
+        "text": "Rey: Great, Saturday at 10 by the garage works for me too. I’ll bring the tools and be ready to help.",
+        "speaker": "Rey",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Faye: I’m all set for now—thanks for checking. I’ll see you Saturday at 10 by the garage.",
+        "speaker": "Faye",
+        "listener": "Cleo"
+      },
+      {
+        "round": 4,
+        "text": "Cleo: Great, see you Saturday at 10 by the garage.",
+        "speaker": "Cleo",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Faye: Sounds good—see you then!",
+        "speaker": "Faye",
+        "listener": "Cleo"
+      },
+      {
+        "round": 4,
+        "text": "Faye: Great, Saturday at 10 by Uli’s garage works for me. I’ll plan around the school schedule and be there to help coordinate.",
+        "speaker": "Faye",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Tess: Actually, there’s been a change — it’s moved to Sunday at the community center now. Thanks for planning around it!",
+        "speaker": "Tess",
+        "listener": "Faye",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a03"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Faye: Thanks for the update — Sunday at the community center works, and I’ll adjust around the school schedule to be there.",
+        "speaker": "Faye",
+        "listener": "Tess"
+      }
+    ]
+  },
+  "a15": {
+    "kind": "fixed_stream",
+    "name": "Gus",
+    "events": [
+      {
+        "round": 0,
+        "text": "Pia: I can help, but I’d want to know the timing and where we’re meeting first.",
+        "speaker": "Pia",
+        "listener": "Gus"
+      },
+      {
+        "round": 0,
+        "text": "Gus: Sure thing — we’re meeting at the community shed at 3 PM on Saturday. I’ve got a few tools you can borrow if you need them.",
+        "speaker": "Gus",
+        "listener": "Pia"
+      },
+      {
+        "round": 0,
+        "text": "Pia: That works for me, as long as I know which tools you’re bringing and how long we’ll be there.",
+        "speaker": "Pia",
+        "listener": "Gus"
+      },
+      {
+        "round": 0,
+        "text": "Tess: Oh, I heard the repair drive is getting a good turnout—folks really showed up for it.",
+        "speaker": "Tess",
+        "listener": "Gus"
+      },
+      {
+        "round": 0,
+        "text": "Gus: Yeah, it’s been a nice turnout. If anyone needs a tool, I’ve got a few they can borrow.",
+        "speaker": "Gus",
+        "listener": "Tess"
+      },
+      {
+        "round": 0,
+        "text": "Tess: That’s so kind of you, Gus—people will really appreciate that. I’ll spread the word to anyone who still needs a tool.",
+        "speaker": "Tess",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Opal: I still don’t have the repair-drive location confirmed yet, Gus. If you know where it’s being held, I can keep track of it for us.",
+        "speaker": "Opal",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Gus: It’s at the community shed on Saturday at 3 PM. I can bring a few tools too, and we shouldn’t be there too long.",
+        "speaker": "Gus",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Opal: Great, I’ve got it: the community shed on Saturday at 3 PM. I’ll keep track of that location, and your tools offer is really helpful.",
+        "speaker": "Opal",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Gus: Yep — we’re still set for the community shed at 3 PM on Saturday, and I’ve got a few tools folks can borrow if they need them.",
+        "speaker": "Gus",
+        "listener": "Jules"
+      },
+      {
+        "round": 1,
+        "text": "Jules: Great, that’s helpful — I can start matching the repairs to people and keep the list moving. If you want, I can also help loop in anyone who still needs a heads-up.",
+        "speaker": "Jules",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Gus: That’d be great, Jules — thanks for helping spread the word and keep the list moving. I’ll bring the tools and be ready at the shed.",
+        "speaker": "Gus",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Gus: Yeah, it’s been a nice turnout. If anyone needs a tool, I’ve got a few they can borrow.",
+        "speaker": "Gus",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Sam: That’s great, Gus — I can help hand out tools if you need me.",
+        "speaker": "Sam",
+        "listener": "Gus"
+      },
+      {
+        "round": 2,
+        "text": "Gus: Thanks, Sam — that’d be a big help. I’ll keep an eye out for anyone who needs something and send them your way.",
+        "speaker": "Gus",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Gus: I still haven’t confirmed the location yet, Rosa, but I’ll keep asking around. Once I know where it’s being held, I’ll let you know right away.",
+        "speaker": "Gus",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Thanks, Gus — I appreciate you checking. It’s at the community center on Sunday now, so just send people there once you’ve confirmed.",
+        "speaker": "Rosa",
+        "listener": "Gus",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Gus: Ah, perfect — community center on Sunday. I’ll pass that along and keep an eye out for anyone who still needs the details.",
+        "speaker": "Gus",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Gus: Yep, it’s at the community center on Sunday now. If anyone needs a tool for the repair drive, they can borrow one from me.",
+        "speaker": "Gus",
+        "listener": "Ira",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a15"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Ira: Got it — I’ll let folks know it’s at the community center on Sunday, and I’ll keep an ear out while I’m out running errands.",
+        "speaker": "Ira",
+        "listener": "Gus"
+      },
+      {
+        "round": 3,
+        "text": "Gus: Thanks, Ira — I appreciate that.",
+        "speaker": "Gus",
+        "listener": "Ira",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a15"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Gus: Yep, it’s on Sunday at the community center now. If anyone needs a tool, I’ve got a few they can borrow.",
+        "speaker": "Gus",
+        "listener": "Bo",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a15"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Bo: Nice, that works for me. What time should I show up?",
+        "speaker": "Bo",
+        "listener": "Gus"
+      },
+      {
+        "round": 3,
+        "text": "Gus: I’d aim for mid-morning, around 10. If you want, I can bring a couple extra tools too.",
+        "speaker": "Gus",
+        "listener": "Bo",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a15"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Gus: Yep, it’s at the community center on Sunday now. If you need a tool for the repair drive, feel free to borrow one from me.",
+        "speaker": "Gus",
+        "listener": "Noah",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a15"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Noah: Oh, right — Sunday at the community center. Thanks, Gus; I might borrow a tool from you.",
+        "speaker": "Noah",
+        "listener": "Gus",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a22"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Gus: Sure thing, Noah—just let me know what you need, and I’ll set it aside for you.",
+        "speaker": "Gus",
+        "listener": "Noah",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a15"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Gus: Yep, it’s at the community center on Sunday now. If you need a tool for the repair drive, you can borrow one from me.",
+        "speaker": "Gus",
+        "listener": "Oren",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a15"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Oren: Oh, right — Sunday at the community center. Thanks, Gus; I can come by and help sort things out, and I may take you up on borrowing a tool.",
+        "speaker": "Oren",
+        "listener": "Gus"
+      }
+    ]
+  },
+  "a16": {
+    "kind": "fixed_stream",
+    "name": "Hana",
+    "events": [
+      {
+        "round": 0,
+        "text": "Hana: I’m ready to help, but I’d like to check the details first—what exactly do you need for the repair drive?",
+        "speaker": "Hana",
+        "listener": "Cleo"
+      },
+      {
+        "round": 0,
+        "text": "Cleo: We need basic repair supplies—tools, tape, screws, and a few sturdy boxes. If you can help sort or bring any of that, it’d be a huge help.",
+        "speaker": "Cleo",
+        "listener": "Hana"
+      },
+      {
+        "round": 0,
+        "text": "Hana: I can do that. I’ll sort through what I have and bring any tools, tape, screws, and sturdy boxes I can find.",
+        "speaker": "Hana",
+        "listener": "Cleo"
+      },
+      {
+        "round": 0,
+        "text": "Hana: Thanks, Sam — could you help sort donations and keep an eye on any tools we lend out?",
+        "speaker": "Hana",
+        "listener": "Mina"
+      },
+      {
+        "round": 0,
+        "text": "Mina: Sure — who’s handling the tools log, and where should I start with the donations?",
+        "speaker": "Mina",
+        "listener": "Hana"
+      },
+      {
+        "round": 0,
+        "text": "Hana: I’ll handle the tools log, and you can start by the donation table near the entrance. Please note anything you lend out so we can keep track.",
+        "speaker": "Hana",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Hana: I can sort through what I have and bring any tools, tape, screws, and sturdy boxes I can find.",
+        "speaker": "Hana",
+        "listener": "Jules"
+      },
+      {
+        "round": 1,
+        "text": "Jules: That’s super helpful, Hana — thank you. I’ll keep connecting folks and we can match each repair to the right person.",
+        "speaker": "Jules",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Hana: Great — send me the repair list when you can, and I’ll double-check what I’ve got before I bring it over.",
+        "speaker": "Hana",
+        "listener": "Jules"
+      },
+      {
+        "round": 1,
+        "text": "Hana: I’ve sorted through what I have, and I can bring any tools, tape, screws, and sturdy boxes I can find.",
+        "speaker": "Hana",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Great, that covers a lot. Let’s match each repair with whoever can handle it best.",
+        "speaker": "Leo",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Hana: Sounds good — I’ll share what I can bring, and then we can match each repair to the right person.",
+        "speaker": "Hana",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Hana: I can help with that—what should I bring for the repair drive?",
+        "speaker": "Hana",
+        "listener": "Noah"
+      },
+      {
+        "round": 2,
+        "text": "Noah: Oh, thanks — if you can bring any spare tools, screws, or tape, that’d be a big help. I’m a little fuzzy on the full list, so if you’ve got anything handy, I can check what’s still needed.",
+        "speaker": "Noah",
+        "listener": "Hana"
+      },
+      {
+        "round": 2,
+        "text": "Hana: I can bring spare tools, screws, and tape — I’ll check what I have and let you know. If you send the full list, I can help match the rest too.",
+        "speaker": "Hana",
+        "listener": "Noah"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Oh, right — the repair drive. What do you need from me?",
+        "speaker": "Bo",
+        "listener": "Hana"
+      },
+      {
+        "round": 2,
+        "text": "Hana: Could you bring any basic repair supplies like tools, tape, screws, or sturdy boxes? I’d like to match each repair to the right person once we know what’s available.",
+        "speaker": "Hana",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: I can bring some tools, tape, and a box of screws. Want me to check if I have any sturdy boxes too?",
+        "speaker": "Bo",
+        "listener": "Hana"
+      },
+      {
+        "round": 3,
+        "text": "Hana: Could you bring any basic repair supplies like tools, tape, screws, or sturdy boxes? I’d like to match each repair to the right person once we know what’s available.",
+        "speaker": "Hana",
+        "listener": "Vik"
+      },
+      {
+        "round": 3,
+        "text": "Vik: Sure — I’ll let folks know what supplies we have and bring the repair drive along too.",
+        "speaker": "Vik",
+        "listener": "Hana"
+      },
+      {
+        "round": 3,
+        "text": "Hana: Great, thanks — please send me the supply list when you can, and I’ll help match people to each repair.",
+        "speaker": "Hana",
+        "listener": "Vik"
+      },
+      {
+        "round": 4,
+        "text": "Opal: I still don’t have the repair-drive location confirmed yet, Hana. If you know where it’s being held, I can keep track of it for us.",
+        "speaker": "Opal",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Hana: I don’t know the location yet either—once it’s confirmed, I’ll let you know right away.",
+        "speaker": "Hana",
+        "listener": "Opal"
+      },
+      {
+        "round": 4,
+        "text": "Opal: Thanks, Hana — I’ll keep it on my list and wait for the confirmed location.",
+        "speaker": "Opal",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Hana: I can help with that—what should I bring for the repair drive?",
+        "speaker": "Hana",
+        "listener": "Quinn"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: Awesome — if you can, bring a few basic tools and whatever supplies you already have, and I’ll make sure people know we could use hands-on help too.",
+        "speaker": "Quinn",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Hana: Got it — I’ll bring a few basic tools and whatever supplies I already have. And I’ll keep an eye out for hands-on help too.",
+        "speaker": "Hana",
+        "listener": "Quinn"
+      }
+    ]
+  },
+  "a17": {
+    "kind": "fixed_stream",
+    "name": "Ira",
+    "events": [
+      {
+        "round": 0,
+        "text": "Ira: Sounds good — I’ll keep an ear out while I’m out running errands.",
+        "speaker": "Ira",
+        "listener": "Vik"
+      },
+      {
+        "round": 0,
+        "text": "Vik: Thanks, Ira — I’ll do the same and let folks know about the repair drive.",
+        "speaker": "Vik",
+        "listener": "Ira"
+      },
+      {
+        "round": 0,
+        "text": "Ira: Great, I appreciate it — I’ll spread the word if I hear anything useful.",
+        "speaker": "Ira",
+        "listener": "Vik"
+      },
+      {
+        "round": 0,
+        "text": "Ira: Sounds good — I’ll keep an ear out while I’m out running errands.",
+        "speaker": "Ira",
+        "listener": "Kira"
+      },
+      {
+        "round": 0,
+        "text": "Kira: Alright, just let me know if you spot anything.",
+        "speaker": "Kira",
+        "listener": "Ira"
+      },
+      {
+        "round": 0,
+        "text": "Ira: Will do — I’m heading out now, and I’ll let you know if I hear anything.",
+        "speaker": "Ira",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Ira: Sounds good — I’ll keep an ear out while I’m out running errands.",
+        "speaker": "Ira",
+        "listener": "Nell"
+      },
+      {
+        "round": 1,
+        "text": "Nell: Thanks, Ira — I’m still only hearing bits and pieces, so I’d appreciate any updates you catch. Hopefully it’s just the last few repairs and everything else is coming together.",
+        "speaker": "Nell",
+        "listener": "Ira"
+      },
+      {
+        "round": 1,
+        "text": "Ira: I’ll do that — if I hear anything solid, I’ll pass it along right away.",
+        "speaker": "Ira",
+        "listener": "Nell"
+      },
+      {
+        "round": 1,
+        "text": "Ira: Sounds good — I’ll keep an ear out while I’m out running errands.",
+        "speaker": "Ira",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Mina: Thanks, Ira. If you hear where the repair drive’s being held, let me know right away.",
+        "speaker": "Mina",
+        "listener": "Ira"
+      },
+      {
+        "round": 1,
+        "text": "Ira: Will do — I’ll let you know as soon as I hear where it’s being held.",
+        "speaker": "Ira",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Ira: I’m still keeping an ear out while I’m out running errands. If I catch where the repair drive is being held, I’ll let you know right away.",
+        "speaker": "Ira",
+        "listener": "Nell"
+      },
+      {
+        "round": 2,
+        "text": "Nell: Thanks, Ira—I'd appreciate that. I’ve only heard bits and pieces, so I’m hoping to catch the latest when you know it.",
+        "speaker": "Nell",
+        "listener": "Ira"
+      },
+      {
+        "round": 2,
+        "text": "Quinn: We’re fixing up the community shed and a few loose fence panels this Saturday morning. Come by around 10 and I’ll point you to the tools.",
+        "speaker": "Quinn",
+        "listener": "Ira"
+      },
+      {
+        "round": 2,
+        "text": "Ira: Sounds good — I’ll keep an ear out while I’m out running errands and let folks know about the repair drive.",
+        "speaker": "Ira",
+        "listener": "Quinn"
+      },
+      {
+        "round": 2,
+        "text": "Quinn: Great, thanks, Ira! If you hear anyone interested, send them my way or have them swing by the shed around 10 on Saturday.",
+        "speaker": "Quinn",
+        "listener": "Ira"
+      },
+      {
+        "round": 3,
+        "text": "Gus: Yep, it’s at the community center on Sunday now. If anyone needs a tool for the repair drive, they can borrow one from me.",
+        "speaker": "Gus",
+        "listener": "Ira",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a15"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Ira: Got it — I’ll let folks know it’s at the community center on Sunday, and I’ll keep an ear out while I’m out running errands.",
+        "speaker": "Ira",
+        "listener": "Gus"
+      },
+      {
+        "round": 3,
+        "text": "Gus: Thanks, Ira — I appreciate that.",
+        "speaker": "Gus",
+        "listener": "Ira",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a15"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Ira: Will do — I’m heading out for errands now, and if I hear where the repair drive is being held, I’ll let you know right away.",
+        "speaker": "Ira",
+        "listener": "Kira"
+      },
+      {
+        "round": 3,
+        "text": "Kira: Just to confirm, you’re still bringing the repair drive today, right?",
+        "speaker": "Kira",
+        "listener": "Ira"
+      },
+      {
+        "round": 3,
+        "text": "Ira: Yes — I’m still bringing it today, and I’ll let you know if I hear any updates while I’m out.",
+        "speaker": "Ira",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Rey: I’m glad to help out—what still needs fixing for the repair drive?",
+        "speaker": "Rey",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Ira: I heard it’s moved to the community center on Sunday now. I’ll spread the word while I’m out running errands.",
+        "speaker": "Ira",
+        "listener": "Rey",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a17"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Rey: Thanks, that helps a lot. I’ll be there Sunday at the community center and can help however you need.",
+        "speaker": "Rey",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Ira: Yep — I heard it moved to the community center on Sunday, so I’m telling folks as I’m out running errands.",
+        "speaker": "Ira",
+        "listener": "Eli",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a17"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Eli: Thanks for letting me know. What time on Sunday, and is there anything specific I should bring?",
+        "speaker": "Eli",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Ira: I’m not sure on the time yet, but I’ll ask around. If you can, bring any tools you already have and maybe some gloves.",
+        "speaker": "Ira",
+        "listener": "Eli",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a17"
+        }
+      }
+    ]
+  },
+  "a18": {
+    "kind": "fixed_stream",
+    "name": "Jules",
+    "events": [
+      {
+        "round": 0,
+        "text": "Leo: I can help with the repair drive—what’s the next thing you need?",
+        "speaker": "Leo",
+        "listener": "Jules"
+      },
+      {
+        "round": 0,
+        "text": "Jules: Absolutely — I’m ready to help organize the repair drive and keep things moving. What do you want to tackle first, Mara?",
+        "speaker": "Jules",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: Let’s start with the list of needed repairs and who can handle each one.",
+        "speaker": "Leo",
+        "listener": "Jules"
+      },
+      {
+        "round": 0,
+        "text": "Jules: I’m happy to help bridge things for the repair drive—who still needs to be looped in?",
+        "speaker": "Jules",
+        "listener": "Noah"
+      },
+      {
+        "round": 0,
+        "text": "Noah: Uh, I think a couple folks still need the heads-up, but I’m a bit fuzzy on who exactly. I can check and get back to you.",
+        "speaker": "Noah",
+        "listener": "Jules"
+      },
+      {
+        "round": 0,
+        "text": "Jules: No worries — just send me the names when you have them, and I’ll help with the follow-up.",
+        "speaker": "Jules",
+        "listener": "Noah"
+      },
+      {
+        "round": 1,
+        "text": "Hana: I can sort through what I have and bring any tools, tape, screws, and sturdy boxes I can find.",
+        "speaker": "Hana",
+        "listener": "Jules"
+      },
+      {
+        "round": 1,
+        "text": "Jules: That’s super helpful, Hana — thank you. I’ll keep connecting folks and we can match each repair to the right person.",
+        "speaker": "Jules",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Hana: Great — send me the repair list when you can, and I’ll double-check what I’ve got before I bring it over.",
+        "speaker": "Hana",
+        "listener": "Jules"
+      },
+      {
+        "round": 1,
+        "text": "Gus: Yep — we’re still set for the community shed at 3 PM on Saturday, and I’ve got a few tools folks can borrow if they need them.",
+        "speaker": "Gus",
+        "listener": "Jules"
+      },
+      {
+        "round": 1,
+        "text": "Jules: Great, that’s helpful — I can start matching the repairs to people and keep the list moving. If you want, I can also help loop in anyone who still needs a heads-up.",
+        "speaker": "Jules",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Gus: That’d be great, Jules — thanks for helping spread the word and keep the list moving. I’ll bring the tools and be ready at the shed.",
+        "speaker": "Gus",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Yes — just a quick update: the repair drive is now on Sunday at the community center. I’ll keep everything organized and make sure folks know where to bring their requests.",
+        "speaker": "Rosa",
+        "listener": "Jules",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Jules: Thanks, Rosa — that’s great news. I’ll help spread the word and loop in anyone who still needs to be connected.",
+        "speaker": "Jules",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Thanks, Jules — I really appreciate it. If anyone has questions, send them my way and I’ll keep everything on track.",
+        "speaker": "Rosa",
+        "listener": "Jules",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Jules: Sure — who still needs to be looped in, and what should I tackle first?",
+        "speaker": "Jules",
+        "listener": "Mara"
+      },
+      {
+        "round": 2,
+        "text": "Mara: Please loop in Sam and Rosa, and start with the repair list so we can match each task to a person and timing.",
+        "speaker": "Mara",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Jules: Absolutely — I’ll loop in Sam and Rosa, and I’ll start matching the repair list to each task and timing.",
+        "speaker": "Jules",
+        "listener": "Mara"
+      },
+      {
+        "round": 3,
+        "text": "Noah: I think we still need to loop in a couple folks, but I might be missing someone. What’s the latest on the repair drive?",
+        "speaker": "Noah",
+        "listener": "Jules"
+      },
+      {
+        "round": 3,
+        "text": "Jules: It’s moved to Sunday at the community center now. If you remember who’s still out of the loop, I can help spread the word.",
+        "speaker": "Jules",
+        "listener": "Noah",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a18"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Noah: Got it — Sunday at the community center. I’ll try to remember who’s still out of the loop and send them your way.",
+        "speaker": "Noah",
+        "listener": "Jules"
+      },
+      {
+        "round": 4,
+        "text": "Nell: I’ve only heard bits and pieces—what’s the latest on the repair drive?",
+        "speaker": "Nell",
+        "listener": "Jules"
+      },
+      {
+        "round": 4,
+        "text": "Jules: It’s moved to Sunday at the community center now, not Saturday at the front porch. I can help make sure everyone hears the update.",
+        "speaker": "Jules",
+        "listener": "Nell",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a18"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Nell: Oh, thanks — Sunday at the community center is much clearer. I’ll pass that along.",
+        "speaker": "Nell",
+        "listener": "Jules"
+      },
+      {
+        "round": 4,
+        "text": "Jules: Thanks, Rosa — I’ll loop in Sam and keep the repair list moving so we can match each task with the right person and timing.",
+        "speaker": "Jules",
+        "listener": "Rosa",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a18"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Thanks, Jules — I really appreciate it. Sunday at the community center will be much easier for everyone, and I’ll keep the requests organized there.",
+        "speaker": "Rosa",
+        "listener": "Jules",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Jules: Great — I’ll check in with Sam and keep the repair list matched up with timing. Thanks for keeping everything organized at the community center on Sunday.",
+        "speaker": "Jules",
+        "listener": "Rosa",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a18"
+        }
+      }
+    ]
+  },
+  "a19": {
+    "kind": "fixed_stream",
+    "name": "Kira",
+    "events": [
+      {
+        "round": 0,
+        "text": "Noah: Oh, right — the repair drive. I might’ve missed a detail or two; what do you need from me?",
+        "speaker": "Noah",
+        "listener": "Kira"
+      },
+      {
+        "round": 0,
+        "text": "Kira: Just to confirm, are you still bringing the repair drive today?",
+        "speaker": "Kira",
+        "listener": "Noah"
+      },
+      {
+        "round": 0,
+        "text": "Noah: Yep, I’m still bringing it today — thanks for checking.",
+        "speaker": "Noah",
+        "listener": "Kira"
+      },
+      {
+        "round": 0,
+        "text": "Ira: Sounds good — I’ll keep an ear out while I’m out running errands.",
+        "speaker": "Ira",
+        "listener": "Kira"
+      },
+      {
+        "round": 0,
+        "text": "Kira: Alright, just let me know if you spot anything.",
+        "speaker": "Kira",
+        "listener": "Ira"
+      },
+      {
+        "round": 0,
+        "text": "Ira: Will do — I’m heading out now, and I’ll let you know if I hear anything.",
+        "speaker": "Ira",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Vik: Thanks, Kira — I’ll do the same and let folks know about the repair drive.",
+        "speaker": "Vik",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Just to confirm, are you still bringing the repair drive today?",
+        "speaker": "Kira",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Vik: Yes — I’m still bringing it today, and I’ll let folks know too.",
+        "speaker": "Vik",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: Absolutely, Kira — send me the list and time, and I’ll keep everything organized so nothing gets missed.",
+        "speaker": "Rosa",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Just to confirm, you’re still bringing the repair drive today, right?",
+        "speaker": "Kira",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: Yes — I’m still bringing it today. Send me any last updates, and I’ll keep the list organized.",
+        "speaker": "Rosa",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Just to confirm, you’re still bringing the repair drive today, right?",
+        "speaker": "Kira",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Vik: Yes — I’m still bringing it today, and I’ll let folks know about the repair drive too.",
+        "speaker": "Vik",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Great, thanks for confirming.",
+        "speaker": "Kira",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Dane: Sounds good — I’m still happy to help match folks to the remaining repair jobs if you need me.",
+        "speaker": "Dane",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Just to confirm, you’re still bringing the repair drive today, right?",
+        "speaker": "Kira",
+        "listener": "Dane"
+      },
+      {
+        "round": 2,
+        "text": "Dane: Yes — I’m still bringing it today and I can help match folks to the remaining repair jobs too.",
+        "speaker": "Dane",
+        "listener": "Kira"
+      },
+      {
+        "round": 3,
+        "text": "Kira: Just to confirm, you’re still bringing the repair drive today, right?",
+        "speaker": "Kira",
+        "listener": "Nell"
+      },
+      {
+        "round": 3,
+        "text": "Nell: I’m still only hearing bits and pieces—what’s the latest on the repair drive?",
+        "speaker": "Nell",
+        "listener": "Kira"
+      },
+      {
+        "round": 3,
+        "text": "Kira: Yeah—just checking that you’re still bringing it today, right?",
+        "speaker": "Kira",
+        "listener": "Nell"
+      },
+      {
+        "round": 3,
+        "text": "Ira: Will do — I’m heading out for errands now, and if I hear where the repair drive is being held, I’ll let you know right away.",
+        "speaker": "Ira",
+        "listener": "Kira"
+      },
+      {
+        "round": 3,
+        "text": "Kira: Just to confirm, you’re still bringing the repair drive today, right?",
+        "speaker": "Kira",
+        "listener": "Ira"
+      },
+      {
+        "round": 3,
+        "text": "Ira: Yes — I’m still bringing it today, and I’ll let you know if I hear any updates while I’m out.",
+        "speaker": "Ira",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Leo: What’s the next thing you need?",
+        "speaker": "Leo",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Kira: Just to confirm, you’re still bringing the repair drive today, right?",
+        "speaker": "Kira",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Leo: Yes — I’m still bringing it today. I’ll have it ready at my garage and let you know if anything changes.",
+        "speaker": "Leo",
+        "listener": "Kira"
+      }
+    ]
+  },
+  "a20": {
+    "kind": "fixed_stream",
+    "name": "Leo",
+    "events": [
+      {
+        "round": 0,
+        "text": "Leo: I can help with the repair drive—what’s the next thing you need?",
+        "speaker": "Leo",
+        "listener": "Jules"
+      },
+      {
+        "round": 0,
+        "text": "Jules: Absolutely — I’m ready to help organize the repair drive and keep things moving. What do you want to tackle first, Mara?",
+        "speaker": "Jules",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: Let’s start with the list of needed repairs and who can handle each one.",
+        "speaker": "Leo",
+        "listener": "Jules"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Absolutely, Leo — I’ll keep the repair drive organized and make sure everyone knows where to bring their requests.",
+        "speaker": "Rosa",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: Thanks, Rosa — that really helps. I’ll spread the word and send any requests your way.",
+        "speaker": "Leo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Great, Leo — I’ll get a simple list going and keep it updated so we don’t miss anything.",
+        "speaker": "Rosa",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Let’s start with the list of needed repairs and who can handle each one.",
+        "speaker": "Leo",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Mara: Absolutely — I’ll send over the repair list with who can handle each task and the timing right away.",
+        "speaker": "Mara",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Great — send it over and I’ll help sort the tasks.",
+        "speaker": "Leo",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Hana: I’ve sorted through what I have, and I can bring any tools, tape, screws, and sturdy boxes I can find.",
+        "speaker": "Hana",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Great, that covers a lot. Let’s match each repair with whoever can handle it best.",
+        "speaker": "Leo",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Hana: Sounds good — I’ll share what I can bring, and then we can match each repair to the right person.",
+        "speaker": "Hana",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Mara: Absolutely — I’ll send over the repair list with who can handle each task and the timing right away.",
+        "speaker": "Mara",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Leo: Great—send it over when you can, and I’ll jump on the next task.",
+        "speaker": "Leo",
+        "listener": "Mara"
+      },
+      {
+        "round": 2,
+        "text": "Mara: I’m on it — I’ll send the list shortly so you can get started on the next task.",
+        "speaker": "Mara",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Oh, right — the repair drive. I’ll come by Saturday around 10 and help with the shed and fence panels.",
+        "speaker": "Oren",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Leo: Great, Saturday at 10 works for me. What should I bring for the shed and fence panels?",
+        "speaker": "Leo",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Mostly just gloves and a drill if you’ve got one — and maybe a tape measure. If I remember anything else, I’ll let you know.",
+        "speaker": "Oren",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Pia: That still works for me—Saturday at 10 by your garage is fine. I’ll bring the tools I have and watch for any updates if plans change.",
+        "speaker": "Pia",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Leo: Great, Saturday at 10 by my garage works. I’ll have the repair drive ready and let you know if anything changes.",
+        "speaker": "Leo",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Pia: Sounds good — I’ll plan on Saturday at 10 by your garage and bring what tools I have. If anything shifts, just let me know ahead of time.",
+        "speaker": "Pia",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Dane: I’m still here to help—just point me to the biggest fix and I’ll jump in.",
+        "speaker": "Dane",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Leo: Great—start with the biggest repair and I’ll help where needed. What’s the next thing you need?",
+        "speaker": "Leo",
+        "listener": "Dane"
+      },
+      {
+        "round": 3,
+        "text": "Dane: Sounds good—show me the biggest repair, and I’ll get on it right away.",
+        "speaker": "Dane",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Leo: What’s the next thing you need?",
+        "speaker": "Leo",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Kira: Just to confirm, you’re still bringing the repair drive today, right?",
+        "speaker": "Kira",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Leo: Yes — I’m still bringing it today. I’ll have it ready at my garage and let you know if anything changes.",
+        "speaker": "Leo",
+        "listener": "Kira"
+      }
+    ]
+  },
+  "a21": {
+    "kind": "fixed_stream",
+    "name": "Mara",
+    "events": [
+      {
+        "round": 0,
+        "text": "Rosa: Yeah, I’m in — just point me to what needs fixing and when.",
+        "speaker": "Rosa",
+        "listener": "Mara"
+      },
+      {
+        "round": 0,
+        "text": "Mara: Thanks, Rosa — I’ll send you the list and the time right away.",
+        "speaker": "Mara",
+        "listener": "Rosa"
+      },
+      {
+        "round": 0,
+        "text": "Sam: I’m happy to help with the repair drive—what do you need from me?",
+        "speaker": "Sam",
+        "listener": "Mara"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Sure thing—tell me what needs doing, and I’ll pitch in.",
+        "speaker": "Sam",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Let’s start with the list of needed repairs and who can handle each one.",
+        "speaker": "Leo",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Mara: Absolutely — I’ll send over the repair list with who can handle each task and the timing right away.",
+        "speaker": "Mara",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Great — send it over and I’ll help sort the tasks.",
+        "speaker": "Leo",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Mara: Thanks, Sam — I’ll send you the list and the time right away.",
+        "speaker": "Mara",
+        "listener": "Eli"
+      },
+      {
+        "round": 1,
+        "text": "Eli: That works for me, Mara. I’ll keep my tools handy and wait for your update.",
+        "speaker": "Eli",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Mara: Great, Eli — I’ll send the details soon, and thanks for keeping your tools ready.",
+        "speaker": "Mara",
+        "listener": "Eli"
+      },
+      {
+        "round": 2,
+        "text": "Mara: Absolutely — I’ll send over the repair list with who can handle each task and the timing right away.",
+        "speaker": "Mara",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Leo: Great—send it over when you can, and I’ll jump on the next task.",
+        "speaker": "Leo",
+        "listener": "Mara"
+      },
+      {
+        "round": 2,
+        "text": "Mara: I’m on it — I’ll send the list shortly so you can get started on the next task.",
+        "speaker": "Mara",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Jules: Sure — who still needs to be looped in, and what should I tackle first?",
+        "speaker": "Jules",
+        "listener": "Mara"
+      },
+      {
+        "round": 2,
+        "text": "Mara: Please loop in Sam and Rosa, and start with the repair list so we can match each task to a person and timing.",
+        "speaker": "Mara",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Jules: Absolutely — I’ll loop in Sam and Rosa, and I’ll start matching the repair list to each task and timing.",
+        "speaker": "Jules",
+        "listener": "Mara"
+      },
+      {
+        "round": 3,
+        "text": "Mara: Absolutely — I’ll send over the repair list with who can handle each task and the timing right away.",
+        "speaker": "Mara",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Mina: Thanks, Mara. Do you know where the repair drive is being held?",
+        "speaker": "Mina",
+        "listener": "Mara"
+      },
+      {
+        "round": 3,
+        "text": "Mara: It’s being held at the community center on Maple Street. I’ll send the exact room and timing right away.",
+        "speaker": "Mara",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Thanks, Mara — please send the list and time when you can. And just a reminder, the repair drive is Sunday at the community center now.",
+        "speaker": "Rosa",
+        "listener": "Mara",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Mara: Got it — I’ll send the repair list and Sunday time right away, and I’ll loop in Sam too.",
+        "speaker": "Mara",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Perfect, thanks, Mara — I appreciate you looping in Sam too.",
+        "speaker": "Rosa",
+        "listener": "Mara",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Tess: Oh, right — it’s on Sunday at the community center now. I’ll keep spreading the word, especially if anyone still needs a tool.",
+        "speaker": "Tess",
+        "listener": "Mara",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a03"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Mara: Thanks, Tess — that would really help. I’ll send the repair list and timing right away, and the reminder is still Sunday at the community center.",
+        "speaker": "Mara",
+        "listener": "Tess",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a21"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Tess: Perfect, thanks — I’ll pass along the repair list and timing too.",
+        "speaker": "Tess",
+        "listener": "Mara",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a03"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Nell: I’m still only hearing bits and pieces—what’s the latest on the repair drive?",
+        "speaker": "Nell",
+        "listener": "Mara"
+      },
+      {
+        "round": 4,
+        "text": "Mara: It’s been moved to Sunday at the community center. I’ll send the repair list with tasks and timing right away.",
+        "speaker": "Mara",
+        "listener": "Nell",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a21"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Nell: Thanks, that helps — I’m still piecing it together, so please send the list when you can.",
+        "speaker": "Nell",
+        "listener": "Mara"
+      }
+    ]
+  },
+  "a22": {
+    "kind": "fixed_stream",
+    "name": "Noah",
+    "events": [
+      {
+        "round": 0,
+        "text": "Noah: Oh, right — the repair drive. I might’ve missed a detail or two; what do you need from me?",
+        "speaker": "Noah",
+        "listener": "Kira"
+      },
+      {
+        "round": 0,
+        "text": "Kira: Just to confirm, are you still bringing the repair drive today?",
+        "speaker": "Kira",
+        "listener": "Noah"
+      },
+      {
+        "round": 0,
+        "text": "Noah: Yep, I’m still bringing it today — thanks for checking.",
+        "speaker": "Noah",
+        "listener": "Kira"
+      },
+      {
+        "round": 0,
+        "text": "Jules: I’m happy to help bridge things for the repair drive—who still needs to be looped in?",
+        "speaker": "Jules",
+        "listener": "Noah"
+      },
+      {
+        "round": 0,
+        "text": "Noah: Uh, I think a couple folks still need the heads-up, but I’m a bit fuzzy on who exactly. I can check and get back to you.",
+        "speaker": "Noah",
+        "listener": "Jules"
+      },
+      {
+        "round": 0,
+        "text": "Jules: No worries — just send me the names when you have them, and I’ll help with the follow-up.",
+        "speaker": "Jules",
+        "listener": "Noah"
+      },
+      {
+        "round": 1,
+        "text": "Noah: Oh, right — I’m still a bit fuzzy on who’s been looped in for the repair drive. If you tell me what’s left, I can check and get back to you.",
+        "speaker": "Noah",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: Absolutely — I’ll keep the repair drive organized and send along a simple list of what’s still needed. Just point me to any requests, and I’ll keep it updated.",
+        "speaker": "Rosa",
+        "listener": "Noah"
+      },
+      {
+        "round": 1,
+        "text": "Noah: Thanks, Rosa — that’d help a lot. Send me the list, and I’ll check what I can still cover for the repair drive.",
+        "speaker": "Noah",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Nell: I’ve only heard bits and pieces—what’s the latest on the repair drive?",
+        "speaker": "Nell",
+        "listener": "Noah"
+      },
+      {
+        "round": 1,
+        "text": "Noah: Yep, I’m still bringing it today — thanks for checking. I might’ve missed a detail or two, so what do you need from me?",
+        "speaker": "Noah",
+        "listener": "Nell"
+      },
+      {
+        "round": 1,
+        "text": "Nell: I’m just trying to catch up—do you need any volunteers or donations before you head over?",
+        "speaker": "Nell",
+        "listener": "Noah"
+      },
+      {
+        "round": 2,
+        "text": "Hana: I can help with that—what should I bring for the repair drive?",
+        "speaker": "Hana",
+        "listener": "Noah"
+      },
+      {
+        "round": 2,
+        "text": "Noah: Oh, thanks — if you can bring any spare tools, screws, or tape, that’d be a big help. I’m a little fuzzy on the full list, so if you’ve got anything handy, I can check what’s still needed.",
+        "speaker": "Noah",
+        "listener": "Hana"
+      },
+      {
+        "round": 2,
+        "text": "Hana: I can bring spare tools, screws, and tape — I’ll check what I have and let you know. If you send the full list, I can help match the rest too.",
+        "speaker": "Hana",
+        "listener": "Noah"
+      },
+      {
+        "round": 2,
+        "text": "Noah: Oh, right — the repair drive. I might’ve missed a detail or two; what do you need from me?",
+        "speaker": "Noah",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Mina: Do you know where the repair drive is being held? If you do, let me know right away.",
+        "speaker": "Mina",
+        "listener": "Noah"
+      },
+      {
+        "round": 2,
+        "text": "Noah: I’m not sure I caught the location—can you remind me? If I hear it, I’ll let you know right away.",
+        "speaker": "Noah",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Noah: I’ve only heard bits and pieces—what’s the latest on the repair drive?",
+        "speaker": "Noah",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Sam: I can help sort donations and keep a simple list of what comes in, then we’ll know what still needs fixing.",
+        "speaker": "Sam",
+        "listener": "Noah"
+      },
+      {
+        "round": 3,
+        "text": "Noah: That sounds helpful—what do you want me to bring or do?",
+        "speaker": "Noah",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Noah: I think we still need to loop in a couple folks, but I might be missing someone. What’s the latest on the repair drive?",
+        "speaker": "Noah",
+        "listener": "Jules"
+      },
+      {
+        "round": 3,
+        "text": "Jules: It’s moved to Sunday at the community center now. If you remember who’s still out of the loop, I can help spread the word.",
+        "speaker": "Jules",
+        "listener": "Noah",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a18"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Noah: Got it — Sunday at the community center. I’ll try to remember who’s still out of the loop and send them your way.",
+        "speaker": "Noah",
+        "listener": "Jules"
+      },
+      {
+        "round": 4,
+        "text": "Gus: Yep, it’s at the community center on Sunday now. If you need a tool for the repair drive, feel free to borrow one from me.",
+        "speaker": "Gus",
+        "listener": "Noah",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a15"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Noah: Oh, right — Sunday at the community center. Thanks, Gus; I might borrow a tool from you.",
+        "speaker": "Noah",
+        "listener": "Gus",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a22"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Gus: Sure thing, Noah—just let me know what you need, and I’ll set it aside for you.",
+        "speaker": "Gus",
+        "listener": "Noah",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a15"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Noah: Right, it’s Sunday now at the community center. I think I still need to loop in a couple folks.",
+        "speaker": "Noah",
+        "listener": "Rey",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a22"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Rey: I can help with that—who else still needs to be looped in?",
+        "speaker": "Rey",
+        "listener": "Noah"
+      },
+      {
+        "round": 4,
+        "text": "Noah: Probably Hana and Nell — they only had the old Saturday porch info. I’ll tell them it’s Sunday at the community center.",
+        "speaker": "Noah",
+        "listener": "Rey",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a22"
+        }
+      }
+    ]
+  },
+  "a23": {
+    "kind": "fixed_stream",
+    "name": "Opal",
+    "events": [
+      {
+        "round": 0,
+        "text": "Opal: I don’t have any repair-drive details yet, but I can help keep track of the location if you tell me where it’s happening.",
+        "speaker": "Opal",
+        "listener": "Mina"
+      },
+      {
+        "round": 0,
+        "text": "Mina: Do you know where the repair drive is being held?",
+        "speaker": "Mina",
+        "listener": "Opal"
+      },
+      {
+        "round": 0,
+        "text": "Opal: Not yet—I don’t have the location confirmed. If you tell me where it’s being held, I’ll keep track of it.",
+        "speaker": "Opal",
+        "listener": "Mina"
+      },
+      {
+        "round": 0,
+        "text": "Opal: I’m headed to the repair drive now, Nell—if you need me, I’ll be near the check-in table.",
+        "speaker": "Opal",
+        "listener": "Nell"
+      },
+      {
+        "round": 0,
+        "text": "Nell: Thanks, Opal—I'll probably stop by a little later and check the table. Let me know if you hear anything I should know.",
+        "speaker": "Nell",
+        "listener": "Opal"
+      },
+      {
+        "round": 0,
+        "text": "Opal: Will do, Nell—I'll keep an ear out and let you know if anything changes at the check-in table.",
+        "speaker": "Opal",
+        "listener": "Nell"
+      },
+      {
+        "round": 1,
+        "text": "Opal: I still don’t have the repair-drive location confirmed yet, Gus. If you know where it’s being held, I can keep track of it for us.",
+        "speaker": "Opal",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Gus: It’s at the community shed on Saturday at 3 PM. I can bring a few tools too, and we shouldn’t be there too long.",
+        "speaker": "Gus",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Opal: Great, I’ve got it: the community shed on Saturday at 3 PM. I’ll keep track of that location, and your tools offer is really helpful.",
+        "speaker": "Opal",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Bo: I can still bring screws and duct tape, and I’ll check for a flashlight too. Just tell me where to drop it off.",
+        "speaker": "Bo",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Opal: I still don’t have the drop-off location confirmed. If you tell me where the repair drive is being held, I’ll keep track of it for you.",
+        "speaker": "Opal",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Bo: I’m not sure either — I only know I can bring the supplies. Let me check and I’ll get back to you.",
+        "speaker": "Bo",
+        "listener": "Opal"
+      },
+      {
+        "round": 2,
+        "text": "Opal: I still don’t have the repair-drive location confirmed yet, Tess. If you know where it’s being held, I can keep track of it for us.",
+        "speaker": "Opal",
+        "listener": "Tess"
+      },
+      {
+        "round": 2,
+        "text": "Tess: I don’t have the location confirmed yet either, but I’ll keep my ears open and pass it along as soon as I hear. Folks are still saying screws, duct tape, and a couple flashlights are the big needs right now.",
+        "speaker": "Tess",
+        "listener": "Opal"
+      },
+      {
+        "round": 2,
+        "text": "Opal: Thanks, Tess — I’ll keep tracking it too, and I’ll note the supplies in the meantime.",
+        "speaker": "Opal",
+        "listener": "Tess"
+      },
+      {
+        "round": 3,
+        "text": "Opal: I still don’t have the repair-drive location confirmed yet, Bo. If you know where it’s being held, I can keep track of it for us.",
+        "speaker": "Opal",
+        "listener": "Bo"
+      },
+      {
+        "round": 3,
+        "text": "Bo: I don’t have the location yet either—still waiting on that detail. I’ll let you know as soon as I hear it.",
+        "speaker": "Bo",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Opal: Thanks, Bo — I’ll keep tracking it too, and let me know as soon as you hear the location.",
+        "speaker": "Opal",
+        "listener": "Bo"
+      },
+      {
+        "round": 3,
+        "text": "Opal: I still don’t have the repair-drive location confirmed yet, Uli. If you know where it’s being held, I can keep track of it for us.",
+        "speaker": "Opal",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Uli: It’s by my garage on Saturday at 10. I’ll let you know if anything changes.",
+        "speaker": "Uli",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Opal: Thanks, Uli — I’ve got it noted: by your garage on Saturday at 10. If it changes, just let me know and I’ll keep track.",
+        "speaker": "Opal",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Opal: I still don’t have the repair-drive location confirmed yet, Hana. If you know where it’s being held, I can keep track of it for us.",
+        "speaker": "Opal",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Hana: I don’t know the location yet either—once it’s confirmed, I’ll let you know right away.",
+        "speaker": "Hana",
+        "listener": "Opal"
+      },
+      {
+        "round": 4,
+        "text": "Opal: Thanks, Hana — I’ll keep it on my list and wait for the confirmed location.",
+        "speaker": "Opal",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Pia: Saturday at 10 by Leo’s garage still works for me. If the location changes, please let me know right away so I can plan accordingly.",
+        "speaker": "Pia",
+        "listener": "Opal"
+      },
+      {
+        "round": 4,
+        "text": "Opal: Got it — I’ll keep Leo’s garage at Saturday 10 on my list and let you know if I hear any change.",
+        "speaker": "Opal",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: Thanks, Opal — that works for me. I’m keeping Saturday at 10 by Leo’s garage on my calendar.",
+        "speaker": "Pia",
+        "listener": "Opal"
+      }
+    ]
+  },
+  "a24": {
+    "kind": "fixed_stream",
+    "name": "Quinn",
+    "events": [
+      {
+        "round": 0,
+        "text": "Oren: Oh, right—the repair drive. I’m happy to help, I just need a little reminder of what we’re fixing and when to show up.",
+        "speaker": "Oren",
+        "listener": "Quinn"
+      },
+      {
+        "round": 0,
+        "text": "Quinn: We’re fixing up the community shed and a few loose fence panels this Saturday morning. Come by around 10 and I’ll point you to the tools.",
+        "speaker": "Quinn",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Got it — community shed and fence panels this Saturday around 10. I’ll be there, and if I forget, I’ll ask you again!",
+        "speaker": "Oren",
+        "listener": "Quinn"
+      },
+      {
+        "round": 0,
+        "text": "Quinn: I’m helping spread the word about the repair drive—want me to put you down to help or just come by?",
+        "speaker": "Quinn",
+        "listener": "Rey"
+      },
+      {
+        "round": 0,
+        "text": "Rey: Just come by—I can help out for a bit.",
+        "speaker": "Rey",
+        "listener": "Quinn"
+      },
+      {
+        "round": 1,
+        "text": "Rey: That’d be a big help—if you can, please match folks to the right jobs and let me know who still needs a hand.",
+        "speaker": "Rey",
+        "listener": "Quinn"
+      },
+      {
+        "round": 1,
+        "text": "Quinn: Absolutely—I’ll match folks to jobs and keep an eye on who still needs help. I’ll also send anyone extra straight to the shed around 10 on Saturday.",
+        "speaker": "Quinn",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Rey: Thanks, Quinn—that really helps. I’ll be at the shed around 10 on Saturday.",
+        "speaker": "Rey",
+        "listener": "Quinn"
+      },
+      {
+        "round": 2,
+        "text": "Quinn: We’re fixing up the community shed and a few loose fence panels this Saturday morning. Come by around 10 and I’ll point you to the tools.",
+        "speaker": "Quinn",
+        "listener": "Ira"
+      },
+      {
+        "round": 2,
+        "text": "Ira: Sounds good — I’ll keep an ear out while I’m out running errands and let folks know about the repair drive.",
+        "speaker": "Ira",
+        "listener": "Quinn"
+      },
+      {
+        "round": 2,
+        "text": "Quinn: Great, thanks, Ira! If you hear anyone interested, send them my way or have them swing by the shed around 10 on Saturday.",
+        "speaker": "Quinn",
+        "listener": "Ira"
+      },
+      {
+        "round": 3,
+        "text": "Dane: I’m still here to help — what’s the biggest thing you need done for the repair drive?",
+        "speaker": "Dane",
+        "listener": "Quinn"
+      },
+      {
+        "round": 3,
+        "text": "Quinn: The community shed is the big one, plus a few loose fence panels. If you can come by around 10 this Saturday, I’ll point you to the tools.",
+        "speaker": "Quinn",
+        "listener": "Dane"
+      },
+      {
+        "round": 3,
+        "text": "Dane: I can do 10 this Saturday — I’ll bring the screws and duct tape and help with the shed and fence panels.",
+        "speaker": "Dane",
+        "listener": "Quinn"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: I’m helping spread the word about the repair drive—want me to put you down to help, or would you rather just come by?",
+        "speaker": "Quinn",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: I can come by, but could you send me the exact location and what time we’re starting? I just want to make sure I can plan the drive over.",
+        "speaker": "Pia",
+        "listener": "Quinn"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: Absolutely — I’ll send you the exact spot and start time right away. Thanks for coming by!",
+        "speaker": "Quinn",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Hana: I can help with that—what should I bring for the repair drive?",
+        "speaker": "Hana",
+        "listener": "Quinn"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: Awesome — if you can, bring a few basic tools and whatever supplies you already have, and I’ll make sure people know we could use hands-on help too.",
+        "speaker": "Quinn",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Hana: Got it — I’ll bring a few basic tools and whatever supplies I already have. And I’ll keep an eye out for hands-on help too.",
+        "speaker": "Hana",
+        "listener": "Quinn"
+      }
+    ]
+  },
+  "a25": {
+    "kind": "fixed_stream",
+    "name": "Rey",
+    "events": [
+      {
+        "round": 0,
+        "text": "Rey: I’m glad to help out—what still needs fixing for the repair drive?",
+        "speaker": "Rey",
+        "listener": "Dane"
+      },
+      {
+        "round": 0,
+        "text": "Dane: Thanks, Rey—I'm running a bit late, but I can still help with whatever’s left. What’s the biggest thing you need done?",
+        "speaker": "Dane",
+        "listener": "Rey"
+      },
+      {
+        "round": 0,
+        "text": "Rey: The biggest thing is sorting the list of repairs and checking which homes still need a hand. If you can, I could use help matching folks to the right jobs.",
+        "speaker": "Rey",
+        "listener": "Dane"
+      },
+      {
+        "round": 0,
+        "text": "Quinn: I’m helping spread the word about the repair drive—want me to put you down to help or just come by?",
+        "speaker": "Quinn",
+        "listener": "Rey"
+      },
+      {
+        "round": 0,
+        "text": "Rey: Just come by—I can help out for a bit.",
+        "speaker": "Rey",
+        "listener": "Quinn"
+      },
+      {
+        "round": 1,
+        "text": "Rey: That’d be a big help—if you can, please match folks to the right jobs and let me know who still needs a hand.",
+        "speaker": "Rey",
+        "listener": "Quinn"
+      },
+      {
+        "round": 1,
+        "text": "Quinn: Absolutely—I’ll match folks to jobs and keep an eye on who still needs help. I’ll also send anyone extra straight to the shed around 10 on Saturday.",
+        "speaker": "Quinn",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Rey: Thanks, Quinn—that really helps. I’ll be at the shed around 10 on Saturday.",
+        "speaker": "Rey",
+        "listener": "Quinn"
+      },
+      {
+        "round": 1,
+        "text": "Pia: Great, the community shed at 3 PM Saturday works for me. I’ll bring what I can, and I may need to borrow a tool or two.",
+        "speaker": "Pia",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Rey: Sounds good—I can bring a few tools and help with whatever still needs fixing. If you need anything specific, just let me know.",
+        "speaker": "Rey",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: Thanks, Rey — I’ll let you know if I need anything specific before Saturday.",
+        "speaker": "Pia",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Bo: What’s the main thing you need from me? I’m a bit light on details, but I can help.",
+        "speaker": "Bo",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Rey: The biggest help would be sorting the repair list and matching folks to the right jobs. If you can, I’d really appreciate you checking which homes still need a hand.",
+        "speaker": "Rey",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Sure — I can sort the repair list and check which homes still need help.",
+        "speaker": "Bo",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Rey: I can help sort the repair list and match folks to the right jobs. If you know which homes still need a hand, send them my way.",
+        "speaker": "Rey",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Sam: Thanks, Rey — I can do that. I’ll sort donations and keep a simple list of what comes in.",
+        "speaker": "Sam",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Rey: Thanks, Sam — that would help a lot. Send me the list when you have it, and I’ll start matching people to the jobs.",
+        "speaker": "Rey",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Rey: I’m glad to help out—what still needs fixing for the repair drive?",
+        "speaker": "Rey",
+        "listener": "Cleo"
+      },
+      {
+        "round": 3,
+        "text": "Rey: Sounds good—I can bring a few tools and help with whatever still needs fixing. If you need anything specific, just let me know.",
+        "speaker": "Rey",
+        "listener": "Cleo"
+      },
+      {
+        "round": 3,
+        "text": "Rey: I can bring a few tools and help with whatever still needs fixing. If you need anything specific, just let me know.",
+        "speaker": "Rey",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Faye: Thanks, Rey — that helps a lot. Saturday at 10 by the garage still works for me, and I’ll plan around the school schedule to be there.",
+        "speaker": "Faye",
+        "listener": "Rey"
+      },
+      {
+        "round": 3,
+        "text": "Rey: Great, Saturday at 10 by the garage works for me too. I’ll bring the tools and be ready to help.",
+        "speaker": "Rey",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Rey: I’m glad to help out—what still needs fixing for the repair drive?",
+        "speaker": "Rey",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Ira: I heard it’s moved to the community center on Sunday now. I’ll spread the word while I’m out running errands.",
+        "speaker": "Ira",
+        "listener": "Rey",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a17"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Rey: Thanks, that helps a lot. I’ll be there Sunday at the community center and can help however you need.",
+        "speaker": "Rey",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Noah: Right, it’s Sunday now at the community center. I think I still need to loop in a couple folks.",
+        "speaker": "Noah",
+        "listener": "Rey",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a22"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Rey: I can help with that—who else still needs to be looped in?",
+        "speaker": "Rey",
+        "listener": "Noah"
+      },
+      {
+        "round": 4,
+        "text": "Noah: Probably Hana and Nell — they only had the old Saturday porch info. I’ll tell them it’s Sunday at the community center.",
+        "speaker": "Noah",
+        "listener": "Rey",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a22"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,189 @@
+{
+  "agent_id": "a02",
+  "interview": {
+    "name": "Sam",
+    "answer": "",
+    "verdict": "unknown"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 23,
+    "reflections": [
+      "Sam is helpful and resource-sharing, offering tools directly and making pickup easy.",
+      "Leo is polite and responsive, confirming he will come by soon.",
+      "Their interaction is casual and cooperative, with clear coordination around a simple favor.",
+      "Sam is a dependable helper who lends tools and stays available in person when others need support.",
+      "Leo and Eli both respond cooperatively and keep plans straightforward, which suggests low-friction coordination with Sam.",
+      "Faye is managing a repair-drive update channel and keeps others informed about timing and staffing changes.",
+      "Sam is the person coordinating the repair drive and handing out tools, so others treat him as the practical point of contact.",
+      "Eli and Oren both respond positively to Sam’s step-by-step approach, suggesting they prefer clear, incremental coordination.",
+      "Faye is keeping the group updated on logistics and is prepared to flag schedule changes or extra help needs.",
+      "Sam is the practical organizer in the repair drive, repeatedly offering tools, access, and quick coordination.",
+      "Faye is acting as the status point for the ongoing activity and will update others if logistics change.",
+      "Oren and Dane are willing to help, but both are entering the effort late and are seeking a clear rundown of what still needs doing.",
+      "Sam is the main coordinator for the repair drive and responds with practical, concise guidance.",
+      "Jules is handling organization and follow-up, including the task list and checking availability.",
+      "Oren, Dane, and Bo are willing to help, but they prefer short, direct updates and next steps."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Sam: Yep — I’ve got a hammer and a set of screwdrivers you can borrow. Swing by when you’re ready, and I’ll get them for you.",
+        "speaker": "Sam",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: Thanks, Sam — I’ll swing by in a bit.",
+        "speaker": "Leo",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Sounds good, Leo — I’ll be around, so just knock when you get here.",
+        "speaker": "Sam",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Eli: Let’s keep it simple: I’ll write down the remaining fixes, and we can go through them one by one. Then we’ll know exactly what needs doing.",
+        "speaker": "Eli",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Sounds good, Eli — that’ll make it easier to tackle the rest one by one. I’ll be here when you’re ready to go through the list.",
+        "speaker": "Sam",
+        "listener": "Eli"
+      },
+      {
+        "round": 1,
+        "text": "Eli: Good — I’ll start the list now, and we can go through it step by step.",
+        "speaker": "Eli",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Sounds good — just come by when you’re ready and knock. I’ll be around with the hammer and screwdrivers.",
+        "speaker": "Sam",
+        "listener": "Faye"
+      },
+      {
+        "round": 1,
+        "text": "Faye: Yep, it’s still happening — I haven’t heard any change to that. I’ll let you know if they need extra hands or if the drop-off times change.",
+        "speaker": "Faye",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Great, thanks for the update — just let me know if you need anything extra for the repair drive.",
+        "speaker": "Sam",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Sam: Sounds good — just come by when you’re ready and knock. I’ll be around with the hammer and screwdrivers.",
+        "speaker": "Sam",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Sam: Sure thing — just knock when you get here, and I’ll hand over the hammer and screwdrivers.",
+        "speaker": "Sam",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Oh, right—the repair drive. I’m glad you brought it up; I’ve been meaning to check what still needs doing.",
+        "speaker": "Oren",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Sam: Sounds good — swing by when you’re ready and we’ll go through the remaining fixes one by one.",
+        "speaker": "Sam",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Thanks, Sam — I’ll swing by soon and we can go through the fixes one by one.",
+        "speaker": "Oren",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Sam: Sure thing — just come by when you’re ready and knock. I’ll be around with the hammer and screwdrivers.",
+        "speaker": "Sam",
+        "listener": "Dane"
+      },
+      {
+        "round": 3,
+        "text": "Dane: Thanks, Sam — I’m a bit late, but I can help with the repair drive too. Just tell me what still needs fixing and I’ll jump in.",
+        "speaker": "Dane",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Sam: Sounds good — just send the key details when you’ve got them, and I’ll skim them fast.",
+        "speaker": "Sam",
+        "listener": "Dane"
+      },
+      {
+        "round": 4,
+        "text": "Jules: Absolutely — I’ll send the updated repair drive details: Sunday at the community center. I’ll also check who’s available and what tasks still need doing.",
+        "speaker": "Jules",
+        "listener": "Sam",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a18"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Sam: Thanks, Jules — Sunday at the community center works for me. Send the task list when you can, and I’ll help wherever I’m needed.",
+        "speaker": "Sam",
+        "listener": "Jules"
+      },
+      {
+        "round": 4,
+        "text": "Jules: Will do — I’ll put together the task list and loop you in once I’ve checked who’s free.",
+        "speaker": "Jules",
+        "listener": "Sam",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a18"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Bo: Sounds good — send me the repair drive details and I’ll skim them.",
+        "speaker": "Bo",
+        "listener": "Sam",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a10"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Sam: Will do — I’ll send over the repair drive details now, and we can go through any remaining fixes together.",
+        "speaker": "Sam",
+        "listener": "Bo"
+      },
+      {
+        "round": 4,
+        "text": "Bo: Sounds good — keep it short and I’ll skim the key bits.",
+        "speaker": "Bo",
+        "listener": "Sam",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a10"
+        }
+      }
+    ]
+  }
+}

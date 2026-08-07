@@ -1,0 +1,42 @@
+{
+  "timestamp": "2026-07-31T16:30:33+08:00",
+  "updated_at": "2026-07-31T16:54:53+08:00",
+  "status": "complete",
+  "benchmark_id": "cityintent_v0",
+  "benchmark_version": "1.0-rc1",
+  "runner": "/Users/mac/Documents/6-Research/6-city/benchmarks/cityintent_v0/tools/run_baseline_traces.py",
+  "agents": [
+    "api_llm_react_tool_policy",
+    "api_llm_plan_and_execute"
+  ],
+  "scenario_ids": [
+    "hard_budget_entangled_meet",
+    "hard_deadline_then_meet",
+    "hard_full_evening_chain",
+    "hard_overlapping_windows",
+    "hard_stale_plan_override",
+    "hard_three_meeting_relay"
+  ],
+  "llm_config_path": "/Users/mac/Documents/6-Research/6-city/benchmarks/cityintent_v0/configs/yunwu_qwen3_235b_a22b_instruct_2507.json",
+  "llm_config": {
+    "provider": "yunwu_qwen",
+    "model": "qwen3-235b-a22b-instruct-2507",
+    "wire_api": "chat_completions",
+    "base_url": "https://yunwu.ai",
+    "temperature": 0,
+    "omit_temperature": false,
+    "timeout": 120,
+    "sleep": 1,
+    "max_concurrency": 4,
+    "retries": 3,
+    "retry_sleep": 5,
+    "json_mode": true,
+    "transport": "curl",
+    "api_key_env": "DEEPSEEK_API_KEY"
+  },
+  "results_dir": "/Users/mac/Documents/6-Research/6-city/results/cityintent_v1_rc1/e3e_yunwu_qwen3_235b_a22b_instruct_2x6hardx3_2026-07-31/repeat_02/traces",
+  "overwrite": false,
+  "resume": true,
+  "completed_traces": 12,
+  "expected_traces": 12
+}

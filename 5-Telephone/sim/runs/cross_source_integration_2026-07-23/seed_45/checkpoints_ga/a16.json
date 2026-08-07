@@ -1,0 +1,199 @@
+{
+  "agent_id": "a16",
+  "interview": {
+    "name": "Hana",
+    "answer": "It’s still tentative, and the exact time and location haven’t been confirmed yet.",
+    "verdict": "unknown"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 24,
+    "reflections": [
+      "Hana is acting as the coordination point and prefers to verify details before treating plans as final.",
+      "Faye provides clear logistical confirmation when asked, helping others lock in meeting details.",
+      "Kira is cautious about tentative plans and waits for confirmation before committing.",
+      "Hana is coordinating the repair drive and is careful to verify logistics before treating plans as final.",
+      "Faye and Vik are responsive helpers who confirm details and promise follow-up updates.",
+      "Kira prefers to wait for confirmation and keeps expectations tentative until the plan is locked in.",
+      "Hana is the main coordinator and repeatedly asks for confirmation before treating plans as final.",
+      "Kira and Gus both respond cautiously and wait for confirmation before moving forward.",
+      "Vik appears to be responsible for checking remaining tasks and sharing the plan with the group.",
+      "Hana is coordinating logistics and prefers to keep plans tentative until details are confirmed.",
+      "Gus and Ira respond cooperatively and wait for confirmation before moving forward.",
+      "Pia needs concrete event details before committing and wants to know exactly what is required.",
+      "Hana and Pia are coordinating around incomplete event details, and both prefer to wait for confirmed time, location, and what to bring before committing.",
+      "The relationship between Hana and Pia is cooperative and polite, with repeated acknowledgments and careful follow-through on missing information.",
+      "Sam is now part of the same confirmation loop, using the same tentative, wait-for-confirmation pattern as Hana."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Hana: Could you remind me of the exact time and where we’re meeting for the repair drive?",
+        "speaker": "Hana",
+        "listener": "Faye"
+      },
+      {
+        "round": 0,
+        "text": "Faye: Of course — we’re meeting at 9:00 a.m. by the community center entrance.",
+        "speaker": "Faye",
+        "listener": "Hana",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Faye",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 0,
+        "text": "Hana: Thanks — 9:00 a.m. at the community center entrance. I’ll be there.",
+        "speaker": "Hana",
+        "listener": "Faye",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Hana",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 0,
+        "text": "Kira: Do we actually have the repair drive confirmed, or is it still tentative?",
+        "speaker": "Kira",
+        "listener": "Hana"
+      },
+      {
+        "round": 0,
+        "text": "Hana: I don’t have it confirmed yet, so I’d treat it as tentative until we double-check.",
+        "speaker": "Hana",
+        "listener": "Kira"
+      },
+      {
+        "round": 0,
+        "text": "Kira: Got it — I’ll treat it as tentative for now. Let me know once it’s confirmed.",
+        "speaker": "Kira",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Hana: Just to confirm, are we still on for 9:00 a.m. at the community center entrance?",
+        "speaker": "Hana",
+        "listener": "Vik",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Hana",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Vik: Yes — 9:00 a.m. at the community center entrance still works. I’ll check what’s left and let everyone know the plan.",
+        "speaker": "Vik",
+        "listener": "Hana",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Vik",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Hana: Great, thanks — I’ll wait for your update on what’s left and the plan.",
+        "speaker": "Hana",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Hana: I still don’t have it confirmed yet, so I’d treat the repair drive as tentative until we double-check.",
+        "speaker": "Hana",
+        "listener": "Gus"
+      },
+      {
+        "round": 2,
+        "text": "Gus: Got it — I’ll treat it as tentative and wait for the confirmation before I point folks to the next job.",
+        "speaker": "Gus",
+        "listener": "Hana"
+      },
+      {
+        "round": 2,
+        "text": "Hana: Thanks, Gus — that works for now. Please let me know as soon as it’s confirmed, and I’ll keep the next steps on hold until then.",
+        "speaker": "Hana",
+        "listener": "Gus"
+      },
+      {
+        "round": 3,
+        "text": "Hana: I still don’t have the repair drive confirmed, so let’s treat it as tentative for now. Can you send me the exact time and meeting spot when you have it?",
+        "speaker": "Hana",
+        "listener": "Ira"
+      },
+      {
+        "round": 3,
+        "text": "Ira: Absolutely — I’m still out on errands, but I’ll send you the exact time and meeting spot as soon as I have it.",
+        "speaker": "Ira",
+        "listener": "Hana"
+      },
+      {
+        "round": 3,
+        "text": "Hana: Thanks — I’ll wait for your update, and I’ll keep it tentative until you confirm the time and meeting spot.",
+        "speaker": "Hana",
+        "listener": "Ira"
+      },
+      {
+        "round": 3,
+        "text": "Pia: Thanks — I still need the exact time, location, and what to bring before I can confirm. Once I have that, I can see what I can manage.",
+        "speaker": "Pia",
+        "listener": "Hana"
+      },
+      {
+        "round": 3,
+        "text": "Hana: Thanks, Pia — I’ll double-check the time, location, and what to bring, then I’ll send you the confirmed details.",
+        "speaker": "Hana",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Pia: Thanks, Hana — I appreciate it. Once you confirm those details, I can figure out what I’m able to manage.",
+        "speaker": "Pia",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Hana: I’m still checking the repair drive details, so I’d keep it tentative for now. I’ll send the confirmed time, location, and what to bring as soon as I have them.",
+        "speaker": "Hana",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: Thanks, Hana — I’ll wait for the confirmed time, location, and what to bring before I commit.",
+        "speaker": "Pia",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Hana: Thanks, Pia — I’ll confirm those details and send them over as soon as I have them.",
+        "speaker": "Hana",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Hana: Still tentative on my side — I haven’t seen the confirmation yet. Send me the exact time and meeting spot when you have it.",
+        "speaker": "Hana",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Sam: Absolutely — I’m still waiting on the final confirmation, and I’ll send the exact time and meeting spot as soon as I have it.",
+        "speaker": "Sam",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Hana: Thanks, Sam — I’ll keep it tentative until then.",
+        "speaker": "Hana",
+        "listener": "Sam"
+      }
+    ]
+  }
+}

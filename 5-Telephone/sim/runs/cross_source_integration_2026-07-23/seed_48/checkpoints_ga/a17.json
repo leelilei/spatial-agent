@@ -1,0 +1,205 @@
+{
+  "agent_id": "a17",
+  "interview": {
+    "name": "Ira",
+    "answer": "",
+    "verdict": "unknown"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 27,
+    "reflections": [
+      "Ira is the main coordinator and follows through by checking locations directly.",
+      "Bo is helpful but currently less informed and acts as a status relayer.",
+      "Leo and Ira are aligned on splitting the repair drive work and coordinating by text.",
+      "Ira is the primary coordinator and keeps giving status updates while working through the repair stops.",
+      "Leo, Sam, and Pia are supportive and rely on Ira for timely updates so they can plan their own next steps.",
+      "The group’s relationship is collaborative and task-focused, with polite check-ins and a shared dependence on clear progress reports.",
+      "Ira is the central coordinator, consistently giving progress updates and offering to gather missing details for others.",
+      "The others rely on Ira for status checks and planning, and respond with appreciation rather than pushing back.",
+      "The group communication is practical and task-focused, with everyone emphasizing follow-up, timing, and what still needs fixing.",
+      "Ira is the main coordinator, repeatedly promising updates and keeping multiple people informed.",
+      "Bo is involved in the repair drive and responds with appreciation while still gathering status.",
+      "Rosa and Rey are supporting the coordination by helping relay updates and prioritizing urgent fixes for Sunday at the community center.",
+      "Ira is the main coordinator, giving status updates while checking stops and promising follow-up details.",
+      "Rosa is organizing the Sunday community center effort and prioritizing urgent safety fixes as they come in.",
+      "Hana and Opal are waiting on Ira’s findings so they can compare details and complete the repair drive information."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Ira: I haven’t heard the latest on the repair drive yet—what’s the update?",
+        "speaker": "Ira",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Bo: I’m a bit behind on the details, but I know it’s still moving along. I can check and tell you what I find.",
+        "speaker": "Bo",
+        "listener": "Ira"
+      },
+      {
+        "round": 0,
+        "text": "Ira: Thanks, Bo—just let me know when you’ve checked. I’m happy to help if there’s anything to pass along.",
+        "speaker": "Ira",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: Sounds good — what’s the plan for the repair drive?",
+        "speaker": "Leo",
+        "listener": "Ira"
+      },
+      {
+        "round": 0,
+        "text": "Ira: I’m heading out to check on the first stop now, then I’ll swing by the others and let you know what still needs fixing.",
+        "speaker": "Ira",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: Great, thanks. Text me what you find at the first stop, and I’ll help with the rest.",
+        "speaker": "Leo",
+        "listener": "Ira"
+      },
+      {
+        "round": 1,
+        "text": "Ira: I’m still checking the first stop now, then I’ll swing by the others and let you know what still needs fixing.",
+        "speaker": "Ira",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Thanks, Ira — that helps a lot. Let me know what still needs fixing once you’ve checked the others.",
+        "speaker": "Sam",
+        "listener": "Ira"
+      },
+      {
+        "round": 1,
+        "text": "Ira: Will do — I’ll check the other stops and send you a quick update on what still needs fixing.",
+        "speaker": "Ira",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Ira: I’m still checking on the first stop now, then I’ll swing by the others and let you know what still needs fixing.",
+        "speaker": "Ira",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: Thanks, Ira — that helps. Once you have the timing and any drop-off details, let me know so I can plan around it properly.",
+        "speaker": "Pia",
+        "listener": "Ira"
+      },
+      {
+        "round": 1,
+        "text": "Ira: Will do — I’ll grab the timing and drop-off details at the first stop, then I’ll text you as soon as I’ve got them.",
+        "speaker": "Ira",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Bo: I’m still checking the latest, but the repair drive is moving along. I’ll pass along the update as soon as I have it.",
+        "speaker": "Bo",
+        "listener": "Ira"
+      },
+      {
+        "round": 2,
+        "text": "Ira: Sounds good, Bo — just send it over when you’ve got it. I’ll keep checking the other stops and share any new fixes I hear about.",
+        "speaker": "Ira",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Thanks, Ira — I appreciate it. I’m still checking, and I’ll send the latest as soon as I have it.",
+        "speaker": "Bo",
+        "listener": "Ira"
+      },
+      {
+        "round": 3,
+        "text": "Ira: I’m still checking the stops, but I should have a clearer update on what needs fixing soon. I’ll let you know as soon as I’ve got it.",
+        "speaker": "Ira",
+        "listener": "Rey"
+      },
+      {
+        "round": 3,
+        "text": "Rey: Thanks, Ira — just send the update when you have it, and I’ll help pass it along.",
+        "speaker": "Rey",
+        "listener": "Ira"
+      },
+      {
+        "round": 3,
+        "text": "Ira: Will do — I’m checking the next stop now and I’ll send you the update as soon as I have it.",
+        "speaker": "Ira",
+        "listener": "Rey"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Thanks, Ira — if you spot any urgent safety fixes, send them my way and I’ll add them to Sunday at the community center.",
+        "speaker": "Rosa",
+        "listener": "Ira",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Rosa",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Ira: Will do — I’ll flag anything urgent right away and send you the rest once I’ve checked the stops.",
+        "speaker": "Ira",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Perfect, Ira — I appreciate it. I’ll keep the list sorted for Sunday at the community center and focus on the urgent fixes first.",
+        "speaker": "Rosa",
+        "listener": "Ira",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Rosa",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Hana: I’m checking the details first — what’s already been collected, and what still needs fixing?",
+        "speaker": "Hana",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Ira: I’m still checking the first stop now, then I’ll swing by the others and let you know what still needs fixing.",
+        "speaker": "Ira",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Hana: Got it — I’ll wait for your update on the other stops, then I’ll compare them and report back the exact details.",
+        "speaker": "Hana",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Ira: I’m still on the rounds checking the stops, and I should have a clearer update on what still needs fixing soon. I’ll let you know as soon as I’ve got it.",
+        "speaker": "Ira",
+        "listener": "Opal"
+      },
+      {
+        "round": 4,
+        "text": "Opal: Thanks, Ira — once you’ve got the stop details, I’ll fill in the rest of the repair drive info.",
+        "speaker": "Opal",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Ira: Perfect — I’ll finish checking the stops and send you the details as soon as I’m back.",
+        "speaker": "Ira",
+        "listener": "Opal"
+      }
+    ]
+  }
+}

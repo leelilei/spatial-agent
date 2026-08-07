@@ -1,0 +1,271 @@
+{
+  "agent_id": "a14",
+  "interview": {
+    "name": "Faye",
+    "answer": "Saturday at 2 pm at Leo’s place on Maple.",
+    "verdict": "stale"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 30,
+    "reflections": [
+      "Faye is responsive but needs concrete meeting details before committing.",
+      "Hana confirms plans clearly once logistics are provided.",
+      "Leo appears to be coordinating the repair drive from his place and proactively sharing details.",
+      "Faye is coordinating repair-drive logistics and needs clear time/location details before committing.",
+      "Hana, Rey, and Quinn are responsive and provide concrete meeting or schedule details when asked.",
+      "Faye consistently follows up, confirms plans, and adjusts around the information she receives.",
+      "Faye is diligent about logistics and wants concrete time/place details before committing.",
+      "Quinn and Cleo are helping coordinate the repair drive by sharing schedules and updating supplies.",
+      "Sam is still finalizing details but is communicating proactively to keep participants informed.",
+      "Faye is organized and keeps pressing for concrete event details so she can plan around other responsibilities.",
+      "Quinn and Cleo are responsive helpers who provide or track the information Faye needs.",
+      "The repair drive coordination seems a little fragmented at first, but the group is converging on clear time and location details.",
+      "Faye relies on others to confirm logistics before planning around school or commitments.",
+      "Quinn is responsive and helps by sending complete scheduling details promptly.",
+      "The repair drive is a coordinated community event where location and timing details matter for participation and support."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Hana: Could you remind me of the exact time and where we’re meeting for the repair drive?",
+        "speaker": "Hana",
+        "listener": "Faye"
+      },
+      {
+        "round": 0,
+        "text": "Faye: Of course — we’re meeting at 9:00 a.m. by the community center entrance.",
+        "speaker": "Faye",
+        "listener": "Hana",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Faye",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 0,
+        "text": "Hana: Thanks — 9:00 a.m. at the community center entrance. I’ll be there.",
+        "speaker": "Hana",
+        "listener": "Faye",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Hana",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 0,
+        "text": "Faye: I can help, but I need the actual repair drive details first—what time and where is it happening?",
+        "speaker": "Faye",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: It’s at my place on Maple, Saturday at 2 pm. I’ll send the full details now.",
+        "speaker": "Leo",
+        "listener": "Faye",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Leo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 0,
+        "text": "Faye: Great, thanks—Maple on Saturday at 2 works for me. Send the full details and I’ll plan around it.",
+        "speaker": "Faye",
+        "listener": "Leo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Faye",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Faye: Thanks — what time and where is the repair drive?",
+        "speaker": "Faye",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Rey: I’m heading over now — it’s by the community shed, near the tables. If you need me, I can help once I’m there.",
+        "speaker": "Rey",
+        "listener": "Faye"
+      },
+      {
+        "round": 1,
+        "text": "Faye: Thanks — I’m on my way. I’ll meet you by the community shed near the tables.",
+        "speaker": "Faye",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Faye: Great, I’ll plan around that. Send the full details when you can.",
+        "speaker": "Faye",
+        "listener": "Quinn"
+      },
+      {
+        "round": 1,
+        "text": "Quinn: Absolutely — I’ll send over the full repair-drive schedule and drop-off spots right away so you’ve got everything you need.",
+        "speaker": "Quinn",
+        "listener": "Faye"
+      },
+      {
+        "round": 1,
+        "text": "Faye: Thanks, Quinn — I’ll keep an eye out for it and plan around the schedule.",
+        "speaker": "Faye",
+        "listener": "Quinn"
+      },
+      {
+        "round": 2,
+        "text": "Faye: Thanks — what time and where is the repair drive?",
+        "speaker": "Faye",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Sam: I’m still confirming the final timing and meeting spot, but I’ll send them as soon as I have it. Thanks for checking in — we’re still on for today.",
+        "speaker": "Sam",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Faye: Thanks — please send the time and meeting spot as soon as you have them.",
+        "speaker": "Faye",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Faye: Thanks — 9:00 a.m. at the community center entrance works for me.",
+        "speaker": "Faye",
+        "listener": "Cleo",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Faye",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Cleo: Great — I’ll mark that down and keep the repair drive supplies list updated.",
+        "speaker": "Cleo",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Faye: Thanks, Cleo — I appreciate it. I’ll be there at 9:00 a.m. at the community center entrance.",
+        "speaker": "Faye",
+        "listener": "Cleo",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Faye",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Faye: Thanks — what time and where is the repair drive?",
+        "speaker": "Faye",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Oren: Oh, I’m a bit fuzzy on the exact time and place — I think Ira was sending the details. I’ll let you know if I remember anything else for the repair drive.",
+        "speaker": "Oren",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Faye: No worries — could you send me the time and place once Ira confirms? I need the repair drive details to plan around school pickup.",
+        "speaker": "Faye",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Faye: Thanks, Quinn — I’ll watch for the full schedule and drop-off spots so I can plan around it.",
+        "speaker": "Faye",
+        "listener": "Quinn"
+      },
+      {
+        "round": 3,
+        "text": "Quinn: Absolutely — I’m sending the full repair-drive schedule and drop-off spots right away so you’ve got everything you need.",
+        "speaker": "Quinn",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Faye: Thanks, Quinn — I’ll keep an eye out for it and plan around the schedule.",
+        "speaker": "Faye",
+        "listener": "Quinn"
+      },
+      {
+        "round": 4,
+        "text": "Faye: Thanks — I’ve got it now: Saturday at 2 pm at your place on Maple.",
+        "speaker": "Faye",
+        "listener": "Leo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Faye",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Leo: Perfect — I’ll have the repair drive ready at my place on Maple Saturday at 2 pm.",
+        "speaker": "Leo",
+        "listener": "Faye",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Leo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Faye: Great, I’ll plan around that and let you know if I can bring anything.",
+        "speaker": "Faye",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Opal: I’m at the community center now, and I’ll check the repair table by the front entrance next. If anything needs moving, I can help with that too.",
+        "speaker": "Opal",
+        "listener": "Faye",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Faye: Thanks — what time and where is the repair drive?",
+        "speaker": "Faye",
+        "listener": "Opal"
+      },
+      {
+        "round": 4,
+        "text": "Opal: It’s at the community center, and I’m here now by the front entrance repair table. I’ll check the exact time and let you know right away.",
+        "speaker": "Opal",
+        "listener": "Faye",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      }
+    ]
+  }
+}

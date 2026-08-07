@@ -1,0 +1,193 @@
+{
+  "experiment_id": "PAT-C-260728-001",
+  "title": "Controlled non-random missing privileged part annotation pilot",
+  "frozen_at": "2026-07-28T10:35:00+08:00",
+  "status": "PRE_REGISTERED_BEFORE_DATA_INSPECTION",
+  "research_question": "Can annotation-support-aware privileged part supervision avoid downstream negative transfer when class labels are complete but part masks are non-randomly observed?",
+  "dataset": {
+    "name": "PartImageNet_Seg",
+    "official_repository": "https://github.com/TACJu/PartImageNet",
+    "archive_url": "https://huggingface.co/datasets/turkeyju/PartImageNet/resolve/main/PartImageNet_Seg.zip?download=true",
+    "archive_size_bytes": 3124435169,
+    "archive_sha256": "9719778db7a7f589af94de4d7e4a025b832835502df370154f7c0a8b35466090",
+    "license_reported_by_host": "apache-2.0",
+    "development_splits": [
+      "train",
+      "val"
+    ],
+    "forbidden_split": "test",
+    "test_images_allowed_to_decode": 0,
+    "annotation_format": "COCO-style part segmentation"
+  },
+  "pilot_subset": {
+    "supercategory": "Quadruped",
+    "class_count": 20,
+    "class_selection": "Select the 20 ImageNet classes with the largest train image counts; break ties lexicographically by canonical class/synset identifier.",
+    "maximum_train_images_per_class": 80,
+    "train_image_selection": "If a class has more than 80 train images, sort by stable SHA256 of experiment_id plus image_id and retain the first 80.",
+    "validation_images": "Use all official validation images belonging to the frozen 20 classes.",
+    "manifest_rule": "Only train metadata and train masks may be read when generating the frozen manifest. Save image IDs, class IDs, mask-derived quantities, all selection indicators, and SHA256."
+  },
+  "representation": {
+    "encoder": "OpenAI CLIP ViT-B/16 (QuickGELU reference architecture)",
+    "encoder_state": "frozen",
+    "input_resolution": 224,
+    "normalization": "official OpenAI CLIP",
+    "global_feature": "normalized CLS/image embedding",
+    "patch_feature": "final normalized 14x14 visual patch tokens before global projection",
+    "part_target_grid": [
+      14,
+      14
+    ],
+    "part_vocabulary": [
+      "Head",
+      "Body",
+      "Foot",
+      "Tail"
+    ],
+    "pretraining_overlap_caveat": "PartImageNet derives from ImageNet and CLIP pretraining data are broad. All pilot arms use the identical frozen encoder and only relative comparisons are admissible."
+  },
+  "internal_development": {
+    "selection_unit": "image",
+    "class_stratified_cross_fitting_folds": 5,
+    "fold_seed": 1307,
+    "fold_assignment": "Within each class, sort by SHA256(experiment_id + image_id + fold_seed) and assign round-robin to folds 0..4.",
+    "validation_usage": "Validation labels and masks may be read only after the train manifest, candidate grid and selected hyperparameters are frozen.",
+    "hyperparameter_objective": "maximize train-OOF balanced accuracy subject to worst-class delta >= -2 percentage points and non-trivial local activation constraints",
+    "selection_hierarchy": [
+      "Select global learning rate and weight decay using GLOBAL five-fold OOF.",
+      "Holding the selected global settings fixed, select part-loss weight and gamma using FULL_PART_ORACLE five-fold OOF.",
+      "Reuse those settings for NAIVE and CLIPPED_IPW across all mechanisms and seeds.",
+      "Select SUPPORT_AWARE threshold and temperature analytically from train OOF predictions only, separately by mechanism, then freeze before validation."
+    ],
+    "tie_breaking": "If objectives tie within 1e-8, choose lower model complexity in this order: lower gamma, lower part-loss weight, higher support threshold, lower learning rate, higher weight decay, lower temperature."
+  },
+  "annotation_budget": {
+    "rate": 0.2,
+    "minimum_selected_per_class": 4,
+    "selection_is_exact_within_class": true,
+    "exact_count_rule": "k_c = min(n_c, max(4, floor(0.2 * n_c + 0.5))).",
+    "weighted_sampling": "Efraimidis-Spirakis weighted sampling without replacement using deterministic NumPy PCG64 streams keyed by experiment_id, mechanism, seed and class.",
+    "seeds": [
+      1307,
+      2607,
+      5207
+    ]
+  },
+  "selection_mechanisms": {
+    "MCAR": {
+      "observability": "MCAR",
+      "rule": "Uniform sample without replacement within each class."
+    },
+    "MAR_X": {
+      "observability": "MAR",
+      "score": "negative squared distance of frozen global feature to its train-class centroid",
+      "rule": "Weighted sample without replacement within class with weights softmax(2 * zscore(score)); selection depends only on observed x and y."
+    },
+    "MNAR_Z": {
+      "observability": "MNAR",
+      "score": "0.5 * zscore(log(total visible part-mask area fraction + 1e-6)) + 0.5 * zscore(number of visible canonical parts)",
+      "rule": "Weighted sample without replacement within class with weights softmax(2 * score); selection uses hidden z and is unavailable for unannotated samples."
+    },
+    "SI_HARD": {
+      "observability": "support isolation stress test",
+      "score": "0.5 * zscore(global prototypicality) + 0.5 * zscore(mask visibility score)",
+      "rule": "Select the highest-scoring exact 20 percent within class, creating a deliberate support hole."
+    }
+  },
+  "model_family": {
+    "shared_encoder": "frozen CLIP",
+    "global_branch": "multinomial linear classifier on global feature trained with class-balanced cross entropy on all train images",
+    "part_attention": "four trainable linear attention maps over frozen patch tokens",
+    "local_pooling": "per-part spatial softmax pooling followed by a class-balanced linear local classifier",
+    "part_loss": "per-visible-part BCE plus soft Dice against the 14x14 mask targets",
+    "final_logits": "global_logits + gamma * activation(x) * local_logits",
+    "trainable_components": [
+      "global classifier",
+      "part attention projections",
+      "local classifier",
+      "optional support gate"
+    ]
+  },
+  "arms": {
+    "GLOBAL": "Classification loss on all train labels; gamma is fixed to zero.",
+    "NAIVE": "Classification loss on all train labels plus unweighted part loss on selected annotations; activation is one.",
+    "CLIPPED_IPW": "NAIVE with class-conditional OOF propensity estimates and normalized inverse-propensity part-loss weights clipped to [0.2, 5.0]; activation is one.",
+    "SUPPORT_AWARE": "CLIPPED_IPW plus activation based on OOF annotation propensity and selected-subset kNN support. Gate threshold, temperature and gamma are chosen only by train OOF safety objective.",
+    "FULL_PART_ORACLE": "The same architecture with part loss available for every train image; validation masks remain evaluation-only and are never model inputs."
+  },
+  "candidate_grid": {
+    "classification_learning_rate": [
+      0.001,
+      0.003
+    ],
+    "weight_decay": [
+      0.0001,
+      0.001
+    ],
+    "part_loss_weight": [
+      0.1,
+      0.3,
+      1.0
+    ],
+    "gamma": [
+      0.25,
+      0.5,
+      1.0
+    ],
+    "support_threshold_quantile": [
+      0.1,
+      0.25,
+      0.5,
+      0.75
+    ],
+    "support_temperature": [
+      0.05,
+      0.1,
+      0.2
+    ],
+    "maximum_epochs": 80,
+    "early_stopping_patience": 10,
+    "batch_size": 128
+  },
+  "metrics": {
+    "primary": "balanced_accuracy",
+    "secondary": [
+      "macro_f1",
+      "top1_accuracy",
+      "worst_class_recall_delta_vs_global",
+      "negative_transfer_class_rate",
+      "negative_transfer_mechanism_rate",
+      "local_activation_rate",
+      "active_class_coverage",
+      "support_violation_rate"
+    ],
+    "aggregation": "Equal weight over classes, then equal weight over mechanisms and seeds."
+  },
+  "go_no_go": {
+    "oracle_gain_pp_at_least": 2.0,
+    "phenomenon_required": "NAIVE must show at least 2pp additional loss under at least two biased mechanisms relative to MCAR, or at least 5pp worst-class harm.",
+    "support_aware_mean_gain_pp_at_least": 1.0,
+    "support_aware_worst_class_delta_pp_at_least": -2.0,
+    "support_aware_gain_over_naive_on_hardest_pp_at_least": 2.0,
+    "activation_rate_range": [
+      0.1,
+      0.9
+    ],
+    "active_class_coverage_at_least": 0.8,
+    "seed_direction_consistency": "All three seeds must agree in sign for the aggregate support-aware delta.",
+    "automatic_no_go": [
+      "FULL_PART_ORACLE fails to exceed GLOBAL by 2pp.",
+      "SUPPORT_AWARE passes safety only by activation below 10 percent.",
+      "Any test image is decoded or encoded.",
+      "Validation is used to choose a candidate or change the frozen grid."
+    ]
+  },
+  "reporting": {
+    "must_report_all_arms": true,
+    "must_report_all_mechanisms": true,
+    "must_report_per_class": true,
+    "must_report_failures": true,
+    "test_images_encoded_field_required": true
+  }
+}

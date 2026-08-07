@@ -1,0 +1,81 @@
+{
+  "experiment_id": "PAT-B-260727-004",
+  "parent_experiment_id": "PAT-B-260727-003",
+  "dataset": "WikiChurches-4",
+  "global_branch": "Tip-Adapter-F",
+  "local_branch": "Train-calibrated positive-only dense-token residual evidence",
+  "development_prediction_policy": "Reuse the exact validation-only Tip-Adapter-F logits from PAT-B-260727-003; do not retrain or access test.",
+  "resolution": 448,
+  "patch_grid": 28,
+  "box_context": 0.15,
+  "anchors_per_style": 8,
+  "anchor_selection": "deterministic cosine farthest-point sampling with equal anchors per style",
+  "topk_patch_ratio": 0.01,
+  "topk_patch_ratios": [
+    0.01
+  ],
+  "calibration": {
+    "source": "Canonical train images with official boxes only",
+    "cross_fitting": "Leave the query church out of every official and random anchor bank",
+    "formula": "For class c, z_c=(s_c-mean_train_LOCO(s_c|y!=c))/max(sd_train_LOCO(s_c|y!=c),0.02); residual e_c=z_c-mean_classes(z).",
+    "std_floor": 0.02,
+    "validation_labels_used_for_calibration": false
+  },
+  "confidence_gate": {
+    "normalized_margin": "(top1_logit-top2_logit)/(population_std_across_class_logits+1e-6)",
+    "function": "sigmoid((threshold-normalized_margin)/0.25)",
+    "temperature": 0.25,
+    "threshold_grid": [
+      0.5,
+      1.0,
+      1.5,
+      2.5
+    ]
+  },
+  "fusion_gamma_grid": [
+    0.0,
+    0.25,
+    0.5,
+    1.0,
+    2.0,
+    4.0
+  ],
+  "random_control_banks": 8,
+  "shots": [
+    1,
+    4,
+    16
+  ],
+  "development_seeds": [
+    1,
+    2,
+    3
+  ],
+  "confirmation_seeds": [
+    7,
+    8,
+    9
+  ],
+  "selection": {
+    "metric": "mean paired validation accuracy delta minus 0.5 sample SD",
+    "tie_break": "higher official-minus-random delta, then smaller gamma, then lower gate threshold",
+    "test_loader_policy": "No test loader, features, dense tokens, or logits may be constructed during selection."
+  },
+  "validation_go_rule": {
+    "all_conditions_required": true,
+    "positive_robust_score_shots_at_least": 2,
+    "official_better_than_random_shots_at_least": 2,
+    "official_paired_wins_at_least": 5,
+    "minimum_worst_style_mean_delta": -2.0,
+    "total_pairs": 9
+  },
+  "confirmation_go_rule": {
+    "all_conditions_required": true,
+    "positive_mean_shots_at_least": 2,
+    "official_paired_wins_at_least": 5,
+    "official_overall_mean_delta_greater_than_random": true,
+    "minimum_allowed_shot_mean_delta": -1.0,
+    "minimum_worst_style_mean_delta": -2.0,
+    "total_pairs": 9
+  }
+}

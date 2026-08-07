@@ -1,0 +1,35 @@
+{
+  "conditions": {
+    "official_better_than_random_shots": {
+      "observed": 2,
+      "pass": true,
+      "required": 2
+    },
+    "official_paired_wins": {
+      "observed": 5,
+      "pass": true,
+      "required": 5
+    },
+    "positive_robust_score_shots": {
+      "observed": 2,
+      "pass": true,
+      "required": 2
+    },
+    "worst_style_mean_delta": {
+      "observed": -10.256410307354397,
+      "pass": false,
+      "required": -2.0,
+      "style": "Gothic"
+    }
+  },
+  "decision": "NO_GO",
+  "experiment_id": "PAT-B-260727-004",
+  "stage": "validation_only",
+  "style_mean_deltas": {
+    "Baroque": 8.119658960236443,
+    "Gothic": -10.256410307354397,
+    "Renaissance": 2.777777115503947,
+    "Romanesque": 2.222222089767456
+  },
+  "test_images_encoded": 0
+}

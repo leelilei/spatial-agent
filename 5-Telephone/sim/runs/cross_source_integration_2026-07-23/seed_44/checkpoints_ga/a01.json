@@ -1,0 +1,275 @@
+{
+  "agent_id": "a01",
+  "interview": {
+    "name": "Rosa",
+    "answer": "It’s on Sunday at the community center.",
+    "verdict": "current"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 31,
+    "reflections": [
+      "Rosa is coordinating the repair drive and is responsive to input from both Bo and Opal.",
+      "Bo prefers to keep the repair effort focused on the biggest visible problems first.",
+      "Opal is helping with logistics by checking the location and notifying the group about any change.",
+      "Rosa is coordinating the repair drive and keeps the group updated on priority repairs and logistics.",
+      "Opal and Mara are supportive, offering to check details and report anything urgent back to Rosa.",
+      "The group is focused on confirming a schedule change: the repair drive moved to Sunday at the community center.",
+      "Rosa is the coordination hub: she confirms plans, tracks priorities, and keeps the group updated when details change.",
+      "Kira is mainly checking logistics and seeking confirmation, while Mara and Pia shift into supportive helper roles.",
+      "The group is collaborative and practical, with multiple people offering to surface urgent repairs and tools so the work stays organized.",
+      "Rosa is coordinating the repair drive closely, keeping urgent fixes prioritized and asking people to send details in an organized way.",
+      "Pia and Leo are supportive contributors: Pia helps by checking existing tools, while Leo offers equipment and follows up with more supplies.",
+      "The group is collaboratively preparing for a community-center repair event on Sunday, with Rosa acting as the central organizer and point of contact.",
+      "Rosa is the organizer and routing point for the repair drive, repeatedly collecting urgent fixes and keeping the list prioritized for Sunday.",
+      "The others are cooperative and deferential, mostly confirming plans and offering to relay issues rather than taking center stage.",
+      "The repair drive feels coordinated but slightly informal, with multiple people checking in about logistics and readiness at the community center."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Rosa: Sure thing, Bo — I can help organize the repair drive and keep things moving. Tell me what needs fixing first, and I’ll start from there.",
+        "speaker": "Rosa",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Great — let’s start with the broken fence panels and the leaky mailbox. I’ll keep it simple and just point out the biggest stuff.",
+        "speaker": "Bo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Perfect — I’ll put the fence panels and mailbox at the top of the list, and we can tackle the rest after that. If you notice anything else big, just let me know.",
+        "speaker": "Rosa",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Opal: I’m keeping an eye on where the repair drive is set up—do you want me to check if it’s still by the community center?",
+        "speaker": "Opal",
+        "listener": "Rosa",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Yes please, Opal—that would be great. If it’s moved, let me know and I’ll update everyone.",
+        "speaker": "Rosa",
+        "listener": "Opal"
+      },
+      {
+        "round": 0,
+        "text": "Opal: Absolutely — I’ll check by the community center and let you know if it’s been moved.",
+        "speaker": "Opal",
+        "listener": "Rosa",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Rosa: Absolutely — I’ll keep the fence panels and mailbox at the top of the list. If you spot anything else urgent, just let me know and I’ll add it.",
+        "speaker": "Rosa",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Mara: Thanks, Rosa — I’ll keep an eye out and let you know if I spot anything else urgent.",
+        "speaker": "Mara",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: Thanks, Mara — I appreciate that. I’ll keep the list moving and make sure the urgent fixes stay first.",
+        "speaker": "Rosa",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Just checking—can you confirm the repair drive is still happening this weekend?",
+        "speaker": "Kira",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: Yes—it's still on for this weekend, and we’re starting with the biggest repairs first. If you spot anything else urgent, send it my way and I’ll add it to the list.",
+        "speaker": "Rosa",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Great, thanks—can you confirm what time it starts?",
+        "speaker": "Kira",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+        "speaker": "world",
+        "listener": "Rosa",
+        "injected": true,
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "auth": true,
+          "source": "ORIGIN",
+          "path": [
+            "ORIGIN"
+          ]
+        }
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Yes — it’s still happening, just moved to Sunday at the community center. If you spot any urgent fixes, send them my way and I’ll keep them at the top.",
+        "speaker": "Rosa",
+        "listener": "Mara",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Rosa",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Mara: Thanks, Rosa — I’ll keep an eye out and let you know if I spot anything urgent.",
+        "speaker": "Mara",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Thanks, Mara — I appreciate that. I’ll keep the list moving and make sure the urgent fixes stay first.",
+        "speaker": "Rosa",
+        "listener": "Mara"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Absolutely — the repair drive is still on this weekend, at the community center on Sunday. If you’ve got a fix to flag, send it my way and I’ll keep the urgent ones at the top.",
+        "speaker": "Rosa",
+        "listener": "Pia",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Rosa",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Pia: Thanks, Rosa — I’ll send over the fixes, and I’ll also check what tools we already have so we don’t double up.",
+        "speaker": "Pia",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Thanks, Pia — that’ll help a lot. Send me the tool list when you can, and I’ll keep the repair priorities lined up.",
+        "speaker": "Rosa",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Leo: Got it — I can bring screwdrivers and a couple extension cords.",
+        "speaker": "Leo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Perfect, Leo — those will be really useful. If you can, send me a quick list of anything else you’re bringing so I can keep the repairs organized.",
+        "speaker": "Rosa",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Leo: I’ll bring screwdrivers and a couple extension cords, and I can check for duct tape too.",
+        "speaker": "Leo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Absolutely — it’s still on this weekend, Sunday at the community center. If you’ve got any urgent fixes for Mina to flag, send them my way and I’ll keep them at the top.",
+        "speaker": "Rosa",
+        "listener": "Mina",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Rosa",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Mina: Great, thanks Rosa — I’ll keep that in mind. I’ll send over anything urgent for Mina to flag.",
+        "speaker": "Mina",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Perfect — I’ll keep the urgent ones lined up and make sure nothing gets missed. Just send them over when you’re ready.",
+        "speaker": "Rosa",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Tess: Absolutely — I’ll keep my ears open and pass along whatever Rosa still needs for the repair drive.",
+        "speaker": "Tess",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Thanks, Tess — if you hear of any urgent fixes, send them my way and I’ll keep the list organized for Sunday at the community center.",
+        "speaker": "Rosa",
+        "listener": "Tess",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Rosa",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Tess: Will do, Rosa — I’ll keep an ear out for any urgent fixes and pass them along right away.",
+        "speaker": "Tess",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Thanks, Rosa — I’m still a bit foggy, but I’m happy to help with the repair drive. Just point me to where I should be and what needs fixing.",
+        "speaker": "Oren",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Absolutely, Oren — the repair drive is on Sunday at the community center. If you spot any urgent fixes, send them my way and I’ll keep them at the top.",
+        "speaker": "Rosa",
+        "listener": "Oren",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Rosa",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Oren: Thanks, Rosa — Sunday at the community center, got it. I’ll keep an eye out for anything urgent and let you know what I find.",
+        "speaker": "Oren",
+        "listener": "Rosa",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Oren",
+          "annotation_basis": "controlled_task"
+        }
+      }
+    ]
+  }
+}

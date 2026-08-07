@@ -1,0 +1,7 @@
+<stdin>:18: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+torch 2.13.0+cu132 cuda 13.2 pyg 2.8.0.post1
+device NVIDIA GeForce RTX 2080 capability (7, 5)
+shape (4096, 128) loss 0.01990312896668911 elapsed_s 0.509
+peak_allocated_mb 307.7
+finite True

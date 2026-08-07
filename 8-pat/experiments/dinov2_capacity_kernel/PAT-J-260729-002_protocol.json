@@ -1,0 +1,39 @@
+{
+  "experiment_id": "PAT-J-260729-002",
+  "title": "DINOv2 capacity-complementary score selector development",
+  "status": "frozen_before_run",
+  "created_at": "2026-07-29T12:00:00+08:00",
+  "role": "episode-1 method development after PAT-J-260729-001 failed its strict 1pp screen but established B/L error complementarity",
+  "data": {
+    "dataset": "CUB-200-2011 official train",
+    "episode": 1,
+    "images": 2000,
+    "classes": 200,
+    "outer_folds": 5,
+    "official_test_images_decoded_or_encoded": 0
+  },
+  "base_classifiers": {
+    "features": ["L2-normalized dinov2_vitb14 CLS", "L2-normalized dinov2_vitl14 CLS"],
+    "classifier": "SVC C=3 kernel=rbf gamma=scale",
+    "reference_predictions": "standard SVC.predict",
+    "score_source": "default OVR decision_function with class columns verified against model.classes_"
+  },
+  "ccss_bank": {
+    "zscore_fusion": "row-zscored B/L decision scores with L weights 0.1 through 0.9",
+    "rank_fusion": "descending per-class B/L ranks with L weights 0.1 through 0.9",
+    "confidence_route": "retain B prediction unless L zscore-margin exceeds B zscore-margin by thresholds 0, 0.25, 0.5, 0.75, or 1.0",
+    "endpoints": ["B_ONLY", "L_ONLY"],
+    "selection": "four-fold inner OOF within every outer-training split",
+    "tie_breaking": "higher inner BA, then fewer switches from B, then lower-complexity fixed order",
+    "outer_evaluation_labels": "metrics only"
+  },
+  "screen_gate": {
+    "ccss_gain_over_b_pp_at_least": 1.0,
+    "outer_folds_noninferior_to_b_at_least": 4,
+    "negative_class_count_at_most_positive_class_count": true,
+    "worst_class_recall_delta_vs_b_at_least": -0.3,
+    "all_conditions_required": true,
+    "on_success": "freeze score-selector algorithm and run untouched episodes 2 and 3",
+    "on_fail": "retain PAT-J-001 as a positive but sub-threshold method signal; do not add more episode-1 selector families"
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "agent_id": "a18",
+  "interview": {
+    "name": "Jules",
+    "answer": "It’s on Sunday at the community center.",
+    "verdict": "current"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 27,
+    "reflections": [
+      "Jules tends to coordinate practical plans and delegate clearly, while Leo responds reliably with specific commitments.",
+      "Noah is willing to help but is not fully sure of the full scope, so he communicates uncertainty rather than overclaiming.",
+      "The group communicates cooperatively and leaves room for follow-up, which helps tasks stay organized even when someone is scattered.",
+      "Jules is the central coordinator, proactively spreading updates and tracking who still needs to hear about the repair drive.",
+      "The group is cooperative and responsive: people volunteer specific help, report what they can bring, and follow through with next steps.",
+      "The communication style is practical but a bit incomplete at times, so Jules relies on others to surface missing names and keep the outreach list current.",
+      "Jules is a reliable coordinator who follows up, spreads updates, and connects people to the right organizers.",
+      "Gus and Rosa both trust Jules with outreach and coordination, often asking for help relaying changes and recruiting others.",
+      "The group is actively managing volunteer needs and schedule changes, with roles shifting between locations and days as they match people to tasks.",
+      "Jules is a reliable coordinator who repeatedly offers follow-through and helps connect people to tasks.",
+      "Rosa is organizing a repair drive and depends on Jules to help recruit and place volunteers.",
+      "The group communicates through quick, practical handoffs, with people passing along names and next steps to widen participation.",
+      "Jules is coordinating updates and matching people to specific tasks, while keeping Rosa informed on staffing for setup and supplies.",
+      "Noah is taking a lighter outreach role, helping spread reminders to Mrs. Patel, 3B, and nearby neighbors.",
+      "Nell is actively collecting responses and filtering who still needs the repair drive update before passing that back to Jules."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Leo: Sounds good — what time should I bring the tools?",
+        "speaker": "Leo",
+        "listener": "Jules"
+      },
+      {
+        "round": 0,
+        "text": "Jules: Could you bring them by 10? That’ll give us plenty of time to get everything set up.",
+        "speaker": "Jules",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: Yep, I’ll bring them by 10.",
+        "speaker": "Leo",
+        "listener": "Jules"
+      },
+      {
+        "round": 0,
+        "text": "Jules: I’m happy to help spread the word about the repair drive—who still needs to hear about it?",
+        "speaker": "Jules",
+        "listener": "Noah"
+      },
+      {
+        "round": 0,
+        "text": "Noah: I think a few folks on the block still haven’t heard—maybe Mrs. Patel and the guy in 3B. I’ve been a bit scattered, so I might be missing someone.",
+        "speaker": "Noah",
+        "listener": "Jules"
+      },
+      {
+        "round": 0,
+        "text": "Jules: I can check with Mrs. Patel and 3B, and I’ll mention it to a few others too. If you remember anyone else later, just send me their names.",
+        "speaker": "Jules",
+        "listener": "Noah"
+      },
+      {
+        "round": 1,
+        "text": "Hana: Got it — I’ll bring my toolbox and look for tape and screws too.",
+        "speaker": "Hana",
+        "listener": "Jules"
+      },
+      {
+        "round": 1,
+        "text": "Jules: Perfect, thank you — that’ll help a lot. I’ll keep checking with Mrs. Patel, 3B, and a few others so we don’t miss anyone.",
+        "speaker": "Jules",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Hana: Great, thanks — let me know if there’s anything else you still need.",
+        "speaker": "Hana",
+        "listener": "Jules"
+      },
+      {
+        "round": 1,
+        "text": "Gus: Absolutely — we’re at the community shed Saturday morning, and folks should drop repairs there first. I can also bring a few extra tools if you need them.",
+        "speaker": "Gus",
+        "listener": "Jules",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Gus",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Jules: That’s perfect, Gus — I’ll keep spreading the word about the shed on Saturday morning. If you think of anyone else who should know, send me their names and I’ll reach out.",
+        "speaker": "Jules",
+        "listener": "Gus",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Jules",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Gus: Thanks, Jules — I appreciate it. I’ll think of a few more folks and send them your way.",
+        "speaker": "Gus",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Thanks, Jules — we’ve moved the repair drive to Sunday at the community center. I’m matching folks to jobs now, so if you can help check who still needs what, that’d be a big help.",
+        "speaker": "Rosa",
+        "listener": "Jules",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Rosa",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Jules: Absolutely — I’ll check who still needs what and spread the word about the Sunday move.",
+        "speaker": "Jules",
+        "listener": "Rosa",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Jules",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Thanks, Jules — that’s a huge help. If you hear back from anyone, send me their name and what they can take on.",
+        "speaker": "Rosa",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Jules: I can reach out to whoever hasn’t heard yet—who should I make sure to tell?",
+        "speaker": "Jules",
+        "listener": "Mara"
+      },
+      {
+        "round": 2,
+        "text": "Mara: Please make sure Sam and Leo hear—we still need help with tool sorting and checking sign-ins. If anyone else can pitch in, I can place them where we’re short.",
+        "speaker": "Mara",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Jules: Absolutely — I’ll make sure Sam and Leo know, and I’ll ask around for anyone else who can help with sorting and sign-ins.",
+        "speaker": "Jules",
+        "listener": "Mara"
+      },
+      {
+        "round": 3,
+        "text": "Noah: Oh right — if it’s still on, I should probably remind Mrs. Patel and maybe 3B too.",
+        "speaker": "Noah",
+        "listener": "Jules"
+      },
+      {
+        "round": 3,
+        "text": "Jules: That’d be great, Noah — I’ll check in with Mrs. Patel and 3B too.",
+        "speaker": "Jules",
+        "listener": "Noah"
+      },
+      {
+        "round": 3,
+        "text": "Noah: Oh, nice — then I’ll also mention it to a couple more neighbors if I run into them.",
+        "speaker": "Noah",
+        "listener": "Jules"
+      },
+      {
+        "round": 4,
+        "text": "Nell: I’m still asking around and will share anything new I hear about the repair drive.",
+        "speaker": "Nell",
+        "listener": "Jules"
+      },
+      {
+        "round": 4,
+        "text": "Jules: Thanks, Nell — just let me know who still needs the update, and I’ll spread the word too.",
+        "speaker": "Jules",
+        "listener": "Nell"
+      },
+      {
+        "round": 4,
+        "text": "Nell: Thanks, Jules — I’ll keep checking around and send you anyone who still needs the update on the repair drive.",
+        "speaker": "Nell",
+        "listener": "Jules"
+      },
+      {
+        "round": 4,
+        "text": "Jules: I’ve heard back from Hana and Leo — Hana can bring a toolbox and look for tape and screws, and Leo can bring the tools by 10. Send me anyone else who’s available and what they can take on.",
+        "speaker": "Jules",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Perfect, thanks Jules — please keep sending names and what they can cover, and I’ll slot them in. I’ll check if anyone else can help with setup and supplies too.",
+        "speaker": "Rosa",
+        "listener": "Jules"
+      },
+      {
+        "round": 4,
+        "text": "Jules: Will do — I’ll keep an eye out for anyone who can help with setup or supplies and send you their names and what they can cover.",
+        "speaker": "Jules",
+        "listener": "Rosa"
+      }
+    ]
+  }
+}

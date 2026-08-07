@@ -1,0 +1,209 @@
+{
+  "agent_id": "a01",
+  "interview": {
+    "name": "Rosa",
+    "answer": "Sunday at the community center.",
+    "verdict": "current"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 25,
+    "reflections": [
+      "Rosa is the informal organizer and follow-through point for the group.",
+      "Leo prefers a prioritized, status-oriented update rather than broad coordination.",
+      "Cleo is contributing by inventorying supplies, and the work is becoming a simple task split.",
+      "Rosa is acting as the main organizer and follow-through person, keeping the repair effort coordinated and updated.",
+      "Leo prefers a prioritization-first workflow, asking for the most urgent repairs and a timeline before broader coordination.",
+      "The group is collaborative and task-oriented, with people dividing work by supplies, checklist drafting, and monitoring remaining needs.",
+      "Rosa is taking a coordinating role: she repeatedly promises updates, timelines, and prioritization for the repair drive.",
+      "Rey, Sam, and Dane are responsive supporters who mostly wait for Rosa’s list and offer help rather than driving decisions themselves.",
+      "The repair drive changed details, and Rosa is making sure everyone has the revised logistics: Sunday, community center, plus urgent repairs and supplies.",
+      "Rosa is coordinating the repair drive and keeping the group aligned on schedule changes, priorities, and missing supplies.",
+      "Sam is responsive and willing to take concrete operational tasks, especially triaging urgent repairs and tracking needed supplies.",
+      "Tess is acting as a follow-up contact for timing updates, while Dane is waiting on the prioritized list and timeline.",
+      "Rosa is the main organizer, keeping shared plans updated and routing details to the group.",
+      "Tess and Eli are responsive coordinators who help by tracking timing and passing along information as soon as they have it.",
+      "Pia values clear timing and prompt updates so people can plan without waiting around."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Rosa: Absolutely — I’ll get the repair drive organized and keep everyone posted. Leo, what do you want me to prioritize first?",
+        "speaker": "Rosa",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: Start with the most urgent repairs first, then send me the list and timeline.",
+        "speaker": "Leo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Got it — I’ll start with the most urgent repairs and send you the list plus timeline as soon as I’ve got it sorted.",
+        "speaker": "Rosa",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Absolutely — I can help organize the repair drive and keep things moving. Let’s make a simple list of what’s needed and who can pitch in.",
+        "speaker": "Rosa",
+        "listener": "Cleo"
+      },
+      {
+        "round": 0,
+        "text": "Cleo: Great — I’ll check our supplies and write down what we’re short on.",
+        "speaker": "Cleo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Perfect — I’ll draft the checklist and we can compare notes once you’ve finished. Then we’ll split the tasks and get everything lined up.",
+        "speaker": "Rosa",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: Absolutely — I’ll start with the most urgent repairs and send you the list plus timeline as soon as I’ve got it sorted.",
+        "speaker": "Rosa",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Rey: Thanks, Rosa — that’d be really helpful. Send it over when you can, and I’ll keep an eye out for anything else we still need.",
+        "speaker": "Rey",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: Of course — I’m on it and I’ll send the urgent repairs list plus timeline soon.",
+        "speaker": "Rosa",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+        "speaker": "world",
+        "listener": "Rosa",
+        "injected": true,
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "auth": true,
+          "source": "ORIGIN",
+          "path": [
+            "ORIGIN"
+          ]
+        }
+      },
+      {
+        "round": 2,
+        "text": "Sam: Absolutely — I’m happy to help with the repair drive. What do you need me to do?",
+        "speaker": "Sam",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Thanks, Sam — could you help me prioritize the urgent repairs first and flag any supplies we’re missing? I’ll keep everyone posted on the timeline and the move to Sunday at the community center.",
+        "speaker": "Rosa",
+        "listener": "Sam",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Rosa",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Sam: Absolutely — I can prioritize the urgent repairs and flag any missing supplies right away. I’ll keep an eye out and let you know what we still need.",
+        "speaker": "Sam",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Got it — the repair drive is now Sunday at the community center, and I’ll keep everyone updated with the priority list and timeline.",
+        "speaker": "Rosa",
+        "listener": "Dane",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Rosa",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Dane: Thanks, Rosa — that helps a lot. I’ll keep an eye out for the priority list and timeline.",
+        "speaker": "Dane",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: You’re welcome, Dane — I’ll get the list and timeline out soon, and I’ll flag the most urgent repairs first.",
+        "speaker": "Rosa",
+        "listener": "Dane"
+      },
+      {
+        "round": 3,
+        "text": "Tess: I’m still checking on the final time, but I’ll pass it along as soon as I hear something solid.",
+        "speaker": "Tess",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Thanks, Tess — I’ll keep things flexible and let everyone know as soon as the final time is set.",
+        "speaker": "Rosa",
+        "listener": "Tess"
+      },
+      {
+        "round": 3,
+        "text": "Tess: Thanks, Rosa — I appreciate that. I’ll keep asking around and let you know the moment I hear the time.",
+        "speaker": "Tess",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Pia: Thanks — I’m glad folks are showing up, but let’s keep the timing clear so nobody’s left waiting around. If the list changes, please send it over right away.",
+        "speaker": "Pia",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Absolutely — I’ll keep the repair drive details updated and send any changes right away.",
+        "speaker": "Rosa",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: Thanks, Rosa — that really helps. Just send the updated list and timing as soon as you have them, so I can plan around it.",
+        "speaker": "Pia",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Absolutely — let’s start with the urgent repairs and any missing supplies, and I’ll keep everyone posted on the Sunday community center schedule.",
+        "speaker": "Rosa",
+        "listener": "Eli",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Rosa",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Eli: Thanks, Rosa — that sounds clear. Once I have the date and the missing supplies, I’ll send the list along and keep it simple.",
+        "speaker": "Eli",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Absolutely — I’ll post the details in our neighborhood bulletin and the group chat so everyone can keep track.",
+        "speaker": "Rosa",
+        "listener": "Eli"
+      }
+    ]
+  }
+}

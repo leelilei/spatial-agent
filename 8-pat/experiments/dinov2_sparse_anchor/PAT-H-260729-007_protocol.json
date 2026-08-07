@@ -1,0 +1,39 @@
+{
+  "experiment_id": "PAT-H-260729-007",
+  "title": "Confusion-trust residual adapter screen",
+  "status": "frozen_before_run",
+  "created_at": "2026-07-29T00:00:00+08:00",
+  "hypothesis": "A small residual adapter trained with leave-one-out class prototypes, explicit hardest-confusion separation, and a DINO trust-region improves frozen RBF classification without full backbone fine-tuning.",
+  "data": {
+    "development_episode": 1,
+    "samples": 2000,
+    "classes": 200,
+    "folds": 5,
+    "official_test_images_decoded_or_encoded": 0
+  },
+  "model": {
+    "input": "Frozen DINOv2 ViT-B/14 CLS, L2 normalized",
+    "adapter": "768 -> 128 -> 768 residual MLP",
+    "residual_scale": 0.2,
+    "epochs": 300,
+    "optimizer": "AdamW",
+    "learning_rate": 0.003,
+    "weight_decay": 0.001,
+    "temperature": 0.07,
+    "trust_weight": 0.1,
+    "hard_margin": 0.1,
+    "hard_confusion_weight": 0.5,
+    "fold_seeds": [9501, 9502, 9503, 9504, 9505]
+  },
+  "arms": {
+    "reference": "Frozen CLS + RBF SVC C=3",
+    "control": "Prototype residual adapter without explicit hard-confusion term + RBF SVC C=3",
+    "candidate": "Confusion-trust residual adapter + RBF SVC C=3"
+  },
+  "selection_rule": {
+    "primary_metric": "balanced_accuracy",
+    "candidate_gain_over_reference_pp_at_least": 0.5,
+    "candidate_gain_over_control_pp_at_least": 0.25,
+    "confirmation": "If passed, freeze all parameters and test on two new untouched train-only episodes."
+  }
+}

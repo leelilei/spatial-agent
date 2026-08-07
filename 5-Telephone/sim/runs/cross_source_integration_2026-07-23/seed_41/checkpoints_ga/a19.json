@@ -1,0 +1,229 @@
+{
+  "agent_id": "a19",
+  "interview": {
+    "name": "Kira",
+    "answer": "It’s set for Saturday afternoon, at the repair drive location.",
+    "verdict": "stale"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 30,
+    "reflections": [
+      "Bo is reliable and contributes practical support, but has limited transport capacity, so coordination should account for that.",
+      "Kira is organizing the repair drive by checking availability and resources, suggesting a logistics-focused role.",
+      "Sam is proactive and flexible, offering a broad range of help and waiting for specific direction.",
+      "Kira is acting as the organizer who repeatedly asks for precise confirmation before moving forward.",
+      "Sam and Quinn are both offering practical support, but Quinn is focused on outreach and volunteer/tool coordination while Sam covers hands-on repair help.",
+      "Cleo is tracking supplies closely and is already ready to share a concrete shortage list, which makes her a useful logistics contact.",
+      "Kira is coordinating practical details by repeatedly asking for confirmation on supplies, help needed, and timing.",
+      "Cleo is the main source for the repair-drive supply list and is only tracking a small, concrete set of shortages.",
+      "Quinn is actively recruiting support and has a clear outreach role in the repair drive.",
+      "Kira is consistently the coordinator, repeatedly asking for specific confirmations and narrowing the repair drive details.",
+      "Quinn is leading or organizing the repair drive and needs volunteers plus spare tools, with a clear Saturday afternoon timing.",
+      "The group is cooperative but some participants are overloaded or scattered, so concise, concrete requests help them respond effectively.",
+      "Kira consistently asks for concrete logistics and tries to keep coordination clear by confirming times, dates, and needed supplies.",
+      "Quinn, Eli, and Ira are responsive and solution-oriented, each offering partial information or help to move the repair drive forward.",
+      "The group seems to rely on iterative back-and-forth to fill gaps in planning, with Kira acting as a persistent coordinator."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Bo: I’m in for the repair drive — just send me the time and what to bring.",
+        "speaker": "Bo",
+        "listener": "Kira"
+      },
+      {
+        "round": 0,
+        "text": "Kira: Great — can you confirm you’re good for Saturday morning, and do you have a truck or any tools to bring?",
+        "speaker": "Kira",
+        "listener": "Bo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Kira",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 0,
+        "text": "Bo: Saturday morning works for me. I’ve got a small set of tools, but no truck.",
+        "speaker": "Bo",
+        "listener": "Kira",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Bo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 0,
+        "text": "Sam: Absolutely — I’m happy to help with the repair drive. What do you need me to do?",
+        "speaker": "Sam",
+        "listener": "Kira"
+      },
+      {
+        "round": 0,
+        "text": "Kira: Can you confirm what kind of help you mean for the repair drive?",
+        "speaker": "Kira",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Sam: I mean I can pitch in with hands-on repairs, organizing supplies, or helping coordinate volunteers—whatever’s most useful.",
+        "speaker": "Sam",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Cleo: I’ve checked our supplies and noted what we’re short on — I can share the list when you’re ready.",
+        "speaker": "Cleo",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Great—can you confirm you’re ready to share the list, and tell me what we’re still short on?",
+        "speaker": "Kira",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Cleo: Yes — I’m ready to share it. We’re still short on screws, duct tape, and a couple of replacement brackets.",
+        "speaker": "Cleo",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Quinn: Hey Kira — I’m spreading the word about the repair drive and looking for a few volunteers and tool donations. Come by if you can; it’d be great to see you there!",
+        "speaker": "Quinn",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Can you confirm what kind of help you need for the repair drive?",
+        "speaker": "Kira",
+        "listener": "Quinn"
+      },
+      {
+        "round": 1,
+        "text": "Quinn: Absolutely — we could use volunteers to help greet people, sort donations, and pitch in with basic repairs, plus any tool donations folks are willing to lend. If you know anyone who’d like to help, please spread the word!",
+        "speaker": "Quinn",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: Yes — I’m ready to share the list, and we’re still short on screws, duct tape, and a couple of replacement brackets.",
+        "speaker": "Cleo",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Can you confirm if that’s the full list, or are there any other supplies we should track?",
+        "speaker": "Kira",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: That’s the full list for now — just screws, duct tape, and a couple of replacement brackets.",
+        "speaker": "Cleo",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Can you confirm what kind of help you need for the repair drive?",
+        "speaker": "Kira",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Faye: Just the repair drive details and timing, please — I can fit it around the school run.",
+        "speaker": "Faye",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Sure — can you confirm the time and any specific supplies needed for the repair drive?",
+        "speaker": "Kira",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Kira: Sure — can you confirm the time and what specific supplies you need for the repair drive?",
+        "speaker": "Kira",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Oren: Oh right — I’m still a bit scattered, but I can bring the tools and I’ll double-check the time. If you resend the list, I’ll make sure I’ve got the right supplies.",
+        "speaker": "Oren",
+        "listener": "Kira"
+      },
+      {
+        "round": 3,
+        "text": "Kira: Thanks — can you confirm which tools you’re bringing, and I’ll resend the supply list?",
+        "speaker": "Kira",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Kira: Sure — can you confirm the time and what supplies you still need for the repair drive?",
+        "speaker": "Kira",
+        "listener": "Quinn"
+      },
+      {
+        "round": 3,
+        "text": "Quinn: Absolutely — it’s this Saturday afternoon, and I still need a few volunteers plus any spare tools folks can lend. If you can make it, I’d really appreciate you stopping by!",
+        "speaker": "Quinn",
+        "listener": "Kira",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Quinn",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Kira: Got it — can you confirm the exact start time and which tools are most useful?",
+        "speaker": "Kira",
+        "listener": "Quinn"
+      },
+      {
+        "round": 4,
+        "text": "Eli: Thanks, Kira — once I have the date and the repair list, I’ll keep everything lined up and simple.",
+        "speaker": "Eli",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Kira: Sure — can you confirm the date, and which supplies or tools you still need for the repair drive?",
+        "speaker": "Kira",
+        "listener": "Eli"
+      },
+      {
+        "round": 4,
+        "text": "Eli: I don’t have the date yet, but I’ll confirm it as soon as I hear back. For now, I just need the repair list and any missing tools or supplies noted clearly.",
+        "speaker": "Eli",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Ira: Got it — I’ll keep an eye out for screws, duct tape, and replacement brackets while I’m out.",
+        "speaker": "Ira",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Kira: Thanks — can you confirm what time you’ll be out, and whether you still need any other supplies for the repair drive?",
+        "speaker": "Kira",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Ira: I should be out around 3, and I’ll let you know if I spot anything else we still need.",
+        "speaker": "Ira",
+        "listener": "Kira"
+      }
+    ]
+  }
+}

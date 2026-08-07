@@ -1,0 +1,265 @@
+{
+  "agent_id": "a23",
+  "interview": {
+    "name": "Opal",
+    "answer": "It’s still by the community center, and the exact time hasn’t changed yet.",
+    "verdict": "current"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 30,
+    "reflections": [
+      "Quinn is responsive and willing to help spread information once details are confirmed.",
+      "Opal is taking on a practical coordination role by checking the event location.",
+      "Rosa relies on Opal’s update to keep others informed, suggesting a small collaborative network around the repair drive.",
+      "Opal is the central coordination point, relaying location and timing updates to the group.",
+      "Rosa and Cleo are task-oriented helpers: Rosa handles updating others, while Cleo checks supplies and reports missing items.",
+      "Ira stays informed opportunistically while out running errands and reinforces the information-sharing loop.",
+      "Opal is the central coordinator, relaying location and timing updates to the others.",
+      "Cleo is responsible for counting and providing the missing-item list, while Pia is checking for overlaps and duplicate supplies.",
+      "The group is waiting on a moving target at the community center, and several people are relying on Opal's live updates.",
+      "Opal is the central update-holder, and others rely on them for live status on the repair drive.",
+      "Quinn is actively coordinating community communication about the Saturday event, with Opal keeping watch for changes that could affect it.",
+      "Pia, Mina, and Faye are all adjusting their own planning based on shared updates, showing a group that coordinates through quick check-ins.",
+      "Opal is the central coordinator, repeatedly reassuring others while monitoring the repair drive's status.",
+      "Quinn, Faye, Mina, and Dane are all responsive and willing to adapt their plans around updates from Opal.",
+      "The group is coordinating around a time-sensitive community task, with several people waiting on the same status update before acting."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Quinn: Oh, the repair drive? I’d be happy to spread the word—when and where is it happening?",
+        "speaker": "Quinn",
+        "listener": "Opal"
+      },
+      {
+        "round": 0,
+        "text": "Opal: It’s happening this Saturday at the community center on Maple Street, from 10 to 2.",
+        "speaker": "Opal",
+        "listener": "Quinn"
+      },
+      {
+        "round": 0,
+        "text": "Quinn: Perfect, I’ll let folks know! Saturday from 10 to 2 at the community center on Maple Street.",
+        "speaker": "Quinn",
+        "listener": "Opal"
+      },
+      {
+        "round": 0,
+        "text": "Opal: I’m keeping an eye on where the repair drive is set up—do you want me to check if it’s still by the community center?",
+        "speaker": "Opal",
+        "listener": "Rosa",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Yes please, Opal—that would be great. If it’s moved, let me know and I’ll update everyone.",
+        "speaker": "Rosa",
+        "listener": "Opal"
+      },
+      {
+        "round": 0,
+        "text": "Opal: Absolutely — I’ll check by the community center and let you know if it’s been moved.",
+        "speaker": "Opal",
+        "listener": "Rosa",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Cleo: I’m checking our supplies now and I’ll tally what’s still missing for the repair drive.",
+        "speaker": "Cleo",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Opal: Thanks, Cleo — that’ll help a lot. Let me know what’s missing, and I’ll keep everyone posted on the location and timing.",
+        "speaker": "Opal",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Cleo: I’ll do that — I’m counting what we have now and I’ll tell you the missing items soon.",
+        "speaker": "Cleo",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Ira: I haven’t heard any new updates yet, but I’m still keeping an ear out while I’m running errands.",
+        "speaker": "Ira",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Opal: Thanks, Ira — I’m checking by the community center now, and I’ll let everyone know if the repair drive has moved.",
+        "speaker": "Opal",
+        "listener": "Ira",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Ira: Thanks, Opal — I appreciate you checking. I’ll keep an ear out too and pass along anything I hear.",
+        "speaker": "Ira",
+        "listener": "Opal"
+      },
+      {
+        "round": 2,
+        "text": "Pia: Thanks, Opal — once you have the final list, send it my way so I can check for overlaps and avoid duplicates.",
+        "speaker": "Pia",
+        "listener": "Opal"
+      },
+      {
+        "round": 2,
+        "text": "Opal: Absolutely — I’ll keep track of the location and timing, and I’ll send you the final list once Cleo finishes counting.",
+        "speaker": "Opal",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Pia: Thanks — that should help me avoid any duplicate supplies. I’ll wait for the final list before I double-check our inventory.",
+        "speaker": "Pia",
+        "listener": "Opal"
+      },
+      {
+        "round": 2,
+        "text": "Opal: I’m still by the community center checking whether the repair drive has moved. If I spot any change, I’ll let everyone know right away.",
+        "speaker": "Opal",
+        "listener": "Mina",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Mina: Thanks, Opal — I’ll wait for your update. If it moves, please tell me where it’s headed.",
+        "speaker": "Mina",
+        "listener": "Opal"
+      },
+      {
+        "round": 2,
+        "text": "Opal: I will — I’m watching here closely, and I’ll let you know if it moves and where it goes.",
+        "speaker": "Opal",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Quinn: Perfect — I’ll keep spreading the word about Saturday at the community center on Maple Street from 10 to 2.",
+        "speaker": "Quinn",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Opal: Great, I’ll keep an eye on the community center and let you know if anything changes.",
+        "speaker": "Opal",
+        "listener": "Quinn",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Quinn: Thanks, Opal — I’ll keep folks posted and check back soon for any updates.",
+        "speaker": "Quinn",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Opal: I’m still by the community center checking whether the repair drive has moved. If it’s changed, I’ll let everyone know right away.",
+        "speaker": "Opal",
+        "listener": "Faye",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Faye: Thanks, Opal — keep me posted if anything changes, and I’ll work around the school pickups and drop-offs.",
+        "speaker": "Faye",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Opal: Will do — I’m still here by the community center, and I’ll update you right away if the repair drive moves.",
+        "speaker": "Opal",
+        "listener": "Faye",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Mina: Thanks, Opal — I’m waiting on your update. If it moves, please tell me where it’s headed.",
+        "speaker": "Mina",
+        "listener": "Opal"
+      },
+      {
+        "round": 4,
+        "text": "Opal: I’m still by the community center checking whether the repair drive has moved. If it changes, I’ll let you know right away.",
+        "speaker": "Opal",
+        "listener": "Mina",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Mina: Thanks, Opal — I’m still waiting. If it moves, please let me know where it goes.",
+        "speaker": "Mina",
+        "listener": "Opal"
+      },
+      {
+        "round": 4,
+        "text": "Dane: I’m a little late, but I can still jump in—what’s left for me to handle on the repair drive?",
+        "speaker": "Dane",
+        "listener": "Opal"
+      },
+      {
+        "round": 4,
+        "text": "Opal: I’m still by the community center checking whether the repair drive has moved. If you want, I can see what’s left for you to handle right now.",
+        "speaker": "Opal",
+        "listener": "Dane",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Dane: Thanks, Opal — if you can check, I’m happy to take whatever’s still needed for the repair drive. I can head over as soon as you know.",
+        "speaker": "Dane",
+        "listener": "Opal"
+      }
+    ]
+  }
+}

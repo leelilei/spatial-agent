@@ -1,0 +1,48 @@
+{
+  "experiment_id": "PAT-K-260729-008",
+  "title": "Bounded development screen for dual-capacity unknown-prior recovery",
+  "frozen_at": "2026-07-29T18:00:00+08:00",
+  "status": "RETROSPECTIVE_DEVELOPMENT_PROTOCOL_FROZEN_BEFORE_DCPR_PREDICTIONS",
+  "scope": {
+    "dataset": "CUB official-train Episodes 1-3",
+    "development_episode": 1,
+    "internal_transfer_episodes": [2, 3],
+    "regimes": ["MILD_3_9", "SEVERE_1_9"],
+    "official_test_access": "forbidden",
+    "claim_status": "development screen only; no SOTA claim is allowed"
+  },
+  "method": {
+    "name": "DCPR",
+    "expansion": "Dual-Capacity Prior Recovery",
+    "fixed_components": "DINOv2-B/14 and L/14 frozen CLS features; DCTPR temperature, Sinkhorn iterations, refinement steps, and support-query mix remain frozen from PAT-K-004",
+    "prior_estimator": "average B/L support-prototype posteriors; downweight B/L disagreement with normalized Jensen-Shannon reliability; allocate unreliable mass uniformly; shrink the resulting class masses toward the uniform prior",
+    "candidate_shrinkage": [0.25, 0.5, 0.75, 1.0],
+    "selection_rule": "maximize Episode-1 mean macro balanced accuracy across mild and severe regimes; ties select the smaller shrinkage",
+    "retuning_after_episode_1": "forbidden"
+  },
+  "baselines": [
+    "BL nearest support",
+    "DCTPR with uniform class masses",
+    "TIM-ADM with frozen PAT-K-004 settings",
+    "DCTPR with oracle counts as a non-deployable ceiling"
+  ],
+  "development_go_no_go": {
+    "mean_gain": "selected DCPR exceeds the strongest non-oracle baseline by at least 1.0 percentage point on the Episode-1 mean across both regimes",
+    "regime_consistency": "selected DCPR exceeds the strongest non-oracle baseline in both Episode-1 regimes",
+    "oracle_gap_closure": "selected DCPR closes at least 30% of the DCTPR oracle-minus-uniform gap on the Episode-1 mean"
+  },
+  "internal_transfer_gate": {
+    "mean_gain": "frozen DCPR exceeds the strongest non-oracle baseline by at least 0.5 percentage points across Episodes 2-3 and both regimes",
+    "cell_consistency": "frozen DCPR exceeds the strongest non-oracle baseline in at least 3 of 4 episode-regime cells",
+    "paired_stability": "frozen DCPR is non-inferior to the strongest non-oracle baseline in at least 28 of 40 paired rotations"
+  },
+  "on_go": "implement matched alpha-TIM and other relevant public imbalanced baselines, freeze DCPR once, then create untouched Stanford Dogs confirmation episodes",
+  "on_no_go": "close DCPR without searching another prior-estimator formula and retain the DCTPR accuracy-efficiency paper",
+  "forbidden": [
+    "do not use oracle counts as method input",
+    "do not add shrinkage values after reading results",
+    "do not change DCTPR constants",
+    "do not call a CUB development result SOTA",
+    "do not access CUB or Stanford Dogs official test"
+  ]
+}

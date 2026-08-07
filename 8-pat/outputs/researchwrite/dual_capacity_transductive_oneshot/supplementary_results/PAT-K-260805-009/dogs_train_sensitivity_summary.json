@@ -1,0 +1,176 @@
+{
+  "dataset": "dogs_train",
+  "episodes_are_shared_image_rotations": true,
+  "reference": {
+    "mix": 0.5,
+    "steps": 3,
+    "temperature": 0.05
+  },
+  "rows": [
+    {
+      "dataset": "dogs_train",
+      "episode_means": [
+        0.6859259259259259,
+        0.6977777777777777,
+        0.6901851851851852
+      ],
+      "factor": "refinement_steps",
+      "mix": 0.5,
+      "overall_mean": 0.6912962962962963,
+      "overall_std": 0.006003542621276746,
+      "steps": 1,
+      "temperature": 0.05,
+      "value": 1
+    },
+    {
+      "dataset": "dogs_train",
+      "episode_means": [
+        0.6934259259259259,
+        0.7067592592592593,
+        0.7001851851851854
+      ],
+      "factor": "refinement_steps",
+      "mix": 0.5,
+      "overall_mean": 0.7001234567901236,
+      "overall_std": 0.006666880997926445,
+      "steps": 2,
+      "temperature": 0.05,
+      "value": 2
+    },
+    {
+      "dataset": "dogs_train",
+      "episode_means": [
+        0.6972222222222222,
+        0.7104629629629631,
+        0.7032407407407406
+      ],
+      "factor": "refinement_steps",
+      "mix": 0.5,
+      "overall_mean": 0.703641975308642,
+      "overall_std": 0.006629483066177793,
+      "steps": 3,
+      "temperature": 0.05,
+      "value": 3
+    },
+    {
+      "dataset": "dogs_train",
+      "episode_means": [
+        0.6993518518518519,
+        0.7134259259259259,
+        0.7051851851851852
+      ],
+      "factor": "refinement_steps",
+      "mix": 0.5,
+      "overall_mean": 0.7059876543209876,
+      "overall_std": 0.0070712698856759265,
+      "steps": 5,
+      "temperature": 0.05,
+      "value": 5
+    },
+    {
+      "dataset": "dogs_train",
+      "episode_means": [
+        0.681111111111111,
+        0.6915740740740741,
+        0.683888888888889
+      ],
+      "factor": "support_query_mix",
+      "mix": 0.25,
+      "overall_mean": 0.6855246913580247,
+      "overall_std": 0.005419897211166219,
+      "steps": 3,
+      "temperature": 0.05,
+      "value": 0.25
+    },
+    {
+      "dataset": "dogs_train",
+      "episode_means": [
+        0.6972222222222222,
+        0.7104629629629631,
+        0.7032407407407406
+      ],
+      "factor": "support_query_mix",
+      "mix": 0.5,
+      "overall_mean": 0.703641975308642,
+      "overall_std": 0.006629483066177793,
+      "steps": 3,
+      "temperature": 0.05,
+      "value": 0.5
+    },
+    {
+      "dataset": "dogs_train",
+      "episode_means": [
+        0.7041666666666667,
+        0.7176851851851851,
+        0.7113888888888888
+      ],
+      "factor": "support_query_mix",
+      "mix": 0.75,
+      "overall_mean": 0.7110802469135802,
+      "overall_std": 0.006764542160085401,
+      "steps": 3,
+      "temperature": 0.05,
+      "value": 0.75
+    },
+    {
+      "dataset": "dogs_train",
+      "episode_means": [
+        0.6996296296296296,
+        0.7164814814814815,
+        0.7114814814814816
+      ],
+      "factor": "support_query_mix",
+      "mix": 1.0,
+      "overall_mean": 0.7091975308641976,
+      "overall_std": 0.008654972589548459,
+      "steps": 3,
+      "temperature": 0.05,
+      "value": 1.0
+    },
+    {
+      "dataset": "dogs_train",
+      "episode_means": [
+        0.692037037037037,
+        0.7071296296296297,
+        0.6993518518518518
+      ],
+      "factor": "temperature",
+      "mix": 0.5,
+      "overall_mean": 0.6995061728395061,
+      "overall_std": 0.007547479646671374,
+      "steps": 3,
+      "temperature": 0.025,
+      "value": 0.025
+    },
+    {
+      "dataset": "dogs_train",
+      "episode_means": [
+        0.6972222222222222,
+        0.7104629629629631,
+        0.7032407407407406
+      ],
+      "factor": "temperature",
+      "mix": 0.5,
+      "overall_mean": 0.703641975308642,
+      "overall_std": 0.006629483066177793,
+      "steps": 3,
+      "temperature": 0.05,
+      "value": 0.05
+    },
+    {
+      "dataset": "dogs_train",
+      "episode_means": [
+        0.6812037037037038,
+        0.6867592592592593,
+        0.6866666666666668
+      ],
+      "factor": "temperature",
+      "mix": 0.5,
+      "overall_mean": 0.6848765432098766,
+      "overall_std": 0.0031811092209524574,
+      "steps": 3,
+      "temperature": 0.1,
+      "value": 0.1
+    }
+  ]
+}

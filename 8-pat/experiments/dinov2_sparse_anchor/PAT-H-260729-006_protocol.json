@@ -1,0 +1,34 @@
+{
+  "experiment_id": "PAT-H-260729-006",
+  "title": "Deterministic multi-view DINOv2 invariance screen",
+  "status": "frozen_before_run",
+  "created_at": "2026-07-29T00:00:00+08:00",
+  "hypothesis": "Averaging complementary deterministic views before RBF classification reduces pose and resize sensitivity in few-shot fine-grained recognition.",
+  "data": {
+    "development_episode": 1,
+    "samples": 2000,
+    "classes": 200,
+    "folds": 5,
+    "official_test_images_decoded_or_encoded": 0
+  },
+  "views": {
+    "stretch": "resize directly to 392x392; frozen PAT-H-260729-001 feature",
+    "stretch_flip": "resize directly to 392x392 then horizontal flip",
+    "center": "resize shorter edge to 448 then center crop 392x392",
+    "center_flip": "center view then horizontal flip"
+  },
+  "arms": {
+    "single_view_reference": "stretch",
+    "feature_consensus": [
+      "stretch + stretch_flip",
+      "center + center_flip",
+      "all four views"
+    ],
+    "classifier": "SVC RBF, C=3, gamma=scale"
+  },
+  "selection_rule": {
+    "reference": "single-view RBF_CLS_C3",
+    "screen_success": "best multi-view arm improves balanced accuracy by at least 0.50 percentage points",
+    "confirmation": "If passed, freeze the winning view recipe and evaluate on two newly generated untouched train-only episodes."
+  }
+}

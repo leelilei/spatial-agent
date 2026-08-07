@@ -1,0 +1,40 @@
+{
+  "experiment_id": "PAT-B-260727-002",
+  "dataset": "WikiChurches-4",
+  "development_splits": [
+    "train",
+    "val"
+  ],
+  "forbidden_split": "test",
+  "unit_of_inference": "church-disjoint annotated image",
+  "model": "ViT-B/16",
+  "pretrained": "openai",
+  "region_encoding": "Exact official or matched-control crop with 15% context, resized through the frozen CLIP preprocessing pipeline.",
+  "crop_context": 0.15,
+  "random_controls_per_box": 8,
+  "random_seed": 20260727,
+  "random_candidate_draws_per_box": 2048,
+  "target_max_overlap_with_any_official_box": 0.05,
+  "style_prompts": [
+    "a photo of a {style} church.",
+    "a photo of a church in the {style} architectural style.",
+    "architectural details of a {style} church."
+  ],
+  "paired_bootstrap_repetitions": 10000,
+  "paired_bootstrap_seed": 20260728,
+  "prototype_cv": {
+    "folds": 4,
+    "repeats": 20,
+    "seed": 20260729,
+    "metric": "balanced_accuracy"
+  },
+  "go_rule": {
+    "all_conditions_required": true,
+    "mean_image_level_margin_delta_greater_than": 0.0,
+    "paired_bootstrap_95ci_lower_greater_than": 0.0,
+    "positive_style_directions_at_least": 3,
+    "prototype_balanced_accuracy_delta_pp_at_least": 2.0,
+    "delta_definition": "official-box crop minus mean of area/aspect-matched same-image random controls"
+  },
+  "interpretation_boundary": "This is a regional-information probe, not an end-to-end few-shot result and not evidence that unannotated regions are negatives."
+}

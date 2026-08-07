@@ -1,0 +1,241 @@
+{
+  "agent_id": "a06",
+  "interview": {
+    "name": "Oren",
+    "answer": "The notes don’t say when or where the repair drive is being held now.",
+    "verdict": "unknown"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 30,
+    "reflections": [
+      "Eli tends to organize group efforts by setting a clear plan and assigning roles.",
+      "Oren is cooperative and practical, offering supplies and helping with concrete needs.",
+      "Ira is responsive and supportive, asking what is needed and committing to look out for relevant items.",
+      "Oren is coordinating a community repair drive and is careful about confirming the exact item list before Saturday.",
+      "Ira and Opal are responsive helpers who are willing to gather items and lock down logistics.",
+      "Eli appears to be helping organize the event by dividing tasks like supplies and route planning.",
+      "Oren is cooperative and relies on reminders, with others helping him keep the repair-drive list organized.",
+      "Kira is focused on confirming details and making sure the group is fully prepared.",
+      "Vik and Sam are supportive coordinators who help spread information and organize materials for the event.",
+      "Oren is coordinating a repair drive and relies on others to help track and organize donations.",
+      "Mina is checking on timing and offering to gather specific items, so she is engaged but still waiting for the drive to begin.",
+      "Quinn and Sam are proactive helpers who are willing to spread the word, sort items, and send reminders/details.",
+      "Oren is the main coordinator for the repair drive and keeps asking for clearer details before acting.",
+      "Quinn is proactive and supportive, helping spread the word and organize neighbors.",
+      "The group is still in the gathering/info-sharing phase, with people focusing on tools, spare parts, and usable small appliances."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Eli: I like a clear plan for the repair drive. Let’s set the time, the route, and who’s bringing what.",
+        "speaker": "Eli",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Yeah, that sounds good — let’s pick a time, map the route, and I can bring some supplies if you need.",
+        "speaker": "Oren",
+        "listener": "Eli"
+      },
+      {
+        "round": 0,
+        "text": "Eli: Great — how about Saturday morning? If you bring the supplies, I’ll map the route and we can confirm who’s doing what.",
+        "speaker": "Eli",
+        "listener": "Oren",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Eli",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 0,
+        "text": "Ira: Sounds like a good idea—what’s the repair drive looking for right now?",
+        "speaker": "Ira",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Mostly tools, spare parts, and any small appliances that still have a little life in them. I’m trying to remember the exact list, but that’s the gist of it.",
+        "speaker": "Oren",
+        "listener": "Ira"
+      },
+      {
+        "round": 0,
+        "text": "Ira: Got it — I’ll keep an eye out for tools, parts, and any small appliances that still work. If I hear of anything, I’ll let you know.",
+        "speaker": "Ira",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Mostly tools, spare parts, and any small appliances that still have a little life in them. I’m trying to remember the exact list, but that’s the gist of it.",
+        "speaker": "Oren",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Opal: Got it—tools, spare parts, and small appliances. I’ll meet you at the community center front steps at 10:00.",
+        "speaker": "Opal",
+        "listener": "Oren",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Oren: Perfect, 10:00 at the community center front steps sounds good to me. I’ll bring what I can and see you there.",
+        "speaker": "Oren",
+        "listener": "Opal",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Oren",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Oren: Saturday morning works for me — I can bring some supplies, and you can map the route. Just remind me of the exact list if I forget again.",
+        "speaker": "Oren",
+        "listener": "Kira",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Oren",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Kira: Can you confirm the exact list, Oren? I just want to make sure we’re actually set for Saturday and not missing anything.",
+        "speaker": "Kira",
+        "listener": "Oren",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Kira",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Oren: Mostly tools, spare parts, and any small appliances that still work a little. If I’m missing anything, just remind me and I’ll double-check.",
+        "speaker": "Oren",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Mostly tools, spare parts, and any small appliances that still have a little life in them. If I’m forgetting something, just remind me and I’ll double-check.",
+        "speaker": "Oren",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Vik: Absolutely — I’ll keep reminding folks and make sure the repair-drive details get around.",
+        "speaker": "Vik",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Thanks, Vik — that’d be a big help. I’ll double-check the list and keep folks posted if anything changes.",
+        "speaker": "Oren",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Yeah, that’s the gist—tools, spare parts, and any small appliances that still have a little life in them. If I’m forgetting something, just remind me and I’ll double-check.",
+        "speaker": "Oren",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Sam: Got it — I’ll help sort those by category and set them aside for pickup. If I spot anything missing, I’ll let you know.",
+        "speaker": "Sam",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Thanks, Sam — that’d help a lot. I’ll keep checking the list, and if anything else comes to mind, I’ll let you know.",
+        "speaker": "Oren",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Mina: Thanks — has the repair drive started yet, or are donations still coming in?",
+        "speaker": "Mina",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Oren: Donations are still coming in — we haven’t started the drive yet. I’m still double-checking the list, but tools, spare parts, and small appliances are the main things.",
+        "speaker": "Oren",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Mina: Got it—so it hasn’t started yet. Are there any specific tools or spare parts you still need me to help gather?",
+        "speaker": "Mina",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Quinn: Absolutely — I’ll spread the word and line up a few more neighbors, and if you want I can send you the repair drive details too.",
+        "speaker": "Quinn",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Oren: Oh, thanks, Quinn — that’d help a lot. I’m mostly collecting tools, spare parts, and small appliances that still work a little, so feel free to send me a reminder if I forget anything.",
+        "speaker": "Oren",
+        "listener": "Quinn"
+      },
+      {
+        "round": 3,
+        "text": "Quinn: Absolutely — I’ll send you a reminder with the repair drive details and the list of what to bring. I’m also going to keep recruiting a few more neighbors to help out.",
+        "speaker": "Quinn",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Oh right — I’m still trying to pin down what we need most for the repair drive. If you’ve got the details handy, I’d appreciate the reminder.",
+        "speaker": "Oren",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Ira: Sure — I remember it’s mostly tools, spare parts, and small appliances that still have some life in them. I’ll keep an ear out while I’m out and let you know if I hear anything else.",
+        "speaker": "Ira",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Thanks, Ira — that helps a lot. I’ll keep that in mind and see if we can round up a few more of those items.",
+        "speaker": "Oren",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Oren: I’m still piecing it together, Noah — have the donations started coming in, or are we still gathering things for the repair drive?",
+        "speaker": "Oren",
+        "listener": "Noah"
+      },
+      {
+        "round": 4,
+        "text": "Noah: Thanks, Oren — I’m still waiting on the update, so I don’t want to guess yet. I’ll bring what I can once I know the repair drive details.",
+        "speaker": "Noah",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Thanks, Noah — I’ll check in and get the repair-drive details sorted, then I’ll let you know what’s still needed.",
+        "speaker": "Oren",
+        "listener": "Noah"
+      }
+    ]
+  }
+}

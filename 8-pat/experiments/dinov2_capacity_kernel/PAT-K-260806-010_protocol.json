@@ -1,0 +1,39 @@
+{
+  "experiment_id": "PAT-K-260806-010",
+  "title": "Post-hoc per-class transfer and paired significance analysis of archived DCTPR development predictions",
+  "frozen_at": "2026-08-06T00:00:00+08:00",
+  "status": "POST_HOC_ANALYSIS_OF_ARCHIVED_PREDICTIONS_NO_NEW_INFERENCE",
+  "purpose": "Report class-level positive/negative transfer, worst-class harm, and paired significance for the accuracy gaps already reported in the manuscript. Required by project discipline rule 9 (report class-level transfer and worst class, not only overall balanced accuracy).",
+  "inputs": {
+    "cub": "raw/experiments/2026.07.29_CUB_PublishedBaselines_PAT-K-260729-004/formal/episode_{1,2,3}_predictions.npz",
+    "dogs": "raw/experiments/2026.07.29_StanfordDogs_DCTPR_PAT-K-260729-006/formal/episode_{1,2,3}_predictions.npz",
+    "official_test": "NOT_USED. Per-query official-test predictions were never archived locally; PAT-K-260805-009 stores aggregate and per-rotation metrics only. This analysis is development-episode only."
+  },
+  "what_is_forbidden": [
+    "any new inference, retuning, or method variant",
+    "any official-test access or re-derivation",
+    "selecting which classes to report after seeing the significance outcome",
+    "converting a non-significant gap into a claim of parity"
+  ],
+  "preregistered_quantities": {
+    "per_class_accuracy": "for each dataset, class, and method: mean over 3 episodes x 10 support rotations of the 9 per-class query decisions",
+    "transfer_label": "class is positive transfer if DCTPR per-class accuracy exceeds BL-NCC, negative if below, neutral if equal",
+    "worst_class_harm": "most negative per-class DCTPR minus BL-NCC delta, in percentage points",
+    "paired_test": "two-sided exact McNemar on discordant query decisions, computed within a single rotation where the 1800 (CUB) / 1080 (Dogs) query images are distinct, then reported per rotation and as a count of rotations reaching alpha=0.05",
+    "error_overlap": "Jaccard overlap of error sets and joint-error fraction between DCTPR and the strongest matched solver",
+    "comparisons": {
+      "cub_strongest": "TIM_ADM",
+      "dogs_strongest": "MAP_RAW"
+    }
+  },
+  "statistical_caveats": [
+    "Support rotations reuse the same episode images and are not independent replicates; rotation-level McNemar results are reported individually and are not pooled into a single p-value.",
+    "Episodes within a dataset share the same class set, so per-class means average over correlated rotations.",
+    "McNemar tests the paired decision difference on one rotation's distinct query images only; it does not test the cross-episode mean gap."
+  ],
+  "outputs": {
+    "json": "outputs/researchwrite/dual_capacity_transductive_oneshot/figures/source_data/per_class_transfer_summary.json",
+    "class_csv": "outputs/researchwrite/dual_capacity_transductive_oneshot/figures/source_data/per_class_transfer.csv",
+    "paired_csv": "outputs/researchwrite/dual_capacity_transductive_oneshot/figures/source_data/paired_significance.csv"
+  }
+}

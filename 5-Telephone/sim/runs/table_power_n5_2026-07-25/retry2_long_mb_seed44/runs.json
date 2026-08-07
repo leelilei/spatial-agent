@@ -1,0 +1,32 @@
+[
+  {
+    "memory": "memorybank",
+    "model": "gpt-5.4-mini",
+    "run_index": 0,
+    "schedule_seed": 44,
+    "agent_count": 25,
+    "forget_rate": 0.0,
+    "forget_floor": 0.1,
+    "rounds": 10,
+    "turns": 3,
+    "out_dir": "sim/runs/table_power_n5_2026-07-25/retry2_long_mb_seed44/gpt-5.4-mini/memorybank/forget_0/run_000",
+    "currency_interview": {
+      "current": 5,
+      "stale": 2,
+      "unknown": 18
+    },
+    "unsupported_specific": 14,
+    "social_rehearsal": {
+      "current": 42,
+      "stale": 40,
+      "mixed": 10,
+      "neutral": 581
+    },
+    "llm_usage": {
+      "logical_calls": 733,
+      "transport_attempts": 733,
+      "successful_calls": 733,
+      "logical_calls_per_agent": 29.32
+    }
+  }
+]

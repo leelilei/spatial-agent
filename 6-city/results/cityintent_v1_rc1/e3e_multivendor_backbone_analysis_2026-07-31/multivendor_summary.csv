@@ -1,0 +1,11 @@
+model,policy,display_name,n,task_completion,trace_feasibility,judge_face_plausibility,judge_trace_believability,face_believability_gap
+gpt-5.4-mini,api_llm_react_tool_policy,ReAct,18,0.726,0.907667,0.818889,0.486667,0.332222
+gpt-5.4-mini,api_llm_plan_and_execute,Plan-and-Execute,18,0.533722,0.909278,0.889444,0.544444,0.345
+gpt-5.6-luna,api_llm_react_tool_policy,ReAct,18,0.797278,0.994444,0.891667,0.655,0.236667
+gpt-5.6-luna,api_llm_plan_and_execute,Plan-and-Execute,18,0.904556,0.975778,0.907222,0.680556,0.226667
+deepseek-v4-flash,api_llm_react_tool_policy,ReAct,18,0.856222,0.985667,0.860556,0.563889,0.296667
+deepseek-v4-flash,api_llm_plan_and_execute,Plan-and-Execute,18,0.626111,0.922444,0.842778,0.493333,0.349444
+claude-sonnet-4-5-20250929,api_llm_react_tool_policy,ReAct,18,0.931611,1.0,0.927778,0.722222,0.207222
+claude-sonnet-4-5-20250929,api_llm_plan_and_execute,Plan-and-Execute,18,0.556,0.960056,0.854444,0.477778,0.376667
+qwen3-235b-a22b-instruct-2507,api_llm_react_tool_policy,ReAct,18,0.786944,0.945444,0.898333,0.618333,0.28
+qwen3-235b-a22b-instruct-2507,api_llm_plan_and_execute,Plan-and-Execute,18,0.821222,0.960278,0.861667,0.538333,0.323333

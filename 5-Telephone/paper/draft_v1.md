@@ -1,5 +1,9 @@
 # When Truth Loses Its Source: Provenance-Aware Memory for Socially Distributed Agents
 
+> **SUPERSEDED (2026-07-06):** replaced by `draft_v2.md` (post-audit surgery: §4.3/Fig 3 excised,
+> reframed off the provenance headline, related work rebuilt on first-hand-verified neighbors).
+> Kept as archive; do not edit.
+
 > **Audit warning (2026-06-30):** P1-rec's late-broadcast condition contained zero injections.
 > Section 4.3's entrenchment-vs-recency claim is invalid and must not be submitted. See
 > `../docs/project/p1_rec_audit_2026-06-30.md`.

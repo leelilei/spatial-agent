@@ -1,0 +1,230 @@
+{
+  "agent_id": "a20",
+  "interview": {
+    "name": "Leo",
+    "answer": "The current notes do not specify the repair drive’s time or location.",
+    "verdict": "unknown"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 29,
+    "reflections": [
+      "Leo is the practical organizer for the repair drive and tends to answer logistics questions directly.",
+      "Hana and Oren are responsive helpers who want clear instructions before they can contribute effectively.",
+      "The group coordination is straightforward and task-focused, with Leo relaying concrete collection details to keep everyone aligned.",
+      "Leo is coordinating the repair drive and giving different people simple, specific instructions.",
+      "Oren is proactive and willing to help spread the word once he knows what is needed.",
+      "Kira and Mara both respond positively to the event, with Kira already planning to attend and Mara waiting for logistics before committing.",
+      "Leo is coordinating the repair drive and others are aligning around his timing and task needs.",
+      "Mara and Cleo are supportive but prefer clear instructions before committing to specific help.",
+      "Quinn is actively organizing logistics and sharing information broadly while waiting on final details.",
+      "Leo is coordinating logistics and repeatedly waiting on missing details like start time and updated lists.",
+      "Cleo is focused on gathering and tracking repair-drive supplies, while Quinn and Rosa are helping with event coordination.",
+      "The group is responsive and cooperative, with people confirming tasks and offering to bring specific items or pass along information.",
+      "Leo is coordinating a community-center effort and is the main point of contact for timing and supply updates.",
+      "Mara, Oren, and Bo are responsive helpers who are willing to bring tools or redirect people once details are confirmed.",
+      "The group is working around incomplete logistics, with Leo repeatedly following up on the start time and what materials people should bring."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Leo: Hi Hana — I can help with the repair drive. What do you need from me?",
+        "speaker": "Leo",
+        "listener": "Hana"
+      },
+      {
+        "round": 0,
+        "text": "Hana: Thanks, Leo — could you first confirm what time the repair drive starts and whether you need me to bring anything specific?",
+        "speaker": "Hana",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: I’m checking the start time now, and I’ll let you know if you need to bring anything specific.",
+        "speaker": "Leo",
+        "listener": "Hana"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Oh, right—the repair drive. I’m ready to help out, I just need a little reminder of what we’re collecting.",
+        "speaker": "Oren",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: We’re collecting tools, tape, batteries, and any spare parts people can donate.",
+        "speaker": "Leo",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Got it—tools, tape, batteries, and spare parts. I’ll spread the word and see what folks can bring over.",
+        "speaker": "Oren",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: It starts at 10 a.m., and just bring the tools, tape, batteries, or spare parts you can spare.",
+        "speaker": "Leo",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Perfect — I’ll be there at 10 at your place with the tool kit.",
+        "speaker": "Kira",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Great, thanks — see you at 10.",
+        "speaker": "Leo",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Mara: I’m happy to help with the repair drive—what do you need me to bring or do?",
+        "speaker": "Mara",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: I’m checking the start time now, and I’ll let you know if you need to bring anything specific.",
+        "speaker": "Leo",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Mara: Thanks, Leo—just let me know the time when you have it, and I’ll be ready.",
+        "speaker": "Mara",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Quinn: I’m still gathering the repair-drive details, and I can put you on the invite list too. If you know what needs fixing first, send it my way and I’ll spread it around.",
+        "speaker": "Quinn",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Quinn: I’m still checking on the first stop for the repair drive, but I can definitely keep you on the invite list. If you hear what needs fixing first, send it my way and I’ll pass it along.",
+        "speaker": "Quinn",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: Hi Leo — I’m keeping an eye out for screws, duct tape, and spare paint for the repair drive. If you need anything else tracked, just let me know.",
+        "speaker": "Cleo",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Leo: Thanks, Cleo — that’s perfect. I don’t need anything else tracked right now.",
+        "speaker": "Leo",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: Great — I’ll keep an eye out and let you know if I find any of those supplies.",
+        "speaker": "Cleo",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Leo: Thanks, Rosa — I’m checking the start time now, and I’ll let you know if there’s anything specific to bring.",
+        "speaker": "Leo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Perfect, thank you, Leo — it’s on Sunday at the community center now. Let me know if you need the updated list or supplies.",
+        "speaker": "Rosa",
+        "listener": "Leo",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Leo: Thanks, Rosa — could you send the updated list, and I’ll check what supplies are still needed?",
+        "speaker": "Leo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Leo: I’m still confirming the start time, but if you can bring a sturdy box and some tape, that would help a lot.",
+        "speaker": "Leo",
+        "listener": "Mara"
+      },
+      {
+        "round": 3,
+        "text": "Mara: Thanks, Leo — I can bring a sturdy box and some tape. Just let me know the start time when you’ve got it confirmed.",
+        "speaker": "Mara",
+        "listener": "Leo",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a21"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Leo: Thanks, Mara — I’m still waiting on the start time, and I’ll let you know as soon as I have it.",
+        "speaker": "Leo",
+        "listener": "Mara"
+      },
+      {
+        "round": 4,
+        "text": "Leo: It starts Sunday at the community center. Just bring yourself and any small tools you have.",
+        "speaker": "Leo",
+        "listener": "Oren",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a20"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Oren: Oh, right—thanks for the reminder. I’ll bring any small tools I have to the community center on Sunday.",
+        "speaker": "Oren",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Leo: Great, see you Sunday at the community center.",
+        "speaker": "Leo",
+        "listener": "Oren",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a20"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Bo: I’ll keep an eye out and send folks your way if I hear about a broken step, leaky tap, or busted light.",
+        "speaker": "Bo",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Leo: Thanks, Bo — that helps. Please send them to the community center on Sunday; I’m still checking the start time and supplies.",
+        "speaker": "Leo",
+        "listener": "Bo",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a20"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Bo: Got it — I’ll send folks to the community center on Sunday. Let me know the start time and any supplies they should bring.",
+        "speaker": "Bo",
+        "listener": "Leo"
+      }
+    ]
+  }
+}

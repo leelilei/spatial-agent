@@ -1,0 +1,253 @@
+{
+  "agent_id": "a25",
+  "interview": {
+    "name": "Rey",
+    "answer": "Saturday at 10 a.m. at the community hall.",
+    "verdict": "stale"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 30,
+    "reflections": [
+      "Rey is coordinating the repair drive and tends to respond calmly with specific next steps.",
+      "Dane is cooperative and checking in on what still needs doing, suggesting he wants to help efficiently.",
+      "Quinn is proactive about sharing information and offering extra guidance without being asked.",
+      "Rey is a practical organizer who follows up on logistics and offers to help once details are available.",
+      "Quinn is proactive and supportive, repeatedly volunteering to share information and point out remaining needs.",
+      "Pia depends on clear scheduling and access details before committing to help, and responds positively when kept informed.",
+      "Rey is the central coordinator and repeatedly follows up on logistics and missing details for the group.",
+      "Pia, Bo, and Sam each depend on Rey for specific updates so they can plan or help, which suggests Rey is acting as the main point of contact.",
+      "The exchanges are practical and cooperative, with people responding positively and offering help once Rey clarifies what is needed.",
+      "Rey is consistently taking a coordinating role, asking for updates, offering to help, and following through on promised support.",
+      "The group relies on clear itemized requests and status updates to keep work moving, especially when information is still pending.",
+      "Bo, Faye, and Sam are responsive and collaborative, but the pace depends on others sending concrete details like exact items, schedules, and access information.",
+      "Rey is consistently proactive and reliable, offering to gather supplies and check on repair needs.",
+      "Faye and Ira respond cooperatively and appreciate help, suggesting a well-coordinated community effort.",
+      "Noah needs occasional reminders about event details but is engaged and receptive to updates."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Rey: I can help, Dane—what still needs fixing for the repair drive?",
+        "speaker": "Rey",
+        "listener": "Dane"
+      },
+      {
+        "round": 0,
+        "text": "Dane: Sorry I’m late — what’s left on the list, and where do you need me?",
+        "speaker": "Dane",
+        "listener": "Rey"
+      },
+      {
+        "round": 0,
+        "text": "Rey: No worries, Dane. We still need someone to sort the tools and check the porch light.",
+        "speaker": "Rey",
+        "listener": "Dane",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Rey",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 0,
+        "text": "Quinn: Oh, I’ve been telling everyone about it—want me to send you the details for the repair drive?",
+        "speaker": "Quinn",
+        "listener": "Rey"
+      },
+      {
+        "round": 0,
+        "text": "Rey: Yes, please—send me the details. I’d like to take a look.",
+        "speaker": "Rey",
+        "listener": "Quinn"
+      },
+      {
+        "round": 0,
+        "text": "Quinn: Absolutely—I’ll send them over right now, and if you want, I can also point out what’s still needed.",
+        "speaker": "Quinn",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Rey: Yes, please—send me the details. I’d like to take a look.",
+        "speaker": "Rey",
+        "listener": "Quinn"
+      },
+      {
+        "round": 1,
+        "text": "Quinn: Sure thing—I’ll send over the details right now, and I can point out what’s still needed too.",
+        "speaker": "Quinn",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Rey: Thanks, Quinn — I’d appreciate that. I’ll look it over and see where I can help.",
+        "speaker": "Rey",
+        "listener": "Quinn"
+      },
+      {
+        "round": 1,
+        "text": "Pia: I’m still waiting on the exact Saturday time and a quick note on shed access for unloading.",
+        "speaker": "Pia",
+        "listener": "Rey",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Pia",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Rey: I’ll check on the Saturday time and shed access, then send you a quick update.",
+        "speaker": "Rey",
+        "listener": "Pia",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Rey",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Pia: Thanks — once you have that, I can plan around it and be there ready to help.",
+        "speaker": "Pia",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Got it — what still needs to be picked up for the repair drive?",
+        "speaker": "Bo",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Rey: A few supplies are still missing — I can check the list and send you the exact items. Want me to do that?",
+        "speaker": "Rey",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Yes please — send me the exact items and I’ll grab what I can.",
+        "speaker": "Bo",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Rey: Thanks, Sam — could you send me the Saturday time and shed access details? I’ll take a look and see what else still needs fixing.",
+        "speaker": "Rey",
+        "listener": "Sam",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Rey",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Sam: I’m still waiting on the final Saturday time and shed access details, but I’ll send them over as soon as I have them.",
+        "speaker": "Sam",
+        "listener": "Rey",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Sam",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Rey: Got it, Sam — thanks. Just let me know as soon as you have them, and I’ll keep organizing from there.",
+        "speaker": "Rey",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Rey: Yes, please — send me the exact items, and I’ll see what I can help with.",
+        "speaker": "Rey",
+        "listener": "Cleo"
+      },
+      {
+        "round": 3,
+        "text": "Cleo: Thanks, Rey — we’re still short on tape, screws, a couple flashlights, and a few basic tools. If you can grab any of those, that’d help a lot.",
+        "speaker": "Cleo",
+        "listener": "Rey"
+      },
+      {
+        "round": 3,
+        "text": "Rey: Got it — I’ll check for tape, screws, flashlights, and a few basic tools. I’ll bring whatever I can find.",
+        "speaker": "Rey",
+        "listener": "Cleo"
+      },
+      {
+        "round": 3,
+        "text": "Rey: Thanks, Faye — could you send me the latest list of what still needs fixing? I’ll take a look and see where I can help.",
+        "speaker": "Rey",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Faye: Of course — I’ll send you the latest list right away. Thanks for taking a look and helping out.",
+        "speaker": "Faye",
+        "listener": "Rey"
+      },
+      {
+        "round": 3,
+        "text": "Rey: Thanks, Faye — I’ll keep an eye out for it and check what I can take on.",
+        "speaker": "Rey",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Rey: Thanks, Ira — could you send me the latest list of what still needs fixing? I’ll take a look and help where I can.",
+        "speaker": "Rey",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Ira: Absolutely — I’ll check in after my errands and send you whatever still needs fixing at the repair drive.",
+        "speaker": "Ira",
+        "listener": "Rey"
+      },
+      {
+        "round": 4,
+        "text": "Rey: Thanks, Ira — I appreciate it. I’ll keep an eye out and be ready to help once you send the list.",
+        "speaker": "Rey",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Noah: Oh, right — I’m still catching up on the repair drive. Wasn’t it this Saturday at 10 a.m. at the community hall?",
+        "speaker": "Noah",
+        "listener": "Rey",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Noah",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Rey: Yes, that sounds right — Saturday at 10 at the community hall. I can check the latest list and see what still needs to be fixed.",
+        "speaker": "Rey",
+        "listener": "Noah",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Rey",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Noah: Oh good, thanks — I’m glad it’s still the same. Let me know if you find anything new on the list.",
+        "speaker": "Noah",
+        "listener": "Rey"
+      }
+    ]
+  }
+}

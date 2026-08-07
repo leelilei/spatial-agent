@@ -1,0 +1,51 @@
+{
+  "experiment_id": "PAT-D-260728-002",
+  "title": "CUB equal-budget selective keypoint missingness diagnostic",
+  "frozen_at": "2026-07-28T12:05:00+08:00",
+  "status": "PRE_REGISTERED_AFTER_PAT-D-260728-001_AND_BEFORE_MISSINGNESS_PREDICTIONS",
+  "dependency": {
+    "positive_oracle_experiment": "PAT-D-260728-001",
+    "positive_oracle_gain_pp": 5.5,
+    "train_manifest_sha256": "53cb7db2360556453d0868d7fcf59328cfd8ed5065cacf35c719c1030e14dded"
+  },
+  "data": {
+    "dataset": "CUB-200-2011",
+    "development_split": "same frozen 200-class x 10-shot official-train subset",
+    "folds": 5,
+    "official_test_access": "forbidden",
+    "keypoint_annotation_rate_within_each_fold_training_set": 0.25,
+    "annotated_images_per_class_within_each_fold_training_set": 2
+  },
+  "selection_mechanisms": {
+    "MCAR": "Uniform sampling without replacement within each class and fold-training set.",
+    "MAR_X": "Weighted sampling without replacement from frozen-image typicality computed using only the fold-training images and class labels.",
+    "MNAR_Z": "Weighted sampling without replacement from visible-keypoint count and spatial coverage, which are hidden when annotation is missing.",
+    "SI_HARD": "Deterministic top-two selection by the mean of within-class image-typicality and keypoint-completeness ranks, creating a support hole."
+  },
+  "screening": {
+    "seed": 7601,
+    "temperature_for_weighted_sampling": 0.5,
+    "arms": [
+      "GLOBAL_STORED_REFERENCE",
+      "FULL_KEYPOINT_ORACLE_STORED_REFERENCE",
+      "NAIVE_MCAR",
+      "NAIVE_MAR_X",
+      "NAIVE_MNAR_Z",
+      "NAIVE_SI_HARD"
+    ],
+    "training": "Use the frozen PAT-D-260728-001 PrPool stack for exactly 9 epochs, its median selected epoch; classification uses every fold-training image and keypoint BCE uses only selected images.",
+    "hyperparameter_search": "none"
+  },
+  "primary_endpoints": [
+    "OOF balanced accuracy relative to stored Global",
+    "biased-mechanism delta relative to equal-budget MCAR",
+    "negative-transfer class rate relative to Global",
+    "worst-class recall delta relative to Global"
+  ],
+  "go_no_go": {
+    "selection_bias_supported_if": "At least one of MAR_X, MNAR_Z, or SI_HARD is at least 2 pp below MCAR in OOF balanced accuracy, or raises negative-transfer class rate by at least 0.10.",
+    "on_go": "Repeat the frozen diagnostic with seeds 7602 and 7603, then compare correction baselines before proposing a new method.",
+    "on_no_go": "Do not invent a correction result; redesign missingness severity in a separately frozen train-only protocol or retain the positive-Oracle result as replication evidence.",
+    "official_test_required": false
+  }
+}

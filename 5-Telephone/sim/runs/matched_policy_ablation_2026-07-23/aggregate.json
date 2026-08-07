@@ -1,0 +1,458 @@
+{
+  "design": "paired frozen stream; identical normalized candidate store, consolidation, one-record retrieval, context format, and interview; selector policy only differs",
+  "normalization_boundary": "versions for unambiguous text claims are analysis annotations from the controlled task definition; ambiguous unstructured claims are excluded",
+  "independent_unit": "source schedule seed",
+  "n_seeds": 8,
+  "agent_count_per_seed": 25,
+  "symbolic": {
+    "conditions": {
+      "frequency": {
+        "current_rate_ci95": [
+          0.625,
+          0.5272,
+          0.7228
+        ],
+        "per_seed_current_rate": [
+          0.72,
+          0.68,
+          0.8,
+          0.68,
+          0.52,
+          0.44,
+          0.6,
+          0.56
+        ]
+      },
+      "version_max": {
+        "current_rate_ci95": [
+          0.715,
+          0.6425,
+          0.7875
+        ],
+        "per_seed_current_rate": [
+          0.76,
+          0.76,
+          0.84,
+          0.76,
+          0.56,
+          0.64,
+          0.72,
+          0.68
+        ]
+      }
+    },
+    "paired_version_max_minus_frequency": {
+      "current_rate_difference_ci95": [
+        0.09,
+        0.0436,
+        0.1364
+      ],
+      "per_seed_current_rate_difference": [
+        0.040000000000000036,
+        0.07999999999999996,
+        0.039999999999999925,
+        0.07999999999999996,
+        0.040000000000000036,
+        0.2,
+        0.12,
+        0.12
+      ],
+      "version_max_higher_seed_count": 8,
+      "frequency_higher_seed_count": 0,
+      "ties_seed_count": 0,
+      "exact_two_sided_sign_test_p": 0.007812
+    }
+  },
+  "seed_results": [
+    {
+      "schedule_seed": 41,
+      "agent_count": 25,
+      "eligible_agents": 21,
+      "symbolic": {
+        "frequency": {
+          "counts": {
+            "current": 18,
+            "stale": 3,
+            "unknown": 4
+          },
+          "current_rate": 0.72
+        },
+        "version_max": {
+          "counts": {
+            "current": 19,
+            "stale": 2,
+            "unknown": 4
+          },
+          "current_rate": 0.76
+        }
+      },
+      "behavioral": {
+        "frequency": {
+          "counts": {
+            "current": 18,
+            "stale": 3,
+            "unknown": 4
+          },
+          "current_rate": 0.72
+        },
+        "version_max": {
+          "counts": {
+            "current": 19,
+            "stale": 2,
+            "unknown": 4
+          },
+          "current_rate": 0.76
+        }
+      }
+    },
+    {
+      "schedule_seed": 42,
+      "agent_count": 25,
+      "eligible_agents": 23,
+      "symbolic": {
+        "frequency": {
+          "counts": {
+            "current": 17,
+            "stale": 6,
+            "unknown": 2
+          },
+          "current_rate": 0.68
+        },
+        "version_max": {
+          "counts": {
+            "current": 19,
+            "stale": 4,
+            "unknown": 2
+          },
+          "current_rate": 0.76
+        }
+      },
+      "behavioral": {
+        "frequency": {
+          "counts": {
+            "current": 17,
+            "stale": 6,
+            "unknown": 2
+          },
+          "current_rate": 0.68
+        },
+        "version_max": {
+          "counts": {
+            "current": 19,
+            "stale": 4,
+            "unknown": 2
+          },
+          "current_rate": 0.76
+        }
+      }
+    },
+    {
+      "schedule_seed": 43,
+      "agent_count": 25,
+      "eligible_agents": 22,
+      "symbolic": {
+        "frequency": {
+          "counts": {
+            "current": 20,
+            "stale": 2,
+            "unknown": 3
+          },
+          "current_rate": 0.8
+        },
+        "version_max": {
+          "counts": {
+            "current": 21,
+            "stale": 1,
+            "unknown": 3
+          },
+          "current_rate": 0.84
+        }
+      },
+      "behavioral": {
+        "frequency": {
+          "counts": {
+            "current": 20,
+            "stale": 2,
+            "unknown": 3
+          },
+          "current_rate": 0.8
+        },
+        "version_max": {
+          "counts": {
+            "current": 21,
+            "stale": 1,
+            "unknown": 3
+          },
+          "current_rate": 0.84
+        }
+      }
+    },
+    {
+      "schedule_seed": 44,
+      "agent_count": 25,
+      "eligible_agents": 24,
+      "symbolic": {
+        "frequency": {
+          "counts": {
+            "current": 17,
+            "stale": 7,
+            "unknown": 1
+          },
+          "current_rate": 0.68
+        },
+        "version_max": {
+          "counts": {
+            "current": 19,
+            "stale": 5,
+            "unknown": 1
+          },
+          "current_rate": 0.76
+        }
+      },
+      "behavioral": {
+        "frequency": {
+          "counts": {
+            "current": 17,
+            "stale": 7,
+            "unknown": 1
+          },
+          "current_rate": 0.68
+        },
+        "version_max": {
+          "counts": {
+            "current": 19,
+            "stale": 5,
+            "unknown": 1
+          },
+          "current_rate": 0.76
+        }
+      }
+    },
+    {
+      "schedule_seed": 45,
+      "agent_count": 25,
+      "eligible_agents": 20,
+      "symbolic": {
+        "frequency": {
+          "counts": {
+            "current": 13,
+            "stale": 7,
+            "unknown": 5
+          },
+          "current_rate": 0.52
+        },
+        "version_max": {
+          "counts": {
+            "current": 14,
+            "stale": 6,
+            "unknown": 5
+          },
+          "current_rate": 0.56
+        }
+      },
+      "behavioral": {
+        "frequency": {
+          "counts": {
+            "current": 13,
+            "stale": 7,
+            "unknown": 5
+          },
+          "current_rate": 0.52
+        },
+        "version_max": {
+          "counts": {
+            "current": 14,
+            "stale": 6,
+            "unknown": 5
+          },
+          "current_rate": 0.56
+        }
+      }
+    },
+    {
+      "schedule_seed": 46,
+      "agent_count": 25,
+      "eligible_agents": 23,
+      "symbolic": {
+        "frequency": {
+          "counts": {
+            "current": 11,
+            "stale": 12,
+            "unknown": 2
+          },
+          "current_rate": 0.44
+        },
+        "version_max": {
+          "counts": {
+            "current": 16,
+            "stale": 7,
+            "unknown": 2
+          },
+          "current_rate": 0.64
+        }
+      },
+      "behavioral": {
+        "frequency": {
+          "counts": {
+            "current": 11,
+            "stale": 12,
+            "unknown": 2
+          },
+          "current_rate": 0.44
+        },
+        "version_max": {
+          "counts": {
+            "current": 16,
+            "stale": 7,
+            "unknown": 2
+          },
+          "current_rate": 0.64
+        }
+      }
+    },
+    {
+      "schedule_seed": 47,
+      "agent_count": 25,
+      "eligible_agents": 21,
+      "symbolic": {
+        "frequency": {
+          "counts": {
+            "current": 15,
+            "stale": 6,
+            "unknown": 4
+          },
+          "current_rate": 0.6
+        },
+        "version_max": {
+          "counts": {
+            "current": 18,
+            "stale": 3,
+            "unknown": 4
+          },
+          "current_rate": 0.72
+        }
+      },
+      "behavioral": {
+        "frequency": {
+          "counts": {
+            "current": 15,
+            "stale": 6,
+            "unknown": 4
+          },
+          "current_rate": 0.6
+        },
+        "version_max": {
+          "counts": {
+            "current": 18,
+            "stale": 3,
+            "unknown": 4
+          },
+          "current_rate": 0.72
+        }
+      }
+    },
+    {
+      "schedule_seed": 48,
+      "agent_count": 25,
+      "eligible_agents": 23,
+      "symbolic": {
+        "frequency": {
+          "counts": {
+            "current": 14,
+            "stale": 9,
+            "unknown": 2
+          },
+          "current_rate": 0.56
+        },
+        "version_max": {
+          "counts": {
+            "current": 17,
+            "stale": 6,
+            "unknown": 2
+          },
+          "current_rate": 0.68
+        }
+      },
+      "behavioral": {
+        "frequency": {
+          "counts": {
+            "current": 14,
+            "stale": 9,
+            "unknown": 2
+          },
+          "current_rate": 0.56
+        },
+        "version_max": {
+          "counts": {
+            "current": 17,
+            "stale": 6,
+            "unknown": 2
+          },
+          "current_rate": 0.68
+        }
+      }
+    }
+  ],
+  "behavioral": {
+    "conditions": {
+      "frequency": {
+        "current_rate_ci95": [
+          0.625,
+          0.5272,
+          0.7228
+        ],
+        "per_seed_current_rate": [
+          0.72,
+          0.68,
+          0.8,
+          0.68,
+          0.52,
+          0.44,
+          0.6,
+          0.56
+        ]
+      },
+      "version_max": {
+        "current_rate_ci95": [
+          0.715,
+          0.6425,
+          0.7875
+        ],
+        "per_seed_current_rate": [
+          0.76,
+          0.76,
+          0.84,
+          0.76,
+          0.56,
+          0.64,
+          0.72,
+          0.68
+        ]
+      }
+    },
+    "paired_version_max_minus_frequency": {
+      "current_rate_difference_ci95": [
+        0.09,
+        0.0436,
+        0.1364
+      ],
+      "per_seed_current_rate_difference": [
+        0.040000000000000036,
+        0.07999999999999996,
+        0.039999999999999925,
+        0.07999999999999996,
+        0.040000000000000036,
+        0.2,
+        0.12,
+        0.12
+      ],
+      "version_max_higher_seed_count": 8,
+      "frequency_higher_seed_count": 0,
+      "ties_seed_count": 0,
+      "exact_two_sided_sign_test_p": 0.007812
+    }
+  },
+  "interview_model": "gpt-5.4-mini",
+  "interview_prompt": "Answer the question using ONLY the memory notes, reflecting the CURRENT state. Reply with one short sentence. Return ONLY JSON: {\"answer\": \"...\"}",
+  "failure_policy": "failed calls are checkpointed separately and never scored"
+}

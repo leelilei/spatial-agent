@@ -1,0 +1,70 @@
+{
+  "experiment_id": "PAT-I-260729-001",
+  "title": "Full-keypoint DINO semantic-part-query oracle gate",
+  "status": "frozen_before_run",
+  "created_at": "2026-07-29T10:30:00+08:00",
+  "hypothesis": "Cross-class semantic keypoint supervision can fit a detector in frozen DINOv2 patch-token space whose inferred part pooling improves held-out few-shot classification beyond both uniform pooling and CLS-only RBF.",
+  "data": {
+    "dataset": "CUB-200-2011 official train",
+    "development_episode": 1,
+    "samples": 2000,
+    "classes": 200,
+    "shots_per_class": 10,
+    "outer_folds": 5,
+    "official_test_images_decoded_or_encoded": 0
+  },
+  "features": {
+    "backbone": "official DINOv2 ViT-B/14",
+    "backbone_frozen": true,
+    "input": "deterministic direct resize to 392x392",
+    "patch_grid": [28, 28],
+    "feature_dim": 768,
+    "cache": "PAT-H-260729-001 CLS float32, mean patch float32, dense patch float16, and semantic keypoint patch indices"
+  },
+  "semantic_detector": {
+    "labels": "15 named semantic parts plus one background class",
+    "positive_tokens": "one DINO patch token at every visible fold-training keypoint",
+    "background_tokens_per_training_image": 4,
+    "background_exclusion": "Chebyshev distance at least 3 tokens from every visible keypoint",
+    "background_sampling": "deterministic per outer fold and row index",
+    "model": "sklearn RidgeClassifier alpha=1.0 class_weight=balanced",
+    "outer_evaluation_keypoints": "metrics only; forbidden from detector and classifier fitting"
+  },
+  "part_pooling": {
+    "full": "for each part, z-score detector logits over 784 patches, spatial softmax at temperature 1.0, then weighted-pool original normalized patch tokens",
+    "k0": "set all detector logits to zero, yielding uniform spatial pooling with identical output dimensions",
+    "part_aggregation": "equal mean over 15 normalized part vectors",
+    "final_representation": "equal concatenation of L2-normalized CLS and L2-normalized aggregate part vector, followed by L2 normalization",
+    "inference_keypoints": "forbidden"
+  },
+  "arms": {
+    "CLS_RBF": "L2-normalized CLS plus RBF SVC C=3 gamma=scale using SVC.predict",
+    "K0_UNIFORM_PART_RBF": "CLS plus zero-detector uniform part pooling, same RBF",
+    "FULL_SEMANTIC_PART_RBF": "CLS plus Full semantic part pooling, same RBF"
+  },
+  "localization_metric": {
+    "name": "3x3-token hit rate",
+    "definition": "predicted part argmax lies within Chebyshev distance 1 of a visible held-out keypoint patch",
+    "not_claimed_as": "standard PCK"
+  },
+  "selection_rule": {
+    "primary_arm": "FULL_SEMANTIC_PART_RBF",
+    "gain_over_k0_pp_at_least": 0.5,
+    "gain_over_cls_rbf_pp_at_least": 0.5,
+    "heldout_hit_rate_gain_over_k0_pp_at_least": 10.0,
+    "negative_class_count_at_most_positive_class_count": true,
+    "worst_class_recall_drop_vs_k0_at_least": -0.2,
+    "all_conditions_required": true,
+    "on_success": "freeze a separate K1 sparse-budget protocol; do not access official test",
+    "on_fail": "stop semantic-part-query route; do not tune detector alpha, background count, temperature, representation weights, or classifier"
+  },
+  "reporting": [
+    "standard SVC.predict balanced accuracy for all arms",
+    "per-fold balanced accuracy",
+    "held-out localization hit counts and rates",
+    "positive and negative class counts versus K0",
+    "worst class recall delta versus K0",
+    "complete OOF predictions and predicted semantic patch indices",
+    "protocol and output SHA256"
+  ]
+}

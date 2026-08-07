@@ -1,0 +1,223 @@
+{
+  "agent_id": "a06",
+  "interview": {
+    "name": "Oren",
+    "answer": "This Saturday from 10 to 2 at the community center on Maple Street.",
+    "verdict": "stale"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 27,
+    "reflections": [
+      "Oren is cooperative and willing to help, but often needs reminders or clarification about logistics and task details.",
+      "Uli and Leo coordinate the repair drive supportively, giving clear, low-pressure directions and concrete tasks.",
+      "The interactions suggest a patient, practical group dynamic where simple instructions and reassurance help Oren contribute effectively.",
+      "Oren is consistently willing to help, but he needs clear, repeated logistical details to stay oriented.",
+      "Mina and Sam are supportive organizers who fill in missing meeting information and keep Oren included.",
+      "The group communicates in a practical, collaborative way around the repair drive, with Oren responding well once the venue and task are specified.",
+      "Oren is consistently willing to help and take direction, but he may need reminders or clear starting points.",
+      "Mina and Rey both coordinate tasks with Oren in a practical, supportive way, while Sam supplies concrete logistics.",
+      "The repair-drive group works best when one person confirms details and others provide specific assignments and location info.",
+      "Oren is dependable and eager to help, but often asks for clear direction before starting tasks.",
+      "Rey and Quinn both trust Oren with concrete organizing work and give straightforward, practical instructions.",
+      "Uli and Oren coordinate calmly around the community shed meetup, with Oren showing some uncertainty about timing but intending to follow through.",
+      "Oren is consistently helpful and willing to take on concrete tasks when given clear direction.",
+      "Quinn and Rosa coordinate community event logistics and delegate specific jobs to keep things organized.",
+      "The group communicates cooperatively around the repair drive, with multiple people confirming time, place, and responsibilities."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Oren: Oh right—the repair drive. I’m happy to help, though I may need a reminder on where we’re meeting.",
+        "speaker": "Oren",
+        "listener": "Uli"
+      },
+      {
+        "round": 0,
+        "text": "Uli: Thanks, Oren. We’re meeting by the community shed at 6—no rush if you’re running late.",
+        "speaker": "Uli",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Thanks, Uli—community shed at 6. I’ll do my best to be there, and if I’m late I’ll find you there.",
+        "speaker": "Oren",
+        "listener": "Uli"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Oh right, the repair drive—I'm still a bit foggy on the details, but I'm happy to help however I can. What do you need me to do?",
+        "speaker": "Oren",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: Thanks, Oren — could you help sort donated tools and label the boxes? That’d be a big help.",
+        "speaker": "Leo",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Absolutely—I can do that. Just point me to the boxes and I’ll get sorting and labeling.",
+        "speaker": "Oren",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Mina: Hey Oren, have you heard the latest on the repair drive yet?",
+        "speaker": "Mina",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Oh right—the repair drive. I’m happy to help, though I may need a reminder on where we’re meeting.",
+        "speaker": "Oren",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Mina: I haven’t heard a confirmed update yet—do you want me to send the meeting spot once I get it?",
+        "speaker": "Mina",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Oh right—the repair drive. I’m happy to help, though I may need a reminder on where we’re meeting.",
+        "speaker": "Oren",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: We’re meeting at the community center entrance—I'll be there with some tools and tape. If you need anything else, just let me know.",
+        "speaker": "Sam",
+        "listener": "Oren",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Sam",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Oren: Oh, perfect—community center entrance, got it. I’ll come by and help however I can, and I’ll look for you if I get turned around.",
+        "speaker": "Oren",
+        "listener": "Sam",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Oren",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Oren: Thanks, Rey — I’m a little foggy, but I’m happy to help with the repair drive. Just point me to what you need done, and I’ll do my best.",
+        "speaker": "Oren",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Rey: Thanks, Oren — could you sort the donated tools and then help label the repair bins? That’ll keep everything organized.",
+        "speaker": "Rey",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Sure thing, Rey — I can sort the donated tools and label the repair bins. Just point me to where you want me to start, and I’ll get right on it.",
+        "speaker": "Oren",
+        "listener": "Rey"
+      },
+      {
+        "round": 3,
+        "text": "Uli: Thanks, Oren — community shed at 6 works for me. I’ll see you there, and I’ll bring along any updates I hear.",
+        "speaker": "Uli",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Oren: Thanks, Uli — community shed at 6. I’ll do my best to be there, and if I’m late I’ll find you there.",
+        "speaker": "Oren",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Uli: Sounds good, Oren — I’ll be at the community shed at 6.",
+        "speaker": "Uli",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Quinn: Yep — I’ve got the repair drive details: this Saturday from 10 to 2 at the community center on Maple Street. I’ll keep spreading the word!",
+        "speaker": "Quinn",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Oren: Thanks, Quinn — that helps a lot. I’m happy to pitch in; just let me know what task you want me on.",
+        "speaker": "Oren",
+        "listener": "Quinn"
+      },
+      {
+        "round": 3,
+        "text": "Quinn: Great — could you help sort the donated tools and label the repair bins? That’d keep everything organized for Saturday.",
+        "speaker": "Quinn",
+        "listener": "Oren",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Quinn",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Leo: Great, thanks — that works. I’ll head to the community center on Maple Street Saturday from 10 to 2 and bring the sorting labels.",
+        "speaker": "Leo",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Perfect, I’ll be there at the community center on Maple Street Saturday from 10 to 2. I’ll help sort the donated tools and label the boxes.",
+        "speaker": "Oren",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Leo: Great — see you Saturday at the community center, and thanks for helping sort and label the boxes.",
+        "speaker": "Leo",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Thanks, Rosa — I’m still a bit foggy, but I’m happy to help with the repair drive. Just point me to where I should be and what needs fixing.",
+        "speaker": "Oren",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Absolutely, Oren — the repair drive is on Sunday at the community center. If you spot any urgent fixes, send them my way and I’ll keep them at the top.",
+        "speaker": "Rosa",
+        "listener": "Oren",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Rosa",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Oren: Thanks, Rosa — Sunday at the community center, got it. I’ll keep an eye out for anything urgent and let you know what I find.",
+        "speaker": "Oren",
+        "listener": "Rosa",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Oren",
+          "annotation_basis": "controlled_task"
+        }
+      }
+    ]
+  }
+}

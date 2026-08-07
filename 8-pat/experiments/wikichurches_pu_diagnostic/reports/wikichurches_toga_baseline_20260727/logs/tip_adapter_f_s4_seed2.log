@@ -1,0 +1,131 @@
+Using device: cuda
+
+Running dataset config:
+{'root_path': '/root/workspace/datasets', 'load_cache': False, 'load_pre_feat': False, 'search_hp': True, 'search_scale': [12, 10], 'search_step': [200, 20], 'init_beta': 2.0493246903001525, 'init_alpha': 9.806773071379816, 'dataset': 'wikichurches', 'shots': 4, 'backbone': ['ViT-B/16'], 'lr': 0.001, 'augment_epoch': 10, 'train_epoch': 20, 'cache_dir': './caches/wikichurches/seed2', 'feature_cache_dir': './caches/wikichurches/shared_features'} 
+
+Run hyperparameters:
+{'batch_size': 16, 'lr': 0.001, 'weight_decay': 0.0001, 'mgt_num_layers': 3, 'mgt_num_heads': 16, 'transformer_num_layers': 3, 'transformer_nhead': 16, 'transformer_ff_multiplier': 2, 'transformer_activation': 'gelu', 'pooling_ratio': 0.25, 'dropout_rate': 0.5, 'train_epoch': 20, 'init_beta': 2.0493246903001525, 'init_alpha': 9.806773071379816, 'init_delta': 1.0, 'lambda_teacher': 0.5, 'focal_loss_gamma': 2.0, 'seed': 2, 'num_workers': 0, 'wandb_project': 'TOGA', 'wandb_mode': 'disabled', 'config': './configs/wikichurches.yaml', 'shots': 4, 'dataset': 'wikichurches', 'root_path': '/root/workspace/datasets'}
+Preparing dataset.
+WikiChurches canonical split audit: train=5838 images/5750 churches, val=206 images/199 churches, test=1482 images/1469 churches; cross-split church overlap=0
+Creating a 4-shot WikiChurches dataset from 4 distinct churches per class: {0: ['Q1244815', 'Q1380686', 'Q1380085', 'Q1955996'], 1: ['Q5118038', 'Q12030570', 'Q444884', 'Q7594256'], 2: ['Q3635693', 'Q2712352', 'Q3585423', 'Q15878912'], 3: ['Q1983547', 'Q2320135', 'Q269376', 'Q15129498']}
+
+Getting textual features for graph nodes and CLIP classifier.
+
+Constructing cache model by few-shot visual features and labels.
+Augment Epoch: 0 / 10
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.24it/s]100%|██████████| 1/1 [00:00<00:00,  1.24it/s]
+Augment Epoch: 1 / 10
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.60it/s]100%|██████████| 1/1 [00:00<00:00,  1.60it/s]
+Augment Epoch: 2 / 10
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.56it/s]100%|██████████| 1/1 [00:00<00:00,  1.56it/s]
+Augment Epoch: 3 / 10
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.61it/s]100%|██████████| 1/1 [00:00<00:00,  1.61it/s]
+Augment Epoch: 4 / 10
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.60it/s]100%|██████████| 1/1 [00:00<00:00,  1.59it/s]
+Augment Epoch: 5 / 10
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.65it/s]100%|██████████| 1/1 [00:00<00:00,  1.65it/s]
+Augment Epoch: 6 / 10
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.58it/s]100%|██████████| 1/1 [00:00<00:00,  1.58it/s]
+Augment Epoch: 7 / 10
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.61it/s]100%|██████████| 1/1 [00:00<00:00,  1.61it/s]
+Augment Epoch: 8 / 10
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.59it/s]100%|██████████| 1/1 [00:00<00:00,  1.59it/s]
+Augment Epoch: 9 / 10
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.59it/s]100%|██████████| 1/1 [00:00<00:00,  1.59it/s]
+
+Loading visual features and labels from val set.
+Loading existing val features: ./caches/wikichurches/shared_features/val_f.pt
+
+Loading visual features and labels from test set.
+Loading existing test features: ./caches/wikichurches/shared_features/test_f.pt
+
+-------- Searching hyperparameters on the val set. --------
+
+**** Zero-shot CLIP val accuracy: 64.56. ****
+
+**** Tip-Adapter val accuracy: 57.77. ****
+
+New best setting, beta: 0.10, alpha: 0.10; accuracy: 64.56
+New best setting, beta: 0.10, alpha: 0.59; accuracy: 65.05
+New best setting, beta: 5.93, alpha: 0.10; accuracy: 65.53
+
+After searching, the best accuracy: 65.53.
+
+
+-------- Evaluating on the test set. --------
+
+**** Zero-shot CLIP test accuracy: 56.82. ****
+
+**** Tip-Adapter test accuracy: 57.15. ****
+
+Tip-Adapter-F Train Epoch: 0 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.18it/s]100%|██████████| 1/1 [00:00<00:00,  1.18it/s]
+Tip-Adapter-F epoch 0: train_acc=0.8125, loss=0.5234, val_acc=56.31
+Tip-Adapter-F Train Epoch: 1 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.42it/s]100%|██████████| 1/1 [00:00<00:00,  1.42it/s]
+Tip-Adapter-F epoch 1: train_acc=0.9375, loss=0.3075, val_acc=55.83
+Tip-Adapter-F Train Epoch: 2 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.52it/s]100%|██████████| 1/1 [00:00<00:00,  1.52it/s]
+Tip-Adapter-F epoch 2: train_acc=0.9375, loss=0.2426, val_acc=50.97
+Tip-Adapter-F Train Epoch: 3 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.37it/s]100%|██████████| 1/1 [00:00<00:00,  1.37it/s]
+Tip-Adapter-F epoch 3: train_acc=0.9375, loss=0.1678, val_acc=50.49
+Tip-Adapter-F Train Epoch: 4 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.53it/s]100%|██████████| 1/1 [00:00<00:00,  1.52it/s]
+Tip-Adapter-F epoch 4: train_acc=0.8750, loss=0.2722, val_acc=51.94
+Tip-Adapter-F Train Epoch: 5 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.50it/s]100%|██████████| 1/1 [00:00<00:00,  1.50it/s]
+Tip-Adapter-F epoch 5: train_acc=0.9375, loss=0.1784, val_acc=52.43
+Tip-Adapter-F Train Epoch: 6 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.50it/s]100%|██████████| 1/1 [00:00<00:00,  1.50it/s]
+Tip-Adapter-F epoch 6: train_acc=0.9375, loss=0.1683, val_acc=52.91
+Tip-Adapter-F Train Epoch: 7 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.53it/s]100%|██████████| 1/1 [00:00<00:00,  1.53it/s]
+Tip-Adapter-F epoch 7: train_acc=1.0000, loss=0.1133, val_acc=52.43
+Tip-Adapter-F Train Epoch: 8 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.44it/s]100%|██████████| 1/1 [00:00<00:00,  1.44it/s]
+Tip-Adapter-F epoch 8: train_acc=0.9375, loss=0.1186, val_acc=53.40
+Tip-Adapter-F Train Epoch: 9 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.49it/s]100%|██████████| 1/1 [00:00<00:00,  1.49it/s]
+Tip-Adapter-F epoch 9: train_acc=1.0000, loss=0.1184, val_acc=53.88
+Tip-Adapter-F Train Epoch: 10 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.64it/s]100%|██████████| 1/1 [00:00<00:00,  1.64it/s]
+Tip-Adapter-F epoch 10: train_acc=1.0000, loss=0.0821, val_acc=54.37
+Tip-Adapter-F Train Epoch: 11 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.52it/s]100%|██████████| 1/1 [00:00<00:00,  1.52it/s]
+Tip-Adapter-F epoch 11: train_acc=1.0000, loss=0.0729, val_acc=54.37
+Tip-Adapter-F Train Epoch: 12 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.53it/s]100%|██████████| 1/1 [00:00<00:00,  1.53it/s]
+Tip-Adapter-F epoch 12: train_acc=1.0000, loss=0.0753, val_acc=54.85
+Tip-Adapter-F Train Epoch: 13 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.58it/s]100%|██████████| 1/1 [00:00<00:00,  1.57it/s]
+Tip-Adapter-F epoch 13: train_acc=1.0000, loss=0.0836, val_acc=54.37
+Tip-Adapter-F Train Epoch: 14 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.54it/s]100%|██████████| 1/1 [00:00<00:00,  1.54it/s]
+Tip-Adapter-F epoch 14: train_acc=1.0000, loss=0.0540, val_acc=54.37
+Tip-Adapter-F Train Epoch: 15 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.39it/s]100%|██████████| 1/1 [00:00<00:00,  1.39it/s]
+Tip-Adapter-F epoch 15: train_acc=1.0000, loss=0.1076, val_acc=53.88
+Tip-Adapter-F Train Epoch: 16 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.66it/s]100%|██████████| 1/1 [00:00<00:00,  1.66it/s]
+Tip-Adapter-F epoch 16: train_acc=1.0000, loss=0.0748, val_acc=53.88
+Tip-Adapter-F Train Epoch: 17 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.60it/s]100%|██████████| 1/1 [00:00<00:00,  1.59it/s]
+Tip-Adapter-F epoch 17: train_acc=1.0000, loss=0.0388, val_acc=53.88
+Tip-Adapter-F Train Epoch: 18 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.57it/s]100%|██████████| 1/1 [00:00<00:00,  1.57it/s]
+Tip-Adapter-F epoch 18: train_acc=1.0000, loss=0.0885, val_acc=53.88
+Tip-Adapter-F Train Epoch: 19 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.53it/s]100%|██████████| 1/1 [00:00<00:00,  1.53it/s]
+Tip-Adapter-F epoch 19: train_acc=1.0000, loss=0.0560, val_acc=53.88
+
+-------- Searching hyperparameters on the val set. --------
+New best setting, beta: 0.10, alpha: 0.10; accuracy: 64.56
+New best setting, beta: 0.10, alpha: 0.59; accuracy: 65.05
+New best setting, beta: 0.10, alpha: 2.58; accuracy: 65.53
+
+After searching, the best accuracy: 65.53.
+
+**** wikichurches Tip-Adapter-F validation-selected test accuracy: 56.88. ****
+
+RESULT_JSON={"dataset": "wikichurches", "fine_tuned": {"best_alpha": 2.575, "best_beta": 0.1, "best_epoch": 0, "checkpoint_selection_val_accuracy": 56.310679611650485, "final_test_accuracy": 56.88259109311741, "final_val_accuracy": 65.53398058252426, "method": "tip_adapter_f"}, "method": "tip_adapter_f", "run_config": {"batch_size": 16, "config": "./configs/wikichurches.yaml", "dataset": "wikichurches", "dropout_rate": 0.5, "focal_loss_gamma": 2.0, "init_alpha": 9.806773071379816, "init_beta": 2.0493246903001525, "init_delta": 1.0, "lambda_teacher": 0.5, "lr": 0.001, "mgt_num_heads": 16, "mgt_num_layers": 3, "num_workers": 0, "pooling_ratio": 0.25, "root_path": "/root/workspace/datasets", "seed": 2, "shots": 4, "train_epoch": 20, "transformer_activation": "gelu", "transformer_ff_multiplier": 2, "transformer_nhead": 16, "transformer_num_layers": 3, "wandb_mode": "disabled", "wandb_project": "TOGA", "weight_decay": 0.0001}, "seed": 2, "selection_protocol": "validation checkpoint selection; test evaluated once", "shared_baselines": {"tip_adapter_best_alpha": 0.1, "tip_adapter_best_beta": 5.931, "tip_adapter_test_accuracy": 57.152496626180834, "tip_adapter_val_accuracy_before_search": 57.76699029126213, "zero_shot_test_accuracy": 56.81511470985155, "zero_shot_val_accuracy": 64.5631067961165}, "shots": 4}

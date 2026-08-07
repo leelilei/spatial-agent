@@ -1,0 +1,21 @@
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Collecting gdown
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/7d/56/a99f0f159cce5b26d267317d436afee184f45fc7911938757d7cbbd2d10c/gdown-6.1.0-py3-none-any.whl (19 kB)
+Collecting beautifulsoup4 (from gdown)
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/88/c6/92fcd42f1ba33e1184263f25bfabf3d27c383410470f169e4b8163bf9c17/beautifulsoup4-4.15.0-py3-none-any.whl (109 kB)
+Requirement already satisfied: filelock in /usr/local/miniconda3/envs/toga-smoke/lib/python3.12/site-packages (from gdown) (3.20.3)
+Requirement already satisfied: requests[socks] in /usr/local/miniconda3/envs/toga-smoke/lib/python3.12/site-packages (from gdown) (2.34.2)
+Requirement already satisfied: tqdm in /usr/local/miniconda3/envs/toga-smoke/lib/python3.12/site-packages (from gdown) (4.69.1)
+Collecting soupsieve>=1.6.1 (from beautifulsoup4->gdown)
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/0f/2c/437fe806897c2d6cfdc3ee43a18da8bf8e568530a4ae9bac781541ca9896/soupsieve-2.9.1-py3-none-any.whl (37 kB)
+Requirement already satisfied: typing-extensions>=4.0.0 in /usr/local/miniconda3/envs/toga-smoke/lib/python3.12/site-packages (from beautifulsoup4->gdown) (4.15.0)
+Requirement already satisfied: charset_normalizer<4,>=2 in /usr/local/miniconda3/envs/toga-smoke/lib/python3.12/site-packages (from requests[socks]->gdown) (3.4.9)
+Requirement already satisfied: idna<4,>=2.5 in /usr/local/miniconda3/envs/toga-smoke/lib/python3.12/site-packages (from requests[socks]->gdown) (3.18)
+Requirement already satisfied: urllib3<3,>=1.26 in /usr/local/miniconda3/envs/toga-smoke/lib/python3.12/site-packages (from requests[socks]->gdown) (2.7.0)
+Requirement already satisfied: certifi>=2023.5.7 in /usr/local/miniconda3/envs/toga-smoke/lib/python3.12/site-packages (from requests[socks]->gdown) (2026.7.22)
+Collecting PySocks!=1.5.7,>=1.5.6 (from requests[socks]->gdown)
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/8d/59/b4572118e098ac8e46e399a1dd0f2d85403ce8bbaad9ec79373ed6badaf9/PySocks-1.7.1-py3-none-any.whl (16 kB)
+Installing collected packages: soupsieve, PySocks, beautifulsoup4, gdown
+
+Successfully installed PySocks-1.7.1 beautifulsoup4-4.15.0 gdown-6.1.0 soupsieve-2.9.1
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.

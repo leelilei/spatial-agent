@@ -1,0 +1,165 @@
+Using device: cuda
+
+Running dataset config:
+{'root_path': '/root/workspace/datasets', 'load_cache': False, 'load_pre_feat': False, 'search_hp': True, 'search_scale': [12, 10], 'search_step': [200, 20], 'init_beta': 2.0493246903001525, 'init_alpha': 9.806773071379816, 'dataset': 'wikichurches', 'shots': 4, 'backbone': ['ViT-B/16'], 'lr': 0.001, 'augment_epoch': 10, 'train_epoch': 20, 'cache_dir': './caches/wikichurches/tune_c0_baseline_s4/seed2', 'feature_cache_dir': './caches/wikichurches/shared_features'} 
+
+Run hyperparameters:
+{'batch_size': 16, 'lr': 0.001, 'weight_decay': 0.0001, 'mgt_num_layers': 3, 'mgt_num_heads': 16, 'transformer_num_layers': 3, 'transformer_nhead': 16, 'transformer_ff_multiplier': 2, 'transformer_activation': 'gelu', 'pooling_ratio': 0.25, 'dropout_rate': 0.5, 'train_epoch': 20, 'init_beta': 2.0493246903001525, 'init_alpha': 9.806773071379816, 'init_delta': 1.0, 'lambda_teacher': 0.5, 'focal_loss_gamma': 2.0, 'seed': 2, 'num_workers': 0, 'wandb_project': 'TOGA', 'wandb_mode': 'disabled', 'config': './configs/wikichurches.yaml', 'shots': 4, 'dataset': 'wikichurches', 'root_path': '/root/workspace/datasets'}
+Preparing dataset.
+WikiChurches canonical split audit: train=5838 images/5750 churches, val=206 images/199 churches, test=1482 images/1469 churches; cross-split church overlap=0
+Creating a 4-shot WikiChurches dataset from 4 distinct churches per class: {0: ['Q1244815', 'Q1380686', 'Q1380085', 'Q1955996'], 1: ['Q5118038', 'Q12030570', 'Q444884', 'Q7594256'], 2: ['Q3635693', 'Q2712352', 'Q3585423', 'Q15878912'], 3: ['Q1983547', 'Q2320135', 'Q269376', 'Q15129498']}
+
+Getting textual features for graph nodes and CLIP classifier.
+
+Constructing cache model by few-shot visual features and labels.
+Augment Epoch: 0 / 10
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:01<00:00,  1.15s/it]100%|██████████| 1/1 [00:01<00:00,  1.15s/it]
+Augment Epoch: 1 / 10
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.05it/s]100%|██████████| 1/1 [00:00<00:00,  1.05it/s]
+Augment Epoch: 2 / 10
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.14it/s]100%|██████████| 1/1 [00:00<00:00,  1.14it/s]
+Augment Epoch: 3 / 10
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.36it/s]100%|██████████| 1/1 [00:00<00:00,  1.36it/s]
+Augment Epoch: 4 / 10
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.32it/s]100%|██████████| 1/1 [00:00<00:00,  1.32it/s]
+Augment Epoch: 5 / 10
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.10it/s]100%|██████████| 1/1 [00:00<00:00,  1.10it/s]
+Augment Epoch: 6 / 10
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.31it/s]100%|██████████| 1/1 [00:00<00:00,  1.31it/s]
+Augment Epoch: 7 / 10
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.29it/s]100%|██████████| 1/1 [00:00<00:00,  1.29it/s]
+Augment Epoch: 8 / 10
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.02it/s]100%|██████████| 1/1 [00:00<00:00,  1.02it/s]
+Augment Epoch: 9 / 10
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  1.24it/s]100%|██████████| 1/1 [00:00<00:00,  1.24it/s]
+
+Loading visual features and labels from val set.
+Loading existing val features: ./caches/wikichurches/shared_features/val_f.pt
+
+Validation-only mode: test loader/features are not constructed, loaded, or evaluated.
+
+-------- Searching hyperparameters on the val set. --------
+
+**** Zero-shot CLIP val accuracy: 64.56. ****
+
+**** Tip-Adapter val accuracy: 57.77. ****
+
+New best setting, beta: 0.10, alpha: 0.10; accuracy: 64.56
+New best setting, beta: 0.10, alpha: 0.59; accuracy: 65.05
+New best setting, beta: 5.93, alpha: 0.10; accuracy: 65.53
+
+After searching, the best accuracy: 65.53.
+
+Train Epoch: 0 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:09<00:00,  9.16s/it]100%|██████████| 1/1 [00:09<00:00,  9.16s/it]
+LR: 0.000994, Acc: 0.6250 (10.0/16), Loss: 2.6464
+**** TOGA student validation accuracy: 56.80. ****
+
+Train Epoch: 1 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:07<00:00,  7.03s/it]100%|██████████| 1/1 [00:07<00:00,  7.04s/it]
+LR: 0.000976, Acc: 0.6875 (11.0/16), Loss: 3.9794
+**** TOGA student validation accuracy: 59.22. ****
+
+Train Epoch: 2 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.02s/it]100%|██████████| 1/1 [00:05<00:00,  5.02s/it]
+LR: 0.000946, Acc: 0.6875 (11.0/16), Loss: 3.3942
+**** TOGA student validation accuracy: 57.77. ****
+
+Train Epoch: 3 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.43s/it]100%|██████████| 1/1 [00:05<00:00,  5.43s/it]
+LR: 0.000905, Acc: 0.5625 (9.0/16), Loss: 5.9953
+**** TOGA student validation accuracy: 55.83. ****
+
+Train Epoch: 4 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.11s/it]100%|██████████| 1/1 [00:04<00:00,  4.11s/it]
+LR: 0.000854, Acc: 0.6250 (10.0/16), Loss: 2.5890
+**** TOGA student validation accuracy: 53.88. ****
+
+Train Epoch: 5 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:03<00:00,  3.64s/it]100%|██████████| 1/1 [00:03<00:00,  3.64s/it]
+LR: 0.000794, Acc: 0.8125 (13.0/16), Loss: 2.1028
+**** TOGA student validation accuracy: 52.91. ****
+
+Train Epoch: 6 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:03<00:00,  3.45s/it]100%|██████████| 1/1 [00:03<00:00,  3.45s/it]
+LR: 0.000727, Acc: 0.6250 (10.0/16), Loss: 3.5065
+**** TOGA student validation accuracy: 52.43. ****
+
+Train Epoch: 7 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:03<00:00,  3.68s/it]100%|██████████| 1/1 [00:03<00:00,  3.68s/it]
+LR: 0.000655, Acc: 0.8750 (14.0/16), Loss: 1.9643
+**** TOGA student validation accuracy: 52.91. ****
+
+Train Epoch: 8 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.66s/it]100%|██████████| 1/1 [00:04<00:00,  4.67s/it]
+LR: 0.000578, Acc: 0.8750 (14.0/16), Loss: 1.5768
+**** TOGA student validation accuracy: 53.88. ****
+
+Train Epoch: 9 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.08s/it]100%|██████████| 1/1 [00:04<00:00,  4.08s/it]
+LR: 0.000500, Acc: 0.6875 (11.0/16), Loss: 2.0304
+**** TOGA student validation accuracy: 53.88. ****
+
+Train Epoch: 10 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.24s/it]100%|██████████| 1/1 [00:04<00:00,  4.24s/it]
+LR: 0.000422, Acc: 0.8125 (13.0/16), Loss: 2.5588
+**** TOGA student validation accuracy: 53.88. ****
+
+Train Epoch: 11 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.41s/it]100%|██████████| 1/1 [00:04<00:00,  4.41s/it]
+LR: 0.000345, Acc: 0.7500 (12.0/16), Loss: 1.4815
+**** TOGA student validation accuracy: 53.88. ****
+
+Train Epoch: 12 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.90s/it]100%|██████████| 1/1 [00:04<00:00,  4.90s/it]
+LR: 0.000273, Acc: 0.8750 (14.0/16), Loss: 1.1506
+**** TOGA student validation accuracy: 53.40. ****
+
+Train Epoch: 13 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.17s/it]100%|██████████| 1/1 [00:04<00:00,  4.17s/it]
+LR: 0.000206, Acc: 0.9375 (15.0/16), Loss: 1.0195
+**** TOGA student validation accuracy: 52.91. ****
+
+Train Epoch: 14 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.39s/it]100%|██████████| 1/1 [00:04<00:00,  4.39s/it]
+LR: 0.000146, Acc: 0.7500 (12.0/16), Loss: 1.6017
+**** TOGA student validation accuracy: 52.91. ****
+
+Train Epoch: 15 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.77s/it]100%|██████████| 1/1 [00:04<00:00,  4.77s/it]
+LR: 0.000095, Acc: 0.9375 (15.0/16), Loss: 1.2559
+**** TOGA student validation accuracy: 52.91. ****
+
+Train Epoch: 16 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:03<00:00,  3.99s/it]100%|██████████| 1/1 [00:03<00:00,  3.99s/it]
+LR: 0.000054, Acc: 0.8750 (14.0/16), Loss: 1.1344
+**** TOGA student validation accuracy: 52.91. ****
+
+Train Epoch: 17 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.76s/it]100%|██████████| 1/1 [00:04<00:00,  4.76s/it]
+LR: 0.000024, Acc: 0.8750 (14.0/16), Loss: 1.1954
+**** TOGA student validation accuracy: 52.43. ****
+
+Train Epoch: 18 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:03<00:00,  3.28s/it]100%|██████████| 1/1 [00:03<00:00,  3.28s/it]
+LR: 0.000006, Acc: 0.8750 (14.0/16), Loss: 1.6376
+**** TOGA student validation accuracy: 52.43. ****
+
+Train Epoch: 19 / 20
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:03<00:00,  3.24s/it]100%|██████████| 1/1 [00:03<00:00,  3.24s/it]
+LR: 0.000000, Acc: 0.8750 (14.0/16), Loss: 1.0367
+**** TOGA student validation accuracy: 52.43. ****
+
+**** After TOGA fine-tuning, best validation accuracy: 59.22, at epoch: 1. ****
+
+
+-------- Searching hyperparameters on the val set. --------
+New best setting, beta: 0.10, alpha: 0.10; accuracy: 64.56
+New best setting, beta: 0.10, alpha: 0.59; accuracy: 65.05
+New best setting, beta: 0.10, alpha: 1.59; accuracy: 65.53
+
+After searching, the best accuracy: 65.53.
+
+**** wikichurches TOGA validation-only accuracy: 65.53. ****
+
+RESULT_JSON={"dataset": "wikichurches", "fine_tuned": {"best_alpha": 1.5850000000000002, "best_beta": 0.1, "best_epoch": 1, "checkpoint_selection_val_accuracy": 59.22330097087379, "final_test_accuracy": null, "final_val_accuracy": 65.53398058252426, "method": "toga"}, "method": "toga", "run_config": {"batch_size": 16, "config": "./configs/wikichurches.yaml", "dataset": "wikichurches", "dropout_rate": 0.5, "focal_loss_gamma": 2.0, "init_alpha": 9.806773071379816, "init_beta": 2.0493246903001525, "init_delta": 1.0, "lambda_teacher": 0.5, "lr": 0.001, "mgt_num_heads": 16, "mgt_num_layers": 3, "num_workers": 0, "pooling_ratio": 0.25, "root_path": "/root/workspace/datasets", "seed": 2, "shots": 4, "train_epoch": 20, "transformer_activation": "gelu", "transformer_ff_multiplier": 2, "transformer_nhead": 16, "transformer_num_layers": 3, "wandb_mode": "disabled", "wandb_project": "TOGA", "weight_decay": 0.0001}, "run_namespace": "tune_c0_baseline_s4", "seed": 2, "selection_protocol": "validation-only model selection; test loader/features not loaded", "shared_baselines": {"tip_adapter_best_alpha": 0.1, "tip_adapter_best_beta": 5.931, "tip_adapter_test_accuracy": null, "tip_adapter_val_accuracy_before_search": 57.76699029126213, "zero_shot_test_accuracy": null, "zero_shot_val_accuracy": 64.5631067961165}, "shots": 4, "validation_only": true}

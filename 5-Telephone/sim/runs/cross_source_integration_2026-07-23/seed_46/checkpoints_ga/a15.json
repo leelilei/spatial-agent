@@ -1,0 +1,337 @@
+{
+  "agent_id": "a15",
+  "interview": {
+    "name": "Gus",
+    "answer": "The repair drive is at the community shed on Saturday morning.",
+    "verdict": "stale"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 30,
+    "reflections": [
+      "Gus is taking a coordinating role and responding quickly to logistics questions.",
+      "Pia is interested and willing to help, but needs clear timing and access details before committing fully.",
+      "Tess is tracking turnout and inventory, and the group is collaborating smoothly around shared supplies.",
+      "Gus is a reliable coordinator who offers practical help and keeps people informed about the repair drive logistics.",
+      "Tess is managing the turnout and receiving support, suggesting a collaborative effort around the community shed event.",
+      "Pia, Opal, and Jules are looking for clear timing and location details, and they help spread information once they have it.",
+      "Gus is the central coordinator and keeps reinforcing the time, place, and drop-off instructions so everyone stays aligned.",
+      "Jules acts as a helper for spreading information, while Sam contributes concrete tools and labor to support the event.",
+      "Rosa’s message suggests the plan may have shifted from Saturday at the shed to Sunday at the community center, and Gus is accommodating that change.",
+      "Gus is coordinating the repair drive and repeatedly confirms the community shed on Saturday morning as the main meetup point.",
+      "Rosa and Bo are aligning with Gus by helping anchor the event at a shared location and bringing supplies or notifying people.",
+      "Ira is less committed to a fixed plan but remains willing to help later after errands, suggesting flexible support rather than direct coordination.",
+      "Gus is the organizer and coordinator; he keeps confirming the plan and offering tools, space, and organization support.",
+      "The group is aligned around a shared Saturday morning repair drive at the community shed, with people contributing small needed supplies.",
+      "Participants seem to be checking details rather than renegotiating the plan, suggesting the event is mostly settled and just needs execution."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Pia: I’m in, but I’d like to know the timing and where folks should drop things off first.",
+        "speaker": "Pia",
+        "listener": "Gus"
+      },
+      {
+        "round": 0,
+        "text": "Gus: Great — we’re starting Saturday morning at the community shed, and folks can drop off repairs there first. If you want, I can also swing by and help sort the first batch.",
+        "speaker": "Gus",
+        "listener": "Pia",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Gus",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 0,
+        "text": "Pia: That would help a lot — what time Saturday morning should I plan on, and is the shed easy to access for unloading?",
+        "speaker": "Pia",
+        "listener": "Gus",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Pia",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 0,
+        "text": "Tess: Oh, I heard the repair drive is getting a pretty good turnout so far—folks have been dropping off tools and a few supplies already.",
+        "speaker": "Tess",
+        "listener": "Gus"
+      },
+      {
+        "round": 0,
+        "text": "Gus: That’s great to hear. I can bring by a few extra tools later if you still need them.",
+        "speaker": "Gus",
+        "listener": "Tess"
+      },
+      {
+        "round": 0,
+        "text": "Tess: That would be wonderful, Gus—extra tools are always welcome. If you come by later, I’ll make sure they get added to the pile.",
+        "speaker": "Tess",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Opal: I haven’t seen the repair drive setup yet, but I’m still watching for the exact spot and time.",
+        "speaker": "Opal",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Gus: We’re starting Saturday morning at the community shed, and that’s where folks should drop things off first. If you want, I can also help you get oriented when you arrive.",
+        "speaker": "Gus",
+        "listener": "Opal",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Gus",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Opal: Got it — Saturday morning at the community shed is the drop-off spot, and I’ll keep that noted. If anything changes, I’ll pass it along.",
+        "speaker": "Opal",
+        "listener": "Gus",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Gus: Absolutely — we’re at the community shed Saturday morning, and folks should drop repairs there first. I can also bring a few extra tools if you need them.",
+        "speaker": "Gus",
+        "listener": "Jules",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Gus",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Jules: That’s perfect, Gus — I’ll keep spreading the word about the shed on Saturday morning. If you think of anyone else who should know, send me their names and I’ll reach out.",
+        "speaker": "Jules",
+        "listener": "Gus",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Jules",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Gus: Thanks, Jules — I appreciate it. I’ll think of a few more folks and send them your way.",
+        "speaker": "Gus",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Gus: Saturday morning at the community shed is still the drop-off spot, and I can bring a few extra tools if you need them.",
+        "speaker": "Gus",
+        "listener": "Sam",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Gus",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Sam: Thanks, Gus — Saturday morning at the community shed works for me. I’ll bring the drill, tape measure, and screwdrivers, and I’ll help sort the donated tools when I get there.",
+        "speaker": "Sam",
+        "listener": "Gus",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Sam",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Gus: Perfect, Sam — that’ll be a big help. I’ll see you Saturday morning at the community shed, and we can sort the donations together.",
+        "speaker": "Gus",
+        "listener": "Sam",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Gus",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Gus: Yep — Saturday morning at the community shed is the spot, and folks should drop repairs off there first. I can bring a few extra tools if that helps.",
+        "speaker": "Gus",
+        "listener": "Rosa",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Gus",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Thanks, Gus — that’ll help a lot. Let’s keep it at the community center on Sunday, and I’ll make sure folks know to bring repairs there.",
+        "speaker": "Rosa",
+        "listener": "Gus",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Rosa",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Gus: Sounds good, Rosa — I’ll let folks know it’s at the community center on Sunday, and I can bring a few extra tools too.",
+        "speaker": "Gus",
+        "listener": "Rosa",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Gus",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Gus: Yep — the community shed Saturday morning is still the spot, and folks should drop repairs there first. I can bring a few extra tools if that helps.",
+        "speaker": "Gus",
+        "listener": "Ira",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Gus",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Ira: Sounds good — I’ll check in after my errands and see what still needs helping with at the repair drive.",
+        "speaker": "Ira",
+        "listener": "Gus"
+      },
+      {
+        "round": 3,
+        "text": "Gus: Sounds good — just swing by the community shed Saturday morning and we’ll sort it out together. I can bring a few extra tools too if needed.",
+        "speaker": "Gus",
+        "listener": "Ira",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Gus",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Gus: Yep — Saturday morning at the community shed is the spot, and folks should drop repairs off there first. I can bring a few extra tools if that helps.",
+        "speaker": "Gus",
+        "listener": "Bo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Gus",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Bo: Perfect — Saturday morning at the community shed works for me. I’ll keep the porch light, tape, and screws on my list.",
+        "speaker": "Bo",
+        "listener": "Gus",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Bo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Gus: Great — that’ll cover a lot. I’ll bring a few extra tools and help sort the first batch at the shed.",
+        "speaker": "Gus",
+        "listener": "Bo"
+      },
+      {
+        "round": 4,
+        "text": "Gus: Absolutely — I can bring a few extra tools too, and we’ll keep the repair drive at the community shed Saturday morning.",
+        "speaker": "Gus",
+        "listener": "Noah",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Gus",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Noah: Oh good, that still works for me — I was a bit behind on the details. Saturday morning at the community shed, right?",
+        "speaker": "Noah",
+        "listener": "Gus",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Noah",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Gus: Yep, that’s right — community shed Saturday morning, and repairs can be dropped there first. I’ll bring a few extra tools too.",
+        "speaker": "Gus",
+        "listener": "Noah",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Gus",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Gus: Yep — Saturday morning at the community shed, and folks should drop repairs off there first. I can bring a few extra tools too if that helps.",
+        "speaker": "Gus",
+        "listener": "Oren",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Gus",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Oren: Oh, right — Saturday morning at the community shed. I’ll check my garage for tape, screws, and any basic tools I can bring by.",
+        "speaker": "Oren",
+        "listener": "Gus",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Oren",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Gus: That’d be great, Oren — tape and screws are always useful. I’ll keep the shed organized and make sure we’ve got room for whatever you bring by.",
+        "speaker": "Gus",
+        "listener": "Oren"
+      }
+    ]
+  }
+}

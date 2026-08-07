@@ -1,0 +1,100 @@
+{
+  "design": "paired fixed per-agent event stream; independent unit = source schedule seed",
+  "n_seeds": 8,
+  "seeds": [
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48
+  ],
+  "conditions": {
+    "ga": {
+      "current_rate_ci95": [
+        0.32,
+        0.28,
+        0.36
+      ],
+      "stale_rate_ci95": [
+        0.075,
+        0.012,
+        0.138
+      ],
+      "unknown_rate_ci95": [
+        0.605,
+        0.5262,
+        0.6838
+      ],
+      "per_seed_current_rate": [
+        0.36,
+        0.36,
+        0.24,
+        0.28,
+        0.28,
+        0.36,
+        0.36,
+        0.32
+      ]
+    },
+    "prov": {
+      "current_rate_ci95": [
+        0.605,
+        0.5282,
+        0.6818
+      ],
+      "stale_rate_ci95": [
+        0.05,
+        0.0071,
+        0.0929
+      ],
+      "unknown_rate_ci95": [
+        0.345,
+        0.2714,
+        0.4186
+      ],
+      "per_seed_current_rate": [
+        0.72,
+        0.64,
+        0.64,
+        0.6,
+        0.4,
+        0.6,
+        0.64,
+        0.6
+      ]
+    }
+  },
+  "paired_prov_minus_ga": {
+    "current_rate_ci95": [
+      0.285,
+      0.2148,
+      0.3552
+    ],
+    "net_current_minus_stale_rate_ci95": [
+      0.31,
+      0.2514,
+      0.3686
+    ],
+    "per_seed_current_rate_difference": [
+      0.36,
+      0.28,
+      0.4,
+      0.31999999999999995,
+      0.12,
+      0.24,
+      0.28,
+      0.27999999999999997
+    ],
+    "prov_higher_seed_count": 8,
+    "ga_higher_seed_count": 0,
+    "ties_seed_count": 0,
+    "exact_two_sided_sign_test_p": 0.007812
+  },
+  "source_stream_model": "gpt-5.4-mini",
+  "replay_model": "gpt-5.4-mini",
+  "stream_conditioning": "realized PROV-run dialogue streams; both replay memories receive identical text and metadata",
+  "failure_policy": "no provider failure scored as unknown; incomplete agents are checkpointed and rerun"
+}

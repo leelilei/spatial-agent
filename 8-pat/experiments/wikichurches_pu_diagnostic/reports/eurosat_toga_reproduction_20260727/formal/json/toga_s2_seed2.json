@@ -1,0 +1,51 @@
+{
+  "dataset": "eurosat",
+  "fine_tuned": {
+    "best_alpha": 1.09,
+    "best_beta": 7.597,
+    "best_epoch": 7,
+    "checkpoint_selection_val_accuracy": 72.62962962962963,
+    "final_test_accuracy": 73.88888888888889,
+    "final_val_accuracy": 73.81481481481481,
+    "method": "toga"
+  },
+  "method": "toga",
+  "run_config": {
+    "batch_size": 16,
+    "config": "./configs/eurosat.yaml",
+    "dataset": "eurosat",
+    "dropout_rate": 0.460076388225043,
+    "focal_loss_gamma": 1.5353292422637683,
+    "init_alpha": 7.968595940543063,
+    "init_beta": 1.20103668879079,
+    "init_delta": 0.4381967142115022,
+    "lambda_teacher": 0.8141671768728396,
+    "lr": 0.005022434775182648,
+    "mgt_num_heads": 16,
+    "mgt_num_layers": 3,
+    "num_workers": 0,
+    "pooling_ratio": 0.3466596944201389,
+    "root_path": "/root/workspace/datasets",
+    "seed": 2,
+    "shots": 2,
+    "train_epoch": 100,
+    "transformer_activation": "gelu",
+    "transformer_ff_multiplier": 2,
+    "transformer_nhead": 16,
+    "transformer_num_layers": 3,
+    "wandb_mode": "disabled",
+    "wandb_project": "TOGA",
+    "weight_decay": 2.5455627097633345e-05
+  },
+  "seed": 2,
+  "selection_protocol": "validation checkpoint selection; test evaluated once",
+  "shared_baselines": {
+    "tip_adapter_best_alpha": 4.555,
+    "tip_adapter_best_beta": 11.3455,
+    "tip_adapter_test_accuracy": 66.29629629629629,
+    "tip_adapter_val_accuracy_before_search": 63.72222222222222,
+    "zero_shot_test_accuracy": 48.34567901234568,
+    "zero_shot_val_accuracy": 48.370370370370374
+  },
+  "shots": 2
+}

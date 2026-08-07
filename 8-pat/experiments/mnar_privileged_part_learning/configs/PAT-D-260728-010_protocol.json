@@ -1,0 +1,57 @@
+{
+  "experiment_id": "PAT-D-260728-010",
+  "title": "CUB architecture-matched zero-keypoint control",
+  "frozen_at": "2026-07-28T17:16:00+08:00",
+  "status": "PRE_REGISTERED_AFTER_PAT-D-260728-009_AND_BEFORE_K0_PREDICTIONS",
+  "purpose": "Resolve the architecture confound in the sparse-keypoint premise by comparing Random-K1 against an otherwise identical PrPool K0 arm.",
+  "dependency": {
+    "episode_reliability_experiment": "PAT-D-260728-009",
+    "episode_reliability_gate_passed": true,
+    "observed_confound": "GLOBAL uses global average pooling while RANDOM_K1 uses a 16-map PrPool classifier; their difference cannot be attributed only to keypoint supervision."
+  },
+  "data": {
+    "dataset": "CUB-200-2011",
+    "episodes": "reuse the three frozen PAT-D-260728-009 official-train episodes",
+    "folds": 5,
+    "official_test_access": "forbidden"
+  },
+  "arm": {
+    "PRPOOL_K0": "Identical PrPool architecture, optimizer, complement regularizer, augmentation, fold seeds, and nine-epoch budget as RANDOM_K1, but no image receives keypoint loss."
+  },
+  "references": {
+    "RANDOM_K1": "reuse PAT-D-260728-009 predictions without retraining",
+    "FULL_KEYPOINT_ORACLE": "reuse PAT-D-260728-009 predictions without retraining",
+    "GLOBAL": "reported only for context; not the causal keypoint baseline"
+  },
+  "training": {
+    "fixed_epochs": 9,
+    "fold_model_seeds": [
+      9001,
+      9002,
+      9003,
+      9004,
+      9005
+    ],
+    "hyperparameter_search": "none",
+    "checkpoint_selection": "none"
+  },
+  "primary_endpoints": [
+    "paired Random-K1 minus PrPool-K0 OOF balanced-accuracy gain per episode",
+    "paired Full-Oracle minus PrPool-K0 OOF balanced-accuracy gain per episode",
+    "Random-K1 class negative-transfer rate versus PrPool-K0",
+    "episode-pooled class bootstrap interval"
+  ],
+  "go_no_go": {
+    "sparse_keypoint_value_isolated_if": "Mean Random-K1 minus PrPool-K0 gain is at least 1.0 pp and at least two of three episode gains are at least 0.5 pp.",
+    "full_keypoint_value_isolated_if": "Mean Full-Oracle minus PrPool-K0 gain is at least 2.0 pp and at least two of three episode gains are at least 1.0 pp.",
+    "overall_go": "Both isolated-value gates pass and official test access remains zero.",
+    "on_go": "Sparse keypoint value is real after architecture matching; formulate class-level budget allocation or worst-class-risk work.",
+    "on_no_go": "Retract the causal sparse-keypoint value interpretation, retain only the PrPool architecture result, and stop the CUB sparse-keypoint direction.",
+    "official_test_required": false
+  },
+  "data_controls": {
+    "test_decode_counter_before": 0,
+    "test_decode_counter_after_required": 0,
+    "complete_predictions_logs_and_hashes_required": true
+  }
+}

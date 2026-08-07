@@ -1,0 +1,86 @@
+{
+  "experiment_id": "PAT-K-260805-009",
+  "title": "Locked official-test validation, sensitivity, and end-to-end cost for DCTPR",
+  "frozen_at": "2026-08-05T00:00:00+08:00",
+  "status": "PRE_REGISTERED_BEFORE_OFFICIAL_TEST_IMAGE_DECODING_OR_FEATURE_EXTRACTION",
+  "method": {
+    "name": "DCTPR",
+    "features": "L2-normalized concatenation of individually normalized frozen DINOv2-B/14 and DINOv2-L/14 CLS features",
+    "input_size": 392,
+    "temperature": 0.05,
+    "sinkhorn_iterations": 100,
+    "refinement_steps": 3,
+    "support_query_mix": 0.5,
+    "trainable_neural_parameters": 0,
+    "retuning_on_official_test": "forbidden"
+  },
+  "official_test": {
+    "cub": {
+      "dataset": "CUB-200-2011 official test",
+      "classes": 200,
+      "episodes": 1,
+      "images_per_class_per_episode": 10,
+      "selection": "first 10 official-test images per class after sorting by numeric image_id",
+      "support_per_class": 1,
+      "query_per_class": 9,
+      "support_rotations": 10
+    },
+    "stanford_dogs": {
+      "dataset": "Stanford Dogs official test_list.mat",
+      "classes": 120,
+      "episodes": 3,
+      "images_per_class_per_episode": 10,
+      "selection_seed": 47081,
+      "selection": "for class c, permute official-test indices with numpy default_rng(selection_seed + c), take the first 30, and partition consecutively into three episodes",
+      "support_per_class": 1,
+      "query_per_class": 9,
+      "support_rotations": 10,
+      "episode_overlap": "zero"
+    },
+    "fixed_laplacian_lambdas_from_cub_train_development": {
+      "L2N": 1.5,
+      "PROTO_RECT": 1.0
+    },
+    "reported_methods": [
+      "BL_NCC",
+      "BL_SINKHORN",
+      "DCTPR",
+      "TIM_ADM",
+      "MAP_RAW",
+      "SIGNED_PT_MAP",
+      "LAPLACIANSHOT",
+      "LAPLACIANSHOT_PR"
+    ]
+  },
+  "sensitivity": {
+    "data": "official-train episodes only; no official-test result may select a value",
+    "one_factor_at_a_time": {
+      "refinement_steps": [1, 2, 3, 5],
+      "support_query_mix": [0.25, 0.5, 0.75, 1.0],
+      "temperature": [0.025, 0.05, 0.1]
+    },
+    "reference": {
+      "refinement_steps": 3,
+      "support_query_mix": 0.5,
+      "temperature": 0.05
+    }
+  },
+  "efficiency": {
+    "hardware": "single NVIDIA GeForce RTX 3080 Ti",
+    "feature_batch_size": 4,
+    "measurements": [
+      "B feature extraction wall time",
+      "L feature extraction wall time",
+      "task-head wall time",
+      "end-to-end wall time",
+      "peak allocated GPU memory"
+    ],
+    "scope": "feature extraction is shared by all task heads and reported separately from solver latency"
+  },
+  "interpretation_limits": [
+    "Official-test results are a locked evaluation, not a new hyperparameter search.",
+    "Matched baselines operate on the same frozen DINO feature tensors and are not full legacy-pipeline reproductions.",
+    "Support rotations within an episode share images and are not independent samples.",
+    "The balanced query marginal is known to all balanced transductive methods."
+  ]
+}

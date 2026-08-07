@@ -32,26 +32,39 @@ QUESTION = "When and where is the repair drive being held now?"
 CURRENT_MARKERS = ("sunday", "community center")
 
 
-def resilient_interview(world: Any, question: str, llm: LLM) -> dict[str, Any]:
+def resilient_interview(
+    world: Any,
+    question: str,
+    llm: LLM,
+    *,
+    workers: int = 1,
+    strict: bool = False,
+) -> dict[str, Any]:
     """Per-agent interview that survives a provider hiccup (one failure -> unknown)."""
     current_markers = ("sunday", "community center")
     stale_markers = ("saturday", "front porch", "porch")
-    results: dict[str, Any] = {}
-    for a in world.agents:
+    def interview_agent(a: Any) -> tuple[str, dict[str, Any]]:
         try:
             ctx = a.memory.retrieve(question)
             out = llm.complete_json(INTERVIEW_SYSTEM, f"Memory notes:\n{ctx or '(none)'}\n\nQuestion: {question}")
             ans = str(out.get("answer", ""))
         except Exception as exc:
-            print(f"  interview failed {a.agent_id}: {exc}", flush=True)
-            results[a.agent_id] = {"name": a.name, "answer": "", "verdict": "unknown"}
-            continue
+            if strict:
+                raise
+            print(f"  interview failed {a.agent_id}: {type(exc).__name__}", flush=True)
+            return a.agent_id, {"name": a.name, "answer": "", "verdict": "unknown"}
         low = ans.lower()
         has_cur = any(m in low for m in current_markers)
         has_sta = any(m in low for m in stale_markers)
         verdict = "current" if (has_cur and not has_sta) else ("stale" if has_sta else "unknown")
-        results[a.agent_id] = {"name": a.name, "answer": ans, "verdict": verdict}
-    return results
+        return a.agent_id, {"name": a.name, "answer": ans, "verdict": verdict}
+
+    if workers > 1 and len(world.agents) > 1:
+        with ThreadPoolExecutor(max_workers=workers) as executor:
+            rows = list(executor.map(interview_agent, world.agents))
+    else:
+        rows = [interview_agent(agent) for agent in world.agents]
+    return dict(rows)
 
 
 def per_agent_round_events(snapshot: dict[str, Any]) -> dict[str, dict[int, list[dict[str, Any]]]]:
@@ -65,7 +78,8 @@ def per_agent_round_events(snapshot: dict[str, Any]) -> dict[str, dict[int, list
 
 
 def replay_once(memory_kind: str, snapshot: dict[str, Any], llm: LLM, *,
-                agent_count: int, workers: int) -> tuple[dict[str, Any], dict[str, Any]]:
+                agent_count: int, workers: int,
+                strict: bool = False) -> tuple[dict[str, Any], dict[str, Any]]:
     """Build fresh memories, replay the fixed event stream round by round, interview."""
     world = demo_world(build_memory_factory(memory_kind, llm), agent_count=agent_count)
     ev = per_agent_round_events(snapshot)
@@ -74,7 +88,9 @@ def replay_once(memory_kind: str, snapshot: dict[str, Any], llm: LLM, *,
         try:
             a.memory.consolidate()
         except Exception as exc:  # one provider hiccup must not drop the whole replay
-            print(f"  consolidate failed {a.agent_id}: {exc}", flush=True)
+            if strict:
+                raise
+            print(f"  consolidate failed {a.agent_id}: {type(exc).__name__}", flush=True)
 
     for r in rounds:
         print(f"  {memory_kind}: replay round {r}", flush=True)
@@ -88,7 +104,7 @@ def replay_once(memory_kind: str, snapshot: dict[str, Any], llm: LLM, *,
             for a in world.agents:
                 safe_consolidate(a)
     print(f"  {memory_kind}: interview", flush=True)
-    results = resilient_interview(world, QUESTION, llm)
+    results = resilient_interview(world, QUESTION, llm, workers=workers, strict=strict)
     snapshots = {a.agent_id: a.memory.snapshot() for a in world.agents}
     return results, snapshots
 

@@ -1,0 +1,271 @@
+{
+  "agent_id": "a10",
+  "interview": {
+    "name": "Bo",
+    "answer": "",
+    "verdict": "unknown"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 27,
+    "reflections": [
+      "Bo is cooperative and reliable, with a preference for straightforward, low-friction coordination.",
+      "The repair drive is being organized with practical constraints in mind, especially timing and available equipment.",
+      "Faye is responsive and helpful in closing the loop by providing details and keeping the task simple.",
+      "Bo is cooperative and practical, preferring simple, concrete instructions and a small tool set.",
+      "The group is coordinating repair-drive logistics, with Bo waiting on timing and details before acting.",
+      "Nell is acting as an information relay, staying informed and offering to pass updates along.",
+      "They are coordinating a Saturday morning meetup and repeatedly narrowing it to simple logistics: time, pickup spot, and what to bring.",
+      "Bo is willing to help but has limited transport capacity, so he keeps confirming he can bring a small tool set and no truck.",
+      "Nell, Oren, and Leo are helping translate and relay details, suggesting a small group coordinating around one shared task.",
+      "Bo prefers concise coordination with only the essential details and brings a small tool set, suggesting a practical, low-friction role.",
+      "Leo and Jules are taking on the logistics and communication, with Leo handling meetup details and Jules spreading the word.",
+      "The group is aligned on Saturday morning at the community center parking lot, with Bo mainly waiting for time and item details before showing up.",
+      "Bo is coordinating attendance for a repair drive and mainly needs the final logistics: exact time, location, and a short packing list.",
+      "Jules and Faye are helping organize and communicate the event details, with Jules spreading the word and Faye promising to send timing and basics.",
+      "Gus and Bo are both ready to contribute tools, suggesting a practical, hands-on group focused on simple repair support."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Bo: I’m in for the repair drive — just send me the time and what to bring.",
+        "speaker": "Bo",
+        "listener": "Kira"
+      },
+      {
+        "round": 0,
+        "text": "Kira: Great — can you confirm you’re good for Saturday morning, and do you have a truck or any tools to bring?",
+        "speaker": "Kira",
+        "listener": "Bo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Kira",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 0,
+        "text": "Bo: Saturday morning works for me. I’ve got a small set of tools, but no truck.",
+        "speaker": "Bo",
+        "listener": "Kira",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Bo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 0,
+        "text": "Bo: I’m in—just point me to the repair drive details and I’ll keep it simple.",
+        "speaker": "Bo",
+        "listener": "Faye"
+      },
+      {
+        "round": 0,
+        "text": "Faye: Thanks, Bo — I’ll send the repair drive details and keep it simple for you.",
+        "speaker": "Faye",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Perfect—send it over, and I’ll take care of the basics.",
+        "speaker": "Bo",
+        "listener": "Faye"
+      },
+      {
+        "round": 1,
+        "text": "Bo: Saturday morning still works — I can bring my small tool set, just send me the time and any basics to bring.",
+        "speaker": "Bo",
+        "listener": "Sam",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Bo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Sam: Great — Saturday morning works for me too. I’ll send the time and any basics to bring soon.",
+        "speaker": "Sam",
+        "listener": "Bo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Sam",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Bo: Sounds good — just send the time and I’ll bring my small tool set.",
+        "speaker": "Bo",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Nell: Oh, great — I’m still hearing bits and pieces, so I’d love the latest if you have it. If there’s a date or anything they still need, just let me know and I’ll help where I can.",
+        "speaker": "Nell",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Bo: Saturday morning still works for me, and I can bring my small tool set. Just send me the latest details and anything else you need.",
+        "speaker": "Bo",
+        "listener": "Nell",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Bo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Nell: Perfect, thanks — I’ll pass that along. If I hear anything else about what they still need, I’ll let you know right away.",
+        "speaker": "Nell",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Saturday morning still works for me, and I’ve got a small set of tools but no truck. Just send the simple details when you have them.",
+        "speaker": "Bo",
+        "listener": "Oren",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Bo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Oren: Oh good, Saturday morning works — I’ll bring the tools and send over the simple details once I get them straightened out.",
+        "speaker": "Oren",
+        "listener": "Bo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Oren",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Bo: Thanks, Oren — keep it simple and I’m good. Just send the time and what you need me to bring.",
+        "speaker": "Bo",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Saturday morning still works for me — I’ve got my small tool set, no truck.",
+        "speaker": "Bo",
+        "listener": "Leo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Bo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Leo: Saturday morning works. I’ll handle the pickup details and send the exact meetup spot.",
+        "speaker": "Leo",
+        "listener": "Bo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Leo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Bo: Thanks, Leo — just send the exact meetup spot and time, and I’ll be there with my small tool set.",
+        "speaker": "Bo",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Jules: Absolutely — I’ll keep spreading the word that the repair drive meets at the community center parking lot.",
+        "speaker": "Jules",
+        "listener": "Bo",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Jules",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Bo: Perfect — I’ve got Saturday morning at the community center parking lot. Just send me the time and what to bring, and I’m set.",
+        "speaker": "Bo",
+        "listener": "Jules"
+      },
+      {
+        "round": 3,
+        "text": "Jules: Great — I’ll send the time and a quick list of what to bring as soon as I have it.",
+        "speaker": "Jules",
+        "listener": "Bo"
+      },
+      {
+        "round": 3,
+        "text": "Bo: Saturday morning still works for me — just send the repair drive details and I’ll bring my small tool set.",
+        "speaker": "Bo",
+        "listener": "Faye",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Bo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Faye: Thanks, Bo — I’ll send the repair drive details and timing over, and I’ll keep it simple.",
+        "speaker": "Faye",
+        "listener": "Bo"
+      },
+      {
+        "round": 3,
+        "text": "Bo: Perfect — just send the time and any other basics when you can.",
+        "speaker": "Bo",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Bo: Saturday morning still works for me — just send the time and what I should bring.",
+        "speaker": "Bo",
+        "listener": "Gus",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Bo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Gus: Saturday morning works for me too — I’ll bring the wrench and screwdriver for the repair drive. Just send the time when you have it set.",
+        "speaker": "Gus",
+        "listener": "Bo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Gus",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Bo: Perfect — just send me the time and I’ll bring my small tool set.",
+        "speaker": "Bo",
+        "listener": "Gus"
+      }
+    ]
+  }
+}

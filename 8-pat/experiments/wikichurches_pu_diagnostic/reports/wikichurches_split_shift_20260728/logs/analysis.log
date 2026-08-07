@@ -1,0 +1,50 @@
+{
+  "conditions": {
+    "global_stratified_permutation": {
+      "observed": 0.46555344465553444,
+      "pass": false,
+      "required_at_most": 0.01
+    },
+    "gothic_local_recall_drop": {
+      "observed": 64.50549364089966,
+      "pass": true,
+      "required_at_least": 20.0
+    },
+    "gothic_local_shift_effect_rank": {
+      "observed": 1,
+      "pass": true,
+      "required_at_most": 2
+    },
+    "local_balanced_accuracy_drop": {
+      "observed": 33.96746814250946,
+      "pass": true,
+      "required_at_least": 20.0
+    },
+    "local_stratified_permutation": {
+      "observed": 0.0010998900109989002,
+      "pass": true,
+      "required_at_most": 0.01
+    }
+  },
+  "decision": "SPLIT_SHIFT_NOT_FULLY_SUPPORTED",
+  "experiment_id": "PAT-B-260728-001",
+  "global_shift": {
+    "equal_style_mean_squared_centroid_distance": 0.005724381248001009,
+    "stratified_permutation_p": 0.46555344465553444
+  },
+  "gothic_local_recall_drop": 64.50549364089966,
+  "gothic_local_shift_effect_rank": 1,
+  "local_shift": {
+    "equal_style_mean_squared_centroid_distance": 1.590195655822754,
+    "stratified_permutation_p": 0.0010998900109989002
+  },
+  "test_images_encoded": 0,
+  "transfer": {
+    "global_balanced_accuracy_drop": -3.902498632669449,
+    "global_train_balanced_accuracy": 63.01586851477623,
+    "global_validation_balanced_accuracy": 66.91836714744568,
+    "local_balanced_accuracy_drop": 33.96746814250946,
+    "local_train_oof_balanced_accuracy": 86.21746748685837,
+    "local_validation_balanced_accuracy": 52.24999934434891
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "schedule_seed": 47,
+  "manifest": {
+    "source_run": "/Users/mac/Documents/6-Research/5-Telephone/sim/runs/prov_batch/ga_r5/gpt-5.4-mini/ga/run_006",
+    "source_architecture": "ga",
+    "schedule_seed": 47,
+    "agent_count": 25,
+    "rounds": 5,
+    "encounter_utterances": 348,
+    "event_observations": 697,
+    "injections": 1,
+    "annotation_counts": {
+      "authoritative_injection": 1,
+      "current_annotation": 22,
+      "stale_annotation": 0,
+      "ambiguous_unannotated": 0,
+      "irrelevant_unannotated": 674
+    },
+    "annotation_rule": "oracle controlled-task version on unambiguous value mentions; mixed utterances unannotated"
+  },
+  "conditions": {
+    "prov": {
+      "counts": {
+        "current": 7,
+        "stale": 0,
+        "unknown": 18
+      },
+      "current_rate": 0.28,
+      "stale_rate": 0.0,
+      "unknown_rate": 0.72
+    },
+    "ga": {
+      "counts": {
+        "current": 3,
+        "stale": 0,
+        "unknown": 22
+      },
+      "current_rate": 0.12,
+      "stale_rate": 0.0,
+      "unknown_rate": 0.88
+    }
+  }
+}

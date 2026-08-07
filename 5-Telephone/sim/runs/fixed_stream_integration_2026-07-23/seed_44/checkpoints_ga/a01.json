@@ -1,0 +1,276 @@
+{
+  "agent_id": "a01",
+  "interview": {
+    "name": "Rosa",
+    "answer": "It’s now on Sunday at the community center.",
+    "verdict": "current"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 30,
+    "reflections": [
+      "Rosa is coordinating the repair drive and relies on others to help spread the word and fill practical roles.",
+      "Bo and Opal are supportive, responsive participants who volunteer help when asked.",
+      "The group is handling a community event with some role confusion, but the overall tone is cooperative and task-focused.",
+      "Rosa is coordinating the repair drive and relies on neighbors to help spread the word and route participants to her list.",
+      "Opal and Mara are offering practical support by volunteering time and outreach, which suggests a cooperative, community-oriented relationship with Rosa.",
+      "Kira is helping manage logistics and keep the repair-drive list updated, and the moved schedule/location means coordination is still actively in progress.",
+      "Rosa is the main coordinator for the repair drive, keeping the list organized and relaying updated details.",
+      "Kira is actively helping manage turnout and directing new people to Rosa for list updates.",
+      "Mara, Gus, and Pia are responsive participants who help keep logistics moving by passing along location changes and repair needs.",
+      "Rosa is the main organizer and repeatedly keeps the logistics updated for the group.",
+      "Pia, Leo, and Mina are responsive participants who confirm details and ask about what they should bring or do.",
+      "The group is coordinating a community-center event on Sunday with practical needs like supplies, repairs, and volunteer coverage.",
+      "Rosa is the organizer and keeps correcting logistics while offering concrete help and supplies.",
+      "Leo and Mina respond by asking practical follow-up questions, suggesting they are engaged volunteers rather than lead organizers.",
+      "Tess and Oren help amplify the message and coordinate materials, indicating a small group sharing responsibility for turnout and support."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Rosa: I’m putting together the repair drive list now, Bo—if you know anyone with a broken step, leaky tap, or busted light, send them my way.",
+        "speaker": "Rosa",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Sure thing, Rosa — I’ll keep an eye out and send folks your way if I hear of any busted steps, leaks, or lights.",
+        "speaker": "Bo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Oh right, the repair drive—sorry, I was just thinking about something else. What do you need me to bring or fix?",
+        "speaker": "Rosa",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Opal: I’m keeping an eye on the repair drive location—do you want me to check where it’s being held?",
+        "speaker": "Opal",
+        "listener": "Rosa"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: That’s kind of you, Rey. We still need a few hands for sorting donations and setting up the tables—if you can come by around 9, that would help a lot.",
+        "speaker": "Rosa",
+        "listener": "Opal"
+      },
+      {
+        "round": 0,
+        "text": "Opal: I can come by around 9 and help sort donations and set up the tables.",
+        "speaker": "Opal",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: I’m putting together the repair drive list now—if you know anyone with a broken step, leaky tap, or busted light, send them my way.",
+        "speaker": "Rosa",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Mara: Thanks, Rosa — I’ll spread the word and ask neighbors about broken steps, leaky taps, or busted lights.",
+        "speaker": "Mara",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: Thanks, Mara — I really appreciate that. If you hear anything, just send them my way and I’ll add them to the list.",
+        "speaker": "Rosa",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Just to confirm, the repair drive’s getting a decent turnout already, right? If anyone else asks, send them my way and I’ll keep the list updated.",
+        "speaker": "Kira",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: Yes, it’s looking good so far—thank you, Kira. I’ll send anyone else your way and keep the list updated.",
+        "speaker": "Rosa",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Great, thanks for confirming. If anyone else comes up, send them my way and I’ll keep the list updated.",
+        "speaker": "Kira",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+        "speaker": "world",
+        "listener": "Rosa",
+        "injected": true,
+        "prov": {
+          "version": 1,
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "auth": true,
+          "source": "ORIGIN",
+          "path": [
+            "ORIGIN"
+          ]
+        }
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Thanks, Mara — I really appreciate it. I’ll add any repairs people mention to the list.",
+        "speaker": "Rosa",
+        "listener": "Mara",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Mara: Thanks, Gus. Just let me know the first stop or location when you hear it.",
+        "speaker": "Mara",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Right — it’s been moved to Sunday at the community center. I’ll send the updated details along.",
+        "speaker": "Rosa",
+        "listener": "Mara",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Yes—it's now on Sunday at the community center. If you need anything brought or fixed, send it my way and I’ll keep the list organized.",
+        "speaker": "Rosa",
+        "listener": "Pia",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Pia: Thanks, Rosa — Sunday at the community center helps a lot. I’ll keep track of what’s needed and send you anything we should bring or fix.",
+        "speaker": "Pia",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Perfect, thank you, Pia — I really appreciate it. I’ll keep the list organized, and let me know if anything comes up.",
+        "speaker": "Rosa",
+        "listener": "Pia",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Leo: Thanks, Rosa — I’m checking the start time now, and I’ll let you know if there’s anything specific to bring.",
+        "speaker": "Leo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Perfect, thank you, Leo — it’s on Sunday at the community center now. Let me know if you need the updated list or supplies.",
+        "speaker": "Rosa",
+        "listener": "Leo",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Leo: Thanks, Rosa — could you send the updated list, and I’ll check what supplies are still needed?",
+        "speaker": "Leo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: It’s on Sunday at the community center now, not Saturday on the front porch. If you need, I can help you figure out what to bring or who still needs repairs.",
+        "speaker": "Rosa",
+        "listener": "Mina",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Mina: Thanks, Rosa — Sunday at the community center noted. What should I bring, and do you still need any volunteers?",
+        "speaker": "Mina",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Bring a screwdriver, a flashlight, and any spare batteries if you have them. And yes, I could still use one more volunteer to help check people in.",
+        "speaker": "Rosa",
+        "listener": "Mina",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Tess: Oh, one update for you — the repair drive moved from Saturday at the front porch to Sunday at the community center. I’ll keep spreading the word so folks know where to show up.",
+        "speaker": "Tess",
+        "listener": "Rosa",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a03"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Thanks, Tess — I’ll make sure everyone knows it’s Sunday at the community center.",
+        "speaker": "Rosa",
+        "listener": "Tess",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Tess: Great, I’ll keep passing it along too — Sunday at the community center is the spot now, and it sounds like we’re all set.",
+        "speaker": "Tess",
+        "listener": "Rosa",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a03"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Oren: Oh, right—the repair drive. We’re gathering tools, tape, batteries, and spare parts, and even a little helps a lot.",
+        "speaker": "Oren",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Great, I’ll bring some tape and a few spare batteries, and I’ll send anyone else your way so you can keep the list updated.",
+        "speaker": "Rosa",
+        "listener": "Oren",
+        "prov": {
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "version": 1,
+          "source": "a01"
+        }
+      }
+    ]
+  }
+}

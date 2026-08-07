@@ -1,0 +1,65 @@
+{
+  "experiment_id": "PAT-D-260728-008",
+  "title": "CUB K1 classification-protective gradient projection screen",
+  "frozen_at": "2026-07-28T00:00:00+08:00",
+  "status": "PRE_REGISTERED_AFTER_PAT-D-260728-007_NO_GO_AND_BEFORE_PAT-D-260728-008_PREDICTIONS",
+  "research_question": "With Random-K1 annotation masks fixed, can classification-protective projection of conflicting keypoint gradients reduce class-level negative transfer without sacrificing recognition benefit?",
+  "dependencies": {
+    "budget_curve_experiment": "PAT-D-260728-004",
+    "stopped_selector_experiments": [
+      "PAT-D-260728-005",
+      "PAT-D-260728-007"
+    ],
+    "stored_global_oof_ba": 0.6545,
+    "naive_random_k1_mean_oof_ba": 0.694,
+    "naive_random_k1_mean_negative_transfer_class_rate": 0.24166666666666667
+  },
+  "data": {
+    "dataset": "CUB-200-2011",
+    "development_split": "frozen 200-class x 10-shot official-train subset",
+    "folds": 5,
+    "annotated_images_per_class": 1,
+    "annotation_rate": 0.125,
+    "random_selection_seeds": [8101, 8102, 8103],
+    "official_test_access": "forbidden"
+  },
+  "method": {
+    "name": "CLASSIFICATION_PROTECTIVE_PROJECTION",
+    "classification_objective": "cross entropy on all fold-training images",
+    "auxiliary_objective": "the unchanged sparse keypoint and complementary-attention loss from PAT-D-260728-004",
+    "shared_parameters": "all trainable tensors reached by both objectives",
+    "rule": "if the global dot product between classification and auxiliary gradients is negative, replace g_aux with g_aux - dot(g_aux,g_cls)/||g_cls||^2 * g_cls; otherwise retain g_aux",
+    "classifier_only_parameters": "classification gradient unchanged",
+    "auxiliary_weight": "unchanged from PAT-D-260728-001",
+    "tunable_parameters": "none"
+  },
+  "training": {
+    "model": "PAT-D-260728-001 ResNet-50 layer4-adapted PrPool stack",
+    "fixed_epochs": 9,
+    "fold_seeds": [7901, 7902, 7903, 7904, 7905],
+    "paired_baseline": "stored PAT-D-260728-004 Naive Random-K1 predictions with identical selection masks and fold seeds"
+  },
+  "confirmation_gate": {
+    "benefit_branch": {
+      "minimum_mean_paired_ba_improvement_pp": 0.5,
+      "minimum_positive_selection_seeds": 2,
+      "maximum_mean_negative_transfer_rate_increase_pp": 0.0
+    },
+    "safety_branch": {
+      "maximum_mean_ba_deficit_pp": 0.25,
+      "minimum_mean_negative_transfer_rate_reduction_pp": 5.0,
+      "minimum_safety_positive_selection_seeds": 2
+    },
+    "bootstrap": {
+      "unit": "class",
+      "replicates": 10000,
+      "seed": 260728008,
+      "used_for_gate": false
+    },
+    "on_pass": "freeze a CCT20+ Oracle and safety-method transfer protocol before decoding development images",
+    "on_no_pass": "stop this gradient-safety mechanism and keep all final splits locked"
+  },
+  "controls": {
+    "official_test_images_decoded_or_encoded": 0
+  }
+}

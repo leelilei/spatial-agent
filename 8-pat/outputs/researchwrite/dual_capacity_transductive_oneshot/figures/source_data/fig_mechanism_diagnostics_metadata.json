@@ -1,0 +1,39 @@
+{
+  "classes_per_episode": 120,
+  "dataset": "Stanford Dogs official-training episodes 1--3",
+  "endpoint_validation_percent": {
+    "archived_bl_sinkhorn": 66.87654320987654,
+    "archived_dctpr": 70.3641975308642,
+    "computed_step_0": 66.87654320987654,
+    "computed_step_3": 70.3641975308642
+  },
+  "episodes": 3,
+  "metric_definitions": {
+    "balanced_assignment_accuracy": "fraction of query images whose maximum-mass balanced assignment matches the query label",
+    "prototype_cosine_error": "mean over classes of one minus cosine similarity between the current prototype and the true query-class center"
+  },
+  "query_label_boundary": "Query labels are used only offline to compute diagnostic true class centers and score assignments; they are never passed to DCTPR.",
+  "replicate_note": "Rotations share images; standard-deviation bands describe rotation-level trajectory variability and are not independent-sample inference.",
+  "settings": {
+    "refinement_steps": 3,
+    "sinkhorn_iterations": 100,
+    "support_query_mix": 0.5,
+    "temperature": 0.05
+  },
+  "source_sha256": {
+    "raw/experiments/2026.07.29_StanfordDogs_DCTPR_PAT-K-260729-006/features/b_episode_1/cls.npy": "4f95affab974da4b5fde54399ed985e1643d2159f2641ecaf56148cc7e1d5120",
+    "raw/experiments/2026.07.29_StanfordDogs_DCTPR_PAT-K-260729-006/features/b_episode_1/image_ids.npy": "c0196a017c065cbb4e6604bc7a264f4e4702ec5b19081ab5aecf0c33a3c76b36",
+    "raw/experiments/2026.07.29_StanfordDogs_DCTPR_PAT-K-260729-006/features/b_episode_1/labels.npy": "d66bdc7416cc04c5d83b10b6efaf29f4a293589065e4ce93311d0cca83dd6650",
+    "raw/experiments/2026.07.29_StanfordDogs_DCTPR_PAT-K-260729-006/features/b_episode_2/cls.npy": "e95f29994888f70003217847ed44aabf0e618fb1d506d7a9469ee1b30843a9fc",
+    "raw/experiments/2026.07.29_StanfordDogs_DCTPR_PAT-K-260729-006/features/b_episode_2/image_ids.npy": "fde549c1d8f34d1af0eac4955940f9a1bd902a0ce412fe1bf6e8f3fe2b773476",
+    "raw/experiments/2026.07.29_StanfordDogs_DCTPR_PAT-K-260729-006/features/b_episode_2/labels.npy": "d66bdc7416cc04c5d83b10b6efaf29f4a293589065e4ce93311d0cca83dd6650",
+    "raw/experiments/2026.07.29_StanfordDogs_DCTPR_PAT-K-260729-006/features/b_episode_3/cls.npy": "5cc5b5235d0652995a3f9213723e821a66a415b199f578f8f5ec2ff8fde60cb5",
+    "raw/experiments/2026.07.29_StanfordDogs_DCTPR_PAT-K-260729-006/features/b_episode_3/image_ids.npy": "456de225b824573240eb1a945b8560405523f6c41dfaecf2e9c6a1f6eeeb5b24",
+    "raw/experiments/2026.07.29_StanfordDogs_DCTPR_PAT-K-260729-006/features/b_episode_3/labels.npy": "d66bdc7416cc04c5d83b10b6efaf29f4a293589065e4ce93311d0cca83dd6650",
+    "raw/experiments/2026.07.29_StanfordDogs_DCTPR_PAT-K-260729-006/features/l_episode_1/cls.npy": "cd2fa94ed4d8e845ca5b994be73475c4002a39acbe177cdb820814403ee59bbc",
+    "raw/experiments/2026.07.29_StanfordDogs_DCTPR_PAT-K-260729-006/features/l_episode_2/cls.npy": "73abf8c5f0131aaeb2e13311a220bc97481bd0ed893d3e5dac84fac0a03a2453",
+    "raw/experiments/2026.07.29_StanfordDogs_DCTPR_PAT-K-260729-006/features/l_episode_3/cls.npy": "2425d9b5c896412a9a6ed005e40d7e25818abe80b392343f9faf80442eb65671"
+  },
+  "status": "OFFLINE_MECHANISM_DIAGNOSTIC",
+  "support_rotations": 30
+}

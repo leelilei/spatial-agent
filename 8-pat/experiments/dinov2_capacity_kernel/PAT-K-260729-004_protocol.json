@@ -1,0 +1,68 @@
+{
+  "experiment_id": "PAT-K-260729-004",
+  "title": "Matched published transductive baselines for CUB 200-way 1-shot",
+  "frozen_at": "2026-07-29T13:00:00+08:00",
+  "status": "PRE_REGISTERED_BEFORE_PUBLISHED_BASELINE_PREDICTIONS",
+  "data": {
+    "dataset": "CUB-200-2011 official train only",
+    "episodes": [1, 2, 3],
+    "development_episode": 1,
+    "confirmation_episodes": [2, 3],
+    "classes": 200,
+    "support_per_class": 1,
+    "query_per_class": 9,
+    "support_rotations": 10,
+    "official_test_access": "forbidden"
+  },
+  "shared_features": "L2-normalized concatenation of individually normalized frozen DINOv2-B/14 and DINOv2-L/14 CLS features",
+  "dctpr": {
+    "temperature": 0.05,
+    "sinkhorn_iterations": 100,
+    "refinement_steps": 3,
+    "support_query_mix": 0.5,
+    "retuning": "forbidden"
+  },
+  "published_baselines": {
+    "TIM_ADM": {
+      "source": "Boudiaf et al., NeurIPS 2020; official mboudiaf/TIM implementation",
+      "temperature": 15.0,
+      "loss_weights": [0.1, 1.0, 0.1],
+      "iterations": 150,
+      "alpha": 1.0
+    },
+    "MAP_RAW": {
+      "source": "Hu et al. PT-MAP family without power transform",
+      "ot_lambda": 10.0,
+      "map_alpha": 0.2,
+      "iterations": 20
+    },
+    "SIGNED_PT_MAP": {
+      "source": "Hu et al. PT-MAP adapted for signed DINO CLS features",
+      "power": 0.5,
+      "signed_transform": "sign(x)*abs(x)^power because DINO CLS contains negative values",
+      "ot_lambda": 10.0,
+      "map_alpha": 0.2,
+      "iterations": 20
+    },
+    "LAPLACIANSHOT": {
+      "source": "Ziko et al., ICML 2020; official imtiazziko/LaplacianShot implementation",
+      "knn_argument": 3,
+      "nonself_neighbors": 2,
+      "bound_iterations": 20,
+      "lambda_candidates_episode_1_only": [0.1, 0.3, 0.5, 0.7, 0.8, 1.0, 1.2, 1.5],
+      "variants": ["L2N", "official prototype rectification plus L2N"]
+    }
+  },
+  "primary_metric": "mean query balanced accuracy across ten support rotations",
+  "paper_route_gate": {
+    "competitive_gate": "DCTPR is within 1.0 percentage point of the strongest published baseline averaged across the three episodes",
+    "breadth_gate": "DCTPR exceeds at least two of TIM-ADM, MAP-RAW, signed PT-MAP, LaplacianShot, and LaplacianShot with prototype rectification",
+    "on_pass": "continue to prior stress and frozen Stanford Dogs confirmation",
+    "on_fail": "retain DCTPR only as an efficient simple baseline; do not claim superior method accuracy"
+  },
+  "interpretation_limits": [
+    "The signed power transform is an explicit adaptation, not an official PT-MAP reproduction on ReLU features",
+    "LaplacianShot lambda may use Episode 1 labels but is frozen for Episodes 2/3 and the second dataset",
+    "No published baseline may read query labels during inference"
+  ]
+}

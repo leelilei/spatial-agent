@@ -1,0 +1,53 @@
+{
+  "experiment_id": "PAT-D-260728-001",
+  "title": "CUB train-only positive privileged-part Oracle reproduction gate",
+  "frozen_at": "2026-07-28T11:31:00+08:00",
+  "status": "PRE_REGISTERED_BEFORE_DATA_EXTRACTION_OR_MODEL_PREDICTIONS",
+  "rationale": "PartImageNet mechanism development stopped after three failed Oracle gates. This experiment tests whether the privileged-part mechanism has a positive ceiling on a benchmark where the closest prior work reports gains.",
+  "data": {
+    "dataset": "CUB-200-2011",
+    "source": "CaltechDATA DOI 10.22002/D1.20098",
+    "archive_bytes": 1150585339,
+    "archive_md5": "97eceeb196236b17998738112f37df78",
+    "development_split": "official train only",
+    "official_train_images": 5994,
+    "classes": 200,
+    "shots_per_class": 10,
+    "subset_seed": 7301,
+    "folds": 5,
+    "fold_seed": 7302,
+    "official_test_access": "forbidden",
+    "privileged_information": "15 visible part locations, rendered as synchronized 10-pixel-radius supervision maps"
+  },
+  "encoder": {
+    "model": "torchvision ResNet-50 ImageNet-1K pretrained",
+    "trainable": ["layer4", "classification or privileged-pooling head"],
+    "frozen": "stem through layer3",
+    "input_resolution": 384
+  },
+  "arms": {
+    "GLOBAL": "Layer4-adapted ResNet-50 with global average pooling and one classifier.",
+    "PRPOOL_FULL_KEYPOINT_ORACLE": "The same layer4 adaptation with 15 supervised sigmoid attention maps plus one complementary map, per-map attention-weighted average pooling, L2-normalized concatenation, and one classifier."
+  },
+  "optimization": {
+    "head_learning_rate": 0.0003,
+    "backbone_learning_rate": 0.00003,
+    "weight_decay": 0.001,
+    "part_loss_weight": 1.0,
+    "complementary_regularizer_weight": 0.1,
+    "batch_size": 32,
+    "maximum_epochs": 25,
+    "early_stopping_patience": 5,
+    "fold_training_seeds": [7400, 7401, 7402, 7403, 7404],
+    "train_augmentation": "synchronized random resized crop at scale 0.7-1.0 and horizontal flip with left/right keypoint channel swaps",
+    "fold_evaluation": "deterministic direct resize to 384",
+    "selection": "No hyperparameter search in this gate."
+  },
+  "primary_endpoint": "five-fold out-of-fold balanced accuracy on the frozen 10-shot official-train subset",
+  "go_no_go": {
+    "prpool_gain_pp_over_global_at_least": 2.0,
+    "official_test_required_for_this_gate": false,
+    "on_go": "Freeze the positive mechanism and create a separate train/validation missingness protocol for MCAR, MAR, MNAR, and support-isolation.",
+    "on_no_go": "Do not develop an MNAR correction method with the current pretrained-backbone family; reposition the project as a diagnostic/benchmark study or reproduce the paper's exact original stack."
+  }
+}

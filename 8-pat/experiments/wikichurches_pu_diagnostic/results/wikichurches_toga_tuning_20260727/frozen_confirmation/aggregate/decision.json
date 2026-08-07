@@ -1,0 +1,25 @@
+{
+  "checks": {
+    "paired_wins": false,
+    "positive_mean_shots": false,
+    "worst_shot_mean": false
+  },
+  "decision": "NO-GO",
+  "observed": {
+    "overall_mean_paired_delta": -1.4319988004198534,
+    "overall_sd_paired_delta": 1.8985874030561227,
+    "paired_losses": 8,
+    "paired_ties": 0,
+    "paired_wins": 1,
+    "positive_mean_shots": 1,
+    "worst_shot_mean_delta": -2.361673414304993
+  },
+  "predeclared_rule": {
+    "all_conditions_required": true,
+    "delta_definition": "TOGA final test accuracy minus Tip-Adapter-F final test accuracy, in percentage points",
+    "minimum_allowed_shot_mean_delta": -1.0,
+    "paired_wins_at_least": 5,
+    "positive_mean_shots_at_least": 2,
+    "total_pairs": 9
+  }
+}

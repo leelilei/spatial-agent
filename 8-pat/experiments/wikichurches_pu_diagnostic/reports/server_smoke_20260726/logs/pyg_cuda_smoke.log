@@ -1,0 +1,10 @@
+torch 2.13.0+cu132 cuda 13.2 pyg 2.8.0.post1
+Traceback (most recent call last):
+  File "<stdin>", line 15, in <module>
+  File "/usr/local/miniconda3/envs/toga-smoke/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/miniconda3/envs/toga-smoke/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Sequential.forward() takes 2 positional arguments but 3 were given

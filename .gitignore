@@ -25,6 +25,32 @@ logs_auto/
 logs_eval/
 logs_eval_final/
 
+# Credentials and auth artifacts — never commit
+.aipr-feishu-auth-qr.png
+*-auth-qr.png
+
+# Third-party proceedings bundles (copyright, and oversized for git)
+DAI_2024_2025_Proceedings_bundle/
+DAI_2024_2025_Proceedings_bundle.zip
+
+# Large binaries and archives — use LFS or keep local
+*.tar.gz
+*.tgz
+*.zip
+*.tiff
+*.pt
+*.npy
+*.npz
+
+# Raw datasets and downloaded reference papers
+8-pat/raw/
+8-pat/references/papers/
+8-pat/experiments/**/data/raw/
+
+# Third-party dataset images (WikiChurches etc) — licensing, and bulky
+8-pat/experiments/**/images/
+8-pat/experiments/**/*.jpg
+
 # CityIntent v1.1 organizer-only evaluation assets
 6-city/benchmarks/cityintent_v0/v1_1/internal/
 6-city/benchmarks/cityintent_v0/v1_1/worlds/private/
@@ -37,3 +63,8 @@ logs_smoke/
 
 # society sim run outputs (regenerable)
 3-SMGA/sim/runs/
+outputs/ccf_conferences_2026/recheck_ai_scope_20260720/ccf-deadlines/
+
+# Vendored third-party Python packages
+8-pat/experiments/**/vendor/
+node_modules/

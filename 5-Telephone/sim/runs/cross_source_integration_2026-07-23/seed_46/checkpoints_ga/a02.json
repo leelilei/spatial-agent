@@ -1,0 +1,253 @@
+{
+  "agent_id": "a02",
+  "interview": {
+    "name": "Sam",
+    "answer": "",
+    "verdict": "unknown"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 30,
+    "reflections": [
+      "Sam is consistently cooperative and eager to help with group tasks.",
+      "Both Eli and Mara give Sam clear, practical instructions rather than broad requests.",
+      "Sam responds reliably by confirming specifics and matching the requested help.",
+      "Sam is dependable and responsive, often taking on practical support tasks and confirming what he will bring or do.",
+      "Mara appears to be coordinating the repair drive and delegating concrete prep work to others.",
+      "Oren and Uli seem helpful but need follow-up or nudges to stay on track and share updates.",
+      "Sam is the reliable coordinator, repeatedly offering help and waiting on missing logistics before acting.",
+      "Uli and Rey both depend on Sam for timely updates, and Sam responds patiently and supportively.",
+      "Gus is helping make the community shed work concrete by setting a location, time, and extra tools for the shared task.",
+      "Sam is a dependable organizer who follows through on requests and keeps multiple people updated.",
+      "The group relies on Sam for logistics and supplies, especially around the repair drive and donation sorting.",
+      "Rey and Noah both value clear timing and status updates, while Cleo is coordinating practical inventory needs.",
+      "Sam is the reliable helper who follows through on practical support requests.",
+      "Cleo and Eli delegate concrete tasks and appreciate clear confirmation and follow-up.",
+      "The group is coordinating around shared logistics and supplies, with Sam acting as a steady point of support."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Sam: Absolutely — I’m happy to help with the repair drive. What do you need me to do?",
+        "speaker": "Sam",
+        "listener": "Eli"
+      },
+      {
+        "round": 0,
+        "text": "Eli: Thanks, Sam. Let’s keep it simple: please help sort the donated items and set them by the garage tomorrow morning.",
+        "speaker": "Eli",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Sam: You got it — I’ll sort the donated items and set them by the garage tomorrow morning.",
+        "speaker": "Sam",
+        "listener": "Eli"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Happy to help with the repair drive, Mara. What do you need me to bring or do?",
+        "speaker": "Sam",
+        "listener": "Mara"
+      },
+      {
+        "round": 0,
+        "text": "Mara: Thanks, Sam — could you bring a drill, a tape measure, and a few screwdrivers? If you can, please help sort the donated tools when you arrive.",
+        "speaker": "Mara",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Absolutely — I’ll bring a drill, a tape measure, and some screwdrivers, and I’ll help sort the donated tools when I get there.",
+        "speaker": "Sam",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Thanks — send over the list, and I’ll check the garage for anything useful. I’ll do my best not to forget this time.",
+        "speaker": "Oren",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Thanks, Oren — I’ll send the list over, and if you find anything useful in the garage, just set it aside and let me know.",
+        "speaker": "Sam",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Sounds good — I’ll dig through the garage and set anything useful aside. Just nudge me if I go quiet, will you?",
+        "speaker": "Oren",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Uli: Thanks, Sam — I’m still waiting on the final time for the repair drive, but I’ll send it over as soon as I have it.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Thanks, Uli — just send the time when you have it, and I’ll be there ready to help.",
+        "speaker": "Sam",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Uli: I appreciate that, Sam — it really helps.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Gus: Saturday morning at the community shed is still the drop-off spot, and I can bring a few extra tools if you need them.",
+        "speaker": "Gus",
+        "listener": "Sam",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Gus",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Sam: Thanks, Gus — Saturday morning at the community shed works for me. I’ll bring the drill, tape measure, and screwdrivers, and I’ll help sort the donated tools when I get there.",
+        "speaker": "Sam",
+        "listener": "Gus",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Sam",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Gus: Perfect, Sam — that’ll be a big help. I’ll see you Saturday morning at the community shed, and we can sort the donations together.",
+        "speaker": "Gus",
+        "listener": "Sam",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Gus",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Rey: Thanks, Sam — could you send me the Saturday time and shed access details? I’ll take a look and see what else still needs fixing.",
+        "speaker": "Rey",
+        "listener": "Sam",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Rey",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Sam: I’m still waiting on the final Saturday time and shed access details, but I’ll send them over as soon as I have them.",
+        "speaker": "Sam",
+        "listener": "Rey",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Sam",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Rey: Got it, Sam — thanks. Just let me know as soon as you have them, and I’ll keep organizing from there.",
+        "speaker": "Rey",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Noah: Right, I’m still catching up on the repair drive—wasn’t it this Saturday at 10 a.m. at the community hall?",
+        "speaker": "Noah",
+        "listener": "Sam",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Noah",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Sam: That sounds right to me — Saturday at 10 a.m. at the community hall. I’ll bring the drill, tape measure, and screwdrivers, and help sort the donated tools.",
+        "speaker": "Sam",
+        "listener": "Noah",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Sam",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Noah: Great, thanks — I’ll pass that along and try not to miss anything else.",
+        "speaker": "Noah",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Cleo: Thanks, Sam — we’re still mainly short on tape, screws, and a few basic tools. If you can check the garage for any of those, that’d be a big help.",
+        "speaker": "Cleo",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Sam: Absolutely — I’ll check the garage for tape, screws, and any basic tools I can find, and I’ll bring them by.",
+        "speaker": "Sam",
+        "listener": "Cleo"
+      },
+      {
+        "round": 3,
+        "text": "Cleo: Thanks, Sam — that helps a lot. Bring whatever you find by when you can, and I’ll sort it out from there.",
+        "speaker": "Cleo",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Eli: Great — please take the supply list and help sort the materials, then let me know if you can cover a sign-in shift too.",
+        "speaker": "Eli",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Sam: Absolutely, Eli — I can sort the materials and cover a sign-in shift too. I’ll take the supply list and help however you need.",
+        "speaker": "Sam",
+        "listener": "Eli"
+      },
+      {
+        "round": 4,
+        "text": "Eli: Thanks, Sam. Please start with the supply list and sorting the materials, and then cover the sign-in shift if you can.",
+        "speaker": "Eli",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Cleo: Thanks, Sam — tape, screws, and a few basic tools are still the main things we need. If you can bring whatever you find by, I’ll sort it out from there.",
+        "speaker": "Cleo",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Sam: Got it — I’ll check the garage and bring whatever tape, screws, and tools I can find by soon.",
+        "speaker": "Sam",
+        "listener": "Cleo"
+      },
+      {
+        "round": 4,
+        "text": "Cleo: Thanks, Sam — that’s a big help. I’ll get things organized when you drop them off.",
+        "speaker": "Cleo",
+        "listener": "Sam"
+      }
+    ]
+  }
+}

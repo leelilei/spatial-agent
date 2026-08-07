@@ -1,0 +1,702 @@
+{
+  "method": "seed-level mean with two-sided Student-t 95% CI (df=4)",
+  "scenarios": {
+    "book_club": {
+      "mem0": {
+        "n": 5,
+        "seeds": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "seed_current_rates_pct": [
+          56.0,
+          72.0,
+          20.0,
+          88.0,
+          92.0
+        ],
+        "mean_pct": 65.6,
+        "ci95_pct": [
+          29.34000959285182,
+          100.0
+        ],
+        "table": {
+          "mean": 66,
+          "lo": 29,
+          "hi": 100
+        }
+      },
+      "memorybank": {
+        "n": 5,
+        "seeds": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "seed_current_rates_pct": [
+          44.0,
+          84.0,
+          12.0,
+          60.0,
+          12.0
+        ],
+        "mean_pct": 42.4,
+        "ci95_pct": [
+          3.6728203652948537,
+          81.12717963470514
+        ],
+        "table": {
+          "mean": 42,
+          "lo": 4,
+          "hi": 81
+        }
+      },
+      "raw": {
+        "n": 5,
+        "seeds": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "seed_current_rates_pct": [
+          8.0,
+          36.0,
+          44.0,
+          52.0,
+          0.0
+        ],
+        "mean_pct": 28.0,
+        "ci95_pct": [
+          0.0,
+          56.3142955396455
+        ],
+        "table": {
+          "mean": 28,
+          "lo": 0,
+          "hi": 56
+        }
+      }
+    },
+    "carpool": {
+      "mem0": {
+        "n": 5,
+        "seeds": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "seed_current_rates_pct": [
+          12.0,
+          20.0,
+          24.0,
+          12.0,
+          28.0
+        ],
+        "mean_pct": 19.2,
+        "ci95_pct": [
+          10.315375663367044,
+          28.084624336632956
+        ],
+        "table": {
+          "mean": 19,
+          "lo": 10,
+          "hi": 28
+        }
+      },
+      "memorybank": {
+        "n": 5,
+        "seeds": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "seed_current_rates_pct": [
+          4.0,
+          20.0,
+          12.0,
+          36.0,
+          20.0
+        ],
+        "mean_pct": 18.4,
+        "ci95_pct": [
+          3.6665173360641194,
+          33.13348266393588
+        ],
+        "table": {
+          "mean": 18,
+          "lo": 4,
+          "hi": 33
+        }
+      },
+      "raw": {
+        "n": 5,
+        "seeds": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "seed_current_rates_pct": [
+          36.0,
+          0.0,
+          20.0,
+          0.0,
+          0.0
+        ],
+        "mean_pct": 11.2,
+        "ci95_pct": [
+          0.0,
+          31.496554344053795
+        ],
+        "table": {
+          "mean": 11,
+          "lo": 0,
+          "hi": 31
+        }
+      }
+    },
+    "dues": {
+      "mem0": {
+        "n": 5,
+        "seeds": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "seed_current_rates_pct": [
+          20.0,
+          20.0,
+          24.0,
+          40.0,
+          8.0
+        ],
+        "mean_pct": 22.4,
+        "ci95_pct": [
+          8.091202862119534,
+          36.70879713788047
+        ],
+        "table": {
+          "mean": 22,
+          "lo": 8,
+          "hi": 37
+        }
+      },
+      "memorybank": {
+        "n": 5,
+        "seeds": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "seed_current_rates_pct": [
+          28.0,
+          32.0,
+          32.0,
+          28.0,
+          16.0
+        ],
+        "mean_pct": 27.2,
+        "ci95_pct": [
+          19.038951432100916,
+          35.36104856789908
+        ],
+        "table": {
+          "mean": 27,
+          "lo": 19,
+          "hi": 35
+        }
+      },
+      "raw": {
+        "n": 5,
+        "seeds": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "seed_current_rates_pct": [
+          8.0,
+          28.0,
+          8.0,
+          36.0,
+          0.0
+        ],
+        "mean_pct": 16.0,
+        "ci95_pct": [
+          0.0,
+          34.91246256807939
+        ],
+        "table": {
+          "mean": 16,
+          "lo": 0,
+          "hi": 35
+        }
+      }
+    },
+    "three_step": {
+      "amem": {
+        "n": 5,
+        "seeds": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "seed_current_rates_pct": [
+          24.0,
+          12.0,
+          4.0,
+          24.0,
+          8.0
+        ],
+        "mean_pct": 14.4,
+        "ci95_pct": [
+          2.9658992360518894,
+          25.83410076394811
+        ],
+        "table": {
+          "mean": 14,
+          "lo": 3,
+          "hi": 26
+        }
+      },
+      "ga": {
+        "n": 5,
+        "seeds": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "seed_current_rates_pct": [
+          20.0,
+          28.0,
+          8.0,
+          20.0,
+          12.0
+        ],
+        "mean_pct": 17.6,
+        "ci95_pct": [
+          7.918205091323715,
+          27.28179490867629
+        ],
+        "table": {
+          "mean": 18,
+          "lo": 8,
+          "hi": 27
+        }
+      },
+      "mem0": {
+        "n": 5,
+        "seeds": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "seed_current_rates_pct": [
+          12.0,
+          20.0,
+          12.0,
+          8.0,
+          44.0
+        ],
+        "mean_pct": 19.2,
+        "ci95_pct": [
+          1.1552426696076452,
+          37.24475733039235
+        ],
+        "table": {
+          "mean": 19,
+          "lo": 1,
+          "hi": 37
+        }
+      },
+      "memorybank": {
+        "n": 5,
+        "seeds": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "seed_current_rates_pct": [
+          16.0,
+          0.0,
+          12.0,
+          16.0,
+          12.0
+        ],
+        "mean_pct": 11.2,
+        "ci95_pct": [
+          3.038951432100916,
+          19.361048567899083
+        ],
+        "table": {
+          "mean": 11,
+          "lo": 3,
+          "hi": 19
+        }
+      },
+      "prov": {
+        "n": 5,
+        "seeds": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "seed_current_rates_pct": [
+          80.0,
+          64.0,
+          64.0,
+          64.0,
+          68.0
+        ],
+        "mean_pct": 68.0,
+        "ci95_pct": [
+          59.39749947672786,
+          76.60250052327214
+        ],
+        "table": {
+          "mean": 68,
+          "lo": 59,
+          "hi": 77
+        }
+      },
+      "raw": {
+        "n": 5,
+        "seeds": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "seed_current_rates_pct": [
+          16.0,
+          0.0,
+          8.0,
+          8.0,
+          20.0
+        ],
+        "mean_pct": 10.4,
+        "ci95_pct": [
+          0.7182050913237141,
+          20.081794908676287
+        ],
+        "table": {
+          "mean": 10,
+          "lo": 1,
+          "hi": 20
+        }
+      },
+      "smga3g": {
+        "n": 5,
+        "seeds": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "seed_current_rates_pct": [
+          8.0,
+          8.0,
+          8.0,
+          16.0,
+          0.0
+        ],
+        "mean_pct": 8.0,
+        "ci95_pct": [
+          0.9760877353193242,
+          15.023912264680675
+        ],
+        "table": {
+          "mean": 8,
+          "lo": 1,
+          "hi": 15
+        }
+      }
+    },
+    "long_horizon": {
+      "amem": {
+        "n": 5,
+        "seeds": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "seed_current_rates_pct": [
+          0.0,
+          4.0,
+          28.0,
+          28.0,
+          32.0
+        ],
+        "mean_pct": 18.4,
+        "ci95_pct": [
+          0.0,
+          37.18157890164751
+        ],
+        "table": {
+          "mean": 18,
+          "lo": 0,
+          "hi": 37
+        }
+      },
+      "mem0": {
+        "n": 5,
+        "seeds": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "seed_current_rates_pct": [
+          24.0,
+          20.0,
+          0.0,
+          100.0,
+          4.0
+        ],
+        "mean_pct": 29.6,
+        "ci95_pct": [
+          0.0,
+          80.07940661175374
+        ],
+        "table": {
+          "mean": 30,
+          "lo": 0,
+          "hi": 80
+        }
+      },
+      "memorybank": {
+        "n": 5,
+        "seeds": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "seed_current_rates_pct": [
+          0.0,
+          0.0,
+          16.0,
+          20.0,
+          28.0
+        ],
+        "mean_pct": 12.8,
+        "ci95_pct": [
+          0.0,
+          28.268562182192902
+        ],
+        "table": {
+          "mean": 13,
+          "lo": 0,
+          "hi": 28
+        }
+      },
+      "prov": {
+        "n": 5,
+        "seeds": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "seed_current_rates_pct": [
+          80.0,
+          96.0,
+          88.0,
+          100.0,
+          100.0
+        ],
+        "mean_pct": 92.8,
+        "ci95_pct": [
+          82.03254639064838,
+          100.0
+        ],
+        "table": {
+          "mean": 93,
+          "lo": 82,
+          "hi": 100
+        }
+      },
+      "raw": {
+        "n": 5,
+        "seeds": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "seed_current_rates_pct": [
+          0.0,
+          0.0,
+          40.0,
+          0.0,
+          0.0
+        ],
+        "mean_pct": 8.0,
+        "ci95_pct": [
+          0.0,
+          30.21156084158239
+        ],
+        "table": {
+          "mean": 8,
+          "lo": 0,
+          "hi": 30
+        }
+      },
+      "smga3g": {
+        "n": 5,
+        "seeds": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "seed_current_rates_pct": [
+          56.0,
+          32.0,
+          16.0,
+          40.0,
+          20.0
+        ],
+        "mean_pct": 32.8,
+        "ci95_pct": [
+          12.809595242575849,
+          52.79040475742414
+        ],
+        "table": {
+          "mean": 33,
+          "lo": 13,
+          "hi": 53
+        }
+      }
+    }
+  },
+  "r5_macro_average": {
+    "amem": {
+      "n_tasks": 4,
+      "task_means_pct": {
+        "repair_drive": 19.0,
+        "book_club": 52.0,
+        "carpool": 29.6,
+        "dues": 24.8
+      },
+      "macro_mean_pct": 31.35,
+      "table": {
+        "mean": 31.4
+      }
+    },
+    "ga": {
+      "n_tasks": 4,
+      "task_means_pct": {
+        "repair_drive": 21.5,
+        "book_club": 47.0,
+        "carpool": 17.6,
+        "dues": 28.0
+      },
+      "macro_mean_pct": 28.525,
+      "table": {
+        "mean": 28.5
+      }
+    },
+    "mem0": {
+      "n_tasks": 4,
+      "task_means_pct": {
+        "repair_drive": 18.5,
+        "book_club": 65.6,
+        "carpool": 19.2,
+        "dues": 22.4
+      },
+      "macro_mean_pct": 31.424999999999997,
+      "table": {
+        "mean": 31.4
+      }
+    },
+    "memorybank": {
+      "n_tasks": 4,
+      "task_means_pct": {
+        "repair_drive": 25.0,
+        "book_club": 42.4,
+        "carpool": 18.4,
+        "dues": 27.2
+      },
+      "macro_mean_pct": 28.25,
+      "table": {
+        "mean": 28.2
+      }
+    },
+    "prov": {
+      "n_tasks": 4,
+      "task_means_pct": {
+        "repair_drive": 57.0,
+        "book_club": 68.8,
+        "carpool": 59.2,
+        "dues": 59.2
+      },
+      "macro_mean_pct": 61.05,
+      "table": {
+        "mean": 61.0
+      }
+    },
+    "raw": {
+      "n_tasks": 4,
+      "task_means_pct": {
+        "repair_drive": 14.5,
+        "book_club": 28.0,
+        "carpool": 11.2,
+        "dues": 16.0
+      },
+      "macro_mean_pct": 17.425,
+      "table": {
+        "mean": 17.4
+      }
+    },
+    "smga3g": {
+      "n_tasks": 4,
+      "task_means_pct": {
+        "repair_drive": 25.0,
+        "book_club": 41.6,
+        "carpool": 24.0,
+        "dues": 8.0
+      },
+      "macro_mean_pct": 24.65,
+      "table": {
+        "mean": 24.6
+      }
+    }
+  }
+}

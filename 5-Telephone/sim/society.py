@@ -464,6 +464,38 @@ SCENARIOS: dict[str, dict[str, Any]] = {
         "current_markers": ("60", "sixty"),
         "stale_markers": ("40", "forty"),
     },
+    "repair_drive_3step": {
+        "event": "the repair drive",
+        "seed": "I am organizing a repair drive this Saturday at the front porch and need helpers",
+        # Three successive authoritative revisions.  The final interview asks for v3;
+        # every earlier value is stale.  The matched evaluation uses r=7 so that the
+        # final round-3 injection receives three full propagation rounds (4--6), the
+        # same post-update budget as the standard round-1 injection at the r=5 endpoint.
+        "updates": [
+            {
+                "round": 1,
+                "text": ("Update: the repair drive has been moved from Saturday at the front "
+                         "porch to Sunday at the community center."),
+            },
+            {
+                "round": 2,
+                "text": ("Update: the repair drive has been moved again from Sunday at the "
+                         "community center to Monday at the school gym."),
+            },
+            {
+                "round": 3,
+                "text": ("Final update: the repair drive has been moved from Monday at the "
+                         "school gym to Wednesday at the fire station."),
+            },
+        ],
+        "question": "According to the latest update, when and where is the repair drive being held?",
+        "current_markers": ("wednesday", "fire station"),
+        "stale_markers": (
+            "saturday", "front porch", "porch",
+            "sunday", "community center",
+            "monday", "school gym",
+        ),
+    },
 }
 
 
@@ -533,19 +565,29 @@ def demo_world(memory_factory: Callable[[], Memory], *, rng_seed: int = 7, agent
         for a in agents:
             if a.agent_id in THICK_PERSONAS:
                 a.persona = THICK_PERSONAS[a.agent_id]
-    # currency stress: at round 1 the event's time+place are CHANGED (Rosa hears it).
-    update = sc["update"]
-    if rebroadcast_rounds.strip():  # explicit rounds override (e.g. recency test: inject only late)
-        inject_rounds = [int(x) for x in rebroadcast_rounds.split(",") if x.strip()]
-    else:
-        inject_rounds = [1]
-        if rebroadcast_every and rebroadcast_every > 0:
-            r = 1 + rebroadcast_every
-            while r <= 40:  # populate generously; run_sim only uses up to its `rounds`
-                inject_rounds.append(r)
-                r += rebroadcast_every
     targets = [a.agent_id for a in agents] if rebroadcast_scope == "broadcast" else ["a01"]
-    injections = {rnd: [(aid, update) for aid in targets] for rnd in inject_rounds}
+    # Currency stress.  Standard scenarios have one authoritative update at round 1
+    # (optionally re-broadcast).  The three-step stress scenario supplies an ordered
+    # sequence of distinct updates, each of which mints its own round/version.
+    if sc.get("updates"):
+        if rebroadcast_rounds.strip() or rebroadcast_every:
+            raise ValueError("rebroadcast controls are not supported for multi-update scenarios")
+        injections = {
+            int(item["round"]): [(aid, str(item["text"])) for aid in targets]
+            for item in sc["updates"]
+        }
+    else:
+        update = sc["update"]
+        if rebroadcast_rounds.strip():  # explicit rounds override (e.g. recency test: inject only late)
+            inject_rounds = [int(x) for x in rebroadcast_rounds.split(",") if x.strip()]
+        else:
+            inject_rounds = [1]
+            if rebroadcast_every and rebroadcast_every > 0:
+                r = 1 + rebroadcast_every
+                while r <= 40:  # populate generously; run_sim only uses up to its `rounds`
+                    inject_rounds.append(r)
+                    r += rebroadcast_every
+        injections = {rnd: [(aid, update) for aid in targets] for rnd in inject_rounds}
     return World(
         agents=agents,
         topic=sc["event"],

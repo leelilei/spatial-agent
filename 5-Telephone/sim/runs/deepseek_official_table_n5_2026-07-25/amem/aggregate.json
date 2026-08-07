@@ -1,0 +1,178 @@
+{
+  "groups": [
+    {
+      "model": "deepseek-v4-flash",
+      "memory": "amem",
+      "forget_rate": 0.0,
+      "runs": 5,
+      "agents_total": 125,
+      "current": 38,
+      "stale": 54,
+      "unknown": 33,
+      "unsupported_specific": 6,
+      "logical_calls": 1895,
+      "transport_attempts": 1895,
+      "successful_calls": 1895,
+      "current_rate": 0.304,
+      "unsupported_specific_rate": 0.048,
+      "logical_calls_per_agent": 15.16,
+      "mean_run_current_rate": 0.304,
+      "mean_run_unsupported_specific_rate": 0.048,
+      "min_run_current_rate": 0.16,
+      "max_run_current_rate": 0.48,
+      "std_run_current_rate": 0.1304760514424007
+    }
+  ],
+  "rows": [
+    {
+      "memory": "amem",
+      "model": "deepseek-v4-flash",
+      "run_index": 0,
+      "schedule_seed": 41,
+      "agent_count": 25,
+      "forget_rate": 0.0,
+      "forget_floor": 0.1,
+      "rounds": 5,
+      "turns": 3,
+      "out_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/amem/deepseek-v4-flash/amem/forget_0/run_000",
+      "currency_interview": {
+        "current": 5,
+        "stale": 13,
+        "unknown": 7
+      },
+      "unsupported_specific": 3,
+      "social_rehearsal": {
+        "current": 25,
+        "stale": 13,
+        "mixed": 41,
+        "neutral": 272
+      },
+      "llm_usage": {
+        "logical_calls": 376,
+        "transport_attempts": 376,
+        "successful_calls": 376,
+        "logical_calls_per_agent": 15.04
+      }
+    },
+    {
+      "memory": "amem",
+      "model": "deepseek-v4-flash",
+      "run_index": 1,
+      "schedule_seed": 42,
+      "agent_count": 25,
+      "forget_rate": 0.0,
+      "forget_floor": 0.1,
+      "rounds": 5,
+      "turns": 3,
+      "out_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/amem/deepseek-v4-flash/amem/forget_0/run_001",
+      "currency_interview": {
+        "current": 6,
+        "stale": 13,
+        "unknown": 6
+      },
+      "unsupported_specific": 1,
+      "social_rehearsal": {
+        "current": 23,
+        "stale": 60,
+        "mixed": 29,
+        "neutral": 244
+      },
+      "llm_usage": {
+        "logical_calls": 382,
+        "transport_attempts": 382,
+        "successful_calls": 382,
+        "logical_calls_per_agent": 15.28
+      }
+    },
+    {
+      "memory": "amem",
+      "model": "deepseek-v4-flash",
+      "run_index": 2,
+      "schedule_seed": 43,
+      "agent_count": 25,
+      "forget_rate": 0.0,
+      "forget_floor": 0.1,
+      "rounds": 5,
+      "turns": 3,
+      "out_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/amem/deepseek-v4-flash/amem/forget_0/run_002",
+      "currency_interview": {
+        "current": 4,
+        "stale": 14,
+        "unknown": 7
+      },
+      "unsupported_specific": 1,
+      "social_rehearsal": {
+        "current": 33,
+        "stale": 34,
+        "mixed": 31,
+        "neutral": 253
+      },
+      "llm_usage": {
+        "logical_calls": 376,
+        "transport_attempts": 376,
+        "successful_calls": 376,
+        "logical_calls_per_agent": 15.04
+      }
+    },
+    {
+      "memory": "amem",
+      "model": "deepseek-v4-flash",
+      "run_index": 3,
+      "schedule_seed": 44,
+      "agent_count": 25,
+      "forget_rate": 0.0,
+      "forget_floor": 0.1,
+      "rounds": 5,
+      "turns": 3,
+      "out_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/amem/deepseek-v4-flash/amem/forget_0/run_003",
+      "currency_interview": {
+        "current": 12,
+        "stale": 4,
+        "unknown": 9
+      },
+      "unsupported_specific": 1,
+      "social_rehearsal": {
+        "current": 47,
+        "stale": 19,
+        "mixed": 22,
+        "neutral": 272
+      },
+      "llm_usage": {
+        "logical_calls": 385,
+        "transport_attempts": 385,
+        "successful_calls": 385,
+        "logical_calls_per_agent": 15.4
+      }
+    },
+    {
+      "memory": "amem",
+      "model": "deepseek-v4-flash",
+      "run_index": 4,
+      "schedule_seed": 45,
+      "agent_count": 25,
+      "forget_rate": 0.0,
+      "forget_floor": 0.1,
+      "rounds": 5,
+      "turns": 3,
+      "out_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/amem/deepseek-v4-flash/amem/forget_0/run_004",
+      "currency_interview": {
+        "current": 11,
+        "stale": 10,
+        "unknown": 4
+      },
+      "unsupported_specific": 0,
+      "social_rehearsal": {
+        "current": 29,
+        "stale": 53,
+        "mixed": 19,
+        "neutral": 250
+      },
+      "llm_usage": {
+        "logical_calls": 376,
+        "transport_attempts": 376,
+        "successful_calls": 376,
+        "logical_calls_per_agent": 15.04
+      }
+    }
+  ]
+}

@@ -39,6 +39,12 @@
 | C15 | APM architecture pilot (DeepSeek) | `cap_apm_clean_r5_pilot` (K=2, deadlock) + `cap_apm_k1_r5_pilot` (K=1, ≈PROV) |
 | C16 | adversarial-liar robustness (mini/FHL) | `cap_c16_mini_adversary` (PROV vs APM, adversary a13@r2, n=3) + `cap_c16_adversary_pilot` (ds PROV seed41 cross-check) |
 | C17 | APM realistic-friction equilibrium (saturation check), n=8 | `cap_c17_mini_sparse_r10` (41-43) + `cap_c17_mini_sparse_r10_ext` (44-48) — apm vs ga, mention 0.1, r10 |
+| C18 | fixed-stream listener-integration test, paired n=8 | `fixed_stream_integration_2026-07-23/` — frozen streams, reconstruction manifests, per-agent checkpoints, interviews, memory snapshots, per-seed results, and `aggregate.json` |
+| C21 | table-coverage pilot, n=1 | `table_fill_n1_2026-07-24/{book_club,carpool,dues}` — Raw/Mem0/MemoryBank, seed 41, full configs and aggregates |
+| C22 | powered Table 1 coverage (all non-DS cells) | `table_power_n5_2026-07-24/{book_club,carpool,dues,three_step_matched_r7,long_horizon,resume_three_memorybank,resume_three_prov,resume_long_memorybank}` + `table_power_n5_2026-07-25/retry2_long_mb_seed{44,45}` + seed-41 pilots from C21/`table_complete_n1_2026-07-24`; combined statistics: `table_power_n5_2026-07-24/combined_n5_summary.json`; exact r10 GA n=8: C17 dirs; r10 PROV n=5: `prov_horizon/prov_r10_final` |
+| C22-net | incomplete provider/transport attempts (excluded) | `table_complete_n1_2026-07-24/deepseek*`, `table_power_n5_2026-07-24/{long_horizon_ga,long_mb_seed*,long_ga_seed*}`, and `table_power_n5_2026-07-25/{long_*,retry2_long_ga*,urllib*}` — partial/failed runs without `interview_currency.json` are never aggregated |
+| C23 | Table-1 Mean-r5 summary metric | `table_power_n5_2026-07-24/combined_n5_summary.json` → `r5_macro_average`; inputs are C5/C8/C9/C21/C22 seed-level runs for the four matched mini/r5 tasks |
+| C24 | official-API DeepSeek Table-1 coverage, n=5 | `deepseek_official_table_n5_2026-07-25/{raw,mem0,amem,smga3g,memorybank}`; combined seed-level statistics: `deepseek_official_table_n5_2026-07-25/combined_summary.json`; reproducible aggregator: `../../sim/aggregate_deepseek_official_table.py` |
 
 ## Reproducibility notes
 - **`run_config.json`** (per out-dir) records every CLI arg + timestamp → a run is now

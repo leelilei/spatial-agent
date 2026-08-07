@@ -1,0 +1,211 @@
+{
+  "agent_id": "a22",
+  "interview": {
+    "name": "Noah",
+    "answer": "It’s set for Saturday, but the hall address and parking details are still missing.",
+    "verdict": "stale"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 27,
+    "reflections": [
+      "Noah is willing to help but needs clearer, more current context before acting.",
+      "Rey is checking in politely and confirming availability before pushing ahead.",
+      "Hana is focused on verifying the state of the repair drive and gathering specifics first.",
+      "Noah is trying to reorient himself after missing updates and relies on others for quick recaps.",
+      "Jules tends to coordinate the group by organizing volunteers and keeping people informed.",
+      "The group is focused on practical repair work, with safety fixes prioritized and people offering help where needed.",
+      "The group is coordinating a repair drive with a strong focus on practical contributions like tools, parts, and hands-on help.",
+      "Noah is catching up by asking for the highest-priority tasks first, while others are helping triage urgent fixes.",
+      "The interaction feels collaborative and detail-oriented, with people like Hana and Uli clarifying what has been collected and what still needs immediate attention.",
+      "Noah is engaged but distracted; he responds well to clear, concrete status updates and asks to be pointed to the next useful task.",
+      "Uli and Tess are coordinating a practical repair effort, prioritizing urgent fixes and sorting incoming work in a calm, low-drama way.",
+      "The group is still waiting on a few logistics details, especially the hall address and parking information, and they are sharing updates to keep everyone aligned.",
+      "Noah is trying to stay helpful and coordinated, but he needs concise status updates because he loses track of details.",
+      "The repair drive is still being organized around a few missing logistics, especially the hall address and parking information.",
+      "Several people are already contributing in small, practical ways, suggesting a collaborative group that is waiting on final coordination details."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Noah: Oh, right—the repair drive. I’m a bit scattered today, but I can help if you tell me what changed.",
+        "speaker": "Noah",
+        "listener": "Rey"
+      },
+      {
+        "round": 0,
+        "text": "Rey: Thanks, Noah — I don’t think anything changed yet, I just wanted to check in and see if you’re still able to help.",
+        "speaker": "Rey",
+        "listener": "Noah"
+      },
+      {
+        "round": 0,
+        "text": "Noah: Yep, I’m still able to help. Just point me to what needs doing and I’ll jump in.",
+        "speaker": "Noah",
+        "listener": "Rey"
+      },
+      {
+        "round": 0,
+        "text": "Noah: Oh, right — the repair drive. What did I miss?",
+        "speaker": "Noah",
+        "listener": "Hana"
+      },
+      {
+        "round": 0,
+        "text": "Hana: I’m just checking the details first — what’s already been collected, and what still needs fixing?",
+        "speaker": "Hana",
+        "listener": "Noah"
+      },
+      {
+        "round": 0,
+        "text": "Noah: Hmm, I’m not sure yet — I might’ve missed a few updates. Can you remind me what’s already been collected?",
+        "speaker": "Noah",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Jules: Absolutely — I’ll spread the word and ask around for volunteers with tools, spare parts, and help sorting repairs on Saturday.",
+        "speaker": "Jules",
+        "listener": "Noah",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Jules",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Noah: Oh, great — thanks. I’m still in, but I may need a quick recap of what’s already set for Saturday so I don’t miss anything.",
+        "speaker": "Noah",
+        "listener": "Jules",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Noah",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Jules: Of course — you’re set for the repair drive on Saturday, and we’re still looking for volunteers with tools, spare parts, and help sorting repairs. I’ll keep you posted if anything else gets added.",
+        "speaker": "Jules",
+        "listener": "Noah",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Jules",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Noah: Oh, right — the repair drive. What did I miss?",
+        "speaker": "Noah",
+        "listener": "Dane"
+      },
+      {
+        "round": 1,
+        "text": "Dane: Not much — we’re starting with the urgent safety fixes, then getting the place usable again. I can help wherever you need me most.",
+        "speaker": "Dane",
+        "listener": "Noah"
+      },
+      {
+        "round": 1,
+        "text": "Noah: Oh, got it — I probably missed a few updates. Can you point me to the urgent fixes first?",
+        "speaker": "Noah",
+        "listener": "Dane"
+      },
+      {
+        "round": 2,
+        "text": "Hana: I’m just checking the details first — can you remind me what’s already been collected, and what still needs fixing?",
+        "speaker": "Hana",
+        "listener": "Noah"
+      },
+      {
+        "round": 2,
+        "text": "Noah: Oh, right — I’ve missed a few updates. Point me to the urgent fixes first, and I’ll catch up from there.",
+        "speaker": "Noah",
+        "listener": "Hana"
+      },
+      {
+        "round": 2,
+        "text": "Hana: Sure — I’ll check the urgent fixes first and send you the exact details.",
+        "speaker": "Hana",
+        "listener": "Noah"
+      },
+      {
+        "round": 2,
+        "text": "Uli: I can keep it quiet and help with the gate latch first. If there’s anything else urgent after that, just let me know.",
+        "speaker": "Uli",
+        "listener": "Noah"
+      },
+      {
+        "round": 2,
+        "text": "Noah: Oh, thanks — the gate latch first makes sense. What else is still urgent?",
+        "speaker": "Noah",
+        "listener": "Uli"
+      },
+      {
+        "round": 2,
+        "text": "Uli: Probably the faucet and any obvious leaks next, then we can check for anything else small but urgent.",
+        "speaker": "Uli",
+        "listener": "Noah"
+      },
+      {
+        "round": 3,
+        "text": "Noah: Oh, right—the repair drive. What’s changed since I last heard?",
+        "speaker": "Noah",
+        "listener": "Nell"
+      },
+      {
+        "round": 3,
+        "text": "Nell: I’m still piecing it together, but I heard they’re lining up folks for small fixes and waiting on the hall address and parking details. I’ll keep asking around and pass along anything useful.",
+        "speaker": "Nell",
+        "listener": "Noah"
+      },
+      {
+        "round": 3,
+        "text": "Noah: Got it — thanks. If you hear the hall address or parking info, let me know and I’ll spread it around.",
+        "speaker": "Noah",
+        "listener": "Nell"
+      },
+      {
+        "round": 3,
+        "text": "Noah: Oh, right—the repair drive. I’m a bit scattered today, but I can help if you tell me what changed.",
+        "speaker": "Noah",
+        "listener": "Tess"
+      },
+      {
+        "round": 3,
+        "text": "Tess: Oh, not much has changed—just a nice steady flow of folks dropping things off. If you swing by, I’ll point you to what needs sorting and what’s ready to be fixed.",
+        "speaker": "Tess",
+        "listener": "Noah"
+      },
+      {
+        "round": 3,
+        "text": "Noah: Oh, good — I can do that. Point me where you need me, and I’ll start sorting.",
+        "speaker": "Noah",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Gus: I’m still waiting on the hall address and parking details, then I can help lock the repair drive in.",
+        "speaker": "Gus",
+        "listener": "Noah"
+      },
+      {
+        "round": 4,
+        "text": "Noah: Oh, got it — I missed the hall address and parking details. Tell me when you have them, and I can help sort the rest.",
+        "speaker": "Noah",
+        "listener": "Gus"
+      },
+      {
+        "round": 4,
+        "text": "Gus: Thanks, Noah — I’ll send them over as soon as I get the hall address and parking details.",
+        "speaker": "Gus",
+        "listener": "Noah"
+      }
+    ]
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "groups": [
+    {
+      "model": "gpt-5.4-mini",
+      "memory": "mem0",
+      "forget_rate": 0.0,
+      "runs": 1,
+      "agents_total": 25,
+      "current": 5,
+      "stale": 0,
+      "unknown": 20,
+      "unsupported_specific": 1,
+      "current_rate": 0.2,
+      "unsupported_specific_rate": 0.04,
+      "mean_run_current_rate": 0.2,
+      "mean_run_unsupported_specific_rate": 0.04,
+      "min_run_current_rate": 0.2,
+      "max_run_current_rate": 0.2,
+      "std_run_current_rate": 0.0
+    },
+    {
+      "model": "gpt-5.4-mini",
+      "memory": "memorybank",
+      "forget_rate": 0.0,
+      "runs": 1,
+      "agents_total": 25,
+      "current": 7,
+      "stale": 0,
+      "unknown": 18,
+      "unsupported_specific": 1,
+      "current_rate": 0.28,
+      "unsupported_specific_rate": 0.04,
+      "mean_run_current_rate": 0.28,
+      "mean_run_unsupported_specific_rate": 0.04,
+      "min_run_current_rate": 0.28,
+      "max_run_current_rate": 0.28,
+      "std_run_current_rate": 0.0
+    },
+    {
+      "model": "gpt-5.4-mini",
+      "memory": "raw",
+      "forget_rate": 0.0,
+      "runs": 1,
+      "agents_total": 25,
+      "current": 2,
+      "stale": 0,
+      "unknown": 23,
+      "unsupported_specific": 2,
+      "current_rate": 0.08,
+      "unsupported_specific_rate": 0.08,
+      "mean_run_current_rate": 0.08,
+      "mean_run_unsupported_specific_rate": 0.08,
+      "min_run_current_rate": 0.08,
+      "max_run_current_rate": 0.08,
+      "std_run_current_rate": 0.0
+    }
+  ],
+  "rows": [
+    {
+      "memory": "raw",
+      "model": "gpt-5.4-mini",
+      "run_index": 0,
+      "schedule_seed": 41,
+      "agent_count": 25,
+      "forget_rate": 0.0,
+      "forget_floor": 0.1,
+      "rounds": 5,
+      "turns": 3,
+      "out_dir": "sim/runs/table_fill_n1_2026-07-24/dues/gpt-5.4-mini/raw/forget_0/run_000",
+      "currency_interview": {
+        "current": 2,
+        "stale": 0,
+        "unknown": 23
+      },
+      "unsupported_specific": 2,
+      "social_rehearsal": {
+        "current": 14,
+        "stale": 0,
+        "mixed": 0,
+        "neutral": 335
+      }
+    },
+    {
+      "memory": "mem0",
+      "model": "gpt-5.4-mini",
+      "run_index": 0,
+      "schedule_seed": 41,
+      "agent_count": 25,
+      "forget_rate": 0.0,
+      "forget_floor": 0.1,
+      "rounds": 5,
+      "turns": 3,
+      "out_dir": "sim/runs/table_fill_n1_2026-07-24/dues/gpt-5.4-mini/mem0/forget_0/run_000",
+      "currency_interview": {
+        "current": 5,
+        "stale": 0,
+        "unknown": 20
+      },
+      "unsupported_specific": 1,
+      "social_rehearsal": {
+        "current": 11,
+        "stale": 0,
+        "mixed": 0,
+        "neutral": 336
+      }
+    },
+    {
+      "memory": "memorybank",
+      "model": "gpt-5.4-mini",
+      "run_index": 0,
+      "schedule_seed": 41,
+      "agent_count": 25,
+      "forget_rate": 0.0,
+      "forget_floor": 0.1,
+      "rounds": 5,
+      "turns": 3,
+      "out_dir": "sim/runs/table_fill_n1_2026-07-24/dues/gpt-5.4-mini/memorybank/forget_0/run_000",
+      "currency_interview": {
+        "current": 7,
+        "stale": 0,
+        "unknown": 18
+      },
+      "unsupported_specific": 1,
+      "social_rehearsal": {
+        "current": 17,
+        "stale": 0,
+        "mixed": 0,
+        "neutral": 332
+      }
+    }
+  ]
+}

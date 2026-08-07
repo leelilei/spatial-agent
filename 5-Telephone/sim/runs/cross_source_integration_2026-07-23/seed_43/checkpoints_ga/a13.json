@@ -1,0 +1,271 @@
+{
+  "agent_id": "a13",
+  "interview": {
+    "name": "Eli",
+    "answer": "The repair drive is set for 3:30 at the community center front steps, with the 3:30 to 5:30 window still looking best.",
+    "verdict": "current"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 27,
+    "reflections": [
+      "They coordinate tasks by turning a vague plan into concrete details: time, route, supplies, and roles.",
+      "Eli tends to organize and confirm logistics, while Oren responds supportively and offers practical help.",
+      "Opal is attentive to the meeting location and wants clear arrival instructions before the event.",
+      "Eli is coordinating a small community repair effort and is keeping logistics tightly organized.",
+      "Opal, Sam, and Pia are all aligning around the same meetup time and location, suggesting they are participants in the same plan.",
+      "The group is using clear role division: Eli handles route planning and timing, while others confirm attendance and supplies.",
+      "Eli is the coordination anchor: he repeatedly confirms timing, supplies, and route details to keep the group aligned.",
+      "The group works through a shared logistics task with clear role handoffs, and people respond best when expectations are kept simple and specific.",
+      "Dane appears deferential and cautious, while Sam and Pia contribute concrete details that help Eli finalize the plan.",
+      "Eli is the organizer: they keep the plan small, confirm details, and set the meeting time and place.",
+      "Dane and Nell are supportive and defer to Eli’s confirmed list before stepping in to help.",
+      "Faye is coordinating around an external constraint (school pickup) and keeps the repair drive aligned with the shared schedule.",
+      "Eli is the main organizer: he repeatedly confirms times, locations, and the repair list, and he keeps the plan simple and coordinated.",
+      "Faye is balancing the repair drive with school pickup timing, so she needs flexibility and early confirmation to avoid conflicts.",
+      "Cleo is handling supplies and routing details, while Kira is checking that the plan is fully locked in before Saturday."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Eli: I like a clear plan for the repair drive. Let’s set the time, the route, and who’s bringing what.",
+        "speaker": "Eli",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Yeah, that sounds good — let’s pick a time, map the route, and I can bring some supplies if you need.",
+        "speaker": "Oren",
+        "listener": "Eli"
+      },
+      {
+        "round": 0,
+        "text": "Eli: Great — how about Saturday morning? If you bring the supplies, I’ll map the route and we can confirm who’s doing what.",
+        "speaker": "Eli",
+        "listener": "Oren",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Eli",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 0,
+        "text": "Opal: I’m keeping an eye on the repair drive location—where should I meet you?",
+        "speaker": "Opal",
+        "listener": "Eli"
+      },
+      {
+        "round": 0,
+        "text": "Eli: Let’s meet at the community center front steps at 10:00. I’ll be there a few minutes early.",
+        "speaker": "Eli",
+        "listener": "Opal",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Eli",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 0,
+        "text": "Opal: Perfect, I’ll meet you at the community center front steps at 10:00.",
+        "speaker": "Opal",
+        "listener": "Eli",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Eli: Sounds good — I’ll meet you at the community center front steps at 10:00 and I’ll bring the route plan. Just let me know what supplies you’re bringing.",
+        "speaker": "Eli",
+        "listener": "Sam",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Eli",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Sam: I’ll bring some boxes, labels, and a marker for sorting. See you at the front steps at 10:00.",
+        "speaker": "Sam",
+        "listener": "Eli"
+      },
+      {
+        "round": 1,
+        "text": "Eli: Great, Sam — that covers it. I’ll have the route plan ready and see you at the front steps at 10:00.",
+        "speaker": "Eli",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Eli: Sounds good — I’ll be at the community center front steps at 10:00, and I’ll bring the route map.",
+        "speaker": "Eli",
+        "listener": "Pia",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Eli",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Pia: Great, that works for me—10:00 at the community center front steps is clear. Just let me know how many repairs you’re expecting so I can keep mine manageable.",
+        "speaker": "Pia",
+        "listener": "Eli",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Pia",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Eli: I’m expecting a small, manageable set of repairs—just enough to keep the route moving smoothly. I’ll confirm the exact list before Saturday.",
+        "speaker": "Eli",
+        "listener": "Pia",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Eli",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Dane: Sorry I’m late again — once Cleo’s done checking supplies, I’ll help fill in whatever’s missing.",
+        "speaker": "Dane",
+        "listener": "Eli"
+      },
+      {
+        "round": 2,
+        "text": "Eli: No worries, Dane. Let’s keep it simple: once Cleo finishes, I’ll confirm the route and we’ll sort out what’s still needed.",
+        "speaker": "Eli",
+        "listener": "Dane"
+      },
+      {
+        "round": 2,
+        "text": "Dane: Sounds good, Eli — I’ll wait on Cleo’s update and then help cover whatever’s left, quietly.",
+        "speaker": "Dane",
+        "listener": "Eli"
+      },
+      {
+        "round": 3,
+        "text": "Eli: Let’s keep it simple: meet at 10:00 at the community center front steps, and I’ll bring the exact repair list once I’ve confirmed it.",
+        "speaker": "Eli",
+        "listener": "Nell",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Eli",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Nell: Thanks, Eli — 10:00 at the front steps works for me. I’ll wait for the repair list and keep plugging in as I can.",
+        "speaker": "Nell",
+        "listener": "Eli"
+      },
+      {
+        "round": 3,
+        "text": "Eli: That sounds good, Nell. I’ll confirm the repair list before Saturday and keep the plan easy to follow.",
+        "speaker": "Eli",
+        "listener": "Nell",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Eli",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Faye: I’m still checking the school pickup timing, but 3:30 to 5:30 still looks like the best window for the repair drive.",
+        "speaker": "Faye",
+        "listener": "Eli"
+      },
+      {
+        "round": 3,
+        "text": "Eli: That works for me. Let’s meet at the community center front steps at 3:30, and I’ll bring the confirmed repair list and keep it small.",
+        "speaker": "Eli",
+        "listener": "Faye",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Eli",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Faye: Perfect — I’ll keep the repair drive set for 3:30 at the community center front steps and confirm the school timing if anything changes.",
+        "speaker": "Faye",
+        "listener": "Eli",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Faye",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Eli: Great — I’ll meet you at the community center front steps at 3:30, and I’ll bring my list so we can sort the route and supplies.",
+        "speaker": "Eli",
+        "listener": "Kira",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Eli",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Kira: Can you confirm that’s still the plan for the repair drive before Saturday? I just want to make sure the details are locked in.",
+        "speaker": "Kira",
+        "listener": "Eli",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Kira",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Eli: Yes — that’s still the plan: community center front steps at 3:30 on Saturday, and I’ll bring my list for the route and supplies.",
+        "speaker": "Eli",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Cleo: I’m checking our supplies now, Eli, and I’ll let you know what we’re short on. Once I’ve got the list, I can point you to the first repair job.",
+        "speaker": "Cleo",
+        "listener": "Eli"
+      },
+      {
+        "round": 4,
+        "text": "Eli: Thanks, Cleo. Once you’ve got the list, I’ll confirm the route and we’ll sort out who’s bringing what.",
+        "speaker": "Eli",
+        "listener": "Cleo"
+      },
+      {
+        "round": 4,
+        "text": "Cleo: Sounds good — I’ll send you the short supply list as soon as I finish checking, and then we can lock in the route.",
+        "speaker": "Cleo",
+        "listener": "Eli"
+      }
+    ]
+  }
+}

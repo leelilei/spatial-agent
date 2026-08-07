@@ -1,0 +1,22 @@
+{
+  "figure": "fig_per_class_transfer",
+  "experiment_id": "PAT-K-260806-010",
+  "official_test_used": false,
+  "panels": {
+    "a": "per-class DCTPR minus BL-NCC accuracy, sorted descending",
+    "b": "per-rotation difference in exclusively-correct queries against the strongest matched solver; red bars are significant at alpha=0.05 under a two-sided exact McNemar test"
+  },
+  "caveats": [
+    "Support rotations reuse episode images; rotation-level tests are reported individually and never pooled into one p-value.",
+    "McNemar tests paired decisions within one rotation, not the cross-episode mean gap.",
+    "Development episodes only; official-test per-query predictions were never archived."
+  ],
+  "inputs": {
+    "per_class_transfer.csv": "f05991aba9ecc3c74006d84b1bcd2754a68f13b738b90a39af1bcd3ce70cbf5d",
+    "paired_significance.csv": "6dec46a726a0c55d0c6a9b698053a343077f8460aaafb3a2ceb18f537d7012fe",
+    "per_class_transfer_summary.json": "4ae55f8fdb5cc94ce736771807da3876131aa7b0f5e9f1f776624840c19fa026"
+  },
+  "source_data": {
+    "fig_per_class_transfer.csv": "556b7e567050220bc1f707b84025bcc70ed7cd0b42f9ee3a64410e9e66168fb1"
+  }
+}

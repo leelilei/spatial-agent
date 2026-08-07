@@ -1,0 +1,50 @@
+{
+  "experiment_id": "PAT-K-260729-007",
+  "title": "Frozen solver-agreement ensemble confirmation on new Stanford Dogs episodes",
+  "frozen_at": "2026-07-29T15:10:00+08:00",
+  "status": "PRE_REGISTERED_AFTER_EPISODES_1_TO_3_DEVELOPMENT_AND_BEFORE_EPISODES_4_TO_6_MANIFEST_OR_FEATURE_CREATION",
+  "development_evidence": {
+    "source": "PAT-K-260729-006 Stanford Dogs Episodes 1-3 only",
+    "candidate_family": "for each pair of DCTPR, TIM-ADM, MAP-RAW, and signed PT-MAP, use the pair prediction on agreement and one fixed solver on disagreement",
+    "selected_rule": "if TIM-ADM equals MAP-RAW use their shared label, otherwise use signed PT-MAP",
+    "method_name": "SAGE",
+    "expansion": "Solver-Agreement Gated Ensemble",
+    "development_mean_accuracy": 0.7114197530864198,
+    "strongest_single_solver_development_mean": 0.7097222222222221,
+    "development_gain_pp": 0.1697530864197727
+  },
+  "confirmation_data": {
+    "dataset": "Stanford Dogs official train list only",
+    "episodes": [4, 5, 6],
+    "classes": 120,
+    "shots_per_class_per_episode": 10,
+    "episode_construction": "repeat the PAT-K-006 per-class permutation and partition positions 31-60 into three new groups of ten",
+    "disjoint_from_episodes_1_to_3": true,
+    "support_per_class": 1,
+    "query_per_class": 9,
+    "support_rotations": 10,
+    "selection_seed": 27041,
+    "official_test_access": "forbidden"
+  },
+  "frozen_solvers": {
+    "features": "individually L2-normalized DINOv2-B/14 and L/14 CLS, concatenated and normalized",
+    "TIM_ADM": "temperature 15, weights [0.1,1.0,0.1], 150 updates, alpha 1",
+    "MAP_RAW": "OT lambda 10, alpha 0.2, 20 updates",
+    "SIGNED_PT_MAP": "signed power 0.5, OT lambda 10, alpha 0.2, 20 updates",
+    "retuning": "forbidden"
+  },
+  "primary_endpoint": "mean query balanced accuracy across Episodes 4-6 and 30 support rotations",
+  "go_no_go": {
+    "mean_superiority": "SAGE exceeds the strongest single solver by at least 0.10 percentage points on the pooled confirmation mean",
+    "episode_consistency": "SAGE exceeds the strongest single solver mean in at least two of three episodes",
+    "paired_stability": "SAGE is non-inferior to the strongest single solver in at least 18 of 30 paired rotations",
+    "on_go": "claim new best result on the preregistered matched 120-way Stanford Dogs train-only protocol; do not call it global SOTA without external protocol comparability",
+    "on_no_go": "close SAGE and retain DCTPR accuracy-efficiency paper"
+  },
+  "novelty_and_claim_limits": [
+    "Few-shot ensembling is established, including EASY (Bendou et al., 2022)",
+    "The contribution is the fixed solver-agreement gate and confirmation protocol, not ensemble learning in general",
+    "Do not use Episodes 4-6 labels to select another rule",
+    "Do not claim global Stanford Dogs SOTA because the 120-way train-only transductive protocol is new and not directly comparable to standard split results"
+  ]
+}

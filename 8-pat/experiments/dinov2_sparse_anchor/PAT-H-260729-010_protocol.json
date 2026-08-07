@@ -1,0 +1,57 @@
+{
+  "experiment_id": "PAT-H-260729-010",
+  "title": "Image-level last-block LoRA PEFT screen",
+  "status": "frozen_before_run",
+  "created_at": "2026-07-29T00:00:00+08:00",
+  "hypothesis": "Real image augmentation plus a trust-regularized low-rank update of the final DINOv2 transformer block improves few-shot class geometry beyond the frozen RBF baseline.",
+  "data": {
+    "development_episode": 1,
+    "samples": 2000,
+    "classes": 200,
+    "folds": 5,
+    "official_test_images_decoded_or_encoded": 0
+  },
+  "reference": {
+    "method": "Frozen official DINOv2 ViT-B/14 CLS + sklearn RBF SVC C=3 gamma=scale using SVC.predict",
+    "episode_1_balanced_accuracy": 0.862
+  },
+  "peft": {
+    "trainable_backbone_parameters": "LoRA only on final block attn.qkv, attn.proj, mlp.fc1, mlp.fc2",
+    "lora_rank": 8,
+    "lora_alpha": 16,
+    "lora_dropout": 0.05,
+    "classifier": "cosine head initialized from fold-training frozen DINO class prototypes",
+    "classifier_scale": 20.0,
+    "epochs": 12,
+    "batch_size": 8,
+    "lora_learning_rate": 0.0002,
+    "head_learning_rate": 0.002,
+    "optimizer": "AdamW",
+    "weight_decay": 0.01,
+    "scheduler": "cosine",
+    "label_smoothing": 0.1,
+    "trust_weight": 0.1,
+    "fold_seeds": [9601, 9602, 9603, 9604, 9605]
+  },
+  "augmentation": {
+    "random_resized_crop": {
+      "size": 392,
+      "scale": [0.75, 1.0],
+      "ratio": [0.85, 1.15]
+    },
+    "horizontal_flip_probability": 0.5,
+    "color_jitter": [0.15, 0.15, 0.15, 0.05]
+  },
+  "evaluation_arms": {
+    "FROZEN_RBF": "frozen CLS + RBF SVC",
+    "PEFT_HEAD": "adapted deterministic CLS + trained cosine head",
+    "PEFT_RBF": "adapted deterministic fold-training/evaluation CLS + RBF SVC C=3"
+  },
+  "selection_rule": {
+    "primary_arm": "PEFT_RBF",
+    "gain_over_frozen_rbf_pp_at_least": 1.0,
+    "negative_class_rate_at_most": 0.25,
+    "worst_class_recall_drop_at_least": -0.3,
+    "confirmation": "If passed, freeze the complete protocol and generate new train-only episodes 4 and 5. Official test remains locked."
+  }
+}

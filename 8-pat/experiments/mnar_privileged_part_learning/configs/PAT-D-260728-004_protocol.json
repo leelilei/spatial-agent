@@ -1,0 +1,67 @@
+{
+  "experiment_id": "PAT-D-260728-004",
+  "title": "CUB sparse keypoint annotation budget-response replication",
+  "frozen_at": "2026-07-28T13:48:51+08:00",
+  "status": "PRE_REGISTERED_AFTER_PAT-D-260728-003_AND_BEFORE_PAT-D-260728-004_PREDICTIONS",
+  "direction": "annotation value and sample-selection robustness; not MNAR correction",
+  "dependency": {
+    "positive_oracle_experiment": "PAT-D-260728-001",
+    "global_oof_ba": 0.6545,
+    "full_oracle_oof_ba": 0.7095,
+    "oracle_gain_pp": 5.5,
+    "pilot_one_annotation_experiment": "PAT-D-260728-003",
+    "pilot_one_annotation_gain_pp": 4.2,
+    "train_manifest_sha256": "53cb7db2360556453d0868d7fcf59328cfd8ed5065cacf35c719c1030e14dded"
+  },
+  "data": {
+    "dataset": "CUB-200-2011",
+    "development_split": "same frozen 200-class x 10-shot official-train subset",
+    "folds": 5,
+    "official_test_access": "forbidden",
+    "fold_training_images_per_class": 8
+  },
+  "annotation_budgets": {
+    "K1": {
+      "annotated_images_per_class": 1,
+      "annotation_rate": 0.125
+    },
+    "K2": {
+      "annotated_images_per_class": 2,
+      "annotation_rate": 0.25
+    },
+    "K4": {
+      "annotated_images_per_class": 4,
+      "annotation_rate": 0.5
+    },
+    "K8_FULL_ORACLE_STORED": {
+      "annotated_images_per_class": 8,
+      "annotation_rate": 1.0
+    }
+  },
+  "sampling": {
+    "mechanism": "Uniform sampling without replacement within every class and fold-training set.",
+    "selection_seeds": [8101, 8102, 8103],
+    "paired_design": "For every selection seed, one random permutation is generated per class/fold and K1 is nested in K2, which is nested in K4."
+  },
+  "training": {
+    "model": "Frozen PAT-D-260728-001 ResNet-50 layer4-adapted PrPool stack",
+    "fixed_epochs": 9,
+    "fold_seeds_shared_across_all_budget_arms": [7901, 7902, 7903, 7904, 7905],
+    "classification_loss": "all fold-training images",
+    "keypoint_loss": "selected images only",
+    "hyperparameter_search": "none"
+  },
+  "primary_endpoints": [
+    "mean and range of OOF balanced accuracy over three selection seeds for K1, K2, and K4",
+    "gain over stored Global",
+    "fraction of stored Full-Oracle gain retained",
+    "negative-transfer class rate and worst-class recall delta"
+  ],
+  "go_no_go": {
+    "sparse_annotation_value_supported_if": "K1 mean retains at least 60% of the stored Full-Oracle gain, every K1 seed is at least 2 pp above stored Global, and official test access remains zero.",
+    "selection_robustness_supported_if": "The K1 OOF BA range across three independent selection seeds is at most 2 pp.",
+    "on_go": "Develop an annotation-budget/sample-selection study; next compare random selection with active annotation-value heuristics under the same budget.",
+    "on_no_go": "Do not claim one-image-per-class efficiency; reassess training-seed sensitivity or stop the CUB sparse-annotation direction.",
+    "official_test_required": false
+  }
+}

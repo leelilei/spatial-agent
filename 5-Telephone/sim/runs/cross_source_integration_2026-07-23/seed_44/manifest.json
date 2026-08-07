@@ -1,0 +1,18 @@
+{
+  "source_run": "/Users/mac/Documents/6-Research/5-Telephone/sim/runs/prov_batch/ga_r5/gpt-5.4-mini/ga/run_003",
+  "source_architecture": "ga",
+  "schedule_seed": 44,
+  "agent_count": 25,
+  "rounds": 5,
+  "encounter_utterances": 360,
+  "event_observations": 721,
+  "injections": 1,
+  "annotation_counts": {
+    "authoritative_injection": 1,
+    "current_annotation": 34,
+    "stale_annotation": 2,
+    "ambiguous_unannotated": 22,
+    "irrelevant_unannotated": 662
+  },
+  "annotation_rule": "oracle controlled-task version on unambiguous value mentions; mixed utterances unannotated"
+}

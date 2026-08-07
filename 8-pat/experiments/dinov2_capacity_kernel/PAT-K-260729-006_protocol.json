@@ -1,0 +1,30 @@
+{
+  "experiment_id": "PAT-K-260729-006",
+  "title": "Frozen cross-dataset confirmation on Stanford Dogs",
+  "frozen_at": "2026-07-29T13:02:00+08:00",
+  "status": "PRE_REGISTERED_BEFORE_STANFORD_DOGS_MANIFEST_CREATION_OR_FEATURE_EXTRACTION",
+  "data": {
+    "dataset": "Stanford Dogs",
+    "source": "Khosla et al., CVPR Workshop 2011 official ImageNetDogs images.tar and train_list.mat",
+    "allowed_split": "official train list only",
+    "forbidden_split": "test_list.mat must not be loaded by preparation or extraction code",
+    "classes": 120,
+    "episodes": 3,
+    "shots_per_class_per_episode": 10,
+    "episode_overlap": "zero; select 30 official-train images per class once and partition into three groups of ten",
+    "support_per_class": 1,
+    "query_per_class": 9,
+    "support_rotations": 10,
+    "selection_seed": 27041
+  },
+  "method_and_baselines": "all DCTPR, TIM-ADM, MAP/PT-MAP, and LaplacianShot constants frozen from PAT-K-260729-004; no Dogs labels select hyperparameters",
+  "primary_metric": "mean balanced accuracy across three episodes and ten support rotations",
+  "paper_level_gate": {
+    "practical_gain": "DCTPR improves BL nearest support by at least 3.0 percentage points in every Dogs episode",
+    "published_competitiveness": "DCTPR mean is no more than 1.0 percentage point below the strongest frozen published baseline",
+    "stability": "DCTPR is positive versus BL nearest support in all 30 paired rotations",
+    "on_pass": "paper-level empirical route GO; manuscript drafting may start while official test remains optional and locked",
+    "on_fail": "report CUB-specific limitation and do not claim cross-dataset method validation"
+  },
+  "official_test_access": "CUB and Stanford Dogs official test images remain unread and unencoded"
+}

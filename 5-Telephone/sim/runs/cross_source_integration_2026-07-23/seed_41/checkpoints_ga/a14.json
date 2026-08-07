@@ -1,0 +1,199 @@
+{
+  "agent_id": "a14",
+  "interview": {
+    "name": "Faye",
+    "answer": "The date and location still haven’t been confirmed.",
+    "verdict": "unknown"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 27,
+    "reflections": [
+      "Faye is reliably coordinating around existing constraints and offering practical help without needing all the details first.",
+      "Mara is appreciative and communicative, but still waiting on a final decision before she can firm things up.",
+      "Bo prefers a straightforward, low-friction handoff: he wants the essentials and will handle the basics once he has them.",
+      "Faye is coordinating logistics around her school run and is responsive to others' timing updates.",
+      "Mara and Hana are both in a status-sharing mode, waiting to confirm details before sending them on.",
+      "Bo prefers a simple, low-friction handoff and is ready to act once the repair drive details arrive.",
+      "Hana is acting as the organizer and follow-up point for the repair list and timing, while others are waiting on her details to plan around their schedules.",
+      "Faye is cooperative but constrained by the school run, so timing and clear logistics matter more than general help.",
+      "Rey and Kira are both seeking clarification on the repair drive, which suggests the group needs a concrete list of tasks, supplies, and schedule before moving forward.",
+      "Faye is coordinating a repair drive and wants concise logistics: exact time and supply details.",
+      "Dane and Rey are acting as intermediaries, promising to forward the full repair list once available.",
+      "Bo is willing to participate if timing is clear and is bringing a small tool set.",
+      "Faye is the main coordinator and tends to keep updates simple while waiting on final timing.",
+      "Bo is practical and responsive, offering specific help once the details are confirmed.",
+      "Mina and Mara are helping keep the group informed, with everyone accommodating uncertainty until the final date is set."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Faye: I can help coordinate that around the school run—what time is the repair drive happening?",
+        "speaker": "Faye",
+        "listener": "Mara"
+      },
+      {
+        "round": 0,
+        "text": "Mara: That’s kind of you, Faye—thank you. I’m still waiting on the final time, but I’ll let you know as soon as it’s set.",
+        "speaker": "Mara",
+        "listener": "Faye"
+      },
+      {
+        "round": 0,
+        "text": "Faye: Thanks, Mara — just send it over when you have it and I’ll work around the school run.",
+        "speaker": "Faye",
+        "listener": "Mara"
+      },
+      {
+        "round": 0,
+        "text": "Bo: I’m in—just point me to the repair drive details and I’ll keep it simple.",
+        "speaker": "Bo",
+        "listener": "Faye"
+      },
+      {
+        "round": 0,
+        "text": "Faye: Thanks, Bo — I’ll send the repair drive details and keep it simple for you.",
+        "speaker": "Faye",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Perfect—send it over, and I’ll take care of the basics.",
+        "speaker": "Bo",
+        "listener": "Faye"
+      },
+      {
+        "round": 1,
+        "text": "Hana: Sure — I’ll send the repair list and the time again so we’re both set.",
+        "speaker": "Hana",
+        "listener": "Faye"
+      },
+      {
+        "round": 1,
+        "text": "Faye: Thanks, Hana — that helps. I’ll work it around the school run once you send it over.",
+        "speaker": "Faye",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Hana: I’ll send it over shortly with the repair list and time, so you can plan around the school run.",
+        "speaker": "Hana",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Rey: I’m still sorting the repair drive out—what part do you need help with?",
+        "speaker": "Rey",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Faye: Just the repair drive details and timing would help — I can work it around the school run once I have that.",
+        "speaker": "Faye",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Rey: Absolutely — I’m putting together the details and timing now, and I’ll send you a quick list soon.",
+        "speaker": "Rey",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Can you confirm what kind of help you need for the repair drive?",
+        "speaker": "Kira",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Faye: Just the repair drive details and timing, please — I can fit it around the school run.",
+        "speaker": "Faye",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Sure — can you confirm the time and any specific supplies needed for the repair drive?",
+        "speaker": "Kira",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Dane: Thanks, Faye — I’m still waiting on the full repair list and exact time, but I’ll pass it along as soon as I get it.",
+        "speaker": "Dane",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Faye: Thanks, Dane — just send the repair list and exact time when you have it, and I’ll work it around the school run.",
+        "speaker": "Faye",
+        "listener": "Dane"
+      },
+      {
+        "round": 3,
+        "text": "Dane: Will do — I’ll send the full repair list and exact time as soon as I get them.",
+        "speaker": "Dane",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Bo: Saturday morning still works for me — just send the repair drive details and I’ll bring my small tool set.",
+        "speaker": "Bo",
+        "listener": "Faye",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Bo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Faye: Thanks, Bo — I’ll send the repair drive details and timing over, and I’ll keep it simple.",
+        "speaker": "Faye",
+        "listener": "Bo"
+      },
+      {
+        "round": 3,
+        "text": "Bo: Perfect — just send the time and any other basics when you can.",
+        "speaker": "Bo",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Mara: Thanks, Faye — I’m still waiting on the final time, but I’ll send it over as soon as it’s set.",
+        "speaker": "Mara",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Faye: Thanks, Mara — that works for me. Just send the final time when it’s set, and I’ll fit it around the school run.",
+        "speaker": "Faye",
+        "listener": "Mara"
+      },
+      {
+        "round": 4,
+        "text": "Mara: Will do — I’ll send it as soon as I’ve got the final time. Thanks again for being so flexible.",
+        "speaker": "Mara",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Mina: Any word on the final date for the repair drive yet, or are we still waiting on it?",
+        "speaker": "Mina",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Faye: I’m still waiting on the final date too — once it’s set, I can work it around the school run.",
+        "speaker": "Faye",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Mina: Got it — I’ll keep asking around and let you know as soon as I hear anything.",
+        "speaker": "Mina",
+        "listener": "Faye"
+      }
+    ]
+  }
+}

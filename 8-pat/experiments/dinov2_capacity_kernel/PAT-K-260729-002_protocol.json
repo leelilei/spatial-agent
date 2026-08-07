@@ -1,0 +1,56 @@
+{
+  "experiment_id": "PAT-K-260729-002",
+  "title": "Dual-capacity consensus refinement for 200-way 1-shot transductive fine-grained recognition",
+  "frozen_at": "2026-07-29T11:40:00+08:00",
+  "status": "PRE_REGISTERED_AFTER_TASK_REGIME_DIAGNOSTIC_AND_BEFORE_METHOD_PREDICTIONS",
+  "purpose": "Test one bounded method hypothesis in a legitimate lower-accuracy task without weakening the feature extractor or classifier baseline.",
+  "data": {
+    "dataset": "CUB-200-2011",
+    "development_split": "official train only, episode 1",
+    "classes": 200,
+    "labelled_support_per_class": 1,
+    "unlabelled_query_per_class": 9,
+    "support_rotations": 10,
+    "rotation_rule": "sort image IDs within each class and use each position as support exactly once",
+    "official_test_access": "forbidden",
+    "confirmation_data": "untouched official-train episodes 2 and 3"
+  },
+  "features": {
+    "B": "frozen official DINOv2 ViT-B/14 L2-normalized CLS",
+    "L": "frozen official DINOv2 ViT-L/14 L2-normalized CLS",
+    "BL": "L2-normalized concatenation of individually normalized B and L CLS"
+  },
+  "fixed_inference": {
+    "temperature": 0.05,
+    "sinkhorn_iterations": 100,
+    "refinement_steps": 3,
+    "support_query_mix": 0.5,
+    "known_query_prior": "exactly 9 examples per class in this balanced benchmark setting"
+  },
+  "standard_baselines": [
+    "B, L, and BL cosine nearest support",
+    "B, L, and BL class-balanced Sinkhorn assignment",
+    "B, L, and BL single-view soft prototype refinement with identical temperature, marginal constraint, steps, and support-query mix"
+  ],
+  "proposed_method": {
+    "name": "DCCR",
+    "expansion": "Dual-Capacity Consensus Refinement",
+    "description": "At each step, obtain balanced B and L assignments, form a balanced geometric-mean consensus, weight each query by B/L distributional agreement, and update B and L prototypes from the labelled support plus agreement-weighted query centres. Final labels come from the balanced consensus.",
+    "query_labels_used": false,
+    "trainable_neural_parameters": 0
+  },
+  "primary_endpoint": "mean query balanced accuracy over ten support rotations",
+  "go_no_go": {
+    "gain_gate": "DCCR exceeds the strongest standard baseline mean by at least 1.0 percentage point",
+    "rotation_gate": "DCCR is non-inferior to the strongest paired standard baseline in at least 8 of 10 rotations",
+    "worst_rotation_gate": "DCCR minus the strongest paired standard baseline is not below -0.5 percentage points in any rotation",
+    "on_go": "freeze all inference choices, extract L features for episodes 2 and 3, and run confirmation without retuning",
+    "on_no_go": "close DCCR; retain PAT-K-260729-001 only as task-regime evidence and do not claim a new method"
+  },
+  "interpretation_limits": [
+    "PAT-K-260729-001 inspected five temperatures and is diagnostic rather than confirmatory",
+    "balanced Sinkhorn and prototype refinement are prior methods and cannot be claimed as novel",
+    "a balanced-query result alone does not establish robustness to unknown or imbalanced query priors",
+    "official test images remain unopened"
+  ]
+}

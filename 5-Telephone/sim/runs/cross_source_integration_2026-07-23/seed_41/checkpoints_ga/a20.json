@@ -1,0 +1,253 @@
+{
+  "agent_id": "a20",
+  "interview": {
+    "name": "Leo",
+    "answer": "It’s being held at the community center parking lot, but the time isn’t set yet.",
+    "verdict": "current"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 30,
+    "reflections": [
+      "Rosa is taking initiative and coordinating the repair drive, while Leo sets priorities and expects updates on progress.",
+      "Noah is checking in for status and waiting for a clear signal before acting, which suggests he is responsive but not driving the work.",
+      "The interaction is practical and collaborative, with Leo and Rosa handling planning and Noah staying aligned with their timeline.",
+      "Leo is becoming a central coordinator for the repair drive, handling logistics like parts, timing, and word-of-mouth updates.",
+      "Noah seems attentive and responsive, mainly checking status and confirming availability rather than driving decisions.",
+      "Rosa, Pia, and Opal are focused on organizing the effort, with Pia especially concerned about clear timing and Opal about communication and the donation bin details.",
+      "Leo is coordinating a small community repair drive and is the main point of contact for logistics.",
+      "Opal is helping organize communication and is relying on Leo to spread details and track nearby updates.",
+      "Uli and Bo are supportive attendees with schedule or transport constraints, so clear meetup details matter for them.",
+      "Leo is the main coordinator, handling logistics and keeping others informed.",
+      "The group responds well to simple, direct updates and confirmation of details.",
+      "Bo, Gus, and Vik are each willing to help, but need clear meetup or task specifics to follow through.",
+      "Leo is coordinating the repair drive and keeping multiple helpers aligned on timing, supplies, and status updates.",
+      "Vik is acting as a simple messenger, reinforcing short and clear communication so nearby folks stay informed.",
+      "Pia is focused on organization and prioritization, especially by tracking time windows and handling the most urgent repairs first."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Rosa: Absolutely — I’ll get the repair drive organized and keep everyone posted. Leo, what do you want me to prioritize first?",
+        "speaker": "Rosa",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: Start with the most urgent repairs first, then send me the list and timeline.",
+        "speaker": "Leo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Got it — I’ll start with the most urgent repairs and send you the list plus timeline as soon as I’ve got it sorted.",
+        "speaker": "Rosa",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Noah: Oh—right, the repair drive. What’s the latest on it?",
+        "speaker": "Noah",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: Still gathering a few parts and tools. I’ll swing by once I’ve got them sorted.",
+        "speaker": "Leo",
+        "listener": "Noah"
+      },
+      {
+        "round": 0,
+        "text": "Noah: Got it, thanks — just let me know when you’re ready to swing by.",
+        "speaker": "Noah",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Start with the most urgent repairs first, then send me the list and timeline.",
+        "speaker": "Leo",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: That makes sense—I’ll help keep the list organized, but I’m still worried about making the drop-off and pickup times really clear so nobody’s left waiting with boxes in the way.",
+        "speaker": "Pia",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Good point—let’s make the drop-off and pickup times clear on the list.",
+        "speaker": "Leo",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Opal: Thanks, Leo — could you help spread the word that we’re meeting at the community center parking lot for the repair drive?",
+        "speaker": "Opal",
+        "listener": "Leo",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Leo: Sure — I’ll spread the word. Community center parking lot, got it.",
+        "speaker": "Leo",
+        "listener": "Opal",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Leo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Opal: Thanks, Leo — that’s perfect. If you hear anything about the donation bin by the community center, let me know.",
+        "speaker": "Opal",
+        "listener": "Leo",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Uli: Thanks, Leo. I’ll see what I can manage and stop by if I’m able.",
+        "speaker": "Uli",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Leo: Thanks, Uli. If you can make it, just come by the community center parking lot and I’ll fill you in.",
+        "speaker": "Leo",
+        "listener": "Uli",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Leo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Uli: Thanks, Leo. I’ll do my best to swing by when I can.",
+        "speaker": "Uli",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Saturday morning still works for me — I’ve got my small tool set, no truck.",
+        "speaker": "Bo",
+        "listener": "Leo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Bo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Leo: Saturday morning works. I’ll handle the pickup details and send the exact meetup spot.",
+        "speaker": "Leo",
+        "listener": "Bo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Leo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Bo: Thanks, Leo — just send the exact meetup spot and time, and I’ll be there with my small tool set.",
+        "speaker": "Bo",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Gus: Sure thing — I can bring over a wrench and screwdriver for the repair drive. If you need anything else, just let me know.",
+        "speaker": "Gus",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Leo: Thanks, Gus — that helps. I’m still sorting the pickup details, and I’ll send the meetup spot once it’s set.",
+        "speaker": "Leo",
+        "listener": "Gus"
+      },
+      {
+        "round": 3,
+        "text": "Gus: No problem — just send me the meetup spot when it’s set, and I’ll bring the wrench and screwdriver for the repair drive.",
+        "speaker": "Gus",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Vik: Yeah, I’ll keep repeating the repair drive plan to folks nearby so everyone stays in the loop.",
+        "speaker": "Vik",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Leo: Thanks, Vik — that helps a lot. Keep it short and clear, and I’ll send the parts update once I’ve got everything together.",
+        "speaker": "Leo",
+        "listener": "Vik"
+      },
+      {
+        "round": 3,
+        "text": "Vik: Got it — I’ll keep it short and clear, and I’ll pass the repair drive plan along to folks nearby.",
+        "speaker": "Vik",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Leo: We’re set for the community center parking lot. I’ll spread the word and let you know when folks are ready to head over.",
+        "speaker": "Leo",
+        "listener": "Noah",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Leo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Noah: Sounds good, Leo — keep me posted, and I’ll help keep track of supplies and volunteers.",
+        "speaker": "Noah",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Leo: Will do — I’ll update you as people start showing up.",
+        "speaker": "Leo",
+        "listener": "Noah"
+      },
+      {
+        "round": 4,
+        "text": "Pia: I’ll keep the timing tight and send over a clear list with the drop-off and pickup windows. Let’s start with the most urgent repairs first so nothing gets missed.",
+        "speaker": "Pia",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Leo: Sounds good — let’s start with the urgent repairs first, and I’ll share the drop-off and pickup windows once they’re set.",
+        "speaker": "Leo",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: Great — once you send the windows, I’ll put them on the list and keep everything organized.",
+        "speaker": "Pia",
+        "listener": "Leo"
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "experiment_id": "PAT-H-260729-009",
+  "title": "Locally scaled kernel screen",
+  "status": "frozen_before_run",
+  "created_at": "2026-07-29T00:00:00+08:00",
+  "hypothesis": "Per-sample neighborhood scaling handles heteroscedastic fine-grained class geometry better than a single global RBF bandwidth.",
+  "data": {
+    "development_episode": 1,
+    "samples": 2000,
+    "classes": 200,
+    "folds": 5,
+    "official_test_images_decoded_or_encoded": 0
+  },
+  "features": "Frozen official DINOv2 ViT-B/14 CLS, L2 normalized",
+  "kernel": {
+    "formula": "exp(-||xi-xj||^2 / (beta * sigma_i * sigma_j))",
+    "sigma": "Euclidean distance to kth nearest fold-training neighbor; evaluation scale uses fold-training neighbors only",
+    "k": [3, 5, 7, 15],
+    "beta": [0.5, 1.0, 2.0, 4.0],
+    "svc_C": 3.0
+  },
+  "selection_rule": {
+    "reference": "standard sklearn RBF SVC C=3 gamma=scale",
+    "screen_success": "best local-scale arm improves BA by at least 0.50pp",
+    "confirmation": "Freeze k and beta, then run on two new untouched train-only episodes."
+  }
+}

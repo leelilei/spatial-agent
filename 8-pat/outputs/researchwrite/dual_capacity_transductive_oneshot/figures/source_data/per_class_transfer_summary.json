@@ -1,0 +1,161 @@
+{
+  "experiment_id": "PAT-K-260806-010",
+  "analysis": "post-hoc per-class transfer and paired significance",
+  "official_test_used": false,
+  "protocol": "experiments/dinov2_capacity_kernel/PAT-K-260806-010_protocol.json",
+  "caveats": [
+    "Support rotations reuse episode images; rotation-level tests are reported individually and never pooled into one p-value.",
+    "McNemar tests paired decisions within one rotation, not the cross-episode mean gap.",
+    "Development episodes only; official-test per-query predictions were never archived."
+  ],
+  "datasets": {
+    "cub": {
+      "dataset": "CUB-200-2011",
+      "ways": 200,
+      "episodes": [
+        1,
+        2,
+        3
+      ],
+      "rotations_per_episode": 10,
+      "queries_per_rotation": 1800,
+      "overall": {
+        "BL_NCC": 68.1667,
+        "BL_SINKHORN": 73.4981,
+        "DCTPR": 74.8463,
+        "LAPLACIANSHOT": 68.3019,
+        "LAPLACIANSHOT_PR": 65.0704,
+        "MAP_RAW": 74.3037,
+        "SIGNED_PT_MAP": 74.3704,
+        "TIM_ADM": 76.1944
+      },
+      "class_transfer_vs_bl_ncc": {
+        "positive": 152,
+        "neutral": 20,
+        "negative": 28,
+        "negative_fraction": 0.14,
+        "mean_delta_pp": 6.6796,
+        "median_delta_pp": 4.6296,
+        "worst_class_id": 135,
+        "worst_class_harm_pp": -15.9259,
+        "mean_harm_among_negative_pp": -3.4656,
+        "classes_at_zero_accuracy_dctpr": 0,
+        "classes_at_zero_accuracy_bl_ncc": 0
+      },
+      "class_comparison_vs_strongest": {
+        "strongest_method": "TIM_ADM",
+        "classes_dctpr_better": 53,
+        "classes_equal": 33,
+        "classes_dctpr_worse": 114,
+        "mean_delta_pp": -1.3481
+      },
+      "paired_significance": {
+        "test": "two-sided exact McNemar within a single support rotation",
+        "vs_bl_ncc": {
+          "rotations": 30,
+          "rotations_favouring_dctpr": 30,
+          "rotations_significant_at_0.05": 30,
+          "significant_and_favouring_dctpr": 30,
+          "significant_and_favouring_reference": 0,
+          "max_p_value_among_significant": 1.1e-07
+        },
+        "vs_strongest": {
+          "rotations": 30,
+          "rotations_favouring_dctpr": 1,
+          "rotations_significant_at_0.05": 19,
+          "significant_and_favouring_dctpr": 0,
+          "significant_and_favouring_reference": 19,
+          "max_p_value_among_significant": 0.04685008
+        }
+      },
+      "error_overlap_vs_strongest": {
+        "strongest_method": "TIM_ADM",
+        "dctpr_error_rate": 0.251537,
+        "strongest_error_rate": 0.238056,
+        "joint_error_rate": 0.214519,
+        "jaccard": 0.779857,
+        "dctpr_only_error_rate": 0.037019,
+        "strongest_only_error_rate": 0.023537
+      },
+      "input_digests": {
+        "episode_1_predictions.npz": "ce560024e7932a06e21a95143a6ace5aee687e2f50bfd6006699bda3890a5a68",
+        "episode_2_predictions.npz": "814d50dda662ff0b55101528f48c6dd5f5773c73c566faad5309c1a8144ff3d1",
+        "episode_3_predictions.npz": "91356941a16e211bbd27c598c5d771e2bf531108c63be8e2fc9dffb6b50aeace"
+      }
+    },
+    "dogs": {
+      "dataset": "Stanford Dogs",
+      "ways": 120,
+      "episodes": [
+        1,
+        2,
+        3
+      ],
+      "rotations_per_episode": 10,
+      "queries_per_rotation": 1080,
+      "overall": {
+        "BL_NCC": 64.0926,
+        "BL_SINKHORN": 66.8765,
+        "DCTPR": 70.3642,
+        "LAPLACIANSHOT": 64.4259,
+        "LAPLACIANSHOT_PR": 66.2315,
+        "MAP_RAW": 70.9722,
+        "SIGNED_PT_MAP": 70.9383,
+        "TIM_ADM": 70.0093
+      },
+      "class_transfer_vs_bl_ncc": {
+        "positive": 99,
+        "neutral": 2,
+        "negative": 19,
+        "negative_fraction": 0.1583,
+        "mean_delta_pp": 6.2716,
+        "median_delta_pp": 5.3704,
+        "worst_class_id": 26,
+        "worst_class_harm_pp": -7.7778,
+        "mean_harm_among_negative_pp": -2.7096,
+        "classes_at_zero_accuracy_dctpr": 0,
+        "classes_at_zero_accuracy_bl_ncc": 0
+      },
+      "class_comparison_vs_strongest": {
+        "strongest_method": "MAP_RAW",
+        "classes_dctpr_better": 43,
+        "classes_equal": 4,
+        "classes_dctpr_worse": 73,
+        "mean_delta_pp": -0.608
+      },
+      "paired_significance": {
+        "test": "two-sided exact McNemar within a single support rotation",
+        "vs_bl_ncc": {
+          "rotations": 30,
+          "rotations_favouring_dctpr": 30,
+          "rotations_significant_at_0.05": 30,
+          "significant_and_favouring_dctpr": 30,
+          "significant_and_favouring_reference": 0,
+          "max_p_value_among_significant": 0.00117256
+        },
+        "vs_strongest": {
+          "rotations": 30,
+          "rotations_favouring_dctpr": 5,
+          "rotations_significant_at_0.05": 3,
+          "significant_and_favouring_dctpr": 0,
+          "significant_and_favouring_reference": 3,
+          "max_p_value_among_significant": 0.04980011
+        }
+      },
+      "error_overlap_vs_strongest": {
+        "strongest_method": "MAP_RAW",
+        "dctpr_error_rate": 0.296358,
+        "strongest_error_rate": 0.290278,
+        "joint_error_rate": 0.257685,
+        "jaccard": 0.783355,
+        "dctpr_only_error_rate": 0.038673,
+        "strongest_only_error_rate": 0.032593
+      },
+      "input_digests": {
+        "episode_1_predictions.npz": "b0da3b06c63a1dca6b5561539fa657d3723ce57e8cc1dac04f0cfeb04c060671",
+        "episode_2_predictions.npz": "db81f1523e5b492ba4f9fde95832958b96e88843d9df273df43b0d26fc09d52c",
+        "episode_3_predictions.npz": "c0277c7f8fab167069388289966c677f5bdb7e122714e0bcd4b8b90729760f2f"
+      }
+    }
+  }
+}

@@ -1,0 +1,253 @@
+{
+  "agent_id": "a10",
+  "interview": {
+    "name": "Bo",
+    "answer": "The time and place still aren’t specified in the notes.",
+    "verdict": "unknown"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 30,
+    "reflections": [
+      "Bo is responsive and willing to help once the needed items are made concrete.",
+      "Nell helps gather context from informal neighborhood information before asking for action.",
+      "Cleo communicates specific supply gaps clearly, which makes it easier for Bo to contribute effectively.",
+      "Bo is taking a coordinating role and stays responsive to requests for supplies and logistics.",
+      "Cleo and Dane both help by identifying concrete repair needs, while Bo turns those needs into action items.",
+      "Opal is contributing through location and timing lookup, suggesting the group relies on her for logistics support.",
+      "Bo is the central coordinator, repeatedly collecting missing details and supplies for the repair drive.",
+      "The group is collaboratively organized around a shared repair task, with each person offering a specific contribution or follow-up.",
+      "Bo may be missing key logistics details at times, but others like Opal and Hana help fill in location, timing, and supply gaps.",
+      "Bo is proactive and reliable, quickly committing to specific supplies and times once details are available.",
+      "Hana and Bo coordinate constructively, with Hana offering to help as soon as the schedule is clarified.",
+      "Gus and Opal are helping stabilize the repair drive logistics by confirming the place and time and supporting follow-through.",
+      "Bo is actively coordinating the repair drive and is prepared to contribute supplies and labor.",
+      "Gus and Uli are helping by confirming logistics and filling in missing details as they become available.",
+      "The group is aligned on the community shed as the drop-off point, but the final time and exact needs are still being finalized."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Bo: Sure thing — what’s the repair drive needing help with?",
+        "speaker": "Bo",
+        "listener": "Nell"
+      },
+      {
+        "round": 0,
+        "text": "Nell: I’m still piecing it together from the neighborhood chatter, but I think they need hands, tools, and maybe a few supplies.",
+        "speaker": "Nell",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Got it — I can probably help with tools or supplies. Just point me to whatever’s needed most.",
+        "speaker": "Bo",
+        "listener": "Nell"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Sounds good — what do you need from me for the repair drive?",
+        "speaker": "Bo",
+        "listener": "Cleo"
+      },
+      {
+        "round": 0,
+        "text": "Cleo: We’re short on tape, screws, and a couple flashlights — if you can grab those, that’d help a lot.",
+        "speaker": "Cleo",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Yep, I can pick those up. I’ll grab tape, screws, and a couple flashlights.",
+        "speaker": "Bo",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Dane: Thanks, Rey — I can sort the tools and check the porch light. Where should I start?",
+        "speaker": "Dane",
+        "listener": "Bo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Dane",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Bo: Start with the porch light, and if you can swing it, check on tape and screws too.",
+        "speaker": "Bo",
+        "listener": "Dane",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Bo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Dane: Got it — I’ll check the porch light first, then grab the tape and screws.",
+        "speaker": "Dane",
+        "listener": "Bo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Dane",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Bo: Sure thing — what’s still needed for the repair drive?",
+        "speaker": "Bo",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Opal: I haven’t seen the setup yet, but I’m keeping an eye out for the exact spot and time. If you need a drop-off location, I can check the closest one to Maple Street.",
+        "speaker": "Opal",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Bo: Thanks, Opal — just send me the drop-off spot and time when you find it. I can bring tape, screws, and flashlights.",
+        "speaker": "Bo",
+        "listener": "Opal"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Got it — what still needs to be picked up for the repair drive?",
+        "speaker": "Bo",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Rey: A few supplies are still missing — I can check the list and send you the exact items. Want me to do that?",
+        "speaker": "Rey",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Yes please — send me the exact items and I’ll grab what I can.",
+        "speaker": "Bo",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Got it — I’ll start with the porch light and check for tape and screws too.",
+        "speaker": "Bo",
+        "listener": "Hana",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Bo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Hana: Thanks, Bo — that helps. Just remind me of the time and place for the repair drive, and I’ll bring my toolbox too.",
+        "speaker": "Hana",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: I don’t have the time and place handy — can you resend it? I’ll keep the porch light, tape, and screws on my list.",
+        "speaker": "Bo",
+        "listener": "Hana",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Bo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Opal: I still haven’t spotted the exact repair drive setup yet, but I’m watching for the place and time. I’ll let you know as soon as I find it.",
+        "speaker": "Opal",
+        "listener": "Bo"
+      },
+      {
+        "round": 3,
+        "text": "Bo: Thanks, Opal — just send me the place and time when you find them. I can bring tape, screws, and flashlights.",
+        "speaker": "Bo",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Opal: I’ll keep an eye out and let you know as soon as I spot the drop-off place and time.",
+        "speaker": "Opal",
+        "listener": "Bo"
+      },
+      {
+        "round": 3,
+        "text": "Gus: Yep — Saturday morning at the community shed is the spot, and folks should drop repairs off there first. I can bring a few extra tools if that helps.",
+        "speaker": "Gus",
+        "listener": "Bo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Gus",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Bo: Perfect — Saturday morning at the community shed works for me. I’ll keep the porch light, tape, and screws on my list.",
+        "speaker": "Bo",
+        "listener": "Gus",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Bo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Gus: Great — that’ll cover a lot. I’ll bring a few extra tools and help sort the first batch at the shed.",
+        "speaker": "Gus",
+        "listener": "Bo"
+      },
+      {
+        "round": 4,
+        "text": "Bo: Sure thing — what’s still needed for the repair drive?",
+        "speaker": "Bo",
+        "listener": "Vik"
+      },
+      {
+        "round": 4,
+        "text": "Vik: I’ll check what’s still needed after my errands and keep everyone posted.",
+        "speaker": "Vik",
+        "listener": "Bo"
+      },
+      {
+        "round": 4,
+        "text": "Bo: Sounds good — keep me posted when you know what’s still needed.",
+        "speaker": "Bo",
+        "listener": "Vik"
+      },
+      {
+        "round": 4,
+        "text": "Uli: Thanks, Bo — I’m still waiting on the final time for the repair drive, but I’ll send it over as soon as I have it.",
+        "speaker": "Uli",
+        "listener": "Bo"
+      },
+      {
+        "round": 4,
+        "text": "Bo: Got it — just send the time when you have it, and I’ll be there.",
+        "speaker": "Bo",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Uli: Thanks, Bo — I appreciate it. I’ll let you know as soon as the time’s confirmed.",
+        "speaker": "Uli",
+        "listener": "Bo"
+      }
+    ]
+  }
+}

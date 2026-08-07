@@ -1,0 +1,85 @@
+{
+  "experiment_id": "PAT-D-260728-009",
+  "title": "CUB sparse-keypoint phenomenon reliability audit across three 10-shot episodes",
+  "frozen_at": "2026-07-28T16:50:56+08:00",
+  "status": "PRE_REGISTERED_AFTER_METHOD_STOP_AND_BEFORE_EPISODE_PREDICTIONS",
+  "purpose": "Final train-only reliability audit. This is not a new method experiment and cannot rescue the failed active-selection or gradient-safety gates.",
+  "dependency": {
+    "positive_oracle_experiment": "PAT-D-260728-001",
+    "budget_curve_experiment": "PAT-D-260728-004",
+    "failed_active_selection_experiments": [
+      "PAT-D-260728-005",
+      "PAT-D-260728-007"
+    ],
+    "failed_safe_training_experiment": "PAT-D-260728-008"
+  },
+  "data": {
+    "dataset": "CUB-200-2011",
+    "source": "CaltechDATA DOI 10.22002/D1.20098",
+    "development_split": "official train only",
+    "official_test_access": "forbidden",
+    "classes": 200,
+    "shots_per_class_per_episode": 10,
+    "folds": 5,
+    "episode_subset_seeds": [
+      8801,
+      8802,
+      8803
+    ],
+    "episode_fold_seeds": [
+      8811,
+      8812,
+      8813
+    ],
+    "independence_note": "Episodes are independently sampled without replacement within each class. They are not forced disjoint because six official-train classes contain only 29 images.",
+    "required_overlap_report": true
+  },
+  "arms": {
+    "GLOBAL": "Global average pooling; classification loss on all fold-training images.",
+    "RANDOM_K1": "PrPool architecture; exactly one uniformly selected keypoint-annotated fold-training image per class.",
+    "FULL_KEYPOINT_ORACLE": "PrPool architecture; keypoint supervision on every fold-training image."
+  },
+  "annotation_sampling": {
+    "random_k1_selection_seeds_by_episode": [
+      8901,
+      8902,
+      8903
+    ],
+    "candidate_information": "image ID, class label, and fold only; keypoint coordinates are forbidden during selection",
+    "budget": "exactly one selected image per class in every fold-training set"
+  },
+  "training": {
+    "model_and_hyperparameters": "identical to PAT-D-260728-001",
+    "fixed_epochs": 9,
+    "fold_model_seeds_shared_across_all_arms_and_episodes": [
+      9001,
+      9002,
+      9003,
+      9004,
+      9005
+    ],
+    "hyperparameter_search": "none",
+    "checkpoint_selection": "none; evaluate the epoch-9 model"
+  },
+  "primary_endpoints": [
+    "paired Random-K1 minus Global OOF balanced-accuracy gain in each episode",
+    "paired Full-Oracle minus Global OOF balanced-accuracy gain in each episode",
+    "Random-K1 class negative-transfer rate versus paired Global in each episode",
+    "episode-pooled class recall delta and worst-class damage"
+  ],
+  "go_no_go": {
+    "sparse_value_reliable_if": "Random-K1 mean gain is at least 3.0 pp and at least two of three episode gains are at least 3.0 pp.",
+    "positive_ceiling_reliable_if": "Full-Oracle mean gain is at least 2.0 pp and at least two of three episode gains are at least 2.0 pp.",
+    "class_risk_reliable_if": "Random-K1 negative-transfer class-rate range across episodes is at most 10 percentage points.",
+    "overall_go": "All three reliability conditions pass and official test access remains zero.",
+    "on_go": "The empirical phenomenon is reliable enough to formulate a new class-level annotation-allocation or worst-class-risk question; do not claim the failed selectors or gradient-safety mechanism.",
+    "on_no_go": "Stop the CUB sparse-keypoint direction and change dataset/topic.",
+    "official_test_required": false
+  },
+  "data_controls": {
+    "test_decode_counter_before": 0,
+    "test_decode_counter_after_required": 0,
+    "protocol_and_manifest_hashes_required": true,
+    "complete_predictions_and_logs_required": true
+  }
+}

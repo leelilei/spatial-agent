@@ -1,0 +1,23 @@
+{
+  "api_url": "https://www.fhl.mom/v1/images/generations",
+  "request": {
+    "model": "gpt-image-2",
+    "prompt": "Create a wide 16:9 draft of a clean multi-panel scientific results figure for a two-column ACM\npaper. No title inside the image. White background, flat vector aesthetic, no shadows, no 3D,\nno decorative icons. Use deep teal-blue for current, muted orange for stale, light grey for\nunknown, and dark grey for baseline. Use small bold lowercase panel labels a, b, c.\nAll percentages and counts below are fixed experimental values; reproduce them exactly and do not\ninvent extra values or data points.\n\nPanel a, left 30%, heading \"SAID\". Use three direct-labeled lollipop points on a 0–100% vertical\nscale. Values:\n- Baseline: 56% with note \"18 / 32\"\n- Source: 83% with note \"25 / 30\"\n- Broadcast: 99% with note \"221 / 224\"\nConnect Baseline to Source with a subtle arrow labeled \"+27 pt\".\nSmall footnote: \"current share among value-bearing utterances\".\n\nPanel b, center 40%, heading \"HELD\". This is the hero panel.\nShow five paired thin lines from Baseline to Source using seed-level percentages:\nBaseline = 8, 20, 20, 4, 8.\nSource = 20, 16, 16, 8, 16.\nOverlay prominent mean points at 12.0% and 15.2%.\nDirect label: \"+3.2 pt  [−5.6, 12.0]\".\nTo the right, visually separated as \"positive control\", show Broadcast = 99.2%.\nUse a 0–100% vertical scale and do not imply Broadcast is part of the paired comparison.\n\nPanel c, right 30%, heading \"HELD outcomes\". Use three horizontal 100% stacked bars with exact\ncounts directly labeled:\n- Baseline: current 15, stale 15, unknown 95\n- Source: current 19, stale 3, unknown 103\n- Broadcast: current 124, stale 0, unknown 1\nLabel segments only when legible; place tiny counts beside narrow segments.\n\nUse direct labels instead of a large legend. Avoid grouped bars and avoid the word belief.\nDo not add p-values, error bars not specified above, extra conditions, fake data, citations,\nlogos, or journal branding.",
+    "quality": "high",
+    "output_format": "png",
+    "background": "opaque",
+    "size": "1536x1024",
+    "n": 1
+  },
+  "response_usage": {
+    "completion_tokens": 1079,
+    "input_tokens": 461,
+    "output_tokens": 1079,
+    "prompt_tokens": 461,
+    "total_tokens": 1540
+  },
+  "created": 1784791030,
+  "saved_files": [
+    "paper/dai2026/figures/gpt_image2_drafts/fig2/fig2_gpt_image2.png"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "experiment_id": "PAT-D-260728-003",
+  "title": "CUB severe sparse keypoint missingness and support-isolation diagnostic",
+  "frozen_at": "2026-07-28T13:11:08+08:00",
+  "status": "PRE_REGISTERED_AFTER_PAT-D-260728-002_NO_GO_AND_BEFORE_PAT-D-260728-003_PREDICTIONS",
+  "dependency": {
+    "positive_oracle_experiment": "PAT-D-260728-001",
+    "positive_oracle_gain_pp": 5.5,
+    "initial_missingness_screen": "PAT-D-260728-002",
+    "initial_screen_gate_pass": false,
+    "train_manifest_sha256": "53cb7db2360556453d0868d7fcf59328cfd8ed5065cacf35c719c1030e14dded",
+    "base_score_file_sha256": "13d2b48fab274d0f6f87f332e923ef1859fc350d36acba778bb760233f880123"
+  },
+  "data": {
+    "dataset": "CUB-200-2011",
+    "development_split": "same frozen 200-class x 10-shot official-train subset",
+    "folds": 5,
+    "official_test_access": "forbidden",
+    "keypoint_annotation_rate_within_each_fold_training_set": 0.125,
+    "annotated_images_per_class_within_each_fold_training_set": 1
+  },
+  "selection_mechanisms": {
+    "MCAR_1": "Uniformly choose one image without replacement within every class and fold-training set.",
+    "MAR_X_ATYPICAL": "Choose the image with minimum within-class frozen-image typicality; availability depends only on observed image X and class Y.",
+    "MNAR_Z_INCOMPLETE": "Choose the image with minimum hidden keypoint completeness; availability depends on privileged Z that disappears when annotation is absent.",
+    "SI_POSE": "Choose the maximum normalized head-to-tail horizontal orientation within every class, creating a one-sided pose support hole; missing pose scores are ranked below valid scores."
+  },
+  "pose_definition": {
+    "head_parts_one_based": [2, 5, 6, 7, 10, 11, 15],
+    "tail_part_one_based": 14,
+    "score": "(mean visible head x - tail x) / visible-keypoint horizontal span",
+    "fallback": "If tail or all head points are absent, pose score is missing and cannot be selected unless all candidates are missing; deterministic image_id tie-break."
+  },
+  "screening": {
+    "seed": 7604,
+    "arms": [
+      "GLOBAL_STORED_REFERENCE",
+      "FULL_KEYPOINT_ORACLE_STORED_REFERENCE",
+      "NAIVE_MCAR_1",
+      "NAIVE_MAR_X_ATYPICAL",
+      "NAIVE_MNAR_Z_INCOMPLETE",
+      "NAIVE_SI_POSE"
+    ],
+    "training": "Use the frozen PAT-D-260728-001 PrPool stack for exactly 9 epochs; classification uses every fold-training image and keypoint BCE uses only the selected one image per class.",
+    "hyperparameter_search": "none"
+  },
+  "primary_endpoints": [
+    "OOF balanced accuracy relative to stored Global",
+    "biased-mechanism delta relative to equal-budget MCAR_1",
+    "negative-transfer class rate relative to Global",
+    "worst-class recall delta relative to Global",
+    "selection manipulation differences in typicality, completeness, and pose"
+  ],
+  "go_no_go": {
+    "selection_bias_supported_if": "At least one of MAR_X_ATYPICAL, MNAR_Z_INCOMPLETE, or SI_POSE is at least 2 pp below MCAR_1 in OOF balanced accuracy, or raises negative-transfer class rate by at least 0.10.",
+    "on_go": "Repeat this exact severe diagnostic with two additional frozen selection seeds where applicable, then compare correction baselines.",
+    "on_no_go": "Stop constructing stronger synthetic harm for this PrPool stack. Narrow the research claim toward sparse keypoint annotation selection efficiency/robustness or discontinue H1.",
+    "official_test_required": false
+  }
+}

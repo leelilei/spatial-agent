@@ -1,0 +1,217 @@
+{
+  "agent_id": "a23",
+  "interview": {
+    "name": "Opal",
+    "answer": "The repair drive is starting Saturday morning at the community shed.",
+    "verdict": "stale"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 27,
+    "reflections": [
+      "Opal is responsive and dependable, focusing on concrete follow-through like time and location details.",
+      "Mina and Nell both want precise logistical information, suggesting the relationship centers on coordination and shared task tracking.",
+      "Opal is acting as a practical coordinator for the repair drive, gathering location specifics for others.",
+      "Opal is acting as a reliable information broker, but is still uncertain about the repair drive details and defers until she has the exact location and time.",
+      "Nell and Bo both rely on Opal for logistics, suggesting she is the main point of contact for coordination.",
+      "Gus provided the key update: the repair drive starts Saturday morning at the community shed, which resolved the location uncertainty.",
+      "Opal is the main coordinator, repeatedly tracking down setup details and relaying them to others.",
+      "Gus is the first person to provide concrete logistics, suggesting he is a useful source for the repair drive location and timing.",
+      "Bo and Tess are responsive helpers who are waiting on confirmation but ready to contribute once the details are known.",
+      "Opal is the central coordinator, repeatedly monitoring for the exact spot and time and promising to relay updates.",
+      "Bo is ready to help with practical supplies once the details are confirmed, showing a support role that depends on timing.",
+      "Tess and Uli are aligned with the group’s uncertainty and are waiting flexibly for the location details before acting.",
+      "Opal is acting as the main coordination point, repeatedly promising updates and keeping the group informed.",
+      "The others are cooperative and patient, adjusting their plans around Opal’s timing updates and thanking her for the follow-through.",
+      "This group is using a low-friction, flexible coordination style: they are waiting on exact place/time details but keeping plans open in the meantime."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Opal: I haven’t seen the repair drive setup yet, but I can keep an eye out and let you know where it’s happening.",
+        "speaker": "Opal",
+        "listener": "Mina"
+      },
+      {
+        "round": 0,
+        "text": "Mina: Thanks, Opal. If you spot it, can you tell me the time and exact place?",
+        "speaker": "Mina",
+        "listener": "Opal"
+      },
+      {
+        "round": 0,
+        "text": "Opal: Absolutely — I’ll note the time and exact spot as soon as I find it.",
+        "speaker": "Opal",
+        "listener": "Mina"
+      },
+      {
+        "round": 0,
+        "text": "Opal: I’m keeping an eye on where everything is going for the repair drive, Nell. If you need a drop-off spot or want me to check a location, just tell me.",
+        "speaker": "Opal",
+        "listener": "Nell"
+      },
+      {
+        "round": 0,
+        "text": "Nell: Thanks, Opal — could you check which drop-off spot is closest to Maple Street? I’m still piecing together the details from around the block.",
+        "speaker": "Nell",
+        "listener": "Opal"
+      },
+      {
+        "round": 0,
+        "text": "Opal: I’ll check that for you and figure out the closest drop-off spot to Maple Street.",
+        "speaker": "Opal",
+        "listener": "Nell"
+      },
+      {
+        "round": 1,
+        "text": "Opal: I haven’t seen the repair drive setup yet, but I’m still watching for the exact spot and time.",
+        "speaker": "Opal",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Gus: We’re starting Saturday morning at the community shed, and that’s where folks should drop things off first. If you want, I can also help you get oriented when you arrive.",
+        "speaker": "Gus",
+        "listener": "Opal",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Gus",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Opal: Got it — Saturday morning at the community shed is the drop-off spot, and I’ll keep that noted. If anything changes, I’ll pass it along.",
+        "speaker": "Opal",
+        "listener": "Gus",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Bo: Sure thing — what’s still needed for the repair drive?",
+        "speaker": "Bo",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Opal: I haven’t seen the setup yet, but I’m keeping an eye out for the exact spot and time. If you need a drop-off location, I can check the closest one to Maple Street.",
+        "speaker": "Opal",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Bo: Thanks, Opal — just send me the drop-off spot and time when you find it. I can bring tape, screws, and flashlights.",
+        "speaker": "Bo",
+        "listener": "Opal"
+      },
+      {
+        "round": 2,
+        "text": "Opal: I haven’t seen the repair drive setup yet, but I’m still watching for the exact spot and time.",
+        "speaker": "Opal",
+        "listener": "Tess"
+      },
+      {
+        "round": 2,
+        "text": "Tess: Oh, I’m still waiting on the exact setup details too, but I’ll pass them along as soon as I hear where and when it’s happening.",
+        "speaker": "Tess",
+        "listener": "Opal"
+      },
+      {
+        "round": 2,
+        "text": "Opal: Thanks, Tess — I’ll keep watching for the exact spot and time too.",
+        "speaker": "Opal",
+        "listener": "Tess"
+      },
+      {
+        "round": 3,
+        "text": "Opal: I still haven’t spotted the exact repair drive setup yet, but I’m watching for the place and time. I’ll let you know as soon as I find it.",
+        "speaker": "Opal",
+        "listener": "Bo"
+      },
+      {
+        "round": 3,
+        "text": "Bo: Thanks, Opal — just send me the place and time when you find them. I can bring tape, screws, and flashlights.",
+        "speaker": "Bo",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Opal: I’ll keep an eye out and let you know as soon as I spot the drop-off place and time.",
+        "speaker": "Opal",
+        "listener": "Bo"
+      },
+      {
+        "round": 3,
+        "text": "Opal: I’m still watching for the exact spot and time for the repair drive — as soon as I see it, I’ll let you know.",
+        "speaker": "Opal",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Uli: Thanks, Opal — I really appreciate it. I’m still waiting too, so I’ll keep things flexible until you know.",
+        "speaker": "Uli",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Opal: Absolutely — I’ll keep tracking it and let you know the moment I have the exact spot and time.",
+        "speaker": "Opal",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Opal: I still haven’t spotted the exact repair drive setup yet, but I’m watching for the place and time. I’ll let you know as soon as I find it.",
+        "speaker": "Opal",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Hana: Thanks, Opal — just let me know the time and place when you find it, and I’ll bring my toolbox.",
+        "speaker": "Hana",
+        "listener": "Opal"
+      },
+      {
+        "round": 4,
+        "text": "Opal: Will do — I’m still keeping an eye out for the exact time and place, and I’ll pass it along as soon as I spot it.",
+        "speaker": "Opal",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Pia: Sounds good — I’ll keep it to the Saturday shed plan and wait for the update. If anything changes, please let me know as soon as you can so I can adjust.",
+        "speaker": "Pia",
+        "listener": "Opal",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Pia",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Opal: I’ll keep watching for the exact spot and time, and I’ll let you know as soon as I see any update.",
+        "speaker": "Opal",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: Thanks, Opal — that helps. I’ll keep Saturday morning open and wait for the exact spot and time.",
+        "speaker": "Pia",
+        "listener": "Opal",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Pia",
+          "annotation_basis": "controlled_task"
+        }
+      }
+    ]
+  }
+}

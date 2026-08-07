@@ -1,0 +1,32 @@
+{
+  "experiment_id": "PAT-H-260729-002",
+  "title": "Strong-Ridge preservation and sparse-part residual diagnostic",
+  "frozen_at": "2026-07-29T00:45:00+08:00",
+  "status": "POST_SCREEN_EXPLORATORY_PROTOCOL_FROZEN_AFTER_PAT-H-260729-001",
+  "known_before_registration": {
+    "CLS_RIDGE_BA": 0.846,
+    "CLS_PATCH_RIDGE_BA": 0.8325,
+    "best_equal_part_on_logreg_BA": 0.7945,
+    "best_confusion_aware_on_logreg_BA": 0.783,
+    "PAT_H_260729_001_screen_success": false
+  },
+  "purpose": "Determine whether cached part scores can selectively correct a strong DINOv2 CLS-Ridge classifier and whether global CLS/mean-patch decision fusion improves the strongest foundation baseline.",
+  "data_control": {
+    "dataset": "same frozen CUB episode 1 train-only OOF predictions and features",
+    "new_image_decoding": false,
+    "official_test_access": "forbidden"
+  },
+  "arms": {
+    "ridge_ensembles": "z-normalized decision fusion of CLS-Ridge with CLS+mean-patch Ridge; fixed patch weights 0.25, 0.5, 0.75, 1.0",
+    "ridge_part_residual": "within the already stored LogReg top-10 candidate set, fuse CLS-Ridge candidate decisions with equal-part or confusion-aware local scores; preserve the Ridge prediction unchanged if it is absent from that set",
+    "part_alphas": [0.01, 0.025, 0.05, 0.1, 0.25, 0.5],
+    "local_temperature": 0.07
+  },
+  "interpretation": {
+    "screen_only": true,
+    "success_if": "best arm improves at least 0.5 pp over CLS_RIDGE",
+    "confirmation_requirement": "freeze the winning construction and alpha, then run untouched episodes 2 and 3",
+    "no_novelty_claim_from_episode_1": true
+  },
+  "official_test_images_decoded_or_encoded": 0
+}

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Render the current main-text figures from the latest ledger data (2026-06-26).
 
-Sources: RESULTS.md ledger — M0-M4/G2 (levers), M4 (dissociation), P1-rec (entrenchment),
+Sources: RESULTS.md ledger — M0-M4/G2 (levers), M4 (dissociation),
 C5 (architecture), C14 n=8 (capability), C16 (adversarial), C17b n=5 (comms curve).
 Outputs PNGs into ../figures/ with fig_*.png names (does not overwrite the older fig1-6).
 """
@@ -46,15 +46,21 @@ ax.set_ylabel("current (%)"); ax.set_ylim(0, 108); ax.legend(frameon=False)
 ax.set_title("Speech is not belief — source moves SAID, not HELD")
 save(fig, "fig_say_vs_hold.png")
 
-# 3 — entrenchment, not recency (P1-rec)
+# 3 — P1-rec tombstone. The original timing contrast was retracted after an
+# injection-index audit; keep the stable filename but make accidental reuse safe.
 fig, ax = plt.subplots(figsize=(5.6, 3.6))
-vals = [14, 0, 100]
-ax.bar(["baseline", "late (r5)", "early (r1)"], vals, color=[GRAY, RED, TEAL],
-       edgecolor=[GE, RE, TE])
-for i, v in enumerate(vals):
-    ax.text(i, v+2, str(v), ha="center", fontsize=9)
-ax.set_ylabel("held-current (%)"); ax.set_ylim(0, 108)
-ax.set_title("Entrenchment, not recency — early all-agent fix wins")
+ax.axis("off")
+ax.text(
+    0.5, 0.58, "RETRACTED", ha="center", va="center",
+    fontsize=22, fontweight="bold", color=RED, transform=ax.transAxes,
+)
+ax.text(
+    0.5, 0.36,
+    "P1-rec used an invalid late-injection index.\n"
+    "It provides no evidence about recency or entrenchment.",
+    ha="center", va="center", fontsize=11, color="#444", transform=ax.transAxes,
+)
+ax.set_title("Timing contrast excluded after configuration audit")
 save(fig, "fig_entrenchment.png")
 
 # 4 — architecture comparison (C5)
@@ -65,7 +71,7 @@ ax.barh(labels, vals, color=[GRAY]*6+[TEAL], edgecolor=[GE]*6+[TE])
 for i, v in enumerate(vals):
     ax.text(v+1, i, str(v), va="center", fontsize=9)
 ax.set_xlabel("held-current (%)"); ax.set_xlim(0, 66); ax.invert_yaxis()
-ax.set_title("Architecture comparison (n=8) — only PROV lifts held truth")
+ax.set_title("Controlled memory comparison (n=8)")
 save(fig, "fig_architecture.png")
 
 # 5 — capability check (C14, n=8)
@@ -89,7 +95,7 @@ ax.bar(x+w/2, [11, 57, 0, 0], w, label="stale (hijacked)", color=RED)
 ax.set_xticks(x)
 ax.set_xticklabels(["PROV\nno-adv", "PROV\nliar", "APM\nno-adv", "APM\nliar"], fontsize=9)
 ax.set_ylabel("% of agents"); ax.set_ylim(0, 75); ax.legend(frameon=False)
-ax.set_title("Adversarial liar — only APM survives (stale=0)")
+ax.set_title("Origin anchoring prevents adversarial hijack")
 save(fig, "fig_apm_adversarial.png")
 
 # 7 — comms-sufficiency curve (C17b, n=5)

@@ -1,0 +1,9 @@
+comparison_type,display_name,group_a,group_b,mean_a,mean_b,delta,ci_low,ci_high,p_value,p_holm,significant_holm_0_05
+scaffold,ReAct - Plan-and-Execute,claude-sonnet-4-5-20250929/ReAct,claude-sonnet-4-5-20250929/Plan-and-Execute,0.931611,0.556,0.375611,0.245667,0.491556,5e-05,0.0004,True
+scaffold,ReAct - Plan-and-Execute,qwen3-235b-a22b-instruct-2507/ReAct,qwen3-235b-a22b-instruct-2507/Plan-and-Execute,0.786944,0.821222,-0.034278,-0.201222,0.124389,0.689366,1.0,False
+new_model_pair,ReAct,claude-sonnet-4-5-20250929,qwen3-235b-a22b-instruct-2507,0.931611,0.786944,0.144667,0.006944,0.289667,0.070446,0.365082,False
+new_vs_deepseek,ReAct,claude-sonnet-4-5-20250929,deepseek-v4-flash,0.931611,0.856222,0.075389,-0.043667,0.191333,0.284586,1.0,False
+new_vs_deepseek,ReAct,qwen3-235b-a22b-instruct-2507,deepseek-v4-flash,0.786944,0.856222,-0.069278,-0.223056,0.080333,0.39868,1.0,False
+new_model_pair,Plan-and-Execute,claude-sonnet-4-5-20250929,qwen3-235b-a22b-instruct-2507,0.556,0.821222,-0.265222,-0.405278,-0.119889,0.00215,0.01505,True
+new_vs_deepseek,Plan-and-Execute,claude-sonnet-4-5-20250929,deepseek-v4-flash,0.556,0.626111,-0.070111,-0.247222,0.118056,0.481876,1.0,False
+new_vs_deepseek,Plan-and-Execute,qwen3-235b-a22b-instruct-2507,deepseek-v4-flash,0.821222,0.626111,0.195111,0.007056,0.385389,0.060847,0.365082,False

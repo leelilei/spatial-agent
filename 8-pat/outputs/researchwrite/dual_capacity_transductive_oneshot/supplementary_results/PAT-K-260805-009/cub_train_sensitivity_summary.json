@@ -1,0 +1,176 @@
+{
+  "dataset": "cub_train",
+  "episodes_are_shared_image_rotations": true,
+  "reference": {
+    "mix": 0.5,
+    "steps": 3,
+    "temperature": 0.05
+  },
+  "rows": [
+    {
+      "dataset": "cub_train",
+      "episode_means": [
+        0.7488333333333335,
+        0.7441111111111112,
+        0.7446666666666667
+      ],
+      "factor": "refinement_steps",
+      "mix": 0.5,
+      "overall_mean": 0.7458703703703704,
+      "overall_std": 0.002580992567549372,
+      "steps": 1,
+      "temperature": 0.05,
+      "value": 1
+    },
+    {
+      "dataset": "cub_train",
+      "episode_means": [
+        0.7503333333333334,
+        0.7463333333333333,
+        0.7462777777777778
+      ],
+      "factor": "refinement_steps",
+      "mix": 0.5,
+      "overall_mean": 0.7476481481481482,
+      "overall_std": 0.0023256044835680825,
+      "steps": 2,
+      "temperature": 0.05,
+      "value": 2
+    },
+    {
+      "dataset": "cub_train",
+      "episode_means": [
+        0.7514444444444444,
+        0.7470555555555555,
+        0.7468888888888889
+      ],
+      "factor": "refinement_steps",
+      "mix": 0.5,
+      "overall_mean": 0.748462962962963,
+      "overall_std": 0.0025833831138174206,
+      "steps": 3,
+      "temperature": 0.05,
+      "value": 3
+    },
+    {
+      "dataset": "cub_train",
+      "episode_means": [
+        0.7524444444444444,
+        0.748,
+        0.7477222222222222
+      ],
+      "factor": "refinement_steps",
+      "mix": 0.5,
+      "overall_mean": 0.7493888888888888,
+      "overall_std": 0.0026498311150470375,
+      "steps": 5,
+      "temperature": 0.05,
+      "value": 5
+    },
+    {
+      "dataset": "cub_train",
+      "episode_means": [
+        0.7459444444444443,
+        0.7406666666666667,
+        0.7402222222222223
+      ],
+      "factor": "support_query_mix",
+      "mix": 0.25,
+      "overall_mean": 0.7422777777777778,
+      "overall_std": 0.003183192744616936,
+      "steps": 3,
+      "temperature": 0.05,
+      "value": 0.25
+    },
+    {
+      "dataset": "cub_train",
+      "episode_means": [
+        0.7514444444444444,
+        0.7470555555555555,
+        0.7468888888888889
+      ],
+      "factor": "support_query_mix",
+      "mix": 0.5,
+      "overall_mean": 0.748462962962963,
+      "overall_std": 0.0025833831138174206,
+      "steps": 3,
+      "temperature": 0.05,
+      "value": 0.5
+    },
+    {
+      "dataset": "cub_train",
+      "episode_means": [
+        0.7538333333333334,
+        0.7500555555555556,
+        0.7523888888888888
+      ],
+      "factor": "support_query_mix",
+      "mix": 0.75,
+      "overall_mean": 0.7520925925925926,
+      "overall_std": 0.0019062384048085432,
+      "steps": 3,
+      "temperature": 0.05,
+      "value": 0.75
+    },
+    {
+      "dataset": "cub_train",
+      "episode_means": [
+        0.7384444444444445,
+        0.7422222222222222,
+        0.7378333333333333
+      ],
+      "factor": "support_query_mix",
+      "mix": 1.0,
+      "overall_mean": 0.7394999999999999,
+      "overall_std": 0.0023772325439260712,
+      "steps": 3,
+      "temperature": 0.05,
+      "value": 1.0
+    },
+    {
+      "dataset": "cub_train",
+      "episode_means": [
+        0.757611111111111,
+        0.7560555555555556,
+        0.7555555555555556
+      ],
+      "factor": "temperature",
+      "mix": 0.5,
+      "overall_mean": 0.7564074074074073,
+      "overall_std": 0.0010719967139559252,
+      "steps": 3,
+      "temperature": 0.025,
+      "value": 0.025
+    },
+    {
+      "dataset": "cub_train",
+      "episode_means": [
+        0.7514444444444444,
+        0.7470555555555555,
+        0.7468888888888889
+      ],
+      "factor": "temperature",
+      "mix": 0.5,
+      "overall_mean": 0.748462962962963,
+      "overall_std": 0.0025833831138174206,
+      "steps": 3,
+      "temperature": 0.05,
+      "value": 0.05
+    },
+    {
+      "dataset": "cub_train",
+      "episode_means": [
+        0.7350000000000001,
+        0.7323888888888889,
+        0.730388888888889
+      ],
+      "factor": "temperature",
+      "mix": 0.5,
+      "overall_mean": 0.7325925925925926,
+      "overall_std": 0.0023122949247295615,
+      "steps": 3,
+      "temperature": 0.1,
+      "value": 0.1
+    }
+  ]
+}

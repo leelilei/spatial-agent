@@ -1,0 +1,736 @@
+{
+  "schedule_seed": 42,
+  "agent_count": 25,
+  "source_stream": "/Users/mac/Documents/6-Research/5-Telephone/sim/runs/fixed_stream_integration_2026-07-23/seed_42/fixed_stream.json",
+  "normalization_audit": {
+    "events_total": 699,
+    "explicit_provenance": 63,
+    "unambiguous_text_annotation": 68,
+    "ambiguous_excluded": 0,
+    "irrelevant_excluded": 568
+  },
+  "agents": {
+    "a01": {
+      "name": "Rosa",
+      "candidate_count": 15,
+      "candidate_value_counts": {
+        "current": 14,
+        "stale": 1
+      },
+      "selections": {
+        "frequency": {
+          "sequence": 29,
+          "round": 4,
+          "speaker": "Rosa",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        },
+        "version_max": {
+          "sequence": 29,
+          "round": 4,
+          "speaker": "Rosa",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        }
+      },
+      "contexts": {
+        "frequency": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center.",
+        "version_max": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center."
+      }
+    },
+    "a02": {
+      "name": "Sam",
+      "candidate_count": 5,
+      "candidate_value_counts": {
+        "current": 3,
+        "stale": 2
+      },
+      "selections": {
+        "frequency": {
+          "sequence": 23,
+          "round": 4,
+          "speaker": "Jules",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        },
+        "version_max": {
+          "sequence": 23,
+          "round": 4,
+          "speaker": "Jules",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        }
+      },
+      "contexts": {
+        "frequency": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center.",
+        "version_max": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center."
+      }
+    },
+    "a03": {
+      "name": "Tess",
+      "candidate_count": 1,
+      "candidate_value_counts": {
+        "current": 1,
+        "stale": 0
+      },
+      "selections": {
+        "frequency": {
+          "sequence": 27,
+          "round": 4,
+          "speaker": "Ira",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        },
+        "version_max": {
+          "sequence": 27,
+          "round": 4,
+          "speaker": "Ira",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        }
+      },
+      "contexts": {
+        "frequency": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center.",
+        "version_max": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center."
+      }
+    },
+    "a04": {
+      "name": "Uli",
+      "candidate_count": 3,
+      "candidate_value_counts": {
+        "current": 3,
+        "stale": 0
+      },
+      "selections": {
+        "frequency": {
+          "sequence": 26,
+          "round": 4,
+          "speaker": "Uli",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "controlled_task_annotation"
+        },
+        "version_max": {
+          "sequence": 26,
+          "round": 4,
+          "speaker": "Uli",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "controlled_task_annotation"
+        }
+      },
+      "contexts": {
+        "frequency": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center.",
+        "version_max": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center."
+      }
+    },
+    "a05": {
+      "name": "Mina",
+      "candidate_count": 2,
+      "candidate_value_counts": {
+        "current": 1,
+        "stale": 1
+      },
+      "selections": {
+        "frequency": {
+          "sequence": 28,
+          "round": 4,
+          "speaker": "Jules",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        },
+        "version_max": {
+          "sequence": 28,
+          "round": 4,
+          "speaker": "Jules",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        }
+      },
+      "contexts": {
+        "frequency": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center.",
+        "version_max": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center."
+      }
+    },
+    "a06": {
+      "name": "Oren",
+      "candidate_count": 2,
+      "candidate_value_counts": {
+        "current": 0,
+        "stale": 2
+      },
+      "selections": {
+        "frequency": {
+          "sequence": 20,
+          "round": 3,
+          "speaker": "Rey",
+          "value": "stale",
+          "version": 0,
+          "annotation_basis": "controlled_task_annotation"
+        },
+        "version_max": {
+          "sequence": 20,
+          "round": 3,
+          "speaker": "Rey",
+          "value": "stale",
+          "version": 0,
+          "annotation_basis": "controlled_task_annotation"
+        }
+      },
+      "contexts": {
+        "frequency": "Integrated event record:\n- event version: 0\n- current stored answer: The repair drive is being held on Saturday at the front porch.",
+        "version_max": "Integrated event record:\n- event version: 0\n- current stored answer: The repair drive is being held on Saturday at the front porch."
+      }
+    },
+    "a07": {
+      "name": "Pia",
+      "candidate_count": 0,
+      "candidate_value_counts": {
+        "current": 0,
+        "stale": 0
+      },
+      "selections": {
+        "frequency": null,
+        "version_max": null
+      },
+      "contexts": {
+        "frequency": "(none)",
+        "version_max": "(none)"
+      }
+    },
+    "a08": {
+      "name": "Vik",
+      "candidate_count": 2,
+      "candidate_value_counts": {
+        "current": 1,
+        "stale": 1
+      },
+      "selections": {
+        "frequency": {
+          "sequence": 22,
+          "round": 4,
+          "speaker": "Uli",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "controlled_task_annotation"
+        },
+        "version_max": {
+          "sequence": 22,
+          "round": 4,
+          "speaker": "Uli",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "controlled_task_annotation"
+        }
+      },
+      "contexts": {
+        "frequency": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center.",
+        "version_max": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center."
+      }
+    },
+    "a09": {
+      "name": "Nell",
+      "candidate_count": 5,
+      "candidate_value_counts": {
+        "current": 4,
+        "stale": 1
+      },
+      "selections": {
+        "frequency": {
+          "sequence": 26,
+          "round": 4,
+          "speaker": "Nell",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "controlled_task_annotation"
+        },
+        "version_max": {
+          "sequence": 26,
+          "round": 4,
+          "speaker": "Nell",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "controlled_task_annotation"
+        }
+      },
+      "contexts": {
+        "frequency": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center.",
+        "version_max": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center."
+      }
+    },
+    "a10": {
+      "name": "Bo",
+      "candidate_count": 3,
+      "candidate_value_counts": {
+        "current": 1,
+        "stale": 2
+      },
+      "selections": {
+        "frequency": {
+          "sequence": 5,
+          "round": 0,
+          "speaker": "Bo",
+          "value": "stale",
+          "version": 0,
+          "annotation_basis": "controlled_task_annotation"
+        },
+        "version_max": {
+          "sequence": 26,
+          "round": 4,
+          "speaker": "Bo",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "controlled_task_annotation"
+        }
+      },
+      "contexts": {
+        "frequency": "Integrated event record:\n- event version: 0\n- current stored answer: The repair drive is being held on Saturday at the front porch.",
+        "version_max": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center."
+      }
+    },
+    "a11": {
+      "name": "Cleo",
+      "candidate_count": 15,
+      "candidate_value_counts": {
+        "current": 11,
+        "stale": 4
+      },
+      "selections": {
+        "frequency": {
+          "sequence": 29,
+          "round": 4,
+          "speaker": "Cleo",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        },
+        "version_max": {
+          "sequence": 29,
+          "round": 4,
+          "speaker": "Cleo",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        }
+      },
+      "contexts": {
+        "frequency": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center.",
+        "version_max": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center."
+      }
+    },
+    "a12": {
+      "name": "Dane",
+      "candidate_count": 3,
+      "candidate_value_counts": {
+        "current": 3,
+        "stale": 0
+      },
+      "selections": {
+        "frequency": {
+          "sequence": 26,
+          "round": 4,
+          "speaker": "Opal",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        },
+        "version_max": {
+          "sequence": 26,
+          "round": 4,
+          "speaker": "Opal",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        }
+      },
+      "contexts": {
+        "frequency": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center.",
+        "version_max": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center."
+      }
+    },
+    "a13": {
+      "name": "Eli",
+      "candidate_count": 4,
+      "candidate_value_counts": {
+        "current": 4,
+        "stale": 0
+      },
+      "selections": {
+        "frequency": {
+          "sequence": 28,
+          "round": 4,
+          "speaker": "Rosa",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        },
+        "version_max": {
+          "sequence": 28,
+          "round": 4,
+          "speaker": "Rosa",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        }
+      },
+      "contexts": {
+        "frequency": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center.",
+        "version_max": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center."
+      }
+    },
+    "a14": {
+      "name": "Faye",
+      "candidate_count": 10,
+      "candidate_value_counts": {
+        "current": 10,
+        "stale": 0
+      },
+      "selections": {
+        "frequency": {
+          "sequence": 27,
+          "round": 4,
+          "speaker": "Faye",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        },
+        "version_max": {
+          "sequence": 27,
+          "round": 4,
+          "speaker": "Faye",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        }
+      },
+      "contexts": {
+        "frequency": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center.",
+        "version_max": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center."
+      }
+    },
+    "a15": {
+      "name": "Gus",
+      "candidate_count": 6,
+      "candidate_value_counts": {
+        "current": 6,
+        "stale": 0
+      },
+      "selections": {
+        "frequency": {
+          "sequence": 25,
+          "round": 4,
+          "speaker": "Cleo",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        },
+        "version_max": {
+          "sequence": 25,
+          "round": 4,
+          "speaker": "Cleo",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        }
+      },
+      "contexts": {
+        "frequency": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center.",
+        "version_max": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center."
+      }
+    },
+    "a16": {
+      "name": "Hana",
+      "candidate_count": 3,
+      "candidate_value_counts": {
+        "current": 3,
+        "stale": 0
+      },
+      "selections": {
+        "frequency": {
+          "sequence": 25,
+          "round": 4,
+          "speaker": "Nell",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "controlled_task_annotation"
+        },
+        "version_max": {
+          "sequence": 25,
+          "round": 4,
+          "speaker": "Nell",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "controlled_task_annotation"
+        }
+      },
+      "contexts": {
+        "frequency": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center.",
+        "version_max": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center."
+      }
+    },
+    "a17": {
+      "name": "Ira",
+      "candidate_count": 10,
+      "candidate_value_counts": {
+        "current": 5,
+        "stale": 5
+      },
+      "selections": {
+        "frequency": {
+          "sequence": 28,
+          "round": 4,
+          "speaker": "Ira",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        },
+        "version_max": {
+          "sequence": 28,
+          "round": 4,
+          "speaker": "Ira",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        }
+      },
+      "contexts": {
+        "frequency": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center.",
+        "version_max": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center."
+      }
+    },
+    "a18": {
+      "name": "Jules",
+      "candidate_count": 5,
+      "candidate_value_counts": {
+        "current": 5,
+        "stale": 0
+      },
+      "selections": {
+        "frequency": {
+          "sequence": 25,
+          "round": 4,
+          "speaker": "Jules",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        },
+        "version_max": {
+          "sequence": 25,
+          "round": 4,
+          "speaker": "Jules",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        }
+      },
+      "contexts": {
+        "frequency": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center.",
+        "version_max": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center."
+      }
+    },
+    "a19": {
+      "name": "Kira",
+      "candidate_count": 8,
+      "candidate_value_counts": {
+        "current": 0,
+        "stale": 8
+      },
+      "selections": {
+        "frequency": {
+          "sequence": 23,
+          "round": 4,
+          "speaker": "Noah",
+          "value": "stale",
+          "version": 0,
+          "annotation_basis": "controlled_task_annotation"
+        },
+        "version_max": {
+          "sequence": 23,
+          "round": 4,
+          "speaker": "Noah",
+          "value": "stale",
+          "version": 0,
+          "annotation_basis": "controlled_task_annotation"
+        }
+      },
+      "contexts": {
+        "frequency": "Integrated event record:\n- event version: 0\n- current stored answer: The repair drive is being held on Saturday at the front porch.",
+        "version_max": "Integrated event record:\n- event version: 0\n- current stored answer: The repair drive is being held on Saturday at the front porch."
+      }
+    },
+    "a20": {
+      "name": "Leo",
+      "candidate_count": 4,
+      "candidate_value_counts": {
+        "current": 3,
+        "stale": 1
+      },
+      "selections": {
+        "frequency": {
+          "sequence": 28,
+          "round": 4,
+          "speaker": "Faye",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        },
+        "version_max": {
+          "sequence": 28,
+          "round": 4,
+          "speaker": "Faye",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "explicit_provenance"
+        }
+      },
+      "contexts": {
+        "frequency": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center.",
+        "version_max": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center."
+      }
+    },
+    "a21": {
+      "name": "Mara",
+      "candidate_count": 2,
+      "candidate_value_counts": {
+        "current": 0,
+        "stale": 2
+      },
+      "selections": {
+        "frequency": {
+          "sequence": 12,
+          "round": 2,
+          "speaker": "Mara",
+          "value": "stale",
+          "version": 0,
+          "annotation_basis": "controlled_task_annotation"
+        },
+        "version_max": {
+          "sequence": 12,
+          "round": 2,
+          "speaker": "Mara",
+          "value": "stale",
+          "version": 0,
+          "annotation_basis": "controlled_task_annotation"
+        }
+      },
+      "contexts": {
+        "frequency": "Integrated event record:\n- event version: 0\n- current stored answer: The repair drive is being held on Saturday at the front porch.",
+        "version_max": "Integrated event record:\n- event version: 0\n- current stored answer: The repair drive is being held on Saturday at the front porch."
+      }
+    },
+    "a22": {
+      "name": "Noah",
+      "candidate_count": 7,
+      "candidate_value_counts": {
+        "current": 0,
+        "stale": 7
+      },
+      "selections": {
+        "frequency": {
+          "sequence": 24,
+          "round": 4,
+          "speaker": "Noah",
+          "value": "stale",
+          "version": 0,
+          "annotation_basis": "controlled_task_annotation"
+        },
+        "version_max": {
+          "sequence": 24,
+          "round": 4,
+          "speaker": "Noah",
+          "value": "stale",
+          "version": 0,
+          "annotation_basis": "controlled_task_annotation"
+        }
+      },
+      "contexts": {
+        "frequency": "Integrated event record:\n- event version: 0\n- current stored answer: The repair drive is being held on Saturday at the front porch.",
+        "version_max": "Integrated event record:\n- event version: 0\n- current stored answer: The repair drive is being held on Saturday at the front porch."
+      }
+    },
+    "a23": {
+      "name": "Opal",
+      "candidate_count": 11,
+      "candidate_value_counts": {
+        "current": 7,
+        "stale": 4
+      },
+      "selections": {
+        "frequency": {
+          "sequence": 29,
+          "round": 4,
+          "speaker": "Uli",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "controlled_task_annotation"
+        },
+        "version_max": {
+          "sequence": 29,
+          "round": 4,
+          "speaker": "Uli",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "controlled_task_annotation"
+        }
+      },
+      "contexts": {
+        "frequency": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center.",
+        "version_max": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center."
+      }
+    },
+    "a24": {
+      "name": "Quinn",
+      "candidate_count": 0,
+      "candidate_value_counts": {
+        "current": 0,
+        "stale": 0
+      },
+      "selections": {
+        "frequency": null,
+        "version_max": null
+      },
+      "contexts": {
+        "frequency": "(none)",
+        "version_max": "(none)"
+      }
+    },
+    "a25": {
+      "name": "Rey",
+      "candidate_count": 5,
+      "candidate_value_counts": {
+        "current": 2,
+        "stale": 3
+      },
+      "selections": {
+        "frequency": {
+          "sequence": 23,
+          "round": 3,
+          "speaker": "Rey",
+          "value": "stale",
+          "version": 0,
+          "annotation_basis": "controlled_task_annotation"
+        },
+        "version_max": {
+          "sequence": 26,
+          "round": 4,
+          "speaker": "Rey",
+          "value": "current",
+          "version": 1,
+          "annotation_basis": "controlled_task_annotation"
+        }
+      },
+      "contexts": {
+        "frequency": "Integrated event record:\n- event version: 0\n- current stored answer: The repair drive is being held on Saturday at the front porch.",
+        "version_max": "Integrated event record:\n- event version: 1\n- current stored answer: The repair drive is being held on Sunday at the community center."
+      }
+    }
+  }
+}

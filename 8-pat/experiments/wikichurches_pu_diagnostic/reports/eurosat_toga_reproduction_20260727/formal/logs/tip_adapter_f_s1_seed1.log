@@ -1,0 +1,494 @@
+Using device: cuda
+
+Running dataset config:
+{'root_path': '/root/workspace/datasets', 'load_cache': False, 'load_pre_feat': False, 'search_hp': True, 'search_scale': [12, 10], 'search_step': [200, 20], 'init_beta': 1.879513971406686, 'init_alpha': 3.5400576819777356, 'dataset': 'eurosat', 'shots': 1, 'backbone': ['ViT-B/16'], 'lr': 0.001, 'augment_epoch': 10, 'train_epoch': 100, 'cache_dir': './caches/eurosat/seed1', 'feature_cache_dir': './caches/eurosat/shared_features'} 
+
+Run hyperparameters:
+{'batch_size': 16, 'lr': 0.002807101427696039, 'weight_decay': 2.5113348476076383e-05, 'mgt_num_layers': 3, 'mgt_num_heads': 16, 'transformer_num_layers': 3, 'transformer_nhead': 16, 'transformer_ff_multiplier': 2, 'transformer_activation': 'gelu', 'pooling_ratio': 0.5652983590283692, 'dropout_rate': 0.3968557394035709, 'train_epoch': 100, 'init_beta': 1.879513971406686, 'init_alpha': 3.5400576819777356, 'init_delta': 2.1000705432492848, 'lambda_teacher': 0.7334710618238361, 'focal_loss_gamma': 2.174921923867911, 'seed': 1, 'num_workers': 0, 'wandb_project': 'TOGA', 'wandb_mode': 'disabled', 'config': './configs/eurosat.yaml', 'shots': 1, 'dataset': 'eurosat', 'root_path': '/root/workspace/datasets'}
+Preparing dataset.
+Reading split from /root/workspace/datasets/eurosat/split_zhou_EuroSAT.json
+Creating a 1-shot dataset
+
+Getting textual features for graph nodes and CLIP classifier.
+
+Constructing cache model by few-shot visual features and labels.
+Loading existing support cache: ./caches/eurosat/seed1/keys_1shots.pt
+
+Loading visual features and labels from val set.
+Loading existing val features: ./caches/eurosat/shared_features/val_f.pt
+
+Loading visual features and labels from test set.
+Loading existing test features: ./caches/eurosat/shared_features/test_f.pt
+
+-------- Searching hyperparameters on the val set. --------
+
+**** Zero-shot CLIP val accuracy: 48.37. ****
+
+**** Tip-Adapter val accuracy: 59.15. ****
+
+New best setting, beta: 0.10, alpha: 0.10; accuracy: 48.39
+New best setting, beta: 0.10, alpha: 0.59; accuracy: 48.50
+New best setting, beta: 0.10, alpha: 1.09; accuracy: 48.69
+New best setting, beta: 0.10, alpha: 1.59; accuracy: 48.81
+New best setting, beta: 0.10, alpha: 2.08; accuracy: 49.00
+New best setting, beta: 0.10, alpha: 3.07; accuracy: 49.06
+New best setting, beta: 0.10, alpha: 3.56; accuracy: 49.20
+New best setting, beta: 0.10, alpha: 4.06; accuracy: 49.31
+New best setting, beta: 0.10, alpha: 4.55; accuracy: 49.37
+New best setting, beta: 0.10, alpha: 5.05; accuracy: 49.44
+New best setting, beta: 0.10, alpha: 5.54; accuracy: 49.54
+New best setting, beta: 0.10, alpha: 6.04; accuracy: 49.59
+New best setting, beta: 0.10, alpha: 6.54; accuracy: 49.67
+New best setting, beta: 0.10, alpha: 7.03; accuracy: 49.74
+New best setting, beta: 0.10, alpha: 7.52; accuracy: 49.94
+New best setting, beta: 0.10, alpha: 8.02; accuracy: 50.04
+New best setting, beta: 0.10, alpha: 9.01; accuracy: 50.07
+New best setting, beta: 0.10, alpha: 9.50; accuracy: 50.19
+New best setting, beta: 0.16, alpha: 6.54; accuracy: 50.30
+New best setting, beta: 0.16, alpha: 7.03; accuracy: 50.54
+New best setting, beta: 0.16, alpha: 7.52; accuracy: 50.67
+New best setting, beta: 0.16, alpha: 8.02; accuracy: 50.87
+New best setting, beta: 0.16, alpha: 8.52; accuracy: 51.02
+New best setting, beta: 0.16, alpha: 9.01; accuracy: 51.11
+New best setting, beta: 0.16, alpha: 9.50; accuracy: 51.30
+New best setting, beta: 0.22, alpha: 7.52; accuracy: 51.52
+New best setting, beta: 0.22, alpha: 8.02; accuracy: 51.72
+New best setting, beta: 0.22, alpha: 8.52; accuracy: 51.87
+New best setting, beta: 0.22, alpha: 9.01; accuracy: 52.09
+New best setting, beta: 0.22, alpha: 9.50; accuracy: 52.30
+New best setting, beta: 0.28, alpha: 8.02; accuracy: 52.59
+New best setting, beta: 0.28, alpha: 8.52; accuracy: 52.72
+New best setting, beta: 0.28, alpha: 9.01; accuracy: 52.91
+New best setting, beta: 0.28, alpha: 9.50; accuracy: 53.17
+New best setting, beta: 0.34, alpha: 8.02; accuracy: 53.26
+New best setting, beta: 0.34, alpha: 8.52; accuracy: 53.37
+New best setting, beta: 0.34, alpha: 9.01; accuracy: 53.70
+New best setting, beta: 0.34, alpha: 9.50; accuracy: 54.04
+New best setting, beta: 0.40, alpha: 8.52; accuracy: 54.30
+New best setting, beta: 0.40, alpha: 9.01; accuracy: 54.72
+New best setting, beta: 0.40, alpha: 9.50; accuracy: 55.00
+New best setting, beta: 0.46, alpha: 8.52; accuracy: 55.20
+New best setting, beta: 0.46, alpha: 9.01; accuracy: 55.57
+New best setting, beta: 0.46, alpha: 9.50; accuracy: 55.89
+New best setting, beta: 0.52, alpha: 8.52; accuracy: 56.00
+New best setting, beta: 0.52, alpha: 9.01; accuracy: 56.63
+New best setting, beta: 0.52, alpha: 9.50; accuracy: 57.43
+New best setting, beta: 0.58, alpha: 9.01; accuracy: 57.91
+New best setting, beta: 0.58, alpha: 9.50; accuracy: 58.78
+New best setting, beta: 0.64, alpha: 9.01; accuracy: 59.15
+New best setting, beta: 0.64, alpha: 9.50; accuracy: 59.74
+New best setting, beta: 0.69, alpha: 9.01; accuracy: 60.04
+New best setting, beta: 0.69, alpha: 9.50; accuracy: 60.43
+New best setting, beta: 0.75, alpha: 9.01; accuracy: 60.63
+New best setting, beta: 0.75, alpha: 9.50; accuracy: 61.30
+New best setting, beta: 0.81, alpha: 9.01; accuracy: 61.54
+New best setting, beta: 0.81, alpha: 9.50; accuracy: 62.00
+New best setting, beta: 0.87, alpha: 9.01; accuracy: 62.20
+New best setting, beta: 0.87, alpha: 9.50; accuracy: 62.39
+New best setting, beta: 0.93, alpha: 9.01; accuracy: 62.46
+New best setting, beta: 0.93, alpha: 9.50; accuracy: 62.81
+New best setting, beta: 0.99, alpha: 9.50; accuracy: 62.98
+New best setting, beta: 1.05, alpha: 9.01; accuracy: 63.00
+New best setting, beta: 1.05, alpha: 9.50; accuracy: 63.20
+New best setting, beta: 1.11, alpha: 9.01; accuracy: 63.24
+New best setting, beta: 1.11, alpha: 9.50; accuracy: 63.54
+New best setting, beta: 1.17, alpha: 9.50; accuracy: 63.67
+New best setting, beta: 1.29, alpha: 9.50; accuracy: 63.83
+New best setting, beta: 1.35, alpha: 9.50; accuracy: 64.09
+New best setting, beta: 1.47, alpha: 9.50; accuracy: 64.20
+New best setting, beta: 1.53, alpha: 9.50; accuracy: 64.26
+New best setting, beta: 1.59, alpha: 9.50; accuracy: 64.31
+New best setting, beta: 1.65, alpha: 9.50; accuracy: 64.37
+New best setting, beta: 1.77, alpha: 9.50; accuracy: 64.46
+New best setting, beta: 1.83, alpha: 9.50; accuracy: 64.50
+New best setting, beta: 1.89, alpha: 9.50; accuracy: 64.54
+New best setting, beta: 1.94, alpha: 9.50; accuracy: 64.65
+New best setting, beta: 2.00, alpha: 9.50; accuracy: 64.72
+New best setting, beta: 2.18, alpha: 9.01; accuracy: 64.76
+New best setting, beta: 3.91, alpha: 6.04; accuracy: 64.78
+New best setting, beta: 6.29, alpha: 4.55; accuracy: 64.80
+
+After searching, the best accuracy: 64.80.
+
+
+-------- Evaluating on the test set. --------
+
+**** Zero-shot CLIP test accuracy: 48.35. ****
+
+**** Tip-Adapter test accuracy: 64.21. ****
+
+Tip-Adapter-F Train Epoch: 0 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00,  3.55it/s]100%|██████████| 1/1 [00:00<00:00,  3.55it/s]
+Tip-Adapter-F epoch 0: train_acc=0.6000, loss=0.9119, val_acc=61.67
+Tip-Adapter-F Train Epoch: 1 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 21.32it/s]
+Tip-Adapter-F epoch 1: train_acc=0.8000, loss=1.1448, val_acc=62.04
+Tip-Adapter-F Train Epoch: 2 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 21.96it/s]
+Tip-Adapter-F epoch 2: train_acc=0.7000, loss=0.9420, val_acc=62.11
+Tip-Adapter-F Train Epoch: 3 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 20.07it/s]
+Tip-Adapter-F epoch 3: train_acc=0.7000, loss=1.1106, val_acc=61.61
+Tip-Adapter-F Train Epoch: 4 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 23.38it/s]
+Tip-Adapter-F epoch 4: train_acc=0.8000, loss=0.7472, val_acc=61.83
+Tip-Adapter-F Train Epoch: 5 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 23.28it/s]
+Tip-Adapter-F epoch 5: train_acc=1.0000, loss=0.7253, val_acc=61.69
+Tip-Adapter-F Train Epoch: 6 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 18.39it/s]
+Tip-Adapter-F epoch 6: train_acc=0.9000, loss=0.6671, val_acc=61.63
+Tip-Adapter-F Train Epoch: 7 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.91it/s]
+Tip-Adapter-F epoch 7: train_acc=0.9000, loss=0.5752, val_acc=61.93
+Tip-Adapter-F Train Epoch: 8 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 23.79it/s]
+Tip-Adapter-F epoch 8: train_acc=0.8000, loss=0.9191, val_acc=61.98
+Tip-Adapter-F Train Epoch: 9 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.55it/s]
+Tip-Adapter-F epoch 9: train_acc=0.9000, loss=0.6151, val_acc=61.93
+Tip-Adapter-F Train Epoch: 10 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 21.01it/s]
+Tip-Adapter-F epoch 10: train_acc=1.0000, loss=0.4672, val_acc=62.06
+Tip-Adapter-F Train Epoch: 11 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.67it/s]
+Tip-Adapter-F epoch 11: train_acc=0.8000, loss=0.5915, val_acc=62.09
+Tip-Adapter-F Train Epoch: 12 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 21.24it/s]
+Tip-Adapter-F epoch 12: train_acc=0.8000, loss=0.5968, val_acc=62.13
+Tip-Adapter-F Train Epoch: 13 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 21.66it/s]
+Tip-Adapter-F epoch 13: train_acc=1.0000, loss=0.3544, val_acc=62.22
+Tip-Adapter-F Train Epoch: 14 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.84it/s]
+Tip-Adapter-F epoch 14: train_acc=1.0000, loss=0.4471, val_acc=62.07
+Tip-Adapter-F Train Epoch: 15 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 21.94it/s]
+Tip-Adapter-F epoch 15: train_acc=0.9000, loss=0.5873, val_acc=62.00
+Tip-Adapter-F Train Epoch: 16 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 16.49it/s]
+Tip-Adapter-F epoch 16: train_acc=1.0000, loss=0.3475, val_acc=62.15
+Tip-Adapter-F Train Epoch: 17 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 21.23it/s]
+Tip-Adapter-F epoch 17: train_acc=1.0000, loss=0.3888, val_acc=61.78
+Tip-Adapter-F Train Epoch: 18 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 16.71it/s]
+Tip-Adapter-F epoch 18: train_acc=1.0000, loss=0.3335, val_acc=61.67
+Tip-Adapter-F Train Epoch: 19 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.20it/s]
+Tip-Adapter-F epoch 19: train_acc=0.9000, loss=0.5196, val_acc=61.61
+Tip-Adapter-F Train Epoch: 20 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.29it/s]
+Tip-Adapter-F epoch 20: train_acc=1.0000, loss=0.1604, val_acc=61.50
+Tip-Adapter-F Train Epoch: 21 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.27it/s]
+Tip-Adapter-F epoch 21: train_acc=1.0000, loss=0.1292, val_acc=61.56
+Tip-Adapter-F Train Epoch: 22 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 20.99it/s]
+Tip-Adapter-F epoch 22: train_acc=0.9000, loss=0.3611, val_acc=61.52
+Tip-Adapter-F Train Epoch: 23 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.24it/s]
+Tip-Adapter-F epoch 23: train_acc=1.0000, loss=0.1432, val_acc=61.57
+Tip-Adapter-F Train Epoch: 24 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 23.40it/s]
+Tip-Adapter-F epoch 24: train_acc=1.0000, loss=0.1493, val_acc=61.30
+Tip-Adapter-F Train Epoch: 25 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 23.19it/s]
+Tip-Adapter-F epoch 25: train_acc=1.0000, loss=0.1412, val_acc=61.04
+Tip-Adapter-F Train Epoch: 26 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 21.16it/s]
+Tip-Adapter-F epoch 26: train_acc=1.0000, loss=0.1514, val_acc=61.00
+Tip-Adapter-F Train Epoch: 27 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 16.79it/s]
+Tip-Adapter-F epoch 27: train_acc=1.0000, loss=0.1507, val_acc=60.83
+Tip-Adapter-F Train Epoch: 28 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 20.06it/s]
+Tip-Adapter-F epoch 28: train_acc=1.0000, loss=0.1043, val_acc=60.78
+Tip-Adapter-F Train Epoch: 29 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 23.31it/s]
+Tip-Adapter-F epoch 29: train_acc=0.9000, loss=0.2498, val_acc=60.57
+Tip-Adapter-F Train Epoch: 30 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 20.41it/s]
+Tip-Adapter-F epoch 30: train_acc=0.9000, loss=0.2580, val_acc=60.56
+Tip-Adapter-F Train Epoch: 31 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.52it/s]
+Tip-Adapter-F epoch 31: train_acc=1.0000, loss=0.0691, val_acc=60.70
+Tip-Adapter-F Train Epoch: 32 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.94it/s]
+Tip-Adapter-F epoch 32: train_acc=0.9000, loss=0.2225, val_acc=60.67
+Tip-Adapter-F Train Epoch: 33 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 23.01it/s]
+Tip-Adapter-F epoch 33: train_acc=1.0000, loss=0.0698, val_acc=60.72
+Tip-Adapter-F Train Epoch: 34 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.62it/s]
+Tip-Adapter-F epoch 34: train_acc=1.0000, loss=0.0493, val_acc=60.63
+Tip-Adapter-F Train Epoch: 35 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.12it/s]
+Tip-Adapter-F epoch 35: train_acc=1.0000, loss=0.0619, val_acc=60.44
+Tip-Adapter-F Train Epoch: 36 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.96it/s]
+Tip-Adapter-F epoch 36: train_acc=1.0000, loss=0.1068, val_acc=60.11
+Tip-Adapter-F Train Epoch: 37 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 21.66it/s]
+Tip-Adapter-F epoch 37: train_acc=1.0000, loss=0.0526, val_acc=59.85
+Tip-Adapter-F Train Epoch: 38 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 21.49it/s]
+Tip-Adapter-F epoch 38: train_acc=0.9000, loss=0.1731, val_acc=59.46
+Tip-Adapter-F Train Epoch: 39 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 21.23it/s]
+Tip-Adapter-F epoch 39: train_acc=1.0000, loss=0.0754, val_acc=59.24
+Tip-Adapter-F Train Epoch: 40 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 23.46it/s]
+Tip-Adapter-F epoch 40: train_acc=1.0000, loss=0.0439, val_acc=58.91
+Tip-Adapter-F Train Epoch: 41 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 23.71it/s]
+Tip-Adapter-F epoch 41: train_acc=1.0000, loss=0.0361, val_acc=58.87
+Tip-Adapter-F Train Epoch: 42 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 23.46it/s]
+Tip-Adapter-F epoch 42: train_acc=1.0000, loss=0.0869, val_acc=58.76
+Tip-Adapter-F Train Epoch: 43 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 20.24it/s]
+Tip-Adapter-F epoch 43: train_acc=1.0000, loss=0.0424, val_acc=58.52
+Tip-Adapter-F Train Epoch: 44 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 21.59it/s]
+Tip-Adapter-F epoch 44: train_acc=1.0000, loss=0.1552, val_acc=58.61
+Tip-Adapter-F Train Epoch: 45 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 23.24it/s]
+Tip-Adapter-F epoch 45: train_acc=1.0000, loss=0.0233, val_acc=58.59
+Tip-Adapter-F Train Epoch: 46 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.79it/s]
+Tip-Adapter-F epoch 46: train_acc=1.0000, loss=0.0306, val_acc=58.74
+Tip-Adapter-F Train Epoch: 47 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 21.58it/s]
+Tip-Adapter-F epoch 47: train_acc=1.0000, loss=0.0508, val_acc=58.80
+Tip-Adapter-F Train Epoch: 48 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 20.72it/s]
+Tip-Adapter-F epoch 48: train_acc=1.0000, loss=0.1198, val_acc=58.93
+Tip-Adapter-F Train Epoch: 49 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.03it/s]
+Tip-Adapter-F epoch 49: train_acc=1.0000, loss=0.0394, val_acc=59.06
+Tip-Adapter-F Train Epoch: 50 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 23.17it/s]
+Tip-Adapter-F epoch 50: train_acc=1.0000, loss=0.0220, val_acc=59.44
+Tip-Adapter-F Train Epoch: 51 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 20.62it/s]
+Tip-Adapter-F epoch 51: train_acc=1.0000, loss=0.0499, val_acc=59.63
+Tip-Adapter-F Train Epoch: 52 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 19.23it/s]
+Tip-Adapter-F epoch 52: train_acc=1.0000, loss=0.0286, val_acc=59.70
+Tip-Adapter-F Train Epoch: 53 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 14.05it/s]
+Tip-Adapter-F epoch 53: train_acc=1.0000, loss=0.0183, val_acc=59.80
+Tip-Adapter-F Train Epoch: 54 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 23.04it/s]
+Tip-Adapter-F epoch 54: train_acc=1.0000, loss=0.0229, val_acc=59.98
+Tip-Adapter-F Train Epoch: 55 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 21.80it/s]
+Tip-Adapter-F epoch 55: train_acc=1.0000, loss=0.0842, val_acc=60.02
+Tip-Adapter-F Train Epoch: 56 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.41it/s]
+Tip-Adapter-F epoch 56: train_acc=1.0000, loss=0.0309, val_acc=59.96
+Tip-Adapter-F Train Epoch: 57 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 23.00it/s]
+Tip-Adapter-F epoch 57: train_acc=1.0000, loss=0.0148, val_acc=60.02
+Tip-Adapter-F Train Epoch: 58 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 23.33it/s]
+Tip-Adapter-F epoch 58: train_acc=1.0000, loss=0.0152, val_acc=60.07
+Tip-Adapter-F Train Epoch: 59 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 16.79it/s]
+Tip-Adapter-F epoch 59: train_acc=1.0000, loss=0.0514, val_acc=60.13
+Tip-Adapter-F Train Epoch: 60 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 19.22it/s]
+Tip-Adapter-F epoch 60: train_acc=1.0000, loss=0.0183, val_acc=60.06
+Tip-Adapter-F Train Epoch: 61 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.47it/s]
+Tip-Adapter-F epoch 61: train_acc=1.0000, loss=0.0140, val_acc=60.07
+Tip-Adapter-F Train Epoch: 62 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 15.69it/s]
+Tip-Adapter-F epoch 62: train_acc=1.0000, loss=0.0355, val_acc=60.09
+Tip-Adapter-F Train Epoch: 63 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 21.15it/s]
+Tip-Adapter-F epoch 63: train_acc=1.0000, loss=0.0235, val_acc=60.17
+Tip-Adapter-F Train Epoch: 64 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.89it/s]
+Tip-Adapter-F epoch 64: train_acc=1.0000, loss=0.0152, val_acc=60.22
+Tip-Adapter-F Train Epoch: 65 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 21.69it/s]
+Tip-Adapter-F epoch 65: train_acc=1.0000, loss=0.0129, val_acc=60.20
+Tip-Adapter-F Train Epoch: 66 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 18.71it/s]
+Tip-Adapter-F epoch 66: train_acc=1.0000, loss=0.0526, val_acc=60.19
+Tip-Adapter-F Train Epoch: 67 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 19.15it/s]
+Tip-Adapter-F epoch 67: train_acc=1.0000, loss=0.0124, val_acc=60.19
+Tip-Adapter-F Train Epoch: 68 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 21.60it/s]
+Tip-Adapter-F epoch 68: train_acc=1.0000, loss=0.0569, val_acc=60.20
+Tip-Adapter-F Train Epoch: 69 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.09it/s]
+Tip-Adapter-F epoch 69: train_acc=1.0000, loss=0.0197, val_acc=60.15
+Tip-Adapter-F Train Epoch: 70 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.87it/s]
+Tip-Adapter-F epoch 70: train_acc=1.0000, loss=0.0279, val_acc=60.11
+Tip-Adapter-F Train Epoch: 71 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.55it/s]
+Tip-Adapter-F epoch 71: train_acc=1.0000, loss=0.0166, val_acc=60.15
+Tip-Adapter-F Train Epoch: 72 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 19.51it/s]
+Tip-Adapter-F epoch 72: train_acc=1.0000, loss=0.0164, val_acc=60.13
+Tip-Adapter-F Train Epoch: 73 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 23.19it/s]
+Tip-Adapter-F epoch 73: train_acc=1.0000, loss=0.0268, val_acc=60.13
+Tip-Adapter-F Train Epoch: 74 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 21.02it/s]
+Tip-Adapter-F epoch 74: train_acc=1.0000, loss=0.0237, val_acc=60.11
+Tip-Adapter-F Train Epoch: 75 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.42it/s]
+Tip-Adapter-F epoch 75: train_acc=1.0000, loss=0.0186, val_acc=60.11
+Tip-Adapter-F Train Epoch: 76 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.05it/s]
+Tip-Adapter-F epoch 76: train_acc=1.0000, loss=0.0139, val_acc=60.11
+Tip-Adapter-F Train Epoch: 77 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 18.67it/s]
+Tip-Adapter-F epoch 77: train_acc=1.0000, loss=0.0339, val_acc=60.11
+Tip-Adapter-F Train Epoch: 78 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 18.12it/s]
+Tip-Adapter-F epoch 78: train_acc=1.0000, loss=0.0478, val_acc=60.11
+Tip-Adapter-F Train Epoch: 79 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 16.15it/s]
+Tip-Adapter-F epoch 79: train_acc=1.0000, loss=0.0126, val_acc=60.15
+Tip-Adapter-F Train Epoch: 80 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 17.76it/s]
+Tip-Adapter-F epoch 80: train_acc=1.0000, loss=0.0378, val_acc=60.15
+Tip-Adapter-F Train Epoch: 81 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 20.04it/s]
+Tip-Adapter-F epoch 81: train_acc=1.0000, loss=0.0155, val_acc=60.15
+Tip-Adapter-F Train Epoch: 82 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 20.72it/s]
+Tip-Adapter-F epoch 82: train_acc=1.0000, loss=0.0084, val_acc=60.11
+Tip-Adapter-F Train Epoch: 83 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 14.23it/s]
+Tip-Adapter-F epoch 83: train_acc=1.0000, loss=0.0223, val_acc=60.11
+Tip-Adapter-F Train Epoch: 84 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 22.51it/s]
+Tip-Adapter-F epoch 84: train_acc=1.0000, loss=0.0118, val_acc=60.17
+Tip-Adapter-F Train Epoch: 85 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 21.90it/s]
+Tip-Adapter-F epoch 85: train_acc=1.0000, loss=0.0161, val_acc=60.17
+Tip-Adapter-F Train Epoch: 86 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 14.06it/s]
+Tip-Adapter-F epoch 86: train_acc=1.0000, loss=0.0133, val_acc=60.17
+Tip-Adapter-F Train Epoch: 87 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 16.34it/s]
+Tip-Adapter-F epoch 87: train_acc=1.0000, loss=0.0200, val_acc=60.17
+Tip-Adapter-F Train Epoch: 88 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 17.10it/s]
+Tip-Adapter-F epoch 88: train_acc=1.0000, loss=0.0099, val_acc=60.17
+Tip-Adapter-F Train Epoch: 89 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 19.70it/s]
+Tip-Adapter-F epoch 89: train_acc=1.0000, loss=0.0158, val_acc=60.17
+Tip-Adapter-F Train Epoch: 90 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 20.60it/s]
+Tip-Adapter-F epoch 90: train_acc=1.0000, loss=0.0319, val_acc=60.17
+Tip-Adapter-F Train Epoch: 91 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 21.50it/s]
+Tip-Adapter-F epoch 91: train_acc=1.0000, loss=0.0205, val_acc=60.15
+Tip-Adapter-F Train Epoch: 92 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 19.44it/s]
+Tip-Adapter-F epoch 92: train_acc=1.0000, loss=0.0141, val_acc=60.15
+Tip-Adapter-F Train Epoch: 93 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 17.78it/s]
+Tip-Adapter-F epoch 93: train_acc=1.0000, loss=0.0145, val_acc=60.15
+Tip-Adapter-F Train Epoch: 94 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 16.91it/s]
+Tip-Adapter-F epoch 94: train_acc=1.0000, loss=0.0165, val_acc=60.15
+Tip-Adapter-F Train Epoch: 95 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 17.10it/s]
+Tip-Adapter-F epoch 95: train_acc=1.0000, loss=0.0229, val_acc=60.15
+Tip-Adapter-F Train Epoch: 96 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 21.43it/s]
+Tip-Adapter-F epoch 96: train_acc=1.0000, loss=0.0604, val_acc=60.15
+Tip-Adapter-F Train Epoch: 97 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 20.99it/s]
+Tip-Adapter-F epoch 97: train_acc=1.0000, loss=0.0138, val_acc=60.15
+Tip-Adapter-F Train Epoch: 98 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 18.72it/s]
+Tip-Adapter-F epoch 98: train_acc=1.0000, loss=0.0179, val_acc=60.15
+Tip-Adapter-F Train Epoch: 99 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 19.69it/s]
+Tip-Adapter-F epoch 99: train_acc=1.0000, loss=0.0242, val_acc=60.15
+
+-------- Searching hyperparameters on the val set. --------
+New best setting, beta: 0.10, alpha: 0.10; accuracy: 48.44
+New best setting, beta: 0.10, alpha: 0.59; accuracy: 48.81
+New best setting, beta: 0.10, alpha: 1.09; accuracy: 49.13
+New best setting, beta: 0.10, alpha: 1.59; accuracy: 49.31
+New best setting, beta: 0.10, alpha: 2.08; accuracy: 49.69
+New best setting, beta: 0.10, alpha: 2.58; accuracy: 50.07
+New best setting, beta: 0.10, alpha: 3.07; accuracy: 50.20
+New best setting, beta: 0.10, alpha: 3.56; accuracy: 50.35
+New best setting, beta: 0.10, alpha: 4.06; accuracy: 50.61
+New best setting, beta: 0.10, alpha: 4.55; accuracy: 50.81
+New best setting, beta: 0.10, alpha: 5.05; accuracy: 51.06
+New best setting, beta: 0.10, alpha: 5.54; accuracy: 51.43
+New best setting, beta: 0.10, alpha: 6.04; accuracy: 51.76
+New best setting, beta: 0.10, alpha: 6.54; accuracy: 52.17
+New best setting, beta: 0.10, alpha: 7.03; accuracy: 52.33
+New best setting, beta: 0.10, alpha: 7.52; accuracy: 52.59
+New best setting, beta: 0.10, alpha: 8.02; accuracy: 52.85
+New best setting, beta: 0.10, alpha: 8.52; accuracy: 53.31
+New best setting, beta: 0.10, alpha: 9.01; accuracy: 53.59
+New best setting, beta: 0.10, alpha: 9.50; accuracy: 53.74
+New best setting, beta: 0.16, alpha: 6.04; accuracy: 53.81
+New best setting, beta: 0.16, alpha: 6.54; accuracy: 54.28
+New best setting, beta: 0.16, alpha: 7.03; accuracy: 54.72
+New best setting, beta: 0.16, alpha: 7.52; accuracy: 55.33
+New best setting, beta: 0.16, alpha: 8.02; accuracy: 55.87
+New best setting, beta: 0.16, alpha: 8.52; accuracy: 56.30
+New best setting, beta: 0.16, alpha: 9.01; accuracy: 56.74
+New best setting, beta: 0.16, alpha: 9.50; accuracy: 57.20
+New best setting, beta: 0.22, alpha: 7.03; accuracy: 57.33
+New best setting, beta: 0.22, alpha: 7.52; accuracy: 58.52
+New best setting, beta: 0.22, alpha: 8.02; accuracy: 59.20
+New best setting, beta: 0.22, alpha: 8.52; accuracy: 59.69
+New best setting, beta: 0.22, alpha: 9.01; accuracy: 60.11
+New best setting, beta: 0.22, alpha: 9.50; accuracy: 60.69
+New best setting, beta: 0.28, alpha: 7.52; accuracy: 60.72
+New best setting, beta: 0.28, alpha: 8.02; accuracy: 61.20
+New best setting, beta: 0.28, alpha: 8.52; accuracy: 61.76
+New best setting, beta: 0.28, alpha: 9.01; accuracy: 62.07
+New best setting, beta: 0.28, alpha: 9.50; accuracy: 62.13
+New best setting, beta: 0.34, alpha: 8.02; accuracy: 62.26
+New best setting, beta: 0.34, alpha: 8.52; accuracy: 62.65
+New best setting, beta: 0.34, alpha: 9.01; accuracy: 63.00
+New best setting, beta: 0.34, alpha: 9.50; accuracy: 63.33
+New best setting, beta: 0.40, alpha: 8.02; accuracy: 63.39
+New best setting, beta: 0.46, alpha: 7.03; accuracy: 63.41
+New best setting, beta: 0.52, alpha: 6.54; accuracy: 63.44
+New best setting, beta: 0.75, alpha: 4.55; accuracy: 63.61
+New best setting, beta: 1.11, alpha: 3.07; accuracy: 63.67
+New best setting, beta: 1.17, alpha: 3.07; accuracy: 63.69
+New best setting, beta: 1.29, alpha: 2.58; accuracy: 63.70
+New best setting, beta: 1.59, alpha: 2.08; accuracy: 63.72
+New best setting, beta: 1.65, alpha: 2.08; accuracy: 63.78
+New best setting, beta: 1.71, alpha: 2.08; accuracy: 63.89
+New best setting, beta: 2.30, alpha: 1.59; accuracy: 63.94
+New best setting, beta: 2.48, alpha: 1.59; accuracy: 63.98
+New best setting, beta: 3.13, alpha: 1.09; accuracy: 64.04
+New best setting, beta: 3.25, alpha: 1.09; accuracy: 64.13
+New best setting, beta: 3.31, alpha: 1.09; accuracy: 64.19
+New best setting, beta: 3.55, alpha: 1.09; accuracy: 64.28
+New best setting, beta: 3.73, alpha: 1.09; accuracy: 64.33
+New best setting, beta: 3.79, alpha: 1.09; accuracy: 64.37
+New best setting, beta: 3.97, alpha: 1.09; accuracy: 64.43
+New best setting, beta: 5.99, alpha: 0.59; accuracy: 64.44
+New best setting, beta: 6.05, alpha: 0.59; accuracy: 64.50
+New best setting, beta: 6.23, alpha: 0.59; accuracy: 64.52
+New best setting, beta: 6.29, alpha: 0.59; accuracy: 64.63
+New best setting, beta: 7.78, alpha: 0.59; accuracy: 64.65
+
+After searching, the best accuracy: 64.65.
+
+**** eurosat Tip-Adapter-F validation-selected test accuracy: 65.52. ****
+
+RESULT_JSON={"dataset": "eurosat", "fine_tuned": {"best_alpha": 0.595, "best_beta": 7.7755, "best_epoch": 13, "checkpoint_selection_val_accuracy": 62.22222222222222, "final_test_accuracy": 65.51851851851852, "final_val_accuracy": 64.64814814814815, "method": "tip_adapter_f"}, "method": "tip_adapter_f", "run_config": {"batch_size": 16, "config": "./configs/eurosat.yaml", "dataset": "eurosat", "dropout_rate": 0.3968557394035709, "focal_loss_gamma": 2.174921923867911, "init_alpha": 3.5400576819777356, "init_beta": 1.879513971406686, "init_delta": 2.1000705432492848, "lambda_teacher": 0.7334710618238361, "lr": 0.002807101427696039, "mgt_num_heads": 16, "mgt_num_layers": 3, "num_workers": 0, "pooling_ratio": 0.5652983590283692, "root_path": "/root/workspace/datasets", "seed": 1, "shots": 1, "train_epoch": 100, "transformer_activation": "gelu", "transformer_ff_multiplier": 2, "transformer_nhead": 16, "transformer_num_layers": 3, "wandb_mode": "disabled", "wandb_project": "TOGA", "weight_decay": 2.5113348476076383e-05}, "seed": 1, "selection_protocol": "validation checkpoint selection; test evaluated once", "shared_baselines": {"tip_adapter_best_alpha": 4.555, "tip_adapter_best_beta": 6.288, "tip_adapter_test_accuracy": 64.20987654320987, "tip_adapter_val_accuracy_before_search": 59.148148148148145, "zero_shot_test_accuracy": 48.34567901234568, "zero_shot_val_accuracy": 48.370370370370374}, "shots": 1}

@@ -1,0 +1,253 @@
+{
+  "agent_id": "a20",
+  "interview": {
+    "name": "Leo",
+    "answer": "The repair drive is planned for 3:30 to 5:30, but the location isn’t specified in the notes.",
+    "verdict": "unknown"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 30,
+    "reflections": [
+      "Leo is coordinating the repair drive and delegates specific tasks clearly.",
+      "Ira is responsive but currently uncertain, and plans to follow up after checking.",
+      "Sam is proactive and willing to take on concrete volunteer work when asked.",
+      "Leo is coordinating a repair drive and relies on a small group of helpers for concrete tasks.",
+      "Sam, Gus, and Rey each respond positively and offer specific, practical help, suggesting a cooperative relationship with Leo.",
+      "Leo communicates appreciation and follows up promptly, which helps keep the coordination moving smoothly.",
+      "Leo is coordinating a repair drive and wants confirmations before Saturday, so he values clear logistics and follow-through.",
+      "Faye is helping with timing details but is still verifying constraints, suggesting she is reliable but cautious about committing too early.",
+      "Kira is pressing for exact specifics on the list and drop-off spot, indicating she wants practical confirmation rather than general assurances.",
+      "Leo is coordinating multiple pickup and drop-off details and wants explicit confirmation on timing and locations.",
+      "Kira is focused on making sure the Saturday plan is fully specified before treating it as settled.",
+      "Rosa and Mara are responsive and reliable collaborators, confirming timing and promising timely updates when details change.",
+      "Leo is coordinating closely with Mara, Opal, and Vik to keep the repair drive organized and on schedule.",
+      "The group relies on clear confirmations for timing, location, and responsibilities to avoid confusion.",
+      "Leo appears to be the central point for logistics, while others help with reminders, pickup details, and intake setup."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Leo: Sounds good — what’s the repair drive schedule?",
+        "speaker": "Leo",
+        "listener": "Ira"
+      },
+      {
+        "round": 0,
+        "text": "Ira: I’m not sure yet, but I’ll check while I’m out running errands and let you know.",
+        "speaker": "Ira",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: Thanks — keep me posted when you find out.",
+        "speaker": "Leo",
+        "listener": "Ira"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Sure thing, Leo — I’m happy to help with the repair drive. What do you need me to do?",
+        "speaker": "Sam",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: Great — can you help sort the donated items and set them by category?",
+        "speaker": "Leo",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Absolutely — I can sort the donated items and set them by category.",
+        "speaker": "Sam",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Gus: Sure thing, Leo — just send me the list of tools you still need, and I’ll see what I can lend for the repair drive.",
+        "speaker": "Gus",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Thanks, Gus — I’ll send the tool list over right away.",
+        "speaker": "Leo",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Gus: Sounds good, Leo — I’m happy to help with whatever you still need for the repair drive.",
+        "speaker": "Gus",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Thanks — keep me posted when you find out.",
+        "speaker": "Leo",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Rey: Will do — I’ll let you know as soon as I hear what needs fixing and where I can help.",
+        "speaker": "Rey",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Thanks, Rey — that works for me.",
+        "speaker": "Leo",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Faye: I’m still checking the school pickup timing, but the 3:30 to 5:30 window still looks like the best bet for the repair drive.",
+        "speaker": "Faye",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Leo: That works for me — please confirm the pickup timing when you can. I’ll plan around 3:30 to 5:30 for the repair drive.",
+        "speaker": "Leo",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Faye: Will do — I’ll confirm the pickup timing and keep the repair drive set for 3:30 to 5:30 if everything lines up.",
+        "speaker": "Faye",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Can you confirm the exact list and drop-off spot, Leo? I just want to be sure we’re actually set for Saturday.",
+        "speaker": "Kira",
+        "listener": "Leo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Kira",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Leo: Yep — I’ll send the exact list and the drop-off spot today so we’re set for Saturday.",
+        "speaker": "Leo",
+        "listener": "Kira",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Leo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Kira: Okay — can you confirm it’ll be the same list for Saturday, and tell me where the drop-off spot is once you send it?",
+        "speaker": "Kira",
+        "listener": "Leo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Kira",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Leo: Thanks, Rosa — please confirm the pickup timing when you can. I’ll plan around 3:30 to 5:30 for the repair drive.",
+        "speaker": "Leo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Yes — pickup is set for Sunday at the community center, and 3:30 to 5:30 works well. I’ll confirm the sign-up sheet details by Friday so everything stays organized.",
+        "speaker": "Rosa",
+        "listener": "Leo",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Rosa",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Leo: Great, thanks Rosa — Sunday at the community center works for me. I’ll wait for the sign-up sheet details by Friday.",
+        "speaker": "Leo",
+        "listener": "Rosa",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Leo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Leo: Thanks, Mara — please confirm the pickup timing when you can. I’ll plan around 3:30 to 5:30 for the repair drive.",
+        "speaker": "Leo",
+        "listener": "Mara"
+      },
+      {
+        "round": 3,
+        "text": "Mara: That timing works — I’ll confirm the pickup window and keep it set for 3:30 to 5:30. I’ll let you know right away if anything changes.",
+        "speaker": "Mara",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Leo: Sounds good, Mara — thanks. Please keep me posted if the pickup window shifts.",
+        "speaker": "Leo",
+        "listener": "Mara"
+      },
+      {
+        "round": 4,
+        "text": "Leo: Sounds good — 3:30 to 5:30 still looks like the best window for the repair drive.",
+        "speaker": "Leo",
+        "listener": "Opal"
+      },
+      {
+        "round": 4,
+        "text": "Opal: Great — I’ve got 3:30 to 5:30 noted. Where should we meet at the community center, and who’s the first repair I should log?",
+        "speaker": "Opal",
+        "listener": "Leo",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Leo: Let’s meet by the front entrance at the community center, and start with the first repair that comes in.",
+        "speaker": "Leo",
+        "listener": "Opal",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Leo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Vik: Absolutely — I’ll keep reminding folks about the repair drive and make sure everyone knows what to bring.",
+        "speaker": "Vik",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Leo: Thanks, Vik — can you also share the repair drive time and what people should bring?",
+        "speaker": "Leo",
+        "listener": "Vik"
+      },
+      {
+        "round": 4,
+        "text": "Vik: Absolutely — I’ll spread the word about the repair drive time and what folks should bring.",
+        "speaker": "Vik",
+        "listener": "Leo"
+      }
+    ]
+  }
+}

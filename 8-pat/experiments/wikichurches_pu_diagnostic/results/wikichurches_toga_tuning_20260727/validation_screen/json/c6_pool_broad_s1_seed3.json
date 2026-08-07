@@ -1,0 +1,53 @@
+{
+  "dataset": "wikichurches",
+  "fine_tuned": {
+    "best_alpha": 9.504999999999999,
+    "best_beta": 1.1710000000000003,
+    "best_epoch": 3,
+    "checkpoint_selection_val_accuracy": 69.90291262135922,
+    "final_test_accuracy": null,
+    "final_val_accuracy": 70.3883495145631,
+    "method": "toga"
+  },
+  "method": "toga",
+  "run_config": {
+    "batch_size": 16,
+    "config": "./configs/wikichurches.yaml",
+    "dataset": "wikichurches",
+    "dropout_rate": 0.5,
+    "focal_loss_gamma": 2.0,
+    "init_alpha": 9.806773071379816,
+    "init_beta": 2.0493246903001525,
+    "init_delta": 1.0,
+    "lambda_teacher": 0.5,
+    "lr": 0.001,
+    "mgt_num_heads": 16,
+    "mgt_num_layers": 3,
+    "num_workers": 0,
+    "pooling_ratio": 0.75,
+    "root_path": "/root/workspace/datasets",
+    "seed": 3,
+    "shots": 1,
+    "train_epoch": 20,
+    "transformer_activation": "gelu",
+    "transformer_ff_multiplier": 2,
+    "transformer_nhead": 16,
+    "transformer_num_layers": 3,
+    "wandb_mode": "disabled",
+    "wandb_project": "TOGA",
+    "weight_decay": 0.0001
+  },
+  "run_namespace": "tune_c6_pool_broad_s1",
+  "seed": 3,
+  "selection_protocol": "validation-only model selection; test loader/features not loaded",
+  "shared_baselines": {
+    "tip_adapter_best_alpha": 8.515,
+    "tip_adapter_best_beta": 2.123,
+    "tip_adapter_test_accuracy": null,
+    "tip_adapter_val_accuracy_before_search": 66.99029126213593,
+    "zero_shot_test_accuracy": null,
+    "zero_shot_val_accuracy": 64.5631067961165
+  },
+  "shots": 1,
+  "validation_only": true
+}

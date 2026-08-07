@@ -1,0 +1,58 @@
+{
+  "groups": [
+    {
+      "model": "gpt-5.4-mini",
+      "memory": "memorybank",
+      "forget_rate": 0.0,
+      "runs": 1,
+      "agents_total": 25,
+      "current": 3,
+      "stale": 1,
+      "unknown": 21,
+      "unsupported_specific": 2,
+      "logical_calls": 520,
+      "transport_attempts": 520,
+      "successful_calls": 520,
+      "current_rate": 0.12,
+      "unsupported_specific_rate": 0.08,
+      "logical_calls_per_agent": 20.8,
+      "mean_run_current_rate": 0.12,
+      "mean_run_unsupported_specific_rate": 0.08,
+      "min_run_current_rate": 0.12,
+      "max_run_current_rate": 0.12,
+      "std_run_current_rate": 0.0
+    }
+  ],
+  "rows": [
+    {
+      "memory": "memorybank",
+      "model": "gpt-5.4-mini",
+      "run_index": 0,
+      "schedule_seed": 45,
+      "agent_count": 25,
+      "forget_rate": 0.0,
+      "forget_floor": 0.1,
+      "rounds": 7,
+      "turns": 3,
+      "out_dir": "sim/runs/table_power_n5_2026-07-24/resume_three_memorybank/gpt-5.4-mini/memorybank/forget_0/run_000",
+      "currency_interview": {
+        "current": 3,
+        "stale": 1,
+        "unknown": 21
+      },
+      "unsupported_specific": 2,
+      "social_rehearsal": {
+        "current": 6,
+        "stale": 12,
+        "mixed": 0,
+        "neutral": 465
+      },
+      "llm_usage": {
+        "logical_calls": 520,
+        "transport_attempts": 520,
+        "successful_calls": 520,
+        "logical_calls_per_agent": 20.8
+      }
+    }
+  ]
+}

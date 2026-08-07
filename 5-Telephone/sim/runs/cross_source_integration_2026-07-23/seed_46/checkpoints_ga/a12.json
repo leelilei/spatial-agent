@@ -1,0 +1,229 @@
+{
+  "agent_id": "a12",
+  "interview": {
+    "name": "Dane",
+    "answer": "The repair drive is being held after errands, with drop-off coordinated through Vik.",
+    "verdict": "unknown"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 24,
+    "reflections": [
+      "Rey and Dane have a practical, task-focused working relationship.",
+      "Dane is apologetic about being late but stays engaged and asks for a clear assignment.",
+      "Rey responds calmly and directly, prioritizing progress over the delay.",
+      "Dane is reliable and eager to help with practical tasks like tools, supplies, and setup.",
+      "Rey and Vik coordinate the work by keeping the list current and directing people to the most urgent needs.",
+      "The group communicates in a cooperative, task-focused way, with Dane checking where to start and where to drop things off.",
+      "Dane is reliable and takes direction well, but keeps checking back to stay aligned on priorities.",
+      "Vik and Cleo are coordinating a shared task by clarifying what is still needed and distributing incoming help.",
+      "The group communication is practical and transactional: people ask for specific supplies, confirm logistics, and reduce ambiguity by keeping updates in one place.",
+      "Dane is dependable and proactive, typically confirming logistics, bringing needed supplies, and following through on tasks.",
+      "The group communicates in a practical, coordination-focused way, with concise status updates and clear check-in points.",
+      "Quinn and Leo are delegating concrete repair work and deadlines, while Dane adapts quickly to the current list and priorities.",
+      "Dane is reliable and willing to take initiative on repairs, especially when given a clear list and location.",
+      "Quinn and Vik are coordinating tasks and keeping the repair effort organized by assigning work and follow-up details.",
+      "Leo is part of the repair network and helps by setting practical timing expectations for bringing supplies."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Rey: I can help, Dane—what still needs fixing for the repair drive?",
+        "speaker": "Rey",
+        "listener": "Dane"
+      },
+      {
+        "round": 0,
+        "text": "Dane: Sorry I’m late — what’s left on the list, and where do you need me?",
+        "speaker": "Dane",
+        "listener": "Rey"
+      },
+      {
+        "round": 0,
+        "text": "Rey: No worries, Dane. We still need someone to sort the tools and check the porch light.",
+        "speaker": "Rey",
+        "listener": "Dane",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Rey",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Dane: Thanks, Rey — I can sort the tools and check the porch light. Where should I start?",
+        "speaker": "Dane",
+        "listener": "Bo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Dane",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Bo: Start with the porch light, and if you can swing it, check on tape and screws too.",
+        "speaker": "Bo",
+        "listener": "Dane",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Bo",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Dane: Got it — I’ll check the porch light first, then grab the tape and screws.",
+        "speaker": "Dane",
+        "listener": "Bo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Dane",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Dane: Sorry I’m late — what’s left on the list, and where do you need me?",
+        "speaker": "Dane",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Vik: Thanks for jumping in — I’m still checking the list, but if you can bring any usable tools or supplies, that’d help a lot. I’ll keep asking around too and let you know what’s still needed.",
+        "speaker": "Vik",
+        "listener": "Dane"
+      },
+      {
+        "round": 1,
+        "text": "Dane: Got it — I’ll bring whatever tools I can find and check in once I’m there. Just tell me where to drop them off.",
+        "speaker": "Dane",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Dane: Sorry I’m late — what’s left on the list, and where do you need me?",
+        "speaker": "Dane",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: No worries — we’re mostly short on tape, screws, and a few basic tools. If you can bring any of those, that’d help a lot.",
+        "speaker": "Cleo",
+        "listener": "Dane"
+      },
+      {
+        "round": 2,
+        "text": "Dane: I can do that — I’ll bring tape, screws, and whatever tools I can find, then check in when I arrive.",
+        "speaker": "Dane",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Dane: I’m here now—I'll start with the porch light and then take a look at the tape and screws. Where do you want me to check in after that?",
+        "speaker": "Dane",
+        "listener": "Kira",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Dane",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Kira: Did anything change, or should I just confirm with you here?",
+        "speaker": "Kira",
+        "listener": "Dane"
+      },
+      {
+        "round": 2,
+        "text": "Dane: Just confirm with me here — I’ll check the porch light first and then the tape and screws.",
+        "speaker": "Dane",
+        "listener": "Kira",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Dane",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Dane: Sorry I’m late — what’s left on the list, and where do you need me?",
+        "speaker": "Dane",
+        "listener": "Quinn"
+      },
+      {
+        "round": 3,
+        "text": "Quinn: Sure thing — the broken fence, the leaky faucet at the hall, and a few loose porch steps are still on the list. I’ll send you the details right now and point out where help’s still needed.",
+        "speaker": "Quinn",
+        "listener": "Dane",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Quinn",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Dane: Got it — I’ll take the fence first and then head to the hall for the faucet. Send me the details and I’ll check in when I’m done.",
+        "speaker": "Dane",
+        "listener": "Quinn"
+      },
+      {
+        "round": 3,
+        "text": "Dane: I’m on it — I’ll start with the porch light and bring whatever tape, screws, and tools I can find.",
+        "speaker": "Dane",
+        "listener": "Leo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Dane",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Leo: Great, thanks — bring them by 10 if you can.",
+        "speaker": "Leo",
+        "listener": "Dane"
+      },
+      {
+        "round": 3,
+        "text": "Dane: Will do — I’ll be there by 10 with the porch light checked and the supplies in hand.",
+        "speaker": "Dane",
+        "listener": "Leo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Dane",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Vik: I’ll check what still needs help after my errands and keep everyone posted on the repair drive. If you’re ready, just tell me where to drop the tools off.",
+        "speaker": "Vik",
+        "listener": "Dane"
+      },
+      {
+        "round": 4,
+        "text": "Dane: Sounds good — I’ll bring the tape, screws, and any tools I can find, then check in when I’m there.",
+        "speaker": "Dane",
+        "listener": "Vik"
+      },
+      {
+        "round": 4,
+        "text": "Vik: Great, thanks, Dane — I’ll let you know where to drop them off once I’ve checked what still needs help after my errands.",
+        "speaker": "Vik",
+        "listener": "Dane"
+      }
+    ]
+  }
+}

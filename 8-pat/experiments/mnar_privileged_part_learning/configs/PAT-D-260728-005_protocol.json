@@ -1,0 +1,79 @@
+{
+  "experiment_id": "PAT-D-260728-005",
+  "title": "CUB K1 image-only active keypoint annotation selection screen",
+  "frozen_at": "2026-07-28T00:00:00+08:00",
+  "status": "PRE_REGISTERED_BEFORE_PAT-D-260728-005_PREDICTIONS",
+  "research_question": "At one keypoint-annotated image per class, can an image-only selector improve mean recognition benefit or reduce class-level negative transfer relative to random selection?",
+  "dependencies": {
+    "budget_curve_experiment": "PAT-D-260728-004",
+    "positive_oracle_experiment": "PAT-D-260728-001",
+    "stored_global_oof_ba": 0.6545,
+    "stored_full_oracle_oof_ba": 0.7095,
+    "random_k1_mean_oof_ba": 0.694,
+    "random_k1_mean_negative_transfer_class_rate": 0.24166666666666667
+  },
+  "data": {
+    "dataset": "CUB-200-2011",
+    "development_split": "frozen 200-class x 10-shot official-train subset",
+    "folds": 5,
+    "fold_training_images_per_class": 8,
+    "annotated_images_per_class": 1,
+    "official_test_access": "forbidden"
+  },
+  "selector": {
+    "feature_backbone": "torchvision ResNet-50 IMAGENET1K_V2",
+    "feature_transform": "deterministic 384x384 bicubic resize and ImageNet normalization",
+    "allowed_inputs": [
+      "relative_path",
+      "class_index",
+      "fold",
+      "image_id",
+      "frozen_ordinary_image_feature"
+    ],
+    "forbidden_inputs": [
+      "keypoints",
+      "part_locations",
+      "bounding_box",
+      "official_test"
+    ],
+    "strategies": {
+      "MEDOID": "maximum cosine similarity to the leave-one-out class centroid",
+      "BOUNDARY": "maximum negative class margin",
+      "DISCRIMINATIVE": "maximum class margin",
+      "BALANCED_ANNOTATION_VALUE": "harmonic mean of within-class representativeness and uncertainty percentile ranks, with no tunable weight"
+    },
+    "tie_break": "lowest image_id"
+  },
+  "training": {
+    "model": "frozen PAT-D-260728-001 ResNet-50 layer4-adapted PrPool stack",
+    "fixed_epochs": 9,
+    "fold_seeds": [
+      7901,
+      7902,
+      7903,
+      7904,
+      7905
+    ],
+    "hyperparameter_search": "none"
+  },
+  "screening_gate": {
+    "benefit_branch": {
+      "minimum_oof_ba": 0.7015,
+      "maximum_negative_transfer_class_rate": 0.2417
+    },
+    "safety_branch": {
+      "minimum_oof_ba": 0.6915,
+      "maximum_negative_transfer_class_rate": 0.1917
+    },
+    "ranking": "benefit passers first by BA descending, negative-transfer rate ascending, worst-class harm descending; if only safety passers, negative-transfer rate ascending then BA descending",
+    "on_no_pass": "stop before PAT-D-260728-006 and all final evaluation"
+  },
+  "controls": {
+    "random_reference_selection_seeds": [
+      8101,
+      8102,
+      8103
+    ],
+    "official_test_images_decoded_or_encoded": 0
+  }
+}

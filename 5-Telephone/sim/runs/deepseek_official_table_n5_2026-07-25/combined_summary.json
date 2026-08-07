@@ -1,0 +1,428 @@
+{
+  "model": "deepseek-v4-flash",
+  "endpoint_class": "official DeepSeek API",
+  "scenario": "repair_drive",
+  "estimator": "seed-level mean with two-sided Student-t 95% CI",
+  "methods": {
+    "amem": {
+      "n": 5,
+      "seeds": [
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "seed_current_rates_pct": [
+        20.0,
+        24.0,
+        16.0,
+        48.0,
+        44.0
+      ],
+      "pooled_counts": {
+        "current": 38,
+        "stale": 54,
+        "unknown": 33
+      },
+      "mean_pct": 30.4,
+      "ci95_pct": [
+        12.287020281360515,
+        48.512979718639485
+      ],
+      "table": {
+        "mean": 30.4,
+        "lo": 12.3,
+        "hi": 48.5
+      },
+      "runs": [
+        {
+          "method": "amem",
+          "model": "deepseek-v4-flash",
+          "seed": 41,
+          "agent_count": 25,
+          "current": 5,
+          "stale": 13,
+          "unknown": 7,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/amem/deepseek-v4-flash/amem/forget_0/run_000"
+        },
+        {
+          "method": "amem",
+          "model": "deepseek-v4-flash",
+          "seed": 42,
+          "agent_count": 25,
+          "current": 6,
+          "stale": 13,
+          "unknown": 6,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/amem/deepseek-v4-flash/amem/forget_0/run_001"
+        },
+        {
+          "method": "amem",
+          "model": "deepseek-v4-flash",
+          "seed": 43,
+          "agent_count": 25,
+          "current": 4,
+          "stale": 14,
+          "unknown": 7,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/amem/deepseek-v4-flash/amem/forget_0/run_002"
+        },
+        {
+          "method": "amem",
+          "model": "deepseek-v4-flash",
+          "seed": 44,
+          "agent_count": 25,
+          "current": 12,
+          "stale": 4,
+          "unknown": 9,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/amem/deepseek-v4-flash/amem/forget_0/run_003"
+        },
+        {
+          "method": "amem",
+          "model": "deepseek-v4-flash",
+          "seed": 45,
+          "agent_count": 25,
+          "current": 11,
+          "stale": 10,
+          "unknown": 4,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/amem/deepseek-v4-flash/amem/forget_0/run_004"
+        }
+      ]
+    },
+    "mem0": {
+      "n": 5,
+      "seeds": [
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "seed_current_rates_pct": [
+        28.0,
+        20.0,
+        40.0,
+        24.0,
+        20.0
+      ],
+      "pooled_counts": {
+        "current": 33,
+        "stale": 91,
+        "unknown": 1
+      },
+      "mean_pct": 26.4,
+      "ci95_pct": [
+        16.100922928283673,
+        36.699077071716324
+      ],
+      "table": {
+        "mean": 26.4,
+        "lo": 16.1,
+        "hi": 36.7
+      },
+      "runs": [
+        {
+          "method": "mem0",
+          "model": "deepseek-v4-flash",
+          "seed": 41,
+          "agent_count": 25,
+          "current": 7,
+          "stale": 18,
+          "unknown": 0,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/mem0/deepseek-v4-flash/mem0/forget_0/run_000"
+        },
+        {
+          "method": "mem0",
+          "model": "deepseek-v4-flash",
+          "seed": 42,
+          "agent_count": 25,
+          "current": 5,
+          "stale": 20,
+          "unknown": 0,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/mem0/deepseek-v4-flash/mem0/forget_0/run_001"
+        },
+        {
+          "method": "mem0",
+          "model": "deepseek-v4-flash",
+          "seed": 43,
+          "agent_count": 25,
+          "current": 10,
+          "stale": 15,
+          "unknown": 0,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/mem0/deepseek-v4-flash/mem0/forget_0/run_002"
+        },
+        {
+          "method": "mem0",
+          "model": "deepseek-v4-flash",
+          "seed": 44,
+          "agent_count": 25,
+          "current": 6,
+          "stale": 18,
+          "unknown": 1,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/mem0/deepseek-v4-flash/mem0/forget_0/run_003"
+        },
+        {
+          "method": "mem0",
+          "model": "deepseek-v4-flash",
+          "seed": 45,
+          "agent_count": 25,
+          "current": 5,
+          "stale": 20,
+          "unknown": 0,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/mem0/deepseek-v4-flash/mem0/forget_0/run_004"
+        }
+      ]
+    },
+    "memorybank": {
+      "n": 5,
+      "seeds": [
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "seed_current_rates_pct": [
+        24.0,
+        32.0,
+        28.0,
+        36.0,
+        12.0
+      ],
+      "pooled_counts": {
+        "current": 33,
+        "stale": 74,
+        "unknown": 18
+      },
+      "mean_pct": 26.4,
+      "ci95_pct": [
+        14.96589923605189,
+        37.83410076394811
+      ],
+      "table": {
+        "mean": 26.4,
+        "lo": 15.0,
+        "hi": 37.8
+      },
+      "runs": [
+        {
+          "method": "memorybank",
+          "model": "deepseek-v4-flash",
+          "seed": 41,
+          "agent_count": 25,
+          "current": 6,
+          "stale": 15,
+          "unknown": 4,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/memorybank/deepseek-v4-flash/memorybank/forget_0/run_000"
+        },
+        {
+          "method": "memorybank",
+          "model": "deepseek-v4-flash",
+          "seed": 42,
+          "agent_count": 25,
+          "current": 8,
+          "stale": 14,
+          "unknown": 3,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/memorybank/deepseek-v4-flash/memorybank/forget_0/run_001"
+        },
+        {
+          "method": "memorybank",
+          "model": "deepseek-v4-flash",
+          "seed": 43,
+          "agent_count": 25,
+          "current": 7,
+          "stale": 14,
+          "unknown": 4,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/memorybank/deepseek-v4-flash/memorybank/forget_0/run_002"
+        },
+        {
+          "method": "memorybank",
+          "model": "deepseek-v4-flash",
+          "seed": 44,
+          "agent_count": 25,
+          "current": 9,
+          "stale": 14,
+          "unknown": 2,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/memorybank/deepseek-v4-flash/memorybank/forget_0/run_003"
+        },
+        {
+          "method": "memorybank",
+          "model": "deepseek-v4-flash",
+          "seed": 45,
+          "agent_count": 25,
+          "current": 3,
+          "stale": 17,
+          "unknown": 5,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/memorybank/deepseek-v4-flash/memorybank/forget_0/run_004"
+        }
+      ]
+    },
+    "raw": {
+      "n": 5,
+      "seeds": [
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "seed_current_rates_pct": [
+        32.0,
+        28.0,
+        52.0,
+        40.0,
+        44.0
+      ],
+      "pooled_counts": {
+        "current": 49,
+        "stale": 61,
+        "unknown": 15
+      },
+      "mean_pct": 39.2,
+      "ci95_pct": [
+        27.34227133973352,
+        51.057728660266484
+      ],
+      "table": {
+        "mean": 39.2,
+        "lo": 27.3,
+        "hi": 51.1
+      },
+      "runs": [
+        {
+          "method": "raw",
+          "model": "deepseek-v4-flash",
+          "seed": 41,
+          "agent_count": 25,
+          "current": 8,
+          "stale": 15,
+          "unknown": 2,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/raw/deepseek-v4-flash/raw/forget_0/run_000"
+        },
+        {
+          "method": "raw",
+          "model": "deepseek-v4-flash",
+          "seed": 42,
+          "agent_count": 25,
+          "current": 7,
+          "stale": 17,
+          "unknown": 1,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/raw/deepseek-v4-flash/raw/forget_0/run_001"
+        },
+        {
+          "method": "raw",
+          "model": "deepseek-v4-flash",
+          "seed": 43,
+          "agent_count": 25,
+          "current": 13,
+          "stale": 10,
+          "unknown": 2,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/raw/deepseek-v4-flash/raw/forget_0/run_002"
+        },
+        {
+          "method": "raw",
+          "model": "deepseek-v4-flash",
+          "seed": 44,
+          "agent_count": 25,
+          "current": 10,
+          "stale": 7,
+          "unknown": 8,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/raw/deepseek-v4-flash/raw/forget_0/run_003"
+        },
+        {
+          "method": "raw",
+          "model": "deepseek-v4-flash",
+          "seed": 45,
+          "agent_count": 25,
+          "current": 11,
+          "stale": 12,
+          "unknown": 2,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/raw/deepseek-v4-flash/raw/forget_0/run_004"
+        }
+      ]
+    },
+    "smga3g": {
+      "n": 5,
+      "seeds": [
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "seed_current_rates_pct": [
+        16.0,
+        8.0,
+        24.0,
+        12.0,
+        8.0
+      ],
+      "pooled_counts": {
+        "current": 17,
+        "stale": 77,
+        "unknown": 31
+      },
+      "mean_pct": 13.6,
+      "ci95_pct": [
+        5.289194930531442,
+        21.91080506946856
+      ],
+      "table": {
+        "mean": 13.6,
+        "lo": 5.3,
+        "hi": 21.9
+      },
+      "runs": [
+        {
+          "method": "smga3g",
+          "model": "deepseek-v4-flash",
+          "seed": 41,
+          "agent_count": 25,
+          "current": 4,
+          "stale": 20,
+          "unknown": 1,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/smga3g/deepseek-v4-flash/smga3g/forget_0/run_000"
+        },
+        {
+          "method": "smga3g",
+          "model": "deepseek-v4-flash",
+          "seed": 42,
+          "agent_count": 25,
+          "current": 2,
+          "stale": 20,
+          "unknown": 3,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/smga3g/deepseek-v4-flash/smga3g/forget_0/run_001"
+        },
+        {
+          "method": "smga3g",
+          "model": "deepseek-v4-flash",
+          "seed": 43,
+          "agent_count": 25,
+          "current": 6,
+          "stale": 7,
+          "unknown": 12,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/smga3g/deepseek-v4-flash/smga3g/forget_0/run_002"
+        },
+        {
+          "method": "smga3g",
+          "model": "deepseek-v4-flash",
+          "seed": 44,
+          "agent_count": 25,
+          "current": 3,
+          "stale": 18,
+          "unknown": 4,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/smga3g/deepseek-v4-flash/smga3g/forget_0/run_003"
+        },
+        {
+          "method": "smga3g",
+          "model": "deepseek-v4-flash",
+          "seed": 45,
+          "agent_count": 25,
+          "current": 2,
+          "stale": 12,
+          "unknown": 11,
+          "run_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/smga3g/deepseek-v4-flash/smga3g/forget_0/run_004"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "dataset": "wikichurches",
+  "fine_tuned": {
+    "best_alpha": 9.504999999999999,
+    "best_beta": 1.29,
+    "best_epoch": 7,
+    "checkpoint_selection_val_accuracy": 68.93203883495146,
+    "final_test_accuracy": 61.26855600539811,
+    "final_val_accuracy": 69.90291262135922,
+    "method": "tip_adapter_f"
+  },
+  "method": "tip_adapter_f",
+  "run_config": {
+    "batch_size": 16,
+    "config": "./configs/wikichurches.yaml",
+    "dataset": "wikichurches",
+    "dropout_rate": 0.5,
+    "focal_loss_gamma": 2.0,
+    "init_alpha": 9.806773071379816,
+    "init_beta": 2.0493246903001525,
+    "init_delta": 1.0,
+    "lambda_teacher": 0.5,
+    "lr": 0.001,
+    "mgt_num_heads": 16,
+    "mgt_num_layers": 3,
+    "num_workers": 0,
+    "pooling_ratio": 0.25,
+    "root_path": "/root/workspace/datasets",
+    "seed": 5,
+    "shots": 1,
+    "train_epoch": 20,
+    "transformer_activation": "gelu",
+    "transformer_ff_multiplier": 2,
+    "transformer_nhead": 16,
+    "transformer_num_layers": 3,
+    "wandb_mode": "disabled",
+    "wandb_project": "TOGA",
+    "weight_decay": 0.0001
+  },
+  "run_namespace": "confirm_c7_dropout_low_s1",
+  "seed": 5,
+  "selection_protocol": "validation checkpoint selection; test evaluated once",
+  "shared_baselines": {
+    "tip_adapter_best_alpha": 6.535,
+    "tip_adapter_best_beta": 0.1,
+    "tip_adapter_test_accuracy": 57.557354925775975,
+    "tip_adapter_val_accuracy_before_search": 63.10679611650485,
+    "zero_shot_test_accuracy": 56.81511470985155,
+    "zero_shot_val_accuracy": 64.5631067961165
+  },
+  "shots": 1,
+  "validation_only": false
+}

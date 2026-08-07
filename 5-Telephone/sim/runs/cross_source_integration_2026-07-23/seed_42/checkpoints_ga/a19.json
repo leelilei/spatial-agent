@@ -1,0 +1,187 @@
+{
+  "agent_id": "a19",
+  "interview": {
+    "name": "Kira",
+    "answer": "Saturday at 10 a.m. at the community center front entrance.",
+    "verdict": "stale"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 23,
+    "reflections": [
+      "Kira is careful about repeating information and prefers to verify details before sharing them.",
+      "Pia acts as a cautious advisor, focusing on confirming logistics before announcements go out.",
+      "Their exchange shows a practical, trust-oriented interaction where one person asks and the other helps prevent misinformation.",
+      "Kira is cautious about sharing information and prefers confirmation before telling others.",
+      "Pia acts as a careful source of logistics details and encourages verifying timing and location.",
+      "Ira is supportive and willing to help by staying alert and passing along updates.",
+      "Kira is cautious about forwarding details and wants confirmation before sharing location and timing with others.",
+      "Pia and Opal are acting as stabilizing sources of confirmation, with Opal tracking possible location changes and updating notes.",
+      "Ira is supportive but not directly confirming anything, mostly relaying that he will keep checking and report back if he hears new information.",
+      "Kira is cautious about relaying event details until timing and location are confirmed, and she repeatedly seeks verification before sharing.",
+      "Opal serves as a note-taking source of truth for the repair drive location and is attentive to changes as they come in.",
+      "Vik is coordinating logistics and depends on confirmed timing plus volunteer help with donations and boxes before moving everyone into action.",
+      "Kira is careful about relaying event details and prefers to wait for confirmed time and place before sharing them.",
+      "Vik is coordinating the repair drive logistics and is relying on others for practical help like donations and loading boxes.",
+      "The group is converging on a shared plan for a Saturday 10 a.m. repair drive at the community center front entrance."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Kira: So the repair drive is actually happening, right? I just want to make sure before I tell anyone.",
+        "speaker": "Kira",
+        "listener": "Pia"
+      },
+      {
+        "round": 0,
+        "text": "Pia: I think so, but I’d double-check the timing and where it’s being held before you spread the word.",
+        "speaker": "Pia",
+        "listener": "Kira"
+      },
+      {
+        "round": 0,
+        "text": "Kira: Got it — I’ll double-check the timing and location first. Thanks, I didn’t want to pass on anything shaky.",
+        "speaker": "Kira",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: Yes — Saturday at 10 a.m. at the community center front entrance is the drop-off.",
+        "speaker": "Pia",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Great, thanks — so it’s definitely Saturday at 10 a.m. at the community center front entrance, right?",
+        "speaker": "Kira",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: Yes, that’s right — Saturday at 10 a.m. at the community center front entrance.",
+        "speaker": "Pia",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Ira: Sounds good — I’ll keep an ear out while I’m out running errands and let you know if I hear anything.",
+        "speaker": "Ira",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Thanks, Ira — please do. I’m still going to wait for confirmation on the timing and location before I tell anyone.",
+        "speaker": "Kira",
+        "listener": "Ira"
+      },
+      {
+        "round": 1,
+        "text": "Ira: Will do — I’ll keep checking around and let you know if I hear anything new.",
+        "speaker": "Ira",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Opal: I still haven’t heard a location change for the repair drive, but I’m keeping the community center this afternoon in my notes. If you spot anything new, I’ll write it down right away.",
+        "speaker": "Opal",
+        "listener": "Kira",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Kira: Okay, thanks — so the community center this afternoon is still the best confirmed spot, right? I’ll wait for anything more before I tell anyone.",
+        "speaker": "Kira",
+        "listener": "Opal",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Kira",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Opal: Yes — the community center this afternoon is still the best confirmed spot. I’ll note it if anything changes.",
+        "speaker": "Opal",
+        "listener": "Kira",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Kira: Just checking, Noah — that’s still definitely Saturday at 10 a.m. at the community center front entrance, right?",
+        "speaker": "Kira",
+        "listener": "Noah"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Right — I just wanted to confirm it one more time before I pass it along.",
+        "speaker": "Kira",
+        "listener": "Noah"
+      },
+      {
+        "round": 3,
+        "text": "Vik: Thanks, Kira — I’m still waiting on the final start time, but I’ll keep everyone posted as soon as I have it. If you can help sort donations or load boxes, that’d be a big help.",
+        "speaker": "Vik",
+        "listener": "Kira"
+      },
+      {
+        "round": 3,
+        "text": "Kira: Thanks — I’ll wait for the final time before I tell anyone. I can help with donations or boxes once it’s confirmed.",
+        "speaker": "Kira",
+        "listener": "Vik"
+      },
+      {
+        "round": 3,
+        "text": "Vik: Perfect — I’ll let you know as soon as the time is confirmed, and then we can get everyone lined up. Donations and boxes will be a huge help.",
+        "speaker": "Vik",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Pia: Thanks — I’m still waiting on the exact drop-off time and collection spot before I pass it on.",
+        "speaker": "Pia",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Kira: Right, I’ll hold off until you confirm the time and place.",
+        "speaker": "Kira",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: Thanks, I’ll pass it along once I have the exact time and place.",
+        "speaker": "Pia",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Noah: Sorry, I’m still catching up — what’s the latest on the repair drive?",
+        "speaker": "Noah",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Kira: I’m just checking that it’s still definitely Saturday at 10 a.m. at the community center front entrance, right?",
+        "speaker": "Kira",
+        "listener": "Noah"
+      },
+      {
+        "round": 4,
+        "text": "Noah: Yeah, that sounds right to me — Saturday at 10 a.m. at the community center front entrance.",
+        "speaker": "Noah",
+        "listener": "Kira"
+      }
+    ]
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "design": "paired fixed per-agent event stream; independent unit = source schedule seed",
+  "n_seeds": 8,
+  "seeds": [
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48
+  ],
+  "conditions": {
+    "ga": {
+      "current_rate_ci95": [
+        0.15,
+        0.079,
+        0.2209
+      ],
+      "stale_rate_ci95": [
+        0.08,
+        0.0,
+        0.16
+      ],
+      "unknown_rate_ci95": [
+        0.77,
+        0.6709,
+        0.8691
+      ],
+      "per_seed_current_rate": [
+        0.32,
+        0.2,
+        0.16,
+        0.16,
+        0.08,
+        0.12,
+        0.12,
+        0.04
+      ]
+    },
+    "prov": {
+      "current_rate_ci95": [
+        0.41,
+        0.2814,
+        0.5386
+      ],
+      "stale_rate_ci95": [
+        0.19,
+        0.0044,
+        0.3756
+      ],
+      "unknown_rate_ci95": [
+        0.4,
+        0.2441,
+        0.5559
+      ],
+      "per_seed_current_rate": [
+        0.56,
+        0.52,
+        0.6,
+        0.48,
+        0.4,
+        0.2,
+        0.28,
+        0.24
+      ]
+    }
+  },
+  "paired_prov_minus_ga": {
+    "current_rate_ci95": [
+      0.26,
+      0.1654,
+      0.3546
+    ],
+    "net_current_minus_stale_rate_ci95": [
+      0.15,
+      -0.0591,
+      0.3591
+    ],
+    "per_seed_current_rate_difference": [
+      0.24000000000000005,
+      0.32,
+      0.43999999999999995,
+      0.31999999999999995,
+      0.32,
+      0.08000000000000002,
+      0.16000000000000003,
+      0.19999999999999998
+    ],
+    "prov_higher_seed_count": 8,
+    "ga_higher_seed_count": 0,
+    "ties_seed_count": 0,
+    "exact_two_sided_sign_test_p": 0.007812
+  },
+  "source_stream_model": "gpt-5.4-mini",
+  "source_stream_architecture": "ga",
+  "replay_model": "gpt-5.4-mini",
+  "stream_conditioning": "realized GA dialogue streams; both memories receive identical text and oracle controlled-task versions on unambiguous value mentions",
+  "scope_boundary": "conditional listener-pipeline effect with supplied task versions; not a provenance-extraction or authentication result",
+  "failure_policy": "no provider failure scored as unknown; incomplete conditions resume from checkpoints"
+}

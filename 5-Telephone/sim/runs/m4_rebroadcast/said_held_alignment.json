@@ -1,0 +1,384 @@
+{
+  "design": "SAID uses final-round value-bearing utterances; seed-level inference treats one schedule seed as the independent unit. Agent-level alignment is descriptive.",
+  "conditions": {
+    "baseline": {
+      "n_seeds": 5,
+      "pooled_current_utterances": 22,
+      "pooled_value_bearing_utterances": 35,
+      "pooled_said_current_share": 0.6285714285714286,
+      "seed_level_said_current_share_ci95": [
+        0.7661616161616162,
+        0.4567341376654011,
+        1.0755890946578313
+      ],
+      "per_seed_said_current_share": {
+        "41": 0.4166666666666667,
+        "42": 0.7777777777777778,
+        "43": 1.0,
+        "44": 1.0,
+        "45": 0.6363636363636364
+      },
+      "said_current_agent_alignment": {
+        "agents": 14,
+        "counts": {
+          "current": 10,
+          "stale": 2,
+          "unknown": 2
+        },
+        "current_rate": 0.7142857142857143
+      },
+      "said_value_agent_alignment": {
+        "agents": 24,
+        "counts": {
+          "current": 10,
+          "stale": 8,
+          "unknown": 6
+        },
+        "current_rate": 0.4166666666666667
+      }
+    },
+    "source": {
+      "n_seeds": 5,
+      "pooled_current_utterances": 27,
+      "pooled_value_bearing_utterances": 33,
+      "pooled_said_current_share": 0.8181818181818182,
+      "seed_level_said_current_share_ci95": [
+        0.8444444444444444,
+        0.5755488118384687,
+        1.1133400770504203
+      ],
+      "per_seed_said_current_share": {
+        "41": 1.0,
+        "42": 0.5555555555555556,
+        "43": 1.0,
+        "44": 0.6666666666666666,
+        "45": 1.0
+      },
+      "said_current_agent_alignment": {
+        "agents": 19,
+        "counts": {
+          "current": 12,
+          "stale": 0,
+          "unknown": 7
+        },
+        "current_rate": 0.631578947368421
+      },
+      "said_value_agent_alignment": {
+        "agents": 23,
+        "counts": {
+          "current": 12,
+          "stale": 2,
+          "unknown": 9
+        },
+        "current_rate": 0.5217391304347826
+      }
+    }
+  },
+  "paired_source_minus_baseline": {
+    "seeds": [
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "per_seed_difference": [
+      0.5833333333333333,
+      -0.2222222222222222,
+      0.0,
+      -0.33333333333333337,
+      0.36363636363636365
+    ],
+    "mean_difference_ci95": [
+      0.07828282828282826,
+      -0.4034799565807413,
+      0.5600456131463978
+    ]
+  },
+  "per_run": {
+    "baseline": [
+      {
+        "condition": "baseline",
+        "run": "run_000",
+        "schedule_seed": 41,
+        "final_round": 4,
+        "final_utterances": 68,
+        "current_utterances": 5,
+        "stale_utterances": 7,
+        "value_bearing_utterances": 12,
+        "said_current_share": 0.4166666666666667,
+        "agents_said_current": 3,
+        "agents_said_value": 9,
+        "held_among_agents_said_current": {
+          "current": 2,
+          "stale": 0,
+          "unknown": 1
+        },
+        "held_among_agents_not_said_current": {
+          "current": 0,
+          "stale": 10,
+          "unknown": 12
+        },
+        "held_among_agents_said_value": {
+          "current": 2,
+          "stale": 4,
+          "unknown": 3
+        }
+      },
+      {
+        "condition": "baseline",
+        "run": "run_001",
+        "schedule_seed": 42,
+        "final_round": 4,
+        "final_utterances": 72,
+        "current_utterances": 7,
+        "stale_utterances": 2,
+        "value_bearing_utterances": 9,
+        "said_current_share": 0.7777777777777778,
+        "agents_said_current": 4,
+        "agents_said_value": 6,
+        "held_among_agents_said_current": {
+          "current": 4,
+          "stale": 0,
+          "unknown": 0
+        },
+        "held_among_agents_not_said_current": {
+          "current": 1,
+          "stale": 2,
+          "unknown": 18
+        },
+        "held_among_agents_said_value": {
+          "current": 4,
+          "stale": 1,
+          "unknown": 1
+        }
+      },
+      {
+        "condition": "baseline",
+        "run": "run_002",
+        "schedule_seed": 43,
+        "final_round": 4,
+        "final_utterances": 70,
+        "current_utterances": 2,
+        "stale_utterances": 0,
+        "value_bearing_utterances": 2,
+        "said_current_share": 1.0,
+        "agents_said_current": 1,
+        "agents_said_value": 1,
+        "held_among_agents_said_current": {
+          "current": 1,
+          "stale": 0,
+          "unknown": 0
+        },
+        "held_among_agents_not_said_current": {
+          "current": 4,
+          "stale": 0,
+          "unknown": 20
+        },
+        "held_among_agents_said_value": {
+          "current": 1,
+          "stale": 0,
+          "unknown": 0
+        }
+      },
+      {
+        "condition": "baseline",
+        "run": "run_003",
+        "schedule_seed": 44,
+        "final_round": 4,
+        "final_utterances": 72,
+        "current_utterances": 1,
+        "stale_utterances": 0,
+        "value_bearing_utterances": 1,
+        "said_current_share": 1.0,
+        "agents_said_current": 1,
+        "agents_said_value": 1,
+        "held_among_agents_said_current": {
+          "current": 1,
+          "stale": 0,
+          "unknown": 0
+        },
+        "held_among_agents_not_said_current": {
+          "current": 0,
+          "stale": 0,
+          "unknown": 24
+        },
+        "held_among_agents_said_value": {
+          "current": 1,
+          "stale": 0,
+          "unknown": 0
+        }
+      },
+      {
+        "condition": "baseline",
+        "run": "run_004",
+        "schedule_seed": 45,
+        "final_round": 4,
+        "final_utterances": 72,
+        "current_utterances": 7,
+        "stale_utterances": 5,
+        "value_bearing_utterances": 11,
+        "said_current_share": 0.6363636363636364,
+        "agents_said_current": 5,
+        "agents_said_value": 7,
+        "held_among_agents_said_current": {
+          "current": 2,
+          "stale": 2,
+          "unknown": 1
+        },
+        "held_among_agents_not_said_current": {
+          "current": 0,
+          "stale": 1,
+          "unknown": 19
+        },
+        "held_among_agents_said_value": {
+          "current": 2,
+          "stale": 3,
+          "unknown": 2
+        }
+      }
+    ],
+    "source": [
+      {
+        "condition": "source",
+        "run": "run_000",
+        "schedule_seed": 41,
+        "final_round": 4,
+        "final_utterances": 69,
+        "current_utterances": 5,
+        "stale_utterances": 0,
+        "value_bearing_utterances": 5,
+        "said_current_share": 1.0,
+        "agents_said_current": 3,
+        "agents_said_value": 3,
+        "held_among_agents_said_current": {
+          "current": 3,
+          "stale": 0,
+          "unknown": 0
+        },
+        "held_among_agents_not_said_current": {
+          "current": 2,
+          "stale": 0,
+          "unknown": 20
+        },
+        "held_among_agents_said_value": {
+          "current": 3,
+          "stale": 0,
+          "unknown": 0
+        }
+      },
+      {
+        "condition": "source",
+        "run": "run_001",
+        "schedule_seed": 42,
+        "final_round": 4,
+        "final_utterances": 71,
+        "current_utterances": 5,
+        "stale_utterances": 4,
+        "value_bearing_utterances": 9,
+        "said_current_share": 0.5555555555555556,
+        "agents_said_current": 4,
+        "agents_said_value": 6,
+        "held_among_agents_said_current": {
+          "current": 1,
+          "stale": 0,
+          "unknown": 3
+        },
+        "held_among_agents_not_said_current": {
+          "current": 3,
+          "stale": 1,
+          "unknown": 17
+        },
+        "held_among_agents_said_value": {
+          "current": 1,
+          "stale": 1,
+          "unknown": 4
+        }
+      },
+      {
+        "condition": "source",
+        "run": "run_002",
+        "schedule_seed": 43,
+        "final_round": 4,
+        "final_utterances": 72,
+        "current_utterances": 5,
+        "stale_utterances": 0,
+        "value_bearing_utterances": 5,
+        "said_current_share": 1.0,
+        "agents_said_current": 4,
+        "agents_said_value": 4,
+        "held_among_agents_said_current": {
+          "current": 3,
+          "stale": 0,
+          "unknown": 1
+        },
+        "held_among_agents_not_said_current": {
+          "current": 1,
+          "stale": 0,
+          "unknown": 20
+        },
+        "held_among_agents_said_value": {
+          "current": 3,
+          "stale": 0,
+          "unknown": 1
+        }
+      },
+      {
+        "condition": "source",
+        "run": "run_003",
+        "schedule_seed": 44,
+        "final_round": 4,
+        "final_utterances": 72,
+        "current_utterances": 4,
+        "stale_utterances": 2,
+        "value_bearing_utterances": 6,
+        "said_current_share": 0.6666666666666666,
+        "agents_said_current": 3,
+        "agents_said_value": 5,
+        "held_among_agents_said_current": {
+          "current": 1,
+          "stale": 0,
+          "unknown": 2
+        },
+        "held_among_agents_not_said_current": {
+          "current": 1,
+          "stale": 2,
+          "unknown": 19
+        },
+        "held_among_agents_said_value": {
+          "current": 1,
+          "stale": 1,
+          "unknown": 3
+        }
+      },
+      {
+        "condition": "source",
+        "run": "run_004",
+        "schedule_seed": 45,
+        "final_round": 4,
+        "final_utterances": 72,
+        "current_utterances": 8,
+        "stale_utterances": 0,
+        "value_bearing_utterances": 8,
+        "said_current_share": 1.0,
+        "agents_said_current": 5,
+        "agents_said_value": 5,
+        "held_among_agents_said_current": {
+          "current": 4,
+          "stale": 0,
+          "unknown": 1
+        },
+        "held_among_agents_not_said_current": {
+          "current": 0,
+          "stale": 0,
+          "unknown": 20
+        },
+        "held_among_agents_said_value": {
+          "current": 4,
+          "stale": 0,
+          "unknown": 1
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,754 @@
+Using device: cuda
+
+Running dataset config:
+{'root_path': '/root/workspace/datasets', 'load_cache': False, 'load_pre_feat': False, 'search_hp': True, 'search_scale': [12, 10], 'search_step': [200, 20], 'init_beta': 1.879513971406686, 'init_alpha': 3.5400576819777356, 'dataset': 'eurosat', 'shots': 1, 'backbone': ['ViT-B/16'], 'lr': 0.001, 'augment_epoch': 10, 'train_epoch': 100, 'cache_dir': './caches/eurosat/seed3', 'feature_cache_dir': './caches/eurosat/shared_features'} 
+
+Run hyperparameters:
+{'batch_size': 16, 'lr': 0.002807101427696039, 'weight_decay': 2.5113348476076383e-05, 'mgt_num_layers': 3, 'mgt_num_heads': 16, 'transformer_num_layers': 3, 'transformer_nhead': 16, 'transformer_ff_multiplier': 2, 'transformer_activation': 'gelu', 'pooling_ratio': 0.5652983590283692, 'dropout_rate': 0.3968557394035709, 'train_epoch': 100, 'init_beta': 1.879513971406686, 'init_alpha': 3.5400576819777356, 'init_delta': 2.1000705432492848, 'lambda_teacher': 0.7334710618238361, 'focal_loss_gamma': 2.174921923867911, 'seed': 3, 'num_workers': 0, 'wandb_project': 'TOGA', 'wandb_mode': 'disabled', 'config': './configs/eurosat.yaml', 'shots': 1, 'dataset': 'eurosat', 'root_path': '/root/workspace/datasets'}
+Preparing dataset.
+Reading split from /root/workspace/datasets/eurosat/split_zhou_EuroSAT.json
+Creating a 1-shot dataset
+
+Getting textual features for graph nodes and CLIP classifier.
+
+Constructing cache model by few-shot visual features and labels.
+Loading existing support cache: ./caches/eurosat/seed3/keys_1shots.pt
+
+Loading visual features and labels from val set.
+Loading existing val features: ./caches/eurosat/shared_features/val_f.pt
+
+Loading visual features and labels from test set.
+Loading existing test features: ./caches/eurosat/shared_features/test_f.pt
+
+-------- Searching hyperparameters on the val set. --------
+
+**** Zero-shot CLIP val accuracy: 48.37. ****
+
+**** Tip-Adapter val accuracy: 56.35. ****
+
+New best setting, beta: 0.10, alpha: 0.10; accuracy: 48.39
+New best setting, beta: 0.10, alpha: 0.59; accuracy: 48.52
+New best setting, beta: 0.10, alpha: 1.09; accuracy: 48.72
+New best setting, beta: 0.10, alpha: 1.59; accuracy: 48.83
+New best setting, beta: 0.10, alpha: 2.08; accuracy: 49.00
+New best setting, beta: 0.10, alpha: 2.58; accuracy: 49.07
+New best setting, beta: 0.10, alpha: 3.07; accuracy: 49.22
+New best setting, beta: 0.10, alpha: 3.56; accuracy: 49.48
+New best setting, beta: 0.10, alpha: 4.55; accuracy: 49.59
+New best setting, beta: 0.10, alpha: 5.05; accuracy: 49.72
+New best setting, beta: 0.10, alpha: 5.54; accuracy: 49.76
+New best setting, beta: 0.10, alpha: 6.04; accuracy: 49.93
+New best setting, beta: 0.10, alpha: 6.54; accuracy: 50.22
+New best setting, beta: 0.10, alpha: 7.03; accuracy: 50.30
+New best setting, beta: 0.10, alpha: 7.52; accuracy: 50.39
+New best setting, beta: 0.10, alpha: 8.02; accuracy: 50.46
+New best setting, beta: 0.10, alpha: 8.52; accuracy: 50.57
+New best setting, beta: 0.10, alpha: 9.01; accuracy: 50.76
+New best setting, beta: 0.10, alpha: 9.50; accuracy: 51.04
+New best setting, beta: 0.16, alpha: 6.54; accuracy: 51.31
+New best setting, beta: 0.16, alpha: 7.03; accuracy: 51.59
+New best setting, beta: 0.16, alpha: 7.52; accuracy: 51.69
+New best setting, beta: 0.16, alpha: 8.02; accuracy: 51.85
+New best setting, beta: 0.16, alpha: 8.52; accuracy: 52.20
+New best setting, beta: 0.16, alpha: 9.01; accuracy: 52.44
+New best setting, beta: 0.16, alpha: 9.50; accuracy: 52.56
+New best setting, beta: 0.22, alpha: 7.03; accuracy: 52.57
+New best setting, beta: 0.22, alpha: 7.52; accuracy: 52.76
+New best setting, beta: 0.22, alpha: 8.02; accuracy: 52.91
+New best setting, beta: 0.22, alpha: 8.52; accuracy: 53.15
+New best setting, beta: 0.22, alpha: 9.01; accuracy: 53.28
+New best setting, beta: 0.22, alpha: 9.50; accuracy: 53.39
+New best setting, beta: 0.28, alpha: 7.52; accuracy: 53.43
+New best setting, beta: 0.28, alpha: 8.02; accuracy: 53.48
+New best setting, beta: 0.28, alpha: 8.52; accuracy: 53.74
+New best setting, beta: 0.28, alpha: 9.01; accuracy: 54.04
+New best setting, beta: 0.28, alpha: 9.50; accuracy: 54.31
+New best setting, beta: 0.34, alpha: 8.02; accuracy: 54.39
+New best setting, beta: 0.34, alpha: 8.52; accuracy: 54.57
+New best setting, beta: 0.34, alpha: 9.01; accuracy: 54.72
+New best setting, beta: 0.34, alpha: 9.50; accuracy: 54.91
+New best setting, beta: 0.40, alpha: 8.52; accuracy: 55.09
+New best setting, beta: 0.40, alpha: 9.01; accuracy: 55.35
+New best setting, beta: 0.40, alpha: 9.50; accuracy: 55.52
+New best setting, beta: 0.46, alpha: 8.52; accuracy: 55.65
+New best setting, beta: 0.46, alpha: 9.01; accuracy: 55.67
+New best setting, beta: 0.46, alpha: 9.50; accuracy: 55.70
+New best setting, beta: 0.52, alpha: 8.52; accuracy: 55.74
+New best setting, beta: 0.52, alpha: 9.01; accuracy: 55.80
+New best setting, beta: 0.52, alpha: 9.50; accuracy: 55.85
+New best setting, beta: 0.58, alpha: 8.02; accuracy: 55.91
+New best setting, beta: 0.58, alpha: 9.01; accuracy: 56.07
+New best setting, beta: 0.58, alpha: 9.50; accuracy: 56.13
+New best setting, beta: 0.64, alpha: 9.01; accuracy: 56.15
+New best setting, beta: 0.75, alpha: 9.50; accuracy: 56.26
+New best setting, beta: 0.87, alpha: 9.01; accuracy: 56.31
+New best setting, beta: 0.87, alpha: 9.50; accuracy: 56.50
+New best setting, beta: 0.93, alpha: 9.01; accuracy: 56.59
+New best setting, beta: 0.93, alpha: 9.50; accuracy: 56.81
+New best setting, beta: 0.99, alpha: 9.01; accuracy: 56.93
+New best setting, beta: 0.99, alpha: 9.50; accuracy: 57.44
+New best setting, beta: 1.05, alpha: 9.50; accuracy: 57.78
+New best setting, beta: 1.11, alpha: 9.50; accuracy: 57.98
+New best setting, beta: 1.17, alpha: 9.01; accuracy: 58.02
+New best setting, beta: 1.17, alpha: 9.50; accuracy: 58.33
+New best setting, beta: 1.23, alpha: 9.50; accuracy: 58.59
+New best setting, beta: 1.29, alpha: 9.50; accuracy: 59.04
+New best setting, beta: 1.35, alpha: 9.50; accuracy: 59.33
+New best setting, beta: 1.41, alpha: 9.50; accuracy: 59.69
+New best setting, beta: 1.47, alpha: 9.01; accuracy: 59.74
+New best setting, beta: 1.47, alpha: 9.50; accuracy: 60.06
+New best setting, beta: 1.53, alpha: 9.50; accuracy: 60.11
+New best setting, beta: 1.59, alpha: 9.50; accuracy: 60.46
+New best setting, beta: 1.65, alpha: 9.50; accuracy: 60.61
+New best setting, beta: 1.71, alpha: 9.50; accuracy: 60.81
+New best setting, beta: 1.77, alpha: 9.50; accuracy: 61.06
+New best setting, beta: 1.83, alpha: 9.50; accuracy: 61.19
+New best setting, beta: 1.89, alpha: 9.50; accuracy: 61.26
+New best setting, beta: 2.00, alpha: 9.01; accuracy: 61.28
+New best setting, beta: 2.00, alpha: 9.50; accuracy: 61.35
+New best setting, beta: 2.18, alpha: 9.01; accuracy: 61.39
+New best setting, beta: 2.36, alpha: 8.02; accuracy: 61.41
+New best setting, beta: 2.42, alpha: 9.50; accuracy: 61.43
+New best setting, beta: 2.48, alpha: 8.02; accuracy: 61.46
+New best setting, beta: 2.48, alpha: 9.50; accuracy: 61.54
+New best setting, beta: 2.72, alpha: 9.01; accuracy: 61.57
+New best setting, beta: 2.90, alpha: 8.52; accuracy: 61.63
+New best setting, beta: 3.25, alpha: 8.02; accuracy: 61.65
+New best setting, beta: 3.49, alpha: 7.52; accuracy: 61.67
+New best setting, beta: 3.79, alpha: 6.04; accuracy: 61.69
+New best setting, beta: 3.85, alpha: 5.54; accuracy: 61.74
+New best setting, beta: 3.91, alpha: 5.54; accuracy: 61.80
+New best setting, beta: 4.21, alpha: 5.54; accuracy: 61.81
+New best setting, beta: 4.32, alpha: 5.54; accuracy: 61.83
+New best setting, beta: 4.74, alpha: 5.05; accuracy: 61.87
+New best setting, beta: 4.80, alpha: 5.05; accuracy: 61.89
+New best setting, beta: 5.40, alpha: 5.05; accuracy: 61.94
+New best setting, beta: 5.75, alpha: 5.05; accuracy: 61.96
+New best setting, beta: 5.93, alpha: 4.55; accuracy: 61.98
+New best setting, beta: 5.99, alpha: 5.54; accuracy: 62.00
+New best setting, beta: 6.35, alpha: 4.55; accuracy: 62.07
+New best setting, beta: 6.47, alpha: 4.55; accuracy: 62.09
+New best setting, beta: 6.64, alpha: 4.55; accuracy: 62.15
+New best setting, beta: 6.76, alpha: 4.55; accuracy: 62.17
+New best setting, beta: 6.94, alpha: 4.06; accuracy: 62.22
+New best setting, beta: 7.00, alpha: 4.06; accuracy: 62.24
+New best setting, beta: 7.30, alpha: 4.55; accuracy: 62.26
+New best setting, beta: 7.48, alpha: 4.55; accuracy: 62.28
+New best setting, beta: 7.54, alpha: 4.55; accuracy: 62.30
+New best setting, beta: 7.60, alpha: 4.55; accuracy: 62.31
+New best setting, beta: 7.72, alpha: 4.06; accuracy: 62.33
+New best setting, beta: 7.78, alpha: 4.06; accuracy: 62.35
+New best setting, beta: 7.83, alpha: 4.06; accuracy: 62.39
+New best setting, beta: 8.01, alpha: 3.56; accuracy: 62.43
+New best setting, beta: 8.07, alpha: 3.56; accuracy: 62.46
+New best setting, beta: 8.13, alpha: 3.56; accuracy: 62.48
+New best setting, beta: 8.25, alpha: 3.56; accuracy: 62.54
+New best setting, beta: 8.37, alpha: 3.56; accuracy: 62.56
+New best setting, beta: 8.55, alpha: 3.56; accuracy: 62.57
+New best setting, beta: 8.61, alpha: 3.56; accuracy: 62.59
+New best setting, beta: 8.67, alpha: 3.56; accuracy: 62.63
+New best setting, beta: 8.73, alpha: 3.56; accuracy: 62.67
+New best setting, beta: 8.79, alpha: 3.56; accuracy: 62.69
+New best setting, beta: 9.68, alpha: 3.56; accuracy: 62.70
+New best setting, beta: 9.74, alpha: 3.56; accuracy: 62.76
+New best setting, beta: 9.80, alpha: 3.56; accuracy: 62.80
+New best setting, beta: 9.86, alpha: 3.56; accuracy: 62.81
+New best setting, beta: 10.21, alpha: 3.56; accuracy: 62.83
+New best setting, beta: 10.27, alpha: 3.56; accuracy: 62.85
+New best setting, beta: 10.33, alpha: 3.56; accuracy: 62.87
+New best setting, beta: 10.51, alpha: 3.56; accuracy: 62.91
+New best setting, beta: 10.57, alpha: 3.56; accuracy: 62.93
+New best setting, beta: 10.69, alpha: 3.56; accuracy: 62.96
+New best setting, beta: 10.81, alpha: 3.56; accuracy: 62.98
+New best setting, beta: 11.05, alpha: 3.56; accuracy: 63.00
+New best setting, beta: 11.64, alpha: 3.56; accuracy: 63.09
+New best setting, beta: 11.70, alpha: 3.56; accuracy: 63.11
+New best setting, beta: 11.76, alpha: 3.56; accuracy: 63.19
+New best setting, beta: 11.88, alpha: 3.56; accuracy: 63.20
+New best setting, beta: 11.94, alpha: 3.56; accuracy: 63.22
+
+After searching, the best accuracy: 63.22.
+
+
+-------- Evaluating on the test set. --------
+
+**** Zero-shot CLIP test accuracy: 48.35. ****
+
+**** Tip-Adapter test accuracy: 63.64. ****
+
+Train Epoch: 0 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:07<00:00,  7.75s/it]100%|██████████| 1/1 [00:07<00:00,  7.76s/it]
+LR: 0.002806, Acc: 0.3000 (3.0/10), Loss: 11.4154
+**** TOGA student validation accuracy: 56.69. ****
+
+Train Epoch: 1 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.52s/it]100%|██████████| 1/1 [00:05<00:00,  5.52s/it]
+LR: 0.002804, Acc: 0.1000 (1.0/10), Loss: 16.4041
+**** TOGA student validation accuracy: 58.22. ****
+
+Train Epoch: 2 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.98s/it]100%|██████████| 1/1 [00:05<00:00,  5.98s/it]
+LR: 0.002801, Acc: 0.0000 (0.0/10), Loss: 12.9860
+**** TOGA student validation accuracy: 59.65. ****
+
+Train Epoch: 3 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.45s/it]100%|██████████| 1/1 [00:04<00:00,  4.45s/it]
+LR: 0.002796, Acc: 0.1000 (1.0/10), Loss: 14.1322
+**** TOGA student validation accuracy: 60.70. ****
+
+Train Epoch: 4 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.01s/it]100%|██████████| 1/1 [00:05<00:00,  5.01s/it]
+LR: 0.002790, Acc: 0.1000 (1.0/10), Loss: 9.2610
+**** TOGA student validation accuracy: 61.22. ****
+
+Train Epoch: 5 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.57s/it]100%|██████████| 1/1 [00:06<00:00,  6.57s/it]
+LR: 0.002782, Acc: 0.4000 (4.0/10), Loss: 7.8323
+**** TOGA student validation accuracy: 61.65. ****
+
+Train Epoch: 6 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.84s/it]100%|██████████| 1/1 [00:05<00:00,  5.84s/it]
+LR: 0.002773, Acc: 0.3000 (3.0/10), Loss: 7.3126
+**** TOGA student validation accuracy: 62.15. ****
+
+Train Epoch: 7 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.10s/it]100%|██████████| 1/1 [00:04<00:00,  4.10s/it]
+LR: 0.002763, Acc: 0.3000 (3.0/10), Loss: 5.4349
+**** TOGA student validation accuracy: 63.04. ****
+
+Train Epoch: 8 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.17s/it]100%|██████████| 1/1 [00:06<00:00,  6.18s/it]
+LR: 0.002751, Acc: 0.2000 (2.0/10), Loss: 5.2682
+**** TOGA student validation accuracy: 63.65. ****
+
+Train Epoch: 9 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.99s/it]100%|██████████| 1/1 [00:05<00:00,  5.99s/it]
+LR: 0.002738, Acc: 0.4000 (4.0/10), Loss: 6.1437
+**** TOGA student validation accuracy: 64.17. ****
+
+Train Epoch: 10 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.93s/it]100%|██████████| 1/1 [00:05<00:00,  5.93s/it]
+LR: 0.002724, Acc: 0.2000 (2.0/10), Loss: 6.0114
+**** TOGA student validation accuracy: 64.74. ****
+
+Train Epoch: 11 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.16s/it]100%|██████████| 1/1 [00:04<00:00,  4.16s/it]
+LR: 0.002709, Acc: 0.3000 (3.0/10), Loss: 6.3505
+**** TOGA student validation accuracy: 64.89. ****
+
+Train Epoch: 12 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.17s/it]100%|██████████| 1/1 [00:05<00:00,  5.17s/it]
+LR: 0.002692, Acc: 0.2000 (2.0/10), Loss: 7.0636
+**** TOGA student validation accuracy: 64.98. ****
+
+Train Epoch: 13 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.25s/it]100%|██████████| 1/1 [00:06<00:00,  6.25s/it]
+LR: 0.002674, Acc: 0.3000 (3.0/10), Loss: 6.7484
+**** TOGA student validation accuracy: 65.04. ****
+
+Train Epoch: 14 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.76s/it]100%|██████████| 1/1 [00:05<00:00,  5.76s/it]
+LR: 0.002654, Acc: 0.2000 (2.0/10), Loss: 4.6710
+**** TOGA student validation accuracy: 65.44. ****
+
+Train Epoch: 15 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.54s/it]100%|██████████| 1/1 [00:05<00:00,  5.54s/it]
+LR: 0.002633, Acc: 0.4000 (4.0/10), Loss: 5.0328
+**** TOGA student validation accuracy: 65.39. ****
+
+Train Epoch: 16 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.56s/it]100%|██████████| 1/1 [00:04<00:00,  4.56s/it]
+LR: 0.002612, Acc: 0.5000 (5.0/10), Loss: 4.8588
+**** TOGA student validation accuracy: 65.39. ****
+
+Train Epoch: 17 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.42s/it]100%|██████████| 1/1 [00:06<00:00,  6.42s/it]
+LR: 0.002589, Acc: 0.5000 (5.0/10), Loss: 3.4661
+**** TOGA student validation accuracy: 65.46. ****
+
+Train Epoch: 18 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.26s/it]100%|██████████| 1/1 [00:05<00:00,  5.26s/it]
+LR: 0.002564, Acc: 0.8000 (8.0/10), Loss: 1.6794
+**** TOGA student validation accuracy: 65.31. ****
+
+Train Epoch: 19 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.19s/it]100%|██████████| 1/1 [00:06<00:00,  6.19s/it]
+LR: 0.002539, Acc: 0.7000 (7.0/10), Loss: 3.4085
+**** TOGA student validation accuracy: 65.28. ****
+
+Train Epoch: 20 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.17s/it]100%|██████████| 1/1 [00:04<00:00,  4.17s/it]
+LR: 0.002513, Acc: 0.6000 (6.0/10), Loss: 4.1370
+**** TOGA student validation accuracy: 65.19. ****
+
+Train Epoch: 21 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.65s/it]100%|██████████| 1/1 [00:05<00:00,  5.65s/it]
+LR: 0.002485, Acc: 0.7000 (7.0/10), Loss: 3.7193
+**** TOGA student validation accuracy: 65.22. ****
+
+Train Epoch: 22 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.79s/it]100%|██████████| 1/1 [00:05<00:00,  5.79s/it]
+LR: 0.002456, Acc: 0.8000 (8.0/10), Loss: 2.0977
+**** TOGA student validation accuracy: 65.04. ****
+
+Train Epoch: 23 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.26s/it]100%|██████████| 1/1 [00:06<00:00,  6.26s/it]
+LR: 0.002427, Acc: 0.7000 (7.0/10), Loss: 2.4672
+**** TOGA student validation accuracy: 65.15. ****
+
+Train Epoch: 24 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.15s/it]100%|██████████| 1/1 [00:05<00:00,  5.15s/it]
+LR: 0.002396, Acc: 0.6000 (6.0/10), Loss: 3.7973
+**** TOGA student validation accuracy: 64.70. ****
+
+Train Epoch: 25 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.84s/it]100%|██████████| 1/1 [00:04<00:00,  4.84s/it]
+LR: 0.002364, Acc: 0.7000 (7.0/10), Loss: 3.0985
+**** TOGA student validation accuracy: 64.83. ****
+
+Train Epoch: 26 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:03<00:00,  3.39s/it]100%|██████████| 1/1 [00:03<00:00,  3.39s/it]
+LR: 0.002332, Acc: 0.7000 (7.0/10), Loss: 2.1511
+**** TOGA student validation accuracy: 65.19. ****
+
+Train Epoch: 27 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:01<00:00,  1.66s/it]100%|██████████| 1/1 [00:01<00:00,  1.66s/it]
+LR: 0.002298, Acc: 0.8000 (8.0/10), Loss: 2.8391
+**** TOGA student validation accuracy: 65.46. ****
+
+Train Epoch: 28 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:01<00:00,  1.03s/it]100%|██████████| 1/1 [00:01<00:00,  1.03s/it]
+LR: 0.002264, Acc: 0.7000 (7.0/10), Loss: 1.9205
+**** TOGA student validation accuracy: 65.41. ****
+
+Train Epoch: 29 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:01<00:00,  1.20s/it]100%|██████████| 1/1 [00:01<00:00,  1.20s/it]
+LR: 0.002229, Acc: 0.8000 (8.0/10), Loss: 2.2474
+**** TOGA student validation accuracy: 65.50. ****
+
+Train Epoch: 30 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:02<00:00,  2.98s/it]100%|██████████| 1/1 [00:02<00:00,  2.98s/it]
+LR: 0.002192, Acc: 0.8000 (8.0/10), Loss: 1.8925
+**** TOGA student validation accuracy: 65.54. ****
+
+Train Epoch: 31 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:02<00:00,  2.60s/it]100%|██████████| 1/1 [00:02<00:00,  2.60s/it]
+LR: 0.002156, Acc: 0.9000 (9.0/10), Loss: 1.9405
+**** TOGA student validation accuracy: 65.65. ****
+
+Train Epoch: 32 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:02<00:00,  2.24s/it]100%|██████████| 1/1 [00:02<00:00,  2.24s/it]
+LR: 0.002118, Acc: 0.9000 (9.0/10), Loss: 2.0102
+**** TOGA student validation accuracy: 65.70. ****
+
+Train Epoch: 33 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.07s/it]100%|██████████| 1/1 [00:04<00:00,  4.07s/it]
+LR: 0.002080, Acc: 1.0000 (10.0/10), Loss: 1.6488
+**** TOGA student validation accuracy: 65.31. ****
+
+Train Epoch: 34 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:03<00:00,  3.11s/it]100%|██████████| 1/1 [00:03<00:00,  3.11s/it]
+LR: 0.002041, Acc: 0.9000 (9.0/10), Loss: 1.9669
+**** TOGA student validation accuracy: 65.09. ****
+
+Train Epoch: 35 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:03<00:00,  3.45s/it]100%|██████████| 1/1 [00:03<00:00,  3.45s/it]
+LR: 0.002001, Acc: 0.8000 (8.0/10), Loss: 1.9440
+**** TOGA student validation accuracy: 64.50. ****
+
+Train Epoch: 36 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:01<00:00,  1.65s/it]100%|██████████| 1/1 [00:01<00:00,  1.65s/it]
+LR: 0.001961, Acc: 0.7000 (7.0/10), Loss: 2.4723
+**** TOGA student validation accuracy: 63.81. ****
+
+Train Epoch: 37 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.85s/it]100%|██████████| 1/1 [00:04<00:00,  4.85s/it]
+LR: 0.001920, Acc: 0.7000 (7.0/10), Loss: 3.2256
+**** TOGA student validation accuracy: 63.59. ****
+
+Train Epoch: 38 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.32s/it]100%|██████████| 1/1 [00:05<00:00,  5.32s/it]
+LR: 0.001879, Acc: 1.0000 (10.0/10), Loss: 1.8598
+**** TOGA student validation accuracy: 63.30. ****
+
+Train Epoch: 39 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.58s/it]100%|██████████| 1/1 [00:06<00:00,  6.58s/it]
+LR: 0.001837, Acc: 1.0000 (10.0/10), Loss: 1.6140
+**** TOGA student validation accuracy: 63.13. ****
+
+Train Epoch: 40 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.31s/it]100%|██████████| 1/1 [00:04<00:00,  4.31s/it]
+LR: 0.001795, Acc: 1.0000 (10.0/10), Loss: 1.4743
+**** TOGA student validation accuracy: 62.85. ****
+
+Train Epoch: 41 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.60s/it]100%|██████████| 1/1 [00:06<00:00,  6.60s/it]
+LR: 0.001753, Acc: 0.7000 (7.0/10), Loss: 2.6161
+**** TOGA student validation accuracy: 62.46. ****
+
+Train Epoch: 42 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.71s/it]100%|██████████| 1/1 [00:05<00:00,  5.71s/it]
+LR: 0.001710, Acc: 1.0000 (10.0/10), Loss: 1.8245
+**** TOGA student validation accuracy: 62.30. ****
+
+Train Epoch: 43 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.26s/it]100%|██████████| 1/1 [00:04<00:00,  4.26s/it]
+LR: 0.001667, Acc: 0.9000 (9.0/10), Loss: 1.9545
+**** TOGA student validation accuracy: 62.06. ****
+
+Train Epoch: 44 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:03<00:00,  3.15s/it]100%|██████████| 1/1 [00:03<00:00,  3.15s/it]
+LR: 0.001623, Acc: 0.9000 (9.0/10), Loss: 2.2991
+**** TOGA student validation accuracy: 61.91. ****
+
+Train Epoch: 45 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.74s/it]100%|██████████| 1/1 [00:04<00:00,  4.74s/it]
+LR: 0.001579, Acc: 1.0000 (10.0/10), Loss: 1.6424
+**** TOGA student validation accuracy: 62.09. ****
+
+Train Epoch: 46 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.00s/it]100%|██████████| 1/1 [00:06<00:00,  6.00s/it]
+LR: 0.001536, Acc: 1.0000 (10.0/10), Loss: 1.7100
+**** TOGA student validation accuracy: 62.04. ****
+
+Train Epoch: 47 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.80s/it]100%|██████████| 1/1 [00:04<00:00,  4.80s/it]
+LR: 0.001492, Acc: 0.9000 (9.0/10), Loss: 1.7539
+**** TOGA student validation accuracy: 62.02. ****
+
+Train Epoch: 48 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:01<00:00,  1.06s/it]100%|██████████| 1/1 [00:01<00:00,  1.06s/it]
+LR: 0.001448, Acc: 1.0000 (10.0/10), Loss: 1.5671
+**** TOGA student validation accuracy: 62.33. ****
+
+Train Epoch: 49 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.10s/it]100%|██████████| 1/1 [00:04<00:00,  4.10s/it]
+LR: 0.001404, Acc: 1.0000 (10.0/10), Loss: 1.9935
+**** TOGA student validation accuracy: 62.41. ****
+
+Train Epoch: 50 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.90s/it]100%|██████████| 1/1 [00:04<00:00,  4.90s/it]
+LR: 0.001359, Acc: 1.0000 (10.0/10), Loss: 1.4272
+**** TOGA student validation accuracy: 62.54. ****
+
+Train Epoch: 51 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.82s/it]100%|██████████| 1/1 [00:04<00:00,  4.82s/it]
+LR: 0.001315, Acc: 1.0000 (10.0/10), Loss: 1.8278
+**** TOGA student validation accuracy: 62.70. ****
+
+Train Epoch: 52 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  5.00s/it]100%|██████████| 1/1 [00:04<00:00,  5.00s/it]
+LR: 0.001271, Acc: 1.0000 (10.0/10), Loss: 1.4777
+**** TOGA student validation accuracy: 62.70. ****
+
+Train Epoch: 53 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:02<00:00,  2.80s/it]100%|██████████| 1/1 [00:02<00:00,  2.80s/it]
+LR: 0.001228, Acc: 1.0000 (10.0/10), Loss: 1.6079
+**** TOGA student validation accuracy: 62.69. ****
+
+Train Epoch: 54 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:03<00:00,  3.99s/it]100%|██████████| 1/1 [00:03<00:00,  3.99s/it]
+LR: 0.001184, Acc: 1.0000 (10.0/10), Loss: 1.2911
+**** TOGA student validation accuracy: 62.69. ****
+
+Train Epoch: 55 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.42s/it]100%|██████████| 1/1 [00:06<00:00,  6.42s/it]
+LR: 0.001141, Acc: 1.0000 (10.0/10), Loss: 1.4344
+**** TOGA student validation accuracy: 62.93. ****
+
+Train Epoch: 56 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.61s/it]100%|██████████| 1/1 [00:05<00:00,  5.62s/it]
+LR: 0.001097, Acc: 0.9000 (9.0/10), Loss: 2.4058
+**** TOGA student validation accuracy: 63.02. ****
+
+Train Epoch: 57 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.67s/it]100%|██████████| 1/1 [00:05<00:00,  5.67s/it]
+LR: 0.001055, Acc: 0.9000 (9.0/10), Loss: 1.6389
+**** TOGA student validation accuracy: 63.11. ****
+
+Train Epoch: 58 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.54s/it]100%|██████████| 1/1 [00:05<00:00,  5.54s/it]
+LR: 0.001012, Acc: 0.9000 (9.0/10), Loss: 2.0089
+**** TOGA student validation accuracy: 63.02. ****
+
+Train Epoch: 59 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.42s/it]100%|██████████| 1/1 [00:06<00:00,  6.42s/it]
+LR: 0.000970, Acc: 0.9000 (9.0/10), Loss: 2.0575
+**** TOGA student validation accuracy: 62.89. ****
+
+Train Epoch: 60 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.47s/it]100%|██████████| 1/1 [00:05<00:00,  5.47s/it]
+LR: 0.000928, Acc: 1.0000 (10.0/10), Loss: 1.6081
+**** TOGA student validation accuracy: 62.80. ****
+
+Train Epoch: 61 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.84s/it]100%|██████████| 1/1 [00:06<00:00,  6.84s/it]
+LR: 0.000887, Acc: 1.0000 (10.0/10), Loss: 1.5705
+**** TOGA student validation accuracy: 62.70. ****
+
+Train Epoch: 62 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.69s/it]100%|██████████| 1/1 [00:05<00:00,  5.69s/it]
+LR: 0.000846, Acc: 1.0000 (10.0/10), Loss: 1.6811
+**** TOGA student validation accuracy: 62.59. ****
+
+Train Epoch: 63 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.39s/it]100%|██████████| 1/1 [00:05<00:00,  5.39s/it]
+LR: 0.000806, Acc: 0.9000 (9.0/10), Loss: 1.9632
+**** TOGA student validation accuracy: 62.67. ****
+
+Train Epoch: 64 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.09s/it]100%|██████████| 1/1 [00:06<00:00,  6.09s/it]
+LR: 0.000766, Acc: 1.0000 (10.0/10), Loss: 1.2013
+**** TOGA student validation accuracy: 62.65. ****
+
+Train Epoch: 65 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.41s/it]100%|██████████| 1/1 [00:04<00:00,  4.42s/it]
+LR: 0.000727, Acc: 0.9000 (9.0/10), Loss: 1.5889
+**** TOGA student validation accuracy: 62.67. ****
+
+Train Epoch: 66 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.55s/it]100%|██████████| 1/1 [00:05<00:00,  5.55s/it]
+LR: 0.000689, Acc: 1.0000 (10.0/10), Loss: 1.5522
+**** TOGA student validation accuracy: 62.69. ****
+
+Train Epoch: 67 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.14s/it]100%|██████████| 1/1 [00:06<00:00,  6.14s/it]
+LR: 0.000651, Acc: 0.9000 (9.0/10), Loss: 1.4650
+**** TOGA student validation accuracy: 62.69. ****
+
+Train Epoch: 68 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.49s/it]100%|██████████| 1/1 [00:04<00:00,  4.49s/it]
+LR: 0.000615, Acc: 1.0000 (10.0/10), Loss: 1.5262
+**** TOGA student validation accuracy: 62.63. ****
+
+Train Epoch: 69 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.45s/it]100%|██████████| 1/1 [00:06<00:00,  6.45s/it]
+LR: 0.000579, Acc: 0.9000 (9.0/10), Loss: 2.1909
+**** TOGA student validation accuracy: 62.61. ****
+
+Train Epoch: 70 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.16s/it]100%|██████████| 1/1 [00:05<00:00,  5.16s/it]
+LR: 0.000543, Acc: 1.0000 (10.0/10), Loss: 1.4537
+**** TOGA student validation accuracy: 62.56. ****
+
+Train Epoch: 71 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:07<00:00,  7.44s/it]100%|██████████| 1/1 [00:07<00:00,  7.44s/it]
+LR: 0.000509, Acc: 1.0000 (10.0/10), Loss: 1.5738
+**** TOGA student validation accuracy: 62.57. ****
+
+Train Epoch: 72 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.45s/it]100%|██████████| 1/1 [00:06<00:00,  6.45s/it]
+LR: 0.000475, Acc: 0.9000 (9.0/10), Loss: 1.9362
+**** TOGA student validation accuracy: 62.57. ****
+
+Train Epoch: 73 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.88s/it]100%|██████████| 1/1 [00:04<00:00,  4.88s/it]
+LR: 0.000443, Acc: 0.9000 (9.0/10), Loss: 1.8267
+**** TOGA student validation accuracy: 62.48. ****
+
+Train Epoch: 74 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.06s/it]100%|██████████| 1/1 [00:06<00:00,  6.06s/it]
+LR: 0.000411, Acc: 1.0000 (10.0/10), Loss: 2.0784
+**** TOGA student validation accuracy: 62.44. ****
+
+Train Epoch: 75 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.77s/it]100%|██████████| 1/1 [00:06<00:00,  6.77s/it]
+LR: 0.000380, Acc: 1.0000 (10.0/10), Loss: 1.6691
+**** TOGA student validation accuracy: 62.50. ****
+
+Train Epoch: 76 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.13s/it]100%|██████████| 1/1 [00:06<00:00,  6.13s/it]
+LR: 0.000351, Acc: 1.0000 (10.0/10), Loss: 1.6478
+**** TOGA student validation accuracy: 62.46. ****
+
+Train Epoch: 77 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:07<00:00,  7.03s/it]100%|██████████| 1/1 [00:07<00:00,  7.03s/it]
+LR: 0.000322, Acc: 1.0000 (10.0/10), Loss: 1.4097
+**** TOGA student validation accuracy: 62.48. ****
+
+Train Epoch: 78 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:02<00:00,  2.30s/it]100%|██████████| 1/1 [00:02<00:00,  2.30s/it]
+LR: 0.000295, Acc: 1.0000 (10.0/10), Loss: 1.6165
+**** TOGA student validation accuracy: 62.50. ****
+
+Train Epoch: 79 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.87s/it]100%|██████████| 1/1 [00:04<00:00,  4.87s/it]
+LR: 0.000268, Acc: 1.0000 (10.0/10), Loss: 1.5011
+**** TOGA student validation accuracy: 62.46. ****
+
+Train Epoch: 80 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:02<00:00,  2.84s/it]100%|██████████| 1/1 [00:02<00:00,  2.84s/it]
+LR: 0.000243, Acc: 1.0000 (10.0/10), Loss: 1.4956
+**** TOGA student validation accuracy: 62.37. ****
+
+Train Epoch: 81 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:03<00:00,  3.85s/it]100%|██████████| 1/1 [00:03<00:00,  3.85s/it]
+LR: 0.000218, Acc: 1.0000 (10.0/10), Loss: 1.5270
+**** TOGA student validation accuracy: 62.39. ****
+
+Train Epoch: 82 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.28s/it]100%|██████████| 1/1 [00:04<00:00,  4.28s/it]
+LR: 0.000195, Acc: 1.0000 (10.0/10), Loss: 1.3049
+**** TOGA student validation accuracy: 62.39. ****
+
+Train Epoch: 83 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.07s/it]100%|██████████| 1/1 [00:04<00:00,  4.08s/it]
+LR: 0.000174, Acc: 1.0000 (10.0/10), Loss: 1.2244
+**** TOGA student validation accuracy: 62.41. ****
+
+Train Epoch: 84 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:03<00:00,  3.68s/it]100%|██████████| 1/1 [00:03<00:00,  3.68s/it]
+LR: 0.000153, Acc: 1.0000 (10.0/10), Loss: 1.3316
+**** TOGA student validation accuracy: 62.41. ****
+
+Train Epoch: 85 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.92s/it]100%|██████████| 1/1 [00:04<00:00,  4.92s/it]
+LR: 0.000134, Acc: 1.0000 (10.0/10), Loss: 1.4158
+**** TOGA student validation accuracy: 62.39. ****
+
+Train Epoch: 86 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.96s/it]100%|██████████| 1/1 [00:05<00:00,  5.96s/it]
+LR: 0.000115, Acc: 0.9000 (9.0/10), Loss: 1.5949
+**** TOGA student validation accuracy: 62.37. ****
+
+Train Epoch: 87 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.26s/it]100%|██████████| 1/1 [00:05<00:00,  5.26s/it]
+LR: 0.000099, Acc: 1.0000 (10.0/10), Loss: 1.6556
+**** TOGA student validation accuracy: 62.37. ****
+
+Train Epoch: 88 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.41s/it]100%|██████████| 1/1 [00:06<00:00,  6.41s/it]
+LR: 0.000083, Acc: 0.9000 (9.0/10), Loss: 1.6203
+**** TOGA student validation accuracy: 62.41. ****
+
+Train Epoch: 89 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.45s/it]100%|██████████| 1/1 [00:04<00:00,  4.45s/it]
+LR: 0.000069, Acc: 1.0000 (10.0/10), Loss: 1.6975
+**** TOGA student validation accuracy: 62.37. ****
+
+Train Epoch: 90 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.71s/it]100%|██████████| 1/1 [00:05<00:00,  5.71s/it]
+LR: 0.000056, Acc: 1.0000 (10.0/10), Loss: 1.6411
+**** TOGA student validation accuracy: 62.39. ****
+
+Train Epoch: 91 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.25s/it]100%|██████████| 1/1 [00:05<00:00,  5.25s/it]
+LR: 0.000044, Acc: 0.9000 (9.0/10), Loss: 2.0071
+**** TOGA student validation accuracy: 62.39. ****
+
+Train Epoch: 92 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:04<00:00,  4.79s/it]100%|██████████| 1/1 [00:04<00:00,  4.79s/it]
+LR: 0.000034, Acc: 1.0000 (10.0/10), Loss: 1.1629
+**** TOGA student validation accuracy: 62.41. ****
+
+Train Epoch: 93 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.65s/it]100%|██████████| 1/1 [00:06<00:00,  6.65s/it]
+LR: 0.000025, Acc: 1.0000 (10.0/10), Loss: 1.4592
+**** TOGA student validation accuracy: 62.41. ****
+
+Train Epoch: 94 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.72s/it]100%|██████████| 1/1 [00:05<00:00,  5.72s/it]
+LR: 0.000017, Acc: 1.0000 (10.0/10), Loss: 1.7845
+**** TOGA student validation accuracy: 62.41. ****
+
+Train Epoch: 95 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.23s/it]100%|██████████| 1/1 [00:06<00:00,  6.23s/it]
+LR: 0.000011, Acc: 1.0000 (10.0/10), Loss: 1.4622
+**** TOGA student validation accuracy: 62.41. ****
+
+Train Epoch: 96 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.84s/it]100%|██████████| 1/1 [00:05<00:00,  5.84s/it]
+LR: 0.000006, Acc: 1.0000 (10.0/10), Loss: 1.4630
+**** TOGA student validation accuracy: 62.41. ****
+
+Train Epoch: 97 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.07s/it]100%|██████████| 1/1 [00:06<00:00,  6.07s/it]
+LR: 0.000003, Acc: 1.0000 (10.0/10), Loss: 1.3663
+**** TOGA student validation accuracy: 62.41. ****
+
+Train Epoch: 98 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.24s/it]100%|██████████| 1/1 [00:05<00:00,  5.24s/it]
+LR: 0.000001, Acc: 1.0000 (10.0/10), Loss: 1.3017
+**** TOGA student validation accuracy: 62.41. ****
+
+Train Epoch: 99 / 100
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.63s/it]100%|██████████| 1/1 [00:05<00:00,  5.63s/it]
+LR: 0.000000, Acc: 1.0000 (10.0/10), Loss: 1.6901
+**** TOGA student validation accuracy: 62.41. ****
+
+**** After TOGA fine-tuning, best validation accuracy: 65.70, at epoch: 32. ****
+
+
+-------- Searching hyperparameters on the val set. --------
+New best setting, beta: 0.10, alpha: 0.10; accuracy: 48.48
+New best setting, beta: 0.10, alpha: 0.59; accuracy: 48.98
+New best setting, beta: 0.10, alpha: 1.09; accuracy: 49.50
+New best setting, beta: 0.10, alpha: 1.59; accuracy: 49.94
+New best setting, beta: 0.10, alpha: 2.08; accuracy: 50.46
+New best setting, beta: 0.10, alpha: 2.58; accuracy: 51.00
+New best setting, beta: 0.10, alpha: 3.07; accuracy: 51.48
+New best setting, beta: 0.10, alpha: 3.56; accuracy: 51.96
+New best setting, beta: 0.10, alpha: 4.06; accuracy: 52.52
+New best setting, beta: 0.10, alpha: 4.55; accuracy: 53.00
+New best setting, beta: 0.10, alpha: 5.05; accuracy: 53.48
+New best setting, beta: 0.10, alpha: 5.54; accuracy: 53.87
+New best setting, beta: 0.10, alpha: 6.04; accuracy: 54.17
+New best setting, beta: 0.10, alpha: 6.54; accuracy: 54.63
+New best setting, beta: 0.10, alpha: 7.03; accuracy: 55.02
+New best setting, beta: 0.10, alpha: 7.52; accuracy: 55.31
+New best setting, beta: 0.10, alpha: 8.02; accuracy: 55.80
+New best setting, beta: 0.10, alpha: 8.52; accuracy: 56.07
+New best setting, beta: 0.10, alpha: 9.01; accuracy: 56.35
+New best setting, beta: 0.10, alpha: 9.50; accuracy: 56.78
+New best setting, beta: 0.16, alpha: 6.04; accuracy: 56.85
+New best setting, beta: 0.16, alpha: 6.54; accuracy: 57.30
+New best setting, beta: 0.16, alpha: 7.03; accuracy: 57.61
+New best setting, beta: 0.16, alpha: 7.52; accuracy: 58.00
+New best setting, beta: 0.16, alpha: 8.02; accuracy: 58.17
+New best setting, beta: 0.16, alpha: 8.52; accuracy: 58.50
+New best setting, beta: 0.16, alpha: 9.01; accuracy: 58.89
+New best setting, beta: 0.16, alpha: 9.50; accuracy: 59.00
+New best setting, beta: 0.22, alpha: 7.03; accuracy: 59.20
+New best setting, beta: 0.22, alpha: 7.52; accuracy: 59.89
+New best setting, beta: 0.22, alpha: 8.02; accuracy: 60.56
+New best setting, beta: 0.22, alpha: 8.52; accuracy: 61.20
+New best setting, beta: 0.22, alpha: 9.01; accuracy: 61.76
+New best setting, beta: 0.22, alpha: 9.50; accuracy: 62.15
+New best setting, beta: 0.28, alpha: 7.52; accuracy: 62.39
+New best setting, beta: 0.28, alpha: 8.02; accuracy: 62.94
+New best setting, beta: 0.28, alpha: 8.52; accuracy: 63.37
+New best setting, beta: 0.28, alpha: 9.01; accuracy: 64.15
+New best setting, beta: 0.28, alpha: 9.50; accuracy: 64.59
+New best setting, beta: 0.34, alpha: 8.02; accuracy: 64.94
+New best setting, beta: 0.34, alpha: 8.52; accuracy: 65.17
+New best setting, beta: 0.34, alpha: 9.01; accuracy: 65.54
+New best setting, beta: 0.34, alpha: 9.50; accuracy: 65.81
+New best setting, beta: 0.40, alpha: 8.02; accuracy: 65.94
+New best setting, beta: 0.40, alpha: 8.52; accuracy: 66.20
+New best setting, beta: 0.40, alpha: 9.01; accuracy: 66.57
+New best setting, beta: 0.40, alpha: 9.50; accuracy: 66.80
+New best setting, beta: 0.46, alpha: 8.52; accuracy: 66.96
+New best setting, beta: 0.46, alpha: 9.01; accuracy: 67.33
+New best setting, beta: 0.58, alpha: 7.03; accuracy: 67.37
+New best setting, beta: 0.75, alpha: 5.05; accuracy: 67.39
+New best setting, beta: 1.11, alpha: 4.06; accuracy: 67.43
+New best setting, beta: 1.23, alpha: 3.56; accuracy: 67.52
+New best setting, beta: 1.53, alpha: 2.58; accuracy: 67.59
+New best setting, beta: 1.59, alpha: 2.58; accuracy: 67.61
+New best setting, beta: 1.83, alpha: 2.08; accuracy: 67.72
+New best setting, beta: 2.60, alpha: 1.09; accuracy: 67.76
+New best setting, beta: 2.66, alpha: 1.09; accuracy: 67.83
+New best setting, beta: 2.84, alpha: 1.09; accuracy: 67.89
+New best setting, beta: 3.37, alpha: 0.59; accuracy: 67.91
+New best setting, beta: 3.73, alpha: 0.59; accuracy: 67.96
+New best setting, beta: 3.79, alpha: 0.59; accuracy: 68.00
+New best setting, beta: 3.85, alpha: 0.59; accuracy: 68.02
+New best setting, beta: 3.91, alpha: 0.59; accuracy: 68.19
+
+After searching, the best accuracy: 68.19.
+
+
+-------- Evaluating on the test set. --------
+**** eurosat TOGA validation-selected test accuracy: 68.90. ****
+
+RESULT_JSON={"dataset": "eurosat", "fine_tuned": {"best_alpha": 0.595, "best_beta": 3.9080000000000004, "best_epoch": 32, "checkpoint_selection_val_accuracy": 65.70370370370371, "final_test_accuracy": 68.90123456790124, "final_val_accuracy": 68.18518518518519, "method": "toga"}, "method": "toga", "run_config": {"batch_size": 16, "config": "./configs/eurosat.yaml", "dataset": "eurosat", "dropout_rate": 0.3968557394035709, "focal_loss_gamma": 2.174921923867911, "init_alpha": 3.5400576819777356, "init_beta": 1.879513971406686, "init_delta": 2.1000705432492848, "lambda_teacher": 0.7334710618238361, "lr": 0.002807101427696039, "mgt_num_heads": 16, "mgt_num_layers": 3, "num_workers": 0, "pooling_ratio": 0.5652983590283692, "root_path": "/root/workspace/datasets", "seed": 3, "shots": 1, "train_epoch": 100, "transformer_activation": "gelu", "transformer_ff_multiplier": 2, "transformer_nhead": 16, "transformer_num_layers": 3, "wandb_mode": "disabled", "wandb_project": "TOGA", "weight_decay": 2.5113348476076383e-05}, "seed": 3, "selection_protocol": "validation checkpoint selection; test evaluated once", "shared_baselines": {"tip_adapter_best_alpha": 3.565, "tip_adapter_best_beta": 11.940499999999998, "tip_adapter_test_accuracy": 63.641975308641975, "tip_adapter_val_accuracy_before_search": 56.351851851851855, "zero_shot_test_accuracy": 48.34567901234568, "zero_shot_val_accuracy": 48.370370370370374}, "shots": 1}

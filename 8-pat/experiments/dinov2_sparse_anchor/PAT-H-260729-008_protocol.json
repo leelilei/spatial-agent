@@ -1,0 +1,26 @@
+{
+  "experiment_id": "PAT-H-260729-008",
+  "title": "Support-only deterministic view expansion screen",
+  "status": "frozen_before_run",
+  "created_at": "2026-07-29T00:00:00+08:00",
+  "hypothesis": "In few-shot recognition, complementary views are more useful as additional support examples than as averaged query representations.",
+  "data": {
+    "development_episode": 1,
+    "samples": 2000,
+    "classes": 200,
+    "folds": 5,
+    "official_test_images_decoded_or_encoded": 0
+  },
+  "features": "Frozen PAT-H-260729-006 stretch, stretch-flip, center, center-flip DINOv2 CLS features",
+  "arms": {
+    "reference": "train and evaluate on stretch only",
+    "support_stretch_flip": "train on stretch and stretch-flip; evaluate on stretch",
+    "support_stretch_center": "train on stretch and center; evaluate on stretch",
+    "support_all4": "train on all four views; evaluate on stretch",
+    "classifier": "SVC RBF C=3 gamma=scale"
+  },
+  "selection_rule": {
+    "screen_success": "best expanded-support arm improves BA by at least 0.50pp over reference",
+    "confirmation": "Freeze winning expansion and evaluate on two new untouched train-only episodes."
+  }
+}

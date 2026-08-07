@@ -1,0 +1,60 @@
+{
+  "experiment_id": "PAT-J-260729-001",
+  "title": "DINOv2-B/L dual-capacity kernel selection screen",
+  "status": "frozen_before_run",
+  "created_at": "2026-07-29T11:30:00+08:00",
+  "data": {
+    "dataset": "CUB-200-2011 official train",
+    "episode": 1,
+    "images": 2000,
+    "classes": 200,
+    "shots_per_class": 10,
+    "outer_folds": 5,
+    "official_test_images_decoded_or_encoded": 0
+  },
+  "features": {
+    "input": "deterministic direct resize 392x392 with ImageNet normalization",
+    "backbones": ["dinov2_vitb14", "dinov2_vitl14"],
+    "feature": "x_norm_clstoken",
+    "frozen": true,
+    "normalization": "row-wise L2"
+  },
+  "reference": {
+    "arm": "B_RBF",
+    "classifier": "sklearn SVC C=3 kernel=rbf gamma=scale using SVC.predict",
+    "locked_episode_1_ba": 0.862
+  },
+  "dcks": {
+    "classifier": "sklearn SVC C=3 kernel=precomputed",
+    "kernel_gamma": "independent sklearn gamma=scale equivalent computed from each inner/outer training matrix",
+    "modes": [
+      "B_ONLY",
+      "L_ONLY",
+      "ADD_L025",
+      "ADD_L050",
+      "ADD_L075",
+      "GEO_L025",
+      "GEO_L050",
+      "GEO_L075"
+    ],
+    "selection": "within every outer fold, select mode by four-fold inner OOF balanced accuracy using only outer-training rows",
+    "tie_breaking": "higher inner BA, then lower complexity in order L_ONLY, B_ONLY, ADD_L050, GEO_L050, ADD_L075, ADD_L025, GEO_L075, GEO_L025",
+    "outer_evaluation_labels": "metrics only"
+  },
+  "screen_gate": {
+    "dcks_gain_over_b_pp_at_least": 1.0,
+    "outer_folds_noninferior_to_b_at_least": 4,
+    "negative_class_count_at_most_positive_class_count": true,
+    "worst_class_recall_delta_vs_b_at_least": -0.3,
+    "all_conditions_required": true,
+    "on_success": "freeze PAT-J-260729-002 and extract/evaluate untouched train-only episodes 2 and 3",
+    "on_fail": "stop capacity grid; do not add backbones or tune kernel bank"
+  },
+  "reporting": [
+    "B_RBF, L_RBF, and DCKS balanced accuracy",
+    "DCKS gain versus both B and L",
+    "per-fold metrics and selected modes",
+    "class-level positive/negative deltas and worst class",
+    "feature/model/runtime metadata and SHA256"
+  ]
+}

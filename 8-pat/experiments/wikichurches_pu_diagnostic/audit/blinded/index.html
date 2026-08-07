@@ -1,0 +1,1257 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WikiChurches 局部构件盲审标注器</title>
+<style>
+:root {
+  --ink: #17202a;
+  --muted: #68737e;
+  --paper: #f6f4ef;
+  --panel: #fff;
+  --line: #d9d5cb;
+  --accent: #d94d31;
+  --accent-soft: #fff0eb;
+  --navy: #17324d;
+  --green: #26745b;
+  --shadow: 0 10px 28px rgba(35, 31, 24, .09);
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+.topbar {
+  height: 68px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 22px;
+  color: #fff;
+  background: var(--navy);
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+.brand { min-width: 280px; }
+.brand strong { display: block; font-size: 17px; letter-spacing: .02em; }
+.brand span { color: #c9d7e3; font-size: 12px; }
+.progress-wrap { flex: 1; max-width: 520px; }
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  color: #dce7ef;
+  font-size: 12px;
+}
+.progress-track {
+  height: 7px;
+  overflow: hidden;
+  background: rgba(255,255,255,.15);
+  border-radius: 99px;
+}
+.progress-bar {
+  width: 0;
+  height: 100%;
+  background: #f2b94b;
+  border-radius: inherit;
+  transition: width .2s ease;
+}
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+.identity label { color: #c9d7e3; font-size: 12px; }
+.identity input {
+  width: 132px;
+  padding: 8px 10px;
+  color: #fff;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.24);
+  border-radius: 7px;
+  outline: none;
+}
+.identity input:focus { border-color: #f2b94b; }
+.primary, .secondary, .danger, .ghost {
+  min-height: 36px;
+  padding: 8px 13px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-weight: 650;
+}
+.primary { color: #fff; background: var(--accent); }
+.primary:hover { background: #c54028; }
+.secondary { color: var(--navy); background: #edf3f7; border-color: #d7e1e8; }
+.secondary:hover { background: #e1ebf1; }
+.danger { color: #a82f22; background: #fff3f0; border-color: #f0c4ba; }
+.ghost { color: var(--ink); background: #fff; border-color: var(--line); }
+.app {
+  height: calc(100% - 68px);
+  display: grid;
+  grid-template-columns: 244px minmax(420px, 1fr) 326px;
+}
+.sidebar, .inspector {
+  min-height: 0;
+  background: var(--panel);
+}
+.sidebar { border-right: 1px solid var(--line); }
+.inspector { border-left: 1px solid var(--line); overflow-y: auto; }
+.side-head, .inspect-head {
+  padding: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.side-head h2, .inspect-head h2 { margin: 0 0 5px; font-size: 15px; }
+.side-head p, .inspect-head p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+.image-list {
+  height: calc(100% - 92px);
+  overflow-y: auto;
+  padding: 8px;
+}
+.image-item {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 24px 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 10px;
+  text-align: left;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+}
+.image-item:hover { background: #f5f7f8; }
+.image-item.active {
+  background: var(--accent-soft);
+  border-color: #efc1b7;
+}
+.image-item .num {
+  display: grid;
+  place-items: center;
+  width: 23px;
+  height: 23px;
+  color: var(--muted);
+  background: #eef1f2;
+  border-radius: 6px;
+  font-size: 11px;
+}
+.image-item.active .num { color: #fff; background: var(--accent); }
+.item-main { min-width: 0; }
+.item-main strong { display: block; font-size: 12px; }
+.item-main small {
+  display: block;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.item-state { color: #9aa2a9; font-size: 12px; }
+.image-item.done .item-state { color: var(--green); }
+.workspace {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 54px minmax(0,1fr) 40px;
+  background: #e8e6e0;
+}
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: rgba(255,255,255,.92);
+  border-bottom: 1px solid var(--line);
+}
+.toolbar .meta { min-width: 0; margin-right: auto; }
+.toolbar .meta strong { display: block; font-size: 14px; }
+.toolbar .meta span { color: var(--muted); font-size: 11px; }
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 18px;
+}
+.stage {
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  overflow: auto;
+  padding: 18px;
+  background:
+    linear-gradient(45deg, rgba(255,255,255,.26) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(255,255,255,.26) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(255,255,255,.26) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(255,255,255,.26) 75%),
+    #d8d6d0;
+  background-position: 0 0, 0 12px, 12px -12px, -12px 0;
+  background-size: 24px 24px;
+}
+.canvas-frame {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  max-height: 100%;
+  line-height: 0;
+  background: #111;
+  box-shadow: var(--shadow);
+  user-select: none;
+  touch-action: none;
+}
+.canvas-frame img {
+  display: block;
+  max-width: min(100%, 1500px);
+  max-height: calc(100vh - 180px);
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+.box-layer {
+  position: absolute;
+  inset: 0;
+  cursor: crosshair;
+}
+.annotation-box, .draft-box {
+  position: absolute;
+  min-width: 3px;
+  min-height: 3px;
+  border: 2px solid #f3cf45;
+  background: rgba(243, 207, 69, .07);
+  box-shadow: 0 0 0 1px rgba(0,0,0,.25);
+}
+.annotation-box { cursor: move; }
+.annotation-box.selected {
+  z-index: 3;
+  border-color: #ff6045;
+  background: rgba(255, 96, 69, .10);
+}
+.box-label {
+  position: absolute;
+  left: -2px;
+  bottom: 100%;
+  max-width: 180px;
+  overflow: hidden;
+  padding: 3px 6px;
+  color: #161616;
+  background: #f3cf45;
+  border-radius: 4px 4px 0 0;
+  font-size: 10px;
+  font-weight: 750;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.selected .box-label { color: #fff; background: #ff6045; }
+.resize-handle {
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  cursor: nwse-resize;
+}
+.draft-box {
+  display: none;
+  z-index: 4;
+  border-style: dashed;
+  border-color: #fff;
+  background: rgba(255,255,255,.08);
+}
+.statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  color: #4d555c;
+  background: #f7f6f2;
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+}
+.autosave { color: var(--green); }
+.inspect-body { padding: 14px 16px 24px; }
+.notice {
+  margin-bottom: 14px;
+  padding: 10px 11px;
+  color: #6e4a10;
+  background: #fff7e4;
+  border: 1px solid #edd8a9;
+  border-radius: 8px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.field { margin-bottom: 12px; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.field label {
+  display: block;
+  margin-bottom: 5px;
+  color: #46515b;
+  font-size: 11px;
+  font-weight: 700;
+}
+.field input, .field select, .field textarea {
+  width: 100%;
+  padding: 9px 10px;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid #cfd4d7;
+  border-radius: 7px;
+  outline: none;
+}
+.field textarea { min-height: 66px; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus {
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(23,50,77,.08);
+}
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+fieldset:disabled { opacity: .45; }
+.box-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 6px 0 18px; }
+.completion {
+  margin: 12px 0 18px;
+  padding: 12px;
+  background: #f5f8f7;
+  border: 1px solid #d7e5df;
+  border-radius: 9px;
+}
+.completion strong { display: block; margin-bottom: 5px; font-size: 12px; }
+.completion p { margin: 0 0 10px; color: var(--muted); font-size: 11px; line-height: 1.5; }
+.completion button { width: 100%; }
+.box-list-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 7px;
+  font-size: 12px;
+}
+.box-list { display: grid; gap: 6px; }
+.box-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 9px;
+  text-align: left;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+.box-row.active { border-color: var(--accent); background: var(--accent-soft); }
+.box-row .swatch { width: 8px; height: 8px; background: #f3cf45; border-radius: 2px; }
+.box-row span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  font-size: 11px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.box-row small { color: var(--muted); font-size: 10px; }
+.empty {
+  padding: 15px 8px;
+  color: var(--muted);
+  text-align: center;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  font-size: 11px;
+}
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  z-index: 20;
+  max-width: 420px;
+  padding: 10px 14px;
+  color: #fff;
+  background: rgba(23,32,42,.94);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  font-size: 12px;
+  transform: translate(-50%, 20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: .2s ease;
+}
+.toast.show { transform: translate(-50%, 0); opacity: 1; }
+@media (max-width: 1100px) {
+  .app { grid-template-columns: 190px minmax(360px,1fr) 290px; }
+  .brand { min-width: 230px; }
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <strong>WikiChurches Blind Audit</strong>
+    <span>局部构件独立盲审 · 50 images</span>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span id="progressText">已完成 0 / 50</span>
+      <span id="calibrationText">校准集 0 / 8</span>
+    </div>
+    <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+  </div>
+  <div class="identity">
+    <label for="annotatorId">标注者</label>
+    <input id="annotatorId" value="annotator_a" spellcheck="false">
+  </div>
+  <button class="primary" id="exportButton">导出 CSV</button>
+</header>
+
+<div class="app">
+  <aside class="sidebar">
+    <div class="side-head">
+      <h2>审计图像</h2>
+      <p>先独立完成 001–008，讨论并冻结规则后，再完成全部 50 张。</p>
+    </div>
+    <div class="image-list" id="imageList"></div>
+  </aside>
+
+  <main class="workspace">
+    <div class="toolbar">
+      <button class="icon-btn" id="previousButton" aria-label="上一张">←</button>
+      <button class="icon-btn" id="nextButton" aria-label="下一张">→</button>
+      <div class="meta">
+        <strong id="imageTitle">WC-AUD-001</strong>
+        <span id="imageMeta">Romanesque · core · calibration</span>
+      </div>
+      <button class="secondary" id="clearSelectionButton">取消选择</button>
+    </div>
+    <div class="stage" id="stage">
+      <div class="canvas-frame" id="canvasFrame">
+        <img id="auditImage" alt="当前审计图像" draggable="false">
+        <div class="box-layer" id="boxLayer"></div>
+        <div class="draft-box" id="draftBox"></div>
+      </div>
+    </div>
+    <div class="statusbar">
+      <span>空白处拖拽：新建框 · 拖动框：移动 · 右下角：缩放 · ←/→：切图</span>
+      <span class="autosave" id="saveStatus">浏览器本地自动保存</span>
+    </div>
+  </main>
+
+  <aside class="inspector">
+    <div class="inspect-head">
+      <h2>构件属性</h2>
+      <p id="selectionHint">在图片空白处拖拽一个构件框。</p>
+    </div>
+    <div class="inspect-body">
+      <div class="notice">
+        构件名可输入关键词搜索标准词表；没有合适选项时可直接填写新英文名。
+        每个重复构件分别画框，不查看官方框或密封目录。
+      </div>
+      <fieldset id="annotationFields" disabled>
+        <div class="field">
+          <label for="featureLabel">具体构件英文名 *</label>
+          <input id="featureLabel" list="partOptions"
+            placeholder="输入关键词搜索；也可填写新名称" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="parentLabel">上位构件名（可空）</label>
+          <input id="parentLabel" list="partOptions"
+            placeholder="从同一词表选择" autocomplete="off">
+        </div>
+        <datalist id="partOptions">
+          <option value="Apse"></option>
+          <option value="Arcade"></option>
+          <option value="Arcade Gallery"></option>
+          <option value="Arcade Window"></option>
+          <option value="Arch"></option>
+          <option value="Archivolted Portal"></option>
+          <option value="Balustrade"></option>
+          <option value="Belt Course"></option>
+          <option value="Blind"></option>
+          <option value="Blind Arcade"></option>
+          <option value="Blind Arch"></option>
+          <option value="Blind Arch Window"></option>
+          <option value="Blind Arch with Columns"></option>
+          <option value="Blind Arch with Ornaments"></option>
+          <option value="Blind Arch with Tympanum"></option>
+          <option value="Blind Tracery"></option>
+          <option value="Blind Trifora"></option>
+          <option value="Blind Window"></option>
+          <option value="Broken Pediment"></option>
+          <option value="Broken/Cranked Pediment"></option>
+          <option value="Bull's-eye Window"></option>
+          <option value="Bull's-eye Window with Sexfoil"></option>
+          <option value="Buttress"></option>
+          <option value="Buttress Arch"></option>
+          <option value="Column"></option>
+          <option value="Columned Portal"></option>
+          <option value="Columned Portal with Blind Arch"></option>
+          <option value="Conical Roof"></option>
+          <option value="Corner Lesene"></option>
+          <option value="Cornice"></option>
+          <option value="Coupled Column"></option>
+          <option value="Coupled Trifora"></option>
+          <option value="Coupled Trifora with Discharging Arch"></option>
+          <option value="Coupled Twin Window"></option>
+          <option value="Coupled Twin Window with Discharging Arch"></option>
+          <option value="Coupled Window"></option>
+          <option value="Cranked Cornice"></option>
+          <option value="Cranked Pediment"></option>
+          <option value="Crocket"></option>
+          <option value="Dentil"></option>
+          <option value="Discharging Arch"></option>
+          <option value="Divided Round Arch Window with Engaged Columns"></option>
+          <option value="Dome"></option>
+          <option value="Double Pediment"></option>
+          <option value="Dwarf Gallery"></option>
+          <option value="Engaged Column"></option>
+          <option value="Fish Bladder"></option>
+          <option value="Fleuron"></option>
+          <option value="Flying Buttress"></option>
+          <option value="Foil"></option>
+          <option value="Frieze"></option>
+          <option value="Gallery"></option>
+          <option value="Gallery of Kings"></option>
+          <option value="Jambs"></option>
+          <option value="Keystone"></option>
+          <option value="Lancet Window"></option>
+          <option value="Lesene"></option>
+          <option value="Lombard Band"></option>
+          <option value="Lombard Band with Engaged Columns"></option>
+          <option value="Onion Dome"></option>
+          <option value="Ornament"></option>
+          <option value="Ornate Portal"></option>
+          <option value="Panel Frieze"></option>
+          <option value="Pediment"></option>
+          <option value="Pilaster"></option>
+          <option value="Pinnacle"></option>
+          <option value="Plate Tracery Window"></option>
+          <option value="Plinth Cornice"></option>
+          <option value="Pointed Arch"></option>
+          <option value="Pointed Arch Frieze"></option>
+          <option value="Pointed Arch Portal"></option>
+          <option value="Pointed Arch Window"></option>
+          <option value="Portal"></option>
+          <option value="Portal with Wimperg"></option>
+          <option value="Projecting Cornice"></option>
+          <option value="Quatrefoil"></option>
+          <option value="Quatrefoil Window"></option>
+          <option value="Rectangular Apse"></option>
+          <option value="Rhenish Helm"></option>
+          <option value="Round Arch"></option>
+          <option value="Round Arch Niche"></option>
+          <option value="Round Arch Niche (with Sculpture)"></option>
+          <option value="Round Arch Portal"></option>
+          <option value="Round Arch Window"></option>
+          <option value="Round Arch Window with Blind Arch"></option>
+          <option value="Round Arch Window with Jambs"></option>
+          <option value="Saw-tooth Frieze"></option>
+          <option value="Segmental Arch"></option>
+          <option value="Segmental Pediment"></option>
+          <option value="Sexfoil"></option>
+          <option value="Tabernacle"></option>
+          <option value="Tracery"></option>
+          <option value="Tracery Rose Window"></option>
+          <option value="Tracery Window"></option>
+          <option value="Trefoil"></option>
+          <option value="Trefoil Arch"></option>
+          <option value="Trefoil Window"></option>
+          <option value="Triangular Pediment"></option>
+          <option value="Trifora"></option>
+          <option value="Twin Window"></option>
+          <option value="Volute"></option>
+          <option value="Welsh Dome"></option>
+          <option value="Wimperg"></option>
+          <option value="Window"></option>
+          <option value="Window with Trefoil Arch"></option>
+          <option value="Zigzag Frieze"></option>
+        </datalist>
+        <div class="field-row">
+          <div class="field">
+            <label for="certainty">确定性</label>
+            <select id="certainty">
+              <option value="certain">certain</option>
+              <option value="uncertain">uncertain</option>
+              <option value="reject">reject</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="visibility">可见程度</label>
+            <select id="visibility">
+              <option value="clear">clear</option>
+              <option value="partial">partial</option>
+              <option value="tiny">tiny</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="occlusion">遮挡</label>
+          <select id="occlusion">
+            <option value="none">none</option>
+            <option value="partial">partial</option>
+            <option value="heavy">heavy</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="notes">备注</label>
+          <textarea id="notes" placeholder="边界、层级或遮挡说明"></textarea>
+        </div>
+        <div class="box-actions">
+          <button class="ghost" id="duplicateButton" type="button">复制框</button>
+          <button class="danger" id="deleteButton" type="button">删除框</button>
+        </div>
+      </fieldset>
+
+      <div class="completion">
+        <strong id="completionTitle">本图尚未完成</strong>
+        <p>检查所有可见构件后标记完成；确实没有可标构件时可以零框完成。</p>
+        <button class="secondary" id="completeButton">标记本图完成</button>
+      </div>
+
+      <div class="box-list-title">
+        <strong>本图构件</strong>
+        <span id="boxCount">0 boxes</span>
+      </div>
+      <div class="box-list" id="boxList"></div>
+    </div>
+  </aside>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const manifest = [
+  ["WC-AUD-001","Q7592992_wd0.jpg","Romanesque","core"],
+  ["WC-AUD-002","Q269654_wd0.jpg","Gothic","core"],
+  ["WC-AUD-003","Q1244300_wd0.jpg","Romanesque","core"],
+  ["WC-AUD-004","Q24254219_wd0.jpg","Baroque","core"],
+  ["WC-AUD-005","Q571958_wd0.jpg","Baroque","core"],
+  ["WC-AUD-006","Q3585960_wd0.jpg","Renaissance","core"],
+  ["WC-AUD-007","Q19961145_wd0.jpg","Baroque","core"],
+  ["WC-AUD-008","Q1191343_wd0.jpg","Baroque","core"],
+  ["WC-AUD-009","Q671066_wd0.jpg","Gothic","core"],
+  ["WC-AUD-010","Q2321838_wd0.jpg","Romanesque","core"],
+  ["WC-AUD-011","Q289414_wd0.jpg","Renaissance","stress"],
+  ["WC-AUD-012","Q1351448_wd0.jpg","Baroque","core"],
+  ["WC-AUD-013","Q5886455_wd0.jpg","Gothic","core"],
+  ["WC-AUD-014","Q579004_wd0.jpg","Romanesque","stress"],
+  ["WC-AUD-015","Q1424095_wd0.jpg","Renaissance","core"],
+  ["WC-AUD-016","Q1736223_wd0.jpg","Gothic","stress"],
+  ["WC-AUD-017","Q1165020_wd0.jpg","Renaissance","core"],
+  ["WC-AUD-018","Q15978817_wd0.jpg","Romanesque","stress"],
+  ["WC-AUD-019","Q253935_wd0.jpg","Romanesque","core"],
+  ["WC-AUD-020","Q745460_wd0.jpg","Romanesque","stress"],
+  ["WC-AUD-021","Q2320318_wd0.jpg","Baroque","core"],
+  ["WC-AUD-022","Q1795397_wd0.jpg","Baroque","core"],
+  ["WC-AUD-023","Q999637_wd0.jpg","Baroque","core"],
+  ["WC-AUD-024","Q1502706_wd0.jpg","Baroque","stress"],
+  ["WC-AUD-025","Q2640697_wd0.jpg","Gothic","core"],
+  ["WC-AUD-026","Q2981_wd0.jpg","Gothic","core"],
+  ["WC-AUD-027","Q2320951_wd0.jpg","Gothic","core"],
+  ["WC-AUD-028","Q526047_wd0.jpg","Romanesque","core"],
+  ["WC-AUD-029","Q30274936_wd0.jpg","Romanesque","core"],
+  ["WC-AUD-030","Q2301521_wd0.jpg","Renaissance","core"],
+  ["WC-AUD-031","Q588559_wd0.jpg","Renaissance","core"],
+  ["WC-AUD-032","Q2002407_wd0.jpg","Romanesque","core"],
+  ["WC-AUD-033","Q2419151_wd0.jpg","Gothic","core"],
+  ["WC-AUD-034","Q15953984_wd0.jpg","Gothic","stress"],
+  ["WC-AUD-035","Q1537302_wd0.jpg","Romanesque","core"],
+  ["WC-AUD-036","Q11947200_wd0.jpg","Romanesque","core"],
+  ["WC-AUD-037","Q794876_wd0.jpg","Renaissance","stress"],
+  ["WC-AUD-038","Q3581911_wd0.jpg","Romanesque","core"],
+  ["WC-AUD-039","Q3580966_wd0.jpg","Gothic","core"],
+  ["WC-AUD-040","Q207985_wd0.jpg","Gothic","core"],
+  ["WC-AUD-041","Q505065_wd0.jpg","Gothic","core"],
+  ["WC-AUD-042","Q2034923_wd0.jpg","Romanesque","core"],
+  ["WC-AUD-043","Q206823_wd0.jpg","Gothic","core"],
+  ["WC-AUD-044","Q719794_wd0.jpg","Renaissance","core"],
+  ["WC-AUD-045","Q2315800_wd0.jpg","Gothic","core"],
+  ["WC-AUD-046","Q674472_wd0.jpg","Baroque","stress"],
+  ["WC-AUD-047","Q3585324_wd0.jpg","Renaissance","core"],
+  ["WC-AUD-048","Q3670352_wd0.jpg","Renaissance","core"],
+  ["WC-AUD-049","Q106934_wd0.jpg","Gothic","stress"],
+  ["WC-AUD-050","Q2713844_wd0.jpg","Romanesque","core"]
+].map(([auditId, imageFilename, style, sampleType], index) => ({
+  auditId, imageFilename, style, sampleType, index
+}));
+
+const demoImage = {
+  auditId: "WC-DEMO-001",
+  imageFilename: "Q2559480_wd0.jpg",
+  style: "Practice",
+  sampleType: "demo",
+  isDemo: true,
+  demoAnnotations: [
+    {
+      id: "demo-pointed-window",
+      left: 0.662191, top: 0.352721, width: 0.078047, height: 0.117026,
+      featureLabel: "Pointed Arch Window", parentLabel: "Window",
+      certainty: "certain", visibility: "clear", occlusion: "none",
+      notes: "示范：外框尽量贴合完整窗体。"
+    },
+    {
+      id: "demo-tracery",
+      left: 0.668288, top: 0.362473, width: 0.064632, height: 0.104023,
+      featureLabel: "Tracery", parentLabel: "Pointed Arch Window",
+      certainty: "certain", visibility: "clear", occlusion: "none",
+      notes: "示范：构件内部可另画更具体的嵌套框。"
+    },
+    {
+      id: "demo-trefoil",
+      left: 0.440245, top: 0.393355, width: 0.020731, height: 0.021130,
+      featureLabel: "Trefoil", parentLabel: "Tracery",
+      certainty: "certain", visibility: "tiny", occlusion: "none",
+      notes: "示范：小构件仍应紧贴可见边界。"
+    },
+    {
+      id: "demo-buttress",
+      left: 0.656094, top: 0.486001, width: 0.030487, height: 0.195044,
+      featureLabel: "Buttress", parentLabel: "",
+      certainty: "certain", visibility: "partial", occlusion: "partial",
+      notes: "示范：只框图中可见部分，并记录遮挡。"
+    }
+  ]
+};
+const allImages = [demoImage, ...manifest];
+
+const elements = Object.fromEntries(
+  [
+    "annotatorId","progressText","calibrationText","progressBar","exportButton",
+    "imageList","previousButton","nextButton","imageTitle","imageMeta",
+    "clearSelectionButton","canvasFrame","auditImage","boxLayer","draftBox",
+    "saveStatus","selectionHint","annotationFields","featureLabel","parentLabel",
+    "certainty","visibility","occlusion","notes","duplicateButton","deleteButton",
+    "completionTitle","completeButton","boxCount","boxList","toast"
+  ].map(id => [id, document.getElementById(id)])
+);
+
+let currentIndex = 0;
+let selectedId = null;
+let state = { version: 2, annotations: {}, completed: {} };
+let gesture = null;
+let toastTimer = null;
+let identityTimer = null;
+
+function safeAnnotatorId() {
+  return (elements.annotatorId.value.trim() || "annotator_a")
+    .replace(/[^a-zA-Z0-9_-]/g, "_");
+}
+
+function storageKey() {
+  return `wikichurches-blind-audit-v2:${safeAnnotatorId()}`;
+}
+
+function blankState() {
+  return { version: 2, annotations: {}, completed: {} };
+}
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem(storageKey());
+    state = saved ? JSON.parse(saved) : blankState();
+    if (!state.annotations) state.annotations = {};
+    if (!state.completed) state.completed = {};
+  } catch {
+    state = blankState();
+    showToast("无法读取旧进度，已建立新的本地记录");
+  }
+  if (!state.annotations[demoImage.auditId]) {
+    state.annotations[demoImage.auditId] =
+      demoImage.demoAnnotations.map(item => ({ ...item }));
+  }
+  selectedId = null;
+  renderAll();
+}
+
+function saveState(message = "已自动保存") {
+  localStorage.setItem(storageKey(), JSON.stringify(state));
+  elements.saveStatus.textContent = message;
+  window.clearTimeout(saveState.timer);
+  saveState.timer = window.setTimeout(() => {
+    elements.saveStatus.textContent = "浏览器本地自动保存";
+  }, 1200);
+  updateProgress();
+}
+
+function currentImage() {
+  return allImages[currentIndex];
+}
+
+function currentAnnotations() {
+  const key = currentImage().auditId;
+  if (!state.annotations[key]) state.annotations[key] = [];
+  return state.annotations[key];
+}
+
+function selectedAnnotation() {
+  return currentAnnotations().find(item => item.id === selectedId) || null;
+}
+
+function makeId() {
+  if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+  return `box-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
+
+function clamp(value, min, max) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function roundCoordinate(value) {
+  return Math.round(value * 1000000) / 1000000;
+}
+
+function switchImage(index) {
+  currentIndex = clamp(index, 0, allImages.length - 1);
+  selectedId = null;
+  const image = currentImage();
+  elements.auditImage.src = `images/${image.auditId}.jpg`;
+  elements.auditImage.alt = image.auditId;
+  elements.imageTitle.textContent = image.auditId;
+  elements.imageMeta.textContent =
+    image.isDemo
+      ? "操作与边界示范 · 不导出 · 不计分 · CC BY-SA 3.0 / Yahra"
+      : `${image.style} · ${image.sampleType}` +
+        (image.index < 8 ? " · calibration" : "");
+  elements.previousButton.disabled = currentIndex === 0;
+  elements.nextButton.disabled = currentIndex === allImages.length - 1;
+  renderAll();
+  document.querySelector(".image-item.active")?.scrollIntoView({ block: "nearest" });
+}
+
+function renderImageList() {
+  elements.imageList.replaceChildren();
+  allImages.forEach((image, index) => {
+    const button = document.createElement("button");
+    const annotations = state.annotations[image.auditId] || [];
+    const done = image.isDemo || Boolean(state.completed[image.auditId]);
+    button.className =
+      "image-item" + (index === currentIndex ? " active" : "") +
+      (done ? " done" : "");
+    button.innerHTML = `
+      <span class="num">${image.isDemo ? "D" : String(image.index + 1).padStart(2, "0")}</span>
+      <span class="item-main">
+        <strong>${image.auditId}</strong>
+        <small>${image.isDemo ? "先看示范框，再开始独立标注" :
+          `${image.style} · ${image.sampleType} · ${annotations.length} boxes`}</small>
+      </span>
+      <span class="item-state">${image.isDemo ? "★" : done ? "●" : "○"}</span>`;
+    button.addEventListener("click", () => switchImage(index));
+    elements.imageList.appendChild(button);
+  });
+}
+
+function renderBoxes() {
+  elements.boxLayer.replaceChildren();
+  currentAnnotations().forEach((annotation, index) => {
+    const box = document.createElement("div");
+    box.className = "annotation-box" + (annotation.id === selectedId ? " selected" : "");
+    box.dataset.id = annotation.id;
+    box.style.left = `${annotation.left * 100}%`;
+    box.style.top = `${annotation.top * 100}%`;
+    box.style.width = `${annotation.width * 100}%`;
+    box.style.height = `${annotation.height * 100}%`;
+    const label = document.createElement("span");
+    label.className = "box-label";
+    label.textContent = annotation.featureLabel || `未命名 ${index + 1}`;
+    box.appendChild(label);
+    const handle = document.createElement("span");
+    handle.className = "resize-handle";
+    handle.title = "拖动缩放";
+    handle.addEventListener("pointerdown", event => {
+      event.preventDefault();
+      event.stopPropagation();
+      beginGesture(event, "resize", annotation);
+    });
+    box.appendChild(handle);
+    box.addEventListener("pointerdown", event => {
+      if (event.target === handle) return;
+      event.preventDefault();
+      event.stopPropagation();
+      selectedId = annotation.id;
+      renderAll();
+      beginGesture(event, "move", annotation);
+    });
+    elements.boxLayer.appendChild(box);
+  });
+}
+
+function renderInspector() {
+  const annotation = selectedAnnotation();
+  elements.annotationFields.disabled = !annotation;
+  elements.selectionHint.textContent = annotation
+    ? "属性修改后自动保存；拖动图片中的框可调整位置。"
+    : "在图片空白处拖拽一个构件框。";
+  const fields = {
+    featureLabel: annotation?.featureLabel || "",
+    parentLabel: annotation?.parentLabel || "",
+    certainty: annotation?.certainty || "certain",
+    visibility: annotation?.visibility || "clear",
+    occlusion: annotation?.occlusion || "none",
+    notes: annotation?.notes || ""
+  };
+  Object.entries(fields).forEach(([key, value]) => {
+    elements[key].value = value;
+  });
+
+  const annotations = currentAnnotations();
+  elements.boxCount.textContent = `${annotations.length} boxes`;
+  elements.boxList.replaceChildren();
+  if (!annotations.length) {
+    const empty = document.createElement("div");
+    empty.className = "empty";
+    empty.textContent = "本图还没有构件框";
+    elements.boxList.appendChild(empty);
+  } else {
+    annotations.forEach((item, index) => {
+      const row = document.createElement("button");
+      row.className = "box-row" + (item.id === selectedId ? " active" : "");
+      row.innerHTML = `
+        <span class="swatch"></span>
+        <span>${item.featureLabel || `未命名构件 ${index + 1}`}</span>
+        <small>${item.certainty}</small>`;
+      row.addEventListener("click", () => {
+        selectedId = item.id;
+        renderAll();
+      });
+      elements.boxList.appendChild(row);
+    });
+  }
+
+  const image = currentImage();
+  const done = Boolean(state.completed[image.auditId]);
+  if (image.isDemo) {
+    elements.completionTitle.textContent = "练习图不参与正式统计";
+    elements.completeButton.textContent = "我已理解，进入 WC-AUD-001";
+    elements.completeButton.className = "primary";
+  } else {
+    elements.completionTitle.textContent = done ? "本图已完成" : "本图尚未完成";
+    elements.completeButton.textContent = done ? "撤销完成状态" : "标记本图完成";
+    elements.completeButton.className = done ? "ghost" : "secondary";
+  }
+}
+
+function updateProgress() {
+  const completed = manifest.filter(image => state.completed[image.auditId]).length;
+  const calibration = manifest
+    .slice(0, 8)
+    .filter(image => state.completed[image.auditId]).length;
+  elements.progressText.textContent = `已完成 ${completed} / ${manifest.length}`;
+  elements.calibrationText.textContent = `校准集 ${calibration} / 8`;
+  elements.progressBar.style.width = `${completed / manifest.length * 100}%`;
+}
+
+function renderAll() {
+  renderImageList();
+  renderBoxes();
+  renderInspector();
+  updateProgress();
+}
+
+function normalizedPoint(event) {
+  const rect = elements.boxLayer.getBoundingClientRect();
+  return {
+    x: clamp((event.clientX - rect.left) / rect.width, 0, 1),
+    y: clamp((event.clientY - rect.top) / rect.height, 0, 1)
+  };
+}
+
+function beginGesture(event, mode, annotation = null) {
+  const point = normalizedPoint(event);
+  gesture = {
+    mode,
+    start: point,
+    annotation,
+    original: annotation ? {
+      left: annotation.left,
+      top: annotation.top,
+      width: annotation.width,
+      height: annotation.height
+    } : null
+  };
+  if (mode === "draw") {
+    elements.draftBox.style.display = "block";
+    updateDraft(point, point);
+  }
+  window.addEventListener("pointermove", handlePointerMove);
+  window.addEventListener("pointerup", handlePointerUp, { once: true });
+}
+
+function updateDraft(start, point) {
+  const left = Math.min(start.x, point.x);
+  const top = Math.min(start.y, point.y);
+  const width = Math.abs(start.x - point.x);
+  const height = Math.abs(start.y - point.y);
+  Object.assign(elements.draftBox.style, {
+    left: `${left * 100}%`,
+    top: `${top * 100}%`,
+    width: `${width * 100}%`,
+    height: `${height * 100}%`
+  });
+}
+
+function handlePointerMove(event) {
+  if (!gesture) return;
+  const point = normalizedPoint(event);
+  if (gesture.mode === "draw") {
+    updateDraft(gesture.start, point);
+    return;
+  }
+  const annotation = gesture.annotation;
+  const dx = point.x - gesture.start.x;
+  const dy = point.y - gesture.start.y;
+  if (gesture.mode === "move") {
+    annotation.left = roundCoordinate(
+      clamp(gesture.original.left + dx, 0, 1 - annotation.width)
+    );
+    annotation.top = roundCoordinate(
+      clamp(gesture.original.top + dy, 0, 1 - annotation.height)
+    );
+  } else if (gesture.mode === "resize") {
+    annotation.width = roundCoordinate(
+      clamp(gesture.original.width + dx, .005, 1 - annotation.left)
+    );
+    annotation.height = roundCoordinate(
+      clamp(gesture.original.height + dy, .005, 1 - annotation.top)
+    );
+  }
+  renderBoxes();
+}
+
+function handlePointerUp(event) {
+  window.removeEventListener("pointermove", handlePointerMove);
+  if (!gesture) return;
+  const point = normalizedPoint(event);
+  if (gesture.mode === "draw") {
+    elements.draftBox.style.display = "none";
+    const left = Math.min(gesture.start.x, point.x);
+    const top = Math.min(gesture.start.y, point.y);
+    const width = Math.abs(gesture.start.x - point.x);
+    const height = Math.abs(gesture.start.y - point.y);
+    if (width >= .008 && height >= .008) {
+      const annotation = {
+        id: makeId(),
+        left: roundCoordinate(left),
+        top: roundCoordinate(top),
+        width: roundCoordinate(width),
+        height: roundCoordinate(height),
+        featureLabel: "",
+        parentLabel: "",
+        certainty: "certain",
+        visibility: "clear",
+        occlusion: "none",
+        notes: ""
+      };
+      currentAnnotations().push(annotation);
+      selectedId = annotation.id;
+      saveState("新框已保存");
+      renderAll();
+      elements.featureLabel.focus();
+    }
+  } else {
+    saveState("框位置已保存");
+    renderAll();
+  }
+  gesture = null;
+}
+
+elements.boxLayer.addEventListener("pointerdown", event => {
+  if (event.button !== 0) return;
+  event.preventDefault();
+  selectedId = null;
+  renderInspector();
+  renderBoxes();
+  beginGesture(event, "draw");
+});
+
+["featureLabel","parentLabel","certainty","visibility","occlusion","notes"]
+  .forEach(field => {
+    elements[field].addEventListener("input", () => {
+      const annotation = selectedAnnotation();
+      if (!annotation) return;
+      annotation[field] = elements[field].value;
+      saveState();
+      renderBoxes();
+      renderImageList();
+      renderBoxListOnly();
+    });
+  });
+
+function renderBoxListOnly() {
+  const annotation = selectedAnnotation();
+  if (!annotation) return;
+  const rows = [...elements.boxList.querySelectorAll(".box-row")];
+  const index = currentAnnotations().findIndex(item => item.id === annotation.id);
+  if (rows[index]) {
+    rows[index].querySelector("span:nth-child(2)").textContent =
+      annotation.featureLabel || `未命名构件 ${index + 1}`;
+    rows[index].querySelector("small").textContent = annotation.certainty;
+  }
+}
+
+elements.deleteButton.addEventListener("click", () => {
+  if (!selectedId) return;
+  const index = currentAnnotations().findIndex(item => item.id === selectedId);
+  if (index >= 0) currentAnnotations().splice(index, 1);
+  selectedId = null;
+  saveState("构件框已删除");
+  renderAll();
+});
+
+elements.duplicateButton.addEventListener("click", () => {
+  const annotation = selectedAnnotation();
+  if (!annotation) return;
+  const copy = {
+    ...annotation,
+    id: makeId(),
+    left: roundCoordinate(clamp(annotation.left + .02, 0, 1 - annotation.width)),
+    top: roundCoordinate(clamp(annotation.top + .02, 0, 1 - annotation.height))
+  };
+  currentAnnotations().push(copy);
+  selectedId = copy.id;
+  saveState("已复制构件框");
+  renderAll();
+});
+
+elements.completeButton.addEventListener("click", () => {
+  if (currentImage().isDemo) {
+    switchImage(1);
+    return;
+  }
+  const key = currentImage().auditId;
+  if (state.completed[key]) {
+    delete state.completed[key];
+    saveState("已撤销完成状态");
+    renderAll();
+    return;
+  }
+  const incomplete = currentAnnotations().filter(
+    item => !item.featureLabel.trim()
+  );
+  if (incomplete.length) {
+    selectedId = incomplete[0].id;
+    renderAll();
+    showToast("请先填写所有构件框的英文名称");
+    elements.featureLabel.focus();
+    return;
+  }
+  state.completed[key] = true;
+  saveState("本图已标记完成");
+  renderAll();
+  if (currentIndex < allImages.length - 1) {
+    window.setTimeout(() => switchImage(currentIndex + 1), 250);
+  }
+});
+
+elements.previousButton.addEventListener("click", () => switchImage(currentIndex - 1));
+elements.nextButton.addEventListener("click", () => switchImage(currentIndex + 1));
+elements.clearSelectionButton.addEventListener("click", () => {
+  selectedId = null;
+  renderAll();
+});
+
+elements.annotatorId.addEventListener("change", () => {
+  const clean = safeAnnotatorId();
+  elements.annotatorId.value = clean;
+  const url = new URL(window.location.href);
+  url.searchParams.set("annotator", clean);
+  history.replaceState(null, "", url);
+  loadState();
+  showToast(`已切换到 ${clean} 的独立记录`);
+});
+elements.annotatorId.addEventListener("input", () => {
+  window.clearTimeout(identityTimer);
+  identityTimer = window.setTimeout(() => elements.annotatorId.blur(), 700);
+});
+
+function csvEscape(value) {
+  const text = String(value ?? "");
+  return /[",\n\r]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text;
+}
+
+function exportCsv() {
+  const headers = [
+    "audit_id","image_filename","sample_type","annotator_id","feature_label",
+    "parent_label","left","top","width","height","certainty","visibility",
+    "occlusion","notes"
+  ];
+  const rows = [];
+  let unnamed = 0;
+  manifest.forEach(image => {
+    const annotations = state.annotations[image.auditId] || [];
+    annotations.forEach(item => {
+      if (!item.featureLabel.trim()) unnamed += 1;
+      rows.push([
+        image.auditId, image.imageFilename, image.sampleType, safeAnnotatorId(),
+        item.featureLabel.trim(), item.parentLabel.trim(),
+        item.left.toFixed(6), item.top.toFixed(6),
+        item.width.toFixed(6), item.height.toFixed(6),
+        item.certainty, item.visibility, item.occlusion, item.notes.trim()
+      ]);
+    });
+    if (!annotations.length && state.completed[image.auditId]) {
+      rows.push([
+        image.auditId, image.imageFilename, image.sampleType, safeAnnotatorId(),
+        "", "", "", "", "", "", "", "", "", "no visible annotated component"
+      ]);
+    }
+  });
+  if (unnamed) {
+    showToast(`还有 ${unnamed} 个未命名框，暂不导出`);
+    return;
+  }
+  const csv = [headers, ...rows]
+    .map(row => row.map(csvEscape).join(","))
+    .join("\r\n") + "\r\n";
+  const blob = new Blob(["\ufeff", csv], { type: "text/csv;charset=utf-8" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = `${safeAnnotatorId()}_wikichurches_audit.csv`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(link.href);
+  const completed = manifest.filter(image => state.completed[image.auditId]).length;
+  showToast(`已导出 ${rows.length} 行；完成 ${completed}/50 张`);
+}
+
+elements.exportButton.addEventListener("click", exportCsv);
+
+window.addEventListener("keydown", event => {
+  const editing = ["INPUT","TEXTAREA","SELECT"].includes(document.activeElement?.tagName);
+  if (editing) return;
+  if (event.key === "ArrowLeft") switchImage(currentIndex - 1);
+  if (event.key === "ArrowRight") switchImage(currentIndex + 1);
+  if ((event.key === "Delete" || event.key === "Backspace") && selectedId) {
+    elements.deleteButton.click();
+  }
+  if (event.key === "Escape") {
+    selectedId = null;
+    renderAll();
+  }
+});
+
+function showToast(message) {
+  elements.toast.textContent = message;
+  elements.toast.classList.add("show");
+  window.clearTimeout(toastTimer);
+  toastTimer = window.setTimeout(() => elements.toast.classList.remove("show"), 2600);
+}
+
+const annotatorFromUrl = new URLSearchParams(location.search).get("annotator");
+if (annotatorFromUrl) elements.annotatorId.value = annotatorFromUrl;
+loadState();
+switchImage(0);
+</script>
+</body>
+</html>

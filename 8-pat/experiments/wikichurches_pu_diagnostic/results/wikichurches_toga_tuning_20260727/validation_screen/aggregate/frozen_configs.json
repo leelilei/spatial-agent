@@ -1,0 +1,85 @@
+{
+  "baseline_candidate": "c0_baseline",
+  "confirmation_seeds": [
+    4,
+    5,
+    6
+  ],
+  "confirmation_test_policy": "Evaluate test once after hyperparameters are frozen.",
+  "selected_by_shot": {
+    "1": {
+      "candidate_id": "c7_dropout_low",
+      "hyperparameters": {
+        "dropout_rate": 0.3,
+        "focal_loss_gamma": 2.0,
+        "init_delta": 1.0,
+        "lambda_teacher": 0.5,
+        "lr": 0.001,
+        "pooling_ratio": 0.25
+      },
+      "selection": {
+        "mean_paired_delta_vs_c0": 0.8090614886731373,
+        "mean_val_accuracy": 69.57928802588997,
+        "robust_score": 0.43830293730130643,
+        "sd_paired_delta_vs_c0": 0.7415171027436618,
+        "sd_val_accuracy": 2.1889561906907202,
+        "worst_val_accuracy": 67.47572815533981
+      }
+    },
+    "16": {
+      "candidate_id": "c3_teacher_weak",
+      "hyperparameters": {
+        "dropout_rate": 0.5,
+        "focal_loss_gamma": 2.0,
+        "init_delta": 0.5,
+        "lambda_teacher": 0.3,
+        "lr": 0.001,
+        "pooling_ratio": 0.25
+      },
+      "selection": {
+        "mean_paired_delta_vs_c0": 1.4563106796116472,
+        "mean_val_accuracy": 70.3883495145631,
+        "robust_score": 1.213592233009706,
+        "sd_paired_delta_vs_c0": 0.4854368932038824,
+        "sd_val_accuracy": 0.8408013628975113,
+        "worst_val_accuracy": 69.41747572815534
+      }
+    },
+    "4": {
+      "candidate_id": "c4_teacher_strong",
+      "hyperparameters": {
+        "dropout_rate": 0.5,
+        "focal_loss_gamma": 2.0,
+        "init_delta": 2.0,
+        "lambda_teacher": 0.8,
+        "lr": 0.001,
+        "pooling_ratio": 0.25
+      },
+      "selection": {
+        "mean_paired_delta_vs_c0": 0.16181229773462746,
+        "mean_val_accuracy": 67.63754045307444,
+        "robust_score": 0.021678737251708907,
+        "sd_paired_delta_vs_c0": 0.2802671209658371,
+        "sd_val_accuracy": 1.8378344161165974,
+        "worst_val_accuracy": 65.53398058252426
+      }
+    }
+  },
+  "selection_protocol": {
+    "batch_size": 16,
+    "dataset": "wikichurches",
+    "development_seeds": [
+      1,
+      2,
+      3
+    ],
+    "selection_metric": "mean paired validation delta vs c0 minus 0.5 sample SD",
+    "shots": [
+      1,
+      4,
+      16
+    ],
+    "test_policy": "test loader/features must not be constructed, loaded, or evaluated",
+    "train_epoch": 20
+  }
+}

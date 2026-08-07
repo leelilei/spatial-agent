@@ -1,0 +1,217 @@
+{
+  "agent_id": "a19",
+  "interview": {
+    "name": "Kira",
+    "answer": "",
+    "verdict": "unknown"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 30,
+    "reflections": [
+      "Pia and Kira both prioritize clear logistics before committing, so they likely work well together when details are confirmed.",
+      "Hana is positioned as a practical source of status checks, especially for confirming whether plans are tentative or final.",
+      "Kira tends to follow up cautiously and align expectations early, which suggests a relationship style built on confirmation and coordination.",
+      "Kira is persistent about confirming logistics and wants exact details before proceeding.",
+      "Gus and Jules are responsive and helpful, with Gus now confirming the plan and bringing tools.",
+      "The repair drive moved from tentative to confirmed after back-and-forth verification, suggesting the group values clear status updates.",
+      "Kira is persistently checking whether plans are confirmed and wants precise logistics before acting.",
+      "Gus is handling the repair work directly and is willing to provide tools and backup support.",
+      "Cleo and Opal are helping coordinate the event by confirming details and tracking supplies/locations.",
+      "The group is coordinating a repair drive, but the event status is still being treated as tentative until a final time and place are confirmed.",
+      "Kira is cautious and wants concrete confirmation before committing, while others are providing partial updates and assuming coordination will firm up soon.",
+      "Sam appears to be the main point person for final logistics, with Noah offering to help by checking details and monitoring for issues.",
+      "Kira is checking whether the repair drive is truly confirmed before treating it as fixed.",
+      "Sam is the main point person for confirming the repair drive details and reporting back.",
+      "Bo has now clarified the event is confirmed, resolving the earlier tentative status."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Pia: I’m happy to help, but I’d want to know the exact time, where it’s happening, and what we’re expected to bring. I just don’t want us to get caught short on the logistics.",
+        "speaker": "Pia",
+        "listener": "Kira"
+      },
+      {
+        "round": 0,
+        "text": "Kira: Yeah, fair — can you confirm the exact time, location, and what we need to bring?",
+        "speaker": "Kira",
+        "listener": "Pia"
+      },
+      {
+        "round": 0,
+        "text": "Pia: I can, but I need the details first—once you’ve got the time, place, and a list of what to bring, I’ll be there.",
+        "speaker": "Pia",
+        "listener": "Kira"
+      },
+      {
+        "round": 0,
+        "text": "Kira: Do we actually have the repair drive confirmed, or is it still tentative?",
+        "speaker": "Kira",
+        "listener": "Hana"
+      },
+      {
+        "round": 0,
+        "text": "Hana: I don’t have it confirmed yet, so I’d treat it as tentative until we double-check.",
+        "speaker": "Hana",
+        "listener": "Kira"
+      },
+      {
+        "round": 0,
+        "text": "Kira: Got it — I’ll treat it as tentative for now. Let me know once it’s confirmed.",
+        "speaker": "Kira",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Do we have the repair drive confirmed yet, or is it still tentative?",
+        "speaker": "Kira",
+        "listener": "Jules"
+      },
+      {
+        "round": 1,
+        "text": "Jules: It’s still tentative, but I’m checking the list and lining up who’s available. Once I hear back, I can confirm what’s left and what we still need.",
+        "speaker": "Jules",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Okay, thanks — please confirm the exact time, location, and what we need to bring once you hear back.",
+        "speaker": "Kira",
+        "listener": "Jules"
+      },
+      {
+        "round": 1,
+        "text": "Gus: Hey Kira — it’s going pretty well so far, just a few more fixes to knock out. If you need a hand or a tool, I’ve got you covered.",
+        "speaker": "Gus",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Sounds good — is the repair drive definitely confirmed, or still tentative? If it’s set, can you confirm the time, location, and what we should bring?",
+        "speaker": "Kira",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Gus: It’s confirmed — we’re meeting by the community shed at 2 PM. Bring gloves if you have them, and I’ve got the tools covered.",
+        "speaker": "Gus",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: Thanks, Kira — I’m keeping the supply list updated, so just tell me what’s been gathered so far.",
+        "speaker": "Cleo",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Thanks — can you confirm whether the repair drive is actually set, or still tentative? If it’s confirmed, what time and location are we using?",
+        "speaker": "Kira",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: It’s confirmed — we’re using the usual community hall at 3 PM. I’ll keep updating the supply list as things come in.",
+        "speaker": "Cleo",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Do we have the repair drive confirmed yet, or should I still treat it as tentative?",
+        "speaker": "Kira",
+        "listener": "Opal"
+      },
+      {
+        "round": 2,
+        "text": "Opal: It’s confirmed — Rosa has it organized, so you can treat it as set. I’m starting at the community center, then checking the repair table by the front entrance.",
+        "speaker": "Opal",
+        "listener": "Kira",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Opal",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Kira: Thanks — what time should I plan for, and is there anything specific we should bring?",
+        "speaker": "Kira",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Noah: Oh, right—the repair drive. I’m still a little behind on the details, but I can keep an eye out for anything broken if you tell me what to look for.",
+        "speaker": "Noah",
+        "listener": "Kira"
+      },
+      {
+        "round": 3,
+        "text": "Kira: Still tentative on my end — can you confirm whether Rosa has it fully set? If so, I’d like the time and location before I commit.",
+        "speaker": "Kira",
+        "listener": "Noah"
+      },
+      {
+        "round": 3,
+        "text": "Noah: I’m not sure Rosa’s got it fully set yet, but I can check. I’ll ask around for the time and place and let you know.",
+        "speaker": "Noah",
+        "listener": "Kira"
+      },
+      {
+        "round": 3,
+        "text": "Sam: Yep — we’re still on for the repair drive today. I’m confirming the final time and place now, and I’ll send them over as soon as I have them.",
+        "speaker": "Sam",
+        "listener": "Kira"
+      },
+      {
+        "round": 3,
+        "text": "Kira: Got it — so it’s still tentative for now. Please confirm the final time and place when you have them.",
+        "speaker": "Kira",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Sam: Absolutely — I’m on it and will confirm the final time and place as soon as I have them.",
+        "speaker": "Sam",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Kira: Is the repair drive actually confirmed yet, or should I still treat it as tentative?",
+        "speaker": "Kira",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Tess: I haven’t heard anything new yet, so I’d still treat it as tentative for now. I’m keeping an ear out and I’ll pass along any repair-drive updates as soon as I hear them.",
+        "speaker": "Tess",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Kira: Got it — I’ll still treat it as tentative until we hear otherwise.",
+        "speaker": "Kira",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Bo: Yeah, send me the basics and I’ll keep it moving.",
+        "speaker": "Bo",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Kira: Is the repair drive actually confirmed, or should I still treat it as tentative?",
+        "speaker": "Kira",
+        "listener": "Bo"
+      },
+      {
+        "round": 4,
+        "text": "Bo: It’s confirmed — go ahead and treat it as set.",
+        "speaker": "Bo",
+        "listener": "Kira"
+      }
+    ]
+  }
+}

@@ -1,0 +1,289 @@
+{
+  "agent_id": "a07",
+  "interview": {
+    "name": "Pia",
+    "answer": "Saturday at the shed.",
+    "verdict": "stale"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 30,
+    "reflections": [
+      "Pia wants the logistics nailed down early, especially timing, meeting location, and unloading access.",
+      "Gus is organized and proactive, offering a clear start point and hands-on help with the first batch of repairs.",
+      "Eli is aligned with keeping the effort simple and concrete, focusing on the supplies and first meeting details.",
+      "Pia is focused on concrete logistics and wants clear timing, access, and meeting details before committing.",
+      "Eli is taking a coordination role and prefers a simple, organized plan with responsibilities pinned down early.",
+      "Uli and Rey are both holding things together by waiting on missing details and promising updates, which keeps Pia in a dependent planning position.",
+      "Pia is coordinating the plan and needs a final time plus access details before committing.",
+      "Rey and Oren are responsive supporters who are waiting on specifics, then will help or share updates.",
+      "The group is converging on a Saturday morning drop-off at the community shed, with people asking for quick change notices.",
+      "Pia values timely confirmation and clear logistics, especially around access, timing, and contingency updates.",
+      "The group works cooperatively with one person confirming details and others adapting plans once the schedule is set.",
+      "Pia is proactive and reliability-oriented, repeatedly asking for exact timing and advance notice so she can plan and help.",
+      "Pia is coordinating a community repair-drive workflow and is responsive, but wants firm timing and location details before committing fully.",
+      "Mina and Quinn are acting as organizers who confirm logistics and send follow-up details, while Opal provides monitoring support for any updates.",
+      "The group is aligned on Saturday shed-based drop-offs, with communication focused on confirming access, exact time, and final drop-off spot."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Pia: I’m in, but I’d like to know the timing and where folks should drop things off first.",
+        "speaker": "Pia",
+        "listener": "Gus"
+      },
+      {
+        "round": 0,
+        "text": "Gus: Great — we’re starting Saturday morning at the community shed, and folks can drop off repairs there first. If you want, I can also swing by and help sort the first batch.",
+        "speaker": "Gus",
+        "listener": "Pia",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Gus",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 0,
+        "text": "Pia: That would help a lot — what time Saturday morning should I plan on, and is the shed easy to access for unloading?",
+        "speaker": "Pia",
+        "listener": "Gus",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Pia",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 0,
+        "text": "Eli: Sounds good—let’s keep it simple and stick to a clear plan for the repair drive. What’s the first thing you want me to help with?",
+        "speaker": "Eli",
+        "listener": "Pia"
+      },
+      {
+        "round": 0,
+        "text": "Pia: Let’s confirm who’s bringing the supplies and where we’re meeting first. I’d rather sort the logistics now than scramble later.",
+        "speaker": "Pia",
+        "listener": "Eli"
+      },
+      {
+        "round": 0,
+        "text": "Eli: That makes sense—let’s lock down the supplies and meeting spot first. I’m ready to note who’s bringing what and where we should meet.",
+        "speaker": "Eli",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Uli: Thanks, Pia — I’m still waiting on the final time, but if you can stay flexible with pickup, that would really help.",
+        "speaker": "Uli",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: I can stay flexible, but I still need the final time and a clear drop-off spot so I can plan my part.",
+        "speaker": "Pia",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Uli: I hear you — I’m waiting on the final time too, but I’ll send it as soon as I get it, along with the drop-off spot.",
+        "speaker": "Uli",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: I’m still waiting on the exact Saturday time and a quick note on shed access for unloading.",
+        "speaker": "Pia",
+        "listener": "Rey",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Pia",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Rey: I’ll check on the Saturday time and shed access, then send you a quick update.",
+        "speaker": "Rey",
+        "listener": "Pia",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Rey",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Pia: Thanks — once you have that, I can plan around it and be there ready to help.",
+        "speaker": "Pia",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Oh, that’s right — tape, screws, and basic tools. I’ll check the garage and bring over whatever I can find.",
+        "speaker": "Oren",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Pia: Thanks — I’m still waiting on the exact Saturday time and shed access, so I can plan around it. Once that’s clear, I’ll be there ready to help with unloading.",
+        "speaker": "Pia",
+        "listener": "Oren",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Pia",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Oren: Thanks, Pia — just let me know the Saturday time and shed access once it’s set, and I’ll be there too.",
+        "speaker": "Oren",
+        "listener": "Pia",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Oren",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Pia: Thanks, that helps — Saturday morning at the community shed works for me. Just let me know if the drop-off process changes so I can plan around it.",
+        "speaker": "Pia",
+        "listener": "Cleo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Pia",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Cleo: Looks good — I’ll keep the drop-off the same and let you know right away if anything changes.",
+        "speaker": "Cleo",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Pia: Great, thanks — I’ll plan on the shed Saturday morning, then. If anything shifts, please give me a quick heads-up so I can adjust.",
+        "speaker": "Pia",
+        "listener": "Cleo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Pia",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Pia: Saturday morning at the community shed works for me—just let me know the exact time, and where you want the first drop-offs sorted.",
+        "speaker": "Pia",
+        "listener": "Leo",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Pia",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Leo: Let’s do 9 AM at the community shed. I’ll set the first drop-offs by sign-ins and sorting, and I still need tape, screws, and basic tools brought over.",
+        "speaker": "Leo",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Pia: Perfect — 9 AM at the community shed sounds good, and I’ll make sure the first drop-offs go by sign-ins and sorting.",
+        "speaker": "Pia",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Pia: Thanks — I’m still waiting on the exact Saturday time and shed access. Once that’s confirmed, I can plan properly and be there to help unloading.",
+        "speaker": "Pia",
+        "listener": "Mina",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Pia",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Mina: Thanks, Pia — I’ll confirm the Saturday time and shed access, then send you the details right away.",
+        "speaker": "Mina",
+        "listener": "Pia",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Mina",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Pia: Perfect, thanks Mina — I’ll wait for the update, then I can plan around it.",
+        "speaker": "Pia",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: Absolutely — I’ll send you the repair-drive list right now and point out what still needs doing too.",
+        "speaker": "Quinn",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: Thanks, Quinn — send the list when you can, and I’ll plan around it once I know the final time and drop-off spot.",
+        "speaker": "Pia",
+        "listener": "Quinn"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: Sure thing — I’ll send the list plus the final time and drop-off spot right now, and I’ll point out what still needs helping with too.",
+        "speaker": "Quinn",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: Sounds good — I’ll keep it to the Saturday shed plan and wait for the update. If anything changes, please let me know as soon as you can so I can adjust.",
+        "speaker": "Pia",
+        "listener": "Opal",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Pia",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Opal: I’ll keep watching for the exact spot and time, and I’ll let you know as soon as I see any update.",
+        "speaker": "Opal",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: Thanks, Opal — that helps. I’ll keep Saturday morning open and wait for the exact spot and time.",
+        "speaker": "Pia",
+        "listener": "Opal",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Pia",
+          "annotation_basis": "controlled_task"
+        }
+      }
+    ]
+  }
+}

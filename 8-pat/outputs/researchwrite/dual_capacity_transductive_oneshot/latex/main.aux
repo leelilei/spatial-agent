@@ -1,0 +1,108 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{mamlfgvc,dualattention,bfrn}
+\citation{dinov2}
+\citation{closerlook,goodembedding,simpleshot}
+\citation{laplacianshot}
+\citation{tim}
+\citation{ptmap}
+\citation{realistictransduction}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:introduction}{{1}{1}{Introduction}{section.1}{}}
+\citation{closerlook,goodembedding,simpleshot}
+\citation{dinov2}
+\citation{cubdataset}
+\citation{stanforddogs}
+\citation{mamlfgvc,dualattention,bfrn}
+\citation{laplacianshot}
+\citation{tim}
+\citation{ptmap}
+\citation{squeezefeatures,easy}
+\citation{iterativegraph}
+\citation{conditionaltransport}
+\citation{realistictransduction}
+\citation{conditionaltransport,adaptivemanifold}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Frozen representations for few-shot recognition}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Transductive inference and prototype correction}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Query priors in transductive evaluation}{2}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Design principles}{2}{subsection.3.2}\protected@file@percent }
+\citation{sinkhorn}
+\citation{cubdataset}
+\citation{stanforddogs}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Overview of \textsc  {DCTPR}\xspace  . Both encoders remain frozen. The method uses the balanced query marginal but never accesses query labels. Only the assignment and support-anchored prototype update are repeated.}}{3}{figure.1}\protected@file@percent }
+\newlabel{fig:pipeline}{{1}{3}{Overview of \method . Both encoders remain frozen. The method uses the balanced query marginal but never accesses query labels. Only the assignment and support-anchored prototype update are repeated}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Dual-capacity representation}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{eq:fusion}{{2}{3}{Dual-capacity representation}{equation.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Balanced soft assignment}{3}{subsection.3.4}\protected@file@percent }
+\newlabel{eq:logits}{{3}{3}{Balanced soft assignment}{equation.3}{}}
+\newlabel{eq:marginals}{{4}{3}{Balanced soft assignment}{equation.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Support-anchored prototype update}{3}{subsection.3.5}\protected@file@percent }
+\newlabel{eq:center}{{5}{3}{Support-anchored prototype update}{equation.5}{}}
+\newlabel{eq:update}{{6}{3}{Support-anchored prototype update}{equation.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Protocol}{3}{section.4}\protected@file@percent }
+\newlabel{sec:protocol}{{4}{3}{Experimental Protocol}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Datasets and episode construction}{3}{subsection.4.1}\protected@file@percent }
+\citation{tim}
+\citation{ptmap}
+\citation{laplacianshot}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces \textbf  {Official-training examples.} \textbf  {a}, CUB-200-2011 warblers. \textbf  {b}, Visually similar Stanford Dogs terriers. This context-only plate is not quantitative evidence. Images were split-verified and center-cropped without color or contrast adjustment; no official-test image is shown.}}{4}{figure.2}\protected@file@percent }
+\newlabel{fig:training-examples}{{2}{4}{\textbf {Official-training examples.} \textbf {a}, CUB-200-2011 warblers. \textbf {b}, Visually similar Stanford Dogs terriers. This context-only plate is not quantitative evidence. Images were split-verified and center-cropped without color or contrast adjustment; no official-test image is shown}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Features and implementation}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Matched baselines}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Metrics and comparison logic}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{eq:recovery}{{7}{4}{Metrics and comparison logic}{equation.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Component analysis}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:ablation}{{5.1}{4}{Component analysis}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces CUB component analysis. Values are balanced accuracy (\%) averaged over ten rotations. E1 is development; E2--E3 are frozen confirmation.}}{5}{table.1}\protected@file@percent }
+\newlabel{tab:ablation}{{1}{5}{CUB component analysis. Values are balanced accuracy (\%) averaged over ten rotations. E1 is development; E2--E3 are frozen confirmation}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Accuracy--efficiency comparison}{5}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Cross-episode and cross-dataset stability}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Query-prior stress test}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:priorstress}{{5.4}{5}{Query-prior stress test}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{5}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{5}{Discussion}{section.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Matched transductive comparison. Accuracy is the mean balanced accuracy across three episodes and 30 rotations per dataset. Runtime is mean milliseconds per rotation for the transductive head only. Bold marks the best accuracy; underlining marks \textsc  {DCTPR}\xspace  .}}{6}{table.2}\protected@file@percent }
+\newlabel{tab:main}{{2}{6}{Matched transductive comparison. Accuracy is the mean balanced accuracy across three episodes and 30 rotations per dataset. Runtime is mean milliseconds per rotation for the transductive head only. Bold marks the best accuracy; underlining marks \method }{table.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces \textbf  {Accuracy--efficiency operating points on two high-way datasets.} \textbf  {a}, CUB-200-2011, evaluated as 200-way one-shot classification. \textbf  {b}, Stanford Dogs, evaluated as 120-way one-shot classification. Each point reports mean balanced accuracy and mean task-head runtime across three episodes and 30 support rotations. All methods use the same saved DINOv2 features. The dashed horizontal line is the zero-optimization BL-NCC reference and is not assigned an artificial value on the logarithmic runtime axis. DCTPR is 3.8 times faster than TIM-ADM on CUB and 49.2 times faster than MAP-RAW on Dogs.}}{6}{figure.3}\protected@file@percent }
+\newlabel{fig:pareto}{{3}{6}{\textbf {Accuracy--efficiency operating points on two high-way datasets.} \textbf {a}, CUB-200-2011, evaluated as 200-way one-shot classification. \textbf {b}, Stanford Dogs, evaluated as 120-way one-shot classification. Each point reports mean balanced accuracy and mean task-head runtime across three episodes and 30 support rotations. All methods use the same saved DINOv2 features. The dashed horizontal line is the zero-optimization BL-NCC reference and is not assigned an artificial value on the logarithmic runtime axis. DCTPR is 3.8 times faster than TIM-ADM on CUB and 49.2 times faster than MAP-RAW on Dogs}{figure.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Per-episode stability of the gain over fused nearest support.}}{6}{table.3}\protected@file@percent }
+\newlabel{tab:episodes}{{3}{6}{Per-episode stability of the gain over fused nearest support}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces CUB macro balanced accuracy (\%) under deterministic query imbalance, averaged over three episodes. Oracle counts are diagnostic only.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:stress}{{4}{6}{CUB macro balanced accuracy (\%) under deterministic query imbalance, averaged over three episodes. Oracle counts are diagnostic only}{table.4}{}}
+\citation{realistictransduction}
+\citation{conditionaltransport,adaptivemanifold}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces \textbf  {Stable one-shot gains and their query-prior boundary.} \textbf  {a}, Paired DCTPR gain over BL-NCC for each support rotation. Dots are the ten rotations per episode and orange bars are episode means; rotation dispersion is descriptive because rotations reuse images. All 60 differences are positive. \textbf  {b}, Mean CUB macro balanced accuracy across the balanced protocol and two deterministic imbalance regimes. Uniform-prior DCTPR loses most of its balanced-task advantage, whereas supplying the true class counts recovers much of the loss. Oracle counts are a diagnostic and are never used as a deployable method input.}}{7}{figure.4}\protected@file@percent }
+\newlabel{fig:robustness}{{4}{7}{\textbf {Stable one-shot gains and their query-prior boundary.} \textbf {a}, Paired DCTPR gain over BL-NCC for each support rotation. Dots are the ten rotations per episode and orange bars are episode means; rotation dispersion is descriptive because rotations reuse images. All 60 differences are positive. \textbf {b}, Mean CUB macro balanced accuracy across the balanced protocol and two deterministic imbalance regimes. Uniform-prior DCTPR loses most of its balanced-task advantage, whereas supplying the true class counts recovers much of the loss. Oracle counts are a diagnostic and are never used as a deployable method input}{figure.4}{}}
+\bibstyle{unsrt}
+\bibdata{references}
+\bibcite{mamlfgvc}{1}
+\bibcite{dualattention}{2}
+\bibcite{bfrn}{3}
+\bibcite{dinov2}{4}
+\bibcite{closerlook}{5}
+\bibcite{goodembedding}{6}
+\bibcite{simpleshot}{7}
+\bibcite{laplacianshot}{8}
+\bibcite{tim}{9}
+\bibcite{ptmap}{10}
+\bibcite{realistictransduction}{11}
+\bibcite{cubdataset}{12}
+\bibcite{stanforddogs}{13}
+\bibcite{squeezefeatures}{14}
+\bibcite{easy}{15}
+\bibcite{iterativegraph}{16}
+\bibcite{conditionaltransport}{17}
+\bibcite{adaptivemanifold}{18}
+\bibcite{sinkhorn}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{8}{Conclusion}{section.7}{}}
+\gdef \@abspage@last{8}

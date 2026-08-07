@@ -1,0 +1,30 @@
+{
+  "dataset": "wikichurches",
+  "shots": [
+    1,
+    4,
+    16
+  ],
+  "methods": [
+    "tip_adapter_f",
+    "toga"
+  ],
+  "fresh_test_seeds": [
+    4,
+    5,
+    6
+  ],
+  "train_epoch": 20,
+  "batch_size": 16,
+  "frozen_config_sha256": "13216851478a94d63b07a95b4bbbef61fec232687f1886c9201d8370b39244ca",
+  "test_policy": "Hyperparameters are frozen from validation seeds 1/2/3. Test is evaluated once on fresh seeds 4/5/6.",
+  "paired_control": "Within each shot and seed, Tip-Adapter-F and TOGA use the same support split, optimizer learning rate, epochs, batch size, and validation-selection protocol.",
+  "go_rule": {
+    "all_conditions_required": true,
+    "positive_mean_shots_at_least": 2,
+    "paired_wins_at_least": 5,
+    "total_pairs": 9,
+    "minimum_allowed_shot_mean_delta": -1.0,
+    "delta_definition": "TOGA final test accuracy minus Tip-Adapter-F final test accuracy, in percentage points"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "experiment_id": "PAT-K-260729-005",
+  "title": "Query-prior stress test for CUB 200-way 1-shot transduction",
+  "frozen_at": "2026-07-29T13:01:00+08:00",
+  "status": "PRE_REGISTERED_BEFORE_IMBALANCED_QUERY_PREDICTIONS",
+  "dependency": "PAT-K-260729-004 selected LaplacianShot lambdas; all other constants remain fixed",
+  "data": {
+    "dataset": "CUB official train only Episodes 1-3",
+    "support_per_class": 1,
+    "available_query_per_class": 9,
+    "support_rotations": 10,
+    "regimes": {
+      "MILD_3_9": "100 classes retain 3 queries and 100 retain 9, permuted by a fixed seed; mean count 6",
+      "SEVERE_1_9": "22 copies of counts 1..9 plus two count-5 classes, permuted by a fixed seed; mean count 5"
+    },
+    "subset_rule": "within class, take the lexicographically first remaining image IDs after the fixed class-count permutation",
+    "official_test_access": "forbidden"
+  },
+  "arms": [
+    "BL nearest support",
+    "DCTPR with its original uniform query prior",
+    "DCTPR with oracle class counts as a diagnostic upper control",
+    "TIM-ADM",
+    "signed PT-MAP with uniform and oracle class counts",
+    "LaplacianShot L2N and prototype-rectified variants"
+  ],
+  "metrics": [
+    "macro balanced accuracy",
+    "micro accuracy",
+    "delta from the corresponding balanced episode",
+    "uniform-prior versus oracle-prior gap"
+  ],
+  "interpretation": "diagnostic stress test only; it cannot change DCTPR or published-baseline hyperparameters",
+  "forbidden": [
+    "Do not tune class-prior estimators on stress labels",
+    "Do not call oracle-prior controls deployable methods",
+    "Do not hide a prior-mismatch failure"
+  ]
+}

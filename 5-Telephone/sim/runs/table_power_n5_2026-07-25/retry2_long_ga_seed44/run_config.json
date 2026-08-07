@@ -1,0 +1,38 @@
+{
+  "memory": [
+    "ga"
+  ],
+  "model": [
+    "gpt-5.4-mini"
+  ],
+  "config": "/Users/mac/Documents/6-Research/3-SMGA/benchmarks/diagnostic_v0/configs/fhl_responses_gpt54_config.example.json",
+  "runs": 1,
+  "seed": 44,
+  "agent_count": 25,
+  "meetings": 2,
+  "rebroadcast_every": 0,
+  "rebroadcast_scope": "source",
+  "scenario": "repair_drive",
+  "rebroadcast_rounds": "",
+  "persona_depth": "thin",
+  "interview_every_round": false,
+  "prov_loss": 0.0,
+  "prov_garble": 0.0,
+  "prov_mention": 1.0,
+  "apm_k": 2,
+  "apm_no_origin": false,
+  "forget_rate": null,
+  "forget_floor": 0.1,
+  "adversary_agent": "",
+  "adversary_round": -1,
+  "topology": "random",
+  "initial_fact_scope": "legacy",
+  "rounds": 10,
+  "turns": 3,
+  "workers": 6,
+  "question": "When and where is the repair drive being held now?",
+  "mock": false,
+  "context_relay_mock": false,
+  "out_dir": "sim/runs/table_power_n5_2026-07-25/retry2_long_ga_seed44",
+  "_timestamp": "2026-07-25T13:32:07"
+}

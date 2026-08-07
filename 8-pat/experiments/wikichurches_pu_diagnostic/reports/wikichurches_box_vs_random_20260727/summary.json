@@ -1,0 +1,78 @@
+{
+  "checks": {
+    "bootstrap_ci_lower": true,
+    "mean_margin_delta": true,
+    "positive_style_directions": true,
+    "prototype_balanced_accuracy_delta": true
+  },
+  "data": {
+    "control_overlap_violations": 16,
+    "development_churches": 97,
+    "development_images": 97,
+    "official_boxes": 433,
+    "random_controls": 3464,
+    "style_box_counts": {
+      "Baroque": 27,
+      "Gothic": 202,
+      "Renaissance": 34,
+      "Romanesque": 170
+    },
+    "style_image_counts": {
+      "Baroque": 15,
+      "Gothic": 35,
+      "Renaissance": 8,
+      "Romanesque": 39
+    },
+    "test_images_encoded": 0
+  },
+  "decision": "GO",
+  "experiment_id": "PAT-B-260727-002",
+  "go_rule": {
+    "all_conditions_required": true,
+    "delta_definition": "official-box crop minus mean of area/aspect-matched same-image random controls",
+    "mean_image_level_margin_delta_greater_than": 0.0,
+    "paired_bootstrap_95ci_lower_greater_than": 0.0,
+    "positive_style_directions_at_least": 3,
+    "prototype_balanced_accuracy_delta_pp_at_least": 2.0
+  },
+  "integrity": {
+    "device": "cuda",
+    "model": "ViT-B/16",
+    "parts_sha256": "2e66eb84f1f6b17bb2dcb63456208c234c932302df76376403c533ee474d1bb5",
+    "protocol_sha256": "488f5771b5a9968c68de9e6a7a93eadb08ed6b0b0aabaab8923110332e2cdb19"
+  },
+  "interpretation_boundary": "This is a regional-information probe, not an end-to-end few-shot result and not evidence that unannotated regions are negatives.",
+  "margin_probe": {
+    "mean_image_level_paired_delta": 0.006490958874398695,
+    "paired_bootstrap_95ci": [
+      0.005107998590693281,
+      0.008031713945780151
+    ],
+    "per_style": {
+      "Baroque": {
+        "images": 15,
+        "mean_paired_margin_delta": 0.004133744686841965
+      },
+      "Gothic": {
+        "images": 35,
+        "mean_paired_margin_delta": 0.007398288682812737
+      },
+      "Renaissance": {
+        "images": 8,
+        "mean_paired_margin_delta": -0.000259680157372107
+      },
+      "Romanesque": {
+        "images": 39,
+        "mean_paired_margin_delta": 0.007968055842937822
+      }
+    },
+    "positive_style_directions": 3,
+    "sd_image_level_paired_delta": 0.007347815497099757
+  },
+  "prototype_cv": {
+    "official_mean_balanced_accuracy": 0.7343402777777778,
+    "paired_delta_percentage_points": 24.210394965277775,
+    "paired_fold_delta_sd_percentage_points": 10.997614642235675,
+    "random_mean_balanced_accuracy": 0.492236328125
+  }
+}

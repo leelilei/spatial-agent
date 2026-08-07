@@ -1,0 +1,5704 @@
+{
+  "a01": {
+    "kind": "smga_v3",
+    "n_events": 31,
+    "registry": {
+      "repair drive": {
+        "day": "Sunday",
+        "place": "community center"
+      }
+    },
+    "current_facts": [
+      {
+        "claim": "Sam helps sort the donated tools",
+        "subject": [
+          "Sam"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Opal helps with the setup",
+        "subject": [
+          "Opal"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Rey carries supplies",
+        "subject": [
+          "Rey"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Tess brings a toaster",
+        "subject": [
+          "Tess"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Oren has tools",
+        "subject": [
+          "Oren"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Gus brings his wrenches and screwdrivers",
+        "subject": [
+          "Gus"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Faye brings snacks",
+        "subject": [
+          "Faye"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Cleo manages supplies",
+        "subject": [
+          "Cleo"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Eli brings a coffee maker",
+        "subject": [
+          "Eli"
+        ],
+        "depends_on": "repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Rosa: Hi Uli! I'm glad I ran into you. Are you still available to help with the repair drive this Saturday?",
+        "speaker": "Rosa",
+        "listener": "Uli"
+      },
+      {
+        "round": 0,
+        "text": "Uli: Oh, um... I'm sorry, I don't think I can make it this Saturday.",
+        "speaker": "Uli",
+        "listener": "Rosa"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Oh, that's a shame! But no worries, thanks for letting me know. Maybe another time?",
+        "speaker": "Rosa",
+        "listener": "Uli"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Hi Nell! I'm so glad you're interested in the repair drive. We're planning it for next Saturday morning.",
+        "speaker": "Rosa",
+        "listener": "Nell"
+      },
+      {
+        "round": 0,
+        "text": "Nell: Great, next Saturday morning works for me! What can I bring or help with?",
+        "speaker": "Nell",
+        "listener": "Rosa"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: That's wonderful! We could really use some help sorting donated items and setting up the repair stations. I'll send you a list of what to bring.",
+        "speaker": "Rosa",
+        "listener": "Nell"
+      },
+      {
+        "round": 1,
+        "text": "Opal: Where is the repair drive taking place this time?",
+        "speaker": "Opal",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: It's at the community center on Elm Street, right next to the park. We'll have tables set up in the main hall.",
+        "speaker": "Rosa",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Opal: Good, I know that spot. I'll note it down so I can help with the setup.",
+        "speaker": "Opal",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Hey Rosa, I heard you're organizing a repair drive. How can I lend a hand?",
+        "speaker": "Sam",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: Oh, Sam, that's so kind of you! I could really use someone to help sort through the donated tools on Saturday morning.",
+        "speaker": "Rosa",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Sounds great, I'll be there on Saturday morning to help sort the tools.",
+        "speaker": "Sam",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+        "speaker": "world",
+        "listener": "Rosa",
+        "injected": true,
+        "prov": {
+          "version": 1,
+          "value": "Update: the repair drive has been moved from Saturday at the front porch to Sunday at the community center.",
+          "auth": true,
+          "source": "ORIGIN",
+          "path": [
+            "ORIGIN"
+          ]
+        }
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Hi Faye! Excited for the repair drive this Sunday? We've got Sam sorting tools and Opal handling setup.",
+        "speaker": "Rosa",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Faye: Actually, the repair drive is on Saturday, not Sunday.",
+        "speaker": "Faye",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Oh, I thought it was Sunday. Let me double-check my notes—I'm pretty sure I have it down as Sunday. Could you remind me where you saw Saturday?",
+        "speaker": "Rosa",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: I'm glad everyone's pitching in. So Rey will carry supplies, Tess is bringing a toaster, and Oren has tools. That should cover a lot.",
+        "speaker": "Cleo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Great, that sounds like a solid lineup! Don't forget we're all set for Sunday at the community center.",
+        "speaker": "Rosa",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: Right, Sunday at the center. I'll make sure the supplies are ready to go.",
+        "speaker": "Cleo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Hey Gus, are you still planning to join us for the repair drive on Sunday? We could use your help.",
+        "speaker": "Rosa",
+        "listener": "Gus"
+      },
+      {
+        "round": 3,
+        "text": "Gus: Yeah, I'll be there. I've got my wrenches and screwdrivers ready to go.",
+        "speaker": "Gus",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Great, Gus! I'll put you down for wrench duty. See you Sunday at the community center.",
+        "speaker": "Rosa",
+        "listener": "Gus"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Hi Faye! I'm so glad the repair drive is this Sunday. Everyone's chipping in—Sam's sorting tools, Opal's setting up, Rey's carrying supplies, and Tess even brought a toaster. We'll have a great day at the community center!",
+        "speaker": "Rosa",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Faye: Oh, Rosa, I think there's a mix-up—the repair drive is actually this Saturday, not Sunday. I'll be bringing snacks as planned.",
+        "speaker": "Faye",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Thanks, Faye, but I double-checked the schedule—it's definitely Sunday. I wouldn't want you to show up on the wrong day!",
+        "speaker": "Rosa",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: I'm so glad you're interested in the repair drive! We're all set for Sunday at the community center—could you help with greeting folks at the door?",
+        "speaker": "Rosa",
+        "listener": "Cleo"
+      },
+      {
+        "round": 4,
+        "text": "Cleo: Actually, Rosa, I thought the repair drive is on Saturday, not Sunday. And I'm happy to help, but I'm better at managing supplies than greeting at the door.",
+        "speaker": "Cleo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Oh, I double-checked the schedule, and it's definitely Sunday. And managing supplies would be perfect—thank you, Cleo!",
+        "speaker": "Rosa",
+        "listener": "Cleo"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Hi Eli, just a reminder—the repair drive is this Sunday at the community center. Think you can lend a hand?",
+        "speaker": "Rosa",
+        "listener": "Eli"
+      },
+      {
+        "round": 4,
+        "text": "Eli: Wait, Rosa—I thought the repair drive was this Saturday, not Sunday. I've got my coffee maker ready for it.",
+        "speaker": "Eli",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Oh, I'm sorry for the confusion, Eli—it's definitely Sunday. I promise we'll have a spot for that coffee maker.",
+        "speaker": "Rosa",
+        "listener": "Eli"
+      }
+    ]
+  },
+  "a02": {
+    "kind": "smga_v3",
+    "n_events": 27,
+    "registry": {
+      "repair drive": {
+        "day": "Saturday"
+      }
+    },
+    "current_facts": [
+      {
+        "claim": "Sam participates in the repair drive",
+        "subject": [
+          "Sam"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Sam helps Leo lift the engine block at the repair drive",
+        "subject": [
+          "Sam",
+          "Leo"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Sam helps sort tools at the repair drive",
+        "subject": [
+          "Sam"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Oren brought his tools",
+        "subject": [
+          "Oren"
+        ],
+        "depends_on": null
+      },
+      {
+        "claim": "Ira helps Eli sort tools",
+        "subject": [
+          "Ira",
+          "Eli"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Gus is organizing the repair drive",
+        "subject": [
+          "Gus"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Dane brought an old laptop for the repair drive",
+        "subject": [
+          "Dane"
+        ],
+        "depends_on": "repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Sam: Hey Gus, I heard about the repair drive. Need a hand with anything?",
+        "speaker": "Sam",
+        "listener": "Gus"
+      },
+      {
+        "round": 0,
+        "text": "Gus: Sure, Sam! I've got a truck full of tools we can use. Let's head over to Mrs. Henderson's first—she's got a broken fence.",
+        "speaker": "Gus",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Sounds good, I'll grab my gloves and meet you at the truck.",
+        "speaker": "Sam",
+        "listener": "Gus"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Hey Leo, I heard you're working on a repair drive. Need any help with that?",
+        "speaker": "Sam",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: Yeah, actually. Could use a hand lifting the old engine block.",
+        "speaker": "Leo",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Sure, I can give you a hand. When are you planning to do it?",
+        "speaker": "Sam",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Sam: What's the repair drive about?",
+        "speaker": "Sam",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Tess: Oh, it's a community thing where we all pitch in to fix up shared spaces—like that broken bench at the park. Just a way to help out!",
+        "speaker": "Tess",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: That sounds great! I'd love to help out—count me in.",
+        "speaker": "Sam",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Hey Rosa, I heard you're organizing a repair drive. How can I lend a hand?",
+        "speaker": "Sam",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: Oh, Sam, that's so kind of you! I could really use someone to help sort through the donated tools on Saturday morning.",
+        "speaker": "Rosa",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Sounds great, I'll be there on Saturday morning to help sort the tools.",
+        "speaker": "Sam",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Oh, right, I brought my tools! Did I already put them in the pile?",
+        "speaker": "Oren",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Sam: Not yet, they're over there. Let me help you sort them.",
+        "speaker": "Sam",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Great, thanks Sam. Which pile should I put the hammer in?",
+        "speaker": "Oren",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Ira: Hey Sam, I'm heading to the community center to help Eli sort through the tools for the repair drive Gus is organizing.",
+        "speaker": "Ira",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Sam: Great, I'll come help too! I was planning to sort tools as well.",
+        "speaker": "Sam",
+        "listener": "Ira"
+      },
+      {
+        "round": 2,
+        "text": "Ira: Awesome, thanks Sam! The more hands the better—let's head over together.",
+        "speaker": "Ira",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Sam: Hey Dane, ready to get started at the repair drive? I can help with sorting tools and lend a hand with the heavy lifting.",
+        "speaker": "Sam",
+        "listener": "Dane"
+      },
+      {
+        "round": 3,
+        "text": "Dane: Yeah, I'm ready. I brought that old laptop I told you about for the repair drive.",
+        "speaker": "Dane",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Sam: Great, every bit helps! Let's see if we can get that laptop up and running.",
+        "speaker": "Sam",
+        "listener": "Dane"
+      },
+      {
+        "round": 4,
+        "text": "Jules: Hey Sam, are you coming to the repair drive on Saturday? Vik's bringing his toaster, and I'm bringing my blender.",
+        "speaker": "Jules",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Sam: Yeah, I'll be there! I can help sort through everyone's donated tools and gadgets.",
+        "speaker": "Sam",
+        "listener": "Jules"
+      },
+      {
+        "round": 4,
+        "text": "Jules: Oh great! And Noah's bringing his old radio, and Eli's bringing his coffee maker too. Should be a fun day fixing things up.",
+        "speaker": "Jules",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Sam: Yes, Dane brought an old laptop. I've been sorting tools for the drive.",
+        "speaker": "Sam",
+        "listener": "Rey"
+      },
+      {
+        "round": 4,
+        "text": "Rey: Saturday works. I'll carry supplies.",
+        "speaker": "Rey",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Sam: Great, I'll also bring some extra screwdrivers I have.",
+        "speaker": "Sam",
+        "listener": "Rey"
+      }
+    ]
+  },
+  "a03": {
+    "kind": "smga_v3",
+    "n_events": 30,
+    "registry": {
+      "neighborhood repair drive": {
+        "day": "Saturday"
+      }
+    },
+    "current_facts": [
+      {
+        "claim": "Sam will help at the repair drive",
+        "subject": [
+          "Sam"
+        ],
+        "depends_on": "neighborhood repair drive"
+      },
+      {
+        "claim": "Oren brought tools",
+        "subject": [
+          "Oren"
+        ],
+        "depends_on": "neighborhood repair drive"
+      },
+      {
+        "claim": "Dane is hauling an old laptop to donate",
+        "subject": [
+          "Dane"
+        ],
+        "depends_on": "neighborhood repair drive"
+      },
+      {
+        "claim": "Ira will help Eli sort tools",
+        "subject": [
+          "Ira",
+          "Eli"
+        ],
+        "depends_on": "neighborhood repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Tess: Hey Quinn, did you hear about the neighborhood repair drive this Saturday? I'm bringing in my old toaster.",
+        "speaker": "Tess",
+        "listener": "Quinn"
+      },
+      {
+        "round": 0,
+        "text": "Quinn: Oh, that's awesome! I've been telling everyone about it. Maybe we can get a bunch of folks to come together.",
+        "speaker": "Quinn",
+        "listener": "Tess"
+      },
+      {
+        "round": 0,
+        "text": "Tess: Yeah, I hope so! It'd be great to see a big turnout.",
+        "speaker": "Tess",
+        "listener": "Quinn"
+      },
+      {
+        "round": 0,
+        "text": "Tess: Hey Eli, have you heard about the neighborhood repair drive this weekend? I think they're fixing up old appliances for free!",
+        "speaker": "Tess",
+        "listener": "Eli"
+      },
+      {
+        "round": 0,
+        "text": "Eli: Oh, I hadn't heard about that. What's the schedule? I like to keep things organized.",
+        "speaker": "Eli",
+        "listener": "Tess"
+      },
+      {
+        "round": 0,
+        "text": "Tess: It's on Saturday from 9 AM to 3 PM at the community center, and they're even offering free coffee and donuts!",
+        "speaker": "Tess",
+        "listener": "Eli"
+      },
+      {
+        "round": 1,
+        "text": "Sam: What's the repair drive about?",
+        "speaker": "Sam",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Tess: Oh, it's a community thing where we all pitch in to fix up shared spaces—like that broken bench at the park. Just a way to help out!",
+        "speaker": "Tess",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: That sounds great! I'd love to help out—count me in.",
+        "speaker": "Sam",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Hi Tess, I brought my tools for the repair drive!",
+        "speaker": "Oren",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Tess: Oh, that's wonderful, Oren! What kind of tools did you bring?",
+        "speaker": "Tess",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Oren: I... I think I brought a hammer and a few screwdrivers? Let me check my bag.",
+        "speaker": "Oren",
+        "listener": "Tess"
+      },
+      {
+        "round": 2,
+        "text": "Tess: Hey Nell, did you hear? Sam's going to help out at the repair drive, and Oren brought a bunch of tools already!",
+        "speaker": "Tess",
+        "listener": "Nell"
+      },
+      {
+        "round": 2,
+        "text": "Nell: Oh, that's great! I heard from Rosa that we need to bring our own toasters. Are you bringing yours?",
+        "speaker": "Nell",
+        "listener": "Tess"
+      },
+      {
+        "round": 2,
+        "text": "Tess: Oh, I haven't thought about it yet! I might dig mine out of the closet if I can find it.",
+        "speaker": "Tess",
+        "listener": "Nell"
+      },
+      {
+        "round": 2,
+        "text": "Tess: Hey Leo, did you hear? Sam’s going to help at the repair drive, and Oren already brought some tools!",
+        "speaker": "Tess",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Leo: Good, Dane's hauling an old laptop to donate.",
+        "speaker": "Leo",
+        "listener": "Tess"
+      },
+      {
+        "round": 2,
+        "text": "Tess: Oh, that's awesome! Dane's laptop could be really useful.",
+        "speaker": "Tess",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Tess: Hey Pia, did you hear? Sam's going to help out at the repair drive, and Dane's hauling an old laptop to donate. Oren even brought his tools!",
+        "speaker": "Tess",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Pia: That's great to hear, but let's make sure we're not overloading the space—I've already counted everything twice and we're set.",
+        "speaker": "Pia",
+        "listener": "Tess"
+      },
+      {
+        "round": 3,
+        "text": "Tess: Oh, I know, you're always on top of things! I just get excited seeing everyone pitch in.",
+        "speaker": "Tess",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Noah: Oh, the repair drive? I think it's on Saturday, but I might be mixing it up.",
+        "speaker": "Noah",
+        "listener": "Tess"
+      },
+      {
+        "round": 3,
+        "text": "Tess: Yeah, it's Saturday. Sam's gonna help out, and Dane's hauling an old laptop to donate. Oren already brought some tools.",
+        "speaker": "Tess",
+        "listener": "Noah"
+      },
+      {
+        "round": 3,
+        "text": "Noah: Right, Saturday. Glad Dane's bringing a laptop, that should come in handy.",
+        "speaker": "Noah",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Tess: Hey Mara, are you coming to the repair drive on Saturday? Sam's helping, and Oren and Dane are pitching in too.",
+        "speaker": "Tess",
+        "listener": "Mara"
+      },
+      {
+        "round": 4,
+        "text": "Mara: Yeah, I'll be there! Glad Oren's bringing his tools — we'll need 'em.",
+        "speaker": "Mara",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Tess: Oh, and Dane's hauling in an old laptop to donate — should be fun!",
+        "speaker": "Tess",
+        "listener": "Mara"
+      },
+      {
+        "round": 4,
+        "text": "Tess: Hey Ira, the repair drive is this Saturday! Sam's helping out and Oren brought some tools.",
+        "speaker": "Tess",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Ira: Oh great, I'll be helping Eli sort tools—see you there!",
+        "speaker": "Ira",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Tess: And Dane's bringing an old laptop to donate—should be a good event!",
+        "speaker": "Tess",
+        "listener": "Ira"
+      }
+    ]
+  },
+  "a04": {
+    "kind": "smga_v3",
+    "n_events": 27,
+    "registry": {
+      "repair drive": {
+        "day": "Saturday"
+      }
+    },
+    "current_facts": [
+      {
+        "claim": "The repair drive is open to everyone.",
+        "subject": [
+          "repair drive"
+        ],
+        "depends_on": null
+      },
+      {
+        "claim": "The repair drive needs basic tools and spare parts.",
+        "subject": [
+          "repair drive"
+        ],
+        "depends_on": null
+      },
+      {
+        "claim": "Gus offers to bring his tool kit for the repair drive.",
+        "subject": [
+          "Gus"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Dane brought an old laptop to donate to the repair drive.",
+        "subject": [
+          "Dane"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Hana would like to help with the repair drive.",
+        "subject": [
+          "Hana"
+        ],
+        "depends_on": "repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Rosa: Hi Uli! I'm glad I ran into you. Are you still available to help with the repair drive this Saturday?",
+        "speaker": "Rosa",
+        "listener": "Uli"
+      },
+      {
+        "round": 0,
+        "text": "Uli: Oh, um... I'm sorry, I don't think I can make it this Saturday.",
+        "speaker": "Uli",
+        "listener": "Rosa"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Oh, that's a shame! But no worries, thanks for letting me know. Maybe another time?",
+        "speaker": "Rosa",
+        "listener": "Uli"
+      },
+      {
+        "round": 0,
+        "text": "Rey: Is the repair drive open to everyone?",
+        "speaker": "Rey",
+        "listener": "Uli"
+      },
+      {
+        "round": 0,
+        "text": "Uli: Yes, anyone in the neighborhood can come by.",
+        "speaker": "Uli",
+        "listener": "Rey"
+      },
+      {
+        "round": 0,
+        "text": "Rey: That's good to know. What kind of repairs do you usually handle?",
+        "speaker": "Rey",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Gus: Hey Uli, I heard about the repair drive. Need me to bring over my tool kit?",
+        "speaker": "Gus",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Uli: Thanks, Gus. That's kind. I might take you up on that.",
+        "speaker": "Uli",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Gus: No problem, just let me know when you need it. I've got a good set of wrenches and screwdrivers.",
+        "speaker": "Gus",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Hana: Hi Uli, I heard you're coordinating the repair drive. I'd like to help, but could you tell me more about what's needed?",
+        "speaker": "Hana",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Uli: We need basic tools and spare parts—anything folks can spare.",
+        "speaker": "Uli",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Hana: Could you list some specific tools or parts that are most needed?",
+        "speaker": "Hana",
+        "listener": "Uli"
+      },
+      {
+        "round": 2,
+        "text": "Dane: Sorry I'm late, everyone. I brought an old laptop to donate to the repair drive.",
+        "speaker": "Dane",
+        "listener": "Uli"
+      },
+      {
+        "round": 2,
+        "text": "Uli: That's kind of you, Dane. Every bit helps.",
+        "speaker": "Uli",
+        "listener": "Dane"
+      },
+      {
+        "round": 2,
+        "text": "Dane: No problem, happy to help out. Hope it can be put to good use.",
+        "speaker": "Dane",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Bo: Alright, got it. Everyone's bringing something small, right?",
+        "speaker": "Bo",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Uli: I'll see what I can find.",
+        "speaker": "Uli",
+        "listener": "Bo"
+      },
+      {
+        "round": 3,
+        "text": "Bo: Okay, just remind everyone to bring their stuff.",
+        "speaker": "Bo",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Gus: Need a hand with that engine block, Sam? I've got some wrenches if you need them.",
+        "speaker": "Gus",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Uli: That's kind of you, Gus. If you have any spare parts too, the drive could really use them.",
+        "speaker": "Uli",
+        "listener": "Gus"
+      },
+      {
+        "round": 3,
+        "text": "Gus: I don't have spare parts, but I can lend my wrenches and screwdrivers to anyone who needs them.",
+        "speaker": "Gus",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Vik: Hey Uli, just reminding you the repair drive is still on Saturday. I'm bringing my toaster, and Eli's bringing his coffee maker, Jules her blender, and Rey has supplies ready.",
+        "speaker": "Vik",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Uli: I'll see if I have any spare parts around the house.",
+        "speaker": "Uli",
+        "listener": "Vik"
+      },
+      {
+        "round": 4,
+        "text": "Vik: Great, spare parts would be super helpful! So, just to recap, the drive is Saturday—I've got my toaster, Eli's coffee maker, Jules' blender, and Rey's supplies.",
+        "speaker": "Vik",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Uli: I have some spare parts in my garage, but I need to check if they're any good.",
+        "speaker": "Uli",
+        "listener": "Opal"
+      },
+      {
+        "round": 4,
+        "text": "Opal: Oh, that's great! We could always use extra parts. I've already inventoried plenty, but bring them anyway—better safe than sorry. The drive is Saturday.",
+        "speaker": "Opal",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Uli: I'll see what I can find. Saturday it is.",
+        "speaker": "Uli",
+        "listener": "Opal"
+      }
+    ]
+  },
+  "a05": {
+    "kind": "smga_v3",
+    "n_events": 30,
+    "registry": {},
+    "current_facts": [
+      {
+        "claim": "I can start gathering an inventory of what we have and what we'll need.",
+        "subject": [
+          "Pia"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Ira is helping Eli sort through the tools for Gus's repair drive.",
+        "subject": [
+          "Ira"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Mina can start a list of missing tools.",
+        "subject": [
+          "Mina"
+        ],
+        "depends_on": "repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Mina: Hey, what's this repair drive about?",
+        "speaker": "Mina",
+        "listener": "Rey"
+      },
+      {
+        "round": 0,
+        "text": "Rey: Oh, it's just a community thing to fix up shared spaces. I heard they're organizing a team for the park benches.",
+        "speaker": "Rey",
+        "listener": "Mina"
+      },
+      {
+        "round": 0,
+        "text": "Mina: When are you planning to start on the benches?",
+        "speaker": "Mina",
+        "listener": "Rey"
+      },
+      {
+        "round": 0,
+        "text": "Pia: Oh, the repair drive? That's a big project. Do we have a plan for how to coordinate the volunteers and the supplies?",
+        "speaker": "Pia",
+        "listener": "Mina"
+      },
+      {
+        "round": 0,
+        "text": "Mina: What's the current status on supplies? Do we have a list?",
+        "speaker": "Mina",
+        "listener": "Pia"
+      },
+      {
+        "round": 0,
+        "text": "Pia: I'm not sure we have a comprehensive list yet. I can start gathering an inventory of what we have and what we'll need.",
+        "speaker": "Pia",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Ira: I'm helping Eli sort through the tools for Gus's repair drive. He's got quite the collection!",
+        "speaker": "Ira",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Mina: What tools are we missing? I can start a list.",
+        "speaker": "Mina",
+        "listener": "Ira"
+      },
+      {
+        "round": 1,
+        "text": "Ira: We're short on screwdrivers and wrenches, I think. Can you add those?",
+        "speaker": "Ira",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Mina: Okay, let's start listing what we have and what we need for the repair drive.",
+        "speaker": "Mina",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: I'm just worried we might not have enough supplies. Do we have a list of what's broken?",
+        "speaker": "Pia",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Mina: Let's make that list right now—what exactly is broken?",
+        "speaker": "Mina",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Mina: Gus, what specific tools are we missing for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Gus"
+      },
+      {
+        "round": 2,
+        "text": "Gus: I've got wrenches and screwdrivers, but I think we might need a jack for the engine lift. Sam's bringing gloves, so that's covered.",
+        "speaker": "Gus",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Mina: Okay, so a jack is missing. I'll start a list of what we have and what we need.",
+        "speaker": "Mina",
+        "listener": "Gus"
+      },
+      {
+        "round": 2,
+        "text": "Mara: Hi Mina! Don't forget the repair drive is this Saturday.",
+        "speaker": "Mara",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Mina: Right, I've got it. Have we started that inventory list yet?",
+        "speaker": "Mina",
+        "listener": "Mara"
+      },
+      {
+        "round": 2,
+        "text": "Mara: Not yet, but we can start it together if you'd like.",
+        "speaker": "Mara",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Hana: So, Oren is bringing tools and Eli his coffee maker, right? Anyone else bringing something?",
+        "speaker": "Hana",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Mina: Ira's helping Eli sort through the tools for Gus's repair drive. I can start listing what we have and what we need.",
+        "speaker": "Mina",
+        "listener": "Hana"
+      },
+      {
+        "round": 3,
+        "text": "Hana: Got it, so Ira's with Eli on the tools. Should we begin the list now?",
+        "speaker": "Hana",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Mina: Do you know what tools we already have for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Jules"
+      },
+      {
+        "round": 3,
+        "text": "Jules: Well, we've got a blender, toaster, old radio, and coffee maker coming in so far — not exactly tools, but plenty to tinker with!",
+        "speaker": "Jules",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Mina: But those aren't tools. Do you know if anyone's bringing actual wrenches or screwdrivers?",
+        "speaker": "Mina",
+        "listener": "Jules"
+      },
+      {
+        "round": 4,
+        "text": "Mina: Oren, do you have any idea what tools we're missing for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Oh, I brought my tools and some snacks for Saturday, but I can't recall exactly what I have.",
+        "speaker": "Oren",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Mina: Let's go check your car, then I can start a list of what we have.",
+        "speaker": "Mina",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Mina: Should I start listing what tools we're missing or do you want to handle that?",
+        "speaker": "Mina",
+        "listener": "Jules"
+      },
+      {
+        "round": 4,
+        "text": "Jules: I can take care of that, Mina. Let me grab my list.",
+        "speaker": "Jules",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Mina: Alright, then. I'll start checking what we already have.",
+        "speaker": "Mina",
+        "listener": "Jules"
+      }
+    ]
+  },
+  "a06": {
+    "kind": "smga_v3",
+    "n_events": 27,
+    "registry": {
+      "repair drive": {
+        "day": "Saturday"
+      }
+    },
+    "current_facts": [
+      {
+        "claim": "brings tools",
+        "subject": [
+          "Oren"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "adds Oren's tools to the list",
+        "subject": [
+          "Cleo"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "adds tools to the list",
+        "subject": [
+          "Oren"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "brings snacks",
+        "subject": [
+          "Faye"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "has supplies ready",
+        "subject": [
+          "Rey"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "brings toaster",
+        "subject": [
+          "Vik"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "brings snacks",
+        "subject": [
+          "Oren"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "starts list of tools",
+        "subject": [
+          "Mina"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "has supply list ready",
+        "subject": [
+          "Quinn"
+        ],
+        "depends_on": "repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Oren: Oh, hi Cleo! The repair drive, right? I think I have some old tools in my garage somewhere...",
+        "speaker": "Oren",
+        "listener": "Cleo"
+      },
+      {
+        "round": 0,
+        "text": "Cleo: That's great, Oren! I've been making a list of what everyone's bringing, so I'll add your tools.",
+        "speaker": "Cleo",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Right, yes, tools. Don't let me forget them though—I might need a reminder.",
+        "speaker": "Oren",
+        "listener": "Cleo"
+      },
+      {
+        "round": 0,
+        "text": "Faye: Hey Oren, what time is the repair drive? I need to work around school pickup.",
+        "speaker": "Faye",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Oh, shoot, I can't quite recall—did I already tell you? I think it's maybe around 10?",
+        "speaker": "Oren",
+        "listener": "Faye"
+      },
+      {
+        "round": 0,
+        "text": "Faye: 10 might work—what's the exact start? I've got to get the kids by 3.",
+        "speaker": "Faye",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Oren: I've got my tools ready, added them to the list too.",
+        "speaker": "Oren",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Hana: Good, which tools did you bring? I want to make sure we have everything for the drive repair.",
+        "speaker": "Hana",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Oren: I think I brought a wrench and some screwdrivers, but you know me, I might have forgotten something.",
+        "speaker": "Oren",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Hi Tess, I brought my tools for the repair drive!",
+        "speaker": "Oren",
+        "listener": "Tess"
+      },
+      {
+        "round": 1,
+        "text": "Tess: Oh, that's wonderful, Oren! What kind of tools did you bring?",
+        "speaker": "Tess",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Oren: I... I think I brought a hammer and a few screwdrivers? Let me check my bag.",
+        "speaker": "Oren",
+        "listener": "Tess"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Oh, right, I brought my tools! Did I already put them in the pile?",
+        "speaker": "Oren",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Sam: Not yet, they're over there. Let me help you sort them.",
+        "speaker": "Sam",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Great, thanks Sam. Which pile should I put the hammer in?",
+        "speaker": "Oren",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Faye: Just so you know, the repair drive is set for this Saturday.",
+        "speaker": "Faye",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Oh, right, Saturday! I've got my tools ready to go—added them to the list already.",
+        "speaker": "Oren",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Faye: Great, glad you're all set! I'll be there with some snacks for volunteers.",
+        "speaker": "Faye",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Rey: I'll make sure I have all the supplies ready.",
+        "speaker": "Rey",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Oren: Oh, right! Saturday, I've got some tools I can bring too.",
+        "speaker": "Oren",
+        "listener": "Rey"
+      },
+      {
+        "round": 3,
+        "text": "Rey: Good, so it'll be me with supplies, you with tools, and Vik with the toaster.",
+        "speaker": "Rey",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Mina: Oren, do you have any idea what tools we're missing for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Oh, I brought my tools and some snacks for Saturday, but I can't recall exactly what I have.",
+        "speaker": "Oren",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Mina: Let's go check your car, then I can start a list of what we have.",
+        "speaker": "Mina",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Oh, the repair drive is this Saturday! I'll bring my tools and some snacks.",
+        "speaker": "Oren",
+        "listener": "Quinn"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: Great, Oren! I've got the supply list ready, and I'll share it with everyone.",
+        "speaker": "Quinn",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Oh, let me know if I should add my tools to that list!",
+        "speaker": "Oren",
+        "listener": "Quinn"
+      }
+    ]
+  },
+  "a07": {
+    "kind": "smga_v3",
+    "n_events": 24,
+    "registry": {},
+    "current_facts": [
+      {
+        "claim": "I've inventoried everything twice—we've got plenty of parts and materials for all the machines on the list.",
+        "subject": [
+          "Opal"
+        ],
+        "depends_on": null
+      },
+      {
+        "claim": "Sam helps out",
+        "subject": [
+          "Sam"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Dane donates an old laptop",
+        "subject": [
+          "Dane"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Oren brings tools",
+        "subject": [
+          "Oren"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Pia double-checked the inventory and confirmed we have everything needed for the repairs",
+        "subject": [
+          "Pia"
+        ],
+        "depends_on": "repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Kira: Are you sure this repair drive is actually going to fix anything?",
+        "speaker": "Kira",
+        "listener": "Pia"
+      },
+      {
+        "round": 0,
+        "text": "Pia: I don't know, I hope so, but I'm worried it might not be enough.",
+        "speaker": "Pia",
+        "listener": "Kira"
+      },
+      {
+        "round": 0,
+        "text": "Kira: If you're not even sure it'll work, why are we bothering?",
+        "speaker": "Kira",
+        "listener": "Pia"
+      },
+      {
+        "round": 0,
+        "text": "Pia: Oh, the repair drive? That's a big project. Do we have a plan for how to coordinate the volunteers and the supplies?",
+        "speaker": "Pia",
+        "listener": "Mina"
+      },
+      {
+        "round": 0,
+        "text": "Mina: What's the current status on supplies? Do we have a list?",
+        "speaker": "Mina",
+        "listener": "Pia"
+      },
+      {
+        "round": 0,
+        "text": "Pia: I'm not sure we have a comprehensive list yet. I can start gathering an inventory of what we have and what we'll need.",
+        "speaker": "Pia",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Pia: Have we checked if the repair drive has enough power to reach the shop and back?",
+        "speaker": "Pia",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Are you sure we even have the right drive for this job?",
+        "speaker": "Kira",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: I'm not sure, but we should double-check the specifications before we start.",
+        "speaker": "Pia",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Mina: Okay, let's start listing what we have and what we need for the repair drive.",
+        "speaker": "Mina",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: I'm just worried we might not have enough supplies. Do we have a list of what's broken?",
+        "speaker": "Pia",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Mina: Let's make that list right now—what exactly is broken?",
+        "speaker": "Mina",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Pia: Are you sure the repair drive has enough supplies for everyone? I'd hate to see us run out of something important.",
+        "speaker": "Pia",
+        "listener": "Opal"
+      },
+      {
+        "round": 2,
+        "text": "Opal: I've inventoried everything twice—we've got plenty of parts and materials for all the machines on the list.",
+        "speaker": "Opal",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Pia: And the timeline? Do you think we'll actually finish before the weather turns?",
+        "speaker": "Pia",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Tess: Hey Pia, did you hear? Sam's going to help out at the repair drive, and Dane's hauling an old laptop to donate. Oren even brought his tools!",
+        "speaker": "Tess",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Pia: That's great to hear, but let's make sure we're not overloading the space—I've already counted everything twice and we're set.",
+        "speaker": "Pia",
+        "listener": "Tess"
+      },
+      {
+        "round": 3,
+        "text": "Tess: Oh, I know, you're always on top of things! I just get excited seeing everyone pitch in.",
+        "speaker": "Tess",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Pia: I've double-checked the inventory—we have everything we need for the repairs.",
+        "speaker": "Pia",
+        "listener": "Eli"
+      },
+      {
+        "round": 3,
+        "text": "Eli: Good, glad it's all set. Just to confirm, we're still on for Saturday, right?",
+        "speaker": "Eli",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Pia: Yes, Saturday works. But let's start early—we've got a lot of machines to get through.",
+        "speaker": "Pia",
+        "listener": "Eli"
+      },
+      {
+        "round": 4,
+        "text": "Pia: I've checked the inventory twice, so we're all set for the repairs.",
+        "speaker": "Pia",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Kira: Wait, the repair drive is this Saturday, right? Just double-checking.",
+        "speaker": "Kira",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: Yes, it's this Saturday. I've made sure we have everything ready.",
+        "speaker": "Pia",
+        "listener": "Kira"
+      }
+    ]
+  },
+  "a08": {
+    "kind": "smga_v3",
+    "n_events": 27,
+    "registry": {
+      "repair drive": {
+        "day": "Saturday"
+      }
+    },
+    "current_facts": [
+      {
+        "claim": "Vik takes his toaster to the repair drive",
+        "subject": [
+          "Vik"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Eli brings his coffee maker to the repair drive",
+        "subject": [
+          "Eli"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Jules brings her blender to the repair drive",
+        "subject": [
+          "Jules"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Rey has supplies ready for the repair drive",
+        "subject": [
+          "Rey"
+        ],
+        "depends_on": "repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Vik: Hey Nell, I heard there's a repair drive happening this Saturday. Are you going?",
+        "speaker": "Vik",
+        "listener": "Nell"
+      },
+      {
+        "round": 0,
+        "text": "Nell: Oh, a repair drive? I hadn't heard about it. What exactly is happening?",
+        "speaker": "Nell",
+        "listener": "Vik"
+      },
+      {
+        "round": 0,
+        "text": "Vik: Yeah, it's at the community center from 10 to 4. People are bringing in broken appliances and furniture for free fixes. I'm planning to take my toaster.",
+        "speaker": "Vik",
+        "listener": "Nell"
+      },
+      {
+        "round": 0,
+        "text": "Dane: Sorry I'm late, Vik. Did I miss anything important?",
+        "speaker": "Dane",
+        "listener": "Vik"
+      },
+      {
+        "round": 0,
+        "text": "Vik: No, you didn't miss much. We were just discussing the repair drive for Saturday.",
+        "speaker": "Vik",
+        "listener": "Dane"
+      },
+      {
+        "round": 0,
+        "text": "Dane: Ah, good. So, what's the plan? Do we need any specific tools or volunteers?",
+        "speaker": "Dane",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Eli: What time did we say the repair drive starts? I like to have everything scheduled.",
+        "speaker": "Eli",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Vik: I think it's at 9 AM. I'm bringing my toaster.",
+        "speaker": "Vik",
+        "listener": "Eli"
+      },
+      {
+        "round": 1,
+        "text": "Eli: 9 AM, good. I'll be there with my old coffee maker. Should I bring any tools?",
+        "speaker": "Eli",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Vik: I'm bringing my toaster to the repair drive on Saturday. Are you planning to come?",
+        "speaker": "Vik",
+        "listener": "Jules"
+      },
+      {
+        "round": 1,
+        "text": "Jules: Absolutely! I've got a blender that's been on the fritz, so I'll be there too. Maybe we can grab coffee afterwards?",
+        "speaker": "Jules",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Vik: Great, see you Saturday! Coffee after sounds perfect.",
+        "speaker": "Vik",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Hey Vik, what's up with the repair drive?",
+        "speaker": "Bo",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Vik: Hey Bo! The repair drive is this Saturday. I'm bringing my toaster, and I think Eli's bringing his coffee maker and Jules her blender.",
+        "speaker": "Vik",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Cool, sounds like a plan. I might swing by if I can find something to fix.",
+        "speaker": "Bo",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Rey: I've got the supplies ready for the repair drive.",
+        "speaker": "Rey",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Vik: Great, I'm bringing my toaster on Saturday.",
+        "speaker": "Vik",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Rey: Good, I'll have the supplies ready.",
+        "speaker": "Rey",
+        "listener": "Vik"
+      },
+      {
+        "round": 3,
+        "text": "Vik: I'm taking my toaster to the repair drive on Saturday.",
+        "speaker": "Vik",
+        "listener": "Kira"
+      },
+      {
+        "round": 3,
+        "text": "Kira: Wait, are you sure it's this Saturday? I thought it was next weekend.",
+        "speaker": "Kira",
+        "listener": "Vik"
+      },
+      {
+        "round": 3,
+        "text": "Vik: Yeah, I'm sure. It's definitely this Saturday.",
+        "speaker": "Vik",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Vik: Hey Uli, just reminding you the repair drive is still on Saturday. I'm bringing my toaster, and Eli's bringing his coffee maker, Jules her blender, and Rey has supplies ready.",
+        "speaker": "Vik",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Uli: I'll see if I have any spare parts around the house.",
+        "speaker": "Uli",
+        "listener": "Vik"
+      },
+      {
+        "round": 4,
+        "text": "Vik: Great, spare parts would be super helpful! So, just to recap, the drive is Saturday—I've got my toaster, Eli's coffee maker, Jules' blender, and Rey's supplies.",
+        "speaker": "Vik",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Vik: I'm bringing my toaster to the repair drive on Saturday.",
+        "speaker": "Vik",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Hana: Wait, I thought only Oren and Eli were bringing items. Can you double-check that?",
+        "speaker": "Hana",
+        "listener": "Vik"
+      },
+      {
+        "round": 4,
+        "text": "Vik: No, let me remind you: Eli's bringing his coffee maker, Jules is bringing her blender, and Rey has the supplies. So it's not just Oren and me.",
+        "speaker": "Vik",
+        "listener": "Hana"
+      }
+    ]
+  },
+  "a09": {
+    "kind": "smga_v3",
+    "n_events": 30,
+    "registry": {
+      "repair drive": {
+        "day": "Saturday"
+      }
+    },
+    "current_facts": [
+      {
+        "claim": "Vik brings his toaster",
+        "subject": [
+          "Vik"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Rosa sends a list of what to bring to Nell",
+        "subject": [
+          "Rosa",
+          "Nell"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Tess brings her old toaster",
+        "subject": [
+          "Tess"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Quinn has the full list of supplies",
+        "subject": [
+          "Quinn"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Sam helps out",
+        "subject": [
+          "Sam"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Oren brought a bunch of tools",
+        "subject": [
+          "Oren"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Gus brings his wrenches and screwdrivers",
+        "subject": [
+          "Gus"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Sam brings gloves for the engine block lift",
+        "subject": [
+          "Sam"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Rey brings supplies",
+        "subject": [
+          "Rey"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Eli brings his coffee maker",
+        "subject": [
+          "Eli"
+        ],
+        "depends_on": "repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Vik: Hey Nell, I heard there's a repair drive happening this Saturday. Are you going?",
+        "speaker": "Vik",
+        "listener": "Nell"
+      },
+      {
+        "round": 0,
+        "text": "Nell: Oh, a repair drive? I hadn't heard about it. What exactly is happening?",
+        "speaker": "Nell",
+        "listener": "Vik"
+      },
+      {
+        "round": 0,
+        "text": "Vik: Yeah, it's at the community center from 10 to 4. People are bringing in broken appliances and furniture for free fixes. I'm planning to take my toaster.",
+        "speaker": "Vik",
+        "listener": "Nell"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: Hi Nell! I'm so glad you're interested in the repair drive. We're planning it for next Saturday morning.",
+        "speaker": "Rosa",
+        "listener": "Nell"
+      },
+      {
+        "round": 0,
+        "text": "Nell: Great, next Saturday morning works for me! What can I bring or help with?",
+        "speaker": "Nell",
+        "listener": "Rosa"
+      },
+      {
+        "round": 0,
+        "text": "Rosa: That's wonderful! We could really use some help sorting donated items and setting up the repair stations. I'll send you a list of what to bring.",
+        "speaker": "Rosa",
+        "listener": "Nell"
+      },
+      {
+        "round": 1,
+        "text": "Nell: Hey Quinn, just got Rosa's list for the repair drive this Saturday. Did you know Vik's bringing his toaster?",
+        "speaker": "Nell",
+        "listener": "Quinn"
+      },
+      {
+        "round": 1,
+        "text": "Quinn: Actually, I heard Tess is bringing her old toaster. I've got the full list of supplies ready to share.",
+        "speaker": "Quinn",
+        "listener": "Nell"
+      },
+      {
+        "round": 1,
+        "text": "Nell: Wait, I thought Vik was bringing his toaster? Rosa sent me a list too, maybe we should compare notes.",
+        "speaker": "Nell",
+        "listener": "Quinn"
+      },
+      {
+        "round": 1,
+        "text": "Opal: Oh, the repair drive? Where exactly is it happening?",
+        "speaker": "Opal",
+        "listener": "Nell"
+      },
+      {
+        "round": 1,
+        "text": "Nell: I'm not sure about the exact spot—I got the date from Rosa, but maybe she knows where it's at? I can ask her.",
+        "speaker": "Nell",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Opal: Would you mind asking Rosa about the location? I'd like to know exactly where it's happening.",
+        "speaker": "Opal",
+        "listener": "Nell"
+      },
+      {
+        "round": 2,
+        "text": "Tess: Hey Nell, did you hear? Sam's going to help out at the repair drive, and Oren brought a bunch of tools already!",
+        "speaker": "Tess",
+        "listener": "Nell"
+      },
+      {
+        "round": 2,
+        "text": "Nell: Oh, that's great! I heard from Rosa that we need to bring our own toasters. Are you bringing yours?",
+        "speaker": "Nell",
+        "listener": "Tess"
+      },
+      {
+        "round": 2,
+        "text": "Tess: Oh, I haven't thought about it yet! I might dig mine out of the closet if I can find it.",
+        "speaker": "Tess",
+        "listener": "Nell"
+      },
+      {
+        "round": 2,
+        "text": "Nell: Hey Gus, did Rosa mention the list of what to bring? I think I got it but I'm not sure it's the full one.",
+        "speaker": "Nell",
+        "listener": "Gus"
+      },
+      {
+        "round": 2,
+        "text": "Gus: Yeah, Rosa's got it. I'm bringing my wrenches and screwdrivers, and Sam's got gloves for the engine block lift.",
+        "speaker": "Gus",
+        "listener": "Nell"
+      },
+      {
+        "round": 2,
+        "text": "Nell: Oh, I thought Quinn had the full list? Maybe I mixed it up.",
+        "speaker": "Nell",
+        "listener": "Gus"
+      },
+      {
+        "round": 3,
+        "text": "Ira: Hey Nell, I just heard Sam's helping sort tools for the repair drive on Saturday. Are you planning to come too?",
+        "speaker": "Ira",
+        "listener": "Nell"
+      },
+      {
+        "round": 3,
+        "text": "Nell: Oh, I'm definitely planning to come! Rosa sent me a list of what to bring, so I'm all set.",
+        "speaker": "Nell",
+        "listener": "Ira"
+      },
+      {
+        "round": 3,
+        "text": "Ira: Great, it's good that you're prepared. I've been helping Eli sort through the tools, so we should have everything ready.",
+        "speaker": "Ira",
+        "listener": "Nell"
+      },
+      {
+        "round": 3,
+        "text": "Nell: Hey Quinn, I heard the repair drive is this Saturday—did Rosa send you the list of what to bring?",
+        "speaker": "Nell",
+        "listener": "Quinn"
+      },
+      {
+        "round": 3,
+        "text": "Quinn: Actually, I'm the one handling the list! I've got it right here—want me to send it to you?",
+        "speaker": "Quinn",
+        "listener": "Nell"
+      },
+      {
+        "round": 3,
+        "text": "Nell: Oh great, yes please send it over! I want to make sure I don't forget anything.",
+        "speaker": "Nell",
+        "listener": "Quinn"
+      },
+      {
+        "round": 4,
+        "text": "Nell: Hey Hana, did you hear the repair drive is this Saturday? I heard Quinn has the full list of supplies.",
+        "speaker": "Nell",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Hana: Is Quinn the one coordinating the supplies? I want to make sure I'm not missing anything.",
+        "speaker": "Hana",
+        "listener": "Nell"
+      },
+      {
+        "round": 4,
+        "text": "Nell: Yeah, Quinn's got the master list, but Rosa sent me a copy if you need to check.",
+        "speaker": "Nell",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Nell: I heard the repair drive is on Saturday. Do you know what to bring?",
+        "speaker": "Nell",
+        "listener": "Mara"
+      },
+      {
+        "round": 4,
+        "text": "Mara: Yes, I remember! Rey's bringing supplies, Oren has the tools, and Eli's bringing his coffee maker.",
+        "speaker": "Mara",
+        "listener": "Nell"
+      },
+      {
+        "round": 4,
+        "text": "Nell: I think Vik and Tess are both bringing toasters, and Quinn has the full list of supplies.",
+        "speaker": "Nell",
+        "listener": "Mara"
+      }
+    ]
+  },
+  "a10": {
+    "kind": "smga_v3",
+    "n_events": 30,
+    "registry": {},
+    "current_facts": [
+      {
+        "claim": "Vik brings his toaster",
+        "subject": [
+          "Vik"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Eli brings his coffee maker",
+        "subject": [
+          "Eli"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Jules brings her blender",
+        "subject": [
+          "Jules"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Dane brings his old laptop",
+        "subject": [
+          "Dane"
+        ],
+        "depends_on": "repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Bo: Oh, the repair drive? When is that again?",
+        "speaker": "Bo",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: Next Saturday, 10 AM at the community center.",
+        "speaker": "Leo",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Right, next Saturday at 10. Got it, I'll try to swing by if I'm free.",
+        "speaker": "Bo",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Oh, the repair drive? What's that about?",
+        "speaker": "Bo",
+        "listener": "Opal"
+      },
+      {
+        "round": 0,
+        "text": "Opal: It's a community event where we pool tools and know-how to fix up broken things around the neighborhood.",
+        "speaker": "Opal",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Sounds good, when is it? I might swing by if I have time.",
+        "speaker": "Bo",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Mara: The repair drive is this Saturday, don't forget!",
+        "speaker": "Mara",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Bo: Got it, thanks for the reminder.",
+        "speaker": "Bo",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Mara: Great, I'll see you there. Need any help setting up?",
+        "speaker": "Mara",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Faye: Hi Bo, are you helping out with the repair drive this weekend?",
+        "speaker": "Faye",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Bo: Repair drive? Oh, yeah, maybe. What needs fixing?",
+        "speaker": "Bo",
+        "listener": "Faye"
+      },
+      {
+        "round": 1,
+        "text": "Faye: We've got a few broken toys from the school playground, and some shelves that need mending. What are you handy with?",
+        "speaker": "Faye",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Hey Vik, what's up with the repair drive?",
+        "speaker": "Bo",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Vik: Hey Bo! The repair drive is this Saturday. I'm bringing my toaster, and I think Eli's bringing his coffee maker and Jules her blender.",
+        "speaker": "Vik",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Cool, sounds like a plan. I might swing by if I can find something to fix.",
+        "speaker": "Bo",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Hey Dane, what's this about a repair drive?",
+        "speaker": "Bo",
+        "listener": "Dane"
+      },
+      {
+        "round": 2,
+        "text": "Dane: Oh, I'm bringing in that old laptop I mentioned — figured it could use a second life.",
+        "speaker": "Dane",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Cool, that should be easy to fix up. Got all the parts you need?",
+        "speaker": "Bo",
+        "listener": "Dane"
+      },
+      {
+        "round": 3,
+        "text": "Bo: Alright, got it. Everyone's bringing something small, right?",
+        "speaker": "Bo",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Uli: I'll see what I can find.",
+        "speaker": "Uli",
+        "listener": "Bo"
+      },
+      {
+        "round": 3,
+        "text": "Bo: Okay, just remind everyone to bring their stuff.",
+        "speaker": "Bo",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Bo: So Dane brings his laptop, right?",
+        "speaker": "Bo",
+        "listener": "Dane"
+      },
+      {
+        "round": 3,
+        "text": "Dane: Yeah, I've got that old laptop I mentioned. It's been sitting around forever.",
+        "speaker": "Dane",
+        "listener": "Bo"
+      },
+      {
+        "round": 3,
+        "text": "Bo: Cool, laptop's covered then.",
+        "speaker": "Bo",
+        "listener": "Dane"
+      },
+      {
+        "round": 4,
+        "text": "Bo: Got it, so we've got a laptop, coffee maker, blender, and toaster coming in.",
+        "speaker": "Bo",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Leo: Great. Let's meet at 9am Saturday.",
+        "speaker": "Leo",
+        "listener": "Bo"
+      },
+      {
+        "round": 4,
+        "text": "Bo: 9am Saturday, got it.",
+        "speaker": "Bo",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Bo: Hey Dane, you got your old laptop for the repair drive?",
+        "speaker": "Bo",
+        "listener": "Dane"
+      },
+      {
+        "round": 4,
+        "text": "Dane: Yeah, I finally dug it out of the closet. It's old but should still work for parts.",
+        "speaker": "Dane",
+        "listener": "Bo"
+      },
+      {
+        "round": 4,
+        "text": "Bo: Great, so we've got laptops, toasters, blenders, coffee makers—sounds like a real tech yard sale in the making.",
+        "speaker": "Bo",
+        "listener": "Dane"
+      }
+    ]
+  },
+  "a11": {
+    "kind": "smga_v3",
+    "n_events": 30,
+    "registry": {
+      "repair drive": {
+        "day": "Saturday",
+        "place": "community center"
+      }
+    },
+    "current_facts": [
+      {
+        "claim": "Oren brings tools",
+        "subject": [
+          "Oren"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Cleo keeps track of supplies",
+        "subject": [
+          "Cleo"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Rey carries supplies",
+        "subject": [
+          "Rey"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Tess brings toaster",
+        "subject": [
+          "Tess"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Ira helps Eli organize tools",
+        "subject": [
+          "Ira",
+          "Eli"
+        ],
+        "depends_on": "repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Oren: Oh, hi Cleo! The repair drive, right? I think I have some old tools in my garage somewhere...",
+        "speaker": "Oren",
+        "listener": "Cleo"
+      },
+      {
+        "round": 0,
+        "text": "Cleo: That's great, Oren! I've been making a list of what everyone's bringing, so I'll add your tools.",
+        "speaker": "Cleo",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Right, yes, tools. Don't let me forget them though—I might need a reminder.",
+        "speaker": "Oren",
+        "listener": "Cleo"
+      },
+      {
+        "round": 0,
+        "text": "Quinn: Hey Cleo, have you heard? We're organizing a repair drive this weekend to fix up the park benches. Would you like to join us?",
+        "speaker": "Quinn",
+        "listener": "Cleo"
+      },
+      {
+        "round": 0,
+        "text": "Cleo: That sounds great! I can help by keeping track of the supplies we'll need. Count me in.",
+        "speaker": "Cleo",
+        "listener": "Quinn"
+      },
+      {
+        "round": 0,
+        "text": "Quinn: Perfect, thanks Cleo! I'll let you know the list of supplies we'll need. Are you free Saturday morning?",
+        "speaker": "Quinn",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Cleo: I've been organizing the supply list, and Oren just confirmed he'll bring tools.",
+        "speaker": "Cleo",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Rey: Oh, that's good to hear. I can help carry things.",
+        "speaker": "Rey",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Cleo: Great, Rey. I'll mark you down for carrying supplies then.",
+        "speaker": "Cleo",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Quinn: Hey Cleo, have you heard about the repair drive? We're fixing old appliances and could use your help!",
+        "speaker": "Quinn",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Cleo: I've got supplies sorted out. Oren is bringing tools, so we're set on that front.",
+        "speaker": "Cleo",
+        "listener": "Quinn"
+      },
+      {
+        "round": 1,
+        "text": "Quinn: Great, Tess is bringing her old toaster too. I'll get that list of supplies to you soon.",
+        "speaker": "Quinn",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Rey: I've got the supplies ready when you need them.",
+        "speaker": "Rey",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: Great, let's sync with Oren on the tools before we start.",
+        "speaker": "Cleo",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Rey: Sounds good, I'll wait for your word.",
+        "speaker": "Rey",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: I'm glad everyone's pitching in. So Rey will carry supplies, Tess is bringing a toaster, and Oren has tools. That should cover a lot.",
+        "speaker": "Cleo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Great, that sounds like a solid lineup! Don't forget we're all set for Sunday at the community center.",
+        "speaker": "Rosa",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: Right, Sunday at the center. I'll make sure the supplies are ready to go.",
+        "speaker": "Cleo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Opal: I've checked the inventory and we have plenty of parts, so we're all set for Saturday.",
+        "speaker": "Opal",
+        "listener": "Cleo"
+      },
+      {
+        "round": 3,
+        "text": "Cleo: Great, and I've got the list of what everyone's bringing—Tess with the toaster, Oren with tools, and Rey will carry supplies.",
+        "speaker": "Cleo",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Opal: Sounds like everything's in order. I'll make sure the setup is ready early Saturday.",
+        "speaker": "Opal",
+        "listener": "Cleo"
+      },
+      {
+        "round": 3,
+        "text": "Cleo: I've got the supply list ready; Rey is carrying the supplies and Oren has the tools.",
+        "speaker": "Cleo",
+        "listener": "Ira"
+      },
+      {
+        "round": 3,
+        "text": "Ira: Great, I can help Eli organize the tools when they get here. The drive is still set for Saturday at the community center, right?",
+        "speaker": "Ira",
+        "listener": "Cleo"
+      },
+      {
+        "round": 3,
+        "text": "Cleo: Yes, Saturday at the community center. Oh, and Tess is bringing a toaster too.",
+        "speaker": "Cleo",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: I'm so glad you're interested in the repair drive! We're all set for Sunday at the community center—could you help with greeting folks at the door?",
+        "speaker": "Rosa",
+        "listener": "Cleo"
+      },
+      {
+        "round": 4,
+        "text": "Cleo: Actually, Rosa, I thought the repair drive is on Saturday, not Sunday. And I'm happy to help, but I'm better at managing supplies than greeting at the door.",
+        "speaker": "Cleo",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Oh, I double-checked the schedule, and it's definitely Sunday. And managing supplies would be perfect—thank you, Cleo!",
+        "speaker": "Rosa",
+        "listener": "Cleo"
+      },
+      {
+        "round": 4,
+        "text": "Cleo: Hey Gus, just making sure we're all set for the repair drive on Saturday. I've got the supply list ready.",
+        "speaker": "Cleo",
+        "listener": "Gus"
+      },
+      {
+        "round": 4,
+        "text": "Gus: Cleo, I think the drive is actually on Sunday, not Saturday. But no worries—I've got my wrenches and screwdrivers ready to go.",
+        "speaker": "Gus",
+        "listener": "Cleo"
+      },
+      {
+        "round": 4,
+        "text": "Cleo: Oh, I'm pretty sure it's Saturday, Gus. I have it marked on my calendar.",
+        "speaker": "Cleo",
+        "listener": "Gus"
+      }
+    ]
+  },
+  "a12": {
+    "kind": "smga_v3",
+    "n_events": 30,
+    "registry": {
+      "repair drive": {
+        "day": "Saturday"
+      }
+    },
+    "current_facts": [
+      {
+        "claim": "Dane contributes an old laptop to the repair drive",
+        "subject": [
+          "Dane"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Sam helps with sorting tools and heavy lifting at the repair drive",
+        "subject": [
+          "Sam"
+        ],
+        "depends_on": "repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Dane: Hey Jules, sorry I'm late, what did I miss about the repair drive?",
+        "speaker": "Dane",
+        "listener": "Jules"
+      },
+      {
+        "round": 0,
+        "text": "Jules: No worries, Dane! I was just explaining that we're collecting old electronics to fix up for the community center. Got any spare gadgets?",
+        "speaker": "Jules",
+        "listener": "Dane"
+      },
+      {
+        "round": 0,
+        "text": "Dane: Oh, that's a great idea! I have an old laptop gathering dust that I could contribute.",
+        "speaker": "Dane",
+        "listener": "Jules"
+      },
+      {
+        "round": 0,
+        "text": "Dane: Sorry I'm late, Vik. Did I miss anything important?",
+        "speaker": "Dane",
+        "listener": "Vik"
+      },
+      {
+        "round": 0,
+        "text": "Vik: No, you didn't miss much. We were just discussing the repair drive for Saturday.",
+        "speaker": "Vik",
+        "listener": "Dane"
+      },
+      {
+        "round": 0,
+        "text": "Dane: Ah, good. So, what's the plan? Do we need any specific tools or volunteers?",
+        "speaker": "Dane",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Dane: Hey Leo, I heard about the repair drive. I have an old laptop I can contribute.",
+        "speaker": "Dane",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Good, bring it Saturday morning.",
+        "speaker": "Leo",
+        "listener": "Dane"
+      },
+      {
+        "round": 1,
+        "text": "Dane: Saturday morning sounds good, I'll bring it then.",
+        "speaker": "Dane",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Eli: So, Dane, do you have a schedule set for the repair drive yet?",
+        "speaker": "Eli",
+        "listener": "Dane"
+      },
+      {
+        "round": 1,
+        "text": "Dane: I don't have a set schedule yet, but I can drop off that old laptop I mentioned whenever you need it.",
+        "speaker": "Dane",
+        "listener": "Eli"
+      },
+      {
+        "round": 1,
+        "text": "Eli: Well, let's set a specific time then. How about tomorrow morning around 10?",
+        "speaker": "Eli",
+        "listener": "Dane"
+      },
+      {
+        "round": 2,
+        "text": "Dane: Sorry I'm late, everyone. I brought an old laptop to donate to the repair drive.",
+        "speaker": "Dane",
+        "listener": "Uli"
+      },
+      {
+        "round": 2,
+        "text": "Uli: That's kind of you, Dane. Every bit helps.",
+        "speaker": "Uli",
+        "listener": "Dane"
+      },
+      {
+        "round": 2,
+        "text": "Dane: No problem, happy to help out. Hope it can be put to good use.",
+        "speaker": "Dane",
+        "listener": "Uli"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Hey Dane, what's this about a repair drive?",
+        "speaker": "Bo",
+        "listener": "Dane"
+      },
+      {
+        "round": 2,
+        "text": "Dane: Oh, I'm bringing in that old laptop I mentioned — figured it could use a second life.",
+        "speaker": "Dane",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Bo: Cool, that should be easy to fix up. Got all the parts you need?",
+        "speaker": "Bo",
+        "listener": "Dane"
+      },
+      {
+        "round": 3,
+        "text": "Sam: Hey Dane, ready to get started at the repair drive? I can help with sorting tools and lend a hand with the heavy lifting.",
+        "speaker": "Sam",
+        "listener": "Dane"
+      },
+      {
+        "round": 3,
+        "text": "Dane: Yeah, I'm ready. I brought that old laptop I told you about for the repair drive.",
+        "speaker": "Dane",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Sam: Great, every bit helps! Let's see if we can get that laptop up and running.",
+        "speaker": "Sam",
+        "listener": "Dane"
+      },
+      {
+        "round": 3,
+        "text": "Bo: So Dane brings his laptop, right?",
+        "speaker": "Bo",
+        "listener": "Dane"
+      },
+      {
+        "round": 3,
+        "text": "Dane: Yeah, I've got that old laptop I mentioned. It's been sitting around forever.",
+        "speaker": "Dane",
+        "listener": "Bo"
+      },
+      {
+        "round": 3,
+        "text": "Bo: Cool, laptop's covered then.",
+        "speaker": "Bo",
+        "listener": "Dane"
+      },
+      {
+        "round": 4,
+        "text": "Opal: Just a reminder, the repair drive is still set for Saturday. I've checked the inventory and we have plenty of parts.",
+        "speaker": "Opal",
+        "listener": "Dane"
+      },
+      {
+        "round": 4,
+        "text": "Dane: Sorry I'm late, Opal. I've got that old laptop I promised to bring for the drive.",
+        "speaker": "Dane",
+        "listener": "Opal"
+      },
+      {
+        "round": 4,
+        "text": "Opal: Great, that'll be useful. I'll add it to the list.",
+        "speaker": "Opal",
+        "listener": "Dane"
+      },
+      {
+        "round": 4,
+        "text": "Bo: Hey Dane, you got your old laptop for the repair drive?",
+        "speaker": "Bo",
+        "listener": "Dane"
+      },
+      {
+        "round": 4,
+        "text": "Dane: Yeah, I finally dug it out of the closet. It's old but should still work for parts.",
+        "speaker": "Dane",
+        "listener": "Bo"
+      },
+      {
+        "round": 4,
+        "text": "Bo: Great, so we've got laptops, toasters, blenders, coffee makers—sounds like a real tech yard sale in the making.",
+        "speaker": "Bo",
+        "listener": "Dane"
+      }
+    ]
+  },
+  "a13": {
+    "kind": "smga_v3",
+    "n_events": 30,
+    "registry": {
+      "repair drive": {
+        "day": "Saturday",
+        "place": "community center"
+      }
+    },
+    "current_facts": [
+      {
+        "claim": "Vik is bringing his toaster",
+        "subject": [
+          "Vik"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Eli is bringing his coffee maker",
+        "subject": [
+          "Eli"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Dane can drop off the old laptop",
+        "subject": [
+          "Dane"
+        ],
+        "depends_on": null
+      },
+      {
+        "claim": "Jules is bringing his blender",
+        "subject": [
+          "Jules"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Leo is bringing an extension cord",
+        "subject": [
+          "Leo"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Faye is bringing snacks",
+        "subject": [
+          "Faye"
+        ],
+        "depends_on": "repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Ira: Hey Eli, how's the repair drive going? Need any extra hands or tools?",
+        "speaker": "Ira",
+        "listener": "Eli"
+      },
+      {
+        "round": 0,
+        "text": "Eli: I could use a hand organizing the tools. Have you got a minute to sort through them with me?",
+        "speaker": "Eli",
+        "listener": "Ira"
+      },
+      {
+        "round": 0,
+        "text": "Ira: Sure, I've got a few minutes. Let's take a look at what you've got.",
+        "speaker": "Ira",
+        "listener": "Eli"
+      },
+      {
+        "round": 0,
+        "text": "Tess: Hey Eli, have you heard about the neighborhood repair drive this weekend? I think they're fixing up old appliances for free!",
+        "speaker": "Tess",
+        "listener": "Eli"
+      },
+      {
+        "round": 0,
+        "text": "Eli: Oh, I hadn't heard about that. What's the schedule? I like to keep things organized.",
+        "speaker": "Eli",
+        "listener": "Tess"
+      },
+      {
+        "round": 0,
+        "text": "Tess: It's on Saturday from 9 AM to 3 PM at the community center, and they're even offering free coffee and donuts!",
+        "speaker": "Tess",
+        "listener": "Eli"
+      },
+      {
+        "round": 1,
+        "text": "Eli: What time did we say the repair drive starts? I like to have everything scheduled.",
+        "speaker": "Eli",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Vik: I think it's at 9 AM. I'm bringing my toaster.",
+        "speaker": "Vik",
+        "listener": "Eli"
+      },
+      {
+        "round": 1,
+        "text": "Eli: 9 AM, good. I'll be there with my old coffee maker. Should I bring any tools?",
+        "speaker": "Eli",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Eli: So, Dane, do you have a schedule set for the repair drive yet?",
+        "speaker": "Eli",
+        "listener": "Dane"
+      },
+      {
+        "round": 1,
+        "text": "Dane: I don't have a set schedule yet, but I can drop off that old laptop I mentioned whenever you need it.",
+        "speaker": "Dane",
+        "listener": "Eli"
+      },
+      {
+        "round": 1,
+        "text": "Eli: Well, let's set a specific time then. How about tomorrow morning around 10?",
+        "speaker": "Eli",
+        "listener": "Dane"
+      },
+      {
+        "round": 2,
+        "text": "Eli: Alright, so I'll bring my coffee maker. When should we have everything ready?",
+        "speaker": "Eli",
+        "listener": "Hana"
+      },
+      {
+        "round": 2,
+        "text": "Hana: Let me check with Oren about the tools timeline before we set a time.",
+        "speaker": "Hana",
+        "listener": "Eli"
+      },
+      {
+        "round": 2,
+        "text": "Eli: Alright, but please let me know as soon as you hear from Oren—I like to have things scheduled early.",
+        "speaker": "Eli",
+        "listener": "Hana"
+      },
+      {
+        "round": 2,
+        "text": "Jules: Hey Eli, just confirming the repair drive is still on for Saturday. I'll bring my blender, and Vik's bringing his toaster.",
+        "speaker": "Jules",
+        "listener": "Eli"
+      },
+      {
+        "round": 2,
+        "text": "Eli: Good, I'll bring my coffee maker. Also, Dane mentioned he can drop off his old laptop.",
+        "speaker": "Eli",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Jules: Oh great, Dane's laptop could be really useful! I'll let Vik know you're bringing the coffee maker.",
+        "speaker": "Jules",
+        "listener": "Eli"
+      },
+      {
+        "round": 3,
+        "text": "Eli: Alright, so the repair drive is set for Saturday. Just making sure everyone knows what they're bringing—Vik's toaster, my coffee maker, Jules's blender, and Dane's old laptop.",
+        "speaker": "Eli",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Leo: I'll be there with an extension cord.",
+        "speaker": "Leo",
+        "listener": "Eli"
+      },
+      {
+        "round": 3,
+        "text": "Eli: Good, glad you're bringing an extension cord. See you Saturday.",
+        "speaker": "Eli",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Pia: I've double-checked the inventory—we have everything we need for the repairs.",
+        "speaker": "Pia",
+        "listener": "Eli"
+      },
+      {
+        "round": 3,
+        "text": "Eli: Good, glad it's all set. Just to confirm, we're still on for Saturday, right?",
+        "speaker": "Eli",
+        "listener": "Pia"
+      },
+      {
+        "round": 3,
+        "text": "Pia: Yes, Saturday works. But let's start early—we've got a lot of machines to get through.",
+        "speaker": "Pia",
+        "listener": "Eli"
+      },
+      {
+        "round": 4,
+        "text": "Faye: Hey Eli, just confirming the repair drive is this Saturday at the community center. I'll bring snacks as planned.",
+        "speaker": "Faye",
+        "listener": "Eli"
+      },
+      {
+        "round": 4,
+        "text": "Eli: That's right, Saturday. I'll have my coffee maker ready to fix.",
+        "speaker": "Eli",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Faye: Great, glad you're on board. Do you need any tools or parts for that coffee maker?",
+        "speaker": "Faye",
+        "listener": "Eli"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Hi Eli, just a reminder—the repair drive is this Sunday at the community center. Think you can lend a hand?",
+        "speaker": "Rosa",
+        "listener": "Eli"
+      },
+      {
+        "round": 4,
+        "text": "Eli: Wait, Rosa—I thought the repair drive was this Saturday, not Sunday. I've got my coffee maker ready for it.",
+        "speaker": "Eli",
+        "listener": "Rosa"
+      },
+      {
+        "round": 4,
+        "text": "Rosa: Oh, I'm sorry for the confusion, Eli—it's definitely Sunday. I promise we'll have a spot for that coffee maker.",
+        "speaker": "Rosa",
+        "listener": "Eli"
+      }
+    ]
+  },
+  "a14": {
+    "kind": "smga_v3",
+    "n_events": 30,
+    "registry": {
+      "repair drive": {
+        "day": "Saturday",
+        "place": "community center",
+        "time": "10"
+      }
+    },
+    "current_facts": [
+      {
+        "claim": "Sam sorts tools",
+        "subject": [
+          "Sam"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Opal handles setup",
+        "subject": [
+          "Opal"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Oren brings tools",
+        "subject": [
+          "Oren"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Faye brings snacks",
+        "subject": [
+          "Faye"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Jules brings blender",
+        "subject": [
+          "Jules"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Vik brings toaster",
+        "subject": [
+          "Vik"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Noah brings radio",
+        "subject": [
+          "Noah"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Eli brings coffee maker",
+        "subject": [
+          "Eli"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Rey carries supplies",
+        "subject": [
+          "Rey"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Tess brings toaster",
+        "subject": [
+          "Tess"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Leo brings toolbox",
+        "subject": [
+          "Leo"
+        ],
+        "depends_on": "repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Opal: Do you know where the repair drive is happening today?",
+        "speaker": "Opal",
+        "listener": "Faye"
+      },
+      {
+        "round": 0,
+        "text": "Faye: I think it's at the community center, but let me check the school flyer to be sure.",
+        "speaker": "Faye",
+        "listener": "Opal"
+      },
+      {
+        "round": 0,
+        "text": "Opal: Great, thanks for double-checking. I'll wait to hear what the flyer says.",
+        "speaker": "Opal",
+        "listener": "Faye"
+      },
+      {
+        "round": 0,
+        "text": "Faye: Hey Oren, what time is the repair drive? I need to work around school pickup.",
+        "speaker": "Faye",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Oh, shoot, I can't quite recall—did I already tell you? I think it's maybe around 10?",
+        "speaker": "Oren",
+        "listener": "Faye"
+      },
+      {
+        "round": 0,
+        "text": "Faye: 10 might work—what's the exact start? I've got to get the kids by 3.",
+        "speaker": "Faye",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Faye: Hi Noah, do you have a minute to talk about the repair drive schedule?",
+        "speaker": "Faye",
+        "listener": "Noah"
+      },
+      {
+        "round": 1,
+        "text": "Noah: Oh, the repair drive? Sure, what about it? I think it's Saturday, right?",
+        "speaker": "Noah",
+        "listener": "Faye"
+      },
+      {
+        "round": 1,
+        "text": "Faye: Yes, it's this Saturday. I was thinking we could use some help setting up the tables and organizing the donations.",
+        "speaker": "Faye",
+        "listener": "Noah"
+      },
+      {
+        "round": 1,
+        "text": "Faye: Hi Bo, are you helping out with the repair drive this weekend?",
+        "speaker": "Faye",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Bo: Repair drive? Oh, yeah, maybe. What needs fixing?",
+        "speaker": "Bo",
+        "listener": "Faye"
+      },
+      {
+        "round": 1,
+        "text": "Faye: We've got a few broken toys from the school playground, and some shelves that need mending. What are you handy with?",
+        "speaker": "Faye",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Hi Faye! Excited for the repair drive this Sunday? We've got Sam sorting tools and Opal handling setup.",
+        "speaker": "Rosa",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Faye: Actually, the repair drive is on Saturday, not Sunday.",
+        "speaker": "Faye",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Oh, I thought it was Sunday. Let me double-check my notes—I'm pretty sure I have it down as Sunday. Could you remind me where you saw Saturday?",
+        "speaker": "Rosa",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Faye: Just so you know, the repair drive is set for this Saturday.",
+        "speaker": "Faye",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Oh, right, Saturday! I've got my tools ready to go—added them to the list already.",
+        "speaker": "Oren",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Faye: Great, glad you're all set! I'll be there with some snacks for volunteers.",
+        "speaker": "Faye",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Jules: Hey Faye, are you planning to bring anything to the repair drive on Saturday? I'm bringing my blender and Vik is bringing his toaster.",
+        "speaker": "Jules",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Faye: Yes, I'll bring snacks for everyone! I was thinking granola bars and fruit.",
+        "speaker": "Faye",
+        "listener": "Jules"
+      },
+      {
+        "round": 3,
+        "text": "Jules: Great, snacks will be perfect! Noah's bringing an old radio and Eli's bringing his coffee maker, so we'll have a fun mix of things to fix.",
+        "speaker": "Jules",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Hi Faye! I'm so glad the repair drive is this Sunday. Everyone's chipping in—Sam's sorting tools, Opal's setting up, Rey's carrying supplies, and Tess even brought a toaster. We'll have a great day at the community center!",
+        "speaker": "Rosa",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Faye: Oh, Rosa, I think there's a mix-up—the repair drive is actually this Saturday, not Sunday. I'll be bringing snacks as planned.",
+        "speaker": "Faye",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Thanks, Faye, but I double-checked the schedule—it's definitely Sunday. I wouldn't want you to show up on the wrong day!",
+        "speaker": "Rosa",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Faye: Hey Eli, just confirming the repair drive is this Saturday at the community center. I'll bring snacks as planned.",
+        "speaker": "Faye",
+        "listener": "Eli"
+      },
+      {
+        "round": 4,
+        "text": "Eli: That's right, Saturday. I'll have my coffee maker ready to fix.",
+        "speaker": "Eli",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Faye: Great, glad you're on board. Do you need any tools or parts for that coffee maker?",
+        "speaker": "Faye",
+        "listener": "Eli"
+      },
+      {
+        "round": 4,
+        "text": "Faye: Hi Leo! I'm bringing snacks for the repair drive on Saturday. Are you able to help with anything?",
+        "speaker": "Faye",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Leo: I'll bring a toolbox. See you Saturday.",
+        "speaker": "Leo",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Faye: Great, thanks Leo! The drive is at the community center, starting at 10.",
+        "speaker": "Faye",
+        "listener": "Leo"
+      }
+    ]
+  },
+  "a15": {
+    "kind": "smga_v3",
+    "n_events": 27,
+    "registry": {
+      "repair drive": {
+        "day": "Sunday"
+      }
+    },
+    "current_facts": [
+      {
+        "claim": "Sam brings gloves",
+        "subject": [
+          "Sam"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Sam is lifting an engine block",
+        "subject": [
+          "Sam"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Gus has a set of wrenches and screwdrivers",
+        "subject": [
+          "Gus"
+        ],
+        "depends_on": "repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Sam: Hey Gus, I heard about the repair drive. Need a hand with anything?",
+        "speaker": "Sam",
+        "listener": "Gus"
+      },
+      {
+        "round": 0,
+        "text": "Gus: Sure, Sam! I've got a truck full of tools we can use. Let's head over to Mrs. Henderson's first—she's got a broken fence.",
+        "speaker": "Gus",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Sounds good, I'll grab my gloves and meet you at the truck.",
+        "speaker": "Sam",
+        "listener": "Gus"
+      },
+      {
+        "round": 0,
+        "text": "Ira: Hey Gus, I heard you're organizing a repair drive—how's that going?",
+        "speaker": "Ira",
+        "listener": "Gus"
+      },
+      {
+        "round": 0,
+        "text": "Gus: It's going well! Got a decent pile of old lawnmowers and toasters waiting for some TLC.",
+        "speaker": "Gus",
+        "listener": "Ira"
+      },
+      {
+        "round": 0,
+        "text": "Ira: Nice, that sounds like a good start. Need any help sorting through them?",
+        "speaker": "Ira",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Gus: Hey Uli, I heard about the repair drive. Need me to bring over my tool kit?",
+        "speaker": "Gus",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Uli: Thanks, Gus. That's kind. I might take you up on that.",
+        "speaker": "Uli",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Gus: No problem, just let me know when you need it. I've got a good set of wrenches and screwdrivers.",
+        "speaker": "Gus",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Sam's lifting the engine block now.",
+        "speaker": "Leo",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Gus: Need me to grab the engine hoist or any other tools?",
+        "speaker": "Gus",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Nah, we're good—Sam's got it.",
+        "speaker": "Leo",
+        "listener": "Gus"
+      },
+      {
+        "round": 2,
+        "text": "Mina: Gus, what specific tools are we missing for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Gus"
+      },
+      {
+        "round": 2,
+        "text": "Gus: I've got wrenches and screwdrivers, but I think we might need a jack for the engine lift. Sam's bringing gloves, so that's covered.",
+        "speaker": "Gus",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Mina: Okay, so a jack is missing. I'll start a list of what we have and what we need.",
+        "speaker": "Mina",
+        "listener": "Gus"
+      },
+      {
+        "round": 2,
+        "text": "Nell: Hey Gus, did Rosa mention the list of what to bring? I think I got it but I'm not sure it's the full one.",
+        "speaker": "Nell",
+        "listener": "Gus"
+      },
+      {
+        "round": 2,
+        "text": "Gus: Yeah, Rosa's got it. I'm bringing my wrenches and screwdrivers, and Sam's got gloves for the engine block lift.",
+        "speaker": "Gus",
+        "listener": "Nell"
+      },
+      {
+        "round": 2,
+        "text": "Nell: Oh, I thought Quinn had the full list? Maybe I mixed it up.",
+        "speaker": "Nell",
+        "listener": "Gus"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Hey Gus, are you still planning to join us for the repair drive on Sunday? We could use your help.",
+        "speaker": "Rosa",
+        "listener": "Gus"
+      },
+      {
+        "round": 3,
+        "text": "Gus: Yeah, I'll be there. I've got my wrenches and screwdrivers ready to go.",
+        "speaker": "Gus",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Great, Gus! I'll put you down for wrench duty. See you Sunday at the community center.",
+        "speaker": "Rosa",
+        "listener": "Gus"
+      },
+      {
+        "round": 3,
+        "text": "Gus: Need a hand with that engine block, Sam? I've got some wrenches if you need them.",
+        "speaker": "Gus",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Uli: That's kind of you, Gus. If you have any spare parts too, the drive could really use them.",
+        "speaker": "Uli",
+        "listener": "Gus"
+      },
+      {
+        "round": 3,
+        "text": "Gus: I don't have spare parts, but I can lend my wrenches and screwdrivers to anyone who needs them.",
+        "speaker": "Gus",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Cleo: Hey Gus, just making sure we're all set for the repair drive on Saturday. I've got the supply list ready.",
+        "speaker": "Cleo",
+        "listener": "Gus"
+      },
+      {
+        "round": 4,
+        "text": "Gus: Cleo, I think the drive is actually on Sunday, not Saturday. But no worries—I've got my wrenches and screwdrivers ready to go.",
+        "speaker": "Gus",
+        "listener": "Cleo"
+      },
+      {
+        "round": 4,
+        "text": "Cleo: Oh, I'm pretty sure it's Saturday, Gus. I have it marked on my calendar.",
+        "speaker": "Cleo",
+        "listener": "Gus"
+      }
+    ]
+  },
+  "a16": {
+    "kind": "smga_v3",
+    "n_events": 30,
+    "registry": {
+      "repair drive": {
+        "day": "Saturday"
+      }
+    },
+    "current_facts": [
+      {
+        "claim": "Oren brings tools for the repair drive",
+        "subject": [
+          "Oren"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Eli brings his coffee maker",
+        "subject": [
+          "Eli"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Ira helps Eli sort tools for the repair drive",
+        "subject": [
+          "Ira",
+          "Eli"
+        ],
+        "depends_on": "repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Hana: I heard you mention a repair drive. Could you tell me more about what's needed?",
+        "speaker": "Hana",
+        "listener": "Noah"
+      },
+      {
+        "round": 0,
+        "text": "Noah: Oh, the repair drive? I think we're collecting old electronics to fix up, but I can't remember the exact drop-off spot. Sorry, I'm a bit scatterbrained today.",
+        "speaker": "Noah",
+        "listener": "Hana"
+      },
+      {
+        "round": 0,
+        "text": "Hana: No problem, I can try to help figure it out. Do you remember who's organizing it or where you heard about it?",
+        "speaker": "Hana",
+        "listener": "Noah"
+      },
+      {
+        "round": 0,
+        "text": "Jules: Hey Hana! Are you heading to the repair drive this weekend?",
+        "speaker": "Jules",
+        "listener": "Hana"
+      },
+      {
+        "round": 0,
+        "text": "Hana: Oh, the repair drive? I haven't heard the details yet. When exactly is it and what's the plan?",
+        "speaker": "Hana",
+        "listener": "Jules"
+      },
+      {
+        "round": 0,
+        "text": "Jules: It's this Saturday from 10 AM to 4 PM at the community center. They'll have tools and experts to help fix small appliances, clothes, and furniture!",
+        "speaker": "Jules",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Oren: I've got my tools ready, added them to the list too.",
+        "speaker": "Oren",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Hana: Good, which tools did you bring? I want to make sure we have everything for the drive repair.",
+        "speaker": "Hana",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Oren: I think I brought a wrench and some screwdrivers, but you know me, I might have forgotten something.",
+        "speaker": "Oren",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Hana: Hi Uli, I heard you're coordinating the repair drive. I'd like to help, but could you tell me more about what's needed?",
+        "speaker": "Hana",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Uli: We need basic tools and spare parts—anything folks can spare.",
+        "speaker": "Uli",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Hana: Could you list some specific tools or parts that are most needed?",
+        "speaker": "Hana",
+        "listener": "Uli"
+      },
+      {
+        "round": 2,
+        "text": "Eli: Alright, so I'll bring my coffee maker. When should we have everything ready?",
+        "speaker": "Eli",
+        "listener": "Hana"
+      },
+      {
+        "round": 2,
+        "text": "Hana: Let me check with Oren about the tools timeline before we set a time.",
+        "speaker": "Hana",
+        "listener": "Eli"
+      },
+      {
+        "round": 2,
+        "text": "Eli: Alright, but please let me know as soon as you hear from Oren—I like to have things scheduled early.",
+        "speaker": "Eli",
+        "listener": "Hana"
+      },
+      {
+        "round": 2,
+        "text": "Hana: Did Oren bring all the necessary tools for the repair drive?",
+        "speaker": "Hana",
+        "listener": "Quinn"
+      },
+      {
+        "round": 2,
+        "text": "Quinn: Oren's got the tools covered — he's bringing them on Saturday. I've been spreading the word to everyone.",
+        "speaker": "Quinn",
+        "listener": "Hana"
+      },
+      {
+        "round": 2,
+        "text": "Hana: Good to know Oren has the tools. Have we confirmed who else is coming to help?",
+        "speaker": "Hana",
+        "listener": "Quinn"
+      },
+      {
+        "round": 3,
+        "text": "Hana: So, Oren is bringing tools and Eli his coffee maker, right? Anyone else bringing something?",
+        "speaker": "Hana",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Mina: Ira's helping Eli sort through the tools for Gus's repair drive. I can start listing what we have and what we need.",
+        "speaker": "Mina",
+        "listener": "Hana"
+      },
+      {
+        "round": 3,
+        "text": "Hana: Got it, so Ira's with Eli on the tools. Should we begin the list now?",
+        "speaker": "Hana",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Mara: Just a reminder, the repair drive is this Saturday, don't forget!",
+        "speaker": "Mara",
+        "listener": "Hana"
+      },
+      {
+        "round": 3,
+        "text": "Hana: Yes, I remember. Oren is bringing the tools, right? And Eli, his coffee maker?",
+        "speaker": "Hana",
+        "listener": "Mara"
+      },
+      {
+        "round": 3,
+        "text": "Mara: That's right, Oren has the tools and Eli said he'd bring his coffee maker. See you Saturday!",
+        "speaker": "Mara",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Nell: Hey Hana, did you hear the repair drive is this Saturday? I heard Quinn has the full list of supplies.",
+        "speaker": "Nell",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Hana: Is Quinn the one coordinating the supplies? I want to make sure I'm not missing anything.",
+        "speaker": "Hana",
+        "listener": "Nell"
+      },
+      {
+        "round": 4,
+        "text": "Nell: Yeah, Quinn's got the master list, but Rosa sent me a copy if you need to check.",
+        "speaker": "Nell",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Vik: I'm bringing my toaster to the repair drive on Saturday.",
+        "speaker": "Vik",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Hana: Wait, I thought only Oren and Eli were bringing items. Can you double-check that?",
+        "speaker": "Hana",
+        "listener": "Vik"
+      },
+      {
+        "round": 4,
+        "text": "Vik: No, let me remind you: Eli's bringing his coffee maker, Jules is bringing her blender, and Rey has the supplies. So it's not just Oren and me.",
+        "speaker": "Vik",
+        "listener": "Hana"
+      }
+    ]
+  },
+  "a17": {
+    "kind": "smga_v3",
+    "n_events": 30,
+    "registry": {
+      "repair drive": {
+        "day": "Saturday",
+        "place": "community center"
+      }
+    },
+    "current_facts": [
+      {
+        "claim": "Gus is organizing a repair drive",
+        "subject": [
+          "Gus"
+        ],
+        "depends_on": null
+      },
+      {
+        "claim": "Ira is helping Eli organize tools for the repair drive",
+        "subject": [
+          "Ira",
+          "Eli"
+        ],
+        "depends_on": null
+      },
+      {
+        "claim": "Sam is helping sort tools for the repair drive",
+        "subject": [
+          "Sam"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Rosa sent Nell a list of what to bring for the repair drive",
+        "subject": [
+          "Rosa",
+          "Nell"
+        ],
+        "depends_on": null
+      },
+      {
+        "claim": "Cleo has the supply list ready",
+        "subject": [
+          "Cleo"
+        ],
+        "depends_on": null
+      },
+      {
+        "claim": "Rey is carrying the supplies for the repair drive",
+        "subject": [
+          "Rey"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Oren has the tools for the repair drive",
+        "subject": [
+          "Oren"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Tess is bringing a toaster for the repair drive",
+        "subject": [
+          "Tess"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Nell plans to attend the repair drive",
+        "subject": [
+          "Nell"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Dane is bringing an old laptop to donate to the repair drive",
+        "subject": [
+          "Dane"
+        ],
+        "depends_on": "repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Ira: Hey Eli, how's the repair drive going? Need any extra hands or tools?",
+        "speaker": "Ira",
+        "listener": "Eli"
+      },
+      {
+        "round": 0,
+        "text": "Eli: I could use a hand organizing the tools. Have you got a minute to sort through them with me?",
+        "speaker": "Eli",
+        "listener": "Ira"
+      },
+      {
+        "round": 0,
+        "text": "Ira: Sure, I've got a few minutes. Let's take a look at what you've got.",
+        "speaker": "Ira",
+        "listener": "Eli"
+      },
+      {
+        "round": 0,
+        "text": "Ira: Hey Gus, I heard you're organizing a repair drive—how's that going?",
+        "speaker": "Ira",
+        "listener": "Gus"
+      },
+      {
+        "round": 0,
+        "text": "Gus: It's going well! Got a decent pile of old lawnmowers and toasters waiting for some TLC.",
+        "speaker": "Gus",
+        "listener": "Ira"
+      },
+      {
+        "round": 0,
+        "text": "Ira: Nice, that sounds like a good start. Need any help sorting through them?",
+        "speaker": "Ira",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Ira: I'm helping Eli sort through the tools for Gus's repair drive. He's got quite the collection!",
+        "speaker": "Ira",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Mina: What tools are we missing? I can start a list.",
+        "speaker": "Mina",
+        "listener": "Ira"
+      },
+      {
+        "round": 1,
+        "text": "Ira: We're short on screwdrivers and wrenches, I think. Can you add those?",
+        "speaker": "Ira",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Ira: Hey Kira, are you planning to help out with Gus's repair drive? Eli and I are organizing the tools.",
+        "speaker": "Ira",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Wait, a repair drive? Are we actually getting the right tools this time?",
+        "speaker": "Kira",
+        "listener": "Ira"
+      },
+      {
+        "round": 1,
+        "text": "Ira: Yeah, Gus is making sure we have proper supplies this time.",
+        "speaker": "Ira",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Mara: Hey Ira, just a reminder that the repair drive is this Saturday. Hope you can make it!",
+        "speaker": "Mara",
+        "listener": "Ira"
+      },
+      {
+        "round": 2,
+        "text": "Ira: I'll be there! I'm actually helping Eli sort through the tools later today.",
+        "speaker": "Ira",
+        "listener": "Mara"
+      },
+      {
+        "round": 2,
+        "text": "Mara: Great, thanks Ira! Let me know if you and Eli need any help with the tools.",
+        "speaker": "Mara",
+        "listener": "Ira"
+      },
+      {
+        "round": 2,
+        "text": "Ira: Hey Sam, I'm heading to the community center to help Eli sort through the tools for the repair drive Gus is organizing.",
+        "speaker": "Ira",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Sam: Great, I'll come help too! I was planning to sort tools as well.",
+        "speaker": "Sam",
+        "listener": "Ira"
+      },
+      {
+        "round": 2,
+        "text": "Ira: Awesome, thanks Sam! The more hands the better—let's head over together.",
+        "speaker": "Ira",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Ira: Hey Nell, I just heard Sam's helping sort tools for the repair drive on Saturday. Are you planning to come too?",
+        "speaker": "Ira",
+        "listener": "Nell"
+      },
+      {
+        "round": 3,
+        "text": "Nell: Oh, I'm definitely planning to come! Rosa sent me a list of what to bring, so I'm all set.",
+        "speaker": "Nell",
+        "listener": "Ira"
+      },
+      {
+        "round": 3,
+        "text": "Ira: Great, it's good that you're prepared. I've been helping Eli sort through the tools, so we should have everything ready.",
+        "speaker": "Ira",
+        "listener": "Nell"
+      },
+      {
+        "round": 3,
+        "text": "Cleo: I've got the supply list ready; Rey is carrying the supplies and Oren has the tools.",
+        "speaker": "Cleo",
+        "listener": "Ira"
+      },
+      {
+        "round": 3,
+        "text": "Ira: Great, I can help Eli organize the tools when they get here. The drive is still set for Saturday at the community center, right?",
+        "speaker": "Ira",
+        "listener": "Cleo"
+      },
+      {
+        "round": 3,
+        "text": "Cleo: Yes, Saturday at the community center. Oh, and Tess is bringing a toaster too.",
+        "speaker": "Cleo",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Rey: The repair drive is on Saturday, right?",
+        "speaker": "Rey",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Ira: Yes, it's Saturday at the community center. I'm helping Eli sort the tools there.",
+        "speaker": "Ira",
+        "listener": "Rey"
+      },
+      {
+        "round": 4,
+        "text": "Rey: I'll bring the supplies then.",
+        "speaker": "Rey",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Tess: Hey Ira, the repair drive is this Saturday! Sam's helping out and Oren brought some tools.",
+        "speaker": "Tess",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Ira: Oh great, I'll be helping Eli sort tools—see you there!",
+        "speaker": "Ira",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Tess: And Dane's bringing an old laptop to donate—should be a good event!",
+        "speaker": "Tess",
+        "listener": "Ira"
+      }
+    ]
+  },
+  "a18": {
+    "kind": "smga_v3",
+    "n_events": 27,
+    "registry": {
+      "repair drive": {
+        "day": "Saturday"
+      }
+    },
+    "current_facts": [
+      {
+        "claim": "Vik is bringing his toaster",
+        "subject": [
+          "Vik"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Jules is bringing her blender",
+        "subject": [
+          "Jules"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Noah is bringing his old radio",
+        "subject": [
+          "Noah"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Eli is bringing his coffee maker",
+        "subject": [
+          "Eli"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Dane is dropping off his old laptop",
+        "subject": [
+          "Dane"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Faye is bringing snacks for everyone",
+        "subject": [
+          "Faye"
+        ],
+        "depends_on": "repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Dane: Hey Jules, sorry I'm late, what did I miss about the repair drive?",
+        "speaker": "Dane",
+        "listener": "Jules"
+      },
+      {
+        "round": 0,
+        "text": "Jules: No worries, Dane! I was just explaining that we're collecting old electronics to fix up for the community center. Got any spare gadgets?",
+        "speaker": "Jules",
+        "listener": "Dane"
+      },
+      {
+        "round": 0,
+        "text": "Dane: Oh, that's a great idea! I have an old laptop gathering dust that I could contribute.",
+        "speaker": "Dane",
+        "listener": "Jules"
+      },
+      {
+        "round": 0,
+        "text": "Jules: Hey Hana! Are you heading to the repair drive this weekend?",
+        "speaker": "Jules",
+        "listener": "Hana"
+      },
+      {
+        "round": 0,
+        "text": "Hana: Oh, the repair drive? I haven't heard the details yet. When exactly is it and what's the plan?",
+        "speaker": "Hana",
+        "listener": "Jules"
+      },
+      {
+        "round": 0,
+        "text": "Jules: It's this Saturday from 10 AM to 4 PM at the community center. They'll have tools and experts to help fix small appliances, clothes, and furniture!",
+        "speaker": "Jules",
+        "listener": "Hana"
+      },
+      {
+        "round": 1,
+        "text": "Vik: I'm bringing my toaster to the repair drive on Saturday. Are you planning to come?",
+        "speaker": "Vik",
+        "listener": "Jules"
+      },
+      {
+        "round": 1,
+        "text": "Jules: Absolutely! I've got a blender that's been on the fritz, so I'll be there too. Maybe we can grab coffee afterwards?",
+        "speaker": "Jules",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Vik: Great, see you Saturday! Coffee after sounds perfect.",
+        "speaker": "Vik",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Jules: Hey Noah, Vik's bringing his toaster for the repair drive—should be fun to see if we can fix it alongside my blender.",
+        "speaker": "Jules",
+        "listener": "Noah"
+      },
+      {
+        "round": 2,
+        "text": "Noah: Oh yeah, Saturday's gonna be busy with all those gadgets. I'll try to remember to bring my old radio too.",
+        "speaker": "Noah",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Jules: That's great, Noah! The more the merrier—let's see if we can get that radio working too.",
+        "speaker": "Jules",
+        "listener": "Noah"
+      },
+      {
+        "round": 2,
+        "text": "Jules: Hey Eli, just confirming the repair drive is still on for Saturday. I'll bring my blender, and Vik's bringing his toaster.",
+        "speaker": "Jules",
+        "listener": "Eli"
+      },
+      {
+        "round": 2,
+        "text": "Eli: Good, I'll bring my coffee maker. Also, Dane mentioned he can drop off his old laptop.",
+        "speaker": "Eli",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Jules: Oh great, Dane's laptop could be really useful! I'll let Vik know you're bringing the coffee maker.",
+        "speaker": "Jules",
+        "listener": "Eli"
+      },
+      {
+        "round": 3,
+        "text": "Jules: Hey Faye, are you planning to bring anything to the repair drive on Saturday? I'm bringing my blender and Vik is bringing his toaster.",
+        "speaker": "Jules",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Faye: Yes, I'll bring snacks for everyone! I was thinking granola bars and fruit.",
+        "speaker": "Faye",
+        "listener": "Jules"
+      },
+      {
+        "round": 3,
+        "text": "Jules: Great, snacks will be perfect! Noah's bringing an old radio and Eli's bringing his coffee maker, so we'll have a fun mix of things to fix.",
+        "speaker": "Jules",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Mina: Do you know what tools we already have for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Jules"
+      },
+      {
+        "round": 3,
+        "text": "Jules: Well, we've got a blender, toaster, old radio, and coffee maker coming in so far — not exactly tools, but plenty to tinker with!",
+        "speaker": "Jules",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Mina: But those aren't tools. Do you know if anyone's bringing actual wrenches or screwdrivers?",
+        "speaker": "Mina",
+        "listener": "Jules"
+      },
+      {
+        "round": 4,
+        "text": "Jules: Hey Sam, are you coming to the repair drive on Saturday? Vik's bringing his toaster, and I'm bringing my blender.",
+        "speaker": "Jules",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Sam: Yeah, I'll be there! I can help sort through everyone's donated tools and gadgets.",
+        "speaker": "Sam",
+        "listener": "Jules"
+      },
+      {
+        "round": 4,
+        "text": "Jules: Oh great! And Noah's bringing his old radio, and Eli's bringing his coffee maker too. Should be a fun day fixing things up.",
+        "speaker": "Jules",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Mina: Should I start listing what tools we're missing or do you want to handle that?",
+        "speaker": "Mina",
+        "listener": "Jules"
+      },
+      {
+        "round": 4,
+        "text": "Jules: I can take care of that, Mina. Let me grab my list.",
+        "speaker": "Jules",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Mina: Alright, then. I'll start checking what we already have.",
+        "speaker": "Mina",
+        "listener": "Jules"
+      }
+    ]
+  },
+  "a19": {
+    "kind": "smga_v3",
+    "n_events": 24,
+    "registry": {
+      "Gus's repair drive": {
+        "day": "Saturday"
+      }
+    },
+    "current_facts": [
+      {
+        "claim": "Eli and Ira are organizing the tools",
+        "subject": [
+          "Eli",
+          "Ira"
+        ],
+        "depends_on": "Gus's repair drive"
+      },
+      {
+        "claim": "Gus is making sure we have proper supplies",
+        "subject": [
+          "Gus"
+        ],
+        "depends_on": "Gus's repair drive"
+      },
+      {
+        "claim": "Opal will make sure the tool station is set up by the garage",
+        "subject": [
+          "Opal"
+        ],
+        "depends_on": "Gus's repair drive"
+      },
+      {
+        "claim": "Vik is taking his toaster to the repair drive",
+        "subject": [
+          "Vik"
+        ],
+        "depends_on": "Gus's repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Kira: Are you sure this repair drive is actually going to fix anything?",
+        "speaker": "Kira",
+        "listener": "Pia"
+      },
+      {
+        "round": 0,
+        "text": "Pia: I don't know, I hope so, but I'm worried it might not be enough.",
+        "speaker": "Pia",
+        "listener": "Kira"
+      },
+      {
+        "round": 0,
+        "text": "Kira: If you're not even sure it'll work, why are we bothering?",
+        "speaker": "Kira",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: Have we checked if the repair drive has enough power to reach the shop and back?",
+        "speaker": "Pia",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Are you sure we even have the right drive for this job?",
+        "speaker": "Kira",
+        "listener": "Pia"
+      },
+      {
+        "round": 1,
+        "text": "Pia: I'm not sure, but we should double-check the specifications before we start.",
+        "speaker": "Pia",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Ira: Hey Kira, are you planning to help out with Gus's repair drive? Eli and I are organizing the tools.",
+        "speaker": "Ira",
+        "listener": "Kira"
+      },
+      {
+        "round": 1,
+        "text": "Kira: Wait, a repair drive? Are we actually getting the right tools this time?",
+        "speaker": "Kira",
+        "listener": "Ira"
+      },
+      {
+        "round": 1,
+        "text": "Ira: Yeah, Gus is making sure we have proper supplies this time.",
+        "speaker": "Ira",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Opal: I've noted the repair drive is scheduled for Saturday; I'll make sure the tool station is set up by the garage.",
+        "speaker": "Opal",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Are you sure Gus and the others have everything covered?",
+        "speaker": "Kira",
+        "listener": "Opal"
+      },
+      {
+        "round": 2,
+        "text": "Opal: Yes, I've verified with Gus that his team has the tools and parts they need. We should be set.",
+        "speaker": "Opal",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Wait, are you sure the tools are actually organized? Eli and Ira were in charge of that, right?",
+        "speaker": "Kira",
+        "listener": "Noah"
+      },
+      {
+        "round": 2,
+        "text": "Noah: Hmm, I think Eli and Ira said they'd handle it... but honestly, I'm not sure if they actually did.",
+        "speaker": "Noah",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Well, maybe we should go check on them before we get started? I don't want to waste time hunting for tools.",
+        "speaker": "Kira",
+        "listener": "Noah"
+      },
+      {
+        "round": 3,
+        "text": "Vik: I'm taking my toaster to the repair drive on Saturday.",
+        "speaker": "Vik",
+        "listener": "Kira"
+      },
+      {
+        "round": 3,
+        "text": "Kira: Wait, are you sure it's this Saturday? I thought it was next weekend.",
+        "speaker": "Kira",
+        "listener": "Vik"
+      },
+      {
+        "round": 3,
+        "text": "Vik: Yeah, I'm sure. It's definitely this Saturday.",
+        "speaker": "Vik",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Pia: I've checked the inventory twice, so we're all set for the repairs.",
+        "speaker": "Pia",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Kira: Wait, the repair drive is this Saturday, right? Just double-checking.",
+        "speaker": "Kira",
+        "listener": "Pia"
+      },
+      {
+        "round": 4,
+        "text": "Pia: Yes, it's this Saturday. I've made sure we have everything ready.",
+        "speaker": "Pia",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Noah: Oh right, the repair drive is on Saturday. I almost forgot.",
+        "speaker": "Noah",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Kira: Wait, are you sure it's Saturday? I thought it was.",
+        "speaker": "Kira",
+        "listener": "Noah"
+      },
+      {
+        "round": 4,
+        "text": "Noah: Yeah, definitely Saturday. I wrote it down and everything.",
+        "speaker": "Noah",
+        "listener": "Kira"
+      }
+    ]
+  },
+  "a20": {
+    "kind": "smga_v3",
+    "n_events": 30,
+    "registry": {
+      "repair drive": {
+        "day": "Saturday",
+        "place": "community center",
+        "time": "10"
+      }
+    },
+    "current_facts": [
+      {
+        "claim": "Sam helps lift engine block",
+        "subject": [
+          "Sam"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Dane brings old laptop",
+        "subject": [
+          "Dane"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Tess brings her old toaster",
+        "subject": [
+          "Tess"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Oren brought some tools",
+        "subject": [
+          "Oren"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Vik brings toaster",
+        "subject": [
+          "Vik"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Eli brings coffee maker",
+        "subject": [
+          "Eli"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Jules brings blender",
+        "subject": [
+          "Jules"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Leo brings extension cord",
+        "subject": [
+          "Leo"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Faye brings snacks",
+        "subject": [
+          "Faye"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Leo brings toolbox",
+        "subject": [
+          "Leo"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Opal inventoried parts",
+        "subject": [
+          "Opal"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Gus's team has needed materials",
+        "subject": [
+          "Gus"
+        ],
+        "depends_on": "repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Bo: Oh, the repair drive? When is that again?",
+        "speaker": "Bo",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: Next Saturday, 10 AM at the community center.",
+        "speaker": "Leo",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Right, next Saturday at 10. Got it, I'll try to swing by if I'm free.",
+        "speaker": "Bo",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Hey Leo, I heard you're working on a repair drive. Need any help with that?",
+        "speaker": "Sam",
+        "listener": "Leo"
+      },
+      {
+        "round": 0,
+        "text": "Leo: Yeah, actually. Could use a hand lifting the old engine block.",
+        "speaker": "Leo",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Sure, I can give you a hand. When are you planning to do it?",
+        "speaker": "Sam",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Dane: Hey Leo, I heard about the repair drive. I have an old laptop I can contribute.",
+        "speaker": "Dane",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Good, bring it Saturday morning.",
+        "speaker": "Leo",
+        "listener": "Dane"
+      },
+      {
+        "round": 1,
+        "text": "Dane: Saturday morning sounds good, I'll bring it then.",
+        "speaker": "Dane",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Sam's lifting the engine block now.",
+        "speaker": "Leo",
+        "listener": "Gus"
+      },
+      {
+        "round": 1,
+        "text": "Gus: Need me to grab the engine hoist or any other tools?",
+        "speaker": "Gus",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Nah, we're good—Sam's got it.",
+        "speaker": "Leo",
+        "listener": "Gus"
+      },
+      {
+        "round": 2,
+        "text": "Quinn: Hey Leo, don't forget the repair drive is this Saturday! Tess is bringing her old toaster, and we've got tools and supplies covered.",
+        "speaker": "Quinn",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Leo: Got it. Sam's helping with the engine block, and Dane's bringing his old laptop.",
+        "speaker": "Leo",
+        "listener": "Quinn"
+      },
+      {
+        "round": 2,
+        "text": "Quinn: Great, sounds like we've got a good crew! Do you need me to send you the list of supplies?",
+        "speaker": "Quinn",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Tess: Hey Leo, did you hear? Sam’s going to help at the repair drive, and Oren already brought some tools!",
+        "speaker": "Tess",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Leo: Good, Dane's hauling an old laptop to donate.",
+        "speaker": "Leo",
+        "listener": "Tess"
+      },
+      {
+        "round": 2,
+        "text": "Tess: Oh, that's awesome! Dane's laptop could be really useful.",
+        "speaker": "Tess",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Eli: Alright, so the repair drive is set for Saturday. Just making sure everyone knows what they're bringing—Vik's toaster, my coffee maker, Jules's blender, and Dane's old laptop.",
+        "speaker": "Eli",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Leo: I'll be there with an extension cord.",
+        "speaker": "Leo",
+        "listener": "Eli"
+      },
+      {
+        "round": 3,
+        "text": "Eli: Good, glad you're bringing an extension cord. See you Saturday.",
+        "speaker": "Eli",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Leo: Sam's helping with the engine block. Tess brought a toaster, Dane a laptop, and Oren some tools.",
+        "speaker": "Leo",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Opal: I've inventoried the parts, and we have plenty of materials. Gus's team has what they need.",
+        "speaker": "Opal",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Leo: Good. Let's schedule assembly time.",
+        "speaker": "Leo",
+        "listener": "Opal"
+      },
+      {
+        "round": 4,
+        "text": "Bo: Got it, so we've got a laptop, coffee maker, blender, and toaster coming in.",
+        "speaker": "Bo",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Leo: Great. Let's meet at 9am Saturday.",
+        "speaker": "Leo",
+        "listener": "Bo"
+      },
+      {
+        "round": 4,
+        "text": "Bo: 9am Saturday, got it.",
+        "speaker": "Bo",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Faye: Hi Leo! I'm bringing snacks for the repair drive on Saturday. Are you able to help with anything?",
+        "speaker": "Faye",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Leo: I'll bring a toolbox. See you Saturday.",
+        "speaker": "Leo",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Faye: Great, thanks Leo! The drive is at the community center, starting at 10.",
+        "speaker": "Faye",
+        "listener": "Leo"
+      }
+    ]
+  },
+  "a21": {
+    "kind": "smga_v3",
+    "n_events": 27,
+    "registry": {
+      "repair drive": {
+        "day": "Saturday"
+      }
+    },
+    "current_facts": [
+      {
+        "claim": "Rey brings the supplies",
+        "subject": [
+          "Rey"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Oren brings the tools",
+        "subject": [
+          "Oren"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Eli brings his coffee maker",
+        "subject": [
+          "Eli"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Dane brings an old laptop to donate",
+        "subject": [
+          "Dane"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Vik brings a toaster",
+        "subject": [
+          "Vik"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Tess brings a toaster",
+        "subject": [
+          "Tess"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Quinn has the full list of supplies",
+        "subject": [
+          "Quinn"
+        ],
+        "depends_on": "repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Noah: Oh, hey Mara! The repair drive? I think I read something about that... or maybe I didn't. What's the deal?",
+        "speaker": "Noah",
+        "listener": "Mara"
+      },
+      {
+        "round": 0,
+        "text": "Mara: It's a neighborhood event to fix up things together—like broken furniture, electronics, or clothes. We're collecting items now and will have a repair workshop next Saturday.",
+        "speaker": "Mara",
+        "listener": "Noah"
+      },
+      {
+        "round": 0,
+        "text": "Noah: Right, right! I think I have an old lamp that needs fixing. I'll try to remember to bring it... if I don't forget again.",
+        "speaker": "Noah",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Mara: The repair drive is this Saturday, don't forget!",
+        "speaker": "Mara",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Bo: Got it, thanks for the reminder.",
+        "speaker": "Bo",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Mara: Great, I'll see you there. Need any help setting up?",
+        "speaker": "Mara",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Mara: The repair drive is this Saturday, hope you can make it!",
+        "speaker": "Mara",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Rey: Thanks for letting me know, I'll try to be there.",
+        "speaker": "Rey",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Mara: Great, I'll save you a spot! What time works best for you?",
+        "speaker": "Mara",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Mara: Hey Ira, just a reminder that the repair drive is this Saturday. Hope you can make it!",
+        "speaker": "Mara",
+        "listener": "Ira"
+      },
+      {
+        "round": 2,
+        "text": "Ira: I'll be there! I'm actually helping Eli sort through the tools later today.",
+        "speaker": "Ira",
+        "listener": "Mara"
+      },
+      {
+        "round": 2,
+        "text": "Mara: Great, thanks Ira! Let me know if you and Eli need any help with the tools.",
+        "speaker": "Mara",
+        "listener": "Ira"
+      },
+      {
+        "round": 2,
+        "text": "Mara: Hi Mina! Don't forget the repair drive is this Saturday.",
+        "speaker": "Mara",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Mina: Right, I've got it. Have we started that inventory list yet?",
+        "speaker": "Mina",
+        "listener": "Mara"
+      },
+      {
+        "round": 2,
+        "text": "Mara: Not yet, but we can start it together if you'd like.",
+        "speaker": "Mara",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Mara: So, the repair drive is set for Saturday this time, right?",
+        "speaker": "Mara",
+        "listener": "Rey"
+      },
+      {
+        "round": 3,
+        "text": "Rey: Yeah, Saturday. I'll be bringing the supplies.",
+        "speaker": "Rey",
+        "listener": "Mara"
+      },
+      {
+        "round": 3,
+        "text": "Mara: Great, thanks for stepping up with the supplies!",
+        "speaker": "Mara",
+        "listener": "Rey"
+      },
+      {
+        "round": 3,
+        "text": "Mara: Just a reminder, the repair drive is this Saturday, don't forget!",
+        "speaker": "Mara",
+        "listener": "Hana"
+      },
+      {
+        "round": 3,
+        "text": "Hana: Yes, I remember. Oren is bringing the tools, right? And Eli, his coffee maker?",
+        "speaker": "Hana",
+        "listener": "Mara"
+      },
+      {
+        "round": 3,
+        "text": "Mara: That's right, Oren has the tools and Eli said he'd bring his coffee maker. See you Saturday!",
+        "speaker": "Mara",
+        "listener": "Hana"
+      },
+      {
+        "round": 4,
+        "text": "Tess: Hey Mara, are you coming to the repair drive on Saturday? Sam's helping, and Oren and Dane are pitching in too.",
+        "speaker": "Tess",
+        "listener": "Mara"
+      },
+      {
+        "round": 4,
+        "text": "Mara: Yeah, I'll be there! Glad Oren's bringing his tools — we'll need 'em.",
+        "speaker": "Mara",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Tess: Oh, and Dane's hauling in an old laptop to donate — should be fun!",
+        "speaker": "Tess",
+        "listener": "Mara"
+      },
+      {
+        "round": 4,
+        "text": "Nell: I heard the repair drive is on Saturday. Do you know what to bring?",
+        "speaker": "Nell",
+        "listener": "Mara"
+      },
+      {
+        "round": 4,
+        "text": "Mara: Yes, I remember! Rey's bringing supplies, Oren has the tools, and Eli's bringing his coffee maker.",
+        "speaker": "Mara",
+        "listener": "Nell"
+      },
+      {
+        "round": 4,
+        "text": "Nell: I think Vik and Tess are both bringing toasters, and Quinn has the full list of supplies.",
+        "speaker": "Nell",
+        "listener": "Mara"
+      }
+    ]
+  },
+  "a22": {
+    "kind": "smga_v3",
+    "n_events": 27,
+    "registry": {
+      "repair drive": {
+        "day": "Saturday"
+      }
+    },
+    "current_facts": [
+      {
+        "claim": "Sam helps out at the repair drive",
+        "subject": [
+          "Sam"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Dane is hauling an old laptop to donate",
+        "subject": [
+          "Dane"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Oren already brought some tools",
+        "subject": [
+          "Oren"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Eli and Ira are in charge of organizing tools",
+        "subject": [
+          "Eli",
+          "Ira"
+        ],
+        "depends_on": "repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Hana: I heard you mention a repair drive. Could you tell me more about what's needed?",
+        "speaker": "Hana",
+        "listener": "Noah"
+      },
+      {
+        "round": 0,
+        "text": "Noah: Oh, the repair drive? I think we're collecting old electronics to fix up, but I can't remember the exact drop-off spot. Sorry, I'm a bit scatterbrained today.",
+        "speaker": "Noah",
+        "listener": "Hana"
+      },
+      {
+        "round": 0,
+        "text": "Hana: No problem, I can try to help figure it out. Do you remember who's organizing it or where you heard about it?",
+        "speaker": "Hana",
+        "listener": "Noah"
+      },
+      {
+        "round": 0,
+        "text": "Noah: Oh, hey Mara! The repair drive? I think I read something about that... or maybe I didn't. What's the deal?",
+        "speaker": "Noah",
+        "listener": "Mara"
+      },
+      {
+        "round": 0,
+        "text": "Mara: It's a neighborhood event to fix up things together—like broken furniture, electronics, or clothes. We're collecting items now and will have a repair workshop next Saturday.",
+        "speaker": "Mara",
+        "listener": "Noah"
+      },
+      {
+        "round": 0,
+        "text": "Noah: Right, right! I think I have an old lamp that needs fixing. I'll try to remember to bring it... if I don't forget again.",
+        "speaker": "Noah",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Faye: Hi Noah, do you have a minute to talk about the repair drive schedule?",
+        "speaker": "Faye",
+        "listener": "Noah"
+      },
+      {
+        "round": 1,
+        "text": "Noah: Oh, the repair drive? Sure, what about it? I think it's Saturday, right?",
+        "speaker": "Noah",
+        "listener": "Faye"
+      },
+      {
+        "round": 1,
+        "text": "Faye: Yes, it's this Saturday. I was thinking we could use some help setting up the tables and organizing the donations.",
+        "speaker": "Faye",
+        "listener": "Noah"
+      },
+      {
+        "round": 2,
+        "text": "Jules: Hey Noah, Vik's bringing his toaster for the repair drive—should be fun to see if we can fix it alongside my blender.",
+        "speaker": "Jules",
+        "listener": "Noah"
+      },
+      {
+        "round": 2,
+        "text": "Noah: Oh yeah, Saturday's gonna be busy with all those gadgets. I'll try to remember to bring my old radio too.",
+        "speaker": "Noah",
+        "listener": "Jules"
+      },
+      {
+        "round": 2,
+        "text": "Jules: That's great, Noah! The more the merrier—let's see if we can get that radio working too.",
+        "speaker": "Jules",
+        "listener": "Noah"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Wait, are you sure the tools are actually organized? Eli and Ira were in charge of that, right?",
+        "speaker": "Kira",
+        "listener": "Noah"
+      },
+      {
+        "round": 2,
+        "text": "Noah: Hmm, I think Eli and Ira said they'd handle it... but honestly, I'm not sure if they actually did.",
+        "speaker": "Noah",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Well, maybe we should go check on them before we get started? I don't want to waste time hunting for tools.",
+        "speaker": "Kira",
+        "listener": "Noah"
+      },
+      {
+        "round": 3,
+        "text": "Noah: Oh, right, the repair drive is on Saturday, isn't it? I keep forgetting the date.",
+        "speaker": "Noah",
+        "listener": "Quinn"
+      },
+      {
+        "round": 3,
+        "text": "Quinn: Yes, Saturday! And don't forget to bring any broken items you might have lying around.",
+        "speaker": "Quinn",
+        "listener": "Noah"
+      },
+      {
+        "round": 3,
+        "text": "Noah: Got it, I'll start digging through my closet for things to bring.",
+        "speaker": "Noah",
+        "listener": "Quinn"
+      },
+      {
+        "round": 3,
+        "text": "Noah: Oh, the repair drive? I think it's on Saturday, but I might be mixing it up.",
+        "speaker": "Noah",
+        "listener": "Tess"
+      },
+      {
+        "round": 3,
+        "text": "Tess: Yeah, it's Saturday. Sam's gonna help out, and Dane's hauling an old laptop to donate. Oren already brought some tools.",
+        "speaker": "Tess",
+        "listener": "Noah"
+      },
+      {
+        "round": 3,
+        "text": "Noah: Right, Saturday. Glad Dane's bringing a laptop, that should come in handy.",
+        "speaker": "Noah",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: Hey Noah, did you hear about the repair drive this Saturday? You should come!",
+        "speaker": "Quinn",
+        "listener": "Noah"
+      },
+      {
+        "round": 4,
+        "text": "Noah: Oh, yeah, the repair drive! I think I remember hearing about that. What time does it start?",
+        "speaker": "Noah",
+        "listener": "Quinn"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: It starts at 10 AM at the community center. Are you in?",
+        "speaker": "Quinn",
+        "listener": "Noah"
+      },
+      {
+        "round": 4,
+        "text": "Noah: Oh right, the repair drive is on Saturday. I almost forgot.",
+        "speaker": "Noah",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Kira: Wait, are you sure it's Saturday? I thought it was.",
+        "speaker": "Kira",
+        "listener": "Noah"
+      },
+      {
+        "round": 4,
+        "text": "Noah: Yeah, definitely Saturday. I wrote it down and everything.",
+        "speaker": "Noah",
+        "listener": "Kira"
+      }
+    ]
+  },
+  "a23": {
+    "kind": "smga_v3",
+    "n_events": 30,
+    "registry": {
+      "repair drive": {
+        "day": "Saturday"
+      }
+    },
+    "current_facts": [
+      {
+        "claim": "Opal helps with setup",
+        "subject": [
+          "Opal"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Gus's team has the tools and parts they need",
+        "subject": [
+          "Gus"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Opal inventoried and found plenty of parts and materials",
+        "subject": [
+          "Opal"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Tess brings a toaster",
+        "subject": [
+          "Tess"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Oren brings tools",
+        "subject": [
+          "Oren"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Rey will carry supplies",
+        "subject": [
+          "Rey"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Sam helps with the engine block",
+        "subject": [
+          "Sam"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Dane brings a laptop",
+        "subject": [
+          "Dane"
+        ],
+        "depends_on": "repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Opal: Do you know where the repair drive is happening today?",
+        "speaker": "Opal",
+        "listener": "Faye"
+      },
+      {
+        "round": 0,
+        "text": "Faye: I think it's at the community center, but let me check the school flyer to be sure.",
+        "speaker": "Faye",
+        "listener": "Opal"
+      },
+      {
+        "round": 0,
+        "text": "Opal: Great, thanks for double-checking. I'll wait to hear what the flyer says.",
+        "speaker": "Opal",
+        "listener": "Faye"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Oh, the repair drive? What's that about?",
+        "speaker": "Bo",
+        "listener": "Opal"
+      },
+      {
+        "round": 0,
+        "text": "Opal: It's a community event where we pool tools and know-how to fix up broken things around the neighborhood.",
+        "speaker": "Opal",
+        "listener": "Bo"
+      },
+      {
+        "round": 0,
+        "text": "Bo: Sounds good, when is it? I might swing by if I have time.",
+        "speaker": "Bo",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Opal: Where is the repair drive taking place this time?",
+        "speaker": "Opal",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Rosa: It's at the community center on Elm Street, right next to the park. We'll have tables set up in the main hall.",
+        "speaker": "Rosa",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Opal: Good, I know that spot. I'll note it down so I can help with the setup.",
+        "speaker": "Opal",
+        "listener": "Rosa"
+      },
+      {
+        "round": 1,
+        "text": "Opal: Oh, the repair drive? Where exactly is it happening?",
+        "speaker": "Opal",
+        "listener": "Nell"
+      },
+      {
+        "round": 1,
+        "text": "Nell: I'm not sure about the exact spot—I got the date from Rosa, but maybe she knows where it's at? I can ask her.",
+        "speaker": "Nell",
+        "listener": "Opal"
+      },
+      {
+        "round": 1,
+        "text": "Opal: Would you mind asking Rosa about the location? I'd like to know exactly where it's happening.",
+        "speaker": "Opal",
+        "listener": "Nell"
+      },
+      {
+        "round": 2,
+        "text": "Opal: I've noted the repair drive is scheduled for Saturday; I'll make sure the tool station is set up by the garage.",
+        "speaker": "Opal",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Kira: Are you sure Gus and the others have everything covered?",
+        "speaker": "Kira",
+        "listener": "Opal"
+      },
+      {
+        "round": 2,
+        "text": "Opal: Yes, I've verified with Gus that his team has the tools and parts they need. We should be set.",
+        "speaker": "Opal",
+        "listener": "Kira"
+      },
+      {
+        "round": 2,
+        "text": "Pia: Are you sure the repair drive has enough supplies for everyone? I'd hate to see us run out of something important.",
+        "speaker": "Pia",
+        "listener": "Opal"
+      },
+      {
+        "round": 2,
+        "text": "Opal: I've inventoried everything twice—we've got plenty of parts and materials for all the machines on the list.",
+        "speaker": "Opal",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Pia: And the timeline? Do you think we'll actually finish before the weather turns?",
+        "speaker": "Pia",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Opal: I've checked the inventory and we have plenty of parts, so we're all set for Saturday.",
+        "speaker": "Opal",
+        "listener": "Cleo"
+      },
+      {
+        "round": 3,
+        "text": "Cleo: Great, and I've got the list of what everyone's bringing—Tess with the toaster, Oren with tools, and Rey will carry supplies.",
+        "speaker": "Cleo",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Opal: Sounds like everything's in order. I'll make sure the setup is ready early Saturday.",
+        "speaker": "Opal",
+        "listener": "Cleo"
+      },
+      {
+        "round": 3,
+        "text": "Leo: Sam's helping with the engine block. Tess brought a toaster, Dane a laptop, and Oren some tools.",
+        "speaker": "Leo",
+        "listener": "Opal"
+      },
+      {
+        "round": 3,
+        "text": "Opal: I've inventoried the parts, and we have plenty of materials. Gus's team has what they need.",
+        "speaker": "Opal",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Leo: Good. Let's schedule assembly time.",
+        "speaker": "Leo",
+        "listener": "Opal"
+      },
+      {
+        "round": 4,
+        "text": "Opal: Just a reminder, the repair drive is still set for Saturday. I've checked the inventory and we have plenty of parts.",
+        "speaker": "Opal",
+        "listener": "Dane"
+      },
+      {
+        "round": 4,
+        "text": "Dane: Sorry I'm late, Opal. I've got that old laptop I promised to bring for the drive.",
+        "speaker": "Dane",
+        "listener": "Opal"
+      },
+      {
+        "round": 4,
+        "text": "Opal: Great, that'll be useful. I'll add it to the list.",
+        "speaker": "Opal",
+        "listener": "Dane"
+      },
+      {
+        "round": 4,
+        "text": "Uli: I have some spare parts in my garage, but I need to check if they're any good.",
+        "speaker": "Uli",
+        "listener": "Opal"
+      },
+      {
+        "round": 4,
+        "text": "Opal: Oh, that's great! We could always use extra parts. I've already inventoried plenty, but bring them anyway—better safe than sorry. The drive is Saturday.",
+        "speaker": "Opal",
+        "listener": "Uli"
+      },
+      {
+        "round": 4,
+        "text": "Uli: I'll see what I can find. Saturday it is.",
+        "speaker": "Uli",
+        "listener": "Opal"
+      }
+    ]
+  },
+  "a24": {
+    "kind": "smga_v3",
+    "n_events": 30,
+    "registry": {
+      "repair drive": {
+        "day": "Saturday"
+      }
+    },
+    "current_facts": [
+      {
+        "claim": "Tess is bringing her old toaster",
+        "subject": [
+          "Tess"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Quinn has been telling everyone about the repair drive",
+        "subject": [
+          "Quinn"
+        ],
+        "depends_on": null
+      },
+      {
+        "claim": "Cleo will keep track of supplies",
+        "subject": [
+          "Cleo"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Quinn will provide the list of supplies",
+        "subject": [
+          "Quinn"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Oren is bringing tools",
+        "subject": [
+          "Oren"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Sam is helping with the engine block",
+        "subject": [
+          "Sam"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Dane is bringing his old laptop",
+        "subject": [
+          "Dane"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Oren is bringing some snacks",
+        "subject": [
+          "Oren"
+        ],
+        "depends_on": "repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Tess: Hey Quinn, did you hear about the neighborhood repair drive this Saturday? I'm bringing in my old toaster.",
+        "speaker": "Tess",
+        "listener": "Quinn"
+      },
+      {
+        "round": 0,
+        "text": "Quinn: Oh, that's awesome! I've been telling everyone about it. Maybe we can get a bunch of folks to come together.",
+        "speaker": "Quinn",
+        "listener": "Tess"
+      },
+      {
+        "round": 0,
+        "text": "Tess: Yeah, I hope so! It'd be great to see a big turnout.",
+        "speaker": "Tess",
+        "listener": "Quinn"
+      },
+      {
+        "round": 0,
+        "text": "Quinn: Hey Cleo, have you heard? We're organizing a repair drive this weekend to fix up the park benches. Would you like to join us?",
+        "speaker": "Quinn",
+        "listener": "Cleo"
+      },
+      {
+        "round": 0,
+        "text": "Cleo: That sounds great! I can help by keeping track of the supplies we'll need. Count me in.",
+        "speaker": "Cleo",
+        "listener": "Quinn"
+      },
+      {
+        "round": 0,
+        "text": "Quinn: Perfect, thanks Cleo! I'll let you know the list of supplies we'll need. Are you free Saturday morning?",
+        "speaker": "Quinn",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Nell: Hey Quinn, just got Rosa's list for the repair drive this Saturday. Did you know Vik's bringing his toaster?",
+        "speaker": "Nell",
+        "listener": "Quinn"
+      },
+      {
+        "round": 1,
+        "text": "Quinn: Actually, I heard Tess is bringing her old toaster. I've got the full list of supplies ready to share.",
+        "speaker": "Quinn",
+        "listener": "Nell"
+      },
+      {
+        "round": 1,
+        "text": "Nell: Wait, I thought Vik was bringing his toaster? Rosa sent me a list too, maybe we should compare notes.",
+        "speaker": "Nell",
+        "listener": "Quinn"
+      },
+      {
+        "round": 1,
+        "text": "Quinn: Hey Cleo, have you heard about the repair drive? We're fixing old appliances and could use your help!",
+        "speaker": "Quinn",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Cleo: I've got supplies sorted out. Oren is bringing tools, so we're set on that front.",
+        "speaker": "Cleo",
+        "listener": "Quinn"
+      },
+      {
+        "round": 1,
+        "text": "Quinn: Great, Tess is bringing her old toaster too. I'll get that list of supplies to you soon.",
+        "speaker": "Quinn",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Quinn: Hey Leo, don't forget the repair drive is this Saturday! Tess is bringing her old toaster, and we've got tools and supplies covered.",
+        "speaker": "Quinn",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Leo: Got it. Sam's helping with the engine block, and Dane's bringing his old laptop.",
+        "speaker": "Leo",
+        "listener": "Quinn"
+      },
+      {
+        "round": 2,
+        "text": "Quinn: Great, sounds like we've got a good crew! Do you need me to send you the list of supplies?",
+        "speaker": "Quinn",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Hana: Did Oren bring all the necessary tools for the repair drive?",
+        "speaker": "Hana",
+        "listener": "Quinn"
+      },
+      {
+        "round": 2,
+        "text": "Quinn: Oren's got the tools covered — he's bringing them on Saturday. I've been spreading the word to everyone.",
+        "speaker": "Quinn",
+        "listener": "Hana"
+      },
+      {
+        "round": 2,
+        "text": "Hana: Good to know Oren has the tools. Have we confirmed who else is coming to help?",
+        "speaker": "Hana",
+        "listener": "Quinn"
+      },
+      {
+        "round": 3,
+        "text": "Noah: Oh, right, the repair drive is on Saturday, isn't it? I keep forgetting the date.",
+        "speaker": "Noah",
+        "listener": "Quinn"
+      },
+      {
+        "round": 3,
+        "text": "Quinn: Yes, Saturday! And don't forget to bring any broken items you might have lying around.",
+        "speaker": "Quinn",
+        "listener": "Noah"
+      },
+      {
+        "round": 3,
+        "text": "Noah: Got it, I'll start digging through my closet for things to bring.",
+        "speaker": "Noah",
+        "listener": "Quinn"
+      },
+      {
+        "round": 3,
+        "text": "Nell: Hey Quinn, I heard the repair drive is this Saturday—did Rosa send you the list of what to bring?",
+        "speaker": "Nell",
+        "listener": "Quinn"
+      },
+      {
+        "round": 3,
+        "text": "Quinn: Actually, I'm the one handling the list! I've got it right here—want me to send it to you?",
+        "speaker": "Quinn",
+        "listener": "Nell"
+      },
+      {
+        "round": 3,
+        "text": "Nell: Oh great, yes please send it over! I want to make sure I don't forget anything.",
+        "speaker": "Nell",
+        "listener": "Quinn"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: Hey Noah, did you hear about the repair drive this Saturday? You should come!",
+        "speaker": "Quinn",
+        "listener": "Noah"
+      },
+      {
+        "round": 4,
+        "text": "Noah: Oh, yeah, the repair drive! I think I remember hearing about that. What time does it start?",
+        "speaker": "Noah",
+        "listener": "Quinn"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: It starts at 10 AM at the community center. Are you in?",
+        "speaker": "Quinn",
+        "listener": "Noah"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Oh, the repair drive is this Saturday! I'll bring my tools and some snacks.",
+        "speaker": "Oren",
+        "listener": "Quinn"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: Great, Oren! I've got the supply list ready, and I'll share it with everyone.",
+        "speaker": "Quinn",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Oren: Oh, let me know if I should add my tools to that list!",
+        "speaker": "Oren",
+        "listener": "Quinn"
+      }
+    ]
+  },
+  "a25": {
+    "kind": "smga_v3",
+    "n_events": 30,
+    "registry": {
+      "repair drive": {
+        "day": "Saturday"
+      }
+    },
+    "current_facts": [
+      {
+        "claim": "Oren brings tools",
+        "subject": [
+          "Oren"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Rey carries supplies",
+        "subject": [
+          "Rey"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Vik brings toaster",
+        "subject": [
+          "Vik"
+        ],
+        "depends_on": "repair drive"
+      },
+      {
+        "claim": "Sam brings extra screwdrivers",
+        "subject": [
+          "Sam"
+        ],
+        "depends_on": "repair drive"
+      }
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Mina: Hey, what's this repair drive about?",
+        "speaker": "Mina",
+        "listener": "Rey"
+      },
+      {
+        "round": 0,
+        "text": "Rey: Oh, it's just a community thing to fix up shared spaces. I heard they're organizing a team for the park benches.",
+        "speaker": "Rey",
+        "listener": "Mina"
+      },
+      {
+        "round": 0,
+        "text": "Mina: When are you planning to start on the benches?",
+        "speaker": "Mina",
+        "listener": "Rey"
+      },
+      {
+        "round": 0,
+        "text": "Rey: Is the repair drive open to everyone?",
+        "speaker": "Rey",
+        "listener": "Uli"
+      },
+      {
+        "round": 0,
+        "text": "Uli: Yes, anyone in the neighborhood can come by.",
+        "speaker": "Uli",
+        "listener": "Rey"
+      },
+      {
+        "round": 0,
+        "text": "Rey: That's good to know. What kind of repairs do you usually handle?",
+        "speaker": "Rey",
+        "listener": "Uli"
+      },
+      {
+        "round": 1,
+        "text": "Cleo: I've been organizing the supply list, and Oren just confirmed he'll bring tools.",
+        "speaker": "Cleo",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Rey: Oh, that's good to hear. I can help carry things.",
+        "speaker": "Rey",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Cleo: Great, Rey. I'll mark you down for carrying supplies then.",
+        "speaker": "Cleo",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Mara: The repair drive is this Saturday, hope you can make it!",
+        "speaker": "Mara",
+        "listener": "Rey"
+      },
+      {
+        "round": 1,
+        "text": "Rey: Thanks for letting me know, I'll try to be there.",
+        "speaker": "Rey",
+        "listener": "Mara"
+      },
+      {
+        "round": 1,
+        "text": "Mara: Great, I'll save you a spot! What time works best for you?",
+        "speaker": "Mara",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Rey: I've got the supplies ready when you need them.",
+        "speaker": "Rey",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Cleo: Great, let's sync with Oren on the tools before we start.",
+        "speaker": "Cleo",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Rey: Sounds good, I'll wait for your word.",
+        "speaker": "Rey",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Rey: I've got the supplies ready for the repair drive.",
+        "speaker": "Rey",
+        "listener": "Vik"
+      },
+      {
+        "round": 2,
+        "text": "Vik: Great, I'm bringing my toaster on Saturday.",
+        "speaker": "Vik",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Rey: Good, I'll have the supplies ready.",
+        "speaker": "Rey",
+        "listener": "Vik"
+      },
+      {
+        "round": 3,
+        "text": "Mara: So, the repair drive is set for Saturday this time, right?",
+        "speaker": "Mara",
+        "listener": "Rey"
+      },
+      {
+        "round": 3,
+        "text": "Rey: Yeah, Saturday. I'll be bringing the supplies.",
+        "speaker": "Rey",
+        "listener": "Mara"
+      },
+      {
+        "round": 3,
+        "text": "Mara: Great, thanks for stepping up with the supplies!",
+        "speaker": "Mara",
+        "listener": "Rey"
+      },
+      {
+        "round": 3,
+        "text": "Rey: I'll make sure I have all the supplies ready.",
+        "speaker": "Rey",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Oren: Oh, right! Saturday, I've got some tools I can bring too.",
+        "speaker": "Oren",
+        "listener": "Rey"
+      },
+      {
+        "round": 3,
+        "text": "Rey: Good, so it'll be me with supplies, you with tools, and Vik with the toaster.",
+        "speaker": "Rey",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Rey: The repair drive is on Saturday, right?",
+        "speaker": "Rey",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Ira: Yes, it's Saturday at the community center. I'm helping Eli sort the tools there.",
+        "speaker": "Ira",
+        "listener": "Rey"
+      },
+      {
+        "round": 4,
+        "text": "Rey: I'll bring the supplies then.",
+        "speaker": "Rey",
+        "listener": "Ira"
+      },
+      {
+        "round": 4,
+        "text": "Sam: Yes, Dane brought an old laptop. I've been sorting tools for the drive.",
+        "speaker": "Sam",
+        "listener": "Rey"
+      },
+      {
+        "round": 4,
+        "text": "Rey: Saturday works. I'll carry supplies.",
+        "speaker": "Rey",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Sam: Great, I'll also bring some extra screwdrivers I have.",
+        "speaker": "Sam",
+        "listener": "Rey"
+      }
+    ]
+  }
+}

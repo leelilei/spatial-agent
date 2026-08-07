@@ -1,0 +1,64 @@
+{
+  "experiment_id": "PAT-E-260728-001",
+  "title": "CCT20+ cross-dataset sparse keypoint selector validation",
+  "status": "CONDITIONALLY_PRE_REGISTERED_BEFORE_PAT-D-260728-006_GATE",
+  "dependencies": {
+    "cub_screen": "PAT-D-260728-005",
+    "cub_confirmation": "PAT-D-260728-006",
+    "required_cub_confirmation_gate": true
+  },
+  "data": {
+    "dataset": "CCT20+",
+    "image_archive": "eccv_18_all_images_sm.tar.gz",
+    "image_archive_md5": "8143c17aa2a12872b66f284ff211531f",
+    "split_archive": "eccv_18_annotations.tar.gz",
+    "split_archive_md5": "66a1f481b44aa1edadf75c9cfbd27aba",
+    "keypoint_csv_url": "https://raw.githubusercontent.com/ac-rodriguez/privilegedpooling/main/data/keypoints_cct20plus.csv",
+    "reported_keypoint_rows": 1182,
+    "observed_upstream_keypoint_rows": 1233,
+    "minimum_eligible_keypoint_images_per_class": 40,
+    "maximum_folds": 5,
+    "minimum_folds": 3,
+    "development_split": "official train only",
+    "final_splits_locked": ["cis_test", "trans_test"]
+  },
+  "eligibility": {
+    "unique_image_id": true,
+    "single_instance": true,
+    "official_train_only": true,
+    "minimum_class_rows": 40,
+    "fold_group": "seq_id"
+  },
+  "training": {
+    "fixed_epochs": 9,
+    "oracle_fold_seeds": [9101, 9102, 9103, 9104, 9105],
+    "paired_selector_seed_packs": [
+      [9201, 9202, 9203, 9204, 9205],
+      [9301, 9302, 9303, 9304, 9305],
+      [9401, 9402, 9403, 9404, 9405]
+    ],
+    "random_selection_seeds": [8101, 8102, 8103],
+    "hyperparameter_search": "none"
+  },
+  "annotation_budget": {
+    "fraction_of_eligible_fold_training_rows_per_class": 0.125,
+    "rounding": "ceil"
+  },
+  "gates": {
+    "oracle_minimum_gain_pp": 2.0,
+    "selector_benefit_branch": {
+      "minimum_mean_paired_ba_improvement_pp": 0.5,
+      "minimum_positive_groups": 2,
+      "maximum_mean_negative_transfer_rate_increase": 0.0
+    },
+    "selector_safety_branch": {
+      "maximum_mean_ba_deficit_pp": 0.25,
+      "minimum_negative_transfer_rate_reduction_pp": 5.0,
+      "minimum_safety_positive_groups": 2
+    }
+  },
+  "controls": {
+    "cis_test_images_decoded_or_encoded": 0,
+    "trans_test_images_decoded_or_encoded": 0
+  }
+}

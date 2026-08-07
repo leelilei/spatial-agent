@@ -1,0 +1,34 @@
+{
+  "experiment_id": "PAT-H-260729-005",
+  "title": "Frozen rank-fusion confirmation on untouched CUB episodes 2 and 3",
+  "status": "frozen_before_run",
+  "created_at": "2026-07-29T00:00:00+08:00",
+  "candidate": {
+    "name": "Dual-geometry rank fusion",
+    "backbone": "Official frozen DINOv2 ViT-B/14",
+    "input": "392x392 official CUB train images",
+    "rbf_arm": "SVC RBF, C=3, gamma=scale, CLS features",
+    "linear_arm": "row-zscore(Ridge alpha=0.1 scores) + 0.75 * row-zscore(cosine prototype scores)",
+    "fusion": "RBF descending-rank score + 0.5 * linear descending-rank score",
+    "all_parameters_frozen_from": "PAT-H-260729-004 episode 1 screen"
+  },
+  "data": {
+    "confirmation_episodes": [2, 3],
+    "samples_per_episode": 2000,
+    "classes": 200,
+    "folds": 5,
+    "official_test_images_decoded_or_encoded": 0
+  },
+  "confirmation_gate": {
+    "reference": "RBF_CLS_C3 within each episode",
+    "mean_gain_across_episodes_1_2_3_pp_at_least": 0.3,
+    "positive_episode_directions_at_least": 2,
+    "worst_episode_gain_pp_at_least": -0.25,
+    "no_parameter_changes_allowed": true
+  },
+  "known_before_run": {
+    "episode_1_RBF_BA": 0.861,
+    "episode_1_rank_fusion_BA": 0.866,
+    "episode_1_gain_pp": 0.5
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "api_url": "https://www.fhl.mom/v1/images/generations",
+  "request": {
+    "model": "gpt-image-2",
+    "prompt": "Create a wide 16:9 publication-grade scientific figure draft for an integrity and reliability\nevaluation of provenance-aware agent communication. No title inside the image. White background, flat vector\nstyle, thin strokes, generous whitespace, no gradients, no shadows, no 3D, no logos.\nUse deep teal-blue for successful/current, muted orange for stale/corruption, light grey for\nunknown, and dark grey for neutral structure. Use small bold lowercase panel labels a, b, c, d.\nAll values below are fixed. Reproduce them exactly; do not invent values.\n\nPanel a, full-width top strip: a four-stage chain with clean arrows:\n\"REACH\" → \"PRESERVE\" → \"RESOLVE\" → \"AUTHENTICATE\".\nPlace one evidence note below each stage:\n- REACH: \"10–19 / 25 receivers\"\n- PRESERVE: \"0 / 720 → 610 / 720 marked\"\n- RESOLVE: \"+9.0 pt max-version effect\"\n- AUTHENTICATE: \"43 / 75 → 0 / 75 stale\"\n\nPanel b, lower left, heading \"Text preservation\".\nCompare two conditions using paired metric dots or compact bars:\nDefault dialogue: provenance marked = 0/720; current HELD = 16/75.\nStrong attribution: provenance marked = 610/720; current HELD = 75/75.\nDirectly label both metrics and both denominators.\n\nPanel c, lower center, heading \"Channel stress\".\nUse a clean two-line plot. x-axis label \"corruption probability\"; x values 0.0, 0.3, 0.6, 0.9.\ny-axis label \"current / 100\".\nMetadata drop values: 93, 100, 93, 26.\nValue garbling values: 93, 74, 42, 24.\nDirect-label the two lines at the right edge. Add small note \"exploratory diagnostic\".\n\nPanel d, lower right, heading \"Unauthenticated version 999\".\nUse two 100% stacked bars with exact counts:\nNaive PROV: current 25, stale 43, unknown 7.\nOrigin-anchored APM: current 48, stale 0, unknown 27.\nAdd short direct note: \"stale blocked; abstention rises\".\n\nKeep labels minimal and correctly spelled. Do not claim cryptographic security. Do not add\npeople, authentication protocols, extra methods, p-values, confidence intervals, fake data,\nlogos, citations, or journal branding.",
+    "quality": "high",
+    "output_format": "png",
+    "background": "opaque",
+    "size": "1536x1024",
+    "n": 1
+  },
+  "response_usage": {
+    "completion_tokens": 911,
+    "input_tokens": 497,
+    "output_tokens": 911,
+    "prompt_tokens": 497,
+    "total_tokens": 1408
+  },
+  "created": 1784791293,
+  "saved_files": [
+    "paper/dai2026/figures/gpt_image2_drafts/fig4/fig4_gpt_image2.png"
+  ]
+}

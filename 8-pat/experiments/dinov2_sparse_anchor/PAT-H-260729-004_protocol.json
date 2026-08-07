@@ -1,0 +1,36 @@
+{
+  "experiment_id": "PAT-H-260729-004",
+  "title": "Adaptive dual-geometry fusion screen",
+  "status": "frozen_before_run",
+  "created_at": "2026-07-29T00:00:00+08:00",
+  "hypothesis": "A confidence-adaptive fusion of local-manifold RBF evidence and global prototype-regularized linear evidence improves difficult-class recognition while preserving confident RBF decisions.",
+  "data": {
+    "episode": "PAT-D-260728-009 episode 1",
+    "samples": 2000,
+    "classes": 200,
+    "folds": 5,
+    "official_test_images_decoded_or_encoded": 0
+  },
+  "frozen_inputs": {
+    "RBF": "PAT-H-260729-003 RBF_CLS_C3 scores",
+    "linear_geometry": "row-zscored RIDGE_CLS_A0.1 + 0.75 * row-zscored PROTO_CLS",
+    "keypoints_used": false
+  },
+  "arms": {
+    "static_rbf_plus_linear_weight": [0.1, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0],
+    "adaptive_margin_temperature": [0.5, 1.0, 2.0, 4.0],
+    "rank_fusion_linear_weight": [0.25, 0.5, 0.75, 1.0]
+  },
+  "selection_rule": {
+    "strong_reference": "PAT-H-260729-003 RBF_CLS_C3 = 86.10%",
+    "primary_metric": "balanced_accuracy",
+    "screen_success": "best adaptive arm improves by at least 0.50 percentage points over 86.10%",
+    "safety_report": "class-level positive/negative recall changes and class bootstrap interval",
+    "confirmation": "Freeze a single winning arm and run unchanged on episodes 2 and 3."
+  },
+  "known_before_run": {
+    "RBF_CLS_C3_BA": 0.861,
+    "best_RIDGE_PROTO_BA": 0.861,
+    "sparse_part_mechanism_passed": false
+  }
+}

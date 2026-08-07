@@ -1,0 +1,83 @@
+{
+  "experiment_id": "PAT-G-260728-001",
+  "title": "CUB permutation-aware sparse attention calibration screen",
+  "frozen_at": "2026-07-28T21:20:00+08:00",
+  "status": "PRE_REGISTERED_BEFORE_GPU_EXECUTION",
+  "research_question": "Can one keypoint-annotated image per class calibrate the permutation-symmetric attention channels of a strong K0 PrPool model without sacrificing its classification ability?",
+  "novelty_boundary": {
+    "claimed": "Sparse semantic keypoints are used to identify and calibrate already learned attention channels through a fold-local one-to-one assignment, while a frozen K0 teacher preserves classification and unannotated attention behavior.",
+    "not_claimed": [
+      "first use of keypoints for attention supervision",
+      "first semi-supervised keypoint localization method",
+      "first equivariant or consistent attention method",
+      "absolute first work without a completed citation-chain audit"
+    ]
+  },
+  "data": {
+    "dataset": "CUB-200-2011",
+    "episode": 1,
+    "source": "reuse frozen PAT-D-260728-009 episode 1",
+    "shots_per_class": 10,
+    "folds": 5,
+    "sparse_budget": "one randomly frozen keypoint-annotated fold-training image per class",
+    "official_test_access": "forbidden"
+  },
+  "arms": {
+    "PRPOOL_K0": "Nine-epoch architecture-matched teacher with no keypoint loss.",
+    "WARMSTART_IDENTITY": "K0 initialization followed by four sparse-keypoint epochs using the original fixed part-channel identity; no teacher preservation.",
+    "PERMUTATION_ONLY": "K0 initialization followed by four sparse-keypoint epochs using a fold-local Hungarian part-channel assignment; no teacher preservation.",
+    "PASAC": "Permutation-only calibration plus frozen-K0 logit distillation and attention preservation on unannotated images."
+  },
+  "assignment": {
+    "inputs": "only selected fold-training images, their permitted keypoint maps, and frozen K0 attention maps",
+    "cost": "mean negative log spatial attention mass inside each visible keypoint target mask",
+    "solver": "deterministic Hungarian one-to-one assignment",
+    "prohibited": [
+      "outer-fold evaluation images",
+      "official test images",
+      "unselected training keypoints",
+      "class-accuracy feedback"
+    ]
+  },
+  "optimization": {
+    "teacher_epochs": 9,
+    "student_epochs": 4,
+    "batch_size": 32,
+    "teacher_head_learning_rate": 0.0003,
+    "teacher_backbone_learning_rate": 0.00003,
+    "head_learning_rate": 0.0001,
+    "backbone_learning_rate": 0.00001,
+    "weight_decay": 0.001,
+    "part_loss_weight": 1.0,
+    "complementary_regularizer_weight": 0.1,
+    "logit_distillation_weight": 0.5,
+    "attention_preservation_weight": 0.25,
+    "distillation_temperature": 2.0,
+    "teacher_inference_microbatch": 16,
+    "fold_model_seeds": [9301, 9302, 9303, 9304, 9305],
+    "hyperparameter_search": "none in this screen"
+  },
+  "endpoints": {
+    "primary": "OOF balanced accuracy of PASAC versus WARMSTART_IDENTITY",
+    "mechanism": "OOF semantic attention hit rate, defined as matched-channel argmax falling inside the rendered 3x3 keypoint target",
+    "safety": "OOF balanced accuracy of PASAC versus PRPOOL_K0",
+    "secondary": [
+      "PERMUTATION_ONLY versus WARMSTART_IDENTITY",
+      "PASAC versus stored from-scratch RANDOM_K1",
+      "class negative-transfer rate versus PRPOOL_K0"
+    ]
+  },
+  "go_no_go": {
+    "accuracy_branch": "PASAC improves balanced accuracy by at least 0.50 pp over WARMSTART_IDENTITY, improves attention hit rate by at least 3 pp, and is no worse than K0 by more than 0.25 pp.",
+    "localization_branch": "PASAC is no worse than WARMSTART_IDENTITY by more than 0.25 pp in balanced accuracy, improves attention hit rate by at least 5 pp, and is no worse than K0 by more than 0.25 pp.",
+    "on_go": "Run the same frozen protocol on episodes 2 and 3, then prepare an EI-conference-scale CUB plus CCT validation.",
+    "on_no_go": "Stop keypoint-attention work and write the architecture-matched negative result; do not tune this screen.",
+    "official_test_required": false
+  },
+  "data_controls": {
+    "test_decode_counter_before": 0,
+    "test_decode_counter_after_required": 0,
+    "smoke_test": "one fold, one teacher epoch, one student epoch per arm",
+    "complete_predictions_logs_mappings_and_hashes_required": true
+  }
+}

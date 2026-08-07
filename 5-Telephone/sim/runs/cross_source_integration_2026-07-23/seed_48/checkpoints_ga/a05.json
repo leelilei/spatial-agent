@@ -1,0 +1,205 @@
+{
+  "agent_id": "a05",
+  "interview": {
+    "name": "Mina",
+    "answer": "The repair drive is still planned for today, but no location is specified in the notes.",
+    "verdict": "unknown"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 27,
+    "reflections": [
+      "Mina is offering practical help and is responsive to Cleo’s immediate needs.",
+      "Cleo is coordinating a hands-on repair effort and values concrete supplies over general assistance.",
+      "The interaction reads as cooperative and straightforward, with Mina checking for any remaining needs before helping.",
+      "Mina is a dependable coordinator who follows through on practical help and keeps multiple helpers aligned.",
+      "Faye is supportive and process-oriented, focusing on scheduling and organization around Mina's timeline.",
+      "Leo wants concise status updates so he can triage urgent work efficiently.",
+      "Mina is a reliable helper who keeps others updated and follows through on tasks.",
+      "Leo tends to coordinate urgent follow-up work and depends on Mina's notes to proceed.",
+      "Faye and Rosa are organizing around specific schedules and community needs, with Mina supporting both.",
+      "Mina is the reliable coordinator: she confirms timing, brings supplies, and follows up with notes.",
+      "Leo and Rosa focus on urgent repair and safety priorities, with Leo acting on updates as they arrive.",
+      "Kira is checking schedule certainty, suggesting the group is coordinating a time-sensitive community repair effort.",
+      "Mina is dependable and proactive: she repeatedly confirms what she will bring and when, and follows up without being asked.",
+      "The group relies on Mina for concrete supply help, while others handle coordination details like notes, address, and parking.",
+      "Communication is practical and task-focused, with frequent confirmation loops to keep the repair drive aligned."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Mina: How’s the repair drive going? Do you need me to bring anything by?",
+        "speaker": "Mina",
+        "listener": "Cleo"
+      },
+      {
+        "round": 0,
+        "text": "Cleo: It’s going pretty well, thanks. If you can bring tape and a box of screws, that’d help a lot.",
+        "speaker": "Cleo",
+        "listener": "Mina"
+      },
+      {
+        "round": 0,
+        "text": "Mina: Sure — I can drop off tape and a box of screws later today. Anything else you need?",
+        "speaker": "Mina",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Faye: Thanks, Mina — once you have the date, I can work around the school schedule and help organize the repair drive.",
+        "speaker": "Faye",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Mina: Thanks, Faye — I’ll let you know as soon as I have the date. And I’ll bring the tape and screws by later today.",
+        "speaker": "Mina",
+        "listener": "Faye"
+      },
+      {
+        "round": 1,
+        "text": "Faye: Thanks, Mina — that sounds perfect. Once you have the date, I’ll line things up around the school schedule.",
+        "speaker": "Faye",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Great — text me the first-stop findings, and I’ll help sort the urgent fixes.",
+        "speaker": "Leo",
+        "listener": "Mina"
+      },
+      {
+        "round": 1,
+        "text": "Mina: Sure — I’ll text you the first-stop findings as soon as I have them. I’ll keep an eye out for anything urgent too.",
+        "speaker": "Mina",
+        "listener": "Leo"
+      },
+      {
+        "round": 1,
+        "text": "Leo: Perfect — I’ll be ready to turn that into the urgent list.",
+        "speaker": "Leo",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Leo: Got it — send me the first-stop notes when you can, and I’ll sort the urgent fixes.",
+        "speaker": "Leo",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Mina: Will do — I’ll text you the first-stop notes as soon as I have them.",
+        "speaker": "Mina",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Leo: Thanks — I’ll be ready to sort the urgent fixes as soon as your notes come in.",
+        "speaker": "Leo",
+        "listener": "Mina"
+      },
+      {
+        "round": 2,
+        "text": "Mina: Great — I’ll bring the tape and box of screws by later today. Anything else you need for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Rosa"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Thanks, Mina — tape and screws are perfect. I’ll keep prioritizing the urgent safety fixes, and if anything else comes up for Sunday at the community center, I’ll let you know.",
+        "speaker": "Rosa",
+        "listener": "Mina",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Rosa",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Mina: Sounds good — I’ll check back before Sunday and bring anything else if you need it.",
+        "speaker": "Mina",
+        "listener": "Rosa",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Mina",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Kira: Just to confirm, Mina, the repair drive is still happening today, right?",
+        "speaker": "Kira",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Mina: Yes, it’s still happening today. I’ll bring the tape and box of screws by later, and let me know if you need anything else.",
+        "speaker": "Mina",
+        "listener": "Kira"
+      },
+      {
+        "round": 3,
+        "text": "Kira: Great — just to confirm, we’re still good for today?",
+        "speaker": "Kira",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Mina: I can bring the tape and screws by later today, and I’ll send the first-stop notes once I have them.",
+        "speaker": "Mina",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Leo: Perfect — bring the tape and screws, and text me the first-stop notes when you can.",
+        "speaker": "Leo",
+        "listener": "Mina"
+      },
+      {
+        "round": 3,
+        "text": "Mina: Will do — I’ll bring the tape and screws later today and text you the first-stop notes as soon as I have them.",
+        "speaker": "Mina",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Mina: Sounds good — I’ll bring the tape and box of screws later today. Let me know if anything else comes up.",
+        "speaker": "Mina",
+        "listener": "Cleo"
+      },
+      {
+        "round": 4,
+        "text": "Cleo: Thanks, Mina — I’ve got those noted, and I’ll keep tracking any other supplies we still need.",
+        "speaker": "Cleo",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Mina: Great, thanks — I’ll check in later today in case anything else is needed.",
+        "speaker": "Mina",
+        "listener": "Cleo"
+      },
+      {
+        "round": 4,
+        "text": "Mina: I’m bringing the tape and screws by later today — do you need anything else for the repair drive?",
+        "speaker": "Mina",
+        "listener": "Gus"
+      },
+      {
+        "round": 4,
+        "text": "Gus: Thanks, Mina — I’ve still got to confirm the hall address and parking details, but if you can bring those, we’re in good shape.",
+        "speaker": "Gus",
+        "listener": "Mina"
+      },
+      {
+        "round": 4,
+        "text": "Mina: Got it — I’ll bring the tape and screws later today. Send me the hall address and parking details when you have them.",
+        "speaker": "Mina",
+        "listener": "Gus"
+      }
+    ]
+  }
+}

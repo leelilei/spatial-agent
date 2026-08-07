@@ -1,0 +1,211 @@
+{
+  "baseline_protocol_sha256": "7815182b2741477f7722d427df2709fcc674719dd10a47797fe25e17fdaebf98",
+  "dataset": "cub",
+  "dctpr_delta_vs_bl_ncc_pp": 6.694444444444447,
+  "dctpr_delta_vs_strongest_pp": -1.533333333333342,
+  "episodes": [
+    {
+      "aggregate": {
+        "BL_NCC": {
+          "mean": 0.6795,
+          "mean_runtime_seconds": 0.0,
+          "sample_std": 0.01543482691934633
+        },
+        "BL_SINKHORN": {
+          "mean": 0.7376111111111111,
+          "mean_runtime_seconds": 0.036619350299997674,
+          "sample_std": 0.012603617178445086
+        },
+        "DCTPR": {
+          "mean": 0.7464444444444445,
+          "mean_runtime_seconds": 0.03440716630007046,
+          "sample_std": 0.012763545482289146
+        },
+        "LAPLACIANSHOT": {
+          "mean": 0.6801666666666668,
+          "mean_runtime_seconds": 0.01333031120002488,
+          "sample_std": 0.014844992412448427
+        },
+        "LAPLACIANSHOT_PR": {
+          "mean": 0.6592777777777777,
+          "mean_runtime_seconds": 0.0486988379000195,
+          "sample_std": 0.013865535922558245
+        },
+        "MAP_RAW": {
+          "mean": 0.7438888888888889,
+          "mean_runtime_seconds": 1.6310399866999432,
+          "sample_std": 0.010858233492051134
+        },
+        "SIGNED_PT_MAP": {
+          "mean": 0.7448888888888889,
+          "mean_runtime_seconds": 1.6254648051999994,
+          "sample_std": 0.010920588778049436
+        },
+        "TIM_ADM": {
+          "mean": 0.7617777777777779,
+          "mean_runtime_seconds": 0.1479549689000578,
+          "sample_std": 0.013414874123025715
+        }
+      },
+      "episode": 1,
+      "rotations": [
+        {
+          "metrics": {
+            "BL_NCC": 0.6838888888888889,
+            "BL_SINKHORN": 0.7405555555555555,
+            "DCTPR": 0.7477777777777778,
+            "LAPLACIANSHOT": 0.6872222222222222,
+            "LAPLACIANSHOT_PR": 0.6683333333333333,
+            "MAP_RAW": 0.7433333333333333,
+            "SIGNED_PT_MAP": 0.7461111111111111,
+            "TIM_ADM": 0.7738888888888888
+          },
+          "rotation": 0
+        },
+        {
+          "metrics": {
+            "BL_NCC": 0.6733333333333333,
+            "BL_SINKHORN": 0.7444444444444445,
+            "DCTPR": 0.7577777777777778,
+            "LAPLACIANSHOT": 0.6727777777777778,
+            "LAPLACIANSHOT_PR": 0.6722222222222223,
+            "MAP_RAW": 0.7477777777777778,
+            "SIGNED_PT_MAP": 0.75,
+            "TIM_ADM": 0.7627777777777778
+          },
+          "rotation": 1
+        },
+        {
+          "metrics": {
+            "BL_NCC": 0.6944444444444444,
+            "BL_SINKHORN": 0.7383333333333333,
+            "DCTPR": 0.7444444444444445,
+            "LAPLACIANSHOT": 0.6927777777777778,
+            "LAPLACIANSHOT_PR": 0.6544444444444445,
+            "MAP_RAW": 0.7461111111111111,
+            "SIGNED_PT_MAP": 0.7416666666666667,
+            "TIM_ADM": 0.7683333333333333
+          },
+          "rotation": 2
+        },
+        {
+          "metrics": {
+            "BL_NCC": 0.6738888888888889,
+            "BL_SINKHORN": 0.7405555555555555,
+            "DCTPR": 0.7466666666666667,
+            "LAPLACIANSHOT": 0.6716666666666666,
+            "LAPLACIANSHOT_PR": 0.6555555555555556,
+            "MAP_RAW": 0.7433333333333333,
+            "SIGNED_PT_MAP": 0.7438888888888889,
+            "TIM_ADM": 0.7655555555555555
+          },
+          "rotation": 3
+        },
+        {
+          "metrics": {
+            "BL_NCC": 0.6927777777777778,
+            "BL_SINKHORN": 0.74,
+            "DCTPR": 0.7572222222222222,
+            "LAPLACIANSHOT": 0.6933333333333334,
+            "LAPLACIANSHOT_PR": 0.6577777777777778,
+            "MAP_RAW": 0.7561111111111111,
+            "SIGNED_PT_MAP": 0.7561111111111111,
+            "TIM_ADM": 0.7644444444444445
+          },
+          "rotation": 4
+        },
+        {
+          "metrics": {
+            "BL_NCC": 0.7022222222222222,
+            "BL_SINKHORN": 0.7488888888888889,
+            "DCTPR": 0.7561111111111111,
+            "LAPLACIANSHOT": 0.7033333333333334,
+            "LAPLACIANSHOT_PR": 0.6822222222222222,
+            "MAP_RAW": 0.75,
+            "SIGNED_PT_MAP": 0.755,
+            "TIM_ADM": 0.7677777777777778
+          },
+          "rotation": 5
+        },
+        {
+          "metrics": {
+            "BL_NCC": 0.6555555555555556,
+            "BL_SINKHORN": 0.7127777777777777,
+            "DCTPR": 0.7205555555555555,
+            "LAPLACIANSHOT": 0.6572222222222223,
+            "LAPLACIANSHOT_PR": 0.6411111111111111,
+            "MAP_RAW": 0.7216666666666667,
+            "SIGNED_PT_MAP": 0.7244444444444444,
+            "TIM_ADM": 0.7283333333333334
+          },
+          "rotation": 6
+        },
+        {
+          "metrics": {
+            "BL_NCC": 0.69,
+            "BL_SINKHORN": 0.7538888888888889,
+            "DCTPR": 0.7605555555555555,
+            "LAPLACIANSHOT": 0.6888888888888889,
+            "LAPLACIANSHOT_PR": 0.6716666666666666,
+            "MAP_RAW": 0.7583333333333333,
+            "SIGNED_PT_MAP": 0.7594444444444445,
+            "TIM_ADM": 0.775
+          },
+          "rotation": 7
+        },
+        {
+          "metrics": {
+            "BL_NCC": 0.6633333333333333,
+            "BL_SINKHORN": 0.7188888888888889,
+            "DCTPR": 0.7311111111111112,
+            "LAPLACIANSHOT": 0.6672222222222223,
+            "LAPLACIANSHOT_PR": 0.6427777777777778,
+            "MAP_RAW": 0.7322222222222222,
+            "SIGNED_PT_MAP": 0.7327777777777778,
+            "TIM_ADM": 0.7577777777777778
+          },
+          "rotation": 8
+        },
+        {
+          "metrics": {
+            "BL_NCC": 0.6655555555555556,
+            "BL_SINKHORN": 0.7377777777777778,
+            "DCTPR": 0.7422222222222222,
+            "LAPLACIANSHOT": 0.6672222222222223,
+            "LAPLACIANSHOT_PR": 0.6466666666666666,
+            "MAP_RAW": 0.74,
+            "SIGNED_PT_MAP": 0.7394444444444445,
+            "TIM_ADM": 0.7538888888888889
+          },
+          "rotation": 9
+        }
+      ]
+    }
+  ],
+  "experiment_id": "PAT-K-260805-009",
+  "feature_extraction": [
+    {
+      "b_seconds": 15.51774810400002,
+      "images": 2000,
+      "l_seconds": 26.635854844000278,
+      "peak_gpu_memory_bytes": 1336261632,
+      "total_seconds": 42.1536029480003
+    }
+  ],
+  "interpretation": "locked official-test evaluation; no test label was used for tuning",
+  "lock_sha256": "54ff307f2306cd939e3e20e69d21636d71d9ccc96d06fc0c5d3a4a3a9a94d399",
+  "model_image_encodings": 4000,
+  "overall_mean": {
+    "BL_NCC": 0.6795,
+    "BL_SINKHORN": 0.7376111111111111,
+    "DCTPR": 0.7464444444444445,
+    "LAPLACIANSHOT": 0.6801666666666668,
+    "LAPLACIANSHOT_PR": 0.6592777777777777,
+    "MAP_RAW": 0.7438888888888889,
+    "SIGNED_PT_MAP": 0.7448888888888889,
+    "TIM_ADM": 0.7617777777777779
+  },
+  "protocol_sha256": "9123e2383ac9fefc620b5a1d8c583a20728bb1e6784a64bb678b3a9bd95598d4",
+  "strongest_matched_solver": "TIM_ADM",
+  "unique_official_test_images_evaluated": 2000
+}

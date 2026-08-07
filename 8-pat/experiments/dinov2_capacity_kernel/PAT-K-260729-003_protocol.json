@@ -1,0 +1,55 @@
+{
+  "experiment_id": "PAT-K-260729-003",
+  "title": "Frozen confirmation of dual-capacity transductive prototype refinement",
+  "frozen_at": "2026-07-29T12:00:00+08:00",
+  "status": "PRE_REGISTERED_AFTER_EPISODE_1_DEVELOPMENT_AND_BEFORE_EPISODE_2_OR_3_LARGE_FEATURE_EXTRACTION",
+  "development_dependency": {
+    "task_diagnostic": "PAT-K-260729-001",
+    "closed_consensus_method": "PAT-K-260729-002",
+    "episode_1_selected_method_accuracy": 0.7514444444444444,
+    "episode_1_inductive_bl_accuracy": 0.6842222222222222,
+    "episode_1_gain_over_inductive_pp": 6.722222222222221,
+    "selection_note": "DCCR failed its gate. The simpler BL refinement arm is frozen as DCTPR for untouched-episode confirmation, not re-described as a successful DCCR result."
+  },
+  "method": {
+    "name": "DCTPR",
+    "expansion": "Dual-Capacity Transductive Prototype Refinement",
+    "features": "L2-normalized concatenation of individually normalized frozen DINOv2-B/14 and DINOv2-L/14 CLS features",
+    "initial_prototypes": "one labelled support feature per class",
+    "assignment": "class-balanced Sinkhorn over cosine similarities",
+    "temperature": 0.05,
+    "sinkhorn_iterations": 100,
+    "refinement_steps": 3,
+    "prototype_update": "normalized equal mixture of the labelled support and the current soft query centre",
+    "trainable_neural_parameters": 0,
+    "query_labels_used": false
+  },
+  "confirmation_data": {
+    "dataset": "CUB-200-2011 official train only",
+    "episodes": [2, 3],
+    "classes": 200,
+    "support_per_class": 1,
+    "unlabelled_query_per_class": 9,
+    "support_rotations_per_episode": 10,
+    "official_test_access": "forbidden"
+  },
+  "comparators": [
+    "BL nearest support",
+    "BL balanced Sinkhorn without prototype refinement",
+    "B-only prototype refinement with the same inference budget",
+    "L-only prototype refinement with the same inference budget"
+  ],
+  "go_no_go": {
+    "episode_consistency_gate": "DCTPR exceeds the strongest paired comparator mean in each of episodes 2 and 3",
+    "mean_gain_gate": "Across episodes 2 and 3, DCTPR mean gain over the strongest paired comparator is at least 1.0 percentage point",
+    "practical_gain_gate": "DCTPR exceeds BL nearest support by at least 5.0 percentage points in each episode",
+    "on_go": "provisional method GO; implement external transductive baselines and a second fine-grained dataset before any paper claim or official-test access",
+    "on_no_go": "close DCTPR and do not continue capacity/transduction variants"
+  },
+  "forbidden_claims": [
+    "Do not claim Sinkhorn, prototype refinement, or feature concatenation as individually novel",
+    "Do not claim state of the art without TIM, LaplacianShot, PT-MAP-family and recent transductive comparisons",
+    "Do not claim robustness to imbalanced query priors from balanced episodes",
+    "Do not access CUB official test during this confirmation"
+  ]
+}

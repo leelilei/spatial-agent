@@ -1,0 +1,37 @@
+{
+  "experiment_id": "PAT-F-260728-001",
+  "title": "One-time dual-dataset final evaluation",
+  "status": "CONDITIONALLY_PRE_REGISTERED_BEFORE_ALL_FINAL_SPLIT_ACCESS",
+  "unlock_requirements": [
+    "PAT-D-260728-005 overall_gate_pass",
+    "PAT-D-260728-006 overall_gate_pass",
+    "PAT-E-260728-001 oracle_gate_pass",
+    "PAT-E-260728-001 selector_gate_pass",
+    "all dependency hashes archived",
+    "all final split decode counters equal zero"
+  ],
+  "arms": [
+    "GLOBAL",
+    "RANDOM_SPARSE",
+    "WINNER_SPARSE",
+    "FULL_KEYPOINT_ORACLE"
+  ],
+  "final_model_seeds": [9501, 9502, 9503],
+  "final_splits": [
+    "CUB_OFFICIAL_TEST",
+    "CCT_CIS_TEST",
+    "CCT_TRANS_TEST"
+  ],
+  "metrics": [
+    "top1",
+    "balanced_accuracy",
+    "macro_f1",
+    "per_class_recall_delta_vs_global",
+    "negative_transfer_class_rate_vs_global",
+    "worst_class_delta_vs_global",
+    "three_seed_mean",
+    "three_seed_sample_standard_deviation",
+    "paired_differences"
+  ],
+  "post_test_policy": "report all results without tuning, threshold changes, reselection, or return to development"
+}

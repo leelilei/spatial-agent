@@ -1,0 +1,15 @@
+{
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "wire_api": "chat_completions",
+  "base_url": "https://api.deepseek.com",
+  "temperature": 0,
+  "omit_temperature": false,
+  "timeout": 120,
+  "sleep": 0,
+  "max_concurrency": 10,
+  "retries": 5,
+  "retry_sleep": 3,
+  "json_mode": true,
+  "transport": "urllib"
+}

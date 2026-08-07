@@ -1,0 +1,41 @@
+Sun Jul 26 03:01:54 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.80                 Driver Version: 595.80         CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 2080        Off |   00000000:00:03.0  On |                  N/A |
+| 26%   49C    P8             16W /  215W |       9MiB /   8192MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+gpu_log_samples 23
+peak_memory_used_mib 1372
+peak_gpu_util_percent 99
+peak_power_w 211.01
+Filesystem     Type     Size  Used Avail Use% Mounted on
+overlay        overlay   79G  6.0G   70G   8% /
+32M	/root/workspace/toga-smoke
+227M	/root/workspace/datasets/eurosat
+335M	/root/.cache/clip
+best_F_1shots.pt 22163 bytes
+keys_1shots.pt 22085 bytes
+test_f.pt 16590306 bytes
+test_l.pt 66338 bytes
+val_f.pt 11060699 bytes
+val_l.pt 44699 bytes
+values_1shots.pt 1811 bytes
+949c5bfa6f51643f0b1ec3a159e56fddd7a87f375459ebedd58c67dc4e8a506d  /root/workspace/toga-smoke/TOGA/main.py
+c7e6ad0289e96fa2b3231c6511ed49769476f75030f37a58ac53314e3ef45ac5  /root/workspace/toga-smoke/TOGA/utils.py
+0fa2ce038c5e6ac861edad0d53655c33c20b5600896affdabb614d224ef63c09  /root/workspace/toga-smoke/TOGA/mgt_model.py
+04049ede3fbf0bd54509e80755b1a18fc26149bd992869f61a15944bb5b4e0e8  /root/workspace/toga-smoke/TOGA/mgt_layer.py
+a58f967fc14aeccd00662e279007091d9ea6ece922689256f666bf6ade346a9d  /root/workspace/toga-smoke/TOGA/graph_builder.py

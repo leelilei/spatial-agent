@@ -1,0 +1,74 @@
+[
+  {
+    "memory": "raw",
+    "model": "gpt-5.4-mini",
+    "run_index": 0,
+    "schedule_seed": 41,
+    "agent_count": 25,
+    "forget_rate": 0.0,
+    "forget_floor": 0.1,
+    "rounds": 5,
+    "turns": 3,
+    "out_dir": "sim/runs/table_fill_n1_2026-07-24/book_club/gpt-5.4-mini/raw/forget_0/run_000",
+    "currency_interview": {
+      "current": 2,
+      "stale": 22,
+      "unknown": 1
+    },
+    "unsupported_specific": 0,
+    "social_rehearsal": {
+      "current": 45,
+      "stale": 32,
+      "mixed": 128,
+      "neutral": 140
+    }
+  },
+  {
+    "memory": "mem0",
+    "model": "gpt-5.4-mini",
+    "run_index": 0,
+    "schedule_seed": 41,
+    "agent_count": 25,
+    "forget_rate": 0.0,
+    "forget_floor": 0.1,
+    "rounds": 5,
+    "turns": 3,
+    "out_dir": "sim/runs/table_fill_n1_2026-07-24/book_club/gpt-5.4-mini/mem0/forget_0/run_000",
+    "currency_interview": {
+      "current": 14,
+      "stale": 10,
+      "unknown": 1
+    },
+    "unsupported_specific": 1,
+    "social_rehearsal": {
+      "current": 126,
+      "stale": 55,
+      "mixed": 14,
+      "neutral": 142
+    }
+  },
+  {
+    "memory": "memorybank",
+    "model": "gpt-5.4-mini",
+    "run_index": 0,
+    "schedule_seed": 41,
+    "agent_count": 25,
+    "forget_rate": 0.0,
+    "forget_floor": 0.1,
+    "rounds": 5,
+    "turns": 3,
+    "out_dir": "sim/runs/table_fill_n1_2026-07-24/book_club/gpt-5.4-mini/memorybank/forget_0/run_000",
+    "currency_interview": {
+      "current": 11,
+      "stale": 0,
+      "unknown": 14
+    },
+    "unsupported_specific": 2,
+    "social_rehearsal": {
+      "current": 65,
+      "stale": 11,
+      "mixed": 4,
+      "neutral": 267
+    }
+  }
+]

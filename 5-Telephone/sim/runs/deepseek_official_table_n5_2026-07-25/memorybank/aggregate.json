@@ -1,0 +1,178 @@
+{
+  "groups": [
+    {
+      "model": "deepseek-v4-flash",
+      "memory": "memorybank",
+      "forget_rate": 0.0,
+      "runs": 5,
+      "agents_total": 125,
+      "current": 33,
+      "stale": 74,
+      "unknown": 18,
+      "unsupported_specific": 1,
+      "logical_calls": 1895,
+      "transport_attempts": 1895,
+      "successful_calls": 1895,
+      "current_rate": 0.264,
+      "unsupported_specific_rate": 0.008,
+      "logical_calls_per_agent": 15.16,
+      "mean_run_current_rate": 0.264,
+      "mean_run_unsupported_specific_rate": 0.008,
+      "min_run_current_rate": 0.12,
+      "max_run_current_rate": 0.36,
+      "std_run_current_rate": 0.082365041127896
+    }
+  ],
+  "rows": [
+    {
+      "memory": "memorybank",
+      "model": "deepseek-v4-flash",
+      "run_index": 0,
+      "schedule_seed": 41,
+      "agent_count": 25,
+      "forget_rate": 0.0,
+      "forget_floor": 0.1,
+      "rounds": 5,
+      "turns": 3,
+      "out_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/memorybank/deepseek-v4-flash/memorybank/forget_0/run_000",
+      "currency_interview": {
+        "current": 6,
+        "stale": 15,
+        "unknown": 4
+      },
+      "unsupported_specific": 0,
+      "social_rehearsal": {
+        "current": 29,
+        "stale": 54,
+        "mixed": 18,
+        "neutral": 250
+      },
+      "llm_usage": {
+        "logical_calls": 376,
+        "transport_attempts": 376,
+        "successful_calls": 376,
+        "logical_calls_per_agent": 15.04
+      }
+    },
+    {
+      "memory": "memorybank",
+      "model": "deepseek-v4-flash",
+      "run_index": 1,
+      "schedule_seed": 42,
+      "agent_count": 25,
+      "forget_rate": 0.0,
+      "forget_floor": 0.1,
+      "rounds": 5,
+      "turns": 3,
+      "out_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/memorybank/deepseek-v4-flash/memorybank/forget_0/run_001",
+      "currency_interview": {
+        "current": 8,
+        "stale": 14,
+        "unknown": 3
+      },
+      "unsupported_specific": 0,
+      "social_rehearsal": {
+        "current": 56,
+        "stale": 39,
+        "mixed": 9,
+        "neutral": 253
+      },
+      "llm_usage": {
+        "logical_calls": 382,
+        "transport_attempts": 382,
+        "successful_calls": 382,
+        "logical_calls_per_agent": 15.28
+      }
+    },
+    {
+      "memory": "memorybank",
+      "model": "deepseek-v4-flash",
+      "run_index": 2,
+      "schedule_seed": 43,
+      "agent_count": 25,
+      "forget_rate": 0.0,
+      "forget_floor": 0.1,
+      "rounds": 5,
+      "turns": 3,
+      "out_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/memorybank/deepseek-v4-flash/memorybank/forget_0/run_002",
+      "currency_interview": {
+        "current": 7,
+        "stale": 14,
+        "unknown": 4
+      },
+      "unsupported_specific": 0,
+      "social_rehearsal": {
+        "current": 33,
+        "stale": 52,
+        "mixed": 20,
+        "neutral": 246
+      },
+      "llm_usage": {
+        "logical_calls": 376,
+        "transport_attempts": 376,
+        "successful_calls": 376,
+        "logical_calls_per_agent": 15.04
+      }
+    },
+    {
+      "memory": "memorybank",
+      "model": "deepseek-v4-flash",
+      "run_index": 3,
+      "schedule_seed": 44,
+      "agent_count": 25,
+      "forget_rate": 0.0,
+      "forget_floor": 0.1,
+      "rounds": 5,
+      "turns": 3,
+      "out_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/memorybank/deepseek-v4-flash/memorybank/forget_0/run_003",
+      "currency_interview": {
+        "current": 9,
+        "stale": 14,
+        "unknown": 2
+      },
+      "unsupported_specific": 0,
+      "social_rehearsal": {
+        "current": 29,
+        "stale": 59,
+        "mixed": 31,
+        "neutral": 241
+      },
+      "llm_usage": {
+        "logical_calls": 385,
+        "transport_attempts": 385,
+        "successful_calls": 385,
+        "logical_calls_per_agent": 15.4
+      }
+    },
+    {
+      "memory": "memorybank",
+      "model": "deepseek-v4-flash",
+      "run_index": 4,
+      "schedule_seed": 45,
+      "agent_count": 25,
+      "forget_rate": 0.0,
+      "forget_floor": 0.1,
+      "rounds": 5,
+      "turns": 3,
+      "out_dir": "sim/runs/deepseek_official_table_n5_2026-07-25/memorybank/deepseek-v4-flash/memorybank/forget_0/run_004",
+      "currency_interview": {
+        "current": 3,
+        "stale": 17,
+        "unknown": 5
+      },
+      "unsupported_specific": 1,
+      "social_rehearsal": {
+        "current": 15,
+        "stale": 58,
+        "mixed": 39,
+        "neutral": 238
+      },
+      "llm_usage": {
+        "logical_calls": 376,
+        "transport_attempts": 376,
+        "successful_calls": 376,
+        "logical_calls_per_agent": 15.04
+      }
+    }
+  ]
+}

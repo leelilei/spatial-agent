@@ -1,0 +1,235 @@
+{
+  "agent_id": "a14",
+  "interview": {
+    "name": "Faye",
+    "answer": "Sunday at the community center.",
+    "verdict": "current"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 30,
+    "reflections": [
+      "Faye and Opal are cooperating closely and communicating in a calm, supportive way.",
+      "Oren may be a bit forgetful or disorganized, but he follows through by promising to send the address.",
+      "The group is coordinating logistics by confirming details and keeping each other updated.",
+      "Faye is coordinating around school pickup and needs the address before committing.",
+      "Oren and Noah are expected to provide the address, and Faye is waiting on their follow-through.",
+      "The group is keeping plans flexible and relies on quick text updates to coordinate.",
+      "Faye is responsive, organized, and repeatedly offers practical help with logistics and tracking.",
+      "Bo and Oren rely on Faye for coordination and keep her updated on timing, address details, and supplies.",
+      "Rosa treats Faye as a dependable collaborator on a community repair effort, assigning her an active support role.",
+      "Faye is the coordination point, keeping track of timing, availability, and follow-ups for the group.",
+      "Rosa is actively organizing the attendance list and updates, while Oren is handling a specific logistics item and a missing tool.",
+      "Jules is reliable and ready to contribute materials, but is waiting on the final time before committing fully.",
+      "Faye is a dependable coordinator who keeps multiple people updated and tracks missing details.",
+      "Rosa and Eli are responsive collaborators who take clear next steps and follow through.",
+      "The group is organized around shared logistics, with several people waiting on a single address update before moving ahead."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Opal: I haven’t tracked the repair drive location yet, but I can keep an eye out for it. If you hear any details, I’ll note them down right away.",
+        "speaker": "Opal",
+        "listener": "Faye"
+      },
+      {
+        "round": 0,
+        "text": "Faye: Thanks, Opal — I’ll keep listening for the location and let you know as soon as I hear anything.",
+        "speaker": "Faye",
+        "listener": "Opal"
+      },
+      {
+        "round": 0,
+        "text": "Opal: Perfect — I’ll stay alert and jot it down as soon as it comes up.",
+        "speaker": "Opal",
+        "listener": "Faye"
+      },
+      {
+        "round": 0,
+        "text": "Faye: I can swing by after school pickup, but I’ll need the address again.",
+        "speaker": "Faye",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Oh, right — sorry, I keep forgetting it. I’ll text you the address in just a minute.",
+        "speaker": "Oren",
+        "listener": "Faye"
+      },
+      {
+        "round": 0,
+        "text": "Faye: Thanks, Oren — that works for me. I’ll look out for your text.",
+        "speaker": "Faye",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Faye: Thanks — I’ll keep an eye out for your text with the address.",
+        "speaker": "Faye",
+        "listener": "Noah"
+      },
+      {
+        "round": 1,
+        "text": "Noah: Thanks, Faye — I’ll send the address when I have it.",
+        "speaker": "Noah",
+        "listener": "Faye"
+      },
+      {
+        "round": 1,
+        "text": "Faye: Great, thanks Noah — I’ll watch for it and plan around school pickup.",
+        "speaker": "Faye",
+        "listener": "Noah"
+      },
+      {
+        "round": 1,
+        "text": "Faye: Thanks — I’m still keeping an ear out for the address, and I can come by after school pickup once I have it.",
+        "speaker": "Faye",
+        "listener": "Bo"
+      },
+      {
+        "round": 1,
+        "text": "Bo: Sounds good — just keep me posted on the address, and I’ll head over after school pickup.",
+        "speaker": "Bo",
+        "listener": "Faye"
+      },
+      {
+        "round": 1,
+        "text": "Faye: Will do — I’ll let you know as soon as I get the address.",
+        "speaker": "Faye",
+        "listener": "Bo"
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Thanks, Faye — the repair drive is now Sunday at the community center. I’ll keep everything organized, and you can help me track who’s available.",
+        "speaker": "Rosa",
+        "listener": "Faye",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Rosa",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Faye: Thanks, Rosa — Sunday at the community center works for me, and I can help track who’s available.",
+        "speaker": "Faye",
+        "listener": "Rosa",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Faye",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Rosa: Wonderful, Faye — I’ll start the list and note what needs attention first.",
+        "speaker": "Rosa",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Faye: Thanks, Oren — I’ll keep an eye out for your text with the address.",
+        "speaker": "Faye",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Yep, I’ll text you the address shortly — and I’m still on the hunt for that wrench too.",
+        "speaker": "Oren",
+        "listener": "Faye"
+      },
+      {
+        "round": 2,
+        "text": "Faye: Thanks, Oren — that helps. I’ll keep an eye out for the address and the wrench update too.",
+        "speaker": "Faye",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Jules: Sounds good — I’m still set for Saturday morning and I can bring my toolkit, screws, and drill. Just send the time when it’s finalized.",
+        "speaker": "Jules",
+        "listener": "Faye",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Jules",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Faye: Thanks, Jules — I’ve got you down, and I’ll send the finalized time as soon as it’s set.",
+        "speaker": "Faye",
+        "listener": "Jules"
+      },
+      {
+        "round": 3,
+        "text": "Jules: Great, thanks Faye — I’ll be ready and keep an eye out for the time.",
+        "speaker": "Jules",
+        "listener": "Faye"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Great, Faye — I’ve got Sunday at the community center noted, and I’ll start the availability list now.",
+        "speaker": "Rosa",
+        "listener": "Faye",
+        "prov": {
+          "version": 1,
+          "value": "The repair drive is being held on Sunday at the community center.",
+          "source": "Rosa",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 3,
+        "text": "Faye: Thanks, Rosa — I’ll keep track of who’s available and watch for Oren’s address update too.",
+        "speaker": "Faye",
+        "listener": "Rosa"
+      },
+      {
+        "round": 3,
+        "text": "Rosa: Perfect, Faye — I’ll keep the list going and flag any updates as they come in.",
+        "speaker": "Rosa",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Faye: Thanks, Eli — I’ll keep an eye out for any repair drive details and let you know if I hear the address.",
+        "speaker": "Faye",
+        "listener": "Eli"
+      },
+      {
+        "round": 4,
+        "text": "Eli: Thanks, Faye — after lunch I’ll bring the screwdriver set and work gloves, and I’ll wait for the address.",
+        "speaker": "Eli",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Faye: Thanks, Eli — that’s really helpful. I’ll let you know as soon as I hear the address.",
+        "speaker": "Faye",
+        "listener": "Eli"
+      },
+      {
+        "round": 4,
+        "text": "Faye: Thanks, Leo — I’ll keep an eye on the address and the repair-drive updates too.",
+        "speaker": "Faye",
+        "listener": "Leo"
+      },
+      {
+        "round": 4,
+        "text": "Leo: Thanks, Faye — I appreciate it. If you hear anything confirmed, just pass it along.",
+        "speaker": "Leo",
+        "listener": "Faye"
+      },
+      {
+        "round": 4,
+        "text": "Faye: Will do — I’ll pass along anything confirmed right away.",
+        "speaker": "Faye",
+        "listener": "Leo"
+      }
+    ]
+  }
+}

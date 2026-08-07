@@ -1,0 +1,36 @@
+{
+  "experiment_id": "PAT-B-260728-001",
+  "dataset": "WikiChurches-4",
+  "question": "Does the box-bearing canonical train split represent the style-conditioned evidence distribution in canonical validation?",
+  "splits": [
+    "train",
+    "val"
+  ],
+  "forbidden_split": "test",
+  "analysis_unit": "Church. Multiple canonical-train views are averaged within church before every shift statistic or transfer evaluation.",
+  "primary_train_population": "The same 90 box-bearing train churches used by the local calibration artifact.",
+  "reference_control": "All canonical-train churches versus validation in global CLIP space; this control is reported but is not a positive condition in the primary box-subset diagnosis.",
+  "representations": {
+    "global": "Frozen OpenAI CLIP ViT-B/16 normalized 224px image embedding",
+    "local": "PAT-B-260727-004 train-LOCO and validation official 8-anchor top-1%-patch score vectors"
+  },
+  "local_transfer_head": "Frozen PAT-B-260727-005 class-balanced ridge multinomial head selected using train-only CV",
+  "permutation": {
+    "count": 10000,
+    "seed": 260728001,
+    "scheme": "Permute train/validation domain labels within each architectural style while preserving per-style split counts",
+    "statistic": "Equal-style mean squared distance between split centroids"
+  },
+  "per_style_effect": "Centroid distance divided by train within-style RMS radius",
+  "global_transfer": "Within the 90 box-bearing train churches, leave-one-church-out prototype balanced accuracy versus box-subset-train-prototype validation balanced accuracy",
+  "local_transfer": "Frozen head train out-of-fold balanced accuracy versus validation balanced accuracy",
+  "diagnostic_support_rule": {
+    "all_conditions_required": true,
+    "global_stratified_permutation_p_at_most": 0.01,
+    "local_stratified_permutation_p_at_most": 0.01,
+    "local_balanced_accuracy_drop_at_least": 20.0,
+    "gothic_local_recall_drop_at_least": 20.0,
+    "gothic_local_shift_effect_rank_at_most": 2
+  },
+  "interpretation_boundary": "A supported split-shift diagnosis does not prove the causal annotation-selection mechanism and does not authorize further adapter tuning on canonical validation."
+}

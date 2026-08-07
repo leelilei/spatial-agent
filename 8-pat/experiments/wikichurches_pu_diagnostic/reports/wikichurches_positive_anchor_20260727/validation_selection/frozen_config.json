@@ -1,0 +1,59 @@
+{
+  "confirmation_seeds": [
+    7,
+    8,
+    9
+  ],
+  "confirmation_test_policy": "No test loader, features, dense tokens, or logits may be constructed during selection.",
+  "development_seeds": [
+    1,
+    2,
+    3
+  ],
+  "experiment_id": "PAT-B-260727-003",
+  "selected_by_shot": {
+    "1": {
+      "gamma": 20.0,
+      "selection_metrics": {
+        "mean_official_accuracy": 71.19741241137187,
+        "mean_official_delta": 1.618125041325887,
+        "mean_random_accuracy": 49.19093909362952,
+        "mean_random_delta": -20.388348276416462,
+        "official_minus_random_delta": 22.006473317742348,
+        "official_wins": 2,
+        "robust_score": 0.876607382951084,
+        "sd_official_delta": 1.483035316749606
+      },
+      "topk_patch_ratio": 0.01
+    },
+    "16": {
+      "gamma": 0.0,
+      "selection_metrics": {
+        "mean_official_accuracy": 69.41747466723125,
+        "mean_official_delta": 0.0,
+        "mean_random_accuracy": 69.41747466723125,
+        "mean_random_delta": 0.0,
+        "official_minus_random_delta": 0.0,
+        "official_wins": 0,
+        "robust_score": 0.0,
+        "sd_official_delta": 0.0
+      },
+      "topk_patch_ratio": 0.01
+    },
+    "4": {
+      "gamma": 0.0,
+      "selection_metrics": {
+        "mean_official_accuracy": 67.31391549110413,
+        "mean_official_delta": 0.0,
+        "mean_random_accuracy": 67.31391549110413,
+        "mean_random_delta": 0.0,
+        "official_minus_random_delta": 0.0,
+        "official_wins": 0,
+        "robust_score": 0.0,
+        "sd_official_delta": 0.0
+      },
+      "topk_patch_ratio": 0.01
+    }
+  },
+  "selection_metric": "mean paired validation accuracy delta minus 0.5 sample SD"
+}

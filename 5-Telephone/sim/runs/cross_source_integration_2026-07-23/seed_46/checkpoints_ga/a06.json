@@ -1,0 +1,253 @@
+{
+  "agent_id": "a06",
+  "interview": {
+    "name": "Oren",
+    "answer": "It's happening this Saturday at 10 a.m. at the community hall.",
+    "verdict": "stale"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 30,
+    "reflections": [
+      "Oren is helpful but forgetful, so he benefits from clear reminders and concrete task lists.",
+      "Quinn acts as an organizer who gathers details and coordinates the repair effort.",
+      "Vik helps keep commitments visible to the group by relaying Oren’s intent and setting expectations.",
+      "Oren is cooperative and responsive, but repeatedly needs reminders and follow-up nudges to complete the repair-drive task.",
+      "The other participants rely on Oren as a source for practical supplies from the garage and coordinate around his check-in.",
+      "The interaction pattern is friendly and task-focused, with clear expectations to report back and set aside usable items.",
+      "Oren is reliable but easily forgetful, so others give him concrete reminders and follow-ups.",
+      "The group is coordinating a shared donation/supply effort, with Oren taking on the garage search and transport role.",
+      "Pia and Leo are helping schedule and organize the event, while Oren is responsive to those logistics once they are made explicit.",
+      "Oren is reliably helpful and follows through, especially with logistics and bringing needed supplies.",
+      "The others are coordinating with Oren because he is responsive, patient, and keeps checking for updates.",
+      "The repair drive is still being organized, with timing and details trickling in from multiple people.",
+      "Oren is consistently responsive and practical, especially around community repair work and helping with logistics or supplies.",
+      "Nell and Uli both seem to be coordinating around incomplete information and prefer to share updates once they have confirmed details.",
+      "The group relies on clear, repeated reminders about time, place, and needed items, and Oren tends to confirm specifics and offer tangible help."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Oren: Oh—right, the repair drive. I’m happy to help, just remind me what needs fixing again?",
+        "speaker": "Oren",
+        "listener": "Quinn"
+      },
+      {
+        "round": 0,
+        "text": "Quinn: Sure thing—mostly the broken fence, a leaky faucet at the hall, and a few loose porch steps. I’m putting together a quick list now, and I’ll send it your way.",
+        "speaker": "Quinn",
+        "listener": "Oren",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Quinn",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 0,
+        "text": "Oren: Thanks, Quinn—send the list over and I’ll take a look. I’ll do my best not to forget this time.",
+        "speaker": "Oren",
+        "listener": "Quinn"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Oh right, the repair drive—thanks for the reminder. I’ll take a look and see what I can bring by.",
+        "speaker": "Oren",
+        "listener": "Vik"
+      },
+      {
+        "round": 0,
+        "text": "Vik: Great, thanks Oren — I’ll keep the repair drive in mind and let folks know you’re checking what you can bring by.",
+        "speaker": "Vik",
+        "listener": "Oren"
+      },
+      {
+        "round": 0,
+        "text": "Oren: Sounds good — I’ll swing by once I’ve checked the garage and see what’s usable. If I find anything, I’ll bring it over.",
+        "speaker": "Oren",
+        "listener": "Vik"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Thanks — send over the list, and I’ll check the garage for anything useful. I’ll do my best not to forget this time.",
+        "speaker": "Oren",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Thanks, Oren — I’ll send the list over, and if you find anything useful in the garage, just set it aside and let me know.",
+        "speaker": "Sam",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Sounds good — I’ll dig through the garage and set anything useful aside. Just nudge me if I go quiet, will you?",
+        "speaker": "Oren",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Thanks — send me the list and I’ll check the garage for anything useful. I’ll do my best not to forget this time.",
+        "speaker": "Oren",
+        "listener": "Cleo"
+      },
+      {
+        "round": 1,
+        "text": "Cleo: Thanks, Oren — we’re mostly short on tape, screws, and a few basic tools. If you find any of those in the garage, that’d help a lot.",
+        "speaker": "Cleo",
+        "listener": "Oren"
+      },
+      {
+        "round": 1,
+        "text": "Oren: Oh, got it — tape, screws, and basic tools. I’ll check the garage and bring over whatever I can find.",
+        "speaker": "Oren",
+        "listener": "Cleo"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Oh, that’s right — tape, screws, and basic tools. I’ll check the garage and bring over whatever I can find.",
+        "speaker": "Oren",
+        "listener": "Pia"
+      },
+      {
+        "round": 2,
+        "text": "Pia: Thanks — I’m still waiting on the exact Saturday time and shed access, so I can plan around it. Once that’s clear, I’ll be there ready to help with unloading.",
+        "speaker": "Pia",
+        "listener": "Oren",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Pia",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Oren: Thanks, Pia — just let me know the Saturday time and shed access once it’s set, and I’ll be there too.",
+        "speaker": "Oren",
+        "listener": "Pia",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Oren",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 2,
+        "text": "Oren: Oh right — tape, screws, and basic tools. I’ll check the garage and bring over whatever I can find.",
+        "speaker": "Oren",
+        "listener": "Leo"
+      },
+      {
+        "round": 2,
+        "text": "Leo: Perfect — bring them by 10 at the community hall if you can.",
+        "speaker": "Leo",
+        "listener": "Oren"
+      },
+      {
+        "round": 2,
+        "text": "Oren: Yep, I’ll do my best to be there by 10 with whatever I can find.",
+        "speaker": "Oren",
+        "listener": "Leo"
+      },
+      {
+        "round": 3,
+        "text": "Uli: Thanks, Oren — I’m still waiting on the final time for the repair drive, but I’ll send it over as soon as I have it.",
+        "speaker": "Uli",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Oren: Thanks, Uli — just send the time when you have it, and I’ll be there. I’ll keep checking the garage for anything useful in the meantime.",
+        "speaker": "Oren",
+        "listener": "Uli"
+      },
+      {
+        "round": 3,
+        "text": "Uli: Thanks, Oren — I really appreciate that. I’ll send the time as soon as I get it.",
+        "speaker": "Uli",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Nell: Thanks, Oren — I’m still piecing together the details, so I’ll pass along the latest once I hear back.",
+        "speaker": "Nell",
+        "listener": "Oren"
+      },
+      {
+        "round": 3,
+        "text": "Oren: Thanks, Nell — appreciate it. Just send me the latest when you have it, and I’ll keep an eye out for anything useful in the garage.",
+        "speaker": "Oren",
+        "listener": "Nell"
+      },
+      {
+        "round": 3,
+        "text": "Nell: Will do — I’ll keep asking around and let you know if I hear anything new about the repair drive.",
+        "speaker": "Nell",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Mina: Thanks — we’re meeting this Saturday at 10 a.m. at the community hall, and we still need help with repair tables and cleanup. If you can, please bring your toolbox and a few hours to help.",
+        "speaker": "Mina",
+        "listener": "Oren",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Mina",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Oren: Oh, right — Saturday at 10 at the community hall. I can bring my toolbox and help with the tables and cleanup; thanks for the reminder.",
+        "speaker": "Oren",
+        "listener": "Mina",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Oren",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Mina: Great, thanks, Oren — I really appreciate it. I’ll count you in for the repair tables and cleanup.",
+        "speaker": "Mina",
+        "listener": "Oren"
+      },
+      {
+        "round": 4,
+        "text": "Gus: Yep — Saturday morning at the community shed, and folks should drop repairs off there first. I can bring a few extra tools too if that helps.",
+        "speaker": "Gus",
+        "listener": "Oren",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Gus",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Oren: Oh, right — Saturday morning at the community shed. I’ll check my garage for tape, screws, and any basic tools I can bring by.",
+        "speaker": "Oren",
+        "listener": "Gus",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Oren",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Gus: That’d be great, Oren — tape and screws are always useful. I’ll keep the shed organized and make sure we’ve got room for whatever you bring by.",
+        "speaker": "Gus",
+        "listener": "Oren"
+      }
+    ]
+  }
+}

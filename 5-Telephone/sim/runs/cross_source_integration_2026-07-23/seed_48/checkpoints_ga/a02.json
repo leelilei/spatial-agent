@@ -1,0 +1,247 @@
+{
+  "agent_id": "a02",
+  "interview": {
+    "name": "Sam",
+    "answer": "The notes don’t say when or where it’s being held.",
+    "verdict": "unknown"
+  },
+  "memory": {
+    "kind": "ga_reflection",
+    "n_events": 30,
+    "reflections": [
+      "Vik is proactive about spreading repair-drive information and keeping neighbors informed.",
+      "Sam is coordinating volunteer needs for the repair drive and appreciates help from others.",
+      "Jules is responsive and willing to recruit volunteers with the specific skills and supplies needed.",
+      "Sam is coordinating a repair drive and relies on others to help spread the word and recruit volunteers.",
+      "Jules is responsive and proactive in connecting people and relaying requests.",
+      "Ira is actively checking repair needs across multiple stops and keeps Sam updated.",
+      "Sam is coordinating a repair effort and responds with specific, task-focused asks.",
+      "Quinn, Uli, and Rey are all willing to help in practical ways and tend to confirm concrete responsibilities.",
+      "The group values brief, direct updates and clear handoffs for volunteer and repair tasks.",
+      "Sam is coordinating a community repair drive and relies on others for outreach and logistics.",
+      "Rey tends to respond with practical, supportive follow-through and asks for clear instructions when helping.",
+      "The group communication is collaborative and task-focused, with people confirming details and offering to spread information.",
+      "Sam is coordinating a repair drive and actively relying on others to help spread the word and keep it organized.",
+      "The others are generally supportive and responsive, confirming details, offering help, and helping direct people to the right place.",
+      "There is a shared focus on practical follow-through: keeping neighbors informed, collecting tools and parts, and supporting Saturday repairs."
+    ],
+    "events": [
+      {
+        "round": 0,
+        "text": "Vik: Sounds good — I’ll repeat the repair drive plans to the neighbors and make sure everyone knows the details.",
+        "speaker": "Vik",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Thanks, Vik — I really appreciate it. Let me know if you need anything else for the repair drive.",
+        "speaker": "Sam",
+        "listener": "Vik"
+      },
+      {
+        "round": 0,
+        "text": "Vik: Will do — I’ll keep everyone in the loop and let you know if anything comes up.",
+        "speaker": "Vik",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Jules: I’m happy to help connect folks for the repair drive. What do you need me to pass along?",
+        "speaker": "Jules",
+        "listener": "Sam"
+      },
+      {
+        "round": 0,
+        "text": "Sam: Thanks, Jules — could you let people know we need volunteers with tools, a few spare parts, and anyone who can help sort repairs on Saturday?",
+        "speaker": "Sam",
+        "listener": "Jules",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Sam",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 0,
+        "text": "Jules: Absolutely — I’ll pass that along and ask around for volunteers with tools, spare parts, and sorting help on Saturday.",
+        "speaker": "Jules",
+        "listener": "Sam",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Jules",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Ira: I’m still checking the first stop now, then I’ll swing by the others and let you know what still needs fixing.",
+        "speaker": "Ira",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Thanks, Ira — that helps a lot. Let me know what still needs fixing once you’ve checked the others.",
+        "speaker": "Sam",
+        "listener": "Ira"
+      },
+      {
+        "round": 1,
+        "text": "Ira: Will do — I’ll check the other stops and send you a quick update on what still needs fixing.",
+        "speaker": "Ira",
+        "listener": "Sam"
+      },
+      {
+        "round": 1,
+        "text": "Sam: Thanks, Quinn — I appreciate you helping spread the word. Just let people know we’re looking for volunteers with tools, spare parts, and folks who can help sort repairs on Saturday.",
+        "speaker": "Sam",
+        "listener": "Quinn",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Sam",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Quinn: Absolutely — I’ll spread that around and tell folks we need tools, spare parts, and help sorting repairs on Saturday.",
+        "speaker": "Quinn",
+        "listener": "Sam",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Quinn",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 1,
+        "text": "Sam: Thanks, Quinn — I really appreciate it. Let me know if you hear back from anyone who can help.",
+        "speaker": "Sam",
+        "listener": "Quinn"
+      },
+      {
+        "round": 2,
+        "text": "Uli: I can keep helping quietly if you’ve got a simple next task. Just point me to the most urgent one.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Sam: Thanks, Uli — could you start with the first stop and send me a quick update on what still needs fixing?",
+        "speaker": "Sam",
+        "listener": "Uli"
+      },
+      {
+        "round": 2,
+        "text": "Uli: Sure — I’ll start with the first stop and keep it quiet, then send you a quick list of what still needs fixing.",
+        "speaker": "Uli",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Rey: I’m still on the tools and extension cord, and I can help make that signup list too. Just tell me what’s left to sort out.",
+        "speaker": "Rey",
+        "listener": "Sam"
+      },
+      {
+        "round": 2,
+        "text": "Sam: Thanks, Rey — that covers a lot. If you can keep an eye out for any other missing tools or supplies, I’d really appreciate it.",
+        "speaker": "Sam",
+        "listener": "Rey"
+      },
+      {
+        "round": 2,
+        "text": "Rey: Sure — I’ll watch for any missing tools or supplies and let you know if I spot anything. Just keep me posted if anything else comes up.",
+        "speaker": "Rey",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Sam: Thanks, Mara — if you can help spread the word about the repair drive, that’d be a huge help.",
+        "speaker": "Sam",
+        "listener": "Mara"
+      },
+      {
+        "round": 3,
+        "text": "Mara: Absolutely — I’ll spread the word and keep everyone updated if anything changes.",
+        "speaker": "Mara",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Sam: Thanks, Mara — I really appreciate it. Let me know if you need anything else for the repair drive.",
+        "speaker": "Sam",
+        "listener": "Mara"
+      },
+      {
+        "round": 3,
+        "text": "Sam: Thanks, Kira — I’m relying on folks to help spread the word and keep the repair drive organized. Let me know if you want me to pass along any details.",
+        "speaker": "Sam",
+        "listener": "Kira"
+      },
+      {
+        "round": 3,
+        "text": "Kira: Just to confirm, the repair drive is still happening today, right?",
+        "speaker": "Kira",
+        "listener": "Sam"
+      },
+      {
+        "round": 3,
+        "text": "Sam: Yes — it’s still happening today. I’ll make sure the neighbors have the latest details.",
+        "speaker": "Sam",
+        "listener": "Kira"
+      },
+      {
+        "round": 4,
+        "text": "Tess: Oh, lovely — the repair drive’s still humming along. If you’ve got anything that needs fixing, just bring it by and I’ll point you to the right place.",
+        "speaker": "Tess",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Sam: Thanks, Tess — I appreciate that. I’ll let folks know they can bring anything by today.",
+        "speaker": "Sam",
+        "listener": "Tess"
+      },
+      {
+        "round": 4,
+        "text": "Tess: Oh, perfect — thank you, Sam. I’ll keep an eye out and make sure anyone who comes by gets pointed in the right direction.",
+        "speaker": "Tess",
+        "listener": "Sam"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: Absolutely — I’ll keep spreading the word and let folks know you need tools, spare parts, and help sorting repairs on Saturday.",
+        "speaker": "Quinn",
+        "listener": "Sam",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Quinn",
+          "annotation_basis": "controlled_task"
+        }
+      },
+      {
+        "round": 4,
+        "text": "Sam: Thanks, Quinn — I really appreciate it. Let me know if you hear back from anyone who can help.",
+        "speaker": "Sam",
+        "listener": "Quinn"
+      },
+      {
+        "round": 4,
+        "text": "Quinn: Will do — I’ll keep an ear out and pass along anyone who can pitch in with tools, parts, or Saturday repairs.",
+        "speaker": "Quinn",
+        "listener": "Sam",
+        "prov": {
+          "version": 0,
+          "value": "The repair drive is being held on Saturday at the front porch.",
+          "source": "Quinn",
+          "annotation_basis": "controlled_task"
+        }
+      }
+    ]
+  }
+}
