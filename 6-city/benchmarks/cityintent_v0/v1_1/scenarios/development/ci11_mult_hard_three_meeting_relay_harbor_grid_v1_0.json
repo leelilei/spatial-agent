@@ -1,0 +1,182 @@
+{
+  "scenario_id": "ci11_mult_hard_three_meeting_relay_harbor_grid_v1_0",
+  "title": "Three-Meeting Relay",
+  "world_id": "harbor_grid_v1",
+  "family": "multi_party_commitment",
+  "episode": {
+    "start_time": "12:00",
+    "end_time": "13:40",
+    "max_steps": 14
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Coordinator with three short catch-ups in one break.",
+      "start_location": "hgd_office",
+      "budget": 21,
+      "private_intention": "Meet Casey at the park, then Dana at the market, then Ben at the diner — each inside its window.",
+      "known_locations": [
+        "hgd_office",
+        "hgd_meeting_cafe",
+        "hgd_plaza",
+        "hgd_market",
+        "hgd_park",
+        "hgd_budget_food"
+      ],
+      "memory_seeds": [
+        "Casey leaves the park first.",
+        "Dana passes the market mid-break.",
+        "Ben reaches the diner last."
+      ]
+    },
+    {
+      "agent_id": "casey",
+      "persona": "Friend at the park early.",
+      "start_location": "hgd_park",
+      "budget": 10,
+      "private_intention": "Brief hello early.",
+      "known_locations": [
+        "hgd_park"
+      ],
+      "memory_seeds": [
+        "Leaves early."
+      ]
+    },
+    {
+      "agent_id": "dana",
+      "persona": "Friend passing the market mid-break.",
+      "start_location": "hgd_market",
+      "budget": 10,
+      "private_intention": "Brief hello mid-break.",
+      "known_locations": [
+        "hgd_market"
+      ],
+      "memory_seeds": [
+        "Passes through."
+      ]
+    },
+    {
+      "agent_id": "ben",
+      "persona": "Friend reaching the diner late.",
+      "start_location": "hgd_budget_food",
+      "budget": 18,
+      "private_intention": "Brief hello late.",
+      "known_locations": [
+        "hgd_budget_food"
+      ],
+      "memory_seeds": [
+        "Arrives last."
+      ]
+    }
+  ],
+  "public_context": "Three windows open in a strict order. The nearest counterpart is not the first one.",
+  "events": [],
+  "critical_locations": [
+    "hgd_office",
+    "hgd_meeting_cafe",
+    "hgd_plaza",
+    "hgd_market",
+    "hgd_park",
+    "hgd_budget_food"
+  ],
+  "success_conditions": [
+    {
+      "id": "meet_casey_park",
+      "type": "co_presence",
+      "role": "outcome",
+      "agents": [
+        "aria",
+        "casey"
+      ],
+      "location_any_of": [
+        "hgd_park"
+      ],
+      "time_window": [
+        "12:25",
+        "12:40"
+      ],
+      "weight": 0.2
+    },
+    {
+      "id": "meet_dana_market",
+      "type": "co_presence",
+      "role": "outcome",
+      "agents": [
+        "aria",
+        "dana"
+      ],
+      "location_any_of": [
+        "hgd_market"
+      ],
+      "time_window": [
+        "12:50",
+        "13:05"
+      ],
+      "weight": 0.2
+    },
+    {
+      "id": "meet_ben_diner",
+      "type": "co_presence",
+      "role": "outcome",
+      "agents": [
+        "aria",
+        "ben"
+      ],
+      "location_any_of": [
+        "hgd_budget_food"
+      ],
+      "time_window": [
+        "13:15",
+        "13:30"
+      ],
+      "weight": 0.2
+    },
+    {
+      "id": "stay_within_budget",
+      "type": "budget_at_least",
+      "role": "constraint",
+      "agent": "aria",
+      "min_remaining": 0,
+      "weight": 0.2
+    },
+    {
+      "id": "no_impossible_meeting_claim",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.2
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "social_appropriateness",
+    "intention_consistency",
+    "travel_efficiency"
+  ],
+  "architecture_probes": {
+    "utility_planner": "May visit the nearest counterpart first and break the relay order.",
+    "llm_direct_actor": "May narrate three meetings while missing the windows.",
+    "reactive_replanner": "Must plan the whole relay before moving; reacting late loses the park window.",
+    "memory_reflection": "Should recall the strict order: park, then market, then diner."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0",
+    "candidate_status": "pending_acceptance_gates",
+    "split": "development",
+    "construct_family": "multi_party_commitment",
+    "difficulty_tier": "easy",
+    "difficulty_status": "provisional_pending_baseline_calibration",
+    "template_id": "hard_three_meeting_relay",
+    "instance_variant": 0,
+    "seed": 158675262982535,
+    "generator_version": "cityintent-scenariogen-1.0.0",
+    "source_version": "1.0-rc1",
+    "source_family": "social_outcome_hard",
+    "source_perturbation_pair": null,
+    "world_visibility": "public"
+  }
+}

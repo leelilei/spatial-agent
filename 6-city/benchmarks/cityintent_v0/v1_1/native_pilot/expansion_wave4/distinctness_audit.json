@@ -1,0 +1,428 @@
+{
+  "scenario_count": 24,
+  "prior_pools": [
+    "base",
+    "wave1",
+    "wave2",
+    "wave3"
+  ],
+  "structurally_distinct_count": 24,
+  "all_structurally_distinct": true,
+  "families_with_novel_condition_type": [
+    "compound_long_horizon",
+    "disruption_recovery",
+    "multi_party_commitment",
+    "poi_availability_service_evidence",
+    "resource_budget_allocation",
+    "social_coordination_copresence",
+    "time_window_scheduling"
+  ],
+  "status": "review_required_not_release",
+  "results": [
+    {
+      "scenario_id": "ci11w4_comp_harbor_grid_v1_v2",
+      "construct_family": "compound_long_horizon",
+      "mechanism_id": "credential_unlock_purchase_service_return_chain",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [
+        "budget_at_least",
+        "ordered_evidence_chain"
+      ],
+      "condition_types": [
+        "budget_at_least",
+        "no_feasibility_violation",
+        "ordered_evidence_chain",
+        "visit_before"
+      ]
+    },
+    {
+      "scenario_id": "ci11w4_comp_metro_radial_v1_v0",
+      "construct_family": "compound_long_horizon",
+      "mechanism_id": "credential_unlock_purchase_service_return_chain",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [
+        "budget_at_least",
+        "ordered_evidence_chain"
+      ],
+      "condition_types": [
+        "budget_at_least",
+        "no_feasibility_violation",
+        "ordered_evidence_chain",
+        "visit_before"
+      ]
+    },
+    {
+      "scenario_id": "ci11w4_comp_suburb_polycentric_v1_v1",
+      "construct_family": "compound_long_horizon",
+      "mechanism_id": "credential_unlock_purchase_service_return_chain",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [
+        "budget_at_least",
+        "ordered_evidence_chain"
+      ],
+      "condition_types": [
+        "budget_at_least",
+        "no_feasibility_violation",
+        "ordered_evidence_chain",
+        "visit_before"
+      ]
+    },
+    {
+      "scenario_id": "ci11w4_disr_harbor_grid_v1_v0",
+      "construct_family": "disruption_recovery",
+      "mechanism_id": "temporary_service_outage_with_timed_recovery_choice",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [
+        "episode_complete_before",
+        "service_after_recovery"
+      ],
+      "condition_types": [
+        "episode_complete_before",
+        "no_feasibility_violation",
+        "service_after_recovery"
+      ]
+    },
+    {
+      "scenario_id": "ci11w4_disr_metro_radial_v1_v1",
+      "construct_family": "disruption_recovery",
+      "mechanism_id": "temporary_service_outage_with_timed_recovery_choice",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [
+        "episode_complete_before",
+        "service_after_recovery"
+      ],
+      "condition_types": [
+        "episode_complete_before",
+        "no_feasibility_violation",
+        "service_after_recovery"
+      ]
+    },
+    {
+      "scenario_id": "ci11w4_disr_suburb_polycentric_v1_v2",
+      "construct_family": "disruption_recovery",
+      "mechanism_id": "temporary_service_outage_with_timed_recovery_choice",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [
+        "episode_complete_before",
+        "service_after_recovery"
+      ],
+      "condition_types": [
+        "episode_complete_before",
+        "no_feasibility_violation",
+        "service_after_recovery"
+      ]
+    },
+    {
+      "scenario_id": "ci11w4_memo_harbor_grid_v1_v2",
+      "construct_family": "memory_conditioned_preference",
+      "mechanism_id": "source_reliability_memory_arbitration",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [],
+      "condition_types": [
+        "avoid_when_possible",
+        "dwell_minutes",
+        "recall_memory",
+        "visit_location"
+      ]
+    },
+    {
+      "scenario_id": "ci11w4_memo_metro_radial_v1_v0",
+      "construct_family": "memory_conditioned_preference",
+      "mechanism_id": "source_reliability_memory_arbitration",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [],
+      "condition_types": [
+        "avoid_when_possible",
+        "dwell_minutes",
+        "recall_memory",
+        "visit_location"
+      ]
+    },
+    {
+      "scenario_id": "ci11w4_memo_suburb_polycentric_v1_v1",
+      "construct_family": "memory_conditioned_preference",
+      "mechanism_id": "source_reliability_memory_arbitration",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [],
+      "condition_types": [
+        "avoid_when_possible",
+        "dwell_minutes",
+        "recall_memory",
+        "visit_location"
+      ]
+    },
+    {
+      "scenario_id": "ci11w4_mult_harbor_grid_v1_v0",
+      "construct_family": "multi_party_commitment",
+      "mechanism_id": "sequential_two_party_relay",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [
+        "episode_complete_before",
+        "ordered_interaction_chain"
+      ],
+      "condition_types": [
+        "co_presence",
+        "co_presence",
+        "episode_complete_before",
+        "no_feasibility_violation",
+        "ordered_interaction_chain"
+      ]
+    },
+    {
+      "scenario_id": "ci11w4_mult_metro_radial_v1_v1",
+      "construct_family": "multi_party_commitment",
+      "mechanism_id": "sequential_two_party_relay",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [
+        "episode_complete_before",
+        "ordered_interaction_chain"
+      ],
+      "condition_types": [
+        "co_presence",
+        "co_presence",
+        "episode_complete_before",
+        "no_feasibility_violation",
+        "ordered_interaction_chain"
+      ]
+    },
+    {
+      "scenario_id": "ci11w4_mult_suburb_polycentric_v1_v2",
+      "construct_family": "multi_party_commitment",
+      "mechanism_id": "sequential_two_party_relay",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [
+        "episode_complete_before",
+        "ordered_interaction_chain"
+      ],
+      "condition_types": [
+        "co_presence",
+        "co_presence",
+        "episode_complete_before",
+        "no_feasibility_violation",
+        "ordered_interaction_chain"
+      ]
+    },
+    {
+      "scenario_id": "ci11w4_poi__harbor_grid_v1_v0",
+      "construct_family": "poi_availability_service_evidence",
+      "mechanism_id": "referral_then_provider_service_chain",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [
+        "ordered_service_chain"
+      ],
+      "condition_types": [
+        "no_feasibility_violation",
+        "ordered_service_chain",
+        "use_service_at"
+      ]
+    },
+    {
+      "scenario_id": "ci11w4_poi__metro_radial_v1_v1",
+      "construct_family": "poi_availability_service_evidence",
+      "mechanism_id": "referral_then_provider_service_chain",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [
+        "ordered_service_chain"
+      ],
+      "condition_types": [
+        "no_feasibility_violation",
+        "ordered_service_chain",
+        "use_service_at"
+      ]
+    },
+    {
+      "scenario_id": "ci11w4_poi__suburb_polycentric_v1_v2",
+      "construct_family": "poi_availability_service_evidence",
+      "mechanism_id": "referral_then_provider_service_chain",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [
+        "ordered_service_chain"
+      ],
+      "condition_types": [
+        "no_feasibility_violation",
+        "ordered_service_chain",
+        "use_service_at"
+      ]
+    },
+    {
+      "scenario_id": "ci11w4_reso_harbor_grid_v1_v1",
+      "construct_family": "resource_budget_allocation",
+      "mechanism_id": "two_stage_inventory_commitment",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [
+        "no_feasibility_violation"
+      ],
+      "condition_types": [
+        "budget_at_least",
+        "buy_item",
+        "no_feasibility_violation",
+        "use_service_at"
+      ]
+    },
+    {
+      "scenario_id": "ci11w4_reso_metro_radial_v1_v2",
+      "construct_family": "resource_budget_allocation",
+      "mechanism_id": "two_stage_inventory_commitment",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [
+        "no_feasibility_violation"
+      ],
+      "condition_types": [
+        "budget_at_least",
+        "buy_item",
+        "no_feasibility_violation",
+        "use_service_at"
+      ]
+    },
+    {
+      "scenario_id": "ci11w4_reso_suburb_polycentric_v1_v0",
+      "construct_family": "resource_budget_allocation",
+      "mechanism_id": "two_stage_inventory_commitment",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [
+        "no_feasibility_violation"
+      ],
+      "condition_types": [
+        "budget_at_least",
+        "buy_item",
+        "no_feasibility_violation",
+        "use_service_at"
+      ]
+    },
+    {
+      "scenario_id": "ci11w4_soci_harbor_grid_v1_v1",
+      "construct_family": "social_coordination_copresence",
+      "mechanism_id": "message_acknowledgement_then_handoff",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [
+        "handoff_evidence"
+      ],
+      "condition_types": [
+        "co_presence",
+        "handoff_evidence",
+        "message_before_interaction",
+        "no_feasibility_violation"
+      ]
+    },
+    {
+      "scenario_id": "ci11w4_soci_metro_radial_v1_v2",
+      "construct_family": "social_coordination_copresence",
+      "mechanism_id": "message_acknowledgement_then_handoff",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [
+        "handoff_evidence"
+      ],
+      "condition_types": [
+        "co_presence",
+        "handoff_evidence",
+        "message_before_interaction",
+        "no_feasibility_violation"
+      ]
+    },
+    {
+      "scenario_id": "ci11w4_soci_suburb_polycentric_v1_v0",
+      "construct_family": "social_coordination_copresence",
+      "mechanism_id": "message_acknowledgement_then_handoff",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [
+        "handoff_evidence"
+      ],
+      "condition_types": [
+        "co_presence",
+        "handoff_evidence",
+        "message_before_interaction",
+        "no_feasibility_violation"
+      ]
+    },
+    {
+      "scenario_id": "ci11w4_time_harbor_grid_v1_v2",
+      "construct_family": "time_window_scheduling",
+      "mechanism_id": "minimum_duration_inside_nested_window",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [
+        "dwell_within_window"
+      ],
+      "condition_types": [
+        "dwell_within_window",
+        "no_feasibility_violation",
+        "visit_open_location"
+      ]
+    },
+    {
+      "scenario_id": "ci11w4_time_metro_radial_v1_v0",
+      "construct_family": "time_window_scheduling",
+      "mechanism_id": "minimum_duration_inside_nested_window",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [
+        "dwell_within_window"
+      ],
+      "condition_types": [
+        "dwell_within_window",
+        "no_feasibility_violation",
+        "visit_open_location"
+      ]
+    },
+    {
+      "scenario_id": "ci11w4_time_suburb_polycentric_v1_v1",
+      "construct_family": "time_window_scheduling",
+      "mechanism_id": "minimum_duration_inside_nested_window",
+      "prior_item_count": 13,
+      "structurally_distinct": true,
+      "collisions": [],
+      "novel_condition_types": [
+        "dwell_within_window"
+      ],
+      "condition_types": [
+        "dwell_within_window",
+        "no_feasibility_violation",
+        "visit_open_location"
+      ]
+    }
+  ]
+}

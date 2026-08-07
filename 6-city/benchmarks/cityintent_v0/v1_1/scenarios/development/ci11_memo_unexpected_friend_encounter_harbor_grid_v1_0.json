@@ -1,0 +1,136 @@
+{
+  "scenario_id": "ci11_memo_unexpected_friend_encounter_harbor_grid_v1_0",
+  "title": "Unexpected Friend Encounter During Errands",
+  "world_id": "harbor_grid_v1",
+  "family": "memory_conditioned_preference",
+  "episode": {
+    "start_time": "16:00",
+    "end_time": "17:30",
+    "max_steps": 8
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Resident doing errands before a quiet evening.",
+      "start_location": "hgd_market",
+      "budget": 25,
+      "private_intention": "Buy groceries and medicine, but take a short useful social opportunity if it does not derail the errands.",
+      "known_locations": [
+        "hgd_market",
+        "hgd_pharmacy",
+        "hgd_office",
+        "hgd_meeting_cafe"
+      ],
+      "memory_seeds": [
+        "Casey is a colleague who often shares useful work updates.",
+        "Aria does not want errands to run past 17:30."
+      ]
+    },
+    {
+      "agent_id": "casey",
+      "persona": "Colleague who may have useful work news.",
+      "start_location": "hgd_market",
+      "budget": 12,
+      "private_intention": "Briefly mention tomorrow's schedule change if Aria is available.",
+      "known_locations": [
+        "hgd_market",
+        "hgd_office",
+        "hgd_meeting_cafe"
+      ],
+      "memory_seeds": [
+        "Aria appreciates concise updates during errands."
+      ]
+    }
+  ],
+  "public_context": "Aria starts at the market. Casey is not expected, but may be encountered there.",
+  "events": [
+    {
+      "time": "16:10",
+      "type": "unexpected_copresence",
+      "location": "hgd_market",
+      "visibility": "local_observation",
+      "effect": {
+        "agents_present": [
+          "casey"
+        ],
+        "optional_social_opportunity_minutes": 8
+      }
+    }
+  ],
+  "critical_locations": [
+    "hgd_market",
+    "hgd_pharmacy",
+    "hgd_office",
+    "hgd_meeting_cafe"
+  ],
+  "success_conditions": [
+    {
+      "id": "complete_groceries",
+      "type": "buy_item",
+      "role": "outcome",
+      "location": "hgd_market",
+      "item": "groceries",
+      "minutes": 5,
+      "weight": 0.25
+    },
+    {
+      "id": "complete_medicine",
+      "type": "buy_item",
+      "role": "outcome",
+      "location": "hgd_pharmacy",
+      "item": "medicine",
+      "minutes": 5,
+      "weight": 0.3
+    },
+    {
+      "id": "handle_copresence_briefly",
+      "type": "bounded_social_interaction",
+      "role": "process",
+      "with": "casey",
+      "max_minutes": 10,
+      "weight": 0.25
+    },
+    {
+      "id": "finish_before_end",
+      "type": "episode_complete_before",
+      "role": "constraint",
+      "deadline": "17:30",
+      "weight": 0.2
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "process_success",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "May ignore the opportunistic social interaction because it is not in the original errand objective.",
+    "llm_direct_actor": "May over-engage socially and derail the errand chain.",
+    "reactive_replanner": "Should incorporate the local co-presence observation without losing the primary errands.",
+    "memory_reflection": "Should remember Casey's usefulness and keep the interaction short and purposeful."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0",
+    "candidate_status": "pending_acceptance_gates",
+    "split": "development",
+    "construct_family": "memory_conditioned_preference",
+    "difficulty_tier": "easy",
+    "difficulty_status": "provisional_pending_baseline_calibration",
+    "template_id": "unexpected_friend_encounter",
+    "instance_variant": 0,
+    "seed": 117804681596094,
+    "generator_version": "cityintent-scenariogen-1.0.0",
+    "source_version": "1.0-rc1",
+    "source_family": "opportunistic_social",
+    "source_perturbation_pair": null,
+    "world_visibility": "public"
+  }
+}

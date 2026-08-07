@@ -1,0 +1,140 @@
+{
+  "scenario_id": "ci11_reso_hard_budget_entangled_meet_harbor_grid_v1_0",
+  "title": "Budget-Entangled Meeting",
+  "world_id": "harbor_grid_v1",
+  "family": "resource_budget_allocation",
+  "episode": {
+    "start_time": "17:00",
+    "end_time": "18:40",
+    "max_steps": 12
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Resident with a cold, a tight wallet, and a promise to keep.",
+      "start_location": "hgd_home_primary",
+      "budget": 20,
+      "private_intention": "Buy medicine, then really meet Casey at the quiet cafe in the window, then get home — without breaking the budget.",
+      "known_locations": [
+        "hgd_home_primary",
+        "hgd_gym",
+        "hgd_park",
+        "hgd_market",
+        "hgd_pharmacy",
+        "hgd_quiet_cafe"
+      ],
+      "memory_seeds": [
+        "Grabbing groceries while passing the market is routine.",
+        "The quiet cafe charges for the table.",
+        "Waiting at a paid place means buying something."
+      ]
+    },
+    {
+      "agent_id": "casey",
+      "persona": "Friend at the quiet cafe at eight.",
+      "start_location": "hgd_quiet_cafe",
+      "budget": 12,
+      "private_intention": "See Aria at the quiet cafe.",
+      "known_locations": [
+        "hgd_quiet_cafe"
+      ],
+      "memory_seeds": [
+        "Arrives by 18:00."
+      ]
+    }
+  ],
+  "public_context": "Every credit is spoken for. A routine side purchase quietly makes the required spending impossible.",
+  "events": [],
+  "critical_locations": [
+    "hgd_home_primary",
+    "hgd_gym",
+    "hgd_park",
+    "hgd_market",
+    "hgd_pharmacy",
+    "hgd_quiet_cafe"
+  ],
+  "success_conditions": [
+    {
+      "id": "buy_medicine",
+      "type": "buy_item",
+      "role": "outcome",
+      "location": "hgd_pharmacy",
+      "item": "medicine",
+      "minutes": 5,
+      "weight": 0.25
+    },
+    {
+      "id": "meet_casey",
+      "type": "co_presence",
+      "role": "outcome",
+      "agents": [
+        "aria",
+        "casey"
+      ],
+      "location_any_of": [
+        "hgd_quiet_cafe"
+      ],
+      "time_window": [
+        "18:00",
+        "18:15"
+      ],
+      "weight": 0.25
+    },
+    {
+      "id": "return_home",
+      "type": "visit_before",
+      "role": "outcome",
+      "location": "hgd_home_primary",
+      "deadline": "18:35",
+      "ignore_start": true,
+      "weight": 0.15
+    },
+    {
+      "id": "stay_within_budget",
+      "type": "budget_at_least",
+      "role": "constraint",
+      "agent": "aria",
+      "min_remaining": 0,
+      "weight": 0.2
+    },
+    {
+      "id": "no_impossible_meeting_claim",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.15
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "social_appropriateness",
+    "intention_consistency",
+    "travel_efficiency"
+  ],
+  "architecture_probes": {
+    "utility_planner": "May add the routine grocery stop and silently break the budget chain.",
+    "llm_direct_actor": "May buy plausibly and run out before the required tea.",
+    "reactive_replanner": "Must reserve medicine + waiting-tea money before any side purchase.",
+    "memory_reflection": "Should price the whole chain before spending anything."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0",
+    "candidate_status": "pending_acceptance_gates",
+    "split": "development",
+    "construct_family": "resource_budget_allocation",
+    "difficulty_tier": "easy",
+    "difficulty_status": "provisional_pending_baseline_calibration",
+    "template_id": "hard_budget_entangled_meet",
+    "instance_variant": 0,
+    "seed": 46728976620430,
+    "generator_version": "cityintent-scenariogen-1.0.0",
+    "source_version": "1.0-rc1",
+    "source_family": "social_outcome_hard",
+    "source_perturbation_pair": null,
+    "world_visibility": "public"
+  }
+}

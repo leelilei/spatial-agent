@@ -1,0 +1,328 @@
+{
+  "schema_version": "cityintent_cross_variant_promotion_v1",
+  "created_at": "2026-08-04T11:34:23+08:00",
+  "status": "calibration_template_pool_not_release",
+  "thresholds": {
+    "required_variants": 2,
+    "required_systems_per_variant": 6,
+    "min_range": 0.15,
+    "min_corrected_item_total_correlation": 0.2,
+    "min_mean_task": 0.2,
+    "max_mean_task": 0.9
+  },
+  "analysis_inputs": [
+    {
+      "path": "/Users/mac/Documents/6-Research/6-city/results/cityintent_v1_1_candidate/native_pilot_blind_v6_seed_analysis_48_2026-08-04/analysis.json",
+      "sha256": "fe2d3ebde1ec3884f00183d067102fffb770c2b5da1d60d35f618165a8dc7046"
+    },
+    {
+      "path": "/Users/mac/Documents/6-Research/6-city/results/cityintent_v1_1_candidate/native_pilot_blind_v6_replication_analysis_48_2026-08-04/analysis.json",
+      "sha256": "d45d3bb7843a47bc8b09dcaddaeff01ee94efc4563c776c24fb2147464f972c5"
+    }
+  ],
+  "oracle_report_path": "/Users/mac/Documents/6-Research/6-city/benchmarks/cityintent_v0/v1_1/native_pilot/acceptance_report.json",
+  "oracle_report_sha256": "c0509db5a2135679e319e8ae02850de4f402df8c8a4562105c0cc5b5330d6a73",
+  "accepted_template_count": 8,
+  "evaluated_template_count": 8,
+  "accepted_item_count": 16,
+  "evaluated_item_count": 16,
+  "release_target": 144,
+  "decisions": [
+    {
+      "construct": "compound_long_horizon",
+      "decision": "calibration_template_accepted",
+      "reasons": [],
+      "variants_observed": [
+        "v0",
+        "v1"
+      ],
+      "items": [
+        {
+          "variant": "v0",
+          "scenario_id": "ci11n_comp_metro_radial_v1_v0",
+          "decision": "accepted",
+          "reasons": [],
+          "oracle_task_completion": 1.0,
+          "matched_negative_headroom": 0.35,
+          "systems_observed": 6,
+          "mean_task": 0.766667,
+          "range": 0.35,
+          "corrected_item_total_correlation": 0.570036,
+          "scenario_sha256": "976213a76a2ebca7e3c7cc3a3d710837aff4252034cc2e08e776673ddb83bc5e"
+        },
+        {
+          "variant": "v1",
+          "scenario_id": "ci11n_comp_suburb_polycentric_v1_v1",
+          "decision": "accepted",
+          "reasons": [],
+          "oracle_task_completion": 1.0,
+          "matched_negative_headroom": 0.35,
+          "systems_observed": 6,
+          "mean_task": 0.708333,
+          "range": 0.35,
+          "corrected_item_total_correlation": 0.472152,
+          "scenario_sha256": "0cb1a3e7bac76561a09e5454a7837f40b8ea4a7eb5bdc3ea1e2f30dada798cf2"
+        }
+      ]
+    },
+    {
+      "construct": "disruption_recovery",
+      "decision": "calibration_template_accepted",
+      "reasons": [],
+      "variants_observed": [
+        "v0",
+        "v1"
+      ],
+      "items": [
+        {
+          "variant": "v0",
+          "scenario_id": "ci11n_disr_harbor_grid_v1_v0",
+          "decision": "accepted",
+          "reasons": [],
+          "oracle_task_completion": 1.0,
+          "matched_negative_headroom": 1.0,
+          "systems_observed": 6,
+          "mean_task": 0.5,
+          "range": 1.0,
+          "corrected_item_total_correlation": 0.933708,
+          "scenario_sha256": "72a33e116a3eae92b30a42aa8dcf8cbe0357ce0f432c8b5c8e142c5ba9d01a69"
+        },
+        {
+          "variant": "v1",
+          "scenario_id": "ci11n_disr_metro_radial_v1_v1",
+          "decision": "accepted",
+          "reasons": [],
+          "oracle_task_completion": 1.0,
+          "matched_negative_headroom": 1.0,
+          "systems_observed": 6,
+          "mean_task": 0.666667,
+          "range": 1.0,
+          "corrected_item_total_correlation": 0.376245,
+          "scenario_sha256": "cf1193a7add6f477760c92bcfc54045f59e5585b0f12bbddb882acad6f06ea0f"
+        }
+      ]
+    },
+    {
+      "construct": "memory_conditioned_preference",
+      "decision": "calibration_template_accepted",
+      "reasons": [],
+      "variants_observed": [
+        "v0",
+        "v1"
+      ],
+      "items": [
+        {
+          "variant": "v0",
+          "scenario_id": "ci11n_memo_metro_radial_v1_v0",
+          "decision": "accepted",
+          "reasons": [],
+          "oracle_task_completion": 1.0,
+          "matched_negative_headroom": 1.0,
+          "systems_observed": 6,
+          "mean_task": 0.5,
+          "range": 1.0,
+          "corrected_item_total_correlation": 0.933708,
+          "scenario_sha256": "bb614ceb7de6812e79628ea52b4c3ec2fa67c9abb82be178c26b49655c299bc0"
+        },
+        {
+          "variant": "v1",
+          "scenario_id": "ci11n_memo_suburb_polycentric_v1_v1",
+          "decision": "accepted",
+          "reasons": [],
+          "oracle_task_completion": 1.0,
+          "matched_negative_headroom": 1.0,
+          "systems_observed": 6,
+          "mean_task": 0.5,
+          "range": 1.0,
+          "corrected_item_total_correlation": 0.944607,
+          "scenario_sha256": "b8f6f2dfdf2301e68581fd2dc05515272a344548ed95c1e0901b06384a265cfb"
+        }
+      ]
+    },
+    {
+      "construct": "multi_party_commitment",
+      "decision": "calibration_template_accepted",
+      "reasons": [],
+      "variants_observed": [
+        "v0",
+        "v1"
+      ],
+      "items": [
+        {
+          "variant": "v0",
+          "scenario_id": "ci11n_mult_harbor_grid_v1_v0",
+          "decision": "accepted",
+          "reasons": [],
+          "oracle_task_completion": 1.0,
+          "matched_negative_headroom": 0.5,
+          "systems_observed": 6,
+          "mean_task": 0.533333,
+          "range": 1.0,
+          "corrected_item_total_correlation": 0.505693,
+          "scenario_sha256": "b754d2dc82690a629b1205c9fe4b8cffcf37ff72367fa4c8e3431f777c42462d"
+        },
+        {
+          "variant": "v1",
+          "scenario_id": "ci11n_mult_metro_radial_v1_v1",
+          "decision": "accepted",
+          "reasons": [],
+          "oracle_task_completion": 1.0,
+          "matched_negative_headroom": 0.5,
+          "systems_observed": 6,
+          "mean_task": 0.583333,
+          "range": 1.0,
+          "corrected_item_total_correlation": 0.540161,
+          "scenario_sha256": "effaade31fa6765bb4dd24d0cf77e1deb6ac97c29e2cca5f5a293e91206cfd57"
+        }
+      ]
+    },
+    {
+      "construct": "poi_availability_service_evidence",
+      "decision": "calibration_template_accepted",
+      "reasons": [],
+      "variants_observed": [
+        "v0",
+        "v1"
+      ],
+      "items": [
+        {
+          "variant": "v0",
+          "scenario_id": "ci11n_poi__harbor_grid_v1_v0",
+          "decision": "accepted",
+          "reasons": [],
+          "oracle_task_completion": 1.0,
+          "matched_negative_headroom": 0.5,
+          "systems_observed": 6,
+          "mean_task": 0.666667,
+          "range": 0.5,
+          "corrected_item_total_correlation": 0.723392,
+          "scenario_sha256": "86134c3428e2f2338fa9565a9c0d76c67abc3937bcbec30c01db7703f1ffa95d"
+        },
+        {
+          "variant": "v1",
+          "scenario_id": "ci11n_poi__metro_radial_v1_v1",
+          "decision": "accepted",
+          "reasons": [],
+          "oracle_task_completion": 1.0,
+          "matched_negative_headroom": 0.5,
+          "systems_observed": 6,
+          "mean_task": 0.833333,
+          "range": 1.0,
+          "corrected_item_total_correlation": 0.437453,
+          "scenario_sha256": "6690854f1355676bfcddb995f6af8bc99f7a9aea6c1941ba63986a7f0b06be6d"
+        }
+      ]
+    },
+    {
+      "construct": "resource_budget_allocation",
+      "decision": "calibration_template_accepted",
+      "reasons": [],
+      "variants_observed": [
+        "v0",
+        "v1"
+      ],
+      "items": [
+        {
+          "variant": "v0",
+          "scenario_id": "ci11n_reso_suburb_polycentric_v1_v0",
+          "decision": "accepted",
+          "reasons": [],
+          "oracle_task_completion": 1.0,
+          "matched_negative_headroom": 0.5,
+          "systems_observed": 6,
+          "mean_task": 0.75,
+          "range": 0.5,
+          "corrected_item_total_correlation": 0.949099,
+          "scenario_sha256": "bdd6e57dc67787fab29fa205659cc5090fedfbb6932e08c295b6fbf782c07539"
+        },
+        {
+          "variant": "v1",
+          "scenario_id": "ci11n_reso_harbor_grid_v1_v1",
+          "decision": "accepted",
+          "reasons": [],
+          "oracle_task_completion": 1.0,
+          "matched_negative_headroom": 0.5,
+          "systems_observed": 6,
+          "mean_task": 0.583333,
+          "range": 1.0,
+          "corrected_item_total_correlation": 0.77518,
+          "scenario_sha256": "bf71ec581c4f79ea0fba77f2f6f36ed5c283f552ccf56133e1bb343c7f6dfb57"
+        }
+      ]
+    },
+    {
+      "construct": "social_coordination_copresence",
+      "decision": "calibration_template_accepted",
+      "reasons": [],
+      "variants_observed": [
+        "v0",
+        "v1"
+      ],
+      "items": [
+        {
+          "variant": "v0",
+          "scenario_id": "ci11n_soci_suburb_polycentric_v1_v0",
+          "decision": "accepted",
+          "reasons": [],
+          "oracle_task_completion": 1.0,
+          "matched_negative_headroom": 0.625,
+          "systems_observed": 6,
+          "mean_task": 0.791667,
+          "range": 0.625,
+          "corrected_item_total_correlation": 0.809258,
+          "scenario_sha256": "15db695e63cc83bc9e6597c743ae62f59707e8efe9d2c80925e96626e6b8ca7c"
+        },
+        {
+          "variant": "v1",
+          "scenario_id": "ci11n_soci_harbor_grid_v1_v1",
+          "decision": "accepted",
+          "reasons": [],
+          "oracle_task_completion": 1.0,
+          "matched_negative_headroom": 0.625,
+          "systems_observed": 6,
+          "mean_task": 0.6875,
+          "range": 0.625,
+          "corrected_item_total_correlation": 0.955759,
+          "scenario_sha256": "d793999058aa6da976be5b3b6b37cbf215c5e9c47bc0e904e5383251d1881ca9"
+        }
+      ]
+    },
+    {
+      "construct": "time_window_scheduling",
+      "decision": "calibration_template_accepted",
+      "reasons": [],
+      "variants_observed": [
+        "v0",
+        "v1"
+      ],
+      "items": [
+        {
+          "variant": "v0",
+          "scenario_id": "ci11n_time_metro_radial_v1_v0",
+          "decision": "accepted",
+          "reasons": [],
+          "oracle_task_completion": 1.0,
+          "matched_negative_headroom": 1.0,
+          "systems_observed": 6,
+          "mean_task": 0.666667,
+          "range": 0.5,
+          "corrected_item_total_correlation": 0.574078,
+          "scenario_sha256": "394c075ea23ef726eddf0e81e0ac08c664a8a7aa56950dad17db6cd4fab0cab2"
+        },
+        {
+          "variant": "v1",
+          "scenario_id": "ci11n_time_suburb_polycentric_v1_v1",
+          "decision": "accepted",
+          "reasons": [],
+          "oracle_task_completion": 1.0,
+          "matched_negative_headroom": 1.0,
+          "systems_observed": 6,
+          "mean_task": 0.583333,
+          "range": 0.5,
+          "corrected_item_total_correlation": 0.365414,
+          "scenario_sha256": "0d3b8cf10c129acdd61789a1244d81c390c8153d180f41ac53800b7076a1d9e9"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "scenario_id": "ci11_disr_commute_disruption_harbor_grid_v1_0",
+  "title": "Commute Disruption",
+  "world_id": "harbor_grid_v1",
+  "family": "disruption_recovery",
+  "episode": {
+    "start_time": "08:00",
+    "end_time": "09:20",
+    "max_steps": 8
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Commuter who prefers reliable routes and needs to reach work before a morning check-in.",
+      "start_location": "hgd_home_primary",
+      "budget": 8,
+      "private_intention": "Reach the office by 09:00 despite any transit disruption.",
+      "known_locations": [
+        "hgd_home_primary",
+        "hgd_transit_hub",
+        "hgd_office",
+        "hgd_gym",
+        "hgd_park"
+      ],
+      "memory_seeds": [
+        "The park route is slower but avoids the transit hub.",
+        "Morning hub congestion often affects the office route."
+      ]
+    }
+  ],
+  "public_context": "The fastest normal route goes through the transit hub.",
+  "events": [
+    {
+      "time": "08:15",
+      "type": "transit_delay",
+      "location": "hgd_transit_hub",
+      "visibility": "public",
+      "effect": {
+        "blocked_edge": [
+          "hgd_transit_hub",
+          "hgd_office"
+        ],
+        "until": "08:55"
+      }
+    }
+  ],
+  "critical_locations": [
+    "hgd_home_primary",
+    "hgd_transit_hub",
+    "hgd_office",
+    "hgd_gym",
+    "hgd_park"
+  ],
+  "success_conditions": [
+    {
+      "id": "reach_office_by_checkin",
+      "type": "visit_before",
+      "role": "outcome",
+      "agent": "aria",
+      "location": "hgd_office",
+      "deadline": "09:00",
+      "weight": 0.5
+    },
+    {
+      "id": "do_not_use_blocked_edge",
+      "type": "avoid_blocked_edge",
+      "role": "constraint",
+      "edge": [
+        "hgd_transit_hub",
+        "hgd_office"
+      ],
+      "time_window": [
+        "08:15",
+        "08:55"
+      ],
+      "weight": 0.25
+    },
+    {
+      "id": "recover_after_delay",
+      "type": "replan_after_event",
+      "role": "process",
+      "event_id": "transit_delay",
+      "weight": 0.25
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "process_success",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "travel_efficiency",
+    "intention_consistency"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Should find the shortest non-blocked path once the blocked edge is known, but may not model uncertainty before the event.",
+    "llm_direct_actor": "May continue describing the normal commute after the hub disruption appears.",
+    "reactive_replanner": "Should reroute immediately after observing the blocked edge.",
+    "memory_reflection": "Should remember that the park route is a reliable fallback and choose it without excessive dithering."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0",
+    "candidate_status": "pending_acceptance_gates",
+    "split": "examples",
+    "construct_family": "disruption_recovery",
+    "difficulty_tier": "easy",
+    "difficulty_status": "provisional_pending_baseline_calibration",
+    "template_id": "commute_disruption",
+    "instance_variant": 0,
+    "seed": 204992076019347,
+    "generator_version": "cityintent-scenariogen-1.0.0",
+    "source_version": "1.0-rc1",
+    "source_family": "disruption",
+    "source_perturbation_pair": null,
+    "world_visibility": "public"
+  }
+}

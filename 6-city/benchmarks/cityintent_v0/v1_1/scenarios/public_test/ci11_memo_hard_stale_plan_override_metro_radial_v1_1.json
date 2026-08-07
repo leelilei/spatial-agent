@@ -1,0 +1,138 @@
+{
+  "scenario_id": "ci11_memo_hard_stale_plan_override_metro_radial_v1_1",
+  "title": "The Plan Changed This Morning",
+  "world_id": "metro_radial_v1",
+  "family": "memory_conditioned_preference",
+  "episode": {
+    "start_time": "12:00",
+    "end_time": "13:30",
+    "max_steps": 11
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Friend whose old arrangement is stale.",
+      "start_location": "mtr_office",
+      "budget": 19,
+      "private_intention": "Meet Ben today — at whatever time and place is actually current, not the remembered one.",
+      "known_locations": [
+        "mtr_office",
+        "mtr_meeting_cafe",
+        "mtr_plaza",
+        "mtr_library",
+        "mtr_quiet_cafe"
+      ],
+      "memory_seeds": [
+        "Last week Ben said: plaza around 13:00.",
+        "Ben sometimes moves plans earlier and expects people to notice.",
+        "A remembered plan is not the current plan."
+      ]
+    },
+    {
+      "agent_id": "ben",
+      "persona": "Friend who moved the meeting earlier to the quiet cafe.",
+      "start_location": "mtr_quiet_cafe",
+      "budget": 18,
+      "private_intention": "See Aria at the quiet cafe before his 12:45 departure.",
+      "known_locations": [
+        "mtr_quiet_cafe"
+      ],
+      "memory_seeds": [
+        "Leaves 12:45."
+      ]
+    }
+  ],
+  "public_context": "A public notice at 12:05 moves the meeting earlier and elsewhere. Acting on memory alone misses it.",
+  "events": [
+    {
+      "time": "12:05",
+      "type": "meeting_update",
+      "location": "mtr_quiet_cafe",
+      "visibility": "public",
+      "effect": {
+        "note": "Ben announces: quiet cafe now, leaving 12:45; plaza 13:00 is cancelled."
+      }
+    }
+  ],
+  "critical_locations": [
+    "mtr_office",
+    "mtr_meeting_cafe",
+    "mtr_plaza",
+    "mtr_library",
+    "mtr_quiet_cafe"
+  ],
+  "success_conditions": [
+    {
+      "id": "confirm_with_ben",
+      "type": "send_message",
+      "role": "outcome",
+      "to": "ben",
+      "weight": 0.2
+    },
+    {
+      "id": "meet_ben_updated",
+      "type": "co_presence",
+      "role": "outcome",
+      "agents": [
+        "aria",
+        "ben"
+      ],
+      "location_any_of": [
+        "mtr_quiet_cafe"
+      ],
+      "time_window": [
+        "12:25",
+        "12:45"
+      ],
+      "weight": 0.4
+    },
+    {
+      "id": "stay_within_budget",
+      "type": "budget_at_least",
+      "role": "constraint",
+      "agent": "aria",
+      "min_remaining": 0,
+      "weight": 0.2
+    },
+    {
+      "id": "no_impossible_meeting_claim",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.2
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "social_appropriateness",
+    "intention_consistency",
+    "travel_efficiency"
+  ],
+  "architecture_probes": {
+    "utility_planner": "May execute the remembered plaza-13:00 plan and miss the real window.",
+    "llm_direct_actor": "May trust the memory seed over the 12:05 update.",
+    "reactive_replanner": "Should re-anchor on the update, confirm, and go immediately.",
+    "memory_reflection": "Must let fresh evidence override the stale seed."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0",
+    "candidate_status": "pending_acceptance_gates",
+    "split": "public_test",
+    "construct_family": "memory_conditioned_preference",
+    "difficulty_tier": "medium",
+    "difficulty_status": "provisional_pending_baseline_calibration",
+    "template_id": "hard_stale_plan_override",
+    "instance_variant": 1,
+    "seed": 129190047523029,
+    "generator_version": "cityintent-scenariogen-1.0.0",
+    "source_version": "1.0-rc1",
+    "source_family": "social_outcome_hard",
+    "source_perturbation_pair": null,
+    "world_visibility": "public",
+    "parameterization": "one_extra_step_and_three_extra_credits"
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "scenario_id": "ci11w4_mult_metro_radial_v1_v1",
+  "title": "Wave 4 Sequential Two Party Relay",
+  "world_id": "metro_radial_v1",
+  "family": "multi_party_commitment",
+  "episode": {
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "max_steps": 18
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "A resident executing a private urban intention.",
+      "start_location": "mtr_home_primary",
+      "budget": 0,
+      "private_intention": "Run a two-party relay in order. Message both partners, meet Ben inside mtr_office during 10:08-10:28 to collect the confirmation, then carry it to Casey inside mtr_plaza during 10:23-10:43 and finish before 10:53. Completing only one meeting, or reversing the relay order, fails the relay.",
+      "known_locations": [
+        "mtr_home_primary",
+        "mtr_home_friend",
+        "mtr_office",
+        "mtr_transit_hub",
+        "mtr_plaza",
+        "mtr_meeting_cafe",
+        "mtr_quiet_cafe",
+        "mtr_library",
+        "mtr_coworking",
+        "mtr_civic_service",
+        "mtr_park",
+        "mtr_gym",
+        "mtr_market",
+        "mtr_pharmacy",
+        "mtr_clinic",
+        "mtr_budget_food",
+        "mtr_school",
+        "mtr_culture",
+        "mtr_bookstore"
+      ],
+      "memory_seeds": []
+    },
+    {
+      "agent_id": "ben",
+      "persona": "The first relay partner.",
+      "start_location": "mtr_office",
+      "budget": 0,
+      "private_intention": "Complete the relay step with Aria at mtr_office.",
+      "known_locations": [
+        "mtr_office"
+      ],
+      "memory_seeds": []
+    },
+    {
+      "agent_id": "casey",
+      "persona": "The second relay partner.",
+      "start_location": "mtr_plaza",
+      "budget": 0,
+      "private_intention": "Complete the relay step with Aria at mtr_plaza.",
+      "known_locations": [
+        "mtr_plaza"
+      ],
+      "memory_seeds": []
+    }
+  ],
+  "public_context": "Only environment-observable action evidence counts as completion.",
+  "events": [
+    {
+      "time": "10:08",
+      "type": "relay_first_leg",
+      "location": "mtr_office",
+      "visibility": "public",
+      "effect": {
+        "agents_present": [
+          "ben"
+        ],
+        "relay_step": "collect_confirmation"
+      }
+    },
+    {
+      "time": "10:23",
+      "type": "relay_second_leg",
+      "location": "mtr_plaza",
+      "visibility": "public",
+      "effect": {
+        "agents_present": [
+          "casey"
+        ],
+        "relay_step": "deliver_confirmation"
+      }
+    }
+  ],
+  "critical_locations": [
+    "mtr_home_primary",
+    "mtr_office",
+    "mtr_plaza"
+  ],
+  "success_conditions": [
+    {
+      "id": "relay_order",
+      "type": "ordered_interaction_chain",
+      "role": "outcome",
+      "weight": 0.45,
+      "steps": [
+        {
+          "to": "ben",
+          "location": "mtr_office",
+          "time_window": [
+            "10:08",
+            "10:28"
+          ]
+        },
+        {
+          "to": "casey",
+          "location": "mtr_plaza",
+          "time_window": [
+            "10:23",
+            "10:43"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "relay_second_meeting",
+      "type": "co_presence",
+      "role": "outcome",
+      "weight": 0.2,
+      "agents": [
+        "aria",
+        "casey"
+      ],
+      "location_any_of": [
+        "mtr_plaza"
+      ],
+      "time_window": [
+        "10:23",
+        "10:43"
+      ]
+    },
+    {
+      "id": "relay_first_meeting",
+      "type": "co_presence",
+      "role": "outcome",
+      "weight": 0.15,
+      "agents": [
+        "aria",
+        "ben"
+      ],
+      "location_any_of": [
+        "mtr_office"
+      ],
+      "time_window": [
+        "10:08",
+        "10:28"
+      ]
+    },
+    {
+      "id": "finish_episode",
+      "type": "episode_complete_before",
+      "role": "constraint",
+      "weight": 0.1,
+      "deadline": "10:53"
+    },
+    {
+      "id": "legal_trace",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.1
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Must produce explicit outcome evidence.",
+    "llm_direct_actor": "May narrate success without the required action evidence.",
+    "reactive_replanner": "Must preserve the intention while updating the plan.",
+    "memory_reflection": "Must use relevant private memory without goal drift."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0-expansion-wave4",
+    "candidate_status": "mechanism_distinctness_review_pending",
+    "split": "calibration_public",
+    "construct_family": "multi_party_commitment",
+    "difficulty_tier": "hard",
+    "template_id": "wave4_sequential_two_party_relay",
+    "instance_variant": 1,
+    "seed": 242657592525281,
+    "generator_version": "cityintent-native-expansion-wave4-1.0.0-design-review",
+    "world_visibility": "public",
+    "observation_contract": "intent_only_v1",
+    "expose_verifier_conditions": false,
+    "mechanism_id": "sequential_two_party_relay",
+    "mechanism_parameter": "evidence from the first timed meeting must be carried into a later meeting with a second partner",
+    "parent_generator_version": "cityintent-native-pilot-6.0.0",
+    "mechanism_contract": {
+      "state_transition": "evidence from the first timed meeting must be carried into a later meeting with a second partner",
+      "required_actions": [
+        "message",
+        "interact",
+        "move",
+        "interact"
+      ],
+      "required_conditions": [
+        "ordered_interaction_chain",
+        "co_presence",
+        "episode_complete_before"
+      ],
+      "negative_failure": "complete only one meeting or reverse the relay order",
+      "novelty_against": {
+        "base": "not choosing one feasible social opportunity",
+        "wave2": "not dropping and renegotiating an overlap",
+        "wave3": "not public priority selection between competing commitments"
+      }
+    }
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "scenario_id": "ci11_time_hard_deadline_then_meet_harbor_grid_v1_0",
+  "title": "Deadline First, Meeting Second",
+  "world_id": "harbor_grid_v1",
+  "family": "time_window_scheduling",
+  "episode": {
+    "start_time": "12:00",
+    "end_time": "13:30",
+    "max_steps": 10
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Worker with a hard pickup deadline and a lunch promise.",
+      "start_location": "hgd_office",
+      "budget": 21,
+      "private_intention": "Collect the prescription before 12:35, then truly meet Ben at the quiet cafe in his window.",
+      "known_locations": [
+        "hgd_office",
+        "hgd_civic_service",
+        "hgd_market",
+        "hgd_pharmacy",
+        "hgd_library",
+        "hgd_quiet_cafe",
+        "hgd_park"
+      ],
+      "memory_seeds": [
+        "The pharmacy pickup closes at 12:35 sharp.",
+        "Ben is at the quiet cafe only after 13:00.",
+        "The quiet cafe is on the way to nothing — going there first wastes the deadline."
+      ]
+    },
+    {
+      "agent_id": "ben",
+      "persona": "Friend free only after one.",
+      "start_location": "hgd_quiet_cafe",
+      "budget": 18,
+      "private_intention": "See Aria after 13:00.",
+      "known_locations": [
+        "hgd_quiet_cafe"
+      ],
+      "memory_seeds": [
+        "Free after 13:00."
+      ]
+    }
+  ],
+  "public_context": "One task has a hard early deadline far away; the meeting opens late and nearby. Order is everything.",
+  "events": [],
+  "critical_locations": [
+    "hgd_office",
+    "hgd_civic_service",
+    "hgd_market",
+    "hgd_pharmacy",
+    "hgd_library",
+    "hgd_quiet_cafe",
+    "hgd_park"
+  ],
+  "success_conditions": [
+    {
+      "id": "prescription_by_deadline",
+      "type": "use_service_at",
+      "role": "outcome",
+      "agent": "aria",
+      "location": "hgd_pharmacy",
+      "service": "prescription_pickup",
+      "minutes": 5,
+      "deadline": "12:35",
+      "weight": 0.3
+    },
+    {
+      "id": "meet_ben",
+      "type": "co_presence",
+      "role": "outcome",
+      "agents": [
+        "aria",
+        "ben"
+      ],
+      "location_any_of": [
+        "hgd_quiet_cafe"
+      ],
+      "time_window": [
+        "13:00",
+        "13:15"
+      ],
+      "weight": 0.3
+    },
+    {
+      "id": "stay_within_budget",
+      "type": "budget_at_least",
+      "role": "constraint",
+      "agent": "aria",
+      "min_remaining": 0,
+      "weight": 0.2
+    },
+    {
+      "id": "no_impossible_meeting_claim",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.2
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "social_appropriateness",
+    "intention_consistency",
+    "travel_efficiency"
+  ],
+  "architecture_probes": {
+    "utility_planner": "May sort by distance and reach the pharmacy after the deadline.",
+    "llm_direct_actor": "May drift toward the meeting first because it is the social salient.",
+    "reactive_replanner": "Must do the far deadline first, then bridge the wait with a paid tea.",
+    "memory_reflection": "Should recall the 12:35 cutoff dominates the route."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0",
+    "candidate_status": "pending_acceptance_gates",
+    "split": "development",
+    "construct_family": "time_window_scheduling",
+    "difficulty_tier": "easy",
+    "difficulty_status": "provisional_pending_baseline_calibration",
+    "template_id": "hard_deadline_then_meet",
+    "instance_variant": 0,
+    "seed": 94650083615003,
+    "generator_version": "cityintent-scenariogen-1.0.0",
+    "source_version": "1.0-rc1",
+    "source_family": "social_outcome_hard",
+    "source_perturbation_pair": null,
+    "world_visibility": "public"
+  }
+}

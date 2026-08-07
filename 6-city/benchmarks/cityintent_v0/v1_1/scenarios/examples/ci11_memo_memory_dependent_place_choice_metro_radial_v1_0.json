@@ -1,0 +1,121 @@
+{
+  "scenario_id": "ci11_memo_memory_dependent_place_choice_metro_radial_v1_0",
+  "title": "Memory-Dependent Place Choice",
+  "world_id": "metro_radial_v1",
+  "family": "memory_conditioned_preference",
+  "episode": {
+    "start_time": "10:00",
+    "end_time": "12:00",
+    "max_steps": 7
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Freelancer choosing a morning work spot before meeting Ben.",
+      "start_location": "mtr_library",
+      "budget": 14,
+      "private_intention": "Choose a work spot with Wi-Fi and vegan food, then meet Ben without choosing a noisy location.",
+      "known_locations": [
+        "mtr_library",
+        "mtr_quiet_cafe",
+        "mtr_meeting_cafe",
+        "mtr_bookstore"
+      ],
+      "memory_seeds": [
+        "Metro Radial Quiet Cafe has vegan food, Wi-Fi, and low noise.",
+        "Metro Radial Meeting Cafe is closer to the office but often noisy."
+      ]
+    },
+    {
+      "agent_id": "ben",
+      "persona": "Friend who wants a quick quiet coffee.",
+      "start_location": "mtr_home_friend",
+      "budget": 16,
+      "private_intention": "Meet Aria somewhere quiet.",
+      "known_locations": [
+        "mtr_home_friend",
+        "mtr_quiet_cafe",
+        "mtr_meeting_cafe"
+      ],
+      "memory_seeds": [
+        "Aria usually prefers quiet work spaces."
+      ]
+    }
+  ],
+  "public_context": "Both cafes are open. The benchmark checks whether private memory changes place choice.",
+  "events": [],
+  "critical_locations": [
+    "mtr_library",
+    "mtr_quiet_cafe",
+    "mtr_meeting_cafe",
+    "mtr_bookstore"
+  ],
+  "success_conditions": [
+    {
+      "id": "choose_memory_matched_place",
+      "type": "visit_location",
+      "role": "outcome",
+      "location": "mtr_quiet_cafe",
+      "weight": 0.4
+    },
+    {
+      "id": "meet_ben_quietly",
+      "type": "co_presence",
+      "role": "outcome",
+      "agents": [
+        "aria",
+        "ben"
+      ],
+      "location_any_of": [
+        "mtr_quiet_cafe"
+      ],
+      "time_window": [
+        "10:30",
+        "11:45"
+      ],
+      "weight": 0.35
+    },
+    {
+      "id": "avoid_noisy_cafe",
+      "type": "avoid_when_possible",
+      "role": "constraint",
+      "avoid_locations": [
+        "mtr_meeting_cafe"
+      ],
+      "weight": 0.25
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "May choose the nearest or cheapest place and miss the memory-based vegan/noise preference.",
+    "llm_direct_actor": "May pick the more salient Metro Radial Meeting Cafe unless memory is explicitly used.",
+    "reactive_replanner": "Can satisfy the meeting but may not show memory-sensitive place choice.",
+    "memory_reflection": "Should retrieve the vegan Wi-Fi quiet memory and choose Metro Radial Quiet Cafe."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0",
+    "candidate_status": "pending_acceptance_gates",
+    "split": "examples",
+    "construct_family": "memory_conditioned_preference",
+    "difficulty_tier": "medium",
+    "difficulty_status": "provisional_pending_baseline_calibration",
+    "template_id": "memory_dependent_place_choice",
+    "instance_variant": 0,
+    "seed": 187824712051117,
+    "generator_version": "cityintent-scenariogen-1.0.0",
+    "source_version": "1.0-rc1",
+    "source_family": "memory",
+    "source_perturbation_pair": null,
+    "world_visibility": "public"
+  }
+}

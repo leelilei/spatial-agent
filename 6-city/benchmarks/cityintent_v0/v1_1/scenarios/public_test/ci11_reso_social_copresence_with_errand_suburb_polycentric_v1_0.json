@@ -1,0 +1,128 @@
+{
+  "scenario_id": "ci11_reso_social_copresence_with_errand_suburb_polycentric_v1_0",
+  "title": "Errand And Meeting",
+  "world_id": "suburb_polycentric_v1",
+  "family": "resource_budget_allocation",
+  "episode": {
+    "start_time": "17:00",
+    "end_time": "18:30",
+    "max_steps": 12
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Resident with an errand who also promised to meet a friend.",
+      "start_location": "spc_home_primary",
+      "budget": 18,
+      "private_intention": "Buy medicine at the pharmacy AND actually meet Casey at the market in-window; drop neither.",
+      "known_locations": [
+        "spc_home_primary",
+        "spc_gym",
+        "spc_park",
+        "spc_market",
+        "spc_pharmacy"
+      ],
+      "memory_seeds": [
+        "Casey is at the market this evening.",
+        "Finishing the errand does not excuse skipping the meeting."
+      ]
+    },
+    {
+      "agent_id": "casey",
+      "persona": "Friend at the market in the early evening.",
+      "start_location": "spc_market",
+      "budget": 12,
+      "private_intention": "See Aria if she makes it to the market.",
+      "known_locations": [
+        "spc_market"
+      ],
+      "memory_seeds": [
+        "Casey is by the market entrance."
+      ]
+    }
+  ],
+  "public_context": "A tidy errand can crowd out the meeting; both outcomes are required.",
+  "events": [],
+  "critical_locations": [
+    "spc_home_primary",
+    "spc_gym",
+    "spc_park",
+    "spc_market",
+    "spc_pharmacy"
+  ],
+  "success_conditions": [
+    {
+      "id": "buy_medicine",
+      "type": "buy_item",
+      "role": "outcome",
+      "location": "spc_pharmacy",
+      "item": "medicine",
+      "minutes": 5,
+      "weight": 0.25
+    },
+    {
+      "id": "meet_casey",
+      "type": "co_presence",
+      "role": "outcome",
+      "agents": [
+        "aria",
+        "casey"
+      ],
+      "location_any_of": [
+        "spc_market"
+      ],
+      "time_window": [
+        "17:20",
+        "18:05"
+      ],
+      "weight": 0.35
+    },
+    {
+      "id": "stay_within_budget",
+      "type": "budget_at_least",
+      "role": "constraint",
+      "agent": "aria",
+      "min_remaining": 0,
+      "weight": 0.2
+    },
+    {
+      "id": "no_impossible_meeting_claim",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.2
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "social_appropriateness",
+    "intention_consistency",
+    "travel_efficiency"
+  ],
+  "architecture_probes": {
+    "utility_planner": "May complete the errand and skip the social outcome.",
+    "llm_direct_actor": "May narrate seeing the friend without an accepted interaction.",
+    "reactive_replanner": "Should sequence errand and meeting without dropping either.",
+    "memory_reflection": "Should recall the meeting is also required."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0",
+    "candidate_status": "pending_acceptance_gates",
+    "split": "public_test",
+    "construct_family": "resource_budget_allocation",
+    "difficulty_tier": "hard",
+    "difficulty_status": "provisional_pending_baseline_calibration",
+    "template_id": "social_copresence_with_errand",
+    "instance_variant": 0,
+    "seed": 1163903446937,
+    "generator_version": "cityintent-scenariogen-1.0.0",
+    "source_version": "1.0-rc1",
+    "source_family": "social_outcome",
+    "source_perturbation_pair": null,
+    "world_visibility": "public"
+  }
+}

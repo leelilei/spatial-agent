@@ -1,0 +1,140 @@
+{
+  "scenario_id": "ci11w2_soci_metro_radial_v1_v2",
+  "title": "Wave 2 Confirmed Meeting Future Relocation",
+  "world_id": "metro_radial_v1",
+  "family": "social_coordination_copresence",
+  "episode": {
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "max_steps": 18
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "A resident executing a private urban intention.",
+      "start_location": "mtr_home_primary",
+      "budget": 100,
+      "private_intention": "Message Ben to confirm. Do not commit to the usual venue mtr_office: a public update at 10:30 will relocate the meeting. After seeing it, enter the updated venue and meet Ben during 10:49-10:59.",
+      "known_locations": [
+        "mtr_home_primary",
+        "mtr_home_friend",
+        "mtr_office",
+        "mtr_transit_hub",
+        "mtr_plaza",
+        "mtr_meeting_cafe",
+        "mtr_quiet_cafe",
+        "mtr_library",
+        "mtr_coworking",
+        "mtr_civic_service",
+        "mtr_park",
+        "mtr_gym",
+        "mtr_market",
+        "mtr_pharmacy",
+        "mtr_clinic",
+        "mtr_budget_food",
+        "mtr_school",
+        "mtr_culture",
+        "mtr_bookstore"
+      ],
+      "memory_seeds": []
+    },
+    {
+      "agent_id": "ben",
+      "persona": "A friend whose meeting venue changes.",
+      "start_location": "mtr_office",
+      "budget": 0,
+      "private_intention": "Meet Aria at the updated venue.",
+      "known_locations": [
+        "mtr_office",
+        "mtr_library"
+      ],
+      "memory_seeds": []
+    }
+  ],
+  "public_context": "Only environment-observable action evidence counts as completion.",
+  "events": [
+    {
+      "time": "10:30",
+      "type": "meeting_relocation",
+      "location": "mtr_library",
+      "visibility": "public",
+      "effect": {
+        "agents_present": [
+          "ben"
+        ],
+        "optional_social_opportunity_minutes": 29,
+        "supersedes_venue": "mtr_office"
+      }
+    }
+  ],
+  "critical_locations": [
+    "mtr_home_primary",
+    "mtr_office",
+    "mtr_library"
+  ],
+  "success_conditions": [
+    {
+      "id": "confirm",
+      "type": "send_message",
+      "role": "outcome",
+      "weight": 0.2,
+      "to": "ben"
+    },
+    {
+      "id": "relocated_meeting",
+      "type": "co_presence",
+      "role": "outcome",
+      "weight": 0.6,
+      "agents": [
+        "aria",
+        "ben"
+      ],
+      "location_any_of": [
+        "mtr_library"
+      ],
+      "time_window": [
+        "10:49",
+        "10:59"
+      ]
+    },
+    {
+      "id": "legal_trace",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.2
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Must produce explicit outcome evidence.",
+    "llm_direct_actor": "May narrate success without the required action evidence.",
+    "reactive_replanner": "Must preserve the intention while updating the plan.",
+    "memory_reflection": "Must use relevant private memory without goal drift."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0-expansion-wave2",
+    "candidate_status": "oracle_gate_pending",
+    "split": "calibration_public",
+    "construct_family": "social_coordination_copresence",
+    "difficulty_tier": "hard",
+    "template_id": "wave2_confirmed_meeting_future_relocation",
+    "instance_variant": 2,
+    "seed": 58402408517659,
+    "generator_version": "cityintent-native-expansion-wave2-1.0.0",
+    "world_visibility": "public",
+    "observation_contract": "intent_only_v1",
+    "expose_verifier_conditions": false,
+    "mechanism_id": "confirmed_meeting_future_relocation"
+  }
+}

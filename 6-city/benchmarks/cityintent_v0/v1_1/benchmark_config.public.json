@@ -1,0 +1,30 @@
+{
+  "benchmark_id": "cityintent",
+  "version": "1.1.0-candidate",
+  "status": "benchmark_candidate_under_construction",
+  "worlds": [
+    "worlds/public/harbor_grid_v1.json",
+    "worlds/public/metro_radial_v1.json",
+    "worlds/public/suburb_polycentric_v1.json"
+  ],
+  "scenario_dir": "scenarios",
+  "scenario_splits": ["examples", "development", "public_test"],
+  "agents_under_test": [
+    {"id": "utility_planner", "name": "UtilityPlannerAgent", "requires_llm": false},
+    {"id": "llm_direct_actor", "name": "LLMDirectActor", "requires_llm": true},
+    {"id": "reactive_replanner", "name": "ReactiveReplannerAgent", "requires_llm": true},
+    {"id": "memory_reflection", "name": "MemoryReflectionAgent", "requires_llm": true}
+  ],
+  "metrics": [
+    {"id": "task_completion"}, {"id": "constraint_satisfaction"},
+    {"id": "goal_completion"}, {"id": "process_success"},
+    {"id": "feasibility_violation"}, {"id": "replanning_success"},
+    {"id": "travel_efficiency"}, {"id": "budget_consistency"},
+    {"id": "intention_consistency"}, {"id": "social_appropriateness"}
+  ],
+  "validation": {
+    "min_scenarios": 96,
+    "required_agent_ids": ["utility_planner", "llm_direct_actor", "reactive_replanner", "memory_reflection"],
+    "required_metric_ids": ["task_completion", "constraint_satisfaction", "goal_completion", "feasibility_violation", "replanning_success", "travel_efficiency", "budget_consistency", "intention_consistency", "social_appropriateness"]
+  }
+}

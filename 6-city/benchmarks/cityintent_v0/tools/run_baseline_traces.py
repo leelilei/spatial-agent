@@ -12,8 +12,10 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import heapq
 import json
+import re
 import sys
 from collections import defaultdict
 from dataclasses import dataclass, field
@@ -37,6 +39,13 @@ def write_json(path: Path, value: Any) -> None:
     with path.open("w", encoding="utf-8", newline="\n") as f:
         json.dump(value, f, indent=2, ensure_ascii=False)
         f.write("\n")
+
+
+def canonical_sha256(value: Any) -> str:
+    payload = json.dumps(
+        value, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+    ).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
 
 
 def parse_time(value: str) -> int:
@@ -64,6 +73,7 @@ class Action:
     content: str = ""
     item: str = ""
     service: str = ""
+    query: str = ""
     reason: str = ""
     raw_response: str = ""
 
@@ -84,6 +94,7 @@ class TraceState:
     visits: list[dict[str, Any]] = field(default_factory=list)
     traversals: list[dict[str, Any]] = field(default_factory=list)
     dwell: dict[str, int] = field(default_factory=lambda: defaultdict(int))
+    dwell_records: list[dict[str, Any]] = field(default_factory=list)
     messages: list[dict[str, Any]] = field(default_factory=list)
     interactions: list[dict[str, Any]] = field(default_factory=list)
     route_interruptions: list[dict[str, Any]] = field(default_factory=list)
@@ -94,6 +105,7 @@ class TraceState:
     abandonments: list[dict[str, Any]] = field(default_factory=list)
     inside_location: str | None = None
     paid_services: set[str] = field(default_factory=set)
+    recollections: list[dict[str, Any]] = field(default_factory=list)
 
 
 class CityWorld:
@@ -214,6 +226,19 @@ class BasePolicy:
     def build_queue(self) -> list[str]:
         raise NotImplementedError
 
+    def verifier_conditions_visible(self) -> bool:
+        """Whether evaluator-side condition keys may enter actor observations.
+
+        Historical v1.0 scenarios default to visible for archive compatibility.
+        New benchmark items must explicitly use the blind intent-only contract.
+        """
+        metadata = self.scenario.get("benchmark_metadata", {})
+        return bool(metadata.get("expose_verifier_conditions", True))
+
+    def recall_required(self) -> bool:
+        metadata = self.scenario.get("benchmark_metadata", {})
+        return metadata.get("memory_access_contract") == "recall_required_v1"
+
     def next_action(self, state: TraceState) -> Action:
         raise NotImplementedError
 
@@ -252,7 +277,10 @@ class UtilityPlannerPolicy(BasePolicy):
             ctype = condition["type"]
             if ctype in {"visit_location", "visit_before"}:
                 queue.append(condition["location"])
-            elif ctype in {"buy_item", "use_service_at"}:
+            elif ctype in {
+                "buy_item", "purchase_at", "obtain_at", "use_service_at",
+                "service_after_recovery",
+            }:
                 queue.append(condition["location"])
             elif ctype == "visit_location_any_of":
                 queue.append(self.choose_from_candidates(condition["location_any_of"], pseudo_state))
@@ -293,6 +321,14 @@ class UtilityPlannerPolicy(BasePolicy):
     def next_condition_action(self, state: TraceState) -> Action | None:
         for condition in self.scenario["success_conditions"]:
             ctype = condition["type"]
+            if ctype == "recall_memory":
+                if len(state.recollections) >= int(condition.get("min_recalls", 1)):
+                    continue
+                return Action(
+                    "recall",
+                    query="relevant private preferences",
+                    reason="retrieve private memory before choosing a destination",
+                )
             if ctype == "buy_item":
                 target = condition["location"]
                 item = condition.get("item", "item")
@@ -308,6 +344,42 @@ class UtilityPlannerPolicy(BasePolicy):
                     minutes=int(condition.get("minutes", 5)),
                     reason="produce explicit purchase evidence",
                 )
+            if ctype == "purchase_at":
+                target = condition["location"]
+                if has_purchased(state, target):
+                    continue
+                access = self.access_action(state, target, "reach purchase location")
+                if access:
+                    return access
+                return Action(
+                    "buy",
+                    target=target,
+                    item="refreshment",
+                    minutes=int(condition.get("minutes", 5)),
+                    reason="produce explicit purchase evidence",
+                )
+            if ctype == "obtain_at":
+                target = condition["location"]
+                if condition_success(condition, state, self.scenario) >= 1.0:
+                    continue
+                access = self.access_action(state, target, "reach collection location")
+                if access:
+                    return access
+                if condition.get("service"):
+                    return Action(
+                        "use_service",
+                        target=target,
+                        service=condition["service"],
+                        minutes=int(condition.get("minutes", 5)),
+                        reason="obtain the required item through the location service",
+                    )
+                return Action(
+                    "buy",
+                    target=target,
+                    item=condition.get("item", "item"),
+                    minutes=int(condition.get("minutes", 5)),
+                    reason="obtain the required item",
+                )
             if ctype == "use_service_at":
                 target = condition["location"]
                 service = condition.get("service", "general_service")
@@ -322,6 +394,31 @@ class UtilityPlannerPolicy(BasePolicy):
                     service=service,
                     minutes=int(condition.get("minutes", 15)),
                     reason="produce explicit service evidence",
+                )
+            if ctype == "service_after_recovery":
+                target = condition["location"]
+                service = condition.get("service", "general_service")
+                if condition_success(condition, state, self.scenario) >= 1.0:
+                    continue
+                recovery = parse_time(condition["after"])
+                minutes = int(condition.get("minutes", 5))
+                # The outage makes the location closed until recovery, so waiting
+                # has to happen before entering rather than inside the venue.
+                if state.time + minutes < recovery:
+                    return Action(
+                        "dwell",
+                        minutes=max(1, recovery - state.time - minutes),
+                        reason="wait for the public outage-recovery update",
+                    )
+                access = self.access_action(state, target, "reach the recovered service")
+                if access:
+                    return access
+                return Action(
+                    "use_service",
+                    target=target,
+                    service=service,
+                    minutes=minutes,
+                    reason="produce service evidence after recovery",
                 )
             if ctype == "dwell_minutes":
                 candidates = condition.get("location_any_of") or [condition.get("location")]
@@ -573,6 +670,22 @@ class DirectActorOfflineProxy(BasePolicy):
                             minutes=5,
                             reason="complete salient purchase",
                         )
+                    if condition["type"] == "purchase_at":
+                        return Action(
+                            "buy",
+                            target=target,
+                            item="refreshment",
+                            minutes=5,
+                            reason="complete salient purchase",
+                        )
+                    if condition["type"] == "obtain_at":
+                        return Action(
+                            "use_service",
+                            target=target,
+                            service=condition.get("service", "collection"),
+                            minutes=5,
+                            reason="complete salient collection",
+                        )
                     if condition["type"] == "use_service_at":
                         return Action(
                             "use_service",
@@ -629,6 +742,8 @@ class DirectActorOfflineProxy(BasePolicy):
                 "visit_open_location",
                 "dwell_minutes",
                 "buy_item",
+                "purchase_at",
+                "obtain_at",
                 "use_service_at",
                 "co_presence",
             }
@@ -693,7 +808,7 @@ class APILLMDirectActor(BasePolicy):
             "You are a city-agent policy inside CityIntent. "
             "Choose exactly one next action for the primary agent. "
             "Return exactly one JSON object and no markdown. "
-            "Allowed kinds: move, enter, use_service, buy, dwell, message, interact, finish, abandon. "
+            "Allowed kinds: recall, move, enter, use_service, buy, dwell, message, interact, finish, abandon. "
             "Use only location ids and agent ids given in the observation."
         )
 
@@ -723,30 +838,43 @@ class APILLMDirectActor(BasePolicy):
             if event.get("visibility", "public") == "public"
             and parse_time(event["time"]) <= state.time
         ]
+        scenario_card = {
+            "id": self.scenario["scenario_id"],
+            "title": self.scenario["title"],
+            "family": self.scenario["family"],
+            "public_context": self.scenario.get("public_context", ""),
+        }
+        if self.verifier_conditions_visible():
+            scenario_card["success_conditions"] = self.scenario.get("success_conditions", [])
+        else:
+            scenario_card["evaluation_contract"] = (
+                "Scoring keys are hidden. Infer required outcomes from the private intention "
+                "and create environment-verifiable action evidence."
+            )
         return {
             "task": "Choose the next typed action for the primary city agent.",
             "response_schema": {
-                "kind": "move|enter|use_service|buy|dwell|message|interact|finish|abandon",
+                "kind": "recall|move|enter|use_service|buy|dwell|message|interact|finish|abandon",
                 "target": "location id for move/enter/use_service/buy, otherwise null",
                 "minutes": "integer minutes for use_service/buy/dwell/interact, otherwise 0",
                 "to": "agent id for message/interact, otherwise null",
                 "content": "message text if kind=message, otherwise empty string",
                 "item": "purchased item if kind=buy, otherwise empty string",
                 "service": "service used if kind=use_service, otherwise empty string",
+                "query": "memory query if kind=recall, otherwise empty string",
                 "reason": "short reason grounded in the observation",
             },
-            "scenario": {
-                "id": self.scenario["scenario_id"],
-                "title": self.scenario["title"],
-                "family": self.scenario["family"],
-                "public_context": self.scenario.get("public_context", ""),
-                "success_conditions": self.scenario.get("success_conditions", []),
-            },
+            "scenario": scenario_card,
             "primary_agent": {
                 "id": self.primary["agent_id"],
                 "persona": self.primary["persona"],
                 "private_intention": self.primary["private_intention"],
-                "memory_seeds": self.primary.get("memory_seeds", []),
+                "memory_seeds": [] if self.recall_required() else self.primary.get("memory_seeds", []),
+                "memory_access": (
+                    "Use a recall action to retrieve private memories."
+                    if self.recall_required()
+                    else "Private memories are visible directly."
+                ),
             },
             "current_state": {
                 "time": format_time(state.time),
@@ -764,6 +892,11 @@ class APILLMDirectActor(BasePolicy):
                 "route_interruptions": state.route_interruptions,
                 "verified_replans": state.replans,
                 "violations_so_far": state.violations,
+                "recalled_memories": [
+                    memory
+                    for record in state.recollections
+                    for memory in record.get("memories", [])
+                ],
             },
             "known_locations": location_cards,
             "visible_events": visible_events,
@@ -802,6 +935,7 @@ class APILLMDirectActor(BasePolicy):
         content = str(parsed.get("content", "") or "")
         item = str(parsed.get("item", "") or "")
         service = str(parsed.get("service", "") or "")
+        query = str(parsed.get("query", "") or "")
         reason = str(parsed.get("reason", "") or "")
         try:
             minutes = int(float(parsed.get("minutes", 0) or 0))
@@ -811,6 +945,13 @@ class APILLMDirectActor(BasePolicy):
             if target not in self.world.locations:
                 return Action("invalid_model_action", reason=f"unknown move target: {target}", raw_response=raw)
             return Action("move", target=target, reason=reason, raw_response=raw)
+        if kind == "recall":
+            return Action(
+                "recall",
+                query=query or content or "relevant private preferences",
+                reason=reason,
+                raw_response=raw,
+            )
         if kind == "enter":
             if target is not None and target not in self.world.locations:
                 return Action("invalid_model_action", reason=f"unknown enter target: {target}", raw_response=raw)
@@ -859,7 +1000,7 @@ class APILLMPlanThenAct(APILLMDirectActor):
             "You are a city-agent planner inside CityIntent. "
             "Create a short executable plan for the primary agent before the episode starts. "
             "Return exactly one JSON object with key plan, whose value is a list of action objects. "
-            "Allowed action kinds: move, enter, use_service, buy, dwell, message, interact, finish, abandon. "
+            "Allowed action kinds: recall, move, enter, use_service, buy, dwell, message, interact, finish, abandon. "
             "Use only location ids and agent ids from the scenario. "
             "Hard protocol: move only changes location; after move you must enter before dwell, use_service, buy, or interact. "
             "At paid venues, include use_service or buy before any dwell or interact action. "
@@ -886,6 +1027,12 @@ class APILLMPlanThenAct(APILLMDirectActor):
 
     def build_plan_observation(self) -> dict[str, Any]:
         start_time = parse_time(self.scenario["episode"]["start_time"])
+        visible_events = [
+            event
+            for event in self.scenario.get("events", [])
+            if event.get("visibility", "public") == "public"
+            and parse_time(event["time"]) <= start_time
+        ]
         known_locations = []
         for location_id in self.primary.get("known_locations", []):
             if location_id not in self.world.locations:
@@ -906,7 +1053,12 @@ class APILLMPlanThenAct(APILLMDirectActor):
                 }
             )
         social_recipes = []
-        for condition in self.scenario.get("success_conditions", []):
+        visible_conditions = (
+            self.scenario.get("success_conditions", [])
+            if self.verifier_conditions_visible()
+            else []
+        )
+        for condition in visible_conditions:
             if condition.get("type") != "co_presence":
                 continue
             social_recipes.append(
@@ -926,31 +1078,38 @@ class APILLMPlanThenAct(APILLMDirectActor):
                     "agents": condition.get("agents", []),
                 }
             )
+        scenario_card = {
+            "id": self.scenario["scenario_id"],
+            "title": self.scenario["title"],
+            "family": self.scenario["family"],
+            "public_context": self.scenario.get("public_context", ""),
+            "episode": self.scenario["episode"],
+            "events": visible_events,
+        }
+        if self.verifier_conditions_visible():
+            scenario_card["success_conditions"] = visible_conditions
+        else:
+            scenario_card["evaluation_contract"] = (
+                "Scoring keys are hidden. Plan from the private intention and public environment only."
+            )
         return {
             "task": "Make an initial plan. The plan will be executed later without replanning.",
             "response_schema": {
                 "plan": [
                     {
-                        "kind": "move|enter|use_service|buy|dwell|message|interact|finish|abandon",
+                        "kind": "recall|move|enter|use_service|buy|dwell|message|interact|finish|abandon",
                         "target": "location id for move/enter/use_service/buy, otherwise null",
                         "minutes": "integer minutes for use_service/buy/dwell/interact, otherwise 0",
                         "to": "agent id for message/interact, otherwise null",
                         "content": "message text if kind=message, otherwise empty string",
                         "item": "item name for buy",
                         "service": "service name for use_service",
+                        "query": "memory query for recall",
                         "reason": "short feasibility-aware reason",
                     }
                 ]
             },
-            "scenario": {
-                "id": self.scenario["scenario_id"],
-                "title": self.scenario["title"],
-                "family": self.scenario["family"],
-                "public_context": self.scenario.get("public_context", ""),
-                "episode": self.scenario["episode"],
-                "events": self.scenario.get("events", []),
-                "success_conditions": self.scenario.get("success_conditions", []),
-            },
+            "scenario": scenario_card,
             "hard_protocol_guidance": [
                 "A plan with dwell or interact at a paid location before use_service/buy will be infeasible.",
                 "A plan with interact before enter will be infeasible.",
@@ -964,7 +1123,12 @@ class APILLMPlanThenAct(APILLMDirectActor):
                 "private_intention": self.primary["private_intention"],
                 "start_location": self.primary["start_location"],
                 "budget": self.primary["budget"],
-                "memory_seeds": self.primary.get("memory_seeds", []),
+                "memory_seeds": [] if self.recall_required() else self.primary.get("memory_seeds", []),
+                "memory_access": (
+                    "A recall action retrieves private memories during execution; this initial plan will not be replanned afterward."
+                    if self.recall_required()
+                    else "Private memories are visible directly."
+                ),
             },
             "known_locations": known_locations,
             "other_agents": [
@@ -1014,7 +1178,12 @@ class APILLMReactiveReplanner(APILLMDirectActor):
     def build_observation(self, state: TraceState) -> dict[str, Any]:
         observation = super().build_observation(state)
         condition_status = []
-        for condition in self.scenario["success_conditions"]:
+        visible_conditions = (
+            self.scenario["success_conditions"]
+            if self.verifier_conditions_visible()
+            else []
+        )
+        for condition in visible_conditions:
             condition_status.append(
                 {
                     "id": condition["id"],
@@ -1042,7 +1211,7 @@ class APILLMReactiveReplanner(APILLMDirectActor):
             "failure_taxonomy_so_far": failure_taxonomy_counts(state),
         }
         observation["action_guidance"] = [
-            "First satisfy unfinished_conditions, not just salient text.",
+            "Satisfy the private intention using observable evidence, not just salient text.",
             "If violated_prior_actions is non-empty, choose a different feasible route or goal strategy.",
             "If a disruption makes the original path impossible, replan around it.",
             "If remaining time or budget makes a goal impossible, stop false continuation and choose finish with an honest reason.",
@@ -1064,7 +1233,7 @@ class APILLMReActToolPolicy(APILLMDirectActor):
             "Use either {\"thought\": \"...\", \"action\": {...}} or a direct action object. "
             "If react_state.required_next_action is not null, choose that action exactly "
             "unless it is impossible under the current observation. "
-            "The action must use one allowed kind: move, enter, use_service, buy, dwell, "
+            "The action must use one allowed kind: recall, move, enter, use_service, buy, dwell, "
             "message, interact, finish, abandon. "
             "Never claim that a meeting, purchase, service, or entry happened unless "
             "the previous environment state already contains that evidence."
@@ -1100,6 +1269,9 @@ class APILLMReActToolPolicy(APILLMDirectActor):
                     "target": state.location,
                     "reason": "repair the previous invalid action by entering the current venue before dwell/interact",
                 }
+
+        if not self.verifier_conditions_visible():
+            return None
 
         for condition in self.scenario["success_conditions"]:
             if condition.get("type") != "co_presence":
@@ -1150,7 +1322,12 @@ class APILLMReActToolPolicy(APILLMDirectActor):
     def build_observation(self, state: TraceState) -> dict[str, Any]:
         observation = super().build_observation(state)
         condition_status = []
-        for condition in self.scenario["success_conditions"]:
+        visible_conditions = (
+            self.scenario["success_conditions"]
+            if self.verifier_conditions_visible()
+            else []
+        )
+        for condition in visible_conditions:
             condition_status.append(
                 {
                     "id": condition["id"],
@@ -1170,6 +1347,7 @@ class APILLMReActToolPolicy(APILLMDirectActor):
             "last_observation": self._last_observation(state),
             "available_tools": {
                 "move": "travel to a known location by id; does not enter or complete tasks",
+                "recall": "retrieve private memories relevant to a query; inspect them in the next observation",
                 "enter": "enter current or target POI when open",
                 "use_service": "use a service at an entered POI and create service evidence",
                 "buy": "buy an item at an entered POI and create purchase evidence",
@@ -1186,7 +1364,7 @@ class APILLMReActToolPolicy(APILLMDirectActor):
         observation["action_guidance"] = [
             "If react_state.required_next_action is present, return it as the next action.",
             "Follow a thought-action-observation loop: do not skip the city action that would create evidence.",
-            "Prefer actions that create missing evidence for unfinished_conditions.",
+            "Prefer actions that create missing evidence for the private intention.",
             "For social goals, message can coordinate but only interact can create accepted co-presence evidence.",
             "Before interact, enter the shared venue; moving to the venue is not enough.",
             "Check co_presence time_window values; if early, enter then dwell/wait until the window before interacting.",
@@ -1292,10 +1470,19 @@ def has_entered(state: TraceState, location: str) -> bool:
     return state.inside_location == location or has_visited(state, location)
 
 
+def normalize_evidence_label(value: Any) -> str:
+    """Normalize formatting variants without collapsing semantic distinctions."""
+    return "_".join(part for part in re.split(r"[^a-z0-9]+", str(value or "").lower()) if part)
+
+
 def has_used_service(state: TraceState, location: str, service: str | None = None) -> bool:
     return any(
         record["location"] == location
-        and (service is None or record.get("service") == service)
+        and (
+            service is None
+            or normalize_evidence_label(record.get("service"))
+            == normalize_evidence_label(service)
+        )
         for record in state.services
     )
 
@@ -1303,9 +1490,40 @@ def has_used_service(state: TraceState, location: str, service: str | None = Non
 def has_purchased(state: TraceState, location: str, item: str | None = None) -> bool:
     return any(
         record["location"] == location
-        and (item is None or record.get("item") == item)
+        and (
+            item is None
+            or normalize_evidence_label(record.get("item"))
+            == normalize_evidence_label(item)
+        )
         for record in state.purchases
     )
+
+
+def service_after_recovery_records(
+    condition: dict[str, Any], state: TraceState
+) -> list[dict[str, Any]]:
+    """Service evidence produced only once an outage has recovered.
+
+    The service record time is the completion time of the action, so a service
+    that recovers at ``after`` must complete at or later than that instant and
+    no later than an optional ``deadline``.
+    """
+    after = parse_time(condition["after"])
+    records = [
+        record
+        for record in state.services
+        if record["location"] == condition["location"]
+        and int(record["time"]) >= after
+        and (
+            not condition.get("service")
+            or normalize_evidence_label(record.get("service"))
+            == normalize_evidence_label(condition["service"])
+        )
+    ]
+    if condition.get("deadline"):
+        deadline = parse_time(condition["deadline"])
+        records = [record for record in records if int(record["time"]) <= deadline]
+    return records
 
 
 def matching_copresence_interactions(
@@ -1504,6 +1722,7 @@ def action_plausibility(action: dict[str, Any]) -> float:
     if kind in {"unknown_action", "invalid_model_action"}:
         return 0.0
     if kind not in {
+        "recall",
         "move",
         "enter",
         "use_service",
@@ -1569,7 +1788,21 @@ def execute_action(world: CityWorld, scenario: dict[str, Any], state: TraceState
         "action": action.__dict__,
     }
 
-    if action.kind == "move" and action.target:
+    if action.kind == "recall":
+        primary = next(
+            agent
+            for agent in scenario["agents"]
+            if agent["agent_id"] == scenario["primary_agent"]
+        )
+        state.time += max(1, action.minutes or 1)
+        state.recollections.append(
+            {
+                "time": state.time,
+                "query": action.query,
+                "memories": list(primary.get("memory_seeds", [])),
+            }
+        )
+    elif action.kind == "move" and action.target:
         invalid_explicit_path = False
         if action.path:
             path = list(action.path)
@@ -1727,6 +1960,7 @@ def execute_action(world: CityWorld, scenario: dict[str, Any], state: TraceState
                     )
     elif action.kind == "dwell":
         minutes = max(1, action.minutes)
+        start_time = state.time
         state.time += minutes
         if state.inside_location != state.location:
             append_violation(
@@ -1744,6 +1978,12 @@ def execute_action(world: CityWorld, scenario: dict[str, Any], state: TraceState
             )
         else:
             state.dwell[state.location] += minutes
+            state.dwell_records.append({
+                "location": state.location,
+                "start_time": start_time,
+                "end_time": state.time,
+                "minutes": minutes,
+            })
             record_visit(state, state.location, state.time, kind="dwell")
             if state.location == "coworking" and state.dwell[state.location] >= 45:
                 state.completed_work = True
@@ -1860,10 +2100,60 @@ def condition_success(condition: dict[str, Any], state: TraceState, scenario: di
         locations = condition.get("location_any_of") or [condition.get("location")]
         dwell = sum(state.dwell.get(loc, 0) for loc in locations)
         return float(dwell >= condition["min_minutes"])
+    if ctype == "dwell_within_window":
+        start, end = [parse_time(value) for value in condition["time_window"]]
+        locations = set(condition.get("location_any_of") or [condition["location"]])
+        covered = sum(
+            max(0, min(int(record["end_time"]), end) - max(int(record["start_time"]), start))
+            for record in state.dwell_records
+            if record["location"] in locations
+        )
+        return float(covered >= int(condition["min_minutes"]))
     if ctype == "buy_item":
         return float(
             has_purchased(state, condition["location"], condition.get("item"))
         )
+    if ctype == "purchase_at":
+        return float(has_purchased(state, condition["location"]))
+    if ctype == "purchase_after_time":
+        after = parse_time(condition["after"])
+        return float(
+            any(
+                record["location"] == condition["location"]
+                and int(record.get("time", -1)) >= after
+                and (
+                    not condition.get("item")
+                    or normalize_evidence_label(record.get("item"))
+                    == normalize_evidence_label(condition["item"])
+                )
+                for record in state.purchases
+            )
+        )
+    if ctype == "obtain_at":
+        records = [
+            record
+            for record in state.purchases
+            if record["location"] == condition["location"]
+            and (
+                not condition.get("item")
+                or normalize_evidence_label(record.get("item"))
+                == normalize_evidence_label(condition["item"])
+            )
+        ]
+        records.extend(
+            record
+            for record in state.services
+            if record["location"] == condition["location"]
+            and (
+                not condition.get("service")
+                or normalize_evidence_label(record.get("service"))
+                == normalize_evidence_label(condition["service"])
+            )
+        )
+        if condition.get("deadline"):
+            deadline = parse_time(condition["deadline"])
+            records = [record for record in records if int(record["time"]) <= deadline]
+        return float(bool(records))
     if ctype == "use_service_at":
         records = [
             record
@@ -1871,13 +2161,16 @@ def condition_success(condition: dict[str, Any], state: TraceState, scenario: di
             if record["location"] == condition["location"]
             and (
                 not condition.get("service")
-                or record.get("service") == condition["service"]
+                or normalize_evidence_label(record.get("service"))
+                == normalize_evidence_label(condition["service"])
             )
         ]
         if condition.get("deadline"):
             deadline = parse_time(condition["deadline"])
             records = [record for record in records if int(record["time"]) <= deadline]
         return float(bool(records))
+    if ctype == "service_after_recovery":
+        return float(bool(service_after_recovery_records(condition, state)))
     if ctype == "co_presence":
         return float(bool(matching_copresence_interactions(condition, state)))
     if ctype == "budget_at_least":
@@ -1907,6 +2200,111 @@ def condition_success(condition: dict[str, Any], state: TraceState, scenario: di
         )
     if ctype == "send_message":
         return float(any(msg.get("to") == condition["to"] for msg in state.messages))
+    if ctype == "send_message_after":
+        after = parse_time(condition["after"])
+        return float(
+            any(
+                msg.get("to") == condition["to"] and int(msg.get("time", -1)) >= after
+                for msg in state.messages
+            )
+        )
+    if ctype == "message_before_interaction":
+        recipient = condition["to"]
+        message_times = [
+            int(msg.get("time", -1))
+            for msg in state.messages
+            if msg.get("to") == recipient
+        ]
+        interaction_times = [
+            int(interaction.get("start_time", interaction.get("time", -1)))
+            for interaction in state.interactions
+            if interaction.get("with") == recipient
+        ]
+        return float(
+            bool(message_times)
+            and bool(interaction_times)
+            and min(message_times) <= min(interaction_times)
+        )
+    if ctype == "ordered_service_chain":
+        cursor = -1
+        for step in condition["steps"]:
+            matches = [
+                record for record in state.services
+                if int(record["time"]) > cursor
+                and record["location"] == step["location"]
+                and (
+                    not step.get("service")
+                    or normalize_evidence_label(record.get("service"))
+                    == normalize_evidence_label(step["service"])
+                )
+            ]
+            if not matches:
+                return 0.0
+            cursor = min(int(record["time"]) for record in matches)
+        return 1.0
+    if ctype == "handoff_evidence":
+        purchases = [
+            record for record in state.purchases
+            if record["location"] == condition["item_location"]
+            and (
+                not condition.get("item")
+                or normalize_evidence_label(record.get("item"))
+                == normalize_evidence_label(condition["item"])
+            )
+        ]
+        interactions = [
+            record for record in state.interactions
+            if record.get("with") == condition["to"]
+            and (
+                not condition.get("interaction_location")
+                or record.get("location") == condition["interaction_location"]
+            )
+        ]
+        return float(any(
+            int(purchase["time"]) <= int(interaction["start_time"])
+            for purchase in purchases for interaction in interactions
+        ))
+    if ctype == "ordered_interaction_chain":
+        cursor = -1
+        for step in condition["steps"]:
+            matches = [
+                record for record in state.interactions
+                if int(record["start_time"]) > cursor
+                and record.get("with") == step["to"]
+                and (not step.get("location") or record.get("location") == step["location"])
+            ]
+            if step.get("time_window"):
+                start, end = [parse_time(value) for value in step["time_window"]]
+                matches = [record for record in matches if start <= int(record["start_time"]) and int(record["end_time"]) <= end]
+            if not matches:
+                return 0.0
+            cursor = min(int(record["start_time"]) for record in matches)
+        return 1.0
+    if ctype == "ordered_evidence_chain":
+        evidence = []
+        evidence.extend({"kind": "buy", **record} for record in state.purchases)
+        evidence.extend({"kind": "use_service", **record} for record in state.services)
+        evidence.extend({"kind": "interact", **record} for record in state.interactions)
+        cursor = -1
+        for step in condition["steps"]:
+            matches = [
+                record for record in evidence
+                if record["kind"] == step["kind"]
+                and int(record.get("start_time", record["time"])) > cursor
+                and (not step.get("location") or record.get("location") == step["location"])
+                and (not step.get("to") or record.get("with") == step["to"])
+                and (
+                    not step.get("label")
+                    or normalize_evidence_label(record.get("item") or record.get("service"))
+                    == normalize_evidence_label(step["label"])
+                )
+            ]
+            if not matches:
+                return 0.0
+            cursor = min(int(record.get("start_time", record["time"])) for record in matches)
+        return 1.0
+    if ctype == "recall_memory":
+        return float(len(state.recollections) >= int(condition.get("min_recalls", 1)))
     if ctype == "no_infeasible_social_commitment":
         accepted = any("come to the theatre" in msg.get("content", "").lower() for msg in state.messages)
         return float(not accepted and not any(v["kind"] == "budget_negative" for v in state.violations))
@@ -1927,8 +2325,43 @@ def condition_evidence(condition: dict[str, Any], state: TraceState) -> list[dic
             record
             for record in state.purchases
             if record["location"] == condition["location"]
-            and (not condition.get("item") or record.get("item") == condition["item"])
+            and (
+                not condition.get("item")
+                or normalize_evidence_label(record.get("item"))
+                == normalize_evidence_label(condition["item"])
+            )
         ]
+    if ctype == "purchase_at":
+        return [
+            record
+            for record in state.purchases
+            if record["location"] == condition["location"]
+        ]
+    if ctype == "obtain_at":
+        records = [
+            {"evidence_kind": "purchase", **record}
+            for record in state.purchases
+            if record["location"] == condition["location"]
+            and (
+                not condition.get("item")
+                or normalize_evidence_label(record.get("item"))
+                == normalize_evidence_label(condition["item"])
+            )
+        ]
+        records.extend(
+            {"evidence_kind": "service", **record}
+            for record in state.services
+            if record["location"] == condition["location"]
+            and (
+                not condition.get("service")
+                or normalize_evidence_label(record.get("service"))
+                == normalize_evidence_label(condition["service"])
+            )
+        )
+        if condition.get("deadline"):
+            deadline = parse_time(condition["deadline"])
+            records = [record for record in records if int(record["time"]) <= deadline]
+        return records
     if ctype == "visit_open_location":
         start, end = [parse_time(value) for value in condition["time_window"]]
         return [
@@ -1944,13 +2377,16 @@ def condition_evidence(condition: dict[str, Any], state: TraceState) -> list[dic
             if record["location"] == condition["location"]
             and (
                 not condition.get("service")
-                or record.get("service") == condition["service"]
+                or normalize_evidence_label(record.get("service"))
+                == normalize_evidence_label(condition["service"])
             )
         ]
         if condition.get("deadline"):
             deadline = parse_time(condition["deadline"])
             records = [record for record in records if int(record["time"]) <= deadline]
         return records
+    if ctype == "service_after_recovery":
+        return service_after_recovery_records(condition, state)
     if ctype == "dwell_minutes":
         locations = condition.get("location_any_of") or [condition.get("location")]
         return [
@@ -1960,6 +2396,8 @@ def condition_evidence(condition: dict[str, Any], state: TraceState) -> list[dic
         ]
     if ctype == "co_presence":
         return matching_copresence_interactions(condition, state)
+    if ctype == "recall_memory":
+        return list(state.recollections)
     if ctype == "replan_after_event":
         event_id = condition.get("event_id")
         return [
@@ -2087,6 +2525,7 @@ def score_trace(world: CityWorld, scenario: dict[str, Any], state: TraceState) -
             "abandonments": state.abandonments,
             "route_interruptions": state.route_interruptions,
             "replans": state.replans,
+            "recollections": state.recollections,
             "violations": state.violations,
         },
     }
@@ -2186,10 +2625,12 @@ def run_trace(world: CityWorld, scenario: dict[str, Any], agent_type: str, llm_c
     }
 
 
-def load_worlds(config: dict[str, Any]) -> dict[str, CityWorld]:
+def load_worlds(
+    config: dict[str, Any], config_root: Path = ROOT
+) -> dict[str, CityWorld]:
     worlds = {}
     for world_ref in config["worlds"]:
-        raw = load_json(ROOT / world_ref)
+        raw = load_json(config_root / world_ref)
         worlds[raw["world_id"]] = CityWorld(raw)
     return worlds
 
@@ -2218,7 +2659,11 @@ def refresh_derived_feasibility(result: dict[str, Any]) -> None:
     )
 
 
-def write_outputs(results: list[dict[str, Any]], results_dir: Path) -> None:
+def write_outputs(
+    results: list[dict[str, Any]],
+    results_dir: Path,
+    benchmark_version: str | None = None,
+) -> None:
     for result in results:
         refresh_derived_feasibility(result)
     results_dir.mkdir(parents=True, exist_ok=True)
@@ -2347,9 +2792,10 @@ def write_outputs(results: list[dict[str, Any]], results_dir: Path) -> None:
                 if (r.get("model_info") or {}).get("integration_level")
             }
         )
-        benchmark_version = load_json(ROOT / "benchmark_config.json").get(
-            "version", "0"
-        )
+        if benchmark_version is None:
+            benchmark_version = load_json(ROOT / "benchmark_config.json").get(
+                "version", "0"
+            )
         f.write(f"# CityIntent v{benchmark_version} Trace Results\n\n")
         if has_api:
             f.write("This run includes `api_llm_*` agents, which call a configured real model provider.\n\n")
@@ -2391,6 +2837,12 @@ def write_outputs(results: list[dict[str, Any]], results_dir: Path) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--benchmark-config",
+        type=Path,
+        default=ROOT / "benchmark_config.json",
+        help="Benchmark configuration to load. Relative world/scenario paths are resolved from its directory.",
+    )
     parser.add_argument(
         "--agents",
         default="utility_planner,llm_direct_actor,reactive_replanner,memory_reflection",
@@ -2450,14 +2902,33 @@ def main() -> int:
     if any(agent.startswith("api_llm_") or agent in llm_agents for agent in requested_agents) and args.llm_config is None:
         raise SystemExit("--llm-config is required when running API-backed or adapted external agents")
 
-    config = load_json(ROOT / "benchmark_config.json")
-    worlds = load_worlds(config)
-    scenarios = [load_json(path) for path in sorted((ROOT / config["scenario_dir"]).glob("*.json"))]
+    benchmark_config_path = args.benchmark_config.resolve()
+    config_root = benchmark_config_path.parent
+    config = load_json(benchmark_config_path)
+    worlds = load_worlds(config, config_root)
+    scenario_root = config_root / config["scenario_dir"]
+    scenario_paths = (
+        sorted(
+            path
+            for split in config["scenario_splits"]
+            for path in (scenario_root / split).rglob("*.json")
+        )
+        if config.get("scenario_splits")
+        else sorted(scenario_root.rglob("*.json"))
+    )
+    scenarios = [load_json(path) for path in scenario_paths]
     scenario_ids = {item.strip() for item in args.scenario_ids.split(",") if item.strip()}
     if scenario_ids:
         scenarios = [scenario for scenario in scenarios if scenario["scenario_id"] in scenario_ids]
     if args.limit_scenarios is not None:
         scenarios = scenarios[: args.limit_scenarios]
+    scenario_hashes = {
+        scenario["scenario_id"]: canonical_sha256(scenario) for scenario in scenarios
+    }
+    scenario_matrix_hash = canonical_sha256(scenario_hashes)
+    world_hashes = {
+        world_id: canonical_sha256(world.world) for world_id, world in worlds.items()
+    }
 
     llm_config = load_json(args.llm_config) if args.llm_config else None
     if llm_config:
@@ -2475,6 +2946,11 @@ def main() -> int:
     started_at = prior_manifest.get(
         "timestamp", datetime.now().astimezone().isoformat(timespec="seconds")
     )
+    prior_matrix_hash = prior_manifest.get("scenario_matrix_sha256")
+    if prior_matrix_hash and prior_matrix_hash != scenario_matrix_hash:
+        raise SystemExit(
+            "Cannot resume: scenario content changed since the archive was created"
+        )
 
     results: list[dict[str, Any]] = []
     if args.resume and traces_path.exists():
@@ -2507,9 +2983,14 @@ def main() -> int:
             "status": status,
             "benchmark_id": config["benchmark_id"],
             "benchmark_version": config["version"],
+            "benchmark_config_path": str(benchmark_config_path),
             "runner": str(Path(__file__).resolve()),
             "agents": requested_agents,
             "scenario_ids": [scenario["scenario_id"] for scenario in scenarios],
+            "scenario_sha256": scenario_hashes,
+            "scenario_matrix_sha256": scenario_matrix_hash,
+            "world_sha256": world_hashes,
+            "benchmark_config_sha256": canonical_sha256(config),
             "llm_config_path": str(args.llm_config) if args.llm_config else None,
             "llm_config": llm_config,
             "results_dir": str(results_dir),
@@ -2538,10 +3019,10 @@ def main() -> int:
                 raise
             results.append(result)
             completed.add(key)
-            write_outputs(results, results_dir)
+            write_outputs(results, results_dir, config.get("version", "0"))
             write_run_manifest("running")
     if results:
-        write_outputs(results, results_dir)
+        write_outputs(results, results_dir, config.get("version", "0"))
     write_run_manifest("complete")
     print(f"Wrote {len(results)} traces to {args.results_dir}")
     return 0

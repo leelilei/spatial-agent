@@ -1,0 +1,28 @@
+{
+  "benchmark_id": "cityintent_v1_1_expansion_wave3",
+  "version": "1.1.0-expansion-wave3",
+  "status": "mechanism_distinctness_review_pending_not_release",
+  "worlds": [
+    "../../worlds/public/harbor_grid_v1.json",
+    "../../worlds/public/metro_radial_v1.json",
+    "../../worlds/public/suburb_polycentric_v1.json"
+  ],
+  "scenario_dir": "scenarios",
+  "agents_under_test": [
+    {
+      "id": "utility_planner"
+    },
+    {
+      "id": "llm_direct_actor"
+    },
+    {
+      "id": "reactive_replanner"
+    },
+    {
+      "id": "memory_reflection"
+    }
+  ],
+  "validation": {
+    "min_scenarios": 24
+  }
+}

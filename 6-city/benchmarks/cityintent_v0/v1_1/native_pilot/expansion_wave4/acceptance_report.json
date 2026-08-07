@@ -1,0 +1,271 @@
+{
+  "scenario_count": 24,
+  "pass_count": 24,
+  "all_passed": true,
+  "results": [
+    {
+      "scenario_id": "ci11w4_comp_harbor_grid_v1_v2",
+      "construct_family": "compound_long_horizon",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.333,
+      "negative_trace_feasibility": 1.0,
+      "headroom": 0.667
+    },
+    {
+      "scenario_id": "ci11w4_comp_metro_radial_v1_v0",
+      "construct_family": "compound_long_horizon",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.333,
+      "negative_trace_feasibility": 1.0,
+      "headroom": 0.667
+    },
+    {
+      "scenario_id": "ci11w4_comp_suburb_polycentric_v1_v1",
+      "construct_family": "compound_long_horizon",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.333,
+      "negative_trace_feasibility": 1.0,
+      "headroom": 0.667
+    },
+    {
+      "scenario_id": "ci11w4_disr_harbor_grid_v1_v0",
+      "construct_family": "disruption_recovery",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.0,
+      "negative_trace_feasibility": 0.667,
+      "headroom": 1.0
+    },
+    {
+      "scenario_id": "ci11w4_disr_metro_radial_v1_v1",
+      "construct_family": "disruption_recovery",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.0,
+      "negative_trace_feasibility": 0.667,
+      "headroom": 1.0
+    },
+    {
+      "scenario_id": "ci11w4_disr_suburb_polycentric_v1_v2",
+      "construct_family": "disruption_recovery",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.0,
+      "negative_trace_feasibility": 0.667,
+      "headroom": 1.0
+    },
+    {
+      "scenario_id": "ci11w4_memo_harbor_grid_v1_v2",
+      "construct_family": "memory_conditioned_preference",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.0,
+      "negative_trace_feasibility": 1.0,
+      "headroom": 1.0
+    },
+    {
+      "scenario_id": "ci11w4_memo_metro_radial_v1_v0",
+      "construct_family": "memory_conditioned_preference",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.0,
+      "negative_trace_feasibility": 1.0,
+      "headroom": 1.0
+    },
+    {
+      "scenario_id": "ci11w4_memo_suburb_polycentric_v1_v1",
+      "construct_family": "memory_conditioned_preference",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.0,
+      "negative_trace_feasibility": 1.0,
+      "headroom": 1.0
+    },
+    {
+      "scenario_id": "ci11w4_mult_harbor_grid_v1_v0",
+      "construct_family": "multi_party_commitment",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.187,
+      "negative_trace_feasibility": 1.0,
+      "headroom": 0.813
+    },
+    {
+      "scenario_id": "ci11w4_mult_metro_radial_v1_v1",
+      "construct_family": "multi_party_commitment",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.187,
+      "negative_trace_feasibility": 1.0,
+      "headroom": 0.813
+    },
+    {
+      "scenario_id": "ci11w4_mult_suburb_polycentric_v1_v2",
+      "construct_family": "multi_party_commitment",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.187,
+      "negative_trace_feasibility": 1.0,
+      "headroom": 0.813
+    },
+    {
+      "scenario_id": "ci11w4_poi__harbor_grid_v1_v0",
+      "construct_family": "poi_availability_service_evidence",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.312,
+      "negative_trace_feasibility": 1.0,
+      "headroom": 0.688
+    },
+    {
+      "scenario_id": "ci11w4_poi__metro_radial_v1_v1",
+      "construct_family": "poi_availability_service_evidence",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.312,
+      "negative_trace_feasibility": 1.0,
+      "headroom": 0.688
+    },
+    {
+      "scenario_id": "ci11w4_poi__suburb_polycentric_v1_v2",
+      "construct_family": "poi_availability_service_evidence",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.312,
+      "negative_trace_feasibility": 1.0,
+      "headroom": 0.688
+    },
+    {
+      "scenario_id": "ci11w4_reso_harbor_grid_v1_v1",
+      "construct_family": "resource_budget_allocation",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.5,
+      "negative_trace_feasibility": 0.833,
+      "headroom": 0.5
+    },
+    {
+      "scenario_id": "ci11w4_reso_metro_radial_v1_v2",
+      "construct_family": "resource_budget_allocation",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.5,
+      "negative_trace_feasibility": 0.833,
+      "headroom": 0.5
+    },
+    {
+      "scenario_id": "ci11w4_reso_suburb_polycentric_v1_v0",
+      "construct_family": "resource_budget_allocation",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.5,
+      "negative_trace_feasibility": 0.833,
+      "headroom": 0.5
+    },
+    {
+      "scenario_id": "ci11w4_soci_harbor_grid_v1_v1",
+      "construct_family": "social_coordination_copresence",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.462,
+      "negative_trace_feasibility": 1.0,
+      "headroom": 0.538
+    },
+    {
+      "scenario_id": "ci11w4_soci_metro_radial_v1_v2",
+      "construct_family": "social_coordination_copresence",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.462,
+      "negative_trace_feasibility": 1.0,
+      "headroom": 0.538
+    },
+    {
+      "scenario_id": "ci11w4_soci_suburb_polycentric_v1_v0",
+      "construct_family": "social_coordination_copresence",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.462,
+      "negative_trace_feasibility": 1.0,
+      "headroom": 0.538
+    },
+    {
+      "scenario_id": "ci11w4_time_harbor_grid_v1_v2",
+      "construct_family": "time_window_scheduling",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.312,
+      "negative_trace_feasibility": 1.0,
+      "headroom": 0.688
+    },
+    {
+      "scenario_id": "ci11w4_time_metro_radial_v1_v0",
+      "construct_family": "time_window_scheduling",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.312,
+      "negative_trace_feasibility": 1.0,
+      "headroom": 0.688
+    },
+    {
+      "scenario_id": "ci11w4_time_suburb_polycentric_v1_v1",
+      "construct_family": "time_window_scheduling",
+      "passed": true,
+      "oracle_task_completion": 1.0,
+      "oracle_trace_feasibility": 1.0,
+      "oracle_violations": 0,
+      "negative_task_completion": 0.312,
+      "negative_trace_feasibility": 1.0,
+      "headroom": 0.688
+    }
+  ]
+}

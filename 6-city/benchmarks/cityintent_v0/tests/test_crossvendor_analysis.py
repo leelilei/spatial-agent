@@ -9,6 +9,7 @@ TOOLS_DIR = Path(__file__).resolve().parents[1] / "tools"
 sys.path.insert(0, str(TOOLS_DIR))
 
 from analyze_crossvendor_backbones import permutation_bootstrap  # noqa: E402
+from analyze_e3e_multivendor_backbones import holm_adjust  # noqa: E402
 
 
 class CrossVendorAnalysisTest(unittest.TestCase):
@@ -36,6 +37,21 @@ class CrossVendorAnalysisTest(unittest.TestCase):
 
         self.assertEqual(result["delta"], 0.0)
         self.assertEqual(result["p_value"], 1.0)
+
+    def test_holm_adjustment_is_monotone_in_sorted_p_values(self) -> None:
+        rows = [
+            {"p_value": 0.06},
+            {"p_value": 0.001},
+            {"p_value": 0.02},
+        ]
+
+        holm_adjust(rows)
+
+        ordered = sorted(rows, key=lambda row: row["p_value"])
+        adjusted = [row["p_holm"] for row in ordered]
+        self.assertEqual(adjusted, sorted(adjusted))
+        self.assertEqual(ordered[0]["p_holm"], 0.003)
+        self.assertFalse(rows[0]["significant_holm_0_05"])
 
 
 if __name__ == "__main__":

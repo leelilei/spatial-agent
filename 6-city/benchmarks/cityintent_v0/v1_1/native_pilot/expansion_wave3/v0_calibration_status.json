@@ -1,0 +1,36 @@
+{
+  "schema_version": "cityintent_wave3_v0_calibration_status_v1",
+  "date": "2026-08-05",
+  "status": "v0_complete_cross_world_pending_not_release",
+  "scenario_count": 8,
+  "trace_count": 48,
+  "systems_per_scenario": 6,
+  "complete_items": 8,
+  "discriminating_items": 8,
+  "ceiling_items": 0,
+  "floor_items": 0,
+  "threshold_pass_count": 8,
+  "relay_provenance": {
+    "claude_sonnet_4_5": "yunwu_with_apilio_resource_replacement",
+    "qwen3_235b": "yunwu_with_apilio_resource_replacement",
+    "deepseek_v4_flash": {
+      "yunwu_trace_count": 6,
+      "apilio_trace_count": 10,
+      "reason": "yunwu_insufficient_quota"
+    }
+  },
+  "item_metrics": {
+    "compound_long_horizon": {"mean": 0.847167, "range": 0.529, "corrected_r": 0.714587},
+    "disruption_recovery": {"mean": 0.5, "range": 1.0, "corrected_r": 0.99003},
+    "memory_conditioned_preference": {"mean": 0.5, "range": 1.0, "corrected_r": 0.99003},
+    "multi_party_commitment": {"mean": 0.541667, "range": 0.5, "corrected_r": 0.396697},
+    "poi_availability_service_evidence": {"mean": 0.666667, "range": 1.0, "corrected_r": 0.587558},
+    "resource_budget_allocation": {"mean": 0.637333, "range": 1.0, "corrected_r": 0.837802},
+    "social_coordination_copresence": {"mean": 0.5, "range": 1.0, "corrected_r": 0.99003},
+    "time_window_scheduling": {"mean": 0.666667, "range": 1.0, "corrected_r": 0.907066}
+  },
+  "analysis_directory": "results/cityintent_v1_1_candidate/native_wave3_public_v0_final_analysis_48_2026-08-06",
+  "promotion_evidence": true,
+  "next_gate": "wave4_public_mechanism_expansion",
+  "private_world_actor_run": false
+}

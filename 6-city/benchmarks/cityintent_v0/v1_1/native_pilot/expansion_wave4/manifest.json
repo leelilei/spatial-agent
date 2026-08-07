@@ -1,0 +1,149 @@
+{
+  "schema_version": "cityintent_native_expansion_wave4_v1",
+  "generator_version": "cityintent-native-expansion-wave4-1.0.0-design-review",
+  "status": "mechanism_distinctness_review_pending_not_release",
+  "design_contract": "wave4_mechanism_design.json",
+  "scenario_count": 24,
+  "rejection_count": 0,
+  "construct_counts": {
+    "compound_long_horizon": 3,
+    "disruption_recovery": 3,
+    "memory_conditioned_preference": 3,
+    "multi_party_commitment": 3,
+    "poi_availability_service_evidence": 3,
+    "resource_budget_allocation": 3,
+    "social_coordination_copresence": 3,
+    "time_window_scheduling": 3
+  },
+  "mechanisms": {
+    "disruption_recovery": "temporary_service_outage_with_timed_recovery_choice",
+    "time_window_scheduling": "minimum_duration_inside_nested_window",
+    "resource_budget_allocation": "two_stage_inventory_commitment",
+    "poi_availability_service_evidence": "referral_then_provider_service_chain",
+    "memory_conditioned_preference": "source_reliability_memory_arbitration",
+    "social_coordination_copresence": "message_acknowledgement_then_handoff",
+    "multi_party_commitment": "sequential_two_party_relay",
+    "compound_long_horizon": "credential_unlock_purchase_service_return_chain"
+  },
+  "mechanism_contracts": {
+    "disruption_recovery": {
+      "state_transition": "a required service becomes unavailable and later recovers, forcing a wait-versus-substitute decision under deadline",
+      "required_actions": [
+        "wait_for_outage_update",
+        "use_service",
+        "finish"
+      ],
+      "required_conditions": [
+        "service_after_recovery",
+        "deadline",
+        "no_feasibility_violation"
+      ],
+      "negative_failure": "commit to the unavailable service before recovery or wait past the deadline"
+    },
+    "time_window_scheduling": {
+      "state_transition": "a broad arrival window contains a narrower interval in which a minimum accumulated dwell duration must be completed",
+      "required_actions": [
+        "enter",
+        "dwell",
+        "finish"
+      ],
+      "required_conditions": [
+        "visit_open_location",
+        "dwell_within_window",
+        "episode_complete_before"
+      ],
+      "negative_failure": "arrive in the broad window but accumulate the dwell outside the narrow interval"
+    },
+    "resource_budget_allocation": {
+      "state_transition": "the first purchase consumes the only inventory claim and determines which affordable downstream service remains feasible",
+      "required_actions": [
+        "buy",
+        "use_service",
+        "finish"
+      ],
+      "required_conditions": [
+        "buy_item",
+        "use_service_at",
+        "budget_at_least"
+      ],
+      "negative_failure": "consume the inventory claim on the decoy purchase and lose downstream affordability"
+    },
+    "poi_availability_service_evidence": {
+      "state_transition": "a referral service produces evidence that unlocks a second provider service at another POI",
+      "required_actions": [
+        "use_service",
+        "move",
+        "enter",
+        "use_service"
+      ],
+      "required_conditions": [
+        "ordered_service_chain",
+        "use_service_at",
+        "deadline"
+      ],
+      "negative_failure": "use the provider without prior referral evidence"
+    },
+    "memory_conditioned_preference": {
+      "state_transition": "two recalled memories conflict and the decision must follow the source tagged as reliable under the current cue",
+      "required_actions": [
+        "recall",
+        "recall",
+        "enter",
+        "dwell"
+      ],
+      "required_conditions": [
+        "recall_memory",
+        "visit_location",
+        "dwell_minutes",
+        "avoid_when_possible"
+      ],
+      "negative_failure": "follow the newer but explicitly unreliable memory"
+    },
+    "social_coordination_copresence": {
+      "state_transition": "a confirmation message authorizes a timed physical handoff rather than a generic meeting",
+      "required_actions": [
+        "message",
+        "buy",
+        "interact"
+      ],
+      "required_conditions": [
+        "message_before_interaction",
+        "handoff_evidence",
+        "co_presence"
+      ],
+      "negative_failure": "meet without acquiring or handing off the required item"
+    },
+    "multi_party_commitment": {
+      "state_transition": "evidence from the first timed meeting must be carried into a later meeting with a second partner",
+      "required_actions": [
+        "message",
+        "interact",
+        "move",
+        "interact"
+      ],
+      "required_conditions": [
+        "ordered_interaction_chain",
+        "co_presence",
+        "episode_complete_before"
+      ],
+      "negative_failure": "complete only one meeting or reverse the relay order"
+    },
+    "compound_long_horizon": {
+      "state_transition": "a credential service unlocks a labeled purchase, which unlocks a timed service before return",
+      "required_actions": [
+        "use_service",
+        "buy",
+        "use_service",
+        "move",
+        "enter"
+      ],
+      "required_conditions": [
+        "ordered_evidence_chain",
+        "visit_before",
+        "budget_at_least"
+      ],
+      "negative_failure": "skip the credential or execute the purchase/service chain out of order"
+    }
+  },
+  "scenario_matrix_sha256": "89a7fb7dfc85e856c0019a54f856878f723eb77540441032af9c58fc60f289f0"
+}

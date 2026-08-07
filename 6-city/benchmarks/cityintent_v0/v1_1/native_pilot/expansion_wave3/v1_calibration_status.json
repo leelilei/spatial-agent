@@ -1,0 +1,35 @@
+{
+  "schema_version": "cityintent_wave3_v1_calibration_status_v1",
+  "date": "2026-08-06",
+  "status": "v1_complete_cross_world_promoted_not_release",
+  "scenario_count": 8,
+  "trace_count": 48,
+  "systems_per_scenario": 6,
+  "complete_items": 8,
+  "discriminating_items": 8,
+  "threshold_pass_count": 8,
+  "relay": "apilio",
+  "hardening": {
+    "targeted_constructs": [
+      "compound_long_horizon",
+      "resource_budget_allocation",
+      "time_window_scheduling"
+    ],
+    "final_targeted_actor_traces": 18,
+    "unchanged_traces_retained": 30,
+    "changes": [
+      "compound meeting window boundary repair",
+      "resource service-label deconfounding and post-update reservation",
+      "time second-window narrowing"
+    ]
+  },
+  "item_metric_ranges": {
+    "mean_task": [0.458333, 0.704],
+    "observed_range": [0.588, 1.0],
+    "corrected_item_total_correlation": [0.763541, 0.986507]
+  },
+  "analysis_directory": "results/cityintent_v1_1_candidate/native_wave3_public_v1_final_analysis_48_2026-08-06",
+  "promotion_evidence": true,
+  "next_gate": "wave4_public_mechanism_expansion",
+  "private_world_actor_run": false
+}

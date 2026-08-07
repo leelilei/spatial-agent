@@ -1,0 +1,732 @@
+{
+  "scenario_count": 24,
+  "structurally_distinct_count": 24,
+  "all_structurally_distinct": true,
+  "status": "review_required_not_release",
+  "results": [
+    {
+      "scenario_id": "ci11w3_comp_harbor_grid_v1_v2",
+      "construct_family": "compound_long_horizon",
+      "mechanism_id": "dependency_ordered_chain",
+      "structural_delta": true,
+      "current": {
+        "event_types": [],
+        "conditions": [
+          "{\"agents\": [\"aria\", \"ben\"], \"id\": \"meet\", \"location_any_of\": [\"hgd_meeting_cafe\"], \"time_window\": [\"11:00\", \"11:20\"], \"type\": \"co_presence\"}",
+          "{\"deadline\": \"12:15\", \"id\": \"return\", \"ignore_start\": true, \"location\": \"hgd_home_primary\", \"type\": \"visit_before\"}",
+          "{\"id\": \"confirm\", \"to\": \"ben\", \"type\": \"send_message\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}",
+          "{\"id\": \"medicine\", \"location\": \"hgd_pharmacy\", \"minutes\": 3, \"service\": \"medication_pickup\", \"type\": \"use_service_at\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      },
+      "wave2": {
+        "event_types": [],
+        "conditions": [
+          "{\"agents\": [\"aria\", \"ben\"], \"id\": \"meet\", \"location_any_of\": [\"hgd_meeting_cafe\"], \"time_window\": [\"11:00\", \"11:20\"], \"type\": \"co_presence\"}",
+          "{\"deadline\": \"12:15\", \"id\": \"return\", \"ignore_start\": true, \"location\": \"hgd_home_primary\", \"type\": \"visit_before\"}",
+          "{\"id\": \"confirm\", \"to\": \"ben\", \"type\": \"send_message\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}",
+          "{\"id\": \"medicine\", \"item\": \"medicine\", \"location\": \"hgd_pharmacy\", \"minutes\": 3, \"type\": \"buy_item\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      }
+    },
+    {
+      "scenario_id": "ci11w3_comp_metro_radial_v1_v0",
+      "construct_family": "compound_long_horizon",
+      "mechanism_id": "dependency_ordered_chain",
+      "structural_delta": true,
+      "current": {
+        "event_types": [],
+        "conditions": [
+          "{\"agents\": [\"aria\", \"ben\"], \"id\": \"meet\", \"location_any_of\": [\"mtr_meeting_cafe\"], \"time_window\": [\"11:00\", \"11:20\"], \"type\": \"co_presence\"}",
+          "{\"deadline\": \"12:15\", \"id\": \"return\", \"ignore_start\": true, \"location\": \"mtr_home_primary\", \"type\": \"visit_before\"}",
+          "{\"id\": \"confirm\", \"to\": \"ben\", \"type\": \"send_message\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}",
+          "{\"id\": \"medicine\", \"location\": \"mtr_pharmacy\", \"minutes\": 3, \"service\": \"medication_pickup\", \"type\": \"use_service_at\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      },
+      "wave2": {
+        "event_types": [],
+        "conditions": [
+          "{\"agents\": [\"aria\", \"ben\"], \"id\": \"meet\", \"location_any_of\": [\"mtr_meeting_cafe\"], \"time_window\": [\"11:00\", \"11:20\"], \"type\": \"co_presence\"}",
+          "{\"deadline\": \"12:15\", \"id\": \"return\", \"ignore_start\": true, \"location\": \"mtr_home_primary\", \"type\": \"visit_before\"}",
+          "{\"id\": \"confirm\", \"to\": \"ben\", \"type\": \"send_message\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}",
+          "{\"id\": \"medicine\", \"item\": \"medicine\", \"location\": \"mtr_pharmacy\", \"minutes\": 3, \"type\": \"buy_item\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      }
+    },
+    {
+      "scenario_id": "ci11w3_comp_suburb_polycentric_v1_v1",
+      "construct_family": "compound_long_horizon",
+      "mechanism_id": "dependency_ordered_chain",
+      "structural_delta": true,
+      "current": {
+        "event_types": [],
+        "conditions": [
+          "{\"agents\": [\"aria\", \"ben\"], \"id\": \"meet\", \"location_any_of\": [\"spc_meeting_cafe\"], \"time_window\": [\"11:00\", \"11:30\"], \"type\": \"co_presence\"}",
+          "{\"deadline\": \"12:15\", \"id\": \"return\", \"ignore_start\": true, \"location\": \"spc_home_primary\", \"type\": \"visit_before\"}",
+          "{\"id\": \"confirm\", \"to\": \"ben\", \"type\": \"send_message\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}",
+          "{\"id\": \"medicine\", \"location\": \"spc_pharmacy\", \"minutes\": 3, \"service\": \"medication_pickup\", \"type\": \"use_service_at\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      },
+      "wave2": {
+        "event_types": [],
+        "conditions": [
+          "{\"agents\": [\"aria\", \"ben\"], \"id\": \"meet\", \"location_any_of\": [\"spc_meeting_cafe\"], \"time_window\": [\"11:00\", \"11:20\"], \"type\": \"co_presence\"}",
+          "{\"deadline\": \"12:15\", \"id\": \"return\", \"ignore_start\": true, \"location\": \"spc_home_primary\", \"type\": \"visit_before\"}",
+          "{\"id\": \"confirm\", \"to\": \"ben\", \"type\": \"send_message\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}",
+          "{\"id\": \"medicine\", \"item\": \"medicine\", \"location\": \"spc_pharmacy\", \"minutes\": 3, \"type\": \"buy_item\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      }
+    },
+    {
+      "scenario_id": "ci11w3_disr_harbor_grid_v1_v0",
+      "construct_family": "disruption_recovery",
+      "mechanism_id": "resource_aware_fallback_substitution",
+      "structural_delta": true,
+      "current": {
+        "event_types": [
+          "route_closure"
+        ],
+        "conditions": [
+          "{\"deadline\": \"11:30\", \"id\": \"reach_relocated_target\", \"ignore_start\": true, \"location\": \"hgd_clinic\", \"type\": \"visit_before\"}",
+          "{\"edge\": [\"hgd_home_primary\", \"hgd_quiet_cafe\"], \"id\": \"avoid_blocked_edge\", \"time_window\": [\"10:20\", \"12:00\"], \"type\": \"avoid_blocked_edge\"}",
+          "{\"event_id\": \"route_closure\", \"id\": \"replan_after_event\", \"type\": \"replan_after_event\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      },
+      "wave2": {
+        "event_types": [
+          "destination_relocation"
+        ],
+        "conditions": [
+          "{\"deadline\": \"11:30\", \"id\": \"reach_relocated_target\", \"ignore_start\": true, \"location\": \"hgd_clinic\", \"type\": \"visit_before\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      }
+    },
+    {
+      "scenario_id": "ci11w3_disr_metro_radial_v1_v1",
+      "construct_family": "disruption_recovery",
+      "mechanism_id": "resource_aware_fallback_substitution",
+      "structural_delta": true,
+      "current": {
+        "event_types": [
+          "route_closure"
+        ],
+        "conditions": [
+          "{\"deadline\": \"11:30\", \"id\": \"reach_relocated_target\", \"ignore_start\": true, \"location\": \"mtr_clinic\", \"type\": \"visit_before\"}",
+          "{\"edge\": [\"mtr_home_primary\", \"mtr_transit_hub\"], \"id\": \"avoid_blocked_edge\", \"time_window\": [\"10:20\", \"12:00\"], \"type\": \"avoid_blocked_edge\"}",
+          "{\"event_id\": \"route_closure\", \"id\": \"replan_after_event\", \"type\": \"replan_after_event\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      },
+      "wave2": {
+        "event_types": [
+          "destination_relocation"
+        ],
+        "conditions": [
+          "{\"deadline\": \"11:30\", \"id\": \"reach_relocated_target\", \"ignore_start\": true, \"location\": \"mtr_clinic\", \"type\": \"visit_before\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      }
+    },
+    {
+      "scenario_id": "ci11w3_disr_suburb_polycentric_v1_v2",
+      "construct_family": "disruption_recovery",
+      "mechanism_id": "resource_aware_fallback_substitution",
+      "structural_delta": true,
+      "current": {
+        "event_types": [
+          "route_closure"
+        ],
+        "conditions": [
+          "{\"deadline\": \"11:30\", \"id\": \"reach_relocated_target\", \"ignore_start\": true, \"location\": \"spc_clinic\", \"type\": \"visit_before\"}",
+          "{\"edge\": [\"spc_transit_hub\", \"spc_clinic\"], \"id\": \"avoid_blocked_edge\", \"time_window\": [\"10:20\", \"12:00\"], \"type\": \"avoid_blocked_edge\"}",
+          "{\"event_id\": \"route_closure\", \"id\": \"replan_after_event\", \"type\": \"replan_after_event\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      },
+      "wave2": {
+        "event_types": [
+          "destination_relocation"
+        ],
+        "conditions": [
+          "{\"deadline\": \"11:30\", \"id\": \"reach_relocated_target\", \"ignore_start\": true, \"location\": \"spc_clinic\", \"type\": \"visit_before\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      }
+    },
+    {
+      "scenario_id": "ci11w3_memo_harbor_grid_v1_v2",
+      "construct_family": "memory_conditioned_preference",
+      "mechanism_id": "recency_weighted_memory_revision",
+      "structural_delta": true,
+      "current": {
+        "event_types": [
+          "air_quality_alert"
+        ],
+        "conditions": [
+          "{\"avoid_locations\": [\"hgd_park\", \"hgd_quiet_cafe\"], \"id\": \"avoid_alert\", \"type\": \"avoid_when_possible\"}",
+          "{\"id\": \"conditional_choice\", \"location\": \"hgd_office\", \"type\": \"visit_location\"}",
+          "{\"id\": \"recall_rule\", \"min_recalls\": 2, \"type\": \"recall_memory\"}",
+          "{\"id\": \"reset\", \"location_any_of\": [\"hgd_office\"], \"min_minutes\": 10, \"type\": \"dwell_minutes\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 4
+      },
+      "wave2": {
+        "event_types": [
+          "air_quality_alert"
+        ],
+        "conditions": [
+          "{\"avoid_locations\": [\"hgd_park\", \"hgd_quiet_cafe\"], \"id\": \"avoid_alert\", \"type\": \"avoid_when_possible\"}",
+          "{\"id\": \"conditional_choice\", \"location\": \"hgd_office\", \"type\": \"visit_location\"}",
+          "{\"id\": \"recall_rule\", \"min_recalls\": 1, \"type\": \"recall_memory\"}",
+          "{\"id\": \"reset\", \"location_any_of\": [\"hgd_office\"], \"min_minutes\": 10, \"type\": \"dwell_minutes\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 3
+      }
+    },
+    {
+      "scenario_id": "ci11w3_memo_metro_radial_v1_v0",
+      "construct_family": "memory_conditioned_preference",
+      "mechanism_id": "recency_weighted_memory_revision",
+      "structural_delta": true,
+      "current": {
+        "event_types": [
+          "air_quality_alert"
+        ],
+        "conditions": [
+          "{\"avoid_locations\": [\"mtr_park\", \"mtr_quiet_cafe\"], \"id\": \"avoid_alert\", \"type\": \"avoid_when_possible\"}",
+          "{\"id\": \"conditional_choice\", \"location\": \"mtr_office\", \"type\": \"visit_location\"}",
+          "{\"id\": \"recall_rule\", \"min_recalls\": 2, \"type\": \"recall_memory\"}",
+          "{\"id\": \"reset\", \"location_any_of\": [\"mtr_office\"], \"min_minutes\": 10, \"type\": \"dwell_minutes\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 4
+      },
+      "wave2": {
+        "event_types": [
+          "air_quality_alert"
+        ],
+        "conditions": [
+          "{\"avoid_locations\": [\"mtr_park\", \"mtr_quiet_cafe\"], \"id\": \"avoid_alert\", \"type\": \"avoid_when_possible\"}",
+          "{\"id\": \"conditional_choice\", \"location\": \"mtr_office\", \"type\": \"visit_location\"}",
+          "{\"id\": \"recall_rule\", \"min_recalls\": 1, \"type\": \"recall_memory\"}",
+          "{\"id\": \"reset\", \"location_any_of\": [\"mtr_office\"], \"min_minutes\": 10, \"type\": \"dwell_minutes\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 3
+      }
+    },
+    {
+      "scenario_id": "ci11w3_memo_suburb_polycentric_v1_v1",
+      "construct_family": "memory_conditioned_preference",
+      "mechanism_id": "recency_weighted_memory_revision",
+      "structural_delta": true,
+      "current": {
+        "event_types": [
+          "air_quality_alert"
+        ],
+        "conditions": [
+          "{\"avoid_locations\": [\"spc_park\", \"spc_quiet_cafe\"], \"id\": \"avoid_alert\", \"type\": \"avoid_when_possible\"}",
+          "{\"id\": \"conditional_choice\", \"location\": \"spc_office\", \"type\": \"visit_location\"}",
+          "{\"id\": \"recall_rule\", \"min_recalls\": 2, \"type\": \"recall_memory\"}",
+          "{\"id\": \"reset\", \"location_any_of\": [\"spc_office\"], \"min_minutes\": 10, \"type\": \"dwell_minutes\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 4
+      },
+      "wave2": {
+        "event_types": [
+          "air_quality_alert"
+        ],
+        "conditions": [
+          "{\"avoid_locations\": [\"spc_park\", \"spc_quiet_cafe\"], \"id\": \"avoid_alert\", \"type\": \"avoid_when_possible\"}",
+          "{\"id\": \"conditional_choice\", \"location\": \"spc_office\", \"type\": \"visit_location\"}",
+          "{\"id\": \"recall_rule\", \"min_recalls\": 1, \"type\": \"recall_memory\"}",
+          "{\"id\": \"reset\", \"location_any_of\": [\"spc_office\"], \"min_minutes\": 10, \"type\": \"dwell_minutes\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 3
+      }
+    },
+    {
+      "scenario_id": "ci11w3_mult_harbor_grid_v1_v0",
+      "construct_family": "multi_party_commitment",
+      "mechanism_id": "priority_aware_commitment_repair",
+      "structural_delta": true,
+      "current": {
+        "event_types": [
+          "commitment_priority_update"
+        ],
+        "conditions": [
+          "{\"after\": \"10:30\", \"id\": \"confirm_ben\", \"to\": \"ben\", \"type\": \"send_message_after\"}",
+          "{\"after\": \"10:30\", \"id\": \"renegotiate_casey\", \"to\": \"casey\", \"type\": \"send_message_after\"}",
+          "{\"agents\": [\"aria\", \"ben\"], \"id\": \"meet_ben\", \"location_any_of\": [\"hgd_meeting_cafe\"], \"time_window\": [\"11:00\", \"11:15\"], \"type\": \"co_presence\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      },
+      "wave2": {
+        "event_types": [],
+        "conditions": [
+          "{\"agents\": [\"aria\", \"ben\"], \"id\": \"meet_ben\", \"location_any_of\": [\"hgd_meeting_cafe\"], \"time_window\": [\"11:00\", \"11:15\"], \"type\": \"co_presence\"}",
+          "{\"id\": \"confirm_ben\", \"to\": \"ben\", \"type\": \"send_message\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}",
+          "{\"id\": \"renegotiate_casey\", \"to\": \"casey\", \"type\": \"send_message\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      }
+    },
+    {
+      "scenario_id": "ci11w3_mult_metro_radial_v1_v1",
+      "construct_family": "multi_party_commitment",
+      "mechanism_id": "priority_aware_commitment_repair",
+      "structural_delta": true,
+      "current": {
+        "event_types": [
+          "commitment_priority_update"
+        ],
+        "conditions": [
+          "{\"after\": \"10:30\", \"id\": \"confirm_ben\", \"to\": \"ben\", \"type\": \"send_message_after\"}",
+          "{\"after\": \"10:30\", \"id\": \"renegotiate_casey\", \"to\": \"casey\", \"type\": \"send_message_after\"}",
+          "{\"agents\": [\"aria\", \"ben\"], \"id\": \"meet_ben\", \"location_any_of\": [\"mtr_meeting_cafe\"], \"time_window\": [\"11:00\", \"11:15\"], \"type\": \"co_presence\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      },
+      "wave2": {
+        "event_types": [],
+        "conditions": [
+          "{\"agents\": [\"aria\", \"ben\"], \"id\": \"meet_ben\", \"location_any_of\": [\"mtr_meeting_cafe\"], \"time_window\": [\"11:00\", \"11:15\"], \"type\": \"co_presence\"}",
+          "{\"id\": \"confirm_ben\", \"to\": \"ben\", \"type\": \"send_message\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}",
+          "{\"id\": \"renegotiate_casey\", \"to\": \"casey\", \"type\": \"send_message\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      }
+    },
+    {
+      "scenario_id": "ci11w3_mult_suburb_polycentric_v1_v2",
+      "construct_family": "multi_party_commitment",
+      "mechanism_id": "priority_aware_commitment_repair",
+      "structural_delta": true,
+      "current": {
+        "event_types": [
+          "commitment_priority_update"
+        ],
+        "conditions": [
+          "{\"after\": \"10:30\", \"id\": \"confirm_ben\", \"to\": \"ben\", \"type\": \"send_message_after\"}",
+          "{\"after\": \"10:30\", \"id\": \"renegotiate_casey\", \"to\": \"casey\", \"type\": \"send_message_after\"}",
+          "{\"agents\": [\"aria\", \"ben\"], \"id\": \"meet_ben\", \"location_any_of\": [\"spc_meeting_cafe\"], \"time_window\": [\"11:00\", \"11:15\"], \"type\": \"co_presence\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      },
+      "wave2": {
+        "event_types": [],
+        "conditions": [
+          "{\"agents\": [\"aria\", \"ben\"], \"id\": \"meet_ben\", \"location_any_of\": [\"spc_meeting_cafe\"], \"time_window\": [\"11:00\", \"11:15\"], \"type\": \"co_presence\"}",
+          "{\"id\": \"confirm_ben\", \"to\": \"ben\", \"type\": \"send_message\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}",
+          "{\"id\": \"renegotiate_casey\", \"to\": \"casey\", \"type\": \"send_message\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      }
+    },
+    {
+      "scenario_id": "ci11w3_poi__harbor_grid_v1_v0",
+      "construct_family": "poi_availability_service_evidence",
+      "mechanism_id": "service_evidence_chain",
+      "structural_delta": true,
+      "current": {
+        "event_types": [
+          "service_registry_update"
+        ],
+        "conditions": [
+          "{\"deadline\": \"12:00\", \"id\": \"identity_verification\", \"location\": \"hgd_office\", \"minutes\": 5, \"service\": \"identity_verification\", \"type\": \"use_service_at\"}",
+          "{\"deadline\": \"12:00\", \"id\": \"registry_evidence\", \"location\": \"hgd_office\", \"service\": \"identity_verification\", \"type\": \"obtain_at\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      },
+      "wave2": {
+        "event_types": [
+          "service_registry_update"
+        ],
+        "conditions": [
+          "{\"deadline\": \"12:00\", \"id\": \"identity_verification\", \"location\": \"hgd_office\", \"minutes\": 5, \"service\": \"identity_verification\", \"type\": \"use_service_at\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      }
+    },
+    {
+      "scenario_id": "ci11w3_poi__metro_radial_v1_v1",
+      "construct_family": "poi_availability_service_evidence",
+      "mechanism_id": "service_evidence_chain",
+      "structural_delta": true,
+      "current": {
+        "event_types": [
+          "service_registry_update"
+        ],
+        "conditions": [
+          "{\"deadline\": \"12:00\", \"id\": \"identity_verification\", \"location\": \"mtr_office\", \"minutes\": 5, \"service\": \"identity_verification\", \"type\": \"use_service_at\"}",
+          "{\"deadline\": \"12:00\", \"id\": \"registry_evidence\", \"location\": \"mtr_office\", \"service\": \"identity_verification\", \"type\": \"obtain_at\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      },
+      "wave2": {
+        "event_types": [
+          "service_registry_update"
+        ],
+        "conditions": [
+          "{\"deadline\": \"12:00\", \"id\": \"identity_verification\", \"location\": \"mtr_office\", \"minutes\": 5, \"service\": \"identity_verification\", \"type\": \"use_service_at\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      }
+    },
+    {
+      "scenario_id": "ci11w3_poi__suburb_polycentric_v1_v2",
+      "construct_family": "poi_availability_service_evidence",
+      "mechanism_id": "service_evidence_chain",
+      "structural_delta": true,
+      "current": {
+        "event_types": [
+          "service_registry_update"
+        ],
+        "conditions": [
+          "{\"deadline\": \"12:00\", \"id\": \"identity_verification\", \"location\": \"spc_office\", \"minutes\": 5, \"service\": \"identity_verification\", \"type\": \"use_service_at\"}",
+          "{\"deadline\": \"12:00\", \"id\": \"registry_evidence\", \"location\": \"spc_office\", \"service\": \"identity_verification\", \"type\": \"obtain_at\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      },
+      "wave2": {
+        "event_types": [
+          "service_registry_update"
+        ],
+        "conditions": [
+          "{\"deadline\": \"12:00\", \"id\": \"identity_verification\", \"location\": \"spc_office\", \"minutes\": 5, \"service\": \"identity_verification\", \"type\": \"use_service_at\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      }
+    },
+    {
+      "scenario_id": "ci11w3_reso_harbor_grid_v1_v1",
+      "construct_family": "resource_budget_allocation",
+      "mechanism_id": "irreversible_budget_reservation",
+      "structural_delta": true,
+      "current": {
+        "event_types": [
+          "reservation_price_update"
+        ],
+        "conditions": [
+          "{\"after\": \"10:10\", \"id\": \"reservation_token\", \"item\": \"reservation_token\", \"location\": \"hgd_market\", \"minutes\": 1, \"type\": \"purchase_after_time\"}",
+          "{\"agent\": \"aria\", \"id\": \"budget\", \"min_remaining\": 0, \"type\": \"budget_at_least\"}",
+          "{\"deadline\": \"13:00\", \"id\": \"return_home\", \"ignore_start\": true, \"location\": \"hgd_home_primary\", \"type\": \"visit_before\"}",
+          "{\"id\": \"training\", \"location\": \"hgd_gym\", \"minutes\": 5, \"type\": \"use_service_at\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      },
+      "wave2": {
+        "event_types": [],
+        "conditions": [
+          "{\"agent\": \"aria\", \"id\": \"budget\", \"min_remaining\": 0, \"type\": \"budget_at_least\"}",
+          "{\"avoid_locations\": [\"hgd_meeting_cafe\", \"hgd_quiet_cafe\"], \"id\": \"no_optional_cafe_detour\", \"type\": \"avoid_when_possible\"}",
+          "{\"deadline\": \"13:00\", \"id\": \"return_home\", \"ignore_start\": true, \"location\": \"hgd_home_primary\", \"type\": \"visit_before\"}",
+          "{\"id\": \"supplies\", \"location\": \"hgd_market\", \"minutes\": 3, \"type\": \"purchase_at\"}",
+          "{\"id\": \"training\", \"location\": \"hgd_gym\", \"minutes\": 5, \"type\": \"use_service_at\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      }
+    },
+    {
+      "scenario_id": "ci11w3_reso_metro_radial_v1_v2",
+      "construct_family": "resource_budget_allocation",
+      "mechanism_id": "irreversible_budget_reservation",
+      "structural_delta": true,
+      "current": {
+        "event_types": [
+          "reservation_price_update"
+        ],
+        "conditions": [
+          "{\"after\": \"10:10\", \"id\": \"reservation_token\", \"item\": \"reservation_token\", \"location\": \"mtr_market\", \"minutes\": 1, \"type\": \"purchase_after_time\"}",
+          "{\"agent\": \"aria\", \"id\": \"budget\", \"min_remaining\": 0, \"type\": \"budget_at_least\"}",
+          "{\"deadline\": \"13:00\", \"id\": \"return_home\", \"ignore_start\": true, \"location\": \"mtr_home_primary\", \"type\": \"visit_before\"}",
+          "{\"id\": \"training\", \"location\": \"mtr_gym\", \"minutes\": 5, \"type\": \"use_service_at\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      },
+      "wave2": {
+        "event_types": [],
+        "conditions": [
+          "{\"agent\": \"aria\", \"id\": \"budget\", \"min_remaining\": 0, \"type\": \"budget_at_least\"}",
+          "{\"deadline\": \"13:00\", \"id\": \"return_home\", \"ignore_start\": true, \"location\": \"mtr_home_primary\", \"type\": \"visit_before\"}",
+          "{\"id\": \"supplies\", \"location\": \"mtr_market\", \"minutes\": 3, \"type\": \"purchase_at\"}",
+          "{\"id\": \"training\", \"location\": \"mtr_gym\", \"minutes\": 5, \"type\": \"use_service_at\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      }
+    },
+    {
+      "scenario_id": "ci11w3_reso_suburb_polycentric_v1_v0",
+      "construct_family": "resource_budget_allocation",
+      "mechanism_id": "irreversible_budget_reservation",
+      "structural_delta": true,
+      "current": {
+        "event_types": [
+          "reservation_price_update"
+        ],
+        "conditions": [
+          "{\"after\": \"10:10\", \"id\": \"reservation_token\", \"item\": \"reservation_token\", \"location\": \"spc_market\", \"minutes\": 1, \"type\": \"purchase_after_time\"}",
+          "{\"agent\": \"aria\", \"id\": \"budget\", \"min_remaining\": 0, \"type\": \"budget_at_least\"}",
+          "{\"deadline\": \"13:00\", \"id\": \"return_home\", \"ignore_start\": true, \"location\": \"spc_home_primary\", \"type\": \"visit_before\"}",
+          "{\"id\": \"training\", \"location\": \"spc_gym\", \"minutes\": 5, \"type\": \"use_service_at\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      },
+      "wave2": {
+        "event_types": [],
+        "conditions": [
+          "{\"agent\": \"aria\", \"id\": \"budget\", \"min_remaining\": 0, \"type\": \"budget_at_least\"}",
+          "{\"deadline\": \"13:00\", \"id\": \"return_home\", \"ignore_start\": true, \"location\": \"spc_home_primary\", \"type\": \"visit_before\"}",
+          "{\"id\": \"supplies\", \"location\": \"spc_market\", \"minutes\": 3, \"type\": \"purchase_at\"}",
+          "{\"id\": \"training\", \"location\": \"spc_gym\", \"minutes\": 5, \"type\": \"use_service_at\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      }
+    },
+    {
+      "scenario_id": "ci11w3_soci_harbor_grid_v1_v1",
+      "construct_family": "social_coordination_copresence",
+      "mechanism_id": "confirmation_then_copresence",
+      "structural_delta": true,
+      "current": {
+        "event_types": [
+          "confirmation_deadline",
+          "meeting_relocation"
+        ],
+        "conditions": [
+          "{\"agents\": [\"aria\", \"ben\"], \"id\": \"relocated_meeting\", \"location_any_of\": [\"hgd_library\"], \"time_window\": [\"10:51\", \"11:01\"], \"type\": \"co_presence\"}",
+          "{\"id\": \"confirm\", \"to\": \"ben\", \"type\": \"message_before_interaction\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      },
+      "wave2": {
+        "event_types": [
+          "meeting_relocation"
+        ],
+        "conditions": [
+          "{\"agents\": [\"aria\", \"ben\"], \"id\": \"relocated_meeting\", \"location_any_of\": [\"hgd_library\"], \"time_window\": [\"10:51\", \"11:01\"], \"type\": \"co_presence\"}",
+          "{\"id\": \"confirm\", \"to\": \"ben\", \"type\": \"send_message\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      }
+    },
+    {
+      "scenario_id": "ci11w3_soci_metro_radial_v1_v2",
+      "construct_family": "social_coordination_copresence",
+      "mechanism_id": "confirmation_then_copresence",
+      "structural_delta": true,
+      "current": {
+        "event_types": [
+          "confirmation_deadline",
+          "meeting_relocation"
+        ],
+        "conditions": [
+          "{\"agents\": [\"aria\", \"ben\"], \"id\": \"relocated_meeting\", \"location_any_of\": [\"mtr_library\"], \"time_window\": [\"10:49\", \"10:59\"], \"type\": \"co_presence\"}",
+          "{\"id\": \"confirm\", \"to\": \"ben\", \"type\": \"message_before_interaction\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      },
+      "wave2": {
+        "event_types": [
+          "meeting_relocation"
+        ],
+        "conditions": [
+          "{\"agents\": [\"aria\", \"ben\"], \"id\": \"relocated_meeting\", \"location_any_of\": [\"mtr_library\"], \"time_window\": [\"10:49\", \"10:59\"], \"type\": \"co_presence\"}",
+          "{\"id\": \"confirm\", \"to\": \"ben\", \"type\": \"send_message\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      }
+    },
+    {
+      "scenario_id": "ci11w3_soci_suburb_polycentric_v1_v0",
+      "construct_family": "social_coordination_copresence",
+      "mechanism_id": "confirmation_then_copresence",
+      "structural_delta": true,
+      "current": {
+        "event_types": [
+          "confirmation_deadline",
+          "meeting_relocation"
+        ],
+        "conditions": [
+          "{\"agents\": [\"aria\", \"ben\"], \"id\": \"relocated_meeting\", \"location_any_of\": [\"spc_library\"], \"time_window\": [\"10:43\", \"10:53\"], \"type\": \"co_presence\"}",
+          "{\"id\": \"confirm\", \"to\": \"ben\", \"type\": \"message_before_interaction\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      },
+      "wave2": {
+        "event_types": [
+          "meeting_relocation"
+        ],
+        "conditions": [
+          "{\"agents\": [\"aria\", \"ben\"], \"id\": \"relocated_meeting\", \"location_any_of\": [\"spc_library\"], \"time_window\": [\"10:43\", \"10:53\"], \"type\": \"co_presence\"}",
+          "{\"id\": \"confirm\", \"to\": \"ben\", \"type\": \"send_message\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      }
+    },
+    {
+      "scenario_id": "ci11w3_time_harbor_grid_v1_v2",
+      "construct_family": "time_window_scheduling",
+      "mechanism_id": "rolling_window_commitment_update",
+      "structural_delta": true,
+      "current": {
+        "event_types": [
+          "rolling_window_update"
+        ],
+        "conditions": [
+          "{\"deadline\": \"13:00\", \"id\": \"finish_episode\", \"type\": \"episode_complete_before\"}",
+          "{\"id\": \"first_window\", \"location_any_of\": [\"hgd_library\"], \"time_window\": [\"10:22\", \"10:27\"], \"type\": \"visit_open_location\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}",
+          "{\"id\": \"second_window\", \"location_any_of\": [\"hgd_office\"], \"time_window\": [\"10:40\", \"10:45\"], \"type\": \"visit_open_location\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      },
+      "wave2": {
+        "event_types": [],
+        "conditions": [
+          "{\"id\": \"first_window\", \"location_any_of\": [\"hgd_library\"], \"time_window\": [\"10:22\", \"10:27\"], \"type\": \"visit_open_location\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}",
+          "{\"id\": \"second_window\", \"location_any_of\": [\"hgd_office\"], \"time_window\": [\"10:40\", \"10:45\"], \"type\": \"visit_open_location\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      }
+    },
+    {
+      "scenario_id": "ci11w3_time_metro_radial_v1_v0",
+      "construct_family": "time_window_scheduling",
+      "mechanism_id": "rolling_window_commitment_update",
+      "structural_delta": true,
+      "current": {
+        "event_types": [
+          "rolling_window_update"
+        ],
+        "conditions": [
+          "{\"deadline\": \"13:00\", \"id\": \"finish_episode\", \"type\": \"episode_complete_before\"}",
+          "{\"id\": \"first_window\", \"location_any_of\": [\"mtr_library\"], \"time_window\": [\"10:20\", \"10:25\"], \"type\": \"visit_open_location\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}",
+          "{\"id\": \"second_window\", \"location_any_of\": [\"mtr_office\"], \"time_window\": [\"10:39\", \"10:44\"], \"type\": \"visit_open_location\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      },
+      "wave2": {
+        "event_types": [],
+        "conditions": [
+          "{\"id\": \"first_window\", \"location_any_of\": [\"mtr_library\"], \"time_window\": [\"10:20\", \"10:25\"], \"type\": \"visit_open_location\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}",
+          "{\"id\": \"second_window\", \"location_any_of\": [\"mtr_office\"], \"time_window\": [\"10:39\", \"10:44\"], \"type\": \"visit_open_location\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      }
+    },
+    {
+      "scenario_id": "ci11w3_time_suburb_polycentric_v1_v1",
+      "construct_family": "time_window_scheduling",
+      "mechanism_id": "rolling_window_commitment_update",
+      "structural_delta": true,
+      "current": {
+        "event_types": [
+          "rolling_window_update"
+        ],
+        "conditions": [
+          "{\"deadline\": \"13:00\", \"id\": \"finish_episode\", \"type\": \"episode_complete_before\"}",
+          "{\"id\": \"first_window\", \"location_any_of\": [\"spc_library\"], \"time_window\": [\"10:14\", \"10:19\"], \"type\": \"visit_open_location\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}",
+          "{\"id\": \"second_window\", \"location_any_of\": [\"spc_office\"], \"time_window\": [\"10:29\", \"10:30\"], \"type\": \"visit_open_location\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      },
+      "wave2": {
+        "event_types": [],
+        "conditions": [
+          "{\"id\": \"first_window\", \"location_any_of\": [\"spc_library\"], \"time_window\": [\"10:14\", \"10:19\"], \"type\": \"visit_open_location\"}",
+          "{\"id\": \"legal_trace\", \"type\": \"no_feasibility_violation\"}",
+          "{\"id\": \"second_window\", \"location_any_of\": [\"spc_office\"], \"time_window\": [\"10:29\", \"10:34\"], \"type\": \"visit_open_location\"}"
+        ],
+        "oracle_kinds": [],
+        "memory_seed_count": 0
+      }
+    }
+  ]
+}

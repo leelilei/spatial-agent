@@ -1,0 +1,74 @@
+{
+  "benchmark_id": "cityintent_v1_1_native_expansion_wave1",
+  "version": "1.1.0-expansion-wave1",
+  "status": "oracle_gate_pending_candidate",
+  "worlds": [
+    "../../worlds/public/harbor_grid_v1.json",
+    "../../worlds/public/metro_radial_v1.json",
+    "../../worlds/public/suburb_polycentric_v1.json",
+    "../../worlds/private/mixed_irregular_eval_v1.json",
+    "../../worlds/private/river_bottleneck_eval_v1.json"
+  ],
+  "scenario_dir": "scenarios",
+  "agents_under_test": [
+    {
+      "id": "utility_planner"
+    },
+    {
+      "id": "llm_direct_actor"
+    },
+    {
+      "id": "reactive_replanner"
+    },
+    {
+      "id": "memory_reflection"
+    }
+  ],
+  "metrics": [
+    {
+      "id": "task_completion"
+    },
+    {
+      "id": "constraint_satisfaction"
+    },
+    {
+      "id": "goal_completion"
+    },
+    {
+      "id": "feasibility_violation"
+    },
+    {
+      "id": "replanning_success"
+    },
+    {
+      "id": "travel_efficiency"
+    },
+    {
+      "id": "budget_consistency"
+    },
+    {
+      "id": "intention_consistency"
+    },
+    {
+      "id": "social_appropriateness"
+    }
+  ],
+  "validation": {
+    "min_scenarios": 40,
+    "required_agent_ids": [
+      "utility_planner",
+      "llm_direct_actor",
+      "reactive_replanner",
+      "memory_reflection"
+    ],
+    "required_metric_ids": [
+      "task_completion",
+      "constraint_satisfaction",
+      "goal_completion",
+      "feasibility_violation",
+      "travel_efficiency",
+      "budget_consistency",
+      "intention_consistency"
+    ]
+  }
+}

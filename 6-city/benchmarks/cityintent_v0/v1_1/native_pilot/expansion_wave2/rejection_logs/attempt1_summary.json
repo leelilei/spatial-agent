@@ -1,0 +1,27 @@
+{
+  "attempt": 1,
+  "generator_version": "cityintent-native-expansion-wave2-1.0.0",
+  "generated": 23,
+  "generation_rejections": [
+    {
+      "construct": "disruption_recovery",
+      "variant": 1,
+      "world_id": "metro_radial_v1",
+      "reason": "path too short for disruption mechanism"
+    }
+  ],
+  "oracle_gate": {
+    "passed": 16,
+    "evaluated": 23,
+    "failed_scenario_ids": [
+      "ci11w2_disr_suburb_polycentric_v1_v2",
+      "ci11w2_reso_harbor_grid_v1_v1",
+      "ci11w2_reso_metro_radial_v1_v2",
+      "ci11w2_reso_suburb_polycentric_v1_v0",
+      "ci11w2_soci_harbor_grid_v1_v1",
+      "ci11w2_soci_metro_radial_v1_v2",
+      "ci11w2_soci_suburb_polycentric_v1_v0"
+    ]
+  },
+  "status": "rejected_attempt_retained"
+}

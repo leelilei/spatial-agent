@@ -1,0 +1,21 @@
+{
+  "schema_version": "cityintent_wave3_v2_calibration_status_v1",
+  "date": "2026-08-06",
+  "status": "v2_complete_cross_world_promoted_not_release",
+  "scenario_count": 8,
+  "trace_count": 48,
+  "systems_per_scenario": 6,
+  "complete_items": 8,
+  "discriminating_items": 8,
+  "threshold_pass_count": 8,
+  "relay": "apilio",
+  "item_metric_ranges": {
+    "mean_task": [0.333333, 0.833333],
+    "observed_range": [0.5, 1.0],
+    "corrected_item_total_correlation": [0.410793, 0.988284]
+  },
+  "analysis_directory": "results/cityintent_v1_1_candidate/native_wave3_public_v2_final_analysis_48_2026-08-06",
+  "promotion_evidence": true,
+  "next_gate": "wave4_public_mechanism_expansion",
+  "private_world_actor_run": false
+}

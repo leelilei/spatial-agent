@@ -1,0 +1,53 @@
+{
+  "schema_version": "cityintent_wave4_calibration_status_v1",
+  "date": "2026-08-06",
+  "status": "public_calibration_failed_hardening_required",
+  "actor_traces": 144,
+  "cells": 9,
+  "traces_per_cell": 16,
+  "provider": "apilio",
+  "models": [
+    "claude-sonnet-4-5-20250929",
+    "qwen3-235b-a22b-instruct-2507",
+    "deepseek-v4-flash"
+  ],
+  "policies": ["api_llm_react_tool_policy", "api_llm_plan_and_execute"],
+  "systems_per_variant": 6,
+  "coverage_complete": true,
+  "promotion_gate": {
+    "accepted_template_count": 1,
+    "evaluated_template_count": 8,
+    "accepted_item_count": 3,
+    "evaluated_item_count": 24,
+    "accepted_templates": ["multi_party_commitment"]
+  },
+  "registry_unchanged": {
+    "calibration_templates": 24,
+    "calibration_public_instances": 72
+  },
+  "release_accepted_count": 0,
+  "release_target": 144,
+  "private_world_actor_run": false,
+  "root_cause": {
+    "finding": "Wave-4 items are too easy for these three models, which compresses system spread and destabilises the corrected item-total correlation",
+    "wave3_system_spread": {"v0": 0.747, "v1": 0.827, "v2": 0.753},
+    "wave4_system_spread": {"v0": 0.365, "v1": 0.284, "v2": 0.393},
+    "wave3_system_mean": {"v0": 0.607, "v1": 0.563, "v2": 0.563},
+    "wave4_system_mean": {"v0": 0.871, "v1": 0.820, "v2": 0.866},
+    "consequence": "with six systems compressed near ceiling, one atypical score flips the sign of r, so comp/disr/soci/time each pass in some worlds and fail in others without any per-item defect"
+  },
+  "failure_classes": {
+    "hard_ceiling_all_worlds": {
+      "constructs": ["memory_conditioned_preference", "resource_budget_allocation"],
+      "evidence": "mean_task = 1.000 and range = 0.000 in all three worlds",
+      "diagnosis": "the private_intention states the answer, so no arbitration or tradeoff is exercised",
+      "action": "mechanism redesign, not parameter tuning"
+    },
+    "unstable_item_total": {
+      "constructs": ["compound_long_horizon", "disruption_recovery", "social_coordination_copresence", "time_window_scheduling", "poi_availability_service_evidence"],
+      "evidence": "r spans -0.311 to +0.920 across worlds for the same mechanism",
+      "diagnosis": "insufficient total-score variance, a consequence of the global difficulty problem",
+      "action": "raise difficulty so system spread recovers; per-item edits alone will not stabilise r"
+    }
+  }
+}

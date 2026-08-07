@@ -1,0 +1,108 @@
+{
+  "scenario_id": "ci11n_poi__suburb_polycentric_v1_v2",
+  "title": "Native Poi Availability Service Evidence 2",
+  "world_id": "suburb_polycentric_v1",
+  "family": "poi_availability_service_evidence",
+  "episode": {
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "max_steps": 14
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "A resident executing a private urban intention.",
+      "start_location": "spc_home_primary",
+      "budget": 100,
+      "private_intention": "First enter spc_clinic and explicitly complete medical check-in by 10:28. Then enter spc_civic_service and complete the permit-application service by 10:56. Arrival alone does not count at either place.",
+      "known_locations": [
+        "spc_home_primary",
+        "spc_home_friend",
+        "spc_office",
+        "spc_transit_hub",
+        "spc_plaza",
+        "spc_meeting_cafe",
+        "spc_quiet_cafe",
+        "spc_library",
+        "spc_coworking",
+        "spc_civic_service",
+        "spc_park",
+        "spc_gym",
+        "spc_market",
+        "spc_pharmacy",
+        "spc_clinic",
+        "spc_budget_food",
+        "spc_school",
+        "spc_culture",
+        "spc_bookstore"
+      ],
+      "memory_seeds": []
+    }
+  ],
+  "public_context": "Only environment-observable action evidence counts as completion.",
+  "events": [],
+  "critical_locations": [
+    "spc_home_primary",
+    "spc_clinic",
+    "spc_civic_service"
+  ],
+  "success_conditions": [
+    {
+      "id": "complete_checkin",
+      "type": "use_service_at",
+      "role": "outcome",
+      "weight": 0.4,
+      "location": "spc_clinic",
+      "deadline": "10:28",
+      "minutes": 5
+    },
+    {
+      "id": "submit_permit",
+      "type": "use_service_at",
+      "role": "outcome",
+      "weight": 0.4,
+      "location": "spc_civic_service",
+      "deadline": "10:56",
+      "minutes": 5
+    },
+    {
+      "id": "legal_trace",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.2
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Must produce explicit outcome evidence.",
+    "llm_direct_actor": "May narrate success without the required action evidence.",
+    "reactive_replanner": "Must preserve the intention while updating the plan.",
+    "memory_reflection": "Must use relevant private memory without goal drift."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0-expansion-wave1",
+    "candidate_status": "oracle_gate_pending",
+    "split": "calibration_expansion",
+    "construct_family": "poi_availability_service_evidence",
+    "difficulty_tier": "hard",
+    "template_id": "native_poi_availability_service_evidence",
+    "instance_variant": 2,
+    "seed": 6692908024735,
+    "generator_version": "cityintent-native-expansion-6.1.0",
+    "world_visibility": "public",
+    "observation_contract": "intent_only_v1",
+    "expose_verifier_conditions": false,
+    "parent_generator_version": "cityintent-native-pilot-6.0.0"
+  }
+}

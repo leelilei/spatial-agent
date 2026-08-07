@@ -1,0 +1,519 @@
+{
+  "world_id": "metro_radial_v1",
+  "name": "Metro Radial",
+  "description": "A radial transit CityIntent evaluation world.",
+  "time_unit": "minutes",
+  "currency": "credits",
+  "topology_archetype": "radial_transit",
+  "release_visibility": "public",
+  "generator_provenance": {
+    "generator_version": "cityintent-worldgen-1.0.0",
+    "seed": 2207
+  },
+  "locations": [
+    {
+      "id": "mtr_home_primary",
+      "name": "Metro Radial Home Primary",
+      "semantic_role": "home_primary",
+      "type": "home",
+      "tags": [
+        "home",
+        "quiet"
+      ],
+      "open": [
+        "00:10",
+        "23:59"
+      ],
+      "capacity": 2,
+      "map_index": 0
+    },
+    {
+      "id": "mtr_home_friend",
+      "name": "Metro Radial Home Friend",
+      "semantic_role": "home_friend",
+      "type": "home",
+      "tags": [
+        "home"
+      ],
+      "open": [
+        "00:10",
+        "23:59"
+      ],
+      "capacity": 2,
+      "map_index": 1
+    },
+    {
+      "id": "mtr_office",
+      "name": "Metro Radial Office",
+      "semantic_role": "office",
+      "type": "work",
+      "tags": [
+        "work",
+        "wifi"
+      ],
+      "open": [
+        "07:20",
+        "21:20"
+      ],
+      "capacity": 17,
+      "map_index": 2
+    },
+    {
+      "id": "mtr_transit_hub",
+      "name": "Metro Radial Transit Hub",
+      "semantic_role": "transit_hub",
+      "type": "transit",
+      "tags": [
+        "transit",
+        "crowded"
+      ],
+      "open": [
+        "05:10",
+        "23:40"
+      ],
+      "capacity": 66,
+      "map_index": 3
+    },
+    {
+      "id": "mtr_plaza",
+      "name": "Metro Radial Plaza",
+      "semantic_role": "plaza",
+      "type": "public_space",
+      "tags": [
+        "outdoor",
+        "event_space",
+        "crowded"
+      ],
+      "open": [
+        "00:10",
+        "23:59"
+      ],
+      "capacity": 94,
+      "map_index": 4
+    },
+    {
+      "id": "mtr_meeting_cafe",
+      "name": "Metro Radial Meeting Cafe",
+      "semantic_role": "meeting_cafe",
+      "type": "food",
+      "tags": [
+        "coffee",
+        "meeting",
+        "moderate_noise"
+      ],
+      "open": [
+        "07:50",
+        "20:20"
+      ],
+      "capacity": 23,
+      "map_index": 5,
+      "typical_cost": 14
+    },
+    {
+      "id": "mtr_quiet_cafe",
+      "name": "Metro Radial Quiet Cafe",
+      "semantic_role": "quiet_cafe",
+      "type": "food",
+      "tags": [
+        "coffee",
+        "quiet",
+        "wifi",
+        "vegan"
+      ],
+      "open": [
+        "08:10",
+        "21:10"
+      ],
+      "capacity": 20,
+      "map_index": 6,
+      "typical_cost": 12
+    },
+    {
+      "id": "mtr_library",
+      "name": "Metro Radial Library",
+      "semantic_role": "library",
+      "type": "study",
+      "tags": [
+        "quiet",
+        "free",
+        "wifi"
+      ],
+      "open": [
+        "09:20",
+        "18:20"
+      ],
+      "capacity": 34,
+      "map_index": 7,
+      "typical_cost": 0
+    },
+    {
+      "id": "mtr_coworking",
+      "name": "Metro Radial Coworking",
+      "semantic_role": "coworking",
+      "type": "work",
+      "tags": [
+        "quiet",
+        "wifi",
+        "paid"
+      ],
+      "open": [
+        "08:20",
+        "22:20"
+      ],
+      "capacity": 25,
+      "map_index": 8,
+      "typical_cost": 21
+    },
+    {
+      "id": "mtr_civic_service",
+      "name": "Metro Radial Civic Service",
+      "semantic_role": "civic_service",
+      "type": "service",
+      "tags": [
+        "appointment",
+        "public_service"
+      ],
+      "open": [
+        "09:00",
+        "17:00"
+      ],
+      "capacity": 56,
+      "map_index": 9
+    },
+    {
+      "id": "mtr_park",
+      "name": "Metro Radial Park",
+      "semantic_role": "park",
+      "type": "recreation",
+      "tags": [
+        "outdoor",
+        "low_cost",
+        "exercise"
+      ],
+      "open": [
+        "06:00",
+        "22:00"
+      ],
+      "capacity": 115,
+      "map_index": 10
+    },
+    {
+      "id": "mtr_gym",
+      "name": "Metro Radial Gym",
+      "semantic_role": "gym",
+      "type": "recreation",
+      "tags": [
+        "exercise",
+        "paid"
+      ],
+      "open": [
+        "06:20",
+        "23:20"
+      ],
+      "capacity": 24,
+      "map_index": 11,
+      "typical_cost": 11
+    },
+    {
+      "id": "mtr_market",
+      "name": "Metro Radial Market",
+      "semantic_role": "market",
+      "type": "shopping",
+      "tags": [
+        "groceries",
+        "busy"
+      ],
+      "open": [
+        "08:00",
+        "21:00"
+      ],
+      "capacity": 49,
+      "map_index": 12,
+      "typical_cost": 22
+    },
+    {
+      "id": "mtr_pharmacy",
+      "name": "Metro Radial Pharmacy",
+      "semantic_role": "pharmacy",
+      "type": "shopping",
+      "tags": [
+        "medicine",
+        "errand"
+      ],
+      "open": [
+        "08:10",
+        "22:10"
+      ],
+      "capacity": 12,
+      "map_index": 13,
+      "typical_cost": 14
+    },
+    {
+      "id": "mtr_clinic",
+      "name": "Metro Radial Clinic",
+      "semantic_role": "clinic",
+      "type": "health",
+      "tags": [
+        "health",
+        "appointment"
+      ],
+      "open": [
+        "08:30",
+        "19:00"
+      ],
+      "capacity": 21,
+      "map_index": 14,
+      "typical_cost": 28
+    },
+    {
+      "id": "mtr_budget_food",
+      "name": "Metro Radial Budget Food",
+      "semantic_role": "budget_food",
+      "type": "food",
+      "tags": [
+        "meal",
+        "cheap"
+      ],
+      "open": [
+        "07:00",
+        "22:00"
+      ],
+      "capacity": 33,
+      "map_index": 15,
+      "typical_cost": 8
+    },
+    {
+      "id": "mtr_school",
+      "name": "Metro Radial School",
+      "semantic_role": "school",
+      "type": "school",
+      "tags": [
+        "family",
+        "pickup"
+      ],
+      "open": [
+        "07:40",
+        "18:40"
+      ],
+      "capacity": 95,
+      "map_index": 16
+    },
+    {
+      "id": "mtr_culture",
+      "name": "Metro Radial Culture",
+      "semantic_role": "culture",
+      "type": "culture",
+      "tags": [
+        "social",
+        "ticketed"
+      ],
+      "open": [
+        "17:00",
+        "23:00"
+      ],
+      "capacity": 58,
+      "map_index": 17,
+      "typical_cost": 22
+    },
+    {
+      "id": "mtr_bookstore",
+      "name": "Metro Radial Bookstore",
+      "semantic_role": "bookstore",
+      "type": "shopping",
+      "tags": [
+        "quiet",
+        "books",
+        "wifi"
+      ],
+      "open": [
+        "10:10",
+        "20:10"
+      ],
+      "capacity": 16,
+      "map_index": 18,
+      "typical_cost": 9
+    }
+  ],
+  "edges": [
+    {
+      "from": "mtr_transit_hub",
+      "to": "mtr_home_primary",
+      "minutes": 11
+    },
+    {
+      "from": "mtr_transit_hub",
+      "to": "mtr_office",
+      "minutes": 8
+    },
+    {
+      "from": "mtr_transit_hub",
+      "to": "mtr_meeting_cafe",
+      "minutes": 10
+    },
+    {
+      "from": "mtr_transit_hub",
+      "to": "mtr_plaza",
+      "minutes": 10
+    },
+    {
+      "from": "mtr_transit_hub",
+      "to": "mtr_civic_service",
+      "minutes": 3
+    },
+    {
+      "from": "mtr_transit_hub",
+      "to": "mtr_clinic",
+      "minutes": 5
+    },
+    {
+      "from": "mtr_transit_hub",
+      "to": "mtr_pharmacy",
+      "minutes": 12
+    },
+    {
+      "from": "mtr_transit_hub",
+      "to": "mtr_market",
+      "minutes": 4
+    },
+    {
+      "from": "mtr_transit_hub",
+      "to": "mtr_budget_food",
+      "minutes": 9
+    },
+    {
+      "from": "mtr_transit_hub",
+      "to": "mtr_school",
+      "minutes": 6
+    },
+    {
+      "from": "mtr_transit_hub",
+      "to": "mtr_home_friend",
+      "minutes": 8
+    },
+    {
+      "from": "mtr_transit_hub",
+      "to": "mtr_park",
+      "minutes": 12
+    },
+    {
+      "from": "mtr_transit_hub",
+      "to": "mtr_gym",
+      "minutes": 7
+    },
+    {
+      "from": "mtr_transit_hub",
+      "to": "mtr_quiet_cafe",
+      "minutes": 10
+    },
+    {
+      "from": "mtr_transit_hub",
+      "to": "mtr_library",
+      "minutes": 6
+    },
+    {
+      "from": "mtr_transit_hub",
+      "to": "mtr_bookstore",
+      "minutes": 11
+    },
+    {
+      "from": "mtr_transit_hub",
+      "to": "mtr_culture",
+      "minutes": 13
+    },
+    {
+      "from": "mtr_transit_hub",
+      "to": "mtr_coworking",
+      "minutes": 4
+    },
+    {
+      "from": "mtr_home_primary",
+      "to": "mtr_office",
+      "minutes": 5
+    },
+    {
+      "from": "mtr_office",
+      "to": "mtr_meeting_cafe",
+      "minutes": 5
+    },
+    {
+      "from": "mtr_meeting_cafe",
+      "to": "mtr_plaza",
+      "minutes": 7
+    },
+    {
+      "from": "mtr_plaza",
+      "to": "mtr_civic_service",
+      "minutes": 8
+    },
+    {
+      "from": "mtr_civic_service",
+      "to": "mtr_clinic",
+      "minutes": 8
+    },
+    {
+      "from": "mtr_clinic",
+      "to": "mtr_pharmacy",
+      "minutes": 5
+    },
+    {
+      "from": "mtr_pharmacy",
+      "to": "mtr_market",
+      "minutes": 7
+    },
+    {
+      "from": "mtr_market",
+      "to": "mtr_budget_food",
+      "minutes": 12
+    },
+    {
+      "from": "mtr_budget_food",
+      "to": "mtr_school",
+      "minutes": 11
+    },
+    {
+      "from": "mtr_school",
+      "to": "mtr_home_friend",
+      "minutes": 13
+    },
+    {
+      "from": "mtr_home_friend",
+      "to": "mtr_park",
+      "minutes": 9
+    },
+    {
+      "from": "mtr_park",
+      "to": "mtr_gym",
+      "minutes": 6
+    },
+    {
+      "from": "mtr_gym",
+      "to": "mtr_quiet_cafe",
+      "minutes": 10
+    },
+    {
+      "from": "mtr_quiet_cafe",
+      "to": "mtr_library",
+      "minutes": 6
+    },
+    {
+      "from": "mtr_library",
+      "to": "mtr_bookstore",
+      "minutes": 12
+    },
+    {
+      "from": "mtr_bookstore",
+      "to": "mtr_culture",
+      "minutes": 5
+    },
+    {
+      "from": "mtr_culture",
+      "to": "mtr_coworking",
+      "minutes": 4
+    },
+    {
+      "from": "mtr_coworking",
+      "to": "mtr_home_primary",
+      "minutes": 13
+    }
+  ]
+}

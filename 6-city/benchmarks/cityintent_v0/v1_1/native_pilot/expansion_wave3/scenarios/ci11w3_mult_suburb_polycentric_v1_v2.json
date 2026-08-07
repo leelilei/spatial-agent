@@ -1,0 +1,168 @@
+{
+  "scenario_id": "ci11w3_mult_suburb_polycentric_v1_v2",
+  "title": "Wave 3 Priority Aware Commitment Repair",
+  "world_id": "suburb_polycentric_v1",
+  "family": "multi_party_commitment",
+  "episode": {
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "max_steps": 18
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "A resident executing a private urban intention.",
+      "start_location": "spc_home_primary",
+      "budget": 11.0,
+      "private_intention": "Ben and Casey requested overlapping meetings. Confirm and meet Ben inside spc_meeting_cafe between 11:00-11:15. Explicitly message Casey to reschedule instead of silently dropping that commitment; do not travel to spc_park today. The decision must preserve the mechanism contract: one commitment is fulfilled while another is explicitly rescheduled.",
+      "known_locations": [
+        "spc_home_primary",
+        "spc_home_friend",
+        "spc_office",
+        "spc_transit_hub",
+        "spc_plaza",
+        "spc_meeting_cafe",
+        "spc_quiet_cafe",
+        "spc_library",
+        "spc_coworking",
+        "spc_civic_service",
+        "spc_park",
+        "spc_gym",
+        "spc_market",
+        "spc_pharmacy",
+        "spc_clinic",
+        "spc_budget_food",
+        "spc_school",
+        "spc_culture",
+        "spc_bookstore"
+      ],
+      "memory_seeds": []
+    },
+    {
+      "agent_id": "ben",
+      "persona": "A coordination partner.",
+      "start_location": "spc_meeting_cafe",
+      "budget": 0,
+      "private_intention": "Coordinate with Aria.",
+      "known_locations": [
+        "spc_meeting_cafe"
+      ],
+      "memory_seeds": []
+    },
+    {
+      "agent_id": "casey",
+      "persona": "A coordination partner.",
+      "start_location": "spc_park",
+      "budget": 0,
+      "private_intention": "Coordinate with Aria.",
+      "known_locations": [
+        "spc_park"
+      ],
+      "memory_seeds": []
+    }
+  ],
+  "public_context": "Only environment-observable action evidence counts as completion. Mechanism contract: one commitment is fulfilled while another is explicitly rescheduled.",
+  "events": [
+    {
+      "time": "10:30",
+      "type": "commitment_priority_update",
+      "location": null,
+      "visibility": "public",
+      "effect": {
+        "priority_agent": "ben",
+        "reschedule_agent": "casey"
+      }
+    }
+  ],
+  "critical_locations": [
+    "spc_home_primary",
+    "spc_meeting_cafe",
+    "spc_park"
+  ],
+  "success_conditions": [
+    {
+      "id": "confirm_ben",
+      "type": "send_message_after",
+      "role": "outcome",
+      "weight": 0.2,
+      "to": "ben",
+      "after": "10:30"
+    },
+    {
+      "id": "renegotiate_casey",
+      "type": "send_message_after",
+      "role": "outcome",
+      "weight": 0.15,
+      "to": "casey",
+      "after": "10:30"
+    },
+    {
+      "id": "meet_ben",
+      "type": "co_presence",
+      "role": "outcome",
+      "weight": 0.5,
+      "agents": [
+        "aria",
+        "ben"
+      ],
+      "location_any_of": [
+        "spc_meeting_cafe"
+      ],
+      "time_window": [
+        "11:00",
+        "11:15"
+      ]
+    },
+    {
+      "id": "legal_trace",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.15
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Must produce explicit outcome evidence.",
+    "llm_direct_actor": "May narrate success without the required action evidence.",
+    "reactive_replanner": "Must preserve the intention while updating the plan.",
+    "memory_reflection": "Must use relevant private memory without goal drift."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0-expansion-wave3",
+    "candidate_status": "mechanism_distinctness_review_pending",
+    "split": "calibration_public",
+    "construct_family": "multi_party_commitment",
+    "difficulty_tier": "hard",
+    "template_id": "wave3_priority_aware_commitment_repair",
+    "instance_variant": 2,
+    "seed": 203269743625420,
+    "generator_version": "cityintent-native-expansion-wave3-1.0.0-design-review",
+    "world_visibility": "public",
+    "observation_contract": "intent_only_v1",
+    "expose_verifier_conditions": false,
+    "mechanism_id": "priority_aware_commitment_repair",
+    "mechanism_parameter": "one commitment is fulfilled while another is explicitly rescheduled",
+    "parent_generator_version": "cityintent-native-expansion-wave2-1.0.3",
+    "mechanism_contract": {
+      "state_transition": "priority_commitment_fulfilled_and_competing_one_rescheduled",
+      "required_evidence": [
+        "confirm_ben",
+        "renegotiate_casey",
+        "meet_ben"
+      ],
+      "negative_failure": "silent_drop_of_competing_commitment"
+    },
+    "ordering_contract": "fulfill_priority_then_reschedule_competing_commitment"
+  }
+}

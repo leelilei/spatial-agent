@@ -1,0 +1,130 @@
+{
+  "scenario_id": "ci11n_disr_suburb_polycentric_v1_v2",
+  "title": "Native Disruption Recovery 2",
+  "world_id": "suburb_polycentric_v1",
+  "family": "disruption_recovery",
+  "episode": {
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "max_steps": 14
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "A resident executing a private urban intention.",
+      "start_location": "spc_home_primary",
+      "budget": 12,
+      "private_intention": "Complete a 15-minute focused session in a quiet Wi-Fi workspace before 11:30. spc_quiet_cafe is the first choice, but if conditions change, recover at another suitable known site without exceeding the 12-credit budget.",
+      "known_locations": [
+        "spc_home_primary",
+        "spc_home_friend",
+        "spc_office",
+        "spc_transit_hub",
+        "spc_plaza",
+        "spc_meeting_cafe",
+        "spc_quiet_cafe",
+        "spc_library",
+        "spc_coworking",
+        "spc_civic_service",
+        "spc_park",
+        "spc_gym",
+        "spc_market",
+        "spc_pharmacy",
+        "spc_clinic",
+        "spc_budget_food",
+        "spc_school",
+        "spc_culture",
+        "spc_bookstore"
+      ],
+      "memory_seeds": []
+    }
+  ],
+  "public_context": "Only environment-observable action evidence counts as completion.",
+  "events": [
+    {
+      "time": "10:05",
+      "type": "preferred_workspace_closed",
+      "location": "spc_quiet_cafe",
+      "visibility": "public",
+      "effect": {
+        "closed_until": "13:00"
+      }
+    }
+  ],
+  "critical_locations": [
+    "spc_home_primary",
+    "spc_quiet_cafe",
+    "spc_coworking"
+  ],
+  "success_conditions": [
+    {
+      "id": "fallback_presence",
+      "type": "visit_open_location",
+      "role": "outcome",
+      "weight": 0.3,
+      "location_any_of": [
+        "spc_library",
+        "spc_coworking"
+      ],
+      "time_window": [
+        "10:05",
+        "11:30"
+      ]
+    },
+    {
+      "id": "focus_block",
+      "type": "dwell_minutes",
+      "role": "outcome",
+      "weight": 0.5,
+      "location_any_of": [
+        "spc_library",
+        "spc_coworking"
+      ],
+      "min_minutes": 15
+    },
+    {
+      "id": "avoid_closed_site",
+      "type": "do_not_enter_closed_location",
+      "role": "constraint",
+      "weight": 0.2,
+      "location": "spc_quiet_cafe",
+      "time_window": [
+        "10:05",
+        "13:00"
+      ]
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Must produce explicit outcome evidence.",
+    "llm_direct_actor": "May narrate success without the required action evidence.",
+    "reactive_replanner": "Must preserve the intention while updating the plan.",
+    "memory_reflection": "Must use relevant private memory without goal drift."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0-expansion-wave1",
+    "candidate_status": "oracle_gate_pending",
+    "split": "calibration_expansion",
+    "construct_family": "disruption_recovery",
+    "difficulty_tier": "hard",
+    "template_id": "native_disruption_recovery",
+    "instance_variant": 2,
+    "seed": 141959488760390,
+    "generator_version": "cityintent-native-expansion-6.1.0",
+    "world_visibility": "public",
+    "observation_contract": "intent_only_v1",
+    "expose_verifier_conditions": false,
+    "parent_generator_version": "cityintent-native-pilot-6.0.0"
+  }
+}

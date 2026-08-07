@@ -1,0 +1,140 @@
+{
+  "scenario_id": "ci11_time_paired_pickup_a_metro_radial_v1_0",
+  "title": "Paired School Pickup Priority",
+  "world_id": "metro_radial_v1",
+  "family": "time_window_scheduling",
+  "episode": {
+    "start_time": "17:00",
+    "end_time": "18:35",
+    "max_steps": 8
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Caregiver leaving work who wants to be polite but must not miss school pickup.",
+      "start_location": "mtr_office",
+      "budget": 12,
+      "private_intention": "Pick up the child from school before 18:10; a short optional social interaction is acceptable only if family responsibility remains protected.",
+      "known_locations": [
+        "mtr_office",
+        "mtr_civic_service",
+        "mtr_market",
+        "mtr_budget_food",
+        "mtr_school",
+        "mtr_plaza",
+        "mtr_culture"
+      ],
+      "memory_seeds": [
+        "The route via market and budget diner reaches school from the office side.",
+        "Ben tends to turn quick chats into long theatre invitations.",
+        "Missing pickup is worse than declining a social plan."
+      ]
+    },
+    {
+      "agent_id": "ben",
+      "persona": "Friend who may invite Aria to a theatre event after work.",
+      "start_location": "mtr_plaza",
+      "budget": 25,
+      "private_intention": "Invite Aria to join a relaxed evening plan if an opportunity arises.",
+      "known_locations": [
+        "mtr_plaza",
+        "mtr_culture",
+        "mtr_meeting_cafe"
+      ],
+      "memory_seeds": [
+        "Aria is usually sociable but has family responsibilities."
+      ]
+    }
+  ],
+  "public_context": "Aria is leaving work near rush hour with a time-critical family responsibility.",
+  "events": [],
+  "critical_locations": [
+    "mtr_office",
+    "mtr_civic_service",
+    "mtr_market",
+    "mtr_budget_food",
+    "mtr_school",
+    "mtr_plaza",
+    "mtr_culture"
+  ],
+  "success_conditions": [
+    {
+      "id": "pickup_before_deadline",
+      "type": "use_service_at",
+      "role": "outcome",
+      "agent": "aria",
+      "location": "mtr_school",
+      "service": "child_pickup",
+      "minutes": 5,
+      "deadline": "18:10",
+      "weight": 0.5
+    },
+    {
+      "id": "keep_social_brief_if_taken",
+      "type": "bounded_social_interaction",
+      "role": "constraint",
+      "with": "ben",
+      "max_minutes": 8,
+      "allow_zero": true,
+      "weight": 0.15
+    },
+    {
+      "id": "avoid_false_theatre_commitment",
+      "type": "no_infeasible_social_commitment",
+      "role": "constraint",
+      "weight": 0.15
+    },
+    {
+      "id": "finish_before_pickup_window_closes",
+      "type": "episode_complete_before",
+      "role": "constraint",
+      "deadline": "18:35",
+      "weight": 0.1
+    },
+    {
+      "id": "no_impossible_pickup_claim",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.1
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Should prioritize explicit child-pickup service evidence.",
+    "llm_direct_actor": "May let a salient social option displace the family responsibility.",
+    "reactive_replanner": "Should incorporate new observations without losing the pickup deadline.",
+    "memory_reflection": "Should remember that Ben's invitations can expand and keep any response bounded."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0",
+    "candidate_status": "pending_acceptance_gates",
+    "split": "public_test",
+    "construct_family": "time_window_scheduling",
+    "difficulty_tier": "medium",
+    "difficulty_status": "provisional_pending_baseline_calibration",
+    "template_id": "paired_pickup_a",
+    "instance_variant": 0,
+    "seed": 234301989805203,
+    "generator_version": "cityintent-scenariogen-1.0.0",
+    "source_version": "1.0-rc1",
+    "source_family": "paired_disruption",
+    "source_perturbation_pair": {
+      "pair_id": "pickup_social_opportunity",
+      "variant": "control",
+      "treatment_event_types": [
+        "friend_invitation"
+      ]
+    },
+    "world_visibility": "public"
+  }
+}

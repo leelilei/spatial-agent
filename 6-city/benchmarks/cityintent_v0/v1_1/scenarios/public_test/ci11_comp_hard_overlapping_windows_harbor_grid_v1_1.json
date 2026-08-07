@@ -1,0 +1,151 @@
+{
+  "scenario_id": "ci11_comp_hard_overlapping_windows_harbor_grid_v1_1",
+  "title": "Far Window Closes First",
+  "world_id": "harbor_grid_v1",
+  "family": "compound_long_horizon",
+  "episode": {
+    "start_time": "12:00",
+    "end_time": "13:20",
+    "max_steps": 11
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Friend with two overlapping invitations.",
+      "start_location": "hgd_office",
+      "budget": 21,
+      "private_intention": "Meet Casey at the park AND Ben at the central cafe — both windows, not just the convenient one.",
+      "known_locations": [
+        "hgd_office",
+        "hgd_meeting_cafe",
+        "hgd_plaza",
+        "hgd_market",
+        "hgd_park"
+      ],
+      "memory_seeds": [
+        "Casey's park window closes earlier than it looks.",
+        "Ben stays at the cafe until one.",
+        "The near, already-open option is the trap."
+      ]
+    },
+    {
+      "agent_id": "casey",
+      "persona": "Friend at the park until half past.",
+      "start_location": "hgd_park",
+      "budget": 10,
+      "private_intention": "See Aria before leaving.",
+      "known_locations": [
+        "hgd_park"
+      ],
+      "memory_seeds": [
+        "Leaves 12:50."
+      ]
+    },
+    {
+      "agent_id": "ben",
+      "persona": "Friend at the cafe until one.",
+      "start_location": "hgd_meeting_cafe",
+      "budget": 18,
+      "private_intention": "See Aria before one.",
+      "known_locations": [
+        "hgd_meeting_cafe"
+      ],
+      "memory_seeds": [
+        "Until 13:00."
+      ]
+    }
+  ],
+  "public_context": "Both windows are open soon; the near one stays open, the far one closes. Greedy order fails.",
+  "events": [],
+  "critical_locations": [
+    "hgd_office",
+    "hgd_meeting_cafe",
+    "hgd_plaza",
+    "hgd_market",
+    "hgd_park"
+  ],
+  "success_conditions": [
+    {
+      "id": "meet_casey_park",
+      "type": "co_presence",
+      "role": "outcome",
+      "agents": [
+        "aria",
+        "casey"
+      ],
+      "location_any_of": [
+        "hgd_park"
+      ],
+      "time_window": [
+        "12:25",
+        "12:50"
+      ],
+      "weight": 0.3
+    },
+    {
+      "id": "meet_ben_cafe",
+      "type": "co_presence",
+      "role": "outcome",
+      "agents": [
+        "aria",
+        "ben"
+      ],
+      "location_any_of": [
+        "hgd_meeting_cafe"
+      ],
+      "time_window": [
+        "12:35",
+        "13:00"
+      ],
+      "weight": 0.3
+    },
+    {
+      "id": "stay_within_budget",
+      "type": "budget_at_least",
+      "role": "constraint",
+      "agent": "aria",
+      "min_remaining": 0,
+      "weight": 0.2
+    },
+    {
+      "id": "no_impossible_meeting_claim",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.2
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "social_appropriateness",
+    "intention_consistency",
+    "travel_efficiency"
+  ],
+  "architecture_probes": {
+    "utility_planner": "May take the near cafe first and lose the park window to travel time.",
+    "llm_direct_actor": "May sit with the first friend too long.",
+    "reactive_replanner": "Must go far-first: park, then back to the cafe.",
+    "memory_reflection": "Should recall which window closes first."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0",
+    "candidate_status": "pending_acceptance_gates",
+    "split": "public_test",
+    "construct_family": "compound_long_horizon",
+    "difficulty_tier": "easy",
+    "difficulty_status": "provisional_pending_baseline_calibration",
+    "template_id": "hard_overlapping_windows",
+    "instance_variant": 1,
+    "seed": 235139586055443,
+    "generator_version": "cityintent-scenariogen-1.0.0",
+    "source_version": "1.0-rc1",
+    "source_family": "social_outcome_hard",
+    "source_perturbation_pair": null,
+    "world_visibility": "public",
+    "parameterization": "one_extra_step_and_three_extra_credits"
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "scenario_id": "ci11_poi__avoid_crowd_event_harbor_grid_v1_0",
+  "title": "Avoid-Crowd Preference During Public Event",
+  "world_id": "harbor_grid_v1",
+  "family": "poi_availability_service_evidence",
+  "episode": {
+    "start_time": "18:00",
+    "end_time": "20:00",
+    "max_steps": 8
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Resident who likes evening exercise but strongly dislikes crowded event spaces.",
+      "start_location": "hgd_office",
+      "budget": 14,
+      "private_intention": "Get light exercise and pick up groceries while avoiding the public event crowd.",
+      "known_locations": [
+        "hgd_office",
+        "hgd_plaza",
+        "hgd_park",
+        "hgd_gym",
+        "hgd_market"
+      ],
+      "memory_seeds": [
+        "The plaza becomes noisy during events.",
+        "Harbor Grid Park is a calmer exercise option."
+      ]
+    }
+  ],
+  "public_context": "A free concert begins in Harbor Grid Plaza at 18:15 and draws a crowd.",
+  "events": [
+    {
+      "time": "18:15",
+      "type": "public_concert",
+      "location": "hgd_plaza",
+      "visibility": "public",
+      "effect": {
+        "crowd_level": "high"
+      }
+    }
+  ],
+  "critical_locations": [
+    "hgd_office",
+    "hgd_plaza",
+    "hgd_park",
+    "hgd_gym",
+    "hgd_market"
+  ],
+  "success_conditions": [
+    {
+      "id": "exercise",
+      "type": "visit_location_any_of",
+      "role": "outcome",
+      "location_any_of": [
+        "hgd_park",
+        "hgd_gym"
+      ],
+      "weight": 0.3
+    },
+    {
+      "id": "pick_up_groceries",
+      "type": "buy_item",
+      "role": "outcome",
+      "location": "hgd_market",
+      "item": "groceries",
+      "minutes": 5,
+      "weight": 0.3
+    },
+    {
+      "id": "avoid_plaza_crowd",
+      "type": "avoid_after_time",
+      "role": "constraint",
+      "avoid_locations": [
+        "hgd_plaza"
+      ],
+      "after": "18:15",
+      "weight": 0.25
+    },
+    {
+      "id": "stay_within_budget",
+      "type": "budget_at_least",
+      "role": "constraint",
+      "agent": "aria",
+      "min_remaining": 0,
+      "weight": 0.15
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Should satisfy exercise and groceries but may route through the crowded plaza if it is shortest.",
+    "llm_direct_actor": "May mention avoiding crowds but choose the plaza because it is salient in the prompt.",
+    "reactive_replanner": "Should avoid or leave the plaza after the crowd event starts.",
+    "memory_reflection": "Should prioritize Harbor Grid Park based on the calm-place memory."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0",
+    "candidate_status": "pending_acceptance_gates",
+    "split": "public_test",
+    "construct_family": "poi_availability_service_evidence",
+    "difficulty_tier": "easy",
+    "difficulty_status": "provisional_pending_baseline_calibration",
+    "template_id": "avoid_crowd_event",
+    "instance_variant": 0,
+    "seed": 198730495300409,
+    "generator_version": "cityintent-scenariogen-1.0.0",
+    "source_version": "1.0-rc1",
+    "source_family": "preference_constraint",
+    "source_perturbation_pair": null,
+    "world_visibility": "public"
+  }
+}

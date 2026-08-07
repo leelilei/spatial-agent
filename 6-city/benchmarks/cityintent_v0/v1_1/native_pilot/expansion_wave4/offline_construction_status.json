@@ -1,0 +1,77 @@
+{
+  "schema_version": "cityintent_wave4_offline_construction_status_v1",
+  "date": "2026-08-06",
+  "status": "offline_construction_complete_public_calibration_failed",
+  "generator": "generate_expansion_wave4.py",
+  "generator_version": "cityintent-native-expansion-wave4-1.0.0-design-review",
+  "design_contract": "wave4_mechanism_design.json",
+  "mechanism_templates": 8,
+  "public_candidates": 24,
+  "worlds": 3,
+  "rejection_count": 0,
+  "oracle_passed": 24,
+  "matched_negative_passed": 24,
+  "oracle_violations_total": 0,
+  "headroom_range": [
+    0.5,
+    1.0
+  ],
+  "structurally_distinct_vs_prior_pools": 24,
+  "prior_pools_compared": [
+    "base",
+    "wave1",
+    "wave2",
+    "wave3"
+  ],
+  "blind_observation_contract": "intent_only_v1",
+  "expose_verifier_conditions": false,
+  "negative_failure_audit": {
+    "method": "per-condition replay of all 24 matched negatives",
+    "all_negatives_fail_mechanism_condition": true,
+    "incidental_failures_found_and_repaired": [
+      {
+        "construct": "memory_conditioned_preference",
+        "problem": "negative incurred budget_negative by purchasing at a paid unreliable venue, so it failed on money rather than on source arbitration",
+        "repair": "unreliable source moved to a free venue and the negative now recalls both sources before arbitrating wrongly"
+      }
+    ]
+  },
+  "novelty_caveats": {
+    "memory_conditioned_preference": "introduces no new evidence type; novelty rests on memory-seed content (reliable/unreliable source tagging) and the arbitration rule",
+    "resource_budget_allocation": "its only condition type absent from prior pools is the generic no_feasibility_violation; mechanism novelty rests on the affordability-breaking decoy parameterisation"
+  },
+  "evaluator_additions": {
+    "service_after_recovery": "new condition type: service evidence counts only when produced at or after an outage recovery instant and no later than an optional deadline"
+  },
+  "tests": {
+    "suite": "benchmarks/cityintent_v0",
+    "passed": 88,
+    "previous": 79,
+    "new_files": [
+      "tests/test_wave4_generation.py",
+      "tests/test_wave4_evaluator_conditions.py (extended)"
+    ]
+  },
+  "prior_wave_regression_check": {
+    "base_native_pilot": 16,
+    "expansion_wave1": 40,
+    "expansion_wave2": 24,
+    "expansion_wave3": 24,
+    "time_v7_public_matrix": 24,
+    "all_passed": true
+  },
+  "public_actor_runs_executed": true,
+  "private_world_actor_run": false,
+  "registry_unchanged": {
+    "calibration_templates": 24,
+    "calibration_public_instances": 72
+  },
+  "release_accepted_count": 0,
+  "release_target": 144,
+  "calibration_outcome": {
+    "traces": 144,
+    "accepted_template_count": 1,
+    "evaluated_template_count": 8,
+    "detail": "expansion_wave4/calibration_status.json"
+  }
+}

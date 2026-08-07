@@ -1,0 +1,117 @@
+{
+  "scenario_id": "ci11n_comp_river_bottleneck_eval_v1_v4",
+  "title": "Native Compound Long Horizon 4",
+  "world_id": "river_bottleneck_eval_v1",
+  "family": "compound_long_horizon",
+  "episode": {
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "max_steps": 14
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "A resident executing a private urban intention.",
+      "start_location": "rbc_home_primary",
+      "budget": 100,
+      "private_intention": "Buy medicine at rbc_pharmacy, obtain a meal at rbc_budget_food, and then return inside home before 13:00. Complete all three outcomes.",
+      "known_locations": [
+        "rbc_home_primary",
+        "rbc_home_friend",
+        "rbc_office",
+        "rbc_transit_hub",
+        "rbc_plaza",
+        "rbc_meeting_cafe",
+        "rbc_quiet_cafe",
+        "rbc_library",
+        "rbc_coworking",
+        "rbc_civic_service",
+        "rbc_park",
+        "rbc_gym",
+        "rbc_market",
+        "rbc_pharmacy",
+        "rbc_clinic",
+        "rbc_budget_food",
+        "rbc_school",
+        "rbc_culture",
+        "rbc_bookstore"
+      ],
+      "memory_seeds": []
+    }
+  ],
+  "public_context": "Only environment-observable action evidence counts as completion.",
+  "events": [],
+  "critical_locations": [
+    "rbc_home_primary",
+    "rbc_pharmacy",
+    "rbc_budget_food"
+  ],
+  "success_conditions": [
+    {
+      "id": "medicine",
+      "type": "buy_item",
+      "role": "outcome",
+      "weight": 0.24,
+      "location": "rbc_pharmacy",
+      "item": "medicine",
+      "minutes": 3
+    },
+    {
+      "id": "meal",
+      "type": "use_service_at",
+      "role": "outcome",
+      "weight": 0.28,
+      "location": "rbc_budget_food",
+      "service": "meal",
+      "minutes": 5
+    },
+    {
+      "id": "return_home",
+      "type": "visit_before",
+      "role": "outcome",
+      "weight": 0.28,
+      "location": "rbc_home_primary",
+      "deadline": "13:00",
+      "ignore_start": true
+    },
+    {
+      "id": "legal_trace",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.2
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Must produce explicit outcome evidence.",
+    "llm_direct_actor": "May narrate success without the required action evidence.",
+    "reactive_replanner": "Must preserve the intention while updating the plan.",
+    "memory_reflection": "Must use relevant private memory without goal drift."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0-expansion-wave1",
+    "candidate_status": "oracle_gate_pending",
+    "split": "calibration_expansion",
+    "construct_family": "compound_long_horizon",
+    "difficulty_tier": "hard",
+    "template_id": "native_compound_long_horizon",
+    "instance_variant": 4,
+    "seed": 17343061197273,
+    "generator_version": "cityintent-native-expansion-6.1.0",
+    "world_visibility": "private",
+    "observation_contract": "intent_only_v1",
+    "expose_verifier_conditions": false,
+    "parent_generator_version": "cityintent-native-pilot-6.0.0"
+  }
+}

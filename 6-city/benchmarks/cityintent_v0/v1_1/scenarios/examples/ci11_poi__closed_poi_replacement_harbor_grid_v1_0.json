@@ -1,0 +1,123 @@
+{
+  "scenario_id": "ci11_poi__closed_poi_replacement_harbor_grid_v1_0",
+  "title": "Closed POI Replacement",
+  "world_id": "harbor_grid_v1",
+  "family": "poi_availability_service_evidence",
+  "episode": {
+    "start_time": "15:15",
+    "end_time": "17:30",
+    "max_steps": 8
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Graduate student who needs a quiet place with Wi-Fi for a focused work session.",
+      "start_location": "hgd_office",
+      "budget": 16,
+      "private_intention": "Find an open quiet workspace and complete a 60-minute focused session before 17:30.",
+      "known_locations": [
+        "hgd_office",
+        "hgd_library",
+        "hgd_quiet_cafe",
+        "hgd_coworking",
+        "hgd_bookstore"
+      ],
+      "memory_seeds": [
+        "The library is free and quiet.",
+        "Harbor Grid Quiet Cafe is reliable when the library is unavailable.",
+        "Coworking is quiet but costs 15 credits."
+      ]
+    }
+  ],
+  "public_context": "The library is normally the best free quiet work option.",
+  "events": [
+    {
+      "time": "15:30",
+      "type": "library_closure",
+      "location": "hgd_library",
+      "visibility": "public",
+      "effect": {
+        "closed_until": "18:00"
+      }
+    }
+  ],
+  "critical_locations": [
+    "hgd_office",
+    "hgd_library",
+    "hgd_quiet_cafe",
+    "hgd_coworking",
+    "hgd_bookstore"
+  ],
+  "success_conditions": [
+    {
+      "id": "use_open_workspace",
+      "type": "visit_open_location",
+      "role": "outcome",
+      "location_any_of": [
+        "hgd_quiet_cafe",
+        "hgd_coworking",
+        "hgd_bookstore"
+      ],
+      "time_window": [
+        "15:30",
+        "16:30"
+      ],
+      "weight": 0.4
+    },
+    {
+      "id": "avoid_closed_library_claim",
+      "type": "do_not_enter_closed_location",
+      "role": "constraint",
+      "location": "hgd_library",
+      "time_window": [
+        "15:30",
+        "17:30"
+      ],
+      "weight": 0.25
+    },
+    {
+      "id": "complete_focus_session",
+      "type": "dwell_minutes",
+      "role": "outcome",
+      "location_any_of": [
+        "hgd_quiet_cafe",
+        "hgd_coworking",
+        "hgd_bookstore"
+      ],
+      "min_minutes": 60,
+      "weight": 0.35
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "budget_consistency",
+    "intention_consistency"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Should choose the cheapest open quiet replacement after closure.",
+    "llm_direct_actor": "May keep narrating a library work session even after the closure event.",
+    "reactive_replanner": "Should switch to an open replacement immediately after observing the closure.",
+    "memory_reflection": "Should retrieve the fallback memory that Harbor Grid Quiet Cafe works when the library is unavailable."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0",
+    "candidate_status": "pending_acceptance_gates",
+    "split": "examples",
+    "construct_family": "poi_availability_service_evidence",
+    "difficulty_tier": "easy",
+    "difficulty_status": "provisional_pending_baseline_calibration",
+    "template_id": "closed_poi_replacement",
+    "instance_variant": 0,
+    "seed": 197791122413741,
+    "generator_version": "cityintent-scenariogen-1.0.0",
+    "source_version": "1.0-rc1",
+    "source_family": "poi_closure",
+    "source_perturbation_pair": null,
+    "world_visibility": "public"
+  }
+}

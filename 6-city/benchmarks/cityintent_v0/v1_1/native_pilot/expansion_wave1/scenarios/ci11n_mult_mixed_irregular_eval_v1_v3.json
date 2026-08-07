@@ -1,0 +1,160 @@
+{
+  "scenario_id": "ci11n_mult_mixed_irregular_eval_v1_v3",
+  "title": "Native Multi Party Commitment 3",
+  "world_id": "mixed_irregular_eval_v1",
+  "family": "multi_party_commitment",
+  "episode": {
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "max_steps": 14
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "A resident executing a private urban intention.",
+      "start_location": "mix_home_primary",
+      "budget": 100,
+      "private_intention": "Confirm and actually meet Ben inside mix_meeting_cafe before 12:30, then confirm and meet Casey inside mix_park before 12:50. Do not drop either commitment.",
+      "known_locations": [
+        "mix_home_primary",
+        "mix_home_friend",
+        "mix_office",
+        "mix_transit_hub",
+        "mix_plaza",
+        "mix_meeting_cafe",
+        "mix_quiet_cafe",
+        "mix_library",
+        "mix_coworking",
+        "mix_civic_service",
+        "mix_park",
+        "mix_gym",
+        "mix_market",
+        "mix_pharmacy",
+        "mix_clinic",
+        "mix_budget_food",
+        "mix_school",
+        "mix_culture",
+        "mix_bookstore"
+      ],
+      "memory_seeds": []
+    },
+    {
+      "agent_id": "ben",
+      "persona": "A coordination partner.",
+      "start_location": "mix_meeting_cafe",
+      "budget": 20,
+      "private_intention": "Meet Aria.",
+      "known_locations": [
+        "mix_meeting_cafe"
+      ],
+      "memory_seeds": []
+    },
+    {
+      "agent_id": "casey",
+      "persona": "A coordination partner.",
+      "start_location": "mix_park",
+      "budget": 20,
+      "private_intention": "Meet Aria.",
+      "known_locations": [
+        "mix_park"
+      ],
+      "memory_seeds": []
+    }
+  ],
+  "public_context": "Only environment-observable action evidence counts as completion.",
+  "events": [],
+  "critical_locations": [
+    "mix_home_primary",
+    "mix_meeting_cafe",
+    "mix_park"
+  ],
+  "success_conditions": [
+    {
+      "id": "message_ben",
+      "type": "send_message",
+      "role": "outcome",
+      "weight": 0.16,
+      "to": "ben"
+    },
+    {
+      "id": "meet_ben",
+      "type": "co_presence",
+      "role": "outcome",
+      "weight": 0.24,
+      "agents": [
+        "aria",
+        "ben"
+      ],
+      "location_any_of": [
+        "mix_meeting_cafe"
+      ],
+      "time_window": [
+        "10:00",
+        "12:30"
+      ]
+    },
+    {
+      "id": "message_casey",
+      "type": "send_message",
+      "role": "outcome",
+      "weight": 0.16,
+      "to": "casey"
+    },
+    {
+      "id": "meet_casey",
+      "type": "co_presence",
+      "role": "outcome",
+      "weight": 0.24,
+      "agents": [
+        "aria",
+        "casey"
+      ],
+      "location_any_of": [
+        "mix_park"
+      ],
+      "time_window": [
+        "10:00",
+        "12:50"
+      ]
+    },
+    {
+      "id": "legal_trace",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.2
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Must produce explicit outcome evidence.",
+    "llm_direct_actor": "May narrate success without the required action evidence.",
+    "reactive_replanner": "Must preserve the intention while updating the plan.",
+    "memory_reflection": "Must use relevant private memory without goal drift."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0-expansion-wave1",
+    "candidate_status": "oracle_gate_pending",
+    "split": "calibration_expansion",
+    "construct_family": "multi_party_commitment",
+    "difficulty_tier": "medium",
+    "template_id": "native_multi_party_commitment",
+    "instance_variant": 3,
+    "seed": 30546311264100,
+    "generator_version": "cityintent-native-expansion-6.1.0",
+    "world_visibility": "private",
+    "observation_contract": "intent_only_v1",
+    "expose_verifier_conditions": false,
+    "parent_generator_version": "cityintent-native-pilot-6.0.0"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "scenario_id": "ci11_poi__closed_study_spot_replacement_harbor_grid_v1_0",
+  "title": "Closed Study Spot Replacement",
+  "world_id": "harbor_grid_v1",
+  "family": "poi_availability_service_evidence",
+  "episode": {
+    "start_time": "14:00",
+    "end_time": "16:30",
+    "max_steps": 8
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Graduate student who needs a quiet work block and dislikes wasting money when a free quiet place is available.",
+      "start_location": "hgd_plaza",
+      "budget": 18,
+      "private_intention": "Find a quiet open place and complete at least 50 minutes of focused work without entering the temporarily closed library.",
+      "known_locations": [
+        "hgd_plaza",
+        "hgd_library",
+        "hgd_quiet_cafe",
+        "hgd_bookstore",
+        "hgd_coworking"
+      ],
+      "memory_seeds": [
+        "The library is usually the best free quiet option.",
+        "The bookstore is close to the library and quiet enough for short work blocks.",
+        "Coworking is reliable but costs more than the cafe or bookstore."
+      ]
+    }
+  ],
+  "public_context": "Aria planned to work at the library, but a facility issue may force a replacement.",
+  "events": [
+    {
+      "time": "14:00",
+      "type": "facility_closure",
+      "location": "hgd_library",
+      "visibility": "public",
+      "effect": {
+        "closed_until": "16:00"
+      }
+    }
+  ],
+  "critical_locations": [
+    "hgd_plaza",
+    "hgd_library",
+    "hgd_quiet_cafe",
+    "hgd_bookstore",
+    "hgd_coworking"
+  ],
+  "success_conditions": [
+    {
+      "id": "choose_open_quiet_replacement",
+      "type": "visit_open_location",
+      "role": "outcome",
+      "location_any_of": [
+        "hgd_bookstore",
+        "hgd_quiet_cafe",
+        "hgd_coworking"
+      ],
+      "time_window": [
+        "14:00",
+        "16:20"
+      ],
+      "weight": 0.3
+    },
+    {
+      "id": "complete_focus_block",
+      "type": "dwell_minutes",
+      "role": "outcome",
+      "location_any_of": [
+        "hgd_bookstore",
+        "hgd_quiet_cafe",
+        "hgd_coworking"
+      ],
+      "min_minutes": 50,
+      "weight": 0.3
+    },
+    {
+      "id": "do_not_enter_closed_library",
+      "type": "do_not_enter_closed_location",
+      "role": "constraint",
+      "location": "hgd_library",
+      "time_window": [
+        "14:00",
+        "16:00"
+      ],
+      "weight": 0.25
+    },
+    {
+      "id": "stay_within_budget",
+      "type": "budget_at_least",
+      "role": "constraint",
+      "agent": "aria",
+      "min_remaining": 0,
+      "weight": 0.15
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Should choose a nearby open replacement but may ignore the library closure if it only follows the original target.",
+    "llm_direct_actor": "May claim to work at the library because it is the salient intended study spot.",
+    "reactive_replanner": "Should switch to bookstore, quiet cafe, or coworking after observing the closure.",
+    "memory_reflection": "Should use memory of nearby quiet alternatives and avoid unnecessary paid options."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0",
+    "candidate_status": "pending_acceptance_gates",
+    "split": "development",
+    "construct_family": "poi_availability_service_evidence",
+    "difficulty_tier": "easy",
+    "difficulty_status": "provisional_pending_baseline_calibration",
+    "template_id": "closed_study_spot_replacement",
+    "instance_variant": 0,
+    "seed": 58765962267976,
+    "generator_version": "cityintent-scenariogen-1.0.0",
+    "source_version": "1.0-rc1",
+    "source_family": "poi_closure",
+    "source_perturbation_pair": null,
+    "world_visibility": "public"
+  }
+}

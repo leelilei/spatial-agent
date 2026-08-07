@@ -1,0 +1,118 @@
+{
+  "scenario_id": "ci11w2_reso_metro_radial_v1_v2",
+  "title": "Wave 2 Money And Action Budget Joint Allocation",
+  "world_id": "metro_radial_v1",
+  "family": "resource_budget_allocation",
+  "episode": {
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "max_steps": 9
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "A resident executing a private urban intention.",
+      "start_location": "mtr_home_primary",
+      "budget": 33.0,
+      "private_intention": "With exactly 33 credits, buy the required supplies at mtr_market and complete the booked training service at mtr_gym. Do not spend at the tempting optional cafe mtr_meeting_cafe; preserve enough money and finish within the nine-action limit. Return inside home after both errands. Any purchase label at the market and any paid service label at the gym are acceptable.",
+      "known_locations": [
+        "mtr_home_primary",
+        "mtr_home_friend",
+        "mtr_office",
+        "mtr_transit_hub",
+        "mtr_plaza",
+        "mtr_meeting_cafe",
+        "mtr_quiet_cafe",
+        "mtr_library",
+        "mtr_coworking",
+        "mtr_civic_service",
+        "mtr_park",
+        "mtr_gym",
+        "mtr_market",
+        "mtr_pharmacy",
+        "mtr_clinic",
+        "mtr_budget_food",
+        "mtr_school",
+        "mtr_culture",
+        "mtr_bookstore"
+      ],
+      "memory_seeds": []
+    }
+  ],
+  "public_context": "Only environment-observable action evidence counts as completion.",
+  "events": [],
+  "critical_locations": [
+    "mtr_home_primary",
+    "mtr_market",
+    "mtr_gym",
+    "mtr_meeting_cafe"
+  ],
+  "success_conditions": [
+    {
+      "id": "supplies",
+      "type": "purchase_at",
+      "role": "outcome",
+      "weight": 0.25,
+      "location": "mtr_market",
+      "minutes": 3
+    },
+    {
+      "id": "training",
+      "type": "use_service_at",
+      "role": "outcome",
+      "weight": 0.25,
+      "location": "mtr_gym",
+      "minutes": 5
+    },
+    {
+      "id": "return_home",
+      "type": "visit_before",
+      "role": "outcome",
+      "weight": 0.3,
+      "location": "mtr_home_primary",
+      "deadline": "13:00",
+      "ignore_start": true
+    },
+    {
+      "id": "budget",
+      "type": "budget_at_least",
+      "role": "constraint",
+      "weight": 0.2,
+      "agent": "aria",
+      "min_remaining": 0
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Must produce explicit outcome evidence.",
+    "llm_direct_actor": "May narrate success without the required action evidence.",
+    "reactive_replanner": "Must preserve the intention while updating the plan.",
+    "memory_reflection": "Must use relevant private memory without goal drift."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0-expansion-wave2",
+    "candidate_status": "oracle_gate_pending",
+    "split": "calibration_public",
+    "construct_family": "resource_budget_allocation",
+    "difficulty_tier": "hard",
+    "template_id": "wave2_money_and_action_budget_joint_allocation",
+    "instance_variant": 2,
+    "seed": 131755831004083,
+    "generator_version": "cityintent-native-expansion-wave2-1.0.0",
+    "world_visibility": "public",
+    "observation_contract": "intent_only_v1",
+    "expose_verifier_conditions": false,
+    "mechanism_id": "money_and_action_budget_joint_allocation"
+  }
+}

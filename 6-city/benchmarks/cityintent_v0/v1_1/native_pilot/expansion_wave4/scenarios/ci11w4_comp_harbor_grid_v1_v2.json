@@ -1,0 +1,154 @@
+{
+  "scenario_id": "ci11w4_comp_harbor_grid_v1_v2",
+  "title": "Wave 4 Credential Unlock Purchase Service Return Chain",
+  "world_id": "harbor_grid_v1",
+  "family": "compound_long_horizon",
+  "episode": {
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "max_steps": 18
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "A resident executing a private urban intention.",
+      "start_location": "hgd_home_primary",
+      "budget": 22.0,
+      "private_intention": "Execute the full chain in order: obtain the credential service at hgd_civic_service, use it to buy the item labeled permit at hgd_market, complete the booked_training service at hgd_gym, and return inside hgd_home_primary before 12:02. Skipping the credential, or running the purchase/service steps out of order, breaks the chain.",
+      "known_locations": [
+        "hgd_home_primary",
+        "hgd_home_friend",
+        "hgd_office",
+        "hgd_transit_hub",
+        "hgd_plaza",
+        "hgd_meeting_cafe",
+        "hgd_quiet_cafe",
+        "hgd_library",
+        "hgd_coworking",
+        "hgd_civic_service",
+        "hgd_park",
+        "hgd_gym",
+        "hgd_market",
+        "hgd_pharmacy",
+        "hgd_clinic",
+        "hgd_budget_food",
+        "hgd_school",
+        "hgd_culture",
+        "hgd_bookstore"
+      ],
+      "memory_seeds": []
+    }
+  ],
+  "public_context": "Only environment-observable action evidence counts as completion.",
+  "events": [],
+  "critical_locations": [
+    "hgd_home_primary",
+    "hgd_civic_service",
+    "hgd_market",
+    "hgd_gym"
+  ],
+  "success_conditions": [
+    {
+      "id": "credential_chain",
+      "type": "ordered_evidence_chain",
+      "role": "outcome",
+      "weight": 0.5,
+      "steps": [
+        {
+          "kind": "use_service",
+          "location": "hgd_civic_service",
+          "label": "credential"
+        },
+        {
+          "kind": "buy",
+          "location": "hgd_market",
+          "label": "permit"
+        },
+        {
+          "kind": "use_service",
+          "location": "hgd_gym",
+          "label": "booked_training"
+        }
+      ]
+    },
+    {
+      "id": "return_home",
+      "type": "visit_before",
+      "role": "outcome",
+      "weight": 0.25,
+      "location": "hgd_home_primary",
+      "deadline": "12:02",
+      "ignore_start": true
+    },
+    {
+      "id": "budget",
+      "type": "budget_at_least",
+      "role": "constraint",
+      "weight": 0.1,
+      "agent": "aria",
+      "min_remaining": 0
+    },
+    {
+      "id": "legal_trace",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.15
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Must produce explicit outcome evidence.",
+    "llm_direct_actor": "May narrate success without the required action evidence.",
+    "reactive_replanner": "Must preserve the intention while updating the plan.",
+    "memory_reflection": "Must use relevant private memory without goal drift."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0-expansion-wave4",
+    "candidate_status": "mechanism_distinctness_review_pending",
+    "split": "calibration_public",
+    "construct_family": "compound_long_horizon",
+    "difficulty_tier": "hard",
+    "template_id": "wave4_credential_unlock_purchase_service_return_chain",
+    "instance_variant": 2,
+    "seed": 220146374610000,
+    "generator_version": "cityintent-native-expansion-wave4-1.0.0-design-review",
+    "world_visibility": "public",
+    "observation_contract": "intent_only_v1",
+    "expose_verifier_conditions": false,
+    "mechanism_id": "credential_unlock_purchase_service_return_chain",
+    "mechanism_parameter": "a credential service unlocks a labeled purchase, which unlocks a timed service before return",
+    "parent_generator_version": "cityintent-native-pilot-6.0.0",
+    "mechanism_contract": {
+      "state_transition": "a credential service unlocks a labeled purchase, which unlocks a timed service before return",
+      "required_actions": [
+        "use_service",
+        "buy",
+        "use_service",
+        "move",
+        "enter"
+      ],
+      "required_conditions": [
+        "ordered_evidence_chain",
+        "visit_before",
+        "budget_at_least"
+      ],
+      "negative_failure": "skip the credential or execute the purchase/service chain out of order",
+      "novelty_against": {
+        "base": "not a loose multi-errand sequence",
+        "wave2": "not purchase-meet-return",
+        "wave3": "not medication prerequisite before meeting"
+      }
+    }
+  }
+}

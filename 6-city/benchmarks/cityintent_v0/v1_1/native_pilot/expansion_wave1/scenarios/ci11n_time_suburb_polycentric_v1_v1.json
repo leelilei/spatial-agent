@@ -1,0 +1,115 @@
+{
+  "scenario_id": "ci11n_time_suburb_polycentric_v1_v1",
+  "title": "Native Time Window Scheduling 1",
+  "world_id": "suburb_polycentric_v1",
+  "family": "time_window_scheduling",
+  "episode": {
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "max_steps": 14
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "A resident executing a private urban intention.",
+      "start_location": "spc_home_primary",
+      "budget": 100,
+      "private_intention": "Obtain the prescription at spc_pharmacy no later than 10:38, either by purchase or pickup service. Then be present inside spc_meeting_cafe during the narrow 11:18-11:28 arrival window. Finish by 13:00.",
+      "known_locations": [
+        "spc_home_primary",
+        "spc_home_friend",
+        "spc_office",
+        "spc_transit_hub",
+        "spc_plaza",
+        "spc_meeting_cafe",
+        "spc_quiet_cafe",
+        "spc_library",
+        "spc_coworking",
+        "spc_civic_service",
+        "spc_park",
+        "spc_gym",
+        "spc_market",
+        "spc_pharmacy",
+        "spc_clinic",
+        "spc_budget_food",
+        "spc_school",
+        "spc_culture",
+        "spc_bookstore"
+      ],
+      "memory_seeds": []
+    }
+  ],
+  "public_context": "Only environment-observable action evidence counts as completion.",
+  "events": [],
+  "critical_locations": [
+    "spc_home_primary",
+    "spc_pharmacy",
+    "spc_meeting_cafe"
+  ],
+  "success_conditions": [
+    {
+      "id": "pickup_deadline",
+      "type": "obtain_at",
+      "role": "outcome",
+      "weight": 0.4,
+      "location": "spc_pharmacy",
+      "item": "prescription",
+      "service": "prescription_pickup",
+      "deadline": "10:38",
+      "minutes": 5
+    },
+    {
+      "id": "later_arrival_window",
+      "type": "visit_open_location",
+      "role": "outcome",
+      "weight": 0.4,
+      "location_any_of": [
+        "spc_meeting_cafe"
+      ],
+      "time_window": [
+        "11:18",
+        "11:28"
+      ]
+    },
+    {
+      "id": "finish_episode",
+      "type": "episode_complete_before",
+      "role": "constraint",
+      "weight": 0.2,
+      "deadline": "13:00"
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Must produce explicit outcome evidence.",
+    "llm_direct_actor": "May narrate success without the required action evidence.",
+    "reactive_replanner": "Must preserve the intention while updating the plan.",
+    "memory_reflection": "Must use relevant private memory without goal drift."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0-expansion-wave1",
+    "candidate_status": "oracle_gate_pending",
+    "split": "calibration_expansion",
+    "construct_family": "time_window_scheduling",
+    "difficulty_tier": "hard",
+    "template_id": "native_time_window_scheduling",
+    "instance_variant": 1,
+    "seed": 142888434127038,
+    "generator_version": "cityintent-native-expansion-6.1.0",
+    "world_visibility": "public",
+    "observation_contract": "intent_only_v1",
+    "expose_verifier_conditions": false,
+    "parent_generator_version": "cityintent-native-pilot-6.0.0"
+  }
+}

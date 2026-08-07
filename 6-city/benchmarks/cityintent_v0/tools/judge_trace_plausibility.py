@@ -70,10 +70,25 @@ def sanitized_config(path: Path) -> dict[str, Any]:
     }
 
 
-def load_scenarios() -> dict[str, dict[str, Any]]:
+def load_scenarios(benchmark_config: Path | None = None) -> dict[str, dict[str, Any]]:
+    if benchmark_config is None:
+        scenario_paths = sorted((ROOT / "scenarios").glob("*.json"))
+    else:
+        config_path = benchmark_config.resolve()
+        config = load_json(config_path)
+        scenario_root = config_path.parent / config.get("scenario_dir", "scenarios")
+        scenario_paths = (
+            sorted(
+                path
+                for split in config["scenario_splits"]
+                for path in (scenario_root / split).rglob("*.json")
+            )
+            if config.get("scenario_splits")
+            else sorted(scenario_root.rglob("*.json"))
+        )
     return {
-        path.stem: load_json(path)
-        for path in sorted((ROOT / "scenarios").glob("*.json"))
+        load_json(path)["scenario_id"]: load_json(path)
+        for path in scenario_paths
     }
 
 
@@ -294,6 +309,12 @@ def write_outputs(rows: list[dict[str, Any]], judged_results: list[dict[str, Any
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", type=Path, default=DEFAULT_INPUT)
+    parser.add_argument(
+        "--benchmark-config",
+        type=Path,
+        default=None,
+        help="Optional benchmark config selecting a non-default scenario package.",
+    )
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
     parser.add_argument("--llm-config", type=Path, required=True)
     parser.add_argument("--agents", default="", help="Optional comma-separated agent filter.")
@@ -307,7 +328,7 @@ def main() -> int:
     from llm_client import LLM, parse_response_json  # type: ignore
 
     llm = LLM(args.llm_config)
-    scenarios = load_scenarios()
+    scenarios = load_scenarios(args.benchmark_config)
     results = load_json(args.input)
     agent_filter = {item.strip() for item in args.agents.split(",") if item.strip()}
     if agent_filter:
@@ -376,6 +397,8 @@ def main() -> int:
             "judge_config_sha256": file_sha256(args.llm_config),
             "input_path": str(args.input),
             "input_sha256": file_sha256(args.input),
+            "benchmark_config_path": str(args.benchmark_config.resolve()) if args.benchmark_config else None,
+            "benchmark_config_sha256": file_sha256(args.benchmark_config.resolve()) if args.benchmark_config else None,
             "input_trace_count": len(results),
             "judged_trace_count": len(judged_results),
             "agent_filter": sorted(agent_filter),

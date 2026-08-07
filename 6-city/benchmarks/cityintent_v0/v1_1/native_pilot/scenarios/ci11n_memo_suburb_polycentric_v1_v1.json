@@ -1,0 +1,138 @@
+{
+  "scenario_id": "ci11n_memo_suburb_polycentric_v1_v1",
+  "title": "Native Memory Conditioned Preference 1",
+  "world_id": "suburb_polycentric_v1",
+  "family": "memory_conditioned_preference",
+  "episode": {
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "max_steps": 14
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "A resident executing a private urban intention.",
+      "start_location": "spc_home_primary",
+      "budget": 0,
+      "private_intention": "Combine the ordered memories with current availability and today's zero budget. Use the remembered reliable fallback and complete a 10-minute focus block; do not choose an outdated or recently noisy place.",
+      "known_locations": [
+        "spc_home_primary",
+        "spc_home_friend",
+        "spc_office",
+        "spc_transit_hub",
+        "spc_plaza",
+        "spc_meeting_cafe",
+        "spc_quiet_cafe",
+        "spc_library",
+        "spc_coworking",
+        "spc_civic_service",
+        "spc_park",
+        "spc_gym",
+        "spc_market",
+        "spc_pharmacy",
+        "spc_clinic",
+        "spc_budget_food",
+        "spc_school",
+        "spc_culture",
+        "spc_bookstore"
+      ],
+      "memory_seeds": [
+        "Older memory: spc_quiet_cafe used to be my default quiet workplace.",
+        "Later memory: construction noise at spc_quiet_cafe ruined two sessions; the busy spc_meeting_cafe also does not work.",
+        "Recent memory: school groups made spc_library noisy this week.",
+        "Most recent preference: spc_coworking works best, but when it is unavailable the free quiet focus room at spc_office is my reliable fallback."
+      ]
+    }
+  ],
+  "public_context": "Only environment-observable action evidence counts as completion.",
+  "events": [
+    {
+      "time": "10:00",
+      "type": "coworking_unavailable",
+      "location": "spc_coworking",
+      "visibility": "public",
+      "effect": {
+        "closed_until": "13:00"
+      }
+    }
+  ],
+  "critical_locations": [
+    "spc_home_primary",
+    "spc_quiet_cafe",
+    "spc_coworking",
+    "spc_office",
+    "spc_library",
+    "spc_meeting_cafe"
+  ],
+  "success_conditions": [
+    {
+      "id": "memory_recalled",
+      "type": "recall_memory",
+      "role": "process",
+      "weight": 0.1,
+      "min_recalls": 1
+    },
+    {
+      "id": "latest_remembered_place",
+      "type": "visit_location",
+      "role": "outcome",
+      "weight": 0.45,
+      "location": "spc_office"
+    },
+    {
+      "id": "remembered_focus",
+      "type": "dwell_minutes",
+      "role": "outcome",
+      "weight": 0.35,
+      "location_any_of": [
+        "spc_office"
+      ],
+      "min_minutes": 10
+    },
+    {
+      "id": "avoid_outdated_unavailable_busy",
+      "type": "avoid_when_possible",
+      "role": "constraint",
+      "weight": 0.1,
+      "avoid_locations": [
+        "spc_quiet_cafe",
+        "spc_coworking",
+        "spc_library",
+        "spc_meeting_cafe"
+      ]
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Must produce explicit outcome evidence.",
+    "llm_direct_actor": "May narrate success without the required action evidence.",
+    "reactive_replanner": "Must preserve the intention while updating the plan.",
+    "memory_reflection": "Must use relevant private memory without goal drift."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0-native-pilot",
+    "candidate_status": "hardened_v6_candidate",
+    "split": "pilot",
+    "construct_family": "memory_conditioned_preference",
+    "difficulty_tier": "hard",
+    "template_id": "native_memory_conditioned_preference",
+    "instance_variant": 1,
+    "seed": 9699420798874,
+    "generator_version": "cityintent-native-pilot-6.0.0",
+    "world_visibility": "public",
+    "observation_contract": "intent_only_v1",
+    "expose_verifier_conditions": false,
+    "memory_access_contract": "recall_required_v1"
+  }
+}

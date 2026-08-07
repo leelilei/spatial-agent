@@ -1,0 +1,147 @@
+{
+  "scenario_id": "ci11w3_memo_metro_radial_v1_v0",
+  "title": "Wave 3 Recency Weighted Memory Revision",
+  "world_id": "metro_radial_v1",
+  "family": "memory_conditioned_preference",
+  "episode": {
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "max_steps": 18
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "A resident executing a private urban intention.",
+      "start_location": "mtr_home_primary",
+      "budget": 0,
+      "private_intention": "Recall the conditional place-choice rule, combine it with today's public conditions, and complete a 10-minute free reset at the correct location. The decision must preserve the mechanism contract: recent memory revises an older preference under current conditions.",
+      "known_locations": [
+        "mtr_home_primary",
+        "mtr_home_friend",
+        "mtr_office",
+        "mtr_transit_hub",
+        "mtr_plaza",
+        "mtr_meeting_cafe",
+        "mtr_quiet_cafe",
+        "mtr_library",
+        "mtr_coworking",
+        "mtr_civic_service",
+        "mtr_park",
+        "mtr_gym",
+        "mtr_market",
+        "mtr_pharmacy",
+        "mtr_clinic",
+        "mtr_budget_food",
+        "mtr_school",
+        "mtr_culture",
+        "mtr_bookstore"
+      ],
+      "memory_seeds": [
+        "Older preference: mtr_quiet_cafe was once my default reset spot.",
+        "Current rule: choose the free outdoor reset at mtr_park when conditions are clear.",
+        "Conditional fallback: if an air-quality alert is active, avoid mtr_park and use the free indoor room at mtr_office.",
+        "Revision note: apply the conditional rule only after recalling both the trigger and the fallback."
+      ]
+    }
+  ],
+  "public_context": "Only environment-observable action evidence counts as completion. Mechanism contract: recent memory revises an older preference under current conditions.",
+  "events": [
+    {
+      "time": "10:00",
+      "type": "air_quality_alert",
+      "location": "mtr_park",
+      "visibility": "public",
+      "effect": {
+        "avoid_location": "mtr_park",
+        "until": "13:00"
+      }
+    }
+  ],
+  "critical_locations": [
+    "mtr_home_primary",
+    "mtr_park",
+    "mtr_office",
+    "mtr_quiet_cafe"
+  ],
+  "success_conditions": [
+    {
+      "id": "recall_rule",
+      "type": "recall_memory",
+      "role": "process",
+      "weight": 0.2,
+      "min_recalls": 2
+    },
+    {
+      "id": "conditional_choice",
+      "type": "visit_location",
+      "role": "outcome",
+      "weight": 0.35,
+      "location": "mtr_office"
+    },
+    {
+      "id": "reset",
+      "type": "dwell_minutes",
+      "role": "outcome",
+      "weight": 0.3,
+      "location_any_of": [
+        "mtr_office"
+      ],
+      "min_minutes": 10
+    },
+    {
+      "id": "avoid_alert",
+      "type": "avoid_when_possible",
+      "role": "constraint",
+      "weight": 0.15,
+      "avoid_locations": [
+        "mtr_park",
+        "mtr_quiet_cafe"
+      ]
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Must produce explicit outcome evidence.",
+    "llm_direct_actor": "May narrate success without the required action evidence.",
+    "reactive_replanner": "Must preserve the intention while updating the plan.",
+    "memory_reflection": "Must use relevant private memory without goal drift."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0-expansion-wave3",
+    "candidate_status": "mechanism_distinctness_review_pending",
+    "split": "calibration_public",
+    "construct_family": "memory_conditioned_preference",
+    "difficulty_tier": "medium",
+    "template_id": "wave3_recency_weighted_memory_revision",
+    "instance_variant": 0,
+    "seed": 23214902774981,
+    "generator_version": "cityintent-native-expansion-wave3-1.0.0-design-review",
+    "world_visibility": "public",
+    "observation_contract": "intent_only_v1",
+    "expose_verifier_conditions": false,
+    "mechanism_id": "recency_weighted_memory_revision",
+    "memory_access_contract": "recall_required_v1",
+    "mechanism_parameter": "recent memory revises an older preference under current conditions",
+    "parent_generator_version": "cityintent-native-expansion-wave2-1.0.0",
+    "mechanism_contract": {
+      "state_transition": "recent_conditional_memory_overrides_old_default",
+      "required_evidence": [
+        "recall_rule",
+        "conditional_choice",
+        "reset"
+      ],
+      "negative_failure": "using_stale_default_under_alert"
+    }
+  }
+}

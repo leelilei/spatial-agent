@@ -1,0 +1,112 @@
+{
+  "scenario_id": "ci11w2_poi__suburb_polycentric_v1_v2",
+  "title": "Wave 2 Future Service Registry Update",
+  "world_id": "suburb_polycentric_v1",
+  "family": "poi_availability_service_evidence",
+  "episode": {
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "max_steps": 18
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "A resident executing a private urban intention.",
+      "start_location": "spc_home_primary",
+      "budget": 100,
+      "private_intention": "Complete identity-verification service today. spc_office, spc_civic_service, and spc_clinic are all plausible and open. Wait until the public service-registry update at 10:10, then use identity-verification at its provider_location. Do not guess from location type or count arrival alone.",
+      "known_locations": [
+        "spc_home_primary",
+        "spc_home_friend",
+        "spc_office",
+        "spc_transit_hub",
+        "spc_plaza",
+        "spc_meeting_cafe",
+        "spc_quiet_cafe",
+        "spc_library",
+        "spc_coworking",
+        "spc_civic_service",
+        "spc_park",
+        "spc_gym",
+        "spc_market",
+        "spc_pharmacy",
+        "spc_clinic",
+        "spc_budget_food",
+        "spc_school",
+        "spc_culture",
+        "spc_bookstore"
+      ],
+      "memory_seeds": []
+    }
+  ],
+  "public_context": "Only environment-observable action evidence counts as completion.",
+  "events": [
+    {
+      "time": "10:10",
+      "type": "service_registry_update",
+      "location": "spc_office",
+      "visibility": "public",
+      "effect": {
+        "service": "identity_verification",
+        "provider_location": "spc_office"
+      }
+    }
+  ],
+  "critical_locations": [
+    "spc_home_primary",
+    "spc_office",
+    "spc_civic_service",
+    "spc_clinic"
+  ],
+  "success_conditions": [
+    {
+      "id": "identity_verification",
+      "type": "use_service_at",
+      "role": "outcome",
+      "weight": 0.8,
+      "location": "spc_office",
+      "service": "identity_verification",
+      "deadline": "12:00",
+      "minutes": 5
+    },
+    {
+      "id": "legal_trace",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.2
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Must produce explicit outcome evidence.",
+    "llm_direct_actor": "May narrate success without the required action evidence.",
+    "reactive_replanner": "Must preserve the intention while updating the plan.",
+    "memory_reflection": "Must use relevant private memory without goal drift."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0-expansion-wave2",
+    "candidate_status": "oracle_gate_pending",
+    "split": "calibration_public",
+    "construct_family": "poi_availability_service_evidence",
+    "difficulty_tier": "hard",
+    "template_id": "wave2_future_service_registry_update",
+    "instance_variant": 2,
+    "seed": 6692908024735,
+    "generator_version": "cityintent-native-expansion-wave2-1.0.0",
+    "world_visibility": "public",
+    "observation_contract": "intent_only_v1",
+    "expose_verifier_conditions": false,
+    "mechanism_id": "future_service_registry_update"
+  }
+}

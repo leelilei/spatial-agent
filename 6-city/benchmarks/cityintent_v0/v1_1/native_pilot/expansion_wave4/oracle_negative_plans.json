@@ -1,0 +1,1529 @@
+[
+  {
+    "scenario_id": "ci11w4_disr_harbor_grid_v1_v0",
+    "construct_family": "disruption_recovery",
+    "oracle": [
+      {
+        "kind": "dwell",
+        "minutes": 31
+      },
+      {
+        "kind": "move",
+        "target": "hgd_clinic"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_clinic"
+      },
+      {
+        "kind": "use_service",
+        "target": "hgd_clinic",
+        "service": "appointment",
+        "minutes": 5
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "move",
+        "target": "hgd_clinic"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_clinic"
+      },
+      {
+        "kind": "use_service",
+        "target": "hgd_clinic",
+        "service": "appointment",
+        "minutes": 5
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  },
+  {
+    "scenario_id": "ci11w4_disr_metro_radial_v1_v1",
+    "construct_family": "disruption_recovery",
+    "oracle": [
+      {
+        "kind": "dwell",
+        "minutes": 31
+      },
+      {
+        "kind": "move",
+        "target": "mtr_clinic"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_clinic"
+      },
+      {
+        "kind": "use_service",
+        "target": "mtr_clinic",
+        "service": "appointment",
+        "minutes": 5
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "move",
+        "target": "mtr_clinic"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_clinic"
+      },
+      {
+        "kind": "use_service",
+        "target": "mtr_clinic",
+        "service": "appointment",
+        "minutes": 5
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  },
+  {
+    "scenario_id": "ci11w4_disr_suburb_polycentric_v1_v2",
+    "construct_family": "disruption_recovery",
+    "oracle": [
+      {
+        "kind": "dwell",
+        "minutes": 31
+      },
+      {
+        "kind": "move",
+        "target": "spc_clinic"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_clinic"
+      },
+      {
+        "kind": "use_service",
+        "target": "spc_clinic",
+        "service": "appointment",
+        "minutes": 5
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "move",
+        "target": "spc_clinic"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_clinic"
+      },
+      {
+        "kind": "use_service",
+        "target": "spc_clinic",
+        "service": "appointment",
+        "minutes": 5
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  },
+  {
+    "scenario_id": "ci11w4_time_metro_radial_v1_v0",
+    "construct_family": "time_window_scheduling",
+    "oracle": [
+      {
+        "kind": "move",
+        "target": "mtr_library"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_library"
+      },
+      {
+        "kind": "dwell",
+        "minutes": 10
+      },
+      {
+        "kind": "dwell",
+        "minutes": 15
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "move",
+        "target": "mtr_library"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_library"
+      },
+      {
+        "kind": "dwell",
+        "minutes": 15
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  },
+  {
+    "scenario_id": "ci11w4_time_suburb_polycentric_v1_v1",
+    "construct_family": "time_window_scheduling",
+    "oracle": [
+      {
+        "kind": "move",
+        "target": "spc_library"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_library"
+      },
+      {
+        "kind": "dwell",
+        "minutes": 10
+      },
+      {
+        "kind": "dwell",
+        "minutes": 15
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "move",
+        "target": "spc_library"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_library"
+      },
+      {
+        "kind": "dwell",
+        "minutes": 15
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  },
+  {
+    "scenario_id": "ci11w4_time_harbor_grid_v1_v2",
+    "construct_family": "time_window_scheduling",
+    "oracle": [
+      {
+        "kind": "move",
+        "target": "hgd_library"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_library"
+      },
+      {
+        "kind": "dwell",
+        "minutes": 10
+      },
+      {
+        "kind": "dwell",
+        "minutes": 15
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "move",
+        "target": "hgd_library"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_library"
+      },
+      {
+        "kind": "dwell",
+        "minutes": 15
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  },
+  {
+    "scenario_id": "ci11w4_reso_suburb_polycentric_v1_v0",
+    "construct_family": "resource_budget_allocation",
+    "oracle": [
+      {
+        "kind": "move",
+        "target": "spc_market"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_market"
+      },
+      {
+        "kind": "buy",
+        "target": "spc_market",
+        "item": "inventory_claim",
+        "minutes": 3
+      },
+      {
+        "kind": "move",
+        "target": "spc_gym"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_gym"
+      },
+      {
+        "kind": "use_service",
+        "target": "spc_gym",
+        "service": "booked_training",
+        "minutes": 5
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "move",
+        "target": "spc_clinic"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_clinic"
+      },
+      {
+        "kind": "buy",
+        "target": "spc_clinic",
+        "item": "inventory_claim",
+        "minutes": 3
+      },
+      {
+        "kind": "move",
+        "target": "spc_gym"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_gym"
+      },
+      {
+        "kind": "use_service",
+        "target": "spc_gym",
+        "service": "booked_training",
+        "minutes": 5
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  },
+  {
+    "scenario_id": "ci11w4_reso_harbor_grid_v1_v1",
+    "construct_family": "resource_budget_allocation",
+    "oracle": [
+      {
+        "kind": "move",
+        "target": "hgd_market"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_market"
+      },
+      {
+        "kind": "buy",
+        "target": "hgd_market",
+        "item": "inventory_claim",
+        "minutes": 3
+      },
+      {
+        "kind": "move",
+        "target": "hgd_gym"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_gym"
+      },
+      {
+        "kind": "use_service",
+        "target": "hgd_gym",
+        "service": "booked_training",
+        "minutes": 5
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "move",
+        "target": "hgd_coworking"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_coworking"
+      },
+      {
+        "kind": "buy",
+        "target": "hgd_coworking",
+        "item": "inventory_claim",
+        "minutes": 3
+      },
+      {
+        "kind": "move",
+        "target": "hgd_gym"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_gym"
+      },
+      {
+        "kind": "use_service",
+        "target": "hgd_gym",
+        "service": "booked_training",
+        "minutes": 5
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  },
+  {
+    "scenario_id": "ci11w4_reso_metro_radial_v1_v2",
+    "construct_family": "resource_budget_allocation",
+    "oracle": [
+      {
+        "kind": "move",
+        "target": "mtr_market"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_market"
+      },
+      {
+        "kind": "buy",
+        "target": "mtr_market",
+        "item": "inventory_claim",
+        "minutes": 3
+      },
+      {
+        "kind": "move",
+        "target": "mtr_gym"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_gym"
+      },
+      {
+        "kind": "use_service",
+        "target": "mtr_gym",
+        "service": "booked_training",
+        "minutes": 5
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "move",
+        "target": "mtr_clinic"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_clinic"
+      },
+      {
+        "kind": "buy",
+        "target": "mtr_clinic",
+        "item": "inventory_claim",
+        "minutes": 3
+      },
+      {
+        "kind": "move",
+        "target": "mtr_gym"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_gym"
+      },
+      {
+        "kind": "use_service",
+        "target": "mtr_gym",
+        "service": "booked_training",
+        "minutes": 5
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  },
+  {
+    "scenario_id": "ci11w4_poi__harbor_grid_v1_v0",
+    "construct_family": "poi_availability_service_evidence",
+    "oracle": [
+      {
+        "kind": "move",
+        "target": "hgd_civic_service"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_civic_service"
+      },
+      {
+        "kind": "use_service",
+        "target": "hgd_civic_service",
+        "service": "referral",
+        "minutes": 4
+      },
+      {
+        "kind": "move",
+        "target": "hgd_office"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_office"
+      },
+      {
+        "kind": "use_service",
+        "target": "hgd_office",
+        "service": "provider_consultation",
+        "minutes": 5
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "move",
+        "target": "hgd_office"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_office"
+      },
+      {
+        "kind": "use_service",
+        "target": "hgd_office",
+        "service": "provider_consultation",
+        "minutes": 5
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  },
+  {
+    "scenario_id": "ci11w4_poi__metro_radial_v1_v1",
+    "construct_family": "poi_availability_service_evidence",
+    "oracle": [
+      {
+        "kind": "move",
+        "target": "mtr_civic_service"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_civic_service"
+      },
+      {
+        "kind": "use_service",
+        "target": "mtr_civic_service",
+        "service": "referral",
+        "minutes": 4
+      },
+      {
+        "kind": "move",
+        "target": "mtr_office"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_office"
+      },
+      {
+        "kind": "use_service",
+        "target": "mtr_office",
+        "service": "provider_consultation",
+        "minutes": 5
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "move",
+        "target": "mtr_office"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_office"
+      },
+      {
+        "kind": "use_service",
+        "target": "mtr_office",
+        "service": "provider_consultation",
+        "minutes": 5
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  },
+  {
+    "scenario_id": "ci11w4_poi__suburb_polycentric_v1_v2",
+    "construct_family": "poi_availability_service_evidence",
+    "oracle": [
+      {
+        "kind": "move",
+        "target": "spc_civic_service"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_civic_service"
+      },
+      {
+        "kind": "use_service",
+        "target": "spc_civic_service",
+        "service": "referral",
+        "minutes": 4
+      },
+      {
+        "kind": "move",
+        "target": "spc_office"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_office"
+      },
+      {
+        "kind": "use_service",
+        "target": "spc_office",
+        "service": "provider_consultation",
+        "minutes": 5
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "move",
+        "target": "spc_office"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_office"
+      },
+      {
+        "kind": "use_service",
+        "target": "spc_office",
+        "service": "provider_consultation",
+        "minutes": 5
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  },
+  {
+    "scenario_id": "ci11w4_memo_metro_radial_v1_v0",
+    "construct_family": "memory_conditioned_preference",
+    "oracle": [
+      {
+        "kind": "recall",
+        "query": "verified notice about the study room"
+      },
+      {
+        "kind": "recall",
+        "query": "later unverified message about the study room"
+      },
+      {
+        "kind": "move",
+        "target": "mtr_library"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_library"
+      },
+      {
+        "kind": "dwell",
+        "minutes": 10
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "recall",
+        "query": "verified notice about the study room"
+      },
+      {
+        "kind": "recall",
+        "query": "later unverified message about the study room"
+      },
+      {
+        "kind": "move",
+        "target": "mtr_office"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_office"
+      },
+      {
+        "kind": "dwell",
+        "minutes": 10
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  },
+  {
+    "scenario_id": "ci11w4_memo_suburb_polycentric_v1_v1",
+    "construct_family": "memory_conditioned_preference",
+    "oracle": [
+      {
+        "kind": "recall",
+        "query": "verified notice about the study room"
+      },
+      {
+        "kind": "recall",
+        "query": "later unverified message about the study room"
+      },
+      {
+        "kind": "move",
+        "target": "spc_library"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_library"
+      },
+      {
+        "kind": "dwell",
+        "minutes": 10
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "recall",
+        "query": "verified notice about the study room"
+      },
+      {
+        "kind": "recall",
+        "query": "later unverified message about the study room"
+      },
+      {
+        "kind": "move",
+        "target": "spc_office"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_office"
+      },
+      {
+        "kind": "dwell",
+        "minutes": 10
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  },
+  {
+    "scenario_id": "ci11w4_memo_harbor_grid_v1_v2",
+    "construct_family": "memory_conditioned_preference",
+    "oracle": [
+      {
+        "kind": "recall",
+        "query": "verified notice about the study room"
+      },
+      {
+        "kind": "recall",
+        "query": "later unverified message about the study room"
+      },
+      {
+        "kind": "move",
+        "target": "hgd_library"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_library"
+      },
+      {
+        "kind": "dwell",
+        "minutes": 10
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "recall",
+        "query": "verified notice about the study room"
+      },
+      {
+        "kind": "recall",
+        "query": "later unverified message about the study room"
+      },
+      {
+        "kind": "move",
+        "target": "hgd_office"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_office"
+      },
+      {
+        "kind": "dwell",
+        "minutes": 10
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  },
+  {
+    "scenario_id": "ci11w4_soci_suburb_polycentric_v1_v0",
+    "construct_family": "social_coordination_copresence",
+    "oracle": [
+      {
+        "kind": "message",
+        "to": "ben",
+        "content": "Acknowledged; bringing the parcel."
+      },
+      {
+        "kind": "move",
+        "target": "spc_market"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_market"
+      },
+      {
+        "kind": "buy",
+        "target": "spc_market",
+        "item": "parcel",
+        "minutes": 3
+      },
+      {
+        "kind": "move",
+        "target": "spc_plaza"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_plaza"
+      },
+      {
+        "kind": "interact",
+        "to": "ben",
+        "minutes": 2
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "message",
+        "to": "ben",
+        "content": "Acknowledged; on my way."
+      },
+      {
+        "kind": "move",
+        "target": "spc_plaza"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_plaza"
+      },
+      {
+        "kind": "dwell",
+        "minutes": 38
+      },
+      {
+        "kind": "interact",
+        "to": "ben",
+        "minutes": 2
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  },
+  {
+    "scenario_id": "ci11w4_soci_harbor_grid_v1_v1",
+    "construct_family": "social_coordination_copresence",
+    "oracle": [
+      {
+        "kind": "message",
+        "to": "ben",
+        "content": "Acknowledged; bringing the parcel."
+      },
+      {
+        "kind": "move",
+        "target": "hgd_market"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_market"
+      },
+      {
+        "kind": "buy",
+        "target": "hgd_market",
+        "item": "parcel",
+        "minutes": 3
+      },
+      {
+        "kind": "move",
+        "target": "hgd_plaza"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_plaza"
+      },
+      {
+        "kind": "interact",
+        "to": "ben",
+        "minutes": 2
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "message",
+        "to": "ben",
+        "content": "Acknowledged; on my way."
+      },
+      {
+        "kind": "move",
+        "target": "hgd_plaza"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_plaza"
+      },
+      {
+        "kind": "dwell",
+        "minutes": 24
+      },
+      {
+        "kind": "interact",
+        "to": "ben",
+        "minutes": 2
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  },
+  {
+    "scenario_id": "ci11w4_soci_metro_radial_v1_v2",
+    "construct_family": "social_coordination_copresence",
+    "oracle": [
+      {
+        "kind": "message",
+        "to": "ben",
+        "content": "Acknowledged; bringing the parcel."
+      },
+      {
+        "kind": "move",
+        "target": "mtr_market"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_market"
+      },
+      {
+        "kind": "buy",
+        "target": "mtr_market",
+        "item": "parcel",
+        "minutes": 3
+      },
+      {
+        "kind": "move",
+        "target": "mtr_plaza"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_plaza"
+      },
+      {
+        "kind": "interact",
+        "to": "ben",
+        "minutes": 2
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "message",
+        "to": "ben",
+        "content": "Acknowledged; on my way."
+      },
+      {
+        "kind": "move",
+        "target": "mtr_plaza"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_plaza"
+      },
+      {
+        "kind": "dwell",
+        "minutes": 16
+      },
+      {
+        "kind": "interact",
+        "to": "ben",
+        "minutes": 2
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  },
+  {
+    "scenario_id": "ci11w4_mult_harbor_grid_v1_v0",
+    "construct_family": "multi_party_commitment",
+    "oracle": [
+      {
+        "kind": "message",
+        "to": "ben",
+        "content": "Confirmed; collecting first."
+      },
+      {
+        "kind": "message",
+        "to": "casey",
+        "content": "Confirmed; delivering after Ben."
+      },
+      {
+        "kind": "move",
+        "target": "hgd_office"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_office"
+      },
+      {
+        "kind": "interact",
+        "to": "ben",
+        "minutes": 2
+      },
+      {
+        "kind": "move",
+        "target": "hgd_plaza"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_plaza"
+      },
+      {
+        "kind": "interact",
+        "to": "casey",
+        "minutes": 2
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "message",
+        "to": "ben",
+        "content": "Confirmed."
+      },
+      {
+        "kind": "message",
+        "to": "casey",
+        "content": "Confirmed."
+      },
+      {
+        "kind": "move",
+        "target": "hgd_office"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_office"
+      },
+      {
+        "kind": "interact",
+        "to": "ben",
+        "minutes": 2
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  },
+  {
+    "scenario_id": "ci11w4_mult_metro_radial_v1_v1",
+    "construct_family": "multi_party_commitment",
+    "oracle": [
+      {
+        "kind": "message",
+        "to": "ben",
+        "content": "Confirmed; collecting first."
+      },
+      {
+        "kind": "message",
+        "to": "casey",
+        "content": "Confirmed; delivering after Ben."
+      },
+      {
+        "kind": "move",
+        "target": "mtr_office"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_office"
+      },
+      {
+        "kind": "interact",
+        "to": "ben",
+        "minutes": 2
+      },
+      {
+        "kind": "move",
+        "target": "mtr_plaza"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_plaza"
+      },
+      {
+        "kind": "interact",
+        "to": "casey",
+        "minutes": 2
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "message",
+        "to": "ben",
+        "content": "Confirmed."
+      },
+      {
+        "kind": "message",
+        "to": "casey",
+        "content": "Confirmed."
+      },
+      {
+        "kind": "move",
+        "target": "mtr_office"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_office"
+      },
+      {
+        "kind": "interact",
+        "to": "ben",
+        "minutes": 2
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  },
+  {
+    "scenario_id": "ci11w4_mult_suburb_polycentric_v1_v2",
+    "construct_family": "multi_party_commitment",
+    "oracle": [
+      {
+        "kind": "message",
+        "to": "ben",
+        "content": "Confirmed; collecting first."
+      },
+      {
+        "kind": "message",
+        "to": "casey",
+        "content": "Confirmed; delivering after Ben."
+      },
+      {
+        "kind": "move",
+        "target": "spc_office"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_office"
+      },
+      {
+        "kind": "interact",
+        "to": "ben",
+        "minutes": 2
+      },
+      {
+        "kind": "move",
+        "target": "spc_plaza"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_plaza"
+      },
+      {
+        "kind": "interact",
+        "to": "casey",
+        "minutes": 2
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "message",
+        "to": "ben",
+        "content": "Confirmed."
+      },
+      {
+        "kind": "message",
+        "to": "casey",
+        "content": "Confirmed."
+      },
+      {
+        "kind": "move",
+        "target": "spc_office"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_office"
+      },
+      {
+        "kind": "interact",
+        "to": "ben",
+        "minutes": 2
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  },
+  {
+    "scenario_id": "ci11w4_comp_metro_radial_v1_v0",
+    "construct_family": "compound_long_horizon",
+    "oracle": [
+      {
+        "kind": "move",
+        "target": "mtr_civic_service"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_civic_service"
+      },
+      {
+        "kind": "use_service",
+        "target": "mtr_civic_service",
+        "service": "credential",
+        "minutes": 4
+      },
+      {
+        "kind": "move",
+        "target": "mtr_market"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_market"
+      },
+      {
+        "kind": "buy",
+        "target": "mtr_market",
+        "item": "permit",
+        "minutes": 3
+      },
+      {
+        "kind": "move",
+        "target": "mtr_gym"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_gym"
+      },
+      {
+        "kind": "use_service",
+        "target": "mtr_gym",
+        "service": "booked_training",
+        "minutes": 5
+      },
+      {
+        "kind": "move",
+        "target": "mtr_home_primary"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_home_primary"
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "move",
+        "target": "mtr_market"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_market"
+      },
+      {
+        "kind": "buy",
+        "target": "mtr_market",
+        "item": "permit",
+        "minutes": 3
+      },
+      {
+        "kind": "move",
+        "target": "mtr_gym"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_gym"
+      },
+      {
+        "kind": "use_service",
+        "target": "mtr_gym",
+        "service": "booked_training",
+        "minutes": 5
+      },
+      {
+        "kind": "move",
+        "target": "mtr_home_primary"
+      },
+      {
+        "kind": "enter",
+        "target": "mtr_home_primary"
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  },
+  {
+    "scenario_id": "ci11w4_comp_suburb_polycentric_v1_v1",
+    "construct_family": "compound_long_horizon",
+    "oracle": [
+      {
+        "kind": "move",
+        "target": "spc_civic_service"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_civic_service"
+      },
+      {
+        "kind": "use_service",
+        "target": "spc_civic_service",
+        "service": "credential",
+        "minutes": 4
+      },
+      {
+        "kind": "move",
+        "target": "spc_market"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_market"
+      },
+      {
+        "kind": "buy",
+        "target": "spc_market",
+        "item": "permit",
+        "minutes": 3
+      },
+      {
+        "kind": "move",
+        "target": "spc_gym"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_gym"
+      },
+      {
+        "kind": "use_service",
+        "target": "spc_gym",
+        "service": "booked_training",
+        "minutes": 5
+      },
+      {
+        "kind": "move",
+        "target": "spc_home_primary"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_home_primary"
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "move",
+        "target": "spc_market"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_market"
+      },
+      {
+        "kind": "buy",
+        "target": "spc_market",
+        "item": "permit",
+        "minutes": 3
+      },
+      {
+        "kind": "move",
+        "target": "spc_gym"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_gym"
+      },
+      {
+        "kind": "use_service",
+        "target": "spc_gym",
+        "service": "booked_training",
+        "minutes": 5
+      },
+      {
+        "kind": "move",
+        "target": "spc_home_primary"
+      },
+      {
+        "kind": "enter",
+        "target": "spc_home_primary"
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  },
+  {
+    "scenario_id": "ci11w4_comp_harbor_grid_v1_v2",
+    "construct_family": "compound_long_horizon",
+    "oracle": [
+      {
+        "kind": "move",
+        "target": "hgd_civic_service"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_civic_service"
+      },
+      {
+        "kind": "use_service",
+        "target": "hgd_civic_service",
+        "service": "credential",
+        "minutes": 4
+      },
+      {
+        "kind": "move",
+        "target": "hgd_market"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_market"
+      },
+      {
+        "kind": "buy",
+        "target": "hgd_market",
+        "item": "permit",
+        "minutes": 3
+      },
+      {
+        "kind": "move",
+        "target": "hgd_gym"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_gym"
+      },
+      {
+        "kind": "use_service",
+        "target": "hgd_gym",
+        "service": "booked_training",
+        "minutes": 5
+      },
+      {
+        "kind": "move",
+        "target": "hgd_home_primary"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_home_primary"
+      },
+      {
+        "kind": "finish"
+      }
+    ],
+    "negative": [
+      {
+        "kind": "move",
+        "target": "hgd_market"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_market"
+      },
+      {
+        "kind": "buy",
+        "target": "hgd_market",
+        "item": "permit",
+        "minutes": 3
+      },
+      {
+        "kind": "move",
+        "target": "hgd_gym"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_gym"
+      },
+      {
+        "kind": "use_service",
+        "target": "hgd_gym",
+        "service": "booked_training",
+        "minutes": 5
+      },
+      {
+        "kind": "move",
+        "target": "hgd_home_primary"
+      },
+      {
+        "kind": "enter",
+        "target": "hgd_home_primary"
+      },
+      {
+        "kind": "finish"
+      }
+    ]
+  }
+]

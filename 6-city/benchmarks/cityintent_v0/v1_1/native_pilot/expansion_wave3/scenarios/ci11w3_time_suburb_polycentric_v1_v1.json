@@ -1,0 +1,144 @@
+{
+  "scenario_id": "ci11w3_time_suburb_polycentric_v1_v1",
+  "title": "Wave 3 Rolling Window Commitment Update",
+  "world_id": "suburb_polycentric_v1",
+  "family": "time_window_scheduling",
+  "episode": {
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "max_steps": 18
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "A resident executing a private urban intention.",
+      "start_location": "spc_home_primary",
+      "budget": 100,
+      "private_intention": "Be inside the free venue spc_library during 10:14-10:19, then be inside spc_office during 10:29-10:30. The order is mandatory; arriving at only one window is incomplete. The decision must preserve the mechanism contract: agent must defer commitment until a future public window update.",
+      "known_locations": [
+        "spc_home_primary",
+        "spc_home_friend",
+        "spc_office",
+        "spc_transit_hub",
+        "spc_plaza",
+        "spc_meeting_cafe",
+        "spc_quiet_cafe",
+        "spc_library",
+        "spc_coworking",
+        "spc_civic_service",
+        "spc_park",
+        "spc_gym",
+        "spc_market",
+        "spc_pharmacy",
+        "spc_clinic",
+        "spc_budget_food",
+        "spc_school",
+        "spc_culture",
+        "spc_bookstore"
+      ],
+      "memory_seeds": []
+    }
+  ],
+  "public_context": "Only environment-observable action evidence counts as completion. Mechanism contract: agent must defer commitment until a future public window update.",
+  "events": [
+    {
+      "time": "10:05",
+      "type": "rolling_window_update",
+      "location": null,
+      "visibility": "public",
+      "effect": {
+        "window_policy": "ordered_after_update"
+      }
+    }
+  ],
+  "critical_locations": [
+    "spc_home_primary",
+    "spc_library",
+    "spc_office"
+  ],
+  "success_conditions": [
+    {
+      "id": "first_window",
+      "type": "visit_open_location",
+      "role": "outcome",
+      "weight": 0.35,
+      "location_any_of": [
+        "spc_library"
+      ],
+      "time_window": [
+        "10:14",
+        "10:19"
+      ]
+    },
+    {
+      "id": "second_window",
+      "type": "visit_open_location",
+      "role": "outcome",
+      "weight": 0.35,
+      "location_any_of": [
+        "spc_office"
+      ],
+      "time_window": [
+        "10:29",
+        "10:30"
+      ]
+    },
+    {
+      "id": "legal_trace",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.2
+    },
+    {
+      "id": "finish_episode",
+      "type": "episode_complete_before",
+      "role": "constraint",
+      "weight": 0.1,
+      "deadline": "13:00"
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Must produce explicit outcome evidence.",
+    "llm_direct_actor": "May narrate success without the required action evidence.",
+    "reactive_replanner": "Must preserve the intention while updating the plan.",
+    "memory_reflection": "Must use relevant private memory without goal drift."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0-expansion-wave3",
+    "candidate_status": "actor_hardened_v1",
+    "split": "calibration_public",
+    "construct_family": "time_window_scheduling",
+    "difficulty_tier": "hard",
+    "template_id": "wave3_rolling_window_commitment_update",
+    "instance_variant": 1,
+    "seed": 278349862928305,
+    "generator_version": "cityintent-native-expansion-wave3-1.0.0-design-review",
+    "world_visibility": "public",
+    "observation_contract": "intent_only_v1",
+    "expose_verifier_conditions": false,
+    "mechanism_id": "rolling_window_commitment_update",
+    "mechanism_parameter": "agent must defer commitment until a future public window update",
+    "parent_generator_version": "cityintent-native-expansion-wave2-1.0.0",
+    "mechanism_contract": {
+      "state_transition": "future_window_is_not_known_until_update",
+      "required_evidence": [
+        "first_window",
+        "second_window",
+        "episode_complete_before"
+      ],
+      "negative_failure": "committing_to_stale_window_order"
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "schema_version": "cityintent_wave3_semantic_review_v1",
+  "review_date": "2026-08-05",
+  "status": "public_calibration_promoted_not_release",
+  "promotion_allowed": false,
+  "calibration_promotion_allowed": true,
+  "review_basis": [
+    "mechanism_contract",
+    "structural_distinctness_audit",
+    "oracle_negative_acceptance_report"
+  ],
+  "constructs": {
+    "disruption_recovery": {
+      "wave2_baseline": "destination relocation",
+      "wave3_transition": "public route closure requires a verified reroute",
+      "evidence": ["route_closure", "replan_after_event", "avoid_blocked_edge"],
+      "negative": "continue or abandon before recovering the target",
+      "preliminary_status": "calibration_promoted"
+    },
+    "time_window_scheduling": {
+      "wave2_baseline": "ordered dual free windows",
+      "wave3_transition": "rolling update precedes commitment to ordered windows",
+      "evidence": ["rolling_window_update", "first_window", "second_window", "episode_complete_before"],
+      "negative": "commit to stale order or miss episode deadline",
+      "preliminary_status": "calibration_promoted"
+    },
+    "resource_budget_allocation": {
+      "wave2_baseline": "joint money and action budget allocation",
+      "wave3_transition": "irreversible reservation token consumes budget before service",
+      "evidence": ["reservation_token", "booked_training", "nonnegative_budget"],
+      "negative": "optional spending prevents reserved service",
+      "preliminary_status": "calibration_promoted"
+    },
+    "poi_availability_service_evidence": {
+      "wave2_baseline": "future provider registry update",
+      "wave3_transition": "registry evidence must precede service completion",
+      "evidence": ["obtain_at", "identity_verification"],
+      "negative": "arrival without service evidence",
+      "preliminary_status": "calibration_promoted"
+    },
+    "memory_conditioned_preference": {
+      "wave2_baseline": "environment-cued conditional memory",
+      "wave3_transition": "recency-weighted revision requires trigger and fallback recall",
+      "evidence": ["two recall actions", "conditional indoor choice", "reset dwell"],
+      "negative": "use stale default under active alert",
+      "preliminary_status": "calibration_promoted"
+    },
+    "social_coordination_copresence": {
+      "wave2_baseline": "confirmed meeting after future relocation",
+      "wave3_transition": "confirmation deadline must precede timed co-presence",
+      "evidence": ["confirmation_deadline", "message", "interaction"],
+      "negative": "stale venue or unconfirmed co-presence",
+      "preliminary_status": "calibration_promoted"
+    },
+    "multi_party_commitment": {
+      "wave2_baseline": "overlap requires explicit renegotiation",
+      "wave3_transition": "public priority update selects fulfillment and rescheduling order",
+      "evidence": ["commitment_priority_update", "confirm_ben", "renegotiate_casey"],
+      "negative": "silently drop the competing commitment",
+      "preliminary_status": "calibration_promoted"
+    },
+    "compound_long_horizon": {
+      "wave2_baseline": "purchase, meeting, return chain",
+      "wave3_transition": "medication-pickup service is a gated prerequisite",
+      "evidence": ["medication_pickup", "confirmation", "co-presence", "return"],
+      "negative": "meeting or return without prerequisite",
+      "preliminary_status": "calibration_promoted"
+    }
+  },
+  "completed_public_gates": [
+    "semantic_signoff_on_all_eight_constructs",
+    "executable_event_semantics_for_social_and_multi_party",
+    "offline_oracle_and_matched_negative_24_of_24",
+    "six_system_public_calibration_144_traces",
+    "cross_world_promotion_8_templates_24_instances"
+  ]
+}

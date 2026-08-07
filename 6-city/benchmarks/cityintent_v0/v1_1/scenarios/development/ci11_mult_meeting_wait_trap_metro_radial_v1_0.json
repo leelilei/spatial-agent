@@ -1,0 +1,144 @@
+{
+  "scenario_id": "ci11_mult_meeting_wait_trap_metro_radial_v1_0",
+  "title": "Meeting Wait Trap",
+  "world_id": "metro_radial_v1",
+  "family": "multi_party_commitment",
+  "episode": {
+    "start_time": "12:05",
+    "end_time": "13:15",
+    "max_steps": 10
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Office worker trying to coordinate a short lunch meeting without wasting the whole break.",
+      "start_location": "mtr_office",
+      "budget": 16,
+      "private_intention": "Confirm Ben's location, meet during the narrow lunch window, and avoid just waiting without achieving co-presence.",
+      "known_locations": [
+        "mtr_office",
+        "mtr_meeting_cafe",
+        "mtr_quiet_cafe",
+        "mtr_plaza",
+        "mtr_transit_hub"
+      ],
+      "memory_seeds": [
+        "Ben often waits for a message before choosing a cafe.",
+        "Metro Radial Quiet Cafe is quieter but slightly farther.",
+        "Waiting at the wrong cafe feels plausible but misses the actual meeting."
+      ]
+    },
+    {
+      "agent_id": "ben",
+      "persona": "Friend with a short lunch break who will only commit after receiving a message.",
+      "start_location": "mtr_home_friend",
+      "budget": 18,
+      "private_intention": "Meet Aria if the plan is confirmed early.",
+      "known_locations": [
+        "mtr_home_friend",
+        "mtr_transit_hub",
+        "mtr_meeting_cafe",
+        "mtr_quiet_cafe"
+      ],
+      "memory_seeds": [
+        "Ben prefers quiet places but needs explicit coordination."
+      ]
+    }
+  ],
+  "public_context": "Both cafes are plausible. The trap is that going somewhere and waiting can look reasonable while failing the coordination objective.",
+  "events": [
+    {
+      "time": "12:25",
+      "type": "crowd_notice",
+      "location": "mtr_meeting_cafe",
+      "visibility": "public",
+      "effect": {
+        "travel_time_multiplier": 1.0,
+        "affected_locations": [
+          "mtr_meeting_cafe"
+        ]
+      }
+    }
+  ],
+  "critical_locations": [
+    "mtr_office",
+    "mtr_meeting_cafe",
+    "mtr_quiet_cafe",
+    "mtr_plaza",
+    "mtr_transit_hub"
+  ],
+  "success_conditions": [
+    {
+      "id": "confirm_plan_with_ben",
+      "type": "send_message",
+      "role": "outcome",
+      "to": "ben",
+      "weight": 0.2
+    },
+    {
+      "id": "meet_ben_during_window",
+      "type": "co_presence",
+      "role": "outcome",
+      "agents": [
+        "aria",
+        "ben"
+      ],
+      "location_any_of": [
+        "mtr_quiet_cafe",
+        "mtr_meeting_cafe"
+      ],
+      "time_window": [
+        "12:35",
+        "12:55"
+      ],
+      "weight": 0.45
+    },
+    {
+      "id": "stay_within_budget",
+      "type": "budget_at_least",
+      "role": "constraint",
+      "agent": "aria",
+      "min_remaining": 0,
+      "weight": 0.15
+    },
+    {
+      "id": "no_impossible_meeting_claim",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.2
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "May go to a plausible cafe and wait without sending the needed coordination message.",
+    "llm_direct_actor": "May produce a socially plausible lunch narrative while missing the explicit co-presence window.",
+    "reactive_replanner": "Should message Ben and adjust if waiting does not satisfy the meeting objective.",
+    "memory_reflection": "Should remember that Ben needs explicit confirmation before choosing a cafe."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0",
+    "candidate_status": "pending_acceptance_gates",
+    "split": "development",
+    "construct_family": "multi_party_commitment",
+    "difficulty_tier": "medium",
+    "difficulty_status": "provisional_pending_baseline_calibration",
+    "template_id": "meeting_wait_trap",
+    "instance_variant": 0,
+    "seed": 41034691825446,
+    "generator_version": "cityintent-scenariogen-1.0.0",
+    "source_version": "1.0-rc1",
+    "source_family": "time_pressure",
+    "source_perturbation_pair": null,
+    "world_visibility": "public"
+  }
+}

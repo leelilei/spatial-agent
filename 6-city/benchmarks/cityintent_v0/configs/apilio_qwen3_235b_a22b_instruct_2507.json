@@ -1,0 +1,16 @@
+{
+  "provider": "apilio_qwen",
+  "model": "qwen3-235b-a22b-instruct-2507",
+  "wire_api": "chat_completions",
+  "base_url": "https://api.apilio.ai",
+  "temperature": 0,
+  "omit_temperature": false,
+  "timeout": 300,
+  "sleep": 1,
+  "max_concurrency": 1,
+  "retries": 3,
+  "retry_sleep": 5,
+  "json_mode": true,
+  "transport": "curl",
+  "api_key_env": "APILIO_API_KEY"
+}

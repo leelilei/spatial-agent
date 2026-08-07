@@ -1,0 +1,100 @@
+{
+  "schema_version": "cityintent_native_expansion_wave3_v1",
+  "generator_version": "cityintent-native-expansion-wave3-1.0.0-design-review",
+  "status": "mechanism_distinctness_review_pending_not_release",
+  "scenario_count": 24,
+  "construct_counts": {
+    "compound_long_horizon": 3,
+    "disruption_recovery": 3,
+    "memory_conditioned_preference": 3,
+    "multi_party_commitment": 3,
+    "poi_availability_service_evidence": 3,
+    "resource_budget_allocation": 3,
+    "social_coordination_copresence": 3,
+    "time_window_scheduling": 3
+  },
+  "mechanisms": {
+    "disruption_recovery": "resource_aware_fallback_substitution",
+    "time_window_scheduling": "rolling_window_commitment_update",
+    "resource_budget_allocation": "irreversible_budget_reservation",
+    "poi_availability_service_evidence": "service_evidence_chain",
+    "memory_conditioned_preference": "recency_weighted_memory_revision",
+    "social_coordination_copresence": "confirmation_then_copresence",
+    "multi_party_commitment": "priority_aware_commitment_repair",
+    "compound_long_horizon": "dependency_ordered_chain"
+  },
+  "mechanism_contracts": {
+    "disruption_recovery": {
+      "state_transition": "public_route_closure_requires_replan",
+      "required_evidence": [
+        "replan_after_event",
+        "avoid_blocked_edge",
+        "reach_relocated_target"
+      ],
+      "negative_failure": "continuing_on_the_pre_event_shortest_path"
+    },
+    "time_window_scheduling": {
+      "state_transition": "future_window_is_not_known_until_update",
+      "required_evidence": [
+        "first_window",
+        "second_window",
+        "episode_complete_before"
+      ],
+      "negative_failure": "committing_to_stale_window_order"
+    },
+    "resource_budget_allocation": {
+      "state_transition": "reservation_consumes_budget_before_service",
+      "required_evidence": [
+        "reservation_token",
+        "training",
+        "budget"
+      ],
+      "negative_failure": "spending_reserved_budget_on_optional_item"
+    },
+    "poi_availability_service_evidence": {
+      "state_transition": "registry_evidence_precedes_service_completion",
+      "required_evidence": [
+        "registry_evidence",
+        "identity_verification"
+      ],
+      "negative_failure": "arrival_without_registered_service"
+    },
+    "memory_conditioned_preference": {
+      "state_transition": "recent_conditional_memory_overrides_old_default",
+      "required_evidence": [
+        "recall_rule",
+        "conditional_choice",
+        "reset"
+      ],
+      "negative_failure": "using_stale_default_under_alert"
+    },
+    "social_coordination_copresence": {
+      "state_transition": "confirmation_precedes_timed_copresence",
+      "required_evidence": [
+        "confirm",
+        "relocated_meeting"
+      ],
+      "negative_failure": "arriving_without_confirmation_at_stale_venue"
+    },
+    "multi_party_commitment": {
+      "state_transition": "priority_commitment_fulfilled_and_competing_one_rescheduled",
+      "required_evidence": [
+        "confirm_ben",
+        "renegotiate_casey",
+        "meet_ben"
+      ],
+      "negative_failure": "silent_drop_of_competing_commitment"
+    },
+    "compound_long_horizon": {
+      "state_transition": "gated_prerequisite_unlocks_later_meeting_and_return",
+      "required_evidence": [
+        "medicine",
+        "confirm",
+        "meet",
+        "return"
+      ],
+      "negative_failure": "meeting_or_return_without_prerequisite"
+    }
+  },
+  "scenario_matrix_sha256": "13180f9393198166950eedc185d6b9d37db741b16df6de64d542a72015de108c"
+}

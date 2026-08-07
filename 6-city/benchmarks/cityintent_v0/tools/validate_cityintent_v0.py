@@ -7,6 +7,7 @@ first four agent architectures.
 
 from __future__ import annotations
 
+import argparse
 import heapq
 import hashlib
 import json
@@ -25,6 +26,8 @@ SUPPORTED_CONDITION_TYPES = {
     "do_not_enter_closed_location",
     "dwell_minutes",
     "buy_item",
+    "purchase_at",
+    "obtain_at",
     "use_service_at",
     "co_presence",
     "budget_at_least",
@@ -34,6 +37,7 @@ SUPPORTED_CONDITION_TYPES = {
     "avoid_blocked_edge",
     "replan_after_event",
     "send_message",
+    "recall_memory",
     "no_infeasible_social_commitment",
     "bounded_social_interaction",
     "episode_complete_before",
@@ -124,11 +128,20 @@ def payload_sha256(value: dict[str, Any]) -> str:
     return hashlib.sha256(encoded).hexdigest()
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--benchmark-config",
+        type=Path,
+        default=ROOT / "benchmark_config.json",
+        help="Benchmark configuration to validate. Relative paths are resolved from its directory.",
+    )
+    args = parser.parse_args(argv)
     errors: list[str] = []
     warnings: list[str] = []
 
-    config_path = ROOT / "benchmark_config.json"
+    config_path = args.benchmark_config.resolve()
+    config_root = config_path.parent
     config = load_json(config_path)
     metric_ids = {metric["id"] for metric in config.get("metrics", [])}
     required_metric_ids = set(config.get("validation", {}).get("required_metric_ids", []))
@@ -145,7 +158,7 @@ def main() -> int:
     location_ids_by_world_id: dict[str, set[str]] = {}
 
     for world_ref in config.get("worlds", []):
-        world_path = ROOT / world_ref
+        world_path = config_root / world_ref
         if not world_path.exists():
             errors.append(f"missing world file: {world_ref}")
             continue
@@ -190,8 +203,16 @@ def main() -> int:
         graphs_by_world_id[world_id] = graph
         location_ids_by_world_id[world_id] = location_id_set
 
-    scenario_dir = ROOT / config.get("scenario_dir", "scenarios")
-    scenario_paths = sorted(scenario_dir.glob("*.json"))
+    scenario_dir = config_root / config.get("scenario_dir", "scenarios")
+    scenario_paths = (
+        sorted(
+            path
+            for split in config["scenario_splits"]
+            for path in (scenario_dir / split).rglob("*.json")
+        )
+        if config.get("scenario_splits")
+        else sorted(scenario_dir.rglob("*.json"))
+    )
     min_scenarios = int(config.get("validation", {}).get("min_scenarios", 0))
     if len(scenario_paths) < min_scenarios:
         errors.append(f"expected at least {min_scenarios} scenarios, found {len(scenario_paths)}")
@@ -309,9 +330,11 @@ def main() -> int:
                 errors.append(
                     f"{rel}: buy_item condition {condition.get('id')} requires item"
                 )
-            if condition_type == "use_service_at" and not condition.get("service"):
+            if condition_type == "obtain_at" and not (
+                condition.get("item") or condition.get("service")
+            ):
                 errors.append(
-                    f"{rel}: use_service_at condition {condition.get('id')} requires service"
+                    f"{rel}: obtain_at condition {condition.get('id')} requires item or service"
                 )
             if condition_type == "co_presence":
                 if len(condition.get("agents", [])) < 2:

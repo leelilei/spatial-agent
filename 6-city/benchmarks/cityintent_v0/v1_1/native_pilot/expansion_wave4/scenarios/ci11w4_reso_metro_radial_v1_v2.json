@@ -1,0 +1,138 @@
+{
+  "scenario_id": "ci11w4_reso_metro_radial_v1_v2",
+  "title": "Wave 4 Two Stage Inventory Commitment",
+  "world_id": "metro_radial_v1",
+  "family": "resource_budget_allocation",
+  "episode": {
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "max_steps": 18
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "A resident executing a private urban intention.",
+      "start_location": "mtr_home_primary",
+      "budget": 33.0,
+      "private_intention": "You hold exactly 33 credits and one inventory claim. Buy the item labeled inventory_claim at mtr_market, then complete the booked_training service at mtr_gym. Spending the claim at mtr_clinic (which costs 28) leaves too little for the training, so the first purchase decides whether the second step is still affordable. Keep the remaining budget at or above zero.",
+      "known_locations": [
+        "mtr_home_primary",
+        "mtr_home_friend",
+        "mtr_office",
+        "mtr_transit_hub",
+        "mtr_plaza",
+        "mtr_meeting_cafe",
+        "mtr_quiet_cafe",
+        "mtr_library",
+        "mtr_coworking",
+        "mtr_civic_service",
+        "mtr_park",
+        "mtr_gym",
+        "mtr_market",
+        "mtr_pharmacy",
+        "mtr_clinic",
+        "mtr_budget_food",
+        "mtr_school",
+        "mtr_culture",
+        "mtr_bookstore"
+      ],
+      "memory_seeds": []
+    }
+  ],
+  "public_context": "Only environment-observable action evidence counts as completion.",
+  "events": [],
+  "critical_locations": [
+    "mtr_home_primary",
+    "mtr_market",
+    "mtr_gym",
+    "mtr_clinic"
+  ],
+  "success_conditions": [
+    {
+      "id": "inventory_claim",
+      "type": "buy_item",
+      "role": "outcome",
+      "weight": 0.3,
+      "location": "mtr_market",
+      "item": "inventory_claim",
+      "minutes": 3
+    },
+    {
+      "id": "downstream_training",
+      "type": "use_service_at",
+      "role": "outcome",
+      "weight": 0.3,
+      "location": "mtr_gym",
+      "service": "booked_training",
+      "minutes": 5
+    },
+    {
+      "id": "budget",
+      "type": "budget_at_least",
+      "role": "constraint",
+      "weight": 0.2,
+      "agent": "aria",
+      "min_remaining": 0
+    },
+    {
+      "id": "legal_trace",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.2
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Must produce explicit outcome evidence.",
+    "llm_direct_actor": "May narrate success without the required action evidence.",
+    "reactive_replanner": "Must preserve the intention while updating the plan.",
+    "memory_reflection": "Must use relevant private memory without goal drift."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0-expansion-wave4",
+    "candidate_status": "mechanism_distinctness_review_pending",
+    "split": "calibration_public",
+    "construct_family": "resource_budget_allocation",
+    "difficulty_tier": "hard",
+    "template_id": "wave4_two_stage_inventory_commitment",
+    "instance_variant": 2,
+    "seed": 56011988923633,
+    "generator_version": "cityintent-native-expansion-wave4-1.0.0-design-review",
+    "world_visibility": "public",
+    "observation_contract": "intent_only_v1",
+    "expose_verifier_conditions": false,
+    "mechanism_id": "two_stage_inventory_commitment",
+    "mechanism_parameter": "the first purchase consumes the only inventory claim and determines which affordable downstream service remains feasible",
+    "parent_generator_version": "cityintent-native-pilot-6.0.0",
+    "mechanism_contract": {
+      "state_transition": "the first purchase consumes the only inventory claim and determines which affordable downstream service remains feasible",
+      "required_actions": [
+        "buy",
+        "use_service",
+        "finish"
+      ],
+      "required_conditions": [
+        "buy_item",
+        "use_service_at",
+        "budget_at_least"
+      ],
+      "negative_failure": "consume the inventory claim on the decoy purchase and lose downstream affordability",
+      "novelty_against": {
+        "base": "not two fixed purchases under exact money",
+        "wave2": "not joint money/action budget avoidance",
+        "wave3": "not event-revealed reservation location"
+      }
+    }
+  }
+}

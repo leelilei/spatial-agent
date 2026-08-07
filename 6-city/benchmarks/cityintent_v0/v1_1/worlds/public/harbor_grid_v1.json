@@ -1,0 +1,499 @@
+{
+  "world_id": "harbor_grid_v1",
+  "name": "Harbor Grid",
+  "description": "A dense grid CityIntent evaluation world.",
+  "time_unit": "minutes",
+  "currency": "credits",
+  "topology_archetype": "dense_grid",
+  "release_visibility": "public",
+  "generator_provenance": {
+    "generator_version": "cityintent-worldgen-1.0.0",
+    "seed": 1103
+  },
+  "locations": [
+    {
+      "id": "hgd_home_primary",
+      "name": "Harbor Grid Home Primary",
+      "semantic_role": "home_primary",
+      "type": "home",
+      "tags": [
+        "home",
+        "quiet"
+      ],
+      "open": [
+        "00:00",
+        "23:44"
+      ],
+      "capacity": 2,
+      "map_index": 0
+    },
+    {
+      "id": "hgd_home_friend",
+      "name": "Harbor Grid Home Friend",
+      "semantic_role": "home_friend",
+      "type": "home",
+      "tags": [
+        "home"
+      ],
+      "open": [
+        "00:00",
+        "23:44"
+      ],
+      "capacity": 2,
+      "map_index": 1
+    },
+    {
+      "id": "hgd_office",
+      "name": "Harbor Grid Office",
+      "semantic_role": "office",
+      "type": "work",
+      "tags": [
+        "work",
+        "wifi"
+      ],
+      "open": [
+        "06:45",
+        "20:45"
+      ],
+      "capacity": 23,
+      "map_index": 2
+    },
+    {
+      "id": "hgd_transit_hub",
+      "name": "Harbor Grid Transit Hub",
+      "semantic_role": "transit_hub",
+      "type": "transit",
+      "tags": [
+        "transit",
+        "crowded"
+      ],
+      "open": [
+        "04:35",
+        "23:05"
+      ],
+      "capacity": 86,
+      "map_index": 3
+    },
+    {
+      "id": "hgd_plaza",
+      "name": "Harbor Grid Plaza",
+      "semantic_role": "plaza",
+      "type": "public_space",
+      "tags": [
+        "outdoor",
+        "event_space",
+        "crowded"
+      ],
+      "open": [
+        "00:00",
+        "23:44"
+      ],
+      "capacity": 102,
+      "map_index": 4
+    },
+    {
+      "id": "hgd_meeting_cafe",
+      "name": "Harbor Grid Meeting Cafe",
+      "semantic_role": "meeting_cafe",
+      "type": "food",
+      "tags": [
+        "coffee",
+        "meeting",
+        "moderate_noise"
+      ],
+      "open": [
+        "07:05",
+        "19:35"
+      ],
+      "capacity": 20,
+      "map_index": 5,
+      "typical_cost": 13
+    },
+    {
+      "id": "hgd_quiet_cafe",
+      "name": "Harbor Grid Quiet Cafe",
+      "semantic_role": "quiet_cafe",
+      "type": "food",
+      "tags": [
+        "coffee",
+        "quiet",
+        "wifi",
+        "vegan"
+      ],
+      "open": [
+        "07:55",
+        "20:55"
+      ],
+      "capacity": 17,
+      "map_index": 6,
+      "typical_cost": 10
+    },
+    {
+      "id": "hgd_library",
+      "name": "Harbor Grid Library",
+      "semantic_role": "library",
+      "type": "study",
+      "tags": [
+        "quiet",
+        "free",
+        "wifi"
+      ],
+      "open": [
+        "08:35",
+        "17:35"
+      ],
+      "capacity": 35,
+      "map_index": 7,
+      "typical_cost": 0
+    },
+    {
+      "id": "hgd_coworking",
+      "name": "Harbor Grid Coworking",
+      "semantic_role": "coworking",
+      "type": "work",
+      "tags": [
+        "quiet",
+        "wifi",
+        "paid"
+      ],
+      "open": [
+        "07:55",
+        "21:55"
+      ],
+      "capacity": 36,
+      "map_index": 8,
+      "typical_cost": 16
+    },
+    {
+      "id": "hgd_civic_service",
+      "name": "Harbor Grid Civic Service",
+      "semantic_role": "civic_service",
+      "type": "service",
+      "tags": [
+        "appointment",
+        "public_service"
+      ],
+      "open": [
+        "08:45",
+        "16:45"
+      ],
+      "capacity": 49,
+      "map_index": 9
+    },
+    {
+      "id": "hgd_park",
+      "name": "Harbor Grid Park",
+      "semantic_role": "park",
+      "type": "recreation",
+      "tags": [
+        "outdoor",
+        "low_cost",
+        "exercise"
+      ],
+      "open": [
+        "05:45",
+        "21:45"
+      ],
+      "capacity": 117,
+      "map_index": 10
+    },
+    {
+      "id": "hgd_gym",
+      "name": "Harbor Grid Gym",
+      "semantic_role": "gym",
+      "type": "recreation",
+      "tags": [
+        "exercise",
+        "paid"
+      ],
+      "open": [
+        "05:55",
+        "22:55"
+      ],
+      "capacity": 21,
+      "map_index": 11,
+      "typical_cost": 8
+    },
+    {
+      "id": "hgd_market",
+      "name": "Harbor Grid Market",
+      "semantic_role": "market",
+      "type": "shopping",
+      "tags": [
+        "groceries",
+        "busy"
+      ],
+      "open": [
+        "07:55",
+        "20:55"
+      ],
+      "capacity": 58,
+      "map_index": 12,
+      "typical_cost": 14
+    },
+    {
+      "id": "hgd_pharmacy",
+      "name": "Harbor Grid Pharmacy",
+      "semantic_role": "pharmacy",
+      "type": "shopping",
+      "tags": [
+        "medicine",
+        "errand"
+      ],
+      "open": [
+        "07:55",
+        "21:55"
+      ],
+      "capacity": 12,
+      "map_index": 13,
+      "typical_cost": 8
+    },
+    {
+      "id": "hgd_clinic",
+      "name": "Harbor Grid Clinic",
+      "semantic_role": "clinic",
+      "type": "health",
+      "tags": [
+        "health",
+        "appointment"
+      ],
+      "open": [
+        "08:25",
+        "18:55"
+      ],
+      "capacity": 19,
+      "map_index": 14,
+      "typical_cost": 23
+    },
+    {
+      "id": "hgd_budget_food",
+      "name": "Harbor Grid Budget Food",
+      "semantic_role": "budget_food",
+      "type": "food",
+      "tags": [
+        "meal",
+        "cheap"
+      ],
+      "open": [
+        "06:35",
+        "21:35"
+      ],
+      "capacity": 33,
+      "map_index": 15,
+      "typical_cost": 7
+    },
+    {
+      "id": "hgd_school",
+      "name": "Harbor Grid School",
+      "semantic_role": "school",
+      "type": "school",
+      "tags": [
+        "family",
+        "pickup"
+      ],
+      "open": [
+        "07:05",
+        "18:05"
+      ],
+      "capacity": 86,
+      "map_index": 16
+    },
+    {
+      "id": "hgd_culture",
+      "name": "Harbor Grid Culture",
+      "semantic_role": "culture",
+      "type": "culture",
+      "tags": [
+        "social",
+        "ticketed"
+      ],
+      "open": [
+        "16:55",
+        "22:55"
+      ],
+      "capacity": 42,
+      "map_index": 17,
+      "typical_cost": 21
+    },
+    {
+      "id": "hgd_bookstore",
+      "name": "Harbor Grid Bookstore",
+      "semantic_role": "bookstore",
+      "type": "shopping",
+      "tags": [
+        "quiet",
+        "books",
+        "wifi"
+      ],
+      "open": [
+        "09:45",
+        "19:45"
+      ],
+      "capacity": 24,
+      "map_index": 18,
+      "typical_cost": 7
+    }
+  ],
+  "edges": [
+    {
+      "from": "hgd_home_primary",
+      "to": "hgd_home_friend",
+      "minutes": 7
+    },
+    {
+      "from": "hgd_home_primary",
+      "to": "hgd_meeting_cafe",
+      "minutes": 12
+    },
+    {
+      "from": "hgd_home_friend",
+      "to": "hgd_office",
+      "minutes": 8
+    },
+    {
+      "from": "hgd_home_friend",
+      "to": "hgd_quiet_cafe",
+      "minutes": 4
+    },
+    {
+      "from": "hgd_office",
+      "to": "hgd_transit_hub",
+      "minutes": 13
+    },
+    {
+      "from": "hgd_office",
+      "to": "hgd_library",
+      "minutes": 13
+    },
+    {
+      "from": "hgd_transit_hub",
+      "to": "hgd_plaza",
+      "minutes": 4
+    },
+    {
+      "from": "hgd_transit_hub",
+      "to": "hgd_coworking",
+      "minutes": 6
+    },
+    {
+      "from": "hgd_plaza",
+      "to": "hgd_civic_service",
+      "minutes": 7
+    },
+    {
+      "from": "hgd_meeting_cafe",
+      "to": "hgd_quiet_cafe",
+      "minutes": 3
+    },
+    {
+      "from": "hgd_meeting_cafe",
+      "to": "hgd_park",
+      "minutes": 10
+    },
+    {
+      "from": "hgd_quiet_cafe",
+      "to": "hgd_library",
+      "minutes": 10
+    },
+    {
+      "from": "hgd_quiet_cafe",
+      "to": "hgd_gym",
+      "minutes": 5
+    },
+    {
+      "from": "hgd_library",
+      "to": "hgd_coworking",
+      "minutes": 6
+    },
+    {
+      "from": "hgd_library",
+      "to": "hgd_market",
+      "minutes": 12
+    },
+    {
+      "from": "hgd_coworking",
+      "to": "hgd_civic_service",
+      "minutes": 12
+    },
+    {
+      "from": "hgd_coworking",
+      "to": "hgd_pharmacy",
+      "minutes": 6
+    },
+    {
+      "from": "hgd_civic_service",
+      "to": "hgd_clinic",
+      "minutes": 10
+    },
+    {
+      "from": "hgd_park",
+      "to": "hgd_gym",
+      "minutes": 3
+    },
+    {
+      "from": "hgd_park",
+      "to": "hgd_budget_food",
+      "minutes": 7
+    },
+    {
+      "from": "hgd_gym",
+      "to": "hgd_market",
+      "minutes": 11
+    },
+    {
+      "from": "hgd_gym",
+      "to": "hgd_school",
+      "minutes": 10
+    },
+    {
+      "from": "hgd_market",
+      "to": "hgd_pharmacy",
+      "minutes": 11
+    },
+    {
+      "from": "hgd_market",
+      "to": "hgd_culture",
+      "minutes": 6
+    },
+    {
+      "from": "hgd_pharmacy",
+      "to": "hgd_clinic",
+      "minutes": 3
+    },
+    {
+      "from": "hgd_pharmacy",
+      "to": "hgd_bookstore",
+      "minutes": 10
+    },
+    {
+      "from": "hgd_budget_food",
+      "to": "hgd_school",
+      "minutes": 13
+    },
+    {
+      "from": "hgd_school",
+      "to": "hgd_culture",
+      "minutes": 6
+    },
+    {
+      "from": "hgd_culture",
+      "to": "hgd_bookstore",
+      "minutes": 3
+    },
+    {
+      "from": "hgd_home_primary",
+      "to": "hgd_quiet_cafe",
+      "minutes": 9
+    },
+    {
+      "from": "hgd_plaza",
+      "to": "hgd_coworking",
+      "minutes": 13
+    },
+    {
+      "from": "hgd_park",
+      "to": "hgd_school",
+      "minutes": 5
+    }
+  ]
+}

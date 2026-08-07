@@ -1,0 +1,144 @@
+{
+  "scenario_id": "ci11_time_lunch_meeting_time_pressure_suburb_polycentric_v1_0",
+  "title": "Lunch Meeting Under Time Pressure",
+  "world_id": "suburb_polycentric_v1",
+  "family": "time_window_scheduling",
+  "episode": {
+    "start_time": "12:00",
+    "end_time": "13:30",
+    "max_steps": 9
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Office worker who values punctuality and quiet conversation.",
+      "start_location": "spc_office",
+      "budget": 18,
+      "private_intention": "Meet Ben for lunch before 13:10 while avoiding an overly crowded route if possible.",
+      "known_locations": [
+        "spc_office",
+        "spc_meeting_cafe",
+        "spc_quiet_cafe",
+        "spc_plaza"
+      ],
+      "memory_seeds": [
+        "Ben dislikes noisy lunch spots.",
+        "Suburb Polycentric Quiet Cafe is calmer but slightly farther than Suburb Polycentric Meeting Cafe."
+      ]
+    },
+    {
+      "agent_id": "ben",
+      "persona": "Friend who has a short lunch break and dislikes crowds.",
+      "start_location": "spc_home_friend",
+      "budget": 20,
+      "private_intention": "Meet Aria for lunch near the center.",
+      "known_locations": [
+        "spc_home_friend",
+        "spc_meeting_cafe",
+        "spc_quiet_cafe",
+        "spc_transit_hub"
+      ],
+      "memory_seeds": [
+        "Suburb Polycentric Meeting Cafe is convenient but can be crowded at lunch."
+      ]
+    }
+  ],
+  "public_context": "It is a normal workday lunch window. Suburb Polycentric Meeting Cafe is closer to the office; Suburb Polycentric Quiet Cafe is quieter.",
+  "events": [
+    {
+      "time": "12:20",
+      "type": "plaza_congestion",
+      "location": "spc_plaza",
+      "visibility": "public",
+      "effect": {
+        "travel_time_multiplier": 1.5,
+        "affected_locations": [
+          "spc_plaza",
+          "spc_meeting_cafe"
+        ]
+      }
+    }
+  ],
+  "critical_locations": [
+    "spc_office",
+    "spc_meeting_cafe",
+    "spc_quiet_cafe",
+    "spc_plaza"
+  ],
+  "success_conditions": [
+    {
+      "id": "meet_ben_on_time",
+      "type": "co_presence",
+      "role": "outcome",
+      "agents": [
+        "aria",
+        "ben"
+      ],
+      "location_any_of": [
+        "spc_meeting_cafe",
+        "spc_quiet_cafe"
+      ],
+      "time_window": [
+        "12:25",
+        "13:10"
+      ],
+      "weight": 0.45
+    },
+    {
+      "id": "stay_within_budget",
+      "type": "budget_at_least",
+      "role": "constraint",
+      "agent": "aria",
+      "min_remaining": 0,
+      "weight": 0.15
+    },
+    {
+      "id": "respect_crowd_preference",
+      "type": "avoid_when_possible",
+      "role": "constraint",
+      "avoid_locations": [
+        "spc_plaza"
+      ],
+      "weight": 0.2
+    },
+    {
+      "id": "arrive_without_impossible_claims",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.2
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Should choose the closer feasible lunch option and may underweight Ben's crowd preference.",
+    "llm_direct_actor": "May agree to lunch but forget to account for travel time or crowd effects.",
+    "reactive_replanner": "Should adjust destination or route after the plaza congestion appears.",
+    "memory_reflection": "Should use the memory that Ben dislikes noisy places and prefer Suburb Polycentric Quiet Cafe if still feasible."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0",
+    "candidate_status": "pending_acceptance_gates",
+    "split": "examples",
+    "construct_family": "time_window_scheduling",
+    "difficulty_tier": "hard",
+    "difficulty_status": "provisional_pending_baseline_calibration",
+    "template_id": "lunch_meeting_time_pressure",
+    "instance_variant": 0,
+    "seed": 173830200808685,
+    "generator_version": "cityintent-scenariogen-1.0.0",
+    "source_version": "1.0-rc1",
+    "source_family": "time_pressure",
+    "source_perturbation_pair": null,
+    "world_visibility": "public"
+  }
+}

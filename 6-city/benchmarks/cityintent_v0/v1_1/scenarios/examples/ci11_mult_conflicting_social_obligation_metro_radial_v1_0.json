@@ -1,0 +1,128 @@
+{
+  "scenario_id": "ci11_mult_conflicting_social_obligation_metro_radial_v1_0",
+  "title": "Conflicting Private Work Goal and Social Obligation",
+  "world_id": "metro_radial_v1",
+  "family": "multi_party_commitment",
+  "episode": {
+    "start_time": "17:00",
+    "end_time": "19:00",
+    "max_steps": 8
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Freelancer who values friendships but has an urgent client deadline.",
+      "start_location": "mtr_coworking",
+      "budget": 20,
+      "private_intention": "Finish a 45-minute work block and respond kindly to Ben's theatre invitation without derailing the deadline.",
+      "known_locations": [
+        "mtr_coworking",
+        "mtr_culture",
+        "mtr_quiet_cafe",
+        "mtr_home_friend"
+      ],
+      "memory_seeds": [
+        "Ben appreciates honest updates more than vague promises.",
+        "The theatre ticket is expensive for a casual evening."
+      ]
+    },
+    {
+      "agent_id": "ben",
+      "persona": "Friend who has an extra theatre ticket and wants company.",
+      "start_location": "mtr_home_friend",
+      "budget": 25,
+      "private_intention": "Invite Aria to the theatre at 18:00.",
+      "known_locations": [
+        "mtr_home_friend",
+        "mtr_culture",
+        "mtr_quiet_cafe"
+      ],
+      "memory_seeds": [
+        "Aria often has late work blocks."
+      ]
+    }
+  ],
+  "public_context": "Ben sends an invitation to meet at the theatre around 18:00.",
+  "events": [
+    {
+      "time": "17:10",
+      "type": "social_invitation",
+      "location": "mtr_home_friend",
+      "visibility": "private_to_aria",
+      "effect": {
+        "message": "Ben invites Aria to the theatre at 18:00."
+      }
+    }
+  ],
+  "critical_locations": [
+    "mtr_coworking",
+    "mtr_culture",
+    "mtr_quiet_cafe",
+    "mtr_home_friend"
+  ],
+  "success_conditions": [
+    {
+      "id": "complete_work_block",
+      "type": "dwell_minutes",
+      "role": "outcome",
+      "location": "mtr_coworking",
+      "min_minutes": 45,
+      "weight": 0.35
+    },
+    {
+      "id": "respond_to_ben",
+      "type": "send_message",
+      "role": "outcome",
+      "to": "ben",
+      "tone": "kind_and_specific",
+      "weight": 0.25
+    },
+    {
+      "id": "avoid_false_commitment",
+      "type": "no_infeasible_social_commitment",
+      "role": "constraint",
+      "weight": 0.2
+    },
+    {
+      "id": "stay_within_budget",
+      "type": "budget_at_least",
+      "role": "constraint",
+      "agent": "aria",
+      "min_remaining": 0,
+      "weight": 0.2
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Should optimize work and budget but may ignore relationship maintenance.",
+    "llm_direct_actor": "May accept the social invitation without checking deadline or travel feasibility.",
+    "reactive_replanner": "Should update the plan after the invitation and preserve the work block.",
+    "memory_reflection": "Should remember Ben values honest updates and negotiate a socially coherent alternative."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0",
+    "candidate_status": "pending_acceptance_gates",
+    "split": "examples",
+    "construct_family": "multi_party_commitment",
+    "difficulty_tier": "medium",
+    "difficulty_status": "provisional_pending_baseline_calibration",
+    "template_id": "conflicting_social_obligation",
+    "instance_variant": 0,
+    "seed": 217043353503862,
+    "generator_version": "cityintent-scenariogen-1.0.0",
+    "source_version": "1.0-rc1",
+    "source_family": "social_spatial_tradeoff",
+    "source_perturbation_pair": null,
+    "world_visibility": "public"
+  }
+}

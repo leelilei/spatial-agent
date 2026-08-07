@@ -1,0 +1,190 @@
+{
+  "schema_version": "cityintent_wave4_mechanism_design_v1",
+  "date": "2026-08-06",
+  "status": "design_valid_candidates_generated_not_release",
+  "public_world_instances_per_template": 3,
+  "actor_runs_authorized": false,
+  "private_world_actor_runs_authorized": false,
+  "constructs": {
+    "disruption_recovery": {
+      "mechanism_id": "temporary_service_outage_with_timed_recovery_choice",
+      "state_transition": "a required service becomes unavailable and later recovers, forcing a wait-versus-substitute decision under deadline",
+      "novelty_against": {
+        "base": "not static closed-POI fallback",
+        "wave2": "not destination relocation",
+        "wave3": "not blocked-edge rerouting"
+      },
+      "required_actions": [
+        "wait_for_outage_update",
+        "use_service",
+        "finish"
+      ],
+      "required_conditions": [
+        "service_after_recovery",
+        "deadline",
+        "no_feasibility_violation"
+      ],
+      "negative_failure": "commit to the unavailable service before recovery or wait past the deadline",
+      "implementation_status": "builder_and_evaluator_implemented"
+    },
+    "time_window_scheduling": {
+      "mechanism_id": "minimum_duration_inside_nested_window",
+      "state_transition": "a broad arrival window contains a narrower interval in which a minimum accumulated dwell duration must be completed",
+      "novelty_against": {
+        "base": "not pickup deadline followed by arrival",
+        "wave2": "not ordered dual windows",
+        "wave3": "not rolling update before ordered windows"
+      },
+      "required_actions": [
+        "enter",
+        "dwell",
+        "finish"
+      ],
+      "required_conditions": [
+        "visit_open_location",
+        "dwell_within_window",
+        "episode_complete_before"
+      ],
+      "negative_failure": "arrive in the broad window but accumulate the dwell outside the narrow interval",
+      "implementation_status": "builder_and_evaluator_implemented"
+    },
+    "resource_budget_allocation": {
+      "mechanism_id": "two_stage_inventory_commitment",
+      "state_transition": "the first purchase consumes the only inventory claim and determines which affordable downstream service remains feasible",
+      "novelty_against": {
+        "base": "not two fixed purchases under exact money",
+        "wave2": "not joint money/action budget avoidance",
+        "wave3": "not event-revealed reservation location"
+      },
+      "required_actions": [
+        "buy",
+        "use_service",
+        "finish"
+      ],
+      "required_conditions": [
+        "buy_item",
+        "use_service_at",
+        "budget_at_least"
+      ],
+      "negative_failure": "consume the inventory claim on the decoy purchase and lose downstream affordability",
+      "implementation_status": "builder_and_evaluator_implemented"
+    },
+    "poi_availability_service_evidence": {
+      "mechanism_id": "referral_then_provider_service_chain",
+      "state_transition": "a referral service produces evidence that unlocks a second provider service at another POI",
+      "novelty_against": {
+        "base": "not two independent fixed services",
+        "wave2": "not future provider registry lookup",
+        "wave3": "not registry evidence and completion at one provider"
+      },
+      "required_actions": [
+        "use_service",
+        "move",
+        "enter",
+        "use_service"
+      ],
+      "required_conditions": [
+        "ordered_service_chain",
+        "use_service_at",
+        "deadline"
+      ],
+      "negative_failure": "use the provider without prior referral evidence",
+      "implementation_status": "builder_and_evaluator_implemented"
+    },
+    "memory_conditioned_preference": {
+      "mechanism_id": "source_reliability_memory_arbitration",
+      "state_transition": "two recalled memories conflict and the decision must follow the source tagged as reliable under the current cue",
+      "novelty_against": {
+        "base": "not direct preference recall",
+        "wave2": "not one conditional environmental rule",
+        "wave3": "not recency-based trigger and fallback recall"
+      },
+      "required_actions": [
+        "recall",
+        "recall",
+        "enter",
+        "dwell"
+      ],
+      "required_conditions": [
+        "recall_memory",
+        "visit_location",
+        "dwell_minutes",
+        "avoid_when_possible"
+      ],
+      "negative_failure": "follow the newer but explicitly unreliable memory",
+      "implementation_status": "builder_and_evaluator_implemented"
+    },
+    "social_coordination_copresence": {
+      "mechanism_id": "message_acknowledgement_then_handoff",
+      "state_transition": "a confirmation message authorizes a timed physical handoff rather than a generic meeting",
+      "novelty_against": {
+        "base": "not optional bounded interaction",
+        "wave2": "not meeting relocation",
+        "wave3": "not confirmation followed by generic co-presence"
+      },
+      "required_actions": [
+        "message",
+        "buy",
+        "interact"
+      ],
+      "required_conditions": [
+        "message_before_interaction",
+        "handoff_evidence",
+        "co_presence"
+      ],
+      "negative_failure": "meet without acquiring or handing off the required item",
+      "implementation_status": "builder_and_evaluator_implemented"
+    },
+    "multi_party_commitment": {
+      "mechanism_id": "sequential_two_party_relay",
+      "state_transition": "evidence from the first timed meeting must be carried into a later meeting with a second partner",
+      "novelty_against": {
+        "base": "not choosing one feasible social opportunity",
+        "wave2": "not dropping and renegotiating an overlap",
+        "wave3": "not public priority selection between competing commitments"
+      },
+      "required_actions": [
+        "message",
+        "interact",
+        "move",
+        "interact"
+      ],
+      "required_conditions": [
+        "ordered_interaction_chain",
+        "co_presence",
+        "episode_complete_before"
+      ],
+      "negative_failure": "complete only one meeting or reverse the relay order",
+      "implementation_status": "builder_and_evaluator_implemented"
+    },
+    "compound_long_horizon": {
+      "mechanism_id": "credential_unlock_purchase_service_return_chain",
+      "state_transition": "a credential service unlocks a labeled purchase, which unlocks a timed service before return",
+      "novelty_against": {
+        "base": "not a loose multi-errand sequence",
+        "wave2": "not purchase-meet-return",
+        "wave3": "not medication prerequisite before meeting"
+      },
+      "required_actions": [
+        "use_service",
+        "buy",
+        "use_service",
+        "move",
+        "enter"
+      ],
+      "required_conditions": [
+        "ordered_evidence_chain",
+        "visit_before",
+        "budget_at_least"
+      ],
+      "negative_failure": "skip the credential or execute the purchase/service chain out of order",
+      "implementation_status": "builder_and_evaluator_implemented"
+    }
+  },
+  "required_before_generation": [
+    "verify_no_mechanism_id_or_state_transition_collision",
+    "build_oracle_and_matched_negative_plans",
+    "instantiate_only_in_three_public_worlds"
+  ],
+  "generator": "generate_expansion_wave4.py"
+}

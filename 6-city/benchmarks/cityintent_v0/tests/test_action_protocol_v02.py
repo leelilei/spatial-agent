@@ -90,6 +90,73 @@ class ActionProtocolV02Test(unittest.TestCase):
             "cafe",
         )
 
+    def test_evidence_labels_ignore_separator_formatting_only(self) -> None:
+        state = self.state()
+        state.services.append(
+            {"location": "shop", "service": "check-in", "time": state.time}
+        )
+        condition = {
+            "type": "use_service_at",
+            "location": "shop",
+            "service": "check_in",
+        }
+
+        self.assertEqual(condition_success(condition, state, self.scenario), 1.0)
+        self.assertEqual(len(condition_evidence(condition, state)), 1)
+        self.assertEqual(
+            condition_success(
+                {**condition, "service": "prescription_pickup"},
+                state,
+                self.scenario,
+            ),
+            0.0,
+        )
+
+    def test_purchase_at_accepts_any_item_but_requires_purchase_evidence(self) -> None:
+        state = self.state()
+        condition = {"type": "purchase_at", "location": "cafe"}
+        self.assertEqual(condition_success(condition, state, self.scenario), 0.0)
+
+        state.purchases.append(
+            {"location": "cafe", "item": "coffee", "time": state.time}
+        )
+        self.assertEqual(condition_success(condition, state, self.scenario), 1.0)
+        self.assertEqual(len(condition_evidence(condition, state)), 1)
+
+    def test_obtain_at_accepts_purchase_or_service_before_deadline(self) -> None:
+        condition = {
+            "type": "obtain_at",
+            "location": "shop",
+            "item": "prescription",
+            "service": "prescription_pickup",
+            "deadline": "10:10",
+        }
+        purchased = self.state()
+        purchased.purchases.append(
+            {"location": "shop", "item": "prescription", "time": parse_time("10:05")}
+        )
+        serviced = self.state()
+        serviced.services.append(
+            {
+                "location": "shop",
+                "service": "prescription pickup",
+                "time": parse_time("10:05"),
+            }
+        )
+        late = self.state()
+        late.services.append(
+            {
+                "location": "shop",
+                "service": "prescription_pickup",
+                "time": parse_time("10:11"),
+            }
+        )
+
+        self.assertEqual(condition_success(condition, purchased, self.scenario), 1.0)
+        self.assertEqual(condition_success(condition, serviced, self.scenario), 1.0)
+        self.assertEqual(condition_success(condition, late, self.scenario), 0.0)
+        self.assertEqual(condition_evidence(condition, purchased)[0]["evidence_kind"], "purchase")
+
     def test_move_arrival_does_not_enter_spend_or_complete_purchase(self) -> None:
         state = self.state()
         condition = {

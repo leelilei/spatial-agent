@@ -1,0 +1,122 @@
+{
+  "scenario_id": "ci11_memo_memory_dependent_place_choice_harbor_grid_v1_1",
+  "title": "Memory-Dependent Place Choice",
+  "world_id": "harbor_grid_v1",
+  "family": "memory_conditioned_preference",
+  "episode": {
+    "start_time": "10:00",
+    "end_time": "12:00",
+    "max_steps": 8
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Freelancer choosing a morning work spot before meeting Ben.",
+      "start_location": "hgd_library",
+      "budget": 17,
+      "private_intention": "Choose a work spot with Wi-Fi and vegan food, then meet Ben without choosing a noisy location.",
+      "known_locations": [
+        "hgd_library",
+        "hgd_quiet_cafe",
+        "hgd_meeting_cafe",
+        "hgd_bookstore"
+      ],
+      "memory_seeds": [
+        "Harbor Grid Quiet Cafe has vegan food, Wi-Fi, and low noise.",
+        "Harbor Grid Meeting Cafe is closer to the office but often noisy."
+      ]
+    },
+    {
+      "agent_id": "ben",
+      "persona": "Friend who wants a quick quiet coffee.",
+      "start_location": "hgd_home_friend",
+      "budget": 16,
+      "private_intention": "Meet Aria somewhere quiet.",
+      "known_locations": [
+        "hgd_home_friend",
+        "hgd_quiet_cafe",
+        "hgd_meeting_cafe"
+      ],
+      "memory_seeds": [
+        "Aria usually prefers quiet work spaces."
+      ]
+    }
+  ],
+  "public_context": "Both cafes are open. The benchmark checks whether private memory changes place choice.",
+  "events": [],
+  "critical_locations": [
+    "hgd_library",
+    "hgd_quiet_cafe",
+    "hgd_meeting_cafe",
+    "hgd_bookstore"
+  ],
+  "success_conditions": [
+    {
+      "id": "choose_memory_matched_place",
+      "type": "visit_location",
+      "role": "outcome",
+      "location": "hgd_quiet_cafe",
+      "weight": 0.4
+    },
+    {
+      "id": "meet_ben_quietly",
+      "type": "co_presence",
+      "role": "outcome",
+      "agents": [
+        "aria",
+        "ben"
+      ],
+      "location_any_of": [
+        "hgd_quiet_cafe"
+      ],
+      "time_window": [
+        "10:30",
+        "11:45"
+      ],
+      "weight": 0.35
+    },
+    {
+      "id": "avoid_noisy_cafe",
+      "type": "avoid_when_possible",
+      "role": "constraint",
+      "avoid_locations": [
+        "hgd_meeting_cafe"
+      ],
+      "weight": 0.25
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "May choose the nearest or cheapest place and miss the memory-based vegan/noise preference.",
+    "llm_direct_actor": "May pick the more salient Harbor Grid Meeting Cafe unless memory is explicitly used.",
+    "reactive_replanner": "Can satisfy the meeting but may not show memory-sensitive place choice.",
+    "memory_reflection": "Should retrieve the vegan Wi-Fi quiet memory and choose Harbor Grid Quiet Cafe."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0",
+    "candidate_status": "pending_acceptance_gates",
+    "split": "public_test",
+    "construct_family": "memory_conditioned_preference",
+    "difficulty_tier": "easy",
+    "difficulty_status": "provisional_pending_baseline_calibration",
+    "template_id": "memory_dependent_place_choice",
+    "instance_variant": 1,
+    "seed": 31171001975793,
+    "generator_version": "cityintent-scenariogen-1.0.0",
+    "source_version": "1.0-rc1",
+    "source_family": "memory",
+    "source_perturbation_pair": null,
+    "world_visibility": "public",
+    "parameterization": "one_extra_step_and_three_extra_credits"
+  }
+}

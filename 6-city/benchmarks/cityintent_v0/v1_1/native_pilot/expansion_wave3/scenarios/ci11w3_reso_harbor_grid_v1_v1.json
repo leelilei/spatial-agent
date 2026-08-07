@@ -1,0 +1,144 @@
+{
+  "scenario_id": "ci11w3_reso_harbor_grid_v1_v1",
+  "title": "Wave 3 Irreversible Budget Reservation",
+  "world_id": "harbor_grid_v1",
+  "family": "resource_budget_allocation",
+  "episode": {
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "max_steps": 9
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "A resident executing a private urban intention.",
+      "start_location": "hgd_home_primary",
+      "budget": 22.0,
+      "private_intention": "Wait for the public reservation-price update at 10:10. It will identify the reservation_location from the plausible candidates hgd_market, hgd_pharmacy, and hgd_quiet_cafe. After the update, buy an item explicitly labeled reservation_token at its reservation_location, complete a training service at hgd_gym, and return inside hgd_home_primary before 13:00 without exceeding the budget.",
+      "known_locations": [
+        "hgd_home_primary",
+        "hgd_home_friend",
+        "hgd_office",
+        "hgd_transit_hub",
+        "hgd_plaza",
+        "hgd_meeting_cafe",
+        "hgd_quiet_cafe",
+        "hgd_library",
+        "hgd_coworking",
+        "hgd_civic_service",
+        "hgd_park",
+        "hgd_gym",
+        "hgd_market",
+        "hgd_pharmacy",
+        "hgd_clinic",
+        "hgd_budget_food",
+        "hgd_school",
+        "hgd_culture",
+        "hgd_bookstore"
+      ],
+      "memory_seeds": []
+    }
+  ],
+  "public_context": "Only environment-observable action evidence counts as completion. Mechanism contract: reservation consumes budget before a later required service.",
+  "events": [
+    {
+      "time": "10:10",
+      "type": "reservation_price_update",
+      "location": "hgd_market",
+      "visibility": "public",
+      "effect": {
+        "reservation_allowed": true,
+        "reservation_location": "hgd_market"
+      }
+    }
+  ],
+  "critical_locations": [
+    "hgd_home_primary",
+    "hgd_market",
+    "hgd_gym",
+    "hgd_meeting_cafe",
+    "hgd_quiet_cafe",
+    "hgd_pharmacy"
+  ],
+  "success_conditions": [
+    {
+      "id": "reservation_token",
+      "type": "purchase_after_time",
+      "role": "outcome",
+      "weight": 0.35,
+      "location": "hgd_market",
+      "item": "reservation_token",
+      "minutes": 1,
+      "after": "10:10"
+    },
+    {
+      "id": "training",
+      "type": "use_service_at",
+      "role": "outcome",
+      "weight": 0.35,
+      "location": "hgd_gym",
+      "minutes": 5
+    },
+    {
+      "id": "return_home",
+      "type": "visit_before",
+      "role": "outcome",
+      "weight": 0.15,
+      "location": "hgd_home_primary",
+      "deadline": "13:00",
+      "ignore_start": true
+    },
+    {
+      "id": "budget",
+      "type": "budget_at_least",
+      "role": "constraint",
+      "weight": 0.15,
+      "agent": "aria",
+      "min_remaining": 0
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Must produce explicit outcome evidence.",
+    "llm_direct_actor": "May narrate success without the required action evidence.",
+    "reactive_replanner": "Must preserve the intention while updating the plan.",
+    "memory_reflection": "Must use relevant private memory without goal drift."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0-expansion-wave3",
+    "candidate_status": "actor_hardened_resource_update",
+    "split": "calibration_public",
+    "construct_family": "resource_budget_allocation",
+    "difficulty_tier": "hard",
+    "template_id": "wave3_irreversible_budget_reservation",
+    "instance_variant": 1,
+    "seed": 212309119290428,
+    "generator_version": "cityintent-native-expansion-wave3-1.0.0-design-review",
+    "world_visibility": "public",
+    "observation_contract": "intent_only_v1",
+    "expose_verifier_conditions": false,
+    "mechanism_id": "irreversible_budget_reservation",
+    "mechanism_parameter": "reservation consumes budget before a later required service",
+    "parent_generator_version": "cityintent-native-expansion-wave2-1.0.3",
+    "mechanism_contract": {
+      "state_transition": "reservation_consumes_budget_before_service",
+      "required_evidence": [
+        "reservation_token",
+        "training",
+        "budget"
+      ],
+      "negative_failure": "spending_reserved_budget_on_optional_item"
+    }
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "scenario_id": "ci11w3_disr_harbor_grid_v1_v0",
+  "title": "Wave 3 Resource Aware Fallback Substitution",
+  "world_id": "harbor_grid_v1",
+  "family": "disruption_recovery",
+  "episode": {
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "max_steps": 18
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "A resident executing a private urban intention.",
+      "start_location": "hgd_home_primary",
+      "budget": 100,
+      "private_intention": "The usual destination is hgd_office, but a disruption update at 10:20 may relocate the appointment. Do not finish before seeing that public update; recover by reaching and entering its replacement_destination by 11:30. The decision must preserve the mechanism contract: fallback must preserve budget and session duration after closure.",
+      "known_locations": [
+        "hgd_home_primary",
+        "hgd_home_friend",
+        "hgd_office",
+        "hgd_transit_hub",
+        "hgd_plaza",
+        "hgd_meeting_cafe",
+        "hgd_quiet_cafe",
+        "hgd_library",
+        "hgd_coworking",
+        "hgd_civic_service",
+        "hgd_park",
+        "hgd_gym",
+        "hgd_market",
+        "hgd_pharmacy",
+        "hgd_clinic",
+        "hgd_budget_food",
+        "hgd_school",
+        "hgd_culture",
+        "hgd_bookstore"
+      ],
+      "memory_seeds": []
+    }
+  ],
+  "public_context": "Only environment-observable action evidence counts as completion. Mechanism contract: fallback must preserve budget and session duration after closure.",
+  "events": [
+    {
+      "time": "10:20",
+      "type": "route_closure",
+      "location": "hgd_quiet_cafe",
+      "visibility": "public",
+      "effect": {
+        "blocked_edge": [
+          "hgd_home_primary",
+          "hgd_quiet_cafe"
+        ],
+        "until": "12:00",
+        "replacement_destination": "hgd_clinic"
+      }
+    }
+  ],
+  "critical_locations": [
+    "hgd_home_primary",
+    "hgd_office",
+    "hgd_clinic"
+  ],
+  "success_conditions": [
+    {
+      "id": "replan_after_event",
+      "type": "replan_after_event",
+      "role": "process",
+      "weight": 0.25,
+      "event_id": "route_closure"
+    },
+    {
+      "id": "avoid_blocked_edge",
+      "type": "avoid_blocked_edge",
+      "role": "constraint",
+      "weight": 0.2,
+      "edge": [
+        "hgd_home_primary",
+        "hgd_quiet_cafe"
+      ],
+      "time_window": [
+        "10:20",
+        "12:00"
+      ]
+    },
+    {
+      "id": "reach_relocated_target",
+      "type": "visit_before",
+      "role": "outcome",
+      "weight": 0.35,
+      "location": "hgd_clinic",
+      "deadline": "11:30",
+      "ignore_start": true
+    },
+    {
+      "id": "legal_trace",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.2
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Must produce explicit outcome evidence.",
+    "llm_direct_actor": "May narrate success without the required action evidence.",
+    "reactive_replanner": "Must preserve the intention while updating the plan.",
+    "memory_reflection": "Must use relevant private memory without goal drift."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0-expansion-wave3",
+    "candidate_status": "mechanism_distinctness_review_pending",
+    "split": "calibration_public",
+    "construct_family": "disruption_recovery",
+    "difficulty_tier": "medium",
+    "template_id": "wave3_resource_aware_fallback_substitution",
+    "instance_variant": 0,
+    "seed": 147770879207202,
+    "generator_version": "cityintent-native-expansion-wave3-1.0.0-design-review",
+    "world_visibility": "public",
+    "observation_contract": "intent_only_v1",
+    "expose_verifier_conditions": false,
+    "mechanism_id": "resource_aware_fallback_substitution",
+    "mechanism_parameter": "fallback must preserve budget and session duration after closure",
+    "parent_generator_version": "cityintent-native-expansion-wave2-1.0.0",
+    "mechanism_contract": {
+      "state_transition": "public_route_closure_requires_replan",
+      "required_evidence": [
+        "replan_after_event",
+        "avoid_blocked_edge",
+        "reach_relocated_target"
+      ],
+      "negative_failure": "continuing_on_the_pre_event_shortest_path"
+    }
+  }
+}

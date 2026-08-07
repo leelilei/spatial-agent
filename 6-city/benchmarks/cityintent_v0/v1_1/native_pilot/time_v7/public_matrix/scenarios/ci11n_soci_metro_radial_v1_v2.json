@@ -1,0 +1,132 @@
+{
+  "scenario_id": "ci11n_soci_metro_radial_v1_v2",
+  "title": "Native Social Coordination Copresence 2",
+  "world_id": "metro_radial_v1",
+  "family": "social_coordination_copresence",
+  "episode": {
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "max_steps": 14
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "A resident executing a private urban intention.",
+      "start_location": "mtr_home_primary",
+      "budget": 14,
+      "private_intention": "Message Ben to confirm, enter mtr_meeting_cafe, buy one refreshment so waiting is permitted, and meet him inside during the narrow 11:00-11:10 window. Stay within the exact 14-credit budget.",
+      "known_locations": [
+        "mtr_home_primary",
+        "mtr_home_friend",
+        "mtr_office",
+        "mtr_transit_hub",
+        "mtr_plaza",
+        "mtr_meeting_cafe",
+        "mtr_quiet_cafe",
+        "mtr_library",
+        "mtr_coworking",
+        "mtr_civic_service",
+        "mtr_park",
+        "mtr_gym",
+        "mtr_market",
+        "mtr_pharmacy",
+        "mtr_clinic",
+        "mtr_budget_food",
+        "mtr_school",
+        "mtr_culture",
+        "mtr_bookstore"
+      ],
+      "memory_seeds": []
+    },
+    {
+      "agent_id": "ben",
+      "persona": "A friend available for the confirmed meeting.",
+      "start_location": "mtr_meeting_cafe",
+      "budget": 20,
+      "private_intention": "Meet Aria.",
+      "known_locations": [
+        "mtr_meeting_cafe"
+      ],
+      "memory_seeds": []
+    }
+  ],
+  "public_context": "Only environment-observable action evidence counts as completion.",
+  "events": [],
+  "critical_locations": [
+    "mtr_home_primary",
+    "mtr_meeting_cafe"
+  ],
+  "success_conditions": [
+    {
+      "id": "confirm_ben",
+      "type": "send_message",
+      "role": "outcome",
+      "weight": 0.15,
+      "to": "ben"
+    },
+    {
+      "id": "refreshment",
+      "type": "purchase_at",
+      "role": "outcome",
+      "weight": 0.15,
+      "location": "mtr_meeting_cafe",
+      "minutes": 2
+    },
+    {
+      "id": "meet_ben",
+      "type": "co_presence",
+      "role": "outcome",
+      "weight": 0.5,
+      "agents": [
+        "aria",
+        "ben"
+      ],
+      "location_any_of": [
+        "mtr_meeting_cafe"
+      ],
+      "time_window": [
+        "11:00",
+        "11:10"
+      ]
+    },
+    {
+      "id": "legal_trace",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.2
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Must produce explicit outcome evidence.",
+    "llm_direct_actor": "May narrate success without the required action evidence.",
+    "reactive_replanner": "Must preserve the intention while updating the plan.",
+    "memory_reflection": "Must use relevant private memory without goal drift."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0-expansion-wave1",
+    "candidate_status": "oracle_gate_pending",
+    "split": "calibration_expansion",
+    "construct_family": "social_coordination_copresence",
+    "difficulty_tier": "hard",
+    "template_id": "native_social_coordination_copresence",
+    "instance_variant": 2,
+    "seed": 58402408517659,
+    "generator_version": "cityintent-native-expansion-6.1.0",
+    "world_visibility": "public",
+    "observation_contract": "intent_only_v1",
+    "expose_verifier_conditions": false,
+    "parent_generator_version": "cityintent-native-pilot-6.0.0"
+  }
+}

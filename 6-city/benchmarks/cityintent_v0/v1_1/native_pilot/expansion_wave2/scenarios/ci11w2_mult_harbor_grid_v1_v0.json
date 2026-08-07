@@ -1,0 +1,143 @@
+{
+  "scenario_id": "ci11w2_mult_harbor_grid_v1_v0",
+  "title": "Wave 2 Overlap Requires Explicit Renegotiation",
+  "world_id": "harbor_grid_v1",
+  "family": "multi_party_commitment",
+  "episode": {
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "max_steps": 18
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "A resident executing a private urban intention.",
+      "start_location": "hgd_home_primary",
+      "budget": 13.0,
+      "private_intention": "Ben and Casey requested overlapping meetings. Confirm and meet Ben inside hgd_meeting_cafe between 11:00-11:15. Explicitly message Casey to reschedule instead of silently dropping that commitment; do not travel to hgd_park today.",
+      "known_locations": [
+        "hgd_home_primary",
+        "hgd_home_friend",
+        "hgd_office",
+        "hgd_transit_hub",
+        "hgd_plaza",
+        "hgd_meeting_cafe",
+        "hgd_quiet_cafe",
+        "hgd_library",
+        "hgd_coworking",
+        "hgd_civic_service",
+        "hgd_park",
+        "hgd_gym",
+        "hgd_market",
+        "hgd_pharmacy",
+        "hgd_clinic",
+        "hgd_budget_food",
+        "hgd_school",
+        "hgd_culture",
+        "hgd_bookstore"
+      ],
+      "memory_seeds": []
+    },
+    {
+      "agent_id": "ben",
+      "persona": "A coordination partner.",
+      "start_location": "hgd_meeting_cafe",
+      "budget": 0,
+      "private_intention": "Coordinate with Aria.",
+      "known_locations": [
+        "hgd_meeting_cafe"
+      ],
+      "memory_seeds": []
+    },
+    {
+      "agent_id": "casey",
+      "persona": "A coordination partner.",
+      "start_location": "hgd_park",
+      "budget": 0,
+      "private_intention": "Coordinate with Aria.",
+      "known_locations": [
+        "hgd_park"
+      ],
+      "memory_seeds": []
+    }
+  ],
+  "public_context": "Only environment-observable action evidence counts as completion.",
+  "events": [],
+  "critical_locations": [
+    "hgd_home_primary",
+    "hgd_meeting_cafe",
+    "hgd_park"
+  ],
+  "success_conditions": [
+    {
+      "id": "confirm_ben",
+      "type": "send_message",
+      "role": "outcome",
+      "weight": 0.2,
+      "to": "ben"
+    },
+    {
+      "id": "renegotiate_casey",
+      "type": "send_message",
+      "role": "outcome",
+      "weight": 0.1,
+      "to": "casey"
+    },
+    {
+      "id": "meet_ben",
+      "type": "co_presence",
+      "role": "outcome",
+      "weight": 0.5,
+      "agents": [
+        "aria",
+        "ben"
+      ],
+      "location_any_of": [
+        "hgd_meeting_cafe"
+      ],
+      "time_window": [
+        "11:00",
+        "11:15"
+      ]
+    },
+    {
+      "id": "legal_trace",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.2
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Must produce explicit outcome evidence.",
+    "llm_direct_actor": "May narrate success without the required action evidence.",
+    "reactive_replanner": "Must preserve the intention while updating the plan.",
+    "memory_reflection": "Must use relevant private memory without goal drift."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0-expansion-wave2",
+    "candidate_status": "oracle_gate_pending",
+    "split": "calibration_public",
+    "construct_family": "multi_party_commitment",
+    "difficulty_tier": "hard",
+    "template_id": "wave2_overlap_requires_explicit_renegotiation",
+    "instance_variant": 0,
+    "seed": 263792151342122,
+    "generator_version": "cityintent-native-expansion-wave2-1.0.0",
+    "world_visibility": "public",
+    "observation_contract": "intent_only_v1",
+    "expose_verifier_conditions": false,
+    "mechanism_id": "overlap_requires_explicit_renegotiation"
+  }
+}

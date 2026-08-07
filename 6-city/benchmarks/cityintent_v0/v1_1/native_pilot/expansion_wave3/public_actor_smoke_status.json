@@ -1,0 +1,33 @@
+{
+  "schema_version": "cityintent_wave3_actor_smoke_status_v1",
+  "attempt_date": "2026-08-05",
+  "scope": "public_world_only",
+  "scenario_id": "ci11w3_soci_harbor_grid_v1_v1",
+  "policies": [
+    "api_llm_react_tool_policy",
+    "api_llm_plan_and_execute"
+  ],
+  "models": [
+    "claude_sonnet_4_5",
+    "qwen3_235b",
+    "deepseek_v4_flash"
+  ],
+  "status": "complete_smoke_not_promotion",
+  "successful_trace_count": 6,
+  "failed_trace_count": 0,
+  "task_completion": {
+    "api_llm_react_tool_policy": [1.0, 1.0, 1.0],
+    "api_llm_plan_and_execute": [0.0, 0.0, 0.0],
+    "overall_mean": 0.5,
+    "policy_range": 1.0
+  },
+  "failure_pattern": "plan_and_execute_committed_to_a_stale_or_incorrect_venue_before_the_public_update",
+  "result_directories": [
+    "results/cityintent_v1_1_candidate/native_wave3_public_smoke_2x1x1_2026-08-05_claude",
+    "results/cityintent_v1_1_candidate/native_wave3_public_smoke_2x1x1_2026-08-05_qwen",
+    "results/cityintent_v1_1_candidate/native_wave3_public_smoke_2x1x1_2026-08-05_deepseek"
+  ],
+  "promotion_evidence": false,
+  "private_world_actor_run": false,
+  "next_gate": "full_six_system_public_calibration_across_three_worlds"
+}

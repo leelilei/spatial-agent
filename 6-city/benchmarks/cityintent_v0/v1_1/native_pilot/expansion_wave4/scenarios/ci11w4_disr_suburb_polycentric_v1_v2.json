@@ -1,0 +1,140 @@
+{
+  "scenario_id": "ci11w4_disr_suburb_polycentric_v1_v2",
+  "title": "Wave 4 Temporary Service Outage With Timed Recovery Choice",
+  "world_id": "suburb_polycentric_v1",
+  "family": "disruption_recovery",
+  "episode": {
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "max_steps": 18
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "A resident executing a private urban intention.",
+      "start_location": "spc_home_primary",
+      "budget": 19.0,
+      "private_intention": "Complete the appointment service inside spc_clinic. A public outage at 10:22 takes that service down until 10:52; travelling straight there arrives inside the outage. Wait for the recovery, then produce appointment-service evidence at spc_clinic no later than 11:12. Service evidence produced before the recovery does not count.",
+      "known_locations": [
+        "spc_home_primary",
+        "spc_home_friend",
+        "spc_office",
+        "spc_transit_hub",
+        "spc_plaza",
+        "spc_meeting_cafe",
+        "spc_quiet_cafe",
+        "spc_library",
+        "spc_coworking",
+        "spc_civic_service",
+        "spc_park",
+        "spc_gym",
+        "spc_market",
+        "spc_pharmacy",
+        "spc_clinic",
+        "spc_budget_food",
+        "spc_school",
+        "spc_culture",
+        "spc_bookstore"
+      ],
+      "memory_seeds": []
+    }
+  ],
+  "public_context": "Only environment-observable action evidence counts as completion.",
+  "events": [
+    {
+      "time": "10:22",
+      "type": "service_outage",
+      "location": "spc_clinic",
+      "visibility": "public",
+      "effect": {
+        "closed_until": "10:52",
+        "service_unavailable": "appointment",
+        "recovers_at": "10:52"
+      }
+    }
+  ],
+  "critical_locations": [
+    "spc_home_primary",
+    "spc_clinic"
+  ],
+  "success_conditions": [
+    {
+      "id": "recovered_service",
+      "type": "service_after_recovery",
+      "role": "outcome",
+      "weight": 0.55,
+      "location": "spc_clinic",
+      "service": "appointment",
+      "after": "10:52",
+      "deadline": "11:12",
+      "minutes": 5
+    },
+    {
+      "id": "finish_episode",
+      "type": "episode_complete_before",
+      "role": "constraint",
+      "weight": 0.25,
+      "deadline": "11:12"
+    },
+    {
+      "id": "legal_trace",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.2
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "travel_efficiency",
+    "budget_consistency",
+    "intention_consistency",
+    "social_appropriateness"
+  ],
+  "architecture_probes": {
+    "utility_planner": "Must produce explicit outcome evidence.",
+    "llm_direct_actor": "May narrate success without the required action evidence.",
+    "reactive_replanner": "Must preserve the intention while updating the plan.",
+    "memory_reflection": "Must use relevant private memory without goal drift."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0-expansion-wave4",
+    "candidate_status": "mechanism_distinctness_review_pending",
+    "split": "calibration_public",
+    "construct_family": "disruption_recovery",
+    "difficulty_tier": "hard",
+    "template_id": "wave4_temporary_service_outage_with_timed_recovery_choice",
+    "instance_variant": 2,
+    "seed": 128069104621345,
+    "generator_version": "cityintent-native-expansion-wave4-1.0.0-design-review",
+    "world_visibility": "public",
+    "observation_contract": "intent_only_v1",
+    "expose_verifier_conditions": false,
+    "mechanism_id": "temporary_service_outage_with_timed_recovery_choice",
+    "mechanism_parameter": "a required service becomes unavailable and later recovers, forcing a wait-versus-substitute decision under deadline",
+    "parent_generator_version": "cityintent-native-pilot-6.0.0",
+    "mechanism_contract": {
+      "state_transition": "a required service becomes unavailable and later recovers, forcing a wait-versus-substitute decision under deadline",
+      "required_actions": [
+        "wait_for_outage_update",
+        "use_service",
+        "finish"
+      ],
+      "required_conditions": [
+        "service_after_recovery",
+        "deadline",
+        "no_feasibility_violation"
+      ],
+      "negative_failure": "commit to the unavailable service before recovery or wait past the deadline",
+      "novelty_against": {
+        "base": "not static closed-POI fallback",
+        "wave2": "not destination relocation",
+        "wave3": "not blocked-edge rerouting"
+      }
+    }
+  }
+}

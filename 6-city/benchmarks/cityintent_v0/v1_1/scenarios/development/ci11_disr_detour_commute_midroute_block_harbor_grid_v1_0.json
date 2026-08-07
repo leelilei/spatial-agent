@@ -1,0 +1,131 @@
+{
+  "scenario_id": "ci11_disr_detour_commute_midroute_block_harbor_grid_v1_0",
+  "title": "Detour Commute With Mid-Route Block",
+  "world_id": "harbor_grid_v1",
+  "family": "disruption_recovery",
+  "episode": {
+    "start_time": "08:00",
+    "end_time": "09:30",
+    "max_steps": 8
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Commuter who needs to reach the office but prefers reliable routes over optimistic shortcuts.",
+      "start_location": "hgd_home_primary",
+      "budget": 10,
+      "private_intention": "Reach the office before 09:15 without using a route that becomes blocked mid-commute.",
+      "known_locations": [
+        "hgd_home_primary",
+        "hgd_transit_hub",
+        "hgd_office",
+        "hgd_gym",
+        "hgd_park",
+        "hgd_quiet_cafe",
+        "hgd_library",
+        "hgd_meeting_cafe"
+      ],
+      "memory_seeds": [
+        "The transit-office link is fast but often fails during morning disruptions.",
+        "A longer park-library-cafe route can still reach the office if the hub is blocked."
+      ]
+    }
+  ],
+  "public_context": "The normal fastest route goes through the transit hub, but a service alert may appear shortly after departure.",
+  "events": [
+    {
+      "time": "08:08",
+      "type": "service_alert",
+      "location": "hgd_transit_hub",
+      "visibility": "public",
+      "effect": {
+        "blocked_edge": [
+          "hgd_transit_hub",
+          "hgd_office"
+        ],
+        "until": "08:55"
+      }
+    }
+  ],
+  "critical_locations": [
+    "hgd_home_primary",
+    "hgd_transit_hub",
+    "hgd_office",
+    "hgd_gym",
+    "hgd_park",
+    "hgd_quiet_cafe",
+    "hgd_library",
+    "hgd_meeting_cafe"
+  ],
+  "success_conditions": [
+    {
+      "id": "reach_office_before_standup",
+      "type": "visit_before",
+      "role": "outcome",
+      "agent": "aria",
+      "location": "hgd_office",
+      "deadline": "09:15",
+      "weight": 0.35
+    },
+    {
+      "id": "avoid_midroute_block",
+      "type": "avoid_blocked_edge",
+      "role": "constraint",
+      "edge": [
+        "hgd_transit_hub",
+        "hgd_office"
+      ],
+      "time_window": [
+        "08:08",
+        "08:55"
+      ],
+      "weight": 0.3
+    },
+    {
+      "id": "recover_after_service_alert",
+      "type": "replan_after_event",
+      "role": "process",
+      "event_id": "service_alert",
+      "weight": 0.2
+    },
+    {
+      "id": "no_impossible_commute_claim",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.15
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "process_success",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "travel_efficiency",
+    "intention_consistency"
+  ],
+  "architecture_probes": {
+    "utility_planner": "May commit to the fastest route before the service alert becomes active.",
+    "llm_direct_actor": "May narrate a normal commute through the hub even after the route becomes blocked.",
+    "reactive_replanner": "Should reroute after the service alert rather than claiming the blocked edge succeeds.",
+    "memory_reflection": "Should use the memory of a slower but reliable fallback path."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0",
+    "candidate_status": "pending_acceptance_gates",
+    "split": "development",
+    "construct_family": "disruption_recovery",
+    "difficulty_tier": "easy",
+    "difficulty_status": "provisional_pending_baseline_calibration",
+    "template_id": "detour_commute_midroute_block",
+    "instance_variant": 0,
+    "seed": 13066800532014,
+    "generator_version": "cityintent-scenariogen-1.0.0",
+    "source_version": "1.0-rc1",
+    "source_family": "disruption",
+    "source_perturbation_pair": null,
+    "world_visibility": "public"
+  }
+}

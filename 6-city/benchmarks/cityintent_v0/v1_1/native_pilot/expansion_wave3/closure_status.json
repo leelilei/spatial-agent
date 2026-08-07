@@ -1,0 +1,44 @@
+{
+  "schema_version": "cityintent_wave3_closure_status_v1",
+  "date": "2026-08-06",
+  "status": "public_calibration_promoted_not_release",
+  "mechanism_templates": 8,
+  "public_instances": 24,
+  "final_actor_traces": 144,
+  "systems_per_instance": 6,
+  "oracle_passed": 24,
+  "matched_negative_passed": 24,
+  "structurally_distinct": 24,
+  "cross_world_accepted_templates": 8,
+  "cross_world_accepted_instances": 24,
+  "worlds": {
+    "v0": {
+      "analysis": "results/cityintent_v1_1_candidate/native_wave3_public_v0_final_analysis_48_2026-08-06",
+      "mean_task_range": [0.5, 0.847167],
+      "observed_range": [0.5, 1.0],
+      "corrected_r_range": [0.396697, 0.99003]
+    },
+    "v1": {
+      "analysis": "results/cityintent_v1_1_candidate/native_wave3_public_v1_final_analysis_48_2026-08-06",
+      "mean_task_range": [0.458333, 0.704],
+      "observed_range": [0.588, 1.0],
+      "corrected_r_range": [0.763541, 0.986507]
+    },
+    "v2": {
+      "analysis": "results/cityintent_v1_1_candidate/native_wave3_public_v2_final_analysis_48_2026-08-06",
+      "mean_task_range": [0.333333, 0.833333],
+      "observed_range": [0.5, 1.0],
+      "corrected_r_range": [0.410793, 0.988284]
+    }
+  },
+  "registry_after_promotion": {
+    "calibration_templates": 24,
+    "calibration_public_instances": 72,
+    "mechanisms_per_construct": 3,
+    "public_instances_per_construct": 9,
+    "next_required_wave": "wave4"
+  },
+  "private_world_actor_run": false,
+  "release_accepted_count": 0,
+  "release_target": 144
+}

@@ -1,0 +1,119 @@
+{
+  "scenario_id": "ci11_soci_social_copresence_open_meet_metro_radial_v1_0",
+  "title": "Open Park Meetup",
+  "world_id": "metro_radial_v1",
+  "family": "social_coordination_copresence",
+  "episode": {
+    "start_time": "12:00",
+    "end_time": "13:20",
+    "max_steps": 10
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Worker who wants a real mid-day catch-up, not just a walk past.",
+      "start_location": "mtr_office",
+      "budget": 16,
+      "private_intention": "Actually meet Casey at the park during the open window, not merely pass by.",
+      "known_locations": [
+        "mtr_office",
+        "mtr_meeting_cafe",
+        "mtr_plaza",
+        "mtr_market",
+        "mtr_park"
+      ],
+      "memory_seeds": [
+        "Casey waits at the park bench.",
+        "Arriving is not the same as meeting."
+      ]
+    },
+    {
+      "agent_id": "casey",
+      "persona": "Friend relaxing at the park over lunch.",
+      "start_location": "mtr_park",
+      "budget": 10,
+      "private_intention": "Chat with Aria if she comes by.",
+      "known_locations": [
+        "mtr_park"
+      ],
+      "memory_seeds": [
+        "Casey stays near the bench."
+      ]
+    }
+  ],
+  "public_context": "A calm lunch window. Walking to the park looks like success but co-presence must be real.",
+  "events": [],
+  "critical_locations": [
+    "mtr_office",
+    "mtr_meeting_cafe",
+    "mtr_plaza",
+    "mtr_market",
+    "mtr_park"
+  ],
+  "success_conditions": [
+    {
+      "id": "meet_casey",
+      "type": "co_presence",
+      "role": "outcome",
+      "agents": [
+        "aria",
+        "casey"
+      ],
+      "location_any_of": [
+        "mtr_park"
+      ],
+      "time_window": [
+        "12:35",
+        "13:10"
+      ],
+      "weight": 0.5
+    },
+    {
+      "id": "stay_within_budget",
+      "type": "budget_at_least",
+      "role": "constraint",
+      "agent": "aria",
+      "min_remaining": 0,
+      "weight": 0.2
+    },
+    {
+      "id": "no_impossible_meeting_claim",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.3
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "social_appropriateness",
+    "intention_consistency",
+    "travel_efficiency"
+  ],
+  "architecture_probes": {
+    "utility_planner": "May walk to the park and stop without registering co-presence.",
+    "llm_direct_actor": "May narrate a pleasant meetup without the accepted interaction.",
+    "reactive_replanner": "Should ensure it is present and interacts within the window.",
+    "memory_reflection": "Should recall that arrival is not meeting."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0",
+    "candidate_status": "pending_acceptance_gates",
+    "split": "development",
+    "construct_family": "social_coordination_copresence",
+    "difficulty_tier": "medium",
+    "difficulty_status": "provisional_pending_baseline_calibration",
+    "template_id": "social_copresence_open_meet",
+    "instance_variant": 0,
+    "seed": 33841904609329,
+    "generator_version": "cityintent-scenariogen-1.0.0",
+    "source_version": "1.0-rc1",
+    "source_family": "social_outcome",
+    "source_perturbation_pair": null,
+    "world_visibility": "public"
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "scenario_id": "ci11_reso_hard_full_evening_chain_suburb_polycentric_v1_0",
+  "title": "Groceries, Dinner, Friend, Home",
+  "world_id": "suburb_polycentric_v1",
+  "family": "resource_budget_allocation",
+  "episode": {
+    "start_time": "17:00",
+    "end_time": "19:00",
+    "max_steps": 12
+  },
+  "primary_agent": "aria",
+  "agents": [
+    {
+      "agent_id": "aria",
+      "persona": "Resident stacking a full evening into two hours.",
+      "start_location": "spc_home_primary",
+      "budget": 24,
+      "private_intention": "Buy groceries, eat at the diner, really meet Casey there in her window, and be home again before nine.",
+      "known_locations": [
+        "spc_home_primary",
+        "spc_gym",
+        "spc_park",
+        "spc_market",
+        "spc_budget_food"
+      ],
+      "memory_seeds": [
+        "Casey swings by the diner around quarter to six.",
+        "Dinner takes a while; it can carry you into her window.",
+        "Being home by nine is non-negotiable."
+      ]
+    },
+    {
+      "agent_id": "casey",
+      "persona": "Friend passing the diner early evening.",
+      "start_location": "spc_budget_food",
+      "budget": 12,
+      "private_intention": "Overlap with Aria at the diner.",
+      "known_locations": [
+        "spc_budget_food"
+      ],
+      "memory_seeds": [
+        "Quarter to six."
+      ]
+    }
+  ],
+  "public_context": "Four outcomes chain through three places; the dinner itself is the bridge into the social window.",
+  "events": [],
+  "critical_locations": [
+    "spc_home_primary",
+    "spc_gym",
+    "spc_park",
+    "spc_market",
+    "spc_budget_food"
+  ],
+  "success_conditions": [
+    {
+      "id": "buy_groceries",
+      "type": "buy_item",
+      "role": "outcome",
+      "location": "spc_market",
+      "item": "groceries",
+      "minutes": 5,
+      "weight": 0.15
+    },
+    {
+      "id": "eat_dinner",
+      "type": "use_service_at",
+      "role": "outcome",
+      "location": "spc_budget_food",
+      "service": "meal",
+      "minutes": 13,
+      "weight": 0.15
+    },
+    {
+      "id": "meet_casey_diner",
+      "type": "co_presence",
+      "role": "outcome",
+      "agents": [
+        "aria",
+        "casey"
+      ],
+      "location_any_of": [
+        "spc_budget_food"
+      ],
+      "time_window": [
+        "17:45",
+        "18:05"
+      ],
+      "weight": 0.25
+    },
+    {
+      "id": "home_by_nine",
+      "type": "visit_before",
+      "role": "outcome",
+      "location": "spc_home_primary",
+      "deadline": "19:00",
+      "ignore_start": true,
+      "weight": 0.15
+    },
+    {
+      "id": "stay_within_budget",
+      "type": "budget_at_least",
+      "role": "constraint",
+      "agent": "aria",
+      "min_remaining": 0,
+      "weight": 0.15
+    },
+    {
+      "id": "no_impossible_meeting_claim",
+      "type": "no_feasibility_violation",
+      "role": "constraint",
+      "weight": 0.15
+    }
+  ],
+  "scoring_metrics": [
+    "task_completion",
+    "constraint_satisfaction",
+    "goal_completion",
+    "feasibility_violation",
+    "replanning_success",
+    "social_appropriateness",
+    "intention_consistency",
+    "travel_efficiency"
+  ],
+  "architecture_probes": {
+    "utility_planner": "May finish dinner and leave before Casey's window, or drop groceries.",
+    "llm_direct_actor": "May narrate the full evening while skipping an accepted interaction.",
+    "reactive_replanner": "Should let the meal itself bridge into the window before interacting.",
+    "memory_reflection": "Should recall all four outcomes, not the salient two."
+  },
+  "benchmark_metadata": {
+    "benchmark_version": "1.1.0",
+    "candidate_status": "pending_acceptance_gates",
+    "split": "public_test",
+    "construct_family": "resource_budget_allocation",
+    "difficulty_tier": "hard",
+    "difficulty_status": "provisional_pending_baseline_calibration",
+    "template_id": "hard_full_evening_chain",
+    "instance_variant": 0,
+    "seed": 66493666681196,
+    "generator_version": "cityintent-scenariogen-1.0.0",
+    "source_version": "1.0-rc1",
+    "source_family": "social_outcome_hard",
+    "source_perturbation_pair": null,
+    "world_visibility": "public"
+  }
+}

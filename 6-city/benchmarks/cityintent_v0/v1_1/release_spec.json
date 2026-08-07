@@ -1,0 +1,84 @@
+{
+  "schema_version": "cityintent_release_spec_v1",
+  "benchmark_id": "cityintent",
+  "target_version": "1.1.0",
+  "status": "benchmark_candidate_under_construction",
+  "worlds": {
+    "minimum_total": 5,
+    "minimum_public": 3,
+    "minimum_private": 2,
+    "required_topologies": [
+      "dense_grid",
+      "radial_transit",
+      "sparse_polycentric",
+      "bottleneck_crossing",
+      "mixed_irregular"
+    ]
+  },
+  "scenarios": {
+    "minimum_total": 144,
+    "splits": {
+      "examples": 24,
+      "development": 36,
+      "public_test": 36,
+      "private_test": 48
+    },
+    "minimum_per_construct": 18,
+    "minimum_difficulty_fraction": {
+      "easy": 0.25,
+      "medium": 0.25,
+      "hard": 0.25
+    },
+    "required_constructs": [
+      "disruption_recovery",
+      "time_window_scheduling",
+      "resource_budget_allocation",
+      "poi_availability_service_evidence",
+      "memory_conditioned_preference",
+      "social_coordination_copresence",
+      "multi_party_commitment",
+      "compound_long_horizon"
+    ]
+  },
+  "item_acceptance": {
+    "oracle_task_completion": 1.0,
+    "oracle_trace_feasibility": 1.0,
+    "minimum_negative_control_headroom": 0.15,
+    "require_rejection_log": true,
+    "require_generator_provenance": true,
+    "forbid_unlabelled_action_surface_confounds": true
+  },
+  "human_validation": {
+    "minimum_stratified_traces": 72,
+    "independent_annotators": 2,
+    "minimum_exact_agreement": 0.8,
+    "minimum_cohen_kappa": 0.6,
+    "minimum_evidence_sufficient_rate": 0.9
+  },
+  "evaluator_robustness": {
+    "minimum_model_judges": 2,
+    "minimum_spearman_rank_correlation": 0.7,
+    "require_leave_one_family_out": true
+  },
+  "baselines": {
+    "minimum_deterministic_controls": 2,
+    "required_paper_backed_policies": [
+      "api_llm_react_tool_policy",
+      "api_llm_plan_and_execute"
+    ],
+    "minimum_external_framework_adapters": 4,
+    "minimum_actor_model_families": 4,
+    "minimum_actor_providers": 3,
+    "stochastic_repeats": 3
+  },
+  "release_artifacts": {
+    "require_public_package": true,
+    "require_private_package": true,
+    "require_split_hashes": true,
+    "require_submission_schema": true,
+    "require_standalone_scorer": true,
+    "require_benchmark_card": true,
+    "require_changelog": true,
+    "require_clean_checkout_smoke": true
+  }
+}
