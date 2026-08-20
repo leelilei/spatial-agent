@@ -2,8 +2,7 @@
 Thumbs.db
 
 .claude/settings.local.json
-.claude/
-*/.claude/
+.claude/worktrees/
 
 .venv/
 venv/
@@ -11,20 +10,6 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .cache/
-tmp/
 
 .vscode/
 .idea/
-
-node_modules/
-dist/
-build/
-
-tools/spatialagent-todo-app/build/
-logs_auto/
-logs_eval/
-logs_eval_final/
-logs_smoke/
-
-# society sim run outputs (regenerable)
-3-SMGA/sim/runs/
